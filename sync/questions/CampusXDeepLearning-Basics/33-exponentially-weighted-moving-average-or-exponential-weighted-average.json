@@ -1,0 +1,90 @@
+[
+    {
+        "id": "Exponentially Weighted Moving Average_001",
+        "question": "A data scientist is analyzing a daily temperature dataset to find the underlying trend. They calculate an Exponentially Weighted Moving Average (EWMA). According to the instructor's mathematical derivation, how does the EWMA algorithm mathematically treat older data points compared to newer data points?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It assigns the exact same mathematical weight to every single data point in the entire history, acting identically to a Simple Moving Average.",
+            "B) It assigns a higher mathematical weight to older data points to ensure the historical trend is never forgotten.",
+            "C) It strictly ignores all data points older than 10 days, setting their weights to exactly 0.0.",
+            "D) It assigns exponentially decreasing weights to older data points. The further back in time a point is, the more times it is multiplied by the fractional parameter $\\beta$ (beta), causing its influence on the current average to decay toward zero."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "ewma",
+            "mathematics",
+            "weight_decay",
+            "time_series"
+        ],
+        "difficulty": "medium",
+        "explanation": "The mathematical formula for EWMA is $V_t = \\beta V_{t-1} + (1-\\beta)\\theta_t$. When the instructor recursively expands this formula , it reveals that the current data point ($\\theta_t$) is multiplied by $(1-\\beta)$, the previous day's point is multiplied by $\\beta(1-\\beta)$, the day before that by $\\beta^2(1-\\beta)$, and so on. Because $\\beta$ is a fraction between 0 and 1 (e.g., 0.9), raising it to higher powers ($\\beta^2, \\beta^3, \\beta^{10}$) results in increasingly smaller numbers. Therefore, the mathematical weight assigned to a data point exponentially decays the older it gets. Options A, B, and C describe incorrect weighting mechanisms."
+    },
+    {
+        "id": "Exponentially Weighted Moving Average_002",
+        "question": "If you set the $\\beta$ (beta) parameter in the EWMA equation to a very low value, such as $\\beta = 0.1$, how will the resulting trend line visually and mathematically behave compared to a high $\\beta$ value like 0.98?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The trend line will become extremely smooth and flat, ignoring almost all daily fluctuations.",
+            "B) The trend line will become highly 'moody', jagged, and tightly follow the erratic daily fluctuations of the raw data, because it is almost entirely ignoring historical data and heavily weighting the current day's value.",
+            "C) The trend line will shift several days into the future, acting as a predictive forecasting model.",
+            "D) The trend line will invert, showing the exact mathematical opposite of the raw data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ewma",
+            "beta_parameter",
+            "hyperparameter_tuning",
+            "visual_intuition"
+        ],
+        "difficulty": "easy",
+        "explanation": "The $\\beta$ parameter controls how much 'memory' the average has. A very high $\\beta$ (e.g., 0.98) means the algorithm heavily weights the accumulated history ($V_{t-1}$) and gives very little weight to the current day's fluctuation, resulting in a very smooth, slow-moving curve. Conversely, a very low $\\beta$ (e.g., 0.1) means the algorithm almost entirely forgets the past and assigns massive weight to whatever happened *today*.  This makes the resulting curve highly volatile, jagged, and 'moody', closely mimicking the noisy raw data. Option A describes the behavior of a high $\\beta$. Options C and D are fabricated behaviors."
+    },
+    {
+        "id": "Exponentially Weighted Moving Average_003",
+        "question": "The instructor provides a heuristic (rule of thumb) to intuitively understand the $\\beta$ (beta) parameter in terms of 'days'. If a deep learning engineer sets $\\beta = 0.9$ for their optimizer, roughly how many previous 'days' (or data points) is the EWMA effectively averaging over?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 1 day",
+            "B) 10 days",
+            "C) 90 days",
+            "D) 100 days"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ewma",
+            "beta_parameter",
+            "heuristics",
+            "math_intuition"
+        ],
+        "difficulty": "medium",
+        "explanation": "The widely accepted heuristic in deep learning for estimating the 'window' of an EWMA is $\\frac{1}{1 - \\beta}$. If you plug $\\beta = 0.9$ into this formula, you get $\\frac{1}{1 - 0.9} = \\frac{1}{0.1} = 10$. Therefore, setting $\\beta = 0.9$ effectively creates a moving average that roughly represents the trend of the last 10 days (or data points/epochs). If $\\beta$ was 0.98, it would be $\\frac{1}{1 - 0.98} = 50$ days. Options A, C, and D do not match the result of this standard heuristic formula."
+    },
+    {
+        "id": "Exponentially Weighted Moving Average_004",
+        "question": "When implementing EWMA in Python using the pandas library, the instructor notes that the `ewm()` function uses an `alpha` parameter instead of `beta`. According to the video, what is the mathematical relationship between `alpha` and `beta`?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $\\text{alpha} = \\beta^2$",
+            "B) $\\text{alpha} = 1 / \\beta$",
+            "C) $\\text{alpha} = 1 - \\beta$",
+            "D) They are completely unrelated parameters that control different mathematical functions."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "ewma",
+            "pandas_implementation",
+            "alpha_vs_beta",
+            "python"
+        ],
+        "difficulty": "easy",
+        "explanation": "Different libraries and mathematical communities use slightly different notation for the same underlying concept. In the standard deep learning notation taught in the video, $\\beta$ is the weight given to the *historical* average, and $(1-\\beta)$ is the weight given to the *current* data point. The pandas library's `ewm()` function asks for `alpha`, which represents the weight of the *current* data point. Therefore, mathematically, $\\text{alpha} = 1 - \\beta$. If you want a deep learning $\\beta$ of 0.9, you must pass `alpha=0.1` to pandas. Options A, B, and D present incorrect mathematical relationships."
+    }
+]

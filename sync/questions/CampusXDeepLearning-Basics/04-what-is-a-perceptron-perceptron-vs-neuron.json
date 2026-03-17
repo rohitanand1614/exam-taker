@@ -1,0 +1,110 @@
+[
+    {
+        "id": "What-is-perceptron_001",
+        "question": "A data scientist is asked to build a classification model to predict whether a customer will churn based on their account age and monthly spend. They decide to use a single Perceptron. During the training phase, what specific mathematical entities is the Perceptron algorithm actually calculating and updating?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The exact geometric coordinates of every customer data point to ensure they are linearly separated.",
+            "B) The weights (w1, w2) corresponding to the input features and the bias (b) term, which together define the decision boundary.",
+            "C) The internal electro-chemical reaction rates within the hidden layers to mimic a biological neuron.",
+            "D) The optimal threshold value of the step activation function, dynamically shifting it to maximize accuracy."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "perceptron",
+            "training_process",
+            "weights_and_bias"
+        ],
+        "difficulty": "easy",
+        "explanation": "During the training phase of a Perceptron , the core objective is to learn the optimal values for the weights ($w_1$, $w_2$, etc.) assigned to each input feature, as well as the bias ($b$) term. These learned parameters mathematically define the equation of the line (or hyperplane) that will separate the data into classes. Option A is incorrect; the model doesn't calculate data coordinates; it uses them as given inputs. Option C is a biological analogy, not mathematical reality; per the instructor, perceptron internals are simple mathematical functions, unlike true biological neurons. Option D is incorrect; in a standard Perceptron, the threshold of the step function (e.g., at $z=0$) is fixed by design; it is the weights and bias that shift to adjust the output."
+    },
+    {
+        "id": "What-is-perceptron_002",
+        "question": "Consider a trained Perceptron predicting student placement based on two features: IQ ($x_1$) and CGPA ($x_2$). After training, the model outputs the following weights: $w_1 = 2$ (for IQ) and $w_2 = 8$ (for CGPA). How should an engineer interpret these specific weight values?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model predicts that exactly 8 students will be placed for every 2 students that are not.",
+            "B) The model considers CGPA to be a significantly more important feature than IQ in determining placement.",
+            "C) The model has encountered a vanishing gradient, causing the weight for CGPA to artificially inflate relative to IQ.",
+            "D) The model guarantees that any student with a CGPA above 8 will automatically be placed, regardless of their IQ."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "perceptron",
+            "feature_importance",
+            "weights_interpretation"
+        ],
+        "difficulty": "medium",
+        "explanation": "In a linear model like a Perceptron, the magnitude of the learned weights directly indicates feature importance. Because the weight for CGPA ($w_2 = 8$) is substantially larger than the weight for IQ ($w_1 = 2$), the model has learned that a unit change in CGPA has a much larger impact on the final summation ($z$) than a unit change in IQ. Therefore, CGPA is considered a stronger predictor or more important feature for the classification task. Option A misinterprets weights as class distributions. Option C introduces deep learning concepts (vanishing gradients) irrelevant to the learned state of a single, successfully trained perceptron. Option D is mathematically false; placement depends on the sum $w_1x_1 + w_2x_2 + b > 0$, so a low IQ or a large negative bias could still result in non-placement even with a high CGPA."
+    },
+    {
+        "id": "What-is-perceptron_003",
+        "question": "While the Perceptron is historically inspired by biological neurons, the instructor emphasizes critical differences to avoid misconceptions. Which of the following is a fundamental difference between a single Artificial Perceptron and a Biological Neuron?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A Perceptron relies on complex, unknown electro-chemical reactions to compute its output, while a biological neuron uses strict mathematical step functions.",
+            "B) Biological neurons receive inputs through dendrites and output through an axon, whereas a Perceptron receives inputs and generates outputs through the exact same pathways.",
+            "C) Biological neurons exhibit 'neuroplasticity' where physical connections constantly form, break, or change thickness, whereas a standard Perceptron's architectural connections are fixed and only the numerical weights change.",
+            "D) A Perceptron can only process binary inputs (0 or 1), while biological neurons can process continuous real-number inputs."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "perceptron",
+            "biological_neuron",
+            "neuroplasticity",
+            "comparisons"
+        ],
+        "difficulty": "medium",
+        "explanation": "The instructor highlights \"neuroplasticity\" as a major divergence. In biological brains , the physical structure of neural connections (dendrites/synapses) is dynamic—they can physically grow thicker, vanish entirely, or form new links as we learn. In contrast, the architecture of a standard Perceptron is static. The connections between inputs and the summation block never physically change or re-route; only the numerical values (weights) assigned to those fixed connections are updated during training. Option A reverses the reality; biological internals are complex/unknown, while perceptron internals are simple math (summation + step function). Option B is false; perceptrons also have directional flow (inputs $x \rightarrow$ summation $\rightarrow$ activation $\rightarrow$ output). Option D is false; perceptrons routinely take continuous numerical inputs (like CGPA 7.8)."
+    },
+    {
+        "id": "What-is-perceptron_004",
+        "question": "From a geometric perspective, if you train a single Perceptron on a dataset with exactly three input features (e.g., IQ, CGPA, and 12th Grade Marks), what specific mathematical shape does the Perceptron's decision boundary take in the feature space?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A 2D straight line ($ax + by + c = 0$) drawn across a flat plane.",
+            "B) A 3D plane ($ax + by + cz + d = 0$) splitting a three-dimensional space.",
+            "C) A curved 3D manifold capable of wrapping around non-linear data clusters.",
+            "D) A single point in space representing the mathematical average of all three features."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "perceptron",
+            "geometric_intuition",
+            "decision_boundary",
+            "dimensionality"
+        ],
+        "difficulty": "easy",
+        "explanation": "The geometric intuition of a Perceptron scales with the number of input features (dimensions). For 2 features, the equation $w_1x_1 + w_2x_2 + b = 0$ represents a straight line in 2D space. For 3 features, the equation becomes $w_1x_1 + w_2x_2 + w_3x_3 + b = 0$, which is the mathematical equation for a flat 2D plane cutting through a 3D coordinate space . For 4 or more features, it becomes a hyperplane. Option A is incorrect because 3 features require a 3D space, not 2D. Option C is the fundamental limitation of the Perceptron; it can *never* form curved/non-linear boundaries, only flat ones. Option D describes a centroid (like in K-Means), not a decision boundary."
+    },
+    {
+        "id": "What-is-perceptron_005",
+        "question": "An engineering team attempts to use a single Perceptron to classify an image dataset where the target classes form a concentric circle pattern (e.g., Class A is clustered in the center, Class B forms a ring around Class A). Why will the Perceptron fundamentally fail to achieve high accuracy on this dataset?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Perceptron algorithm is incapable of processing image pixel data due to the lack of convolutional layers.",
+            "B) The step activation function will automatically convert the concentric circles into a single linear data stream.",
+            "C) A single Perceptron can only draw a straight, linear decision boundary, making it mathematically impossible to separate classes arranged in a non-linear, circular pattern.",
+            "D) The training loop will enter an infinite cycle because the bias term cannot determine which class represents the \"center\"."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "perceptron",
+            "limitations",
+            "linear_separability",
+            "non_linear_data"
+        ],
+        "difficulty": "medium",
+        "explanation": "The most significant limitation of a single Perceptron is that it is strictly a linear classifier. It can only draw flat decision boundaries (a line in 2D, a plane in 3D, etc.). If a dataset is non-linearly separable —such as concentric circles or an XOR logic pattern—no single straight line can possibly separate the classes. The Perceptron will inevitably misclassify large portions of the data. This limitation is precisely what necessitated the creation of Multi-Layer Perceptrons (MLPs). Option A is a red herring; while CNNs are better for images, a perceptron *can* process flattened pixel arrays, it just can't classify non-linear patterns within them. Options B and D describe fabricated, non-sensical mechanisms that do not apply to the Perceptron algorithm."
+    }
+]

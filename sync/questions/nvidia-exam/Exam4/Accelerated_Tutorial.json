@@ -1,0 +1,682 @@
+[
+    {
+        "id": "intro-001",
+        "question": "According to the workshop overview, what is the primary focus of accelerating data science workflows?",
+        "type": "multiple_choice",
+        "options": [
+            "Replacing Python with C++ for better performance",
+            "Using NVIDIA GPUs to enhance speed and efficiency",
+            "Focusing exclusively on CPU multi-threading",
+            "Reducing the amount of data collected"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "introduction",
+            "gpu acceleration"
+        ],
+        "difficulty": "easy",
+        "explanation": "The workshop is designed to introduce data science with an emphasis on speed and efficiency using NVIDIA GPUs."
+    },
+    {
+        "id": "ds-fund-002",
+        "question": "Which category of business questions addresses 'What actions to take?'",
+        "type": "multiple_choice",
+        "options": [
+            "Descriptive",
+            "Diagnostic",
+            "Predictive",
+            "Prescriptive"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "data science fundamentals",
+            "analytics types"
+        ],
+        "difficulty": "easy",
+        "explanation": "Prescriptive analytics answers 'What actions to take?', whereas Descriptive is 'What happened?', Diagnostic is 'Why did it happen?', and Predictive is 'What will happen next?'."
+    },
+    {
+        "id": "data-prep-003",
+        "question": "Approximately how much of a data scientist's time is typically spent on data preparation?",
+        "type": "multiple_choice",
+        "options": [
+            "Less than 10%",
+            "Around 25%",
+            "More than 40%",
+            "Exactly 50%"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data preparation",
+            "workflow"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that data preparation takes >40% of a data scientist's time."
+    },
+    {
+        "id": "arch-004",
+        "question": "What is a primary architectural difference between a CPU and a GPU?",
+        "type": "multiple_choice",
+        "options": [
+            "CPUs have thousands of cores while GPUs have a few powerful cores",
+            "CPUs are optimized for parallel processing while GPUs are sequential",
+            "CPUs have a few powerful cores optimized for sequential processing, while GPUs have thousands of efficient cores",
+            "CPUs cannot handle I/O operations, whereas GPUs handle all OS tasks"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cpu vs gpu",
+            "hardware architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "CPUs are designed with few powerful cores for sequential tasks, while GPUs utilize thousands of smaller cores for massive parallelism."
+    },
+    {
+        "id": "perf-proj-005",
+        "question": "By 2025, what is the projected performance increase of GPU computing compared to single-threaded computing?",
+        "type": "multiple_choice",
+        "options": [
+            "10x",
+            "100x",
+            "500x",
+            "1000x"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "trends",
+            "performance"
+        ],
+        "difficulty": "easy",
+        "explanation": "The projection states that by 2025, GPU computing will deliver 1000x the performance of single-threaded computing."
+    },
+    {
+        "id": "cudf-006",
+        "question": "Which of the following is a key feature of cuDF?",
+        "type": "multiple_choice",
+        "options": [
+            "It requires rewriting all code in C++",
+            "It provides a GPU-accelerated DataFrame API similar to pandas",
+            "It is designed exclusively for CPU execution",
+            "It removes the need for dataframes entirely"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cudf",
+            "libraries"
+        ],
+        "difficulty": "medium",
+        "explanation": "cuDF allows for data manipulation with a familiar DataFrame API, mimicking pandas but with GPU acceleration."
+    },
+    {
+        "id": "arrow-007",
+        "question": "What is the primary advantage of Apache Arrow's 'Zero-Copy Data Sharing'?",
+        "type": "multiple_choice",
+        "options": [
+            "It compresses data to zero bytes",
+            "It eliminates serialization overhead when sharing data between tools",
+            "It prevents data from being copied to the GPU",
+            "It automatically deletes duplicate rows"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "apache arrow",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "Zero-Copy Data Sharing eliminates the need to serialize or copy data when moving it between libraries, significantly speeding up workflows."
+    },
+    {
+        "id": "libs-008",
+        "question": "Which library is described as being built in Rust with a multi-threaded architecture and lazy execution?",
+        "type": "multiple_choice",
+        "options": [
+            "Pandas",
+            "Polars",
+            "Dask",
+            "NumPy"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "polars",
+            "libraries"
+        ],
+        "difficulty": "medium",
+        "explanation": "Polars is identified as a high-performance DataFrame library built in Rust that supports lazy execution."
+    },
+    {
+        "id": "dist-009",
+        "question": "Which tool is best suited for distributed computing that scales across multiple GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "Pandas",
+            "Polars (single machine)",
+            "Dask",
+            "Matplotlib"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "distributed computing",
+            "dask"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dask is highlighted for scaling across multiple GPUs and managing large datasets across workers."
+    },
+    {
+        "id": "viz-010",
+        "question": "What are the three stages of the DataShader pipeline?",
+        "type": "multiple_choice",
+        "options": [
+            "Extract, Transform, Load",
+            "Rasterization, Transformation, Rendering",
+            "Input, Process, Output",
+            "Aggregation, Filtration, Visualization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "datashader",
+            "visualization"
+        ],
+        "difficulty": "hard",
+        "explanation": "The DataShader pipeline consists of Rasterization (aggregating to pixel grid), Transformation (shading/normalization), and Rendering."
+    },
+    {
+        "id": "pandas-accel-011",
+        "question": "How does 'cuDF pandas' handle operations that are not supported on the GPU?",
+        "type": "multiple_choice",
+        "options": [
+            "It throws a compilation error",
+            "It skips the operation entirely",
+            "It seamlessly falls back to CPU execution",
+            "It requires the user to manually rewrite the code"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "pandas",
+            "cudf"
+        ],
+        "difficulty": "medium",
+        "explanation": "cuDF pandas provides a zero-code-change accelerator that automatically falls back to seamless CPU execution for unsupported operations."
+    },
+    {
+        "id": "rapids-012",
+        "question": "The RAPIDS ecosystem relies on which unified data format to ensure interoperability?",
+        "type": "multiple_choice",
+        "options": [
+            "JSON",
+            "CSV",
+            "Apache Arrow",
+            "Parquet"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rapids",
+            "interoperability"
+        ],
+        "difficulty": "medium",
+        "explanation": "RAPIDS uses Apache Arrow as its preferred columnar specification to enable zero-copy transfers and interoperability."
+    },
+    {
+        "id": "graph-fund-001",
+        "question": "What are the two core components that define a graph?",
+        "type": "multiple_choice",
+        "options": [
+            "Rows and Columns",
+            "Nodes (Vertices) and Edges",
+            "Keys and Values",
+            "Inputs and Outputs"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "graph fundamentals",
+            "definitions"
+        ],
+        "difficulty": "easy",
+        "explanation": "A graph is defined as a mathematical structure representing relationships between objects, consisting of Nodes (vertices) and Edges (connections)."
+    },
+    {
+        "id": "graph-types-002",
+        "question": "Which type of graph is characterized by edges having specific directions, such as web page links?",
+        "type": "multiple_choice",
+        "options": [
+            "Undirected Graph",
+            "Weighted Graph",
+            "Directed Graph (Digraph)",
+            "Symmetric Graph"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "graph types",
+            "definitions"
+        ],
+        "difficulty": "easy",
+        "explanation": "Directed Graphs (Digraphs) have edges with specific directions, unlike undirected graphs where edges have no specific direction."
+    },
+    {
+        "id": "node-degree-003",
+        "question": "In the context of a directed graph, what does 'Out-degree' represent?",
+        "type": "multiple_choice",
+        "options": [
+            "The number of edges pointing to the node",
+            "The number of edges pointing away from the node",
+            "The total weight of all connected edges",
+            "The shortest distance to the nearest neighbor"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "graph concepts",
+            "node degree"
+        ],
+        "difficulty": "medium",
+        "explanation": "For directed graphs, Out-degree is defined as the number of edges pointing away from a node, while In-degree is the number of edges pointing to it."
+    },
+    {
+        "id": "know-graph-004",
+        "question": "Which of the following is a key benefit of Knowledge Graphs?",
+        "type": "multiple_choice",
+        "options": [
+            "They are restricted to static data only",
+            "They provide context augmentation for LLM-based chatbots",
+            "They utilize only undirected edges",
+            "They are faster to compute than adjacency matrices"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "knowledge graphs",
+            "applications"
+        ],
+        "difficulty": "medium",
+        "explanation": "Knowledge graphs capture semantically rich information and provide context augmentation for LLM-based chatbots."
+    },
+    {
+        "id": "graph-rep-005",
+        "question": "What is a major limitation of using an Adjacency Matrix for graph representation?",
+        "type": "multiple_choice",
+        "options": [
+            "It cannot represent weighted graphs",
+            "It is a sparse representation with many zeros",
+            "It is impossible to calculate node degree",
+            "It requires more memory than the graph itself contains data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "graph representation",
+            "matrices"
+        ],
+        "difficulty": "medium",
+        "explanation": "Adjacency matrices are often sparse representations with many zeros, which can be inefficient compared to adjacency lists."
+    },
+    {
+        "id": "centrality-006",
+        "question": "Which centrality measure identifies nodes that frequently act as a bridge along the shortest paths between other nodes?",
+        "type": "multiple_choice",
+        "options": [
+            "Degree Centrality",
+            "Closeness Centrality",
+            "Betweenness Centrality",
+            "PageRank Centrality"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "centrality measures",
+            "algorithms"
+        ],
+        "difficulty": "hard",
+        "explanation": "Betweenness Centrality measures the frequency with which a node acts as a bridge along the shortest paths connecting different parts of the graph."
+    },
+    {
+        "id": "pagerank-007",
+        "question": "How does PageRank Centrality determine the importance of a node?",
+        "type": "multiple_choice",
+        "options": [
+            "Based purely on the number of incoming edges",
+            "Based on the importance of its neighbors",
+            "Based on its proximity to the network center",
+            "Based on the weight of its outgoing edges"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "centrality measures",
+            "algorithms"
+        ],
+        "difficulty": "hard",
+        "explanation": "PageRank Centrality identifies influential nodes based on the importance of their neighbors, rather than just raw connection counts."
+    },
+    {
+        "id": "cugraph-perf-008",
+        "question": "What is the typical performance speedup offered by NX cuGraph compared to CPU-based NetworkX?",
+        "type": "multiple_choice",
+        "options": [
+            "2x to 5x",
+            "10x to 500x",
+            "1000x to 2000x",
+            "It offers no speedup but saves memory"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gpu acceleration",
+            "performance"
+        ],
+        "difficulty": "easy",
+        "explanation": "NX cuGraph provides a performance speedup of 10x to 500x compared to CPU-based NetworkX by leveraging GPU parallel processing."
+    },
+    {
+        "id": "cugraph-impl-009",
+        "question": "Which environment variable is used to automatically dispatch NetworkX API calls to the GPU via NX cuGraph?",
+        "type": "multiple_choice",
+        "options": [
+            "NX_GPU_ENABLE",
+            "CUDA_VISIBLE_DEVICES",
+            "NX_CUGRAPH_AUTO_CONFIG",
+            "RAPIDS_FORCE_GPU"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "implementation",
+            "configuration"
+        ],
+        "difficulty": "medium",
+        "explanation": "Setting the environment variable `NX_CUGRAPH_AUTO_CONFIG` enables automatic GPU dispatch for NetworkX API calls."
+    },
+    {
+        "id": "shortest-path-010",
+        "question": "What is the primary output of the Single Source Shortest Path algorithm?",
+        "type": "multiple_choice",
+        "options": [
+            "A list of all possible paths in the graph",
+            "Distances from the source node to all reachable nodes",
+            "The node with the highest degree",
+            "A visualization of the graph structure"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "algorithms",
+            "pathfinding"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Single Source Shortest Path algorithm computes the distances from a specific source node to all other reachable nodes in the graph."
+    },
+    {
+        "id": "ml-revolution-001",
+        "question": "Which three factors form the 'Triad of Success' driving the growth of machine learning?",
+        "type": "multiple_choice",
+        "options": [
+            "Hardware, Software, Users",
+            "Compute power, Large datasets, Advanced algorithms",
+            "Cloud computing, IoT, Blockchain",
+            "Python, C++, Java"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "introduction",
+            "drivers"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text identifies the Triad of Success as Compute power, Large datasets, and Advanced algorithms."
+    },
+    {
+        "id": "trad-vs-ml-002",
+        "question": "How does the machine learning paradigm differ from traditional programming?",
+        "type": "multiple_choice",
+        "options": [
+            "ML relies on human experts to define explicit if-then rules",
+            "Traditional programming learns patterns from data without explicit rules",
+            "ML algorithms map inputs to outputs by discovering patterns in data",
+            "There is no difference; they are synonymous"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "concepts",
+            "paradigms"
+        ],
+        "difficulty": "easy",
+        "explanation": "Machine learning is data-driven and learns patterns to map inputs to outputs, whereas traditional programming relies on explicit, human-defined rules."
+    },
+    {
+        "id": "ml-cats-003",
+        "question": "Which of the following is an example of Supervised Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "Clustering customer segments",
+            "Dimensionality reduction of a dataset",
+            "Predicting house prices (Regression)",
+            "Detecting anomalies in network traffic"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "supervised learning",
+            "examples"
+        ],
+        "difficulty": "medium",
+        "explanation": "Supervised learning involves labeled data. Predicting house prices is a Regression task, which is a subcategory of supervised learning."
+    },
+    {
+        "id": "ml-workflow-004",
+        "question": "In the machine learning workflow, what step immediately follows 'Model Training'?",
+        "type": "multiple_choice",
+        "options": [
+            "Deployment",
+            "Feature Engineering",
+            "Model Evaluation",
+            "Data Collection"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "workflow",
+            "process"
+        ],
+        "difficulty": "easy",
+        "explanation": "According to the systematic approach outlined, Model Evaluation follows Model Training to assess performance using relevant metrics."
+    },
+    {
+        "id": "knn-005",
+        "question": "How does the K-Nearest Neighbors (KNN) algorithm make predictions?",
+        "type": "multiple_choice",
+        "options": [
+            "It builds a tree-like structure of decisions",
+            "It calculates distances to training examples and assigns the majority class of the K nearest neighbors",
+            "It uses a sigmoid function to map predictions to probabilities",
+            "It iteratively corrects errors from predecessor models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "algorithms",
+            "classification"
+        ],
+        "difficulty": "medium",
+        "explanation": "KNN predicts a class based on similarity to training examples by calculating distances and identifying the majority class among the K nearest neighbors."
+    },
+    {
+        "id": "bagging-006",
+        "question": "What is the primary benefit of Bagging (Bootstrap Aggregating) techniques like Random Forest?",
+        "type": "multiple_choice",
+        "options": [
+            "It increases bias to simplify the model",
+            "It reduces variance and is less prone to overfitting",
+            "It focuses on correcting predecessor errors sequentially",
+            "It is primarily used for unsupervised learning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ensemble learning",
+            "random forest"
+        ],
+        "difficulty": "medium",
+        "explanation": "Bagging techniques, such as Random Forest, are designed to reduce variance and make the model less prone to overfitting."
+    },
+    {
+        "id": "boosting-007",
+        "question": "How does Boosting differ from Bagging?",
+        "type": "multiple_choice",
+        "options": [
+            "Boosting trains models sequentially to correct predecessor errors, while Bagging trains them independently",
+            "Boosting is for regression only, while Bagging is for classification",
+            "Boosting increases variance, while Bagging increases bias",
+            "Boosting uses unweighted samples, while Bagging uses weighted samples"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "ensemble learning",
+            "boosting"
+        ],
+        "difficulty": "hard",
+        "explanation": "Boosting involves sequential training where models focus on correcting errors made by previous models, unlike Bagging where models are typically trained independently."
+    },
+    {
+        "id": "dbscan-008",
+        "question": "What is a key advantage of the DBSCAN clustering algorithm over K-means?",
+        "type": "multiple_choice",
+        "options": [
+            "It requires the number of clusters to be specified beforehand",
+            "It groups data based on high-density regions and can identify arbitrary shapes",
+            "It is only applicable to linear datasets",
+            "It is faster but less accurate"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "clustering",
+            "algorithms"
+        ],
+        "difficulty": "medium",
+        "explanation": "DBSCAN groups data based on density, allowing it to identify clusters of arbitrary shapes and handle noise, unlike K-means which prefers spherical clusters."
+    },
+    {
+        "id": "xgboost-009",
+        "question": "Which of the following statements accurately describes XGBoost?",
+        "type": "multiple_choice",
+        "options": [
+            "It is a linear regression model",
+            "It uses a weighted additive approach combining tree predictions via gradient boosting",
+            "It does not support GPU acceleration",
+            "It is primarily used for clustering tasks"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "xgboost",
+            "algorithms"
+        ],
+        "difficulty": "medium",
+        "explanation": "XGBoost is a gradient boosting library that uses a weighted additive approach to combine predictions from decision trees."
+    },
+    {
+        "id": "deployment-010",
+        "question": "What is a primary advantage of On-Device Inference compared to Server-Based Inference?",
+        "type": "multiple_choice",
+        "options": [
+            "Higher scalability for millions of users",
+            "Faster response times due to no network latency",
+            "Access to unlimited hardware resources",
+            "Easier maintenance and model updates"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deployment",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "On-Device Inference offers faster response times because it eliminates network latency, as the model runs directly on the user's device."
+    },
+    {
+        "id": "triton-011",
+        "question": "What feature of the NVIDIA Triton Inference Server helps improve throughput?",
+        "type": "multiple_choice",
+        "options": [
+            "Manual batching only",
+            "Dynamic batching",
+            "Single-threaded execution",
+            "Offline processing mode"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deployment",
+            "tools"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dynamic batching is a key feature of Triton that groups incoming requests to improve throughput and efficiency."
+    },
+    {
+        "id": "perf-bench-012",
+        "question": "According to the benchmark results mentioned, how did the end-to-end pipeline time change with GPU acceleration?",
+        "type": "multiple_choice",
+        "options": [
+            "From 2.5 hours on CPU cluster to 2 minutes on 16 GPUs",
+            "From 10 hours on CPU to 1 hour on GPU",
+            "From 2 minutes on CPU to 2.5 seconds on GPU",
+            "There was no significant change"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "performance",
+            "benchmarks"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text cites a performance improvement from 2.5 hours on a CPU cluster to just 2 minutes using 16 GPUs."
+    }
+]

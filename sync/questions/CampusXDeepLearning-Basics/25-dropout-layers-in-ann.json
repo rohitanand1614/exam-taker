@@ -1,0 +1,87 @@
+[
+    {
+        "id": "Dropout-Layer_001",
+        "question": "A team trains a deep neural network on a dataset with 5 input columns and 2 hidden layers (each with 5 neurons). They notice severe overfitting. They apply a Dropout rate of $p = 0.5$ to both the input layer and the hidden layers. Conceptually, what is happening to the network's architecture during a single epoch of training?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The network permanently deletes 50% of the neurons with the lowest weight values, creating a permanently smaller network for the rest of the training.",
+            "B) The network randomly 'turns off' (ignores) 50% of the neurons in those layers specifically for that single epoch. In the next epoch, a completely different random 50% will be turned off.",
+            "C) The network reduces the physical size of the input data by dropping 50% of the rows in the dataset before feeding them into the unchanged network.",
+            "D) The network calculates the loss, and if it is too high, it dynamically drops out 50% of the learning rate."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dropout",
+            "overfitting",
+            "network_architecture",
+            "training_dynamics"
+        ],
+        "difficulty": "easy",
+        "explanation": "Dropout is a regularization technique where, during each training epoch, a specified percentage of nodes (determined by the dropout rate $p$) are randomly selected and 'dropped out' or temporarily ignored.  Their forward outputs are set to zero, and they do not participate in backpropagation for that epoch. In the very next epoch, the network resets and randomly selects a new set of nodes to drop. Option A describes permanent pruning, which is a different technique entirely. Option C describes data subsampling (like in Random Forests), not neural dropout. Option D is a fabricated mechanism combining learning rate with dropout."
+    },
+    {
+        "id": "Dropout-Layer_002",
+        "question": "The instructor uses an analogy of a company where 50% of employees are randomly told not to come to work each day. How does this 'random absence' mechanism mathematically force a single neuron to generalize better and reduce overfitting?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It forces the neuron to learn how to mathematically invert its activation function to compensate for missing inputs.",
+            "B) It prevents the neuron from becoming overly reliant (assigning massive weights) to any single specific input feature, forcing it to spread its weights more evenly across all available inputs because it cannot guarantee which inputs will be present on any given epoch.",
+            "C) It forces the neuron to memorize the training data exactly, as it only has half the time to see the data.",
+            "D) It causes the neuron to automatically switch from a Sigmoid activation to a ReLU activation to handle the dead zero inputs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dropout_intuition",
+            "generalization",
+            "weight_distribution"
+        ],
+        "difficulty": "medium",
+        "explanation": "Without Dropout, a neuron might find one specific, highly predictive feature and assign an overwhelmingly large weight to it, effectively ignoring the other inputs. This leads to overfitting on that specific feature's noise. With Dropout, that highly predictive input might randomly disappear in any given epoch. To minimize loss consistently, the neuron is mathematically forced to distribute its weights more evenly across *all* its inputs, learning redundant representations. It learns to not 'trust' any single feature too much.  Options A, C, and D describe nonsensical or physically impossible algorithmic behaviors."
+    },
+    {
+        "id": "Dropout-Layer_003",
+        "question": "The instructor draws a conceptual parallel between Dropout in Neural Networks and the Random Forest algorithm. What is the fundamental mathematical basis for this comparison?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Both algorithms use the Gini impurity metric to mathematically determine which nodes are least important and should be dropped.",
+            "B) By randomly dropping different nodes in every epoch, Dropout effectively trains many slightly different 'sub-networks.' The final full network during inference acts as an ensemble average of these sub-networks, much like a Random Forest averages multiple diverse trees.",
+            "C) Both algorithms randomly drop data rows (bootstrapping) before processing them in the hidden layers to artificially inflate the dataset size.",
+            "D) Both algorithms strictly require decision trees to process non-linear data boundaries."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dropout_analogy",
+            "random_forest",
+            "ensemble_methods"
+        ],
+        "difficulty": "medium",
+        "explanation": "The instructor explicitly compares Dropout to a Random Forest ensemble. In a Random Forest, you train many different Decision Trees on random subsets of data/columns, and then average their predictions. With Dropout, because you are randomly turning off different nodes every epoch, you are effectively training a slightly different, 'thinned' neural network architecture on every single pass.  If you train for 100 epochs, you essentially train 100 unique sub-networks. At prediction time, the full network acts as an 'ensemble' average of all those sub-networks, which drastically reduces variance and overfitting, exactly like a Random Forest."
+    },
+    {
+        "id": "Dropout-Layer_004",
+        "question": "You have trained a neural network using a Dropout rate of $p = 0.25$ (meaning a 25% chance of a node being dropped during training). You are now deploying the model to production to make predictions on test data. How must the Dropout mechanism behave during the **Testing/Inference** phase?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Dropout remains active, randomly dropping 25% of nodes during every single prediction to ensure stochastic output.",
+            "B) All nodes are kept active, but the values of the weights connected to those nodes are mathematically scaled down (multiplied by $1 - p$, which is $0.75$) to account for the fact that the nodes were only active 75% of the time during training.",
+            "C) All nodes are kept active, and the weights remain exactly as they were at the end of the final training epoch without any scaling.",
+            "D) The nodes that were dropped the most frequently during training are permanently deleted from the architecture."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dropout_testing_phase",
+            "weight_scaling",
+            "inference"
+        ],
+        "difficulty": "hard",
+        "explanation": "Dropout is strictly a training-time regularization technique. During Testing (Inference), you want deterministic, reliable outputs, so you *must not* drop nodes randomly. All nodes are kept 100% active. However, because a node was only active $75\\%$ of the time during training (since $p = 0.25$), the neurons in the next layer learned to expect a certain magnitude of total input based on only 75% of nodes firing. If you suddenly turn on 100% of nodes during testing, the total summation ($Z$) will be artificially huge, blowing up the activations. To fix this mathematical imbalance, the weights (or activations) must be scaled down by multiplying them by the retain probability ($1 - p$, or $0.75$).  Keras handles this scaling automatically under the hood. Options A, C, and D are incorrect applications of the algorithm during inference."
+    }
+]

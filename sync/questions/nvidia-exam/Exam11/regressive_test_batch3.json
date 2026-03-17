@@ -1,0 +1,675 @@
+[
+    {
+        "id": "Batch_2_revision_2_batch3",
+        "question": "You are developing a complex prompt engineering strategy for a multi-modal AI system that combines text and image inputs. The system needs to generate highly detailed and contextually relevant responses based on both the textual and visual information provided. Which of the following advanced prompt engineering techniques would be MOST effective in optimizing the system‘s performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Chain-of-Thought (CoT) prompting with visual anchors",
+            "Few-shot learning with interleaved text-image examples",
+            "Multi-modal prompt fusion with dynamic weighting",
+            "Recursive prompt refinement with visual feedback loops"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "prompt-engineering",
+            "multi-modal",
+            "dynamic-weighting",
+            "llm"
+        ],
+        "difficulty": "hard",
+        "explanation": "Multi-modal prompt fusion with dynamic weighting integrates text and image inputs while adjusting their relative importance based on context, yielding more coherent and relevant responses."
+    },
+    {
+        "id": "Batch_2_revision_3_fixed",
+        "question": "Which NVIDIA tool is specifically designed for optimizing and deploying large language models (LLMs) on NVIDIA GPUs, providing features like quantization, pruning, and efficient inference?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA TensorRT",
+            "NVIDIA CUDA",
+            "NVIDIA FasterTransformer",
+            "NVIDIA TensorRT-LLM"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nvidia",
+            "tensorrt-llm",
+            "llm-deployment",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA TensorRT-LLM is purpose-built for LLM optimization and deployment, offering quantization, pruning, and inference acceleration tailored for NVIDIA GPUs."
+    },
+    {
+        "id": "Batch_2_revision_5_batch3",
+        "question": "In the context of fine-tuning large language models (LLMs) using constitutional AI techniques, which of the following approaches is most effective for mitigating model hallucinations while maintaining high performance on downstream tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement a multi-stage fine-tuning process with iterative feedback loops",
+            "Use reinforcement learning from human feedback (RLHF) exclusively",
+            "Apply a combination of supervised fine-tuning and debate-based self-improvement",
+            "Implement a hybrid approach combining RLHF, debate, and recursive reward modeling"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "constitutional-ai",
+            "hallucination",
+            "rlhf",
+            "fine-tuning",
+            "reward-modeling"
+        ],
+        "difficulty": "hard",
+        "explanation": "The hybrid approach leverages RLHF, debate, and recursive reward modeling to align outputs with ethical principles while preserving task performance."
+    },
+    {
+        "id": "Batch_2_revision_6",
+        "question": "Which NVIDIA software component is specifically designed for optimizing the performance of large language models (LLMs) and provides features like automatic mixed precision and distributed training?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA CUDA",
+            "NVIDIA TensorRT",
+            "NVIDIA NeMo",
+            "NVIDIA Megatron-LM"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nvidia",
+            "megatron-lm",
+            "distributed-training",
+            "mixed-precision",
+            "llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA Megatron-LM is built for large-scale LLM training, supporting automatic mixed precision, model parallelism, and distributed training."
+    },
+    {
+        "id": "Batch_2_revision_8_batch3",
+        "question": "In a scenario where you need to deploy a large language model (LLM) for real-time inference with strict latency requirements, which combination of techniques would be most effective for optimizing inference speed while maintaining model quality?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantization to INT8, Knowledge Distillation, and TensorRT",
+            "Pruning, ONNX Runtime, and Tensor Parallelism",
+            "KV Cache, FlashAttention, and FP16 Precision",
+            "Continuous Batching, Byte-Pair Encoding, and Paged Attention"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "llm-inference",
+            "latency",
+            "continuous-batching",
+            "paged-attention",
+            "real-time"
+        ],
+        "difficulty": "hard",
+        "explanation": "Continuous Batching improves throughput, Byte-Pair Encoding shortens input sequences, and Paged Attention optimizes memory—collectively reducing latency without degrading quality."
+    },
+    {
+        "id": "Batch_2_revision_17_batch3",
+        "question": "In a complex multi-agent system utilizing LLMs for automated customer support, which of the following approaches would be most effective in handling escalations and maintaining context across multiple interactions?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing a single, large-scale LLM to handle all interactions and escalations",
+            "Using a hierarchical system of specialized LLMs with a central orchestrator",
+            "Deploying multiple independent LLMs for each type of customer query",
+            "Utilizing a rule-based system alongside a general-purpose LLM"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multi-agent",
+            "customer-support",
+            "orchestration",
+            "llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "A hierarchical system with a central orchestrator enables specialized handling, smooth escalation, and consistent context management across interactions."
+    },
+    {
+        "id": "Batch_2_revision_18_batch3",
+        "question": "Which of the following techniques is NOT typically used for optimizing inference performance of large language models on NVIDIA GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "Tensor Core Acceleration",
+            "Quantization",
+            "Kernel Fusion",
+            "Branch Prediction"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "gpu-optimization",
+            "nvidia",
+            "inference",
+            "branch-prediction"
+        ],
+        "difficulty": "medium",
+        "explanation": "Branch Prediction is a CPU optimization technique and is not relevant to GPU-based LLM inference optimization."
+    },
+    {
+        "id": "Batch_2_revision_19",
+        "question": "Which advanced technique can be used to significantly reduce the memory footprint and computational requirements of large language models during inference, while maintaining most of the model‘s performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantization-Aware Training (QAT)",
+            "Pruning and Sparsification",
+            "Knowledge Distillation",
+            "Activation-Aware Weight Quantization (AAWQ)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "quantization",
+            "aawq",
+            "llm-inference",
+            "memory-optimization"
+        ],
+        "difficulty": "hard",
+        "explanation": "AAWQ reduces weight precision based on activation patterns, achieving high compression and speedup with minimal accuracy loss in LLMs."
+    },
+    {
+        "id": "Batch_2_revision_20",
+        "question": "In a complex production environment, you need to optimize the deployment of a large language model for inference. Which combination of techniques would provide the most significant performance improvement while maintaining accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantization to INT8, model pruning, and tensor parallelism",
+            "Knowledge distillation, pipeline parallelism, and dynamic batching",
+            "Mixed precision training, model compression, and asynchronous inference",
+            "KV cache, Tensor Parallelism, Pipeline Parallelism, and Continuous Batching"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "llm-deployment",
+            "kv-cache",
+            "parallelism",
+            "continuous-batching",
+            "production"
+        ],
+        "difficulty": "hard",
+        "explanation": "This combination addresses memory bandwidth (KV cache), compute distribution (tensor/pipeline parallelism), and GPU utilization (continuous batching) for optimal inference."
+    },
+    {
+        "id": "Batch_2_revision_21_batch3",
+        "question": "Which of the following best describes the purpose of NVIDIA TensorRT in the context of AI infrastructure?",
+        "type": "multiple_choice",
+        "options": [
+            "A deep learning compiler for optimizing neural network models",
+            "A high-performance deep learning inference optimizer and runtime",
+            "A distributed training framework for large language models",
+            "A data preprocessing library for AI workloads"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt",
+            "nvidia",
+            "inference",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "TensorRT is a high-performance inference optimizer and runtime that accelerates deep learning models during deployment."
+    },
+    {
+        "id": "Batch_2_revision_24",
+        "question": "You are fine-tuning a large language model for a specialized medical application. Which of the following techniques would be most effective in mitigating catastrophic forgetting while ensuring the model retains its general knowledge and adapts to the medical domain?",
+        "type": "multiple_choice",
+        "options": [
+            "Elastic Weight Consolidation (EWC)",
+            "Knowledge Distillation",
+            "Gradient Accumulation",
+            "Layer Freezing"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "catastrophic-forgetting",
+            "ewc",
+            "medical-ai",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "EWC penalizes changes to important weights from prior tasks, enabling domain adaptation while preserving general knowledge."
+    },
+    {
+        "id": "Batch_2_revision_29",
+        "question": "In the context of advanced Large Language Model (LLM) training, which of the following techniques is primarily used to improve the model‘s understanding of context and nuances in human language through leveraging multiple training objectives?",
+        "type": "multiple_choice",
+        "options": [
+            "Mask Language Modeling (MLM)",
+            "Contrastive Language Image Pre-Training (CLIP)",
+            "Multitask Learning (MTL)",
+            "Backpropagation Through Time (BPTT)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multitask-learning",
+            "llm-training",
+            "context-understanding",
+            "generalization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multitask Learning trains a model on multiple related tasks simultaneously, enhancing contextual and nuanced language understanding."
+    },
+    {
+        "id": "Batch_2_revision_30_batch3",
+        "question": "Which of the following techniques is NOT typically used in the training process of large language models to improve their performance and generalization?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Descent with Adaptive Learning Rates",
+            "Federated Learning",
+            "Layer Normalization",
+            "Masked Language Modeling"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "federated-learning",
+            "llm-training",
+            "generalization",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Federated Learning is rarely used in standard LLM training due to data and coordination requirements; other options are standard in LLM pipelines."
+    },
+    {
+        "id": "Batch_2_revision_31_batch3",
+        "question": "Which of the following techniques is NOT typically used in the training process of large language models to improve their performance and generalization?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Descent",
+            "Federated Learning",
+            "Attention Mechanisms",
+            "Overfitting"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "overfitting",
+            "llm-training",
+            "optimization",
+            "generalization"
+        ],
+        "difficulty": "easy",
+        "explanation": "Overfitting is a problem to avoid, not a technique used to improve model performance."
+    },
+    {
+        "id": "Batch_2_revision_32_batch3",
+        "question": "Which deployment strategy provides the most efficient combination of scalability and latency reduction for a generative AI system using NVIDIA‘s technology stack, especially when dealing with fluctuating workloads?",
+        "type": "multiple_choice",
+        "options": [
+            "Using a cloud-based solution with autoscaling capabilities.",
+            "Deploying on-premises with NVIDIA DGX nodes exclusively.",
+            "Hybrid deployment using cloud hyperscalers combined with edge devices for inference.",
+            "Deployment using federated learning to leverage multiple geo-distributed nodes."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "hybrid-deployment",
+            "edge-computing",
+            "scalability",
+            "latency",
+            "nvidia"
+        ],
+        "difficulty": "medium",
+        "explanation": "A hybrid cloud-edge strategy leverages cloud elasticity and edge proximity to balance scalability and low latency under variable loads."
+    },
+    {
+        "id": "Batch_2_revision_33_batch3",
+        "question": "While troubleshooting a generative AI model‘s inference performance, you observe that it is significantly slower than expected. What is the least likely cause of this performance bottleneck?",
+        "type": "multiple_choice",
+        "options": [
+            "Insufficient GPU memory causing frequent memory swaps.",
+            "Optimized software libraries not being used for tensor operations.",
+            "High network latency in distributed model inference.",
+            "Deadlock in multi-threaded model serving environment."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "inference",
+            "performance-bottleneck",
+            "deadlock",
+            "troubleshooting"
+        ],
+        "difficulty": "hard",
+        "explanation": "A deadlock typically causes a complete hang, not a gradual slowdown; other options are common causes of reduced inference speed."
+    },
+    {
+        "id": "Batch_2_revision_34",
+        "question": "During the inference phase of a large language model deployment, you encounter unexpected output that does not align with provided context. Which of the following steps would be most effective in isolating and identifying the root cause of the issue?",
+        "type": "multiple_choice",
+        "options": [
+            "Analyze the tokenization process to ensure consistent handling of input data",
+            "Adjust hyperparameters and retrain the model on a larger dataset",
+            "Examine the attention weights to understand where the model is focusing during prediction",
+            "Increase the batch size to enable more comprehensive model updates"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "attention-weights",
+            "llm-debugging",
+            "inference",
+            "context-misalignment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Inspecting attention weights reveals which input tokens influenced the output, helping diagnose context misalignment issues."
+    },
+    {
+        "id": "Batch_2_revision_35_batch3",
+        "question": "Which of the following strategies is most effective for scaling large language models across a GPU cluster to optimize for both cost and performance during deployment?",
+        "type": "multiple_choice",
+        "options": [
+            "Horizontally scaling with data parallelism across multiple GPUs.",
+            "Vertically scaling single GPU performance by optimizing memory management and computation.",
+            "Implementing model parallelism to divide a single LLM into smaller parts processed on different GPUs.",
+            "Utilizing mixed precision techniques to reduce computation time and memory usage."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "model-parallelism",
+            "gpu-cluster",
+            "scaling",
+            "llm-deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Model parallelism splits the model across GPUs, enabling deployment of models too large for a single device while optimizing cost and performance."
+    },
+    {
+        "id": "Batch_2_revision_36_batch3",
+        "question": "In the context of deploying large language models, which of the following strategies is most effective in preventing identity leakage and ensuring user privacy?",
+        "type": "multiple_choice",
+        "options": [
+            "Regularly auditing the model‘s training data for sensitive information.",
+            "Using differential privacy techniques during model training.",
+            "Implementing encryption for data transmission between users and the model.",
+            "Ensuring that model outputs are manually reviewed before being shared with end-users."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "privacy",
+            "differential-privacy",
+            "identity-leakage",
+            "llm-deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Differential privacy provides mathematical guarantees against identity leakage by limiting the model’s sensitivity to individual data points."
+    },
+    {
+        "id": "Batch_2_revision_37",
+        "question": "Which factor is critical in determining the scaling laws for the performance of large language models (LLMs), according to recent research?",
+        "type": "multiple_choice",
+        "options": [
+            "The size of the dataset used for training",
+            "The number of parameters in the model",
+            "The computational resources available",
+            "The relationship between model size, dataset size, and compute resources"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "scaling-laws",
+            "llm",
+            "compute",
+            "dataset",
+            "parameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "Modern scaling laws show that performance depends on the balanced scaling of model size, dataset size, and compute budget."
+    },
+    {
+        "id": "Batch_2_revision_38_batch3",
+        "question": "While fine-tuning an LLM model on a large dataset, you observe that the training process is extremely slow and the GPU utilization is very low. What is the most likely cause of this issue?",
+        "type": "multiple_choice",
+        "options": [
+            "The model architecture is too complex for the dataset size.",
+            "There is a hardware compatibility issue with the NVIDIA CUDA drivers.",
+            "The data loading process is a bottleneck, causing the GPU to wait for data.",
+            "The learning rate is set too high, causing oscillations in weight updates."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data-loading",
+            "gpu-utilization",
+            "training-bottleneck",
+            "llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "Low GPU utilization during training typically indicates a data pipeline bottleneck; the GPU remains idle waiting for batches."
+    },
+    {
+        "id": "Batch_2_revision_42_batch3",
+        "question": "In a complex NVIDIA AI infrastructure deployment using multiple DGX systems and InfiniBand networking, you encounter inconsistent performance across nodes during distributed training of a large language model. Which advanced NVIDIA tool would be most effective for identifying and resolving potential bottlenecks in this scenario?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA DALI",
+            "NVIDIA NSight Systems",
+            "NVIDIA DCGM",
+            "NVIDIA Fabric Manager"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "infiniband",
+            "fabric-manager",
+            "distributed-training",
+            "nvidia",
+            "dgx"
+        ],
+        "difficulty": "hard",
+        "explanation": "NVIDIA Fabric Manager manages InfiniBand fabric topology, congestion, and routing—key for resolving inter-node performance inconsistencies."
+    },
+    {
+        "id": "Batch_2_revision_43",
+        "question": "In a production environment, you need to optimize the inference of a large language model (LLM) for low latency and high throughput. Which combination of techniques would be most effective for achieving this goal?",
+        "type": "multiple_choice",
+        "options": [
+            "Use FP16 precision, enable CUDA Graph, and implement dynamic batching",
+            "Implement KV cache, use INT8 quantization, and enable Tensor Cores",
+            "Use FP8 precision, implement pipeline parallelism, and enable persistent CUDA kernels",
+            "Implement KV cache, use INT4 quantization, enable Tensor Cores, and use CUDA Graph with Fusion"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "llm-inference",
+            "int4",
+            "kv-cache",
+            "cuda-graph",
+            "tensor-cores"
+        ],
+        "difficulty": "hard",
+        "explanation": "INT4 quantization drastically reduces memory and compute demands; combined with KV cache, Tensor Cores, and CUDA Graph fusion, it maximizes throughput and minimizes latency."
+    },
+    {
+        "id": "Batch_2_revision_46",
+        "question": "In the context of deploying Generative AI models in the healthcare industry, which of the following use cases presents the most significant ethical and regulatory challenges?",
+        "type": "multiple_choice",
+        "options": [
+            "Automated medical diagnosis using language models.",
+            "Utilizing language models to streamline administrative tasks.",
+            "Generating personalized patient education materials.",
+            "Predictive analysis for hospital resource management."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "healthcare-ai",
+            "ethics",
+            "regulation",
+            "diagnosis",
+            "generative-ai"
+        ],
+        "difficulty": "medium",
+        "explanation": "Automated diagnosis directly impacts patient safety and involves high regulatory scrutiny, making it the most ethically and legally sensitive use case."
+    },
+    {
+        "id": "Batch_2_revision_47",
+        "question": "A company wants to implement an LLM-based system for automated customer support that can handle complex queries and provide personalized responses. Which of the following techniques would be most effective in enhancing the system‘s performance and reliability?",
+        "type": "multiple_choice",
+        "options": [
+            "Fine-tuning the LLM on a large dataset of general customer support interactions",
+            "Implementing a retrieval-augmented generation (RAG) system with a knowledge base of company-specific information",
+            "Using prompt engineering to create static templates for common customer inquiries",
+            "Deploying multiple specialized LLMs for different types of customer inquiries"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "customer-support",
+            "llm",
+            "knowledge-base",
+            "personalization"
+        ],
+        "difficulty": "medium",
+        "explanation": "RAG combines LLM fluency with up-to-date, company-specific knowledge, enabling accurate, personalized, and reliable responses to complex queries."
+    },
+    {
+        "id": "Batch_2_revision_50",
+        "question": "Which NVIDIA tool is specifically designed for optimizing and deploying large language models (LLMs) on NVIDIA GPUs, and can achieve up to 6x faster inference compared to unoptimized models?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA CUDA",
+            "NVIDIA TensorRT-LLM",
+            "NVIDIA Triton Inference Server",
+            "NVIDIA RAPIDS"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt-llm",
+            "nvidia",
+            "inference-speed",
+            "llm-deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "TensorRT-LLM is optimized for LLMs on NVIDIA GPUs and can deliver up to 6x faster inference through advanced kernel fusion and memory optimizations."
+    },
+    {
+        "id": "Batch_2_revision_55",
+        "question": "Which of the following accurately describes the relationship between NVIDIA CUDA-X AI libraries, CUDA, and hardware acceleration for LLM inference?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA-X AI libraries are independent of CUDA and can be used directly with any GPU for LLM inference",
+            "CUDA-X AI libraries provide optimized implementations of common AI operations, which are then compiled to run on CUDA cores",
+            "CUDA is a high-level API that abstracts away the need for CUDA-X AI libraries in LLM inference",
+            "Hardware acceleration for LLM inference requires direct programming of tensor cores, bypassing both CUDA and CUDA-X AI libraries"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cuda",
+            "cuda-x",
+            "nvidia",
+            "tensor-cores",
+            "llm-inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "CUDA-X AI libraries build on CUDA to deliver optimized, high-level functions that efficiently use GPU hardware, including tensor cores, for AI workloads."
+    },
+    {
+        "id": "Batch_2_revision_56_batch3",
+        "question": "You are working on a complex prompt engineering task that requires the LLM to generate a detailed technical report based on multiple input sources. Which advanced prompt engineering technique would be most effective in improving the model‘s ability to synthesize information from diverse sources while maintaining context and coherence throughout the generated report?",
+        "type": "multiple_choice",
+        "options": [
+            "Chain-of-Thought Prompting",
+            "Few-Shot Learning",
+            "Recursive Refinement",
+            "In-Context Learning with Dynamic Memory"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "prompt-engineering",
+            "dynamic-memory",
+            "in-context-learning",
+            "report-generation"
+        ],
+        "difficulty": "hard",
+        "explanation": "In-Context Learning with Dynamic Memory allows the model to retain and update relevant information from multiple sources during long-form generation, ensuring coherence and synthesis."
+    },
+    {
+        "id": "Batch_2_revision_58_batch3",
+        "question": "Which advanced technique can significantly reduce the memory footprint and inference latency of large language models while maintaining most of their performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Model Pruning",
+            "Quantization-Aware Training",
+            "Knowledge Distillation",
+            "Int8 Quantization with Calibration"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "int8",
+            "quantization",
+            "calibration",
+            "llm-inference",
+            "latency"
+        ],
+        "difficulty": "medium",
+        "explanation": "INT8 quantization with calibration reduces model size and speeds up inference by 2–4x while preserving accuracy through task-specific calibration."
+    },
+    {
+        "id": "Batch_2_revision_59_batch3",
+        "question": "You are optimizing a large language model for deployment on NVIDIA GPUs. Which of the following techniques would provide the most significant reduction in memory usage and inference latency while maintaining model quality for a production environment?",
+        "type": "multiple_choice",
+        "options": [
+            "Using mixed precision with FP16",
+            "Applying knowledge distillation",
+            "Implementing 4-bit quantization with NVIDIA TensorRT-LLM",
+            "Utilizing model pruning"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "4-bit",
+            "tensorrt-llm",
+            "quantization",
+            "llm-deployment",
+            "nvidia"
+        ],
+        "difficulty": "hard",
+        "explanation": "4-bit quantization via TensorRT-LLM offers extreme compression and speedup with minimal quality loss, making it state-of-the-art for production LLM deployment."
+    }
+]

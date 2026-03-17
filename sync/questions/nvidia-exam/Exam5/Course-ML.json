@@ -1,0 +1,421 @@
+[
+    {
+        "id": "q1",
+        "question": "According to the text, roughly what percentage of effort in a Machine Learning project is typically dedicated to data collection, cleaning, preprocessing, and feature engineering?",
+        "type": "multiple_choice",
+        "options": [
+            "20%",
+            "50%",
+            "80%",
+            "95%"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data preparation",
+            "project management",
+            "workflow"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states a rough rule of thumb where around 80% of effort goes into data-related tasks, while about 20% goes into model building and tuning."
+    },
+    {
+        "id": "q2",
+        "question": "Which of the following are characteristics of a well-defined Machine Learning problem?",
+        "type": "multiple_choice",
+        "options": [
+            "It has a measurable goal or success criterion.",
+            "It is supported by available or obtainable data.",
+            "It is practically feasible to implement.",
+            "It guarantees 100% accuracy on all predictions."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "problem definition",
+            "strategy"
+        ],
+        "difficulty": "medium",
+        "explanation": "A well-defined problem must be measurable, supported by data, and feasible. The text notes that problems should have a target accuracy (e.g., 95%), but does not state that guaranteeing 100% accuracy is a characteristic of a well-defined problem."
+    },
+    {
+        "id": "q3",
+        "question": "What is the primary difference between Supervised and Unsupervised learning?",
+        "type": "multiple_choice",
+        "options": [
+            "Supervised learning is used for clustering, while Unsupervised is used for regression.",
+            "Supervised learning learns from labeled data (features + target), while Unsupervised learns from unlabeled data.",
+            "Supervised learning requires less data than Unsupervised learning.",
+            "Unsupervised learning is always more complex than Supervised learning."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "model selection",
+            "supervised learning",
+            "unsupervised learning"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text explicitly defines Supervised learning as learning from labeled data and Unsupervised learning as learning from unlabeled data."
+    },
+    {
+        "id": "q4",
+        "question": "Which scenario best describes 'Overfitting'?",
+        "type": "multiple_choice",
+        "options": [
+            "The model performs poorly on both training and test data.",
+            "The model is too simple to capture the structure of the data.",
+            "The model fits the training data too closely, capturing noise, and performs poorly on new data.",
+            "The model shows consistent performance across training, validation, and test sets."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "model training",
+            "overfitting",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Overfitting occurs when a model learns the training data (including noise) too well, resulting in high training accuracy but significantly lower test accuracy."
+    },
+    {
+        "id": "q5",
+        "question": "What is the purpose of 'Early Stopping' during model training?",
+        "type": "multiple_choice",
+        "options": [
+            "To stop the data collection process once enough data is gathered.",
+            "To halt training when performance on a validation set stops improving to prevent overfitting.",
+            "To automatically select the best algorithm before training begins.",
+            "To stop the model from using too much memory on the edge device."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "model training",
+            "optimization",
+            "overfitting"
+        ],
+        "difficulty": "medium",
+        "explanation": "Early stopping is a technique to manage overfitting by monitoring performance on a validation set and stopping training when that performance plateaus or degrades."
+    },
+    {
+        "id": "q6",
+        "question": "Which of the following is NOT mentioned as a common data preprocessing task?",
+        "type": "multiple_choice",
+        "options": [
+            "Handling missing values",
+            "Converting data types",
+            "A/B Testing",
+            "Normalizing or scaling numeric features"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data preparation",
+            "preprocessing"
+        ],
+        "difficulty": "easy",
+        "explanation": "Handling missing values, converting data types, and normalizing features are listed as preprocessing tasks. A/B Testing is mentioned as a method for Model Deployment and Monitoring."
+    },
+    {
+        "id": "q7",
+        "question": "What does the 'No Free Lunch' theorem imply in the context of Machine Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "Data collection is the most expensive part of the process.",
+            "There is no single best algorithm that works for all problems.",
+            "Model deployment always requires paid cloud services.",
+            "You cannot train a model without labeled data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "model selection",
+            "theory"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text refers to the 'no free lunch' idea as the concept that different algorithms are suitable for different problems, and there is no single best algorithm for all cases."
+    },
+    {
+        "id": "q8",
+        "question": "Which of the following indicates that a model is 'Underfitting'?",
+        "type": "multiple_choice",
+        "options": [
+            "Very high training accuracy but low test accuracy.",
+            "Low performance on both training and test data.",
+            "The model captures too much noise from the training set.",
+            "The model complexity is too high for the dataset size."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "model training",
+            "underfitting",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Underfitting is characterized by a model that is too simple or constrained, resulting in poor performance on both the training data and the test data."
+    },
+    {
+        "id": "q9",
+        "question": "What is the primary goal of Feature Engineering?",
+        "type": "multiple_choice",
+        "options": [
+            "To clean the raw data by removing outliers.",
+            "To create new features from existing ones to better represent underlying patterns.",
+            "To split the data into training and testing sets.",
+            "To reduce the dimensionality of the dataset using unsupervised learning."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "feature engineering",
+            "data preparation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Feature engineering involves creating new features (like interaction terms or aggregations) from existing ones to help the model understand underlying patterns."
+    },
+    {
+        "id": "q10",
+        "question": "In the context of Model Deployment, what is 'Concept Drift'?",
+        "type": "multiple_choice",
+        "options": [
+            "Changes in the data distribution or target relationships over time.",
+            "The process of moving a model from a development environment to production.",
+            "The loss of accuracy due to software bugs in the API.",
+            "Running two model variants in parallel on real traffic."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "deployment",
+            "monitoring",
+            "drift"
+        ],
+        "difficulty": "hard",
+        "explanation": "Concept drift (or data drift) refers to changes in the statistical properties of the target variable or input data over time, which requires continuous monitoring."
+    },
+    {
+        "id": "q11",
+        "question": "Which NVIDIA tool is specifically designed for deploying trained models efficiently and at scale using an open-source inference serving software?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA RAPIDS",
+            "NVIDIA Triton Inference Server",
+            "NVIDIA CUDA",
+            "NVIDIA Deep Learning Institute (DLI)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "deployment",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA Triton Inference Server is described as open-source inference serving software to deploy trained models efficiently and at scale."
+    },
+    {
+        "id": "q12",
+        "question": "What is the primary function of NVIDIA RAPIDS in the machine learning pipeline?",
+        "type": "multiple_choice",
+        "options": [
+            "To provide pre-trained models and containers.",
+            "To accelerate data loading, preprocessing, and feature engineering on GPUs.",
+            "To validate hardware systems for AI workloads.",
+            "To offer educational courses and training labs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "data preparation",
+            "rapids"
+        ],
+        "difficulty": "medium",
+        "explanation": "RAPIDS is identified as a set of open-source libraries for accelerating data loading, preprocessing, and feature engineering on GPUs using familiar APIs."
+    },
+    {
+        "id": "q13",
+        "question": "Which of the following best describes 'Normalization' (Min-Max scaling)?",
+        "type": "multiple_choice",
+        "options": [
+            "Rescaling features to have a mean of 0 and standard deviation of 1.",
+            "Converting categorical values into binary columns.",
+            "Rescaling numerical features to a common scale, typically [0,1].",
+            "Removing outliers from the dataset."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data preprocessing",
+            "normalization",
+            "scaling"
+        ],
+        "difficulty": "easy",
+        "explanation": "Normalization is defined as rescaling numerical features to a common scale, typically to the interval [0,1]."
+    },
+    {
+        "id": "q14",
+        "question": "When is Standardization (Z-score scaling) typically recommended over Normalization?",
+        "type": "multiple_choice",
+        "options": [
+            "When the data does not follow a Gaussian distribution.",
+            "When the data approximately follows a Gaussian (normal) distribution.",
+            "When dealing with categorical data.",
+            "When you need to bound values between 0 and 1."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data preprocessing",
+            "standardization",
+            "scaling"
+        ],
+        "difficulty": "medium",
+        "explanation": "Standardization is useful when the data approximately follows a Gaussian distribution, as algorithms like linear regression assume normally distributed features."
+    },
+    {
+        "id": "q15",
+        "question": "What is the formula for calculating the Z-score of a feature X?",
+        "type": "multiple_choice",
+        "options": [
+            "X_scaled = (X - min(X)) / (max(X) - min(X))",
+            "X_scaled = (X - mean) / standard_deviation",
+            "X_scaled = X * weight + bias",
+            "X_scaled = log(X)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data preprocessing",
+            "math",
+            "standardization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The formula for Z-score scaling is given as X_scaled = (X - μ) / σ, where μ is the mean and σ is the standard deviation."
+    },
+    {
+        "id": "q16",
+        "question": "Why is One-Hot Encoding necessary for categorical features in many ML algorithms?",
+        "type": "multiple_choice",
+        "options": [
+            "It reduces the dimensionality of the dataset.",
+            "It converts discrete symbolic categories into numerical features without imposing an artificial ordering.",
+            "It ensures the data follows a normal distribution.",
+            "It removes missing values from categorical columns."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data preprocessing",
+            "encoding",
+            "categorical data"
+        ],
+        "difficulty": "medium",
+        "explanation": "One-hot encoding is essential because it turns symbolic categories into numeric values that algorithms can use, without implying an order (e.g., blue > green) that doesn't exist."
+    },
+    {
+        "id": "q17",
+        "question": "Which NVIDIA tool provides a catalog of pre-trained models, containers, and optimized frameworks?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA CUDA",
+            "NVIDIA TensorRT",
+            "NGC Catalog",
+            "NVIDIA AI Enterprise"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia tools",
+            "resources",
+            "ngc"
+        ],
+        "difficulty": "easy",
+        "explanation": "The NGC Catalog is described as the NVIDIA GPU Cloud catalog providing pre-trained models, containers, and optimized frameworks."
+    },
+    {
+        "id": "q18",
+        "question": "What is the main potential downside of using One-Hot Encoding?",
+        "type": "multiple_choice",
+        "options": [
+            "It can increase dimensionality, impacting memory and training time.",
+            "It makes the model less interpretable.",
+            "It requires the data to be normally distributed.",
+            "It cannot handle string values."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "data preprocessing",
+            "encoding",
+            "trade-offs"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text notes that one-hot encoding can increase dimensionality, which may impact memory usage and training time."
+    },
+    {
+        "id": "q19",
+        "question": "Which of the following NVIDIA tools are associated with Model Deployment and Inference? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA Triton Inference Server",
+            "NVIDIA TensorRT",
+            "NVIDIA RAPIDS",
+            "NVIDIA DLI"
+        ],
+        "correct_indices": [
+            0,
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "deployment",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text lists both NVIDIA Triton Inference Server and NVIDIA TensorRT under the 'Model Deployment and Inference' section. RAPIDS is for data prep, and DLI is for education."
+    },
+    {
+        "id": "q20",
+        "question": "What is the primary motivation for Normalization (Min-Max scaling)?",
+        "type": "multiple_choice",
+        "options": [
+            "To center the data around zero.",
+            "To prevent features with large absolute values from dominating features with small values.",
+            "To handle missing data entries.",
+            "To create interaction terms between features."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data preprocessing",
+            "normalization",
+            "scaling"
+        ],
+        "difficulty": "medium",
+        "explanation": "Normalization prevents features with large ranges (e.g., salary) from dominating those with small ranges (e.g., age) in algorithms sensitive to magnitude."
+    }
+]

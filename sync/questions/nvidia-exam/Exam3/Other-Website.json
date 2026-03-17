@@ -1,0 +1,1640 @@
+[
+    {
+        "id": "q1_word2vec_description",
+        "question": "Which of the following best describes Word2Vec?",
+        "type": "multiple_choice",
+        "options": [
+            "A programming language used to build AI models",
+            "A statistical technique used to analyze word frequency",
+            "A deep learning algorithm used to generate word embeddings from text data",
+            "A database management system for storing and querying word data"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "word2vec",
+            "embeddings",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "Word2Vec uses a shallow neural network to learn context and semantic relationships between words, producing numerical embeddings that represent meaning[cite: 961]."
+    },
+    {
+        "id": "q2_autoregressive_prediction",
+        "question": "In the context of language models, what does an autoregressive model predict?",
+        "type": "multiple_choice",
+        "options": [
+            "The probability of the next token in a text given the previous tokens",
+            "The probability of the next token using Monte Carlo sampling",
+            "The next token solely using RNN or LSTM cells",
+            "The probability of the next token by looking at previous and future tokens"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "autoregressive models",
+            "language modeling"
+        ],
+        "difficulty": "medium",
+        "explanation": "Autoregressive models like GPT predict each next token sequentially, conditioned on prior tokens[cite: 965]."
+    },
+    {
+        "id": "q3_attention_purpose",
+        "question": "In large language models, what is the purpose of the attention mechanism?",
+        "type": "multiple_choice",
+        "options": [
+            "To measure the importance of words in the output sequence",
+            "To determine the order in which words are generated",
+            "To capture the order of words in the input sequence",
+            "To assign weights to each word in the input sequence"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "attention mechanism",
+            "transformers"
+        ],
+        "difficulty": "medium",
+        "explanation": "The attention mechanism lets models focus on relevant parts of the input by assigning importance weights to tokens[cite: 969]."
+    },
+    {
+        "id": "q4_positional_encoding_purpose",
+        "question": "In the transformer architecture, what is the primary purpose of positional encoding?",
+        "type": "multiple_choice",
+        "options": [
+            "To remove redundant information from input",
+            "To encode semantic meaning of each token",
+            "To add information about the order of tokens",
+            "To encode the importance of each token",
+            "To compress input token representations"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "positional encoding",
+            "transformers"
+        ],
+        "difficulty": "medium",
+        "explanation": "Since transformers process tokens in parallel, positional encoding provides order information necessary for sequence understanding[cite: 972, 937]."
+    },
+    {
+        "id": "q5_ml_basis",
+        "question": "In machine learning, which serves as the fundamental basis for enabling a model to learn from data?",
+        "type": "multiple_choice",
+        "options": [
+            "Algorithms and statistical methods",
+            "The 'Attention is All You Need' paper",
+            "The Transformer architecture",
+            "Large-scale datasets"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "machine learning",
+            "fundamentals"
+        ],
+        "difficulty": "easy",
+        "explanation": "Algorithms and statistical principles are the foundation of all ML models, enabling learning from data[cite: 973]."
+    },
+    {
+        "id": "q6_ml_workflow_step",
+        "question": "In a standard ML workflow (data collection, processing, training, evaluation, deployment), which step fits between training and evaluation?",
+        "type": "multiple_choice",
+        "options": [
+            "Inference",
+            "Data collection",
+            "Model deployment",
+            "Feature engineering"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "ml workflow",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "explanation": "Inference bridges training and evaluation by using the trained model to make predictions before assessing performance[cite: 975]."
+    },
+    {
+        "id": "q7_transparency_technique",
+        "question": "To enhance transparency and mitigate the black-box problem in LLMs, which technique is most effective?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing Retrieval-Augmented Generation (RAG)",
+            "Using topical guardrails",
+            "Publishing models on NVIDIA NGC",
+            "Increasing dataset size"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "transparency",
+            "rag",
+            "explainable ai"
+        ],
+        "difficulty": "medium",
+        "explanation": "RAG increases transparency by letting LLMs cite verifiable external sources for their responses[cite: 977]."
+    },
+    {
+        "id": "q8_data_validation_security",
+        "question": "What is a crucial step in validating an AI system that processes sensitive user data?",
+        "type": "multiple_choice",
+        "options": [
+            "Achieving compliance with ISO/IEC 27001",
+            "Using NVIDIA TAO Toolkit",
+            "Deploying using Helm charts",
+            "Maximizing F1 score"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "security",
+            "compliance",
+            "validation"
+        ],
+        "difficulty": "medium",
+        "explanation": "ISO/IEC 27001 certification demonstrates strong security and data protection standards[cite: 980]."
+    },
+    {
+        "id": "q9_nlp_library_processing",
+        "question": "Which library is specifically designed for linguistic processing tasks like tokenization and lemmatization?",
+        "type": "multiple_choice",
+        "options": [
+            "spaCy",
+            "Pandas",
+            "Scikit-learn",
+            "Matplotlib"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nlp libraries",
+            "spacy"
+        ],
+        "difficulty": "easy",
+        "explanation": "spaCy is an NLP library optimized for tasks like tokenization, POS tagging, and lemmatization[cite: 982]."
+    },
+    {
+        "id": "q10_gpu_pandas_acceleration",
+        "question": "To accelerate a slow Pandas workflow on an NVIDIA GPU with minimal code changes, which library should be used?",
+        "type": "multiple_choice",
+        "options": [
+            "cuDF",
+            "NumPy",
+            "Apache Spark",
+            "Dask"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "gpu acceleration",
+            "cudf",
+            "pandas"
+        ],
+        "difficulty": "medium",
+        "explanation": "cuDF mirrors Pandas’ API, offering GPU-accelerated DataFrame operations with minimal code changes[cite: 984]."
+    },
+    {
+        "id": "q11_text_metrics",
+        "question": "Which application–metric pairs are appropriate for comparing generated text to human references? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Image classification – Accuracy",
+            "Machine translation – BLEU",
+            "Sentiment analysis – F1 score",
+            "Text summarization – ROUGE"
+        ],
+        "correct_indices": [
+            1,
+            3
+        ],
+        "tags": [
+            "metrics",
+            "bleu",
+            "rouge"
+        ],
+        "difficulty": "medium",
+        "explanation": "BLEU and ROUGE measure textual overlap between machine and human outputs in translation and summarization[cite: 986]."
+    },
+    {
+        "id": "q12_zero_shot_learning",
+        "question": "A model identifies a new object based only on a text description. What learning technique is used?",
+        "type": "multiple_choice",
+        "options": [
+            "One-shot learning",
+            "Reinforcement learning",
+            "Zero-shot learning",
+            "Supervised learning"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "zero-shot learning",
+            "learning techniques"
+        ],
+        "difficulty": "medium",
+        "explanation": "Zero-shot learning allows models to generalize to unseen classes using descriptive information[cite: 988]."
+    },
+    {
+        "id": "q13_multi_gpu_advantages",
+        "question": "When training large models, what are the main advantages of multi-GPU configurations? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Increases model accuracy",
+            "Reduces training time",
+            "Eliminates preprocessing",
+            "Enables training of larger models"
+        ],
+        "correct_indices": [
+            1,
+            3
+        ],
+        "tags": [
+            "multi-gpu",
+            "training",
+            "scalability"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multi-GPU setups reduce training time via parallelism and enable training models that exceed single-GPU memory capacity[cite: 990]."
+    },
+    {
+        "id": "q14_encoding_bottleneck",
+        "question": "If data encoding is the bottleneck and GPUs are used to accelerate it, what is the most direct result?",
+        "type": "multiple_choice",
+        "options": [
+            "Increased model accuracy",
+            "Less training data required",
+            "Zero operational cost",
+            "Lower overall latency"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "optimization",
+            "latency",
+            "gpu acceleration"
+        ],
+        "difficulty": "medium",
+        "explanation": "Accelerating the slowest component (encoding) reduces total system latency[cite: 993]."
+    },
+    {
+        "id": "q16_nemo_framework_purpose",
+        "question": "Which NVIDIA framework is specifically designed to build, train, and fine-tune large language models?",
+        "type": "multiple_choice",
+        "options": [
+            "Triton Inference Server",
+            "TensorRT",
+            "NeMo Framework",
+            "cuDF"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia",
+            "nemo",
+            "llm training"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo supports training and fine-tuning LLMs for specific domains like healthcare or finance[cite: 997]."
+    },
+    {
+        "id": "q17_riva_purpose",
+        "question": "Which NVIDIA SDK is designed for deploying real-time speech AI services (speech-to-text, text-to-speech)?",
+        "type": "multiple_choice",
+        "options": [
+            "Omniverse",
+            "NeMo Framework",
+            "cuDF",
+            "Riva"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nvidia",
+            "riva",
+            "speech ai"
+        ],
+        "difficulty": "medium",
+        "explanation": "Riva provides APIs for low-latency speech AI deployment (ASR and TTS)[cite: 999]."
+    },
+    {
+        "id": "q18_triton_purpose",
+        "question": "Which NVIDIA tool deploys and manages multiple trained models in production?",
+        "type": "multiple_choice",
+        "options": [
+            "NeMo Framework",
+            "Triton Inference Server",
+            "TAO Toolkit",
+            "TensorRT"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "triton",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Triton efficiently serves multiple AI models and manages concurrent inference requests[cite: 1001]."
+    },
+    {
+        "id": "q19_nemo_guardrails",
+        "question": "Which open-source toolkit adds programmable safety controls for LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "Triton Inference Server",
+            "TensorRT",
+            "NeMo Guardrails",
+            "cuML"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia",
+            "nemo guardrails",
+            "safety"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Guardrails adds safety, topical, and security constraints to LLM-based chatbots[cite: 1003]."
+    },
+    {
+        "id": "q20_contextual_embeddings",
+        "question": "Which embedding model generates contextualized word representations based on sentence context?",
+        "type": "multiple_choice",
+        "options": [
+            "Word2Vec",
+            "TF-IDF",
+            "One-hot encoding",
+            "BERT"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "embeddings",
+            "bert",
+            "contextual embeddings"
+        ],
+        "difficulty": "medium",
+        "explanation": "BERT uses bidirectional transformers to create context-aware embeddings, distinguishing meanings like 'bank' in different contexts[cite: 1005]."
+    },
+    {
+        "id": "q21_xgboost_use_case",
+        "question": "Which tree-based ensemble algorithm offers high accuracy and speed specifically for structured tabular data?",
+        "type": "multiple_choice",
+        "options": [
+            "K-means Clustering",
+            "Transformer Model",
+            "XGBoost",
+            "Linear Regression"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "xgboost",
+            "tabular data",
+            "algorithms"
+        ],
+        "difficulty": "medium",
+        "explanation": "XGBoost (Extreme Gradient Boosting) is optimized for tabular data, combining accuracy and efficiency[cite: 1007]."
+    },
+    {
+        "id": "q22_perplexity_interpretation",
+        "question": "What does a lower perplexity score indicate when evaluating a language model?",
+        "type": "multiple_choice",
+        "options": [
+            "More parameters",
+            "Model is more surprised by data",
+            "Trained on smaller dataset",
+            "Model is more confident and accurate"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "metrics",
+            "perplexity",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Lower perplexity means the model predicts text with higher confidence and less confusion[cite: 1010]."
+    },
+    {
+        "id": "q23_perplexity_vs_bleu",
+        "question": "What is the key distinction between perplexity and BLEU score?",
+        "type": "multiple_choice",
+        "options": [
+            "Lower is better for BLEU, higher is better for perplexity",
+            "Perplexity is for image classification, BLEU for translation",
+            "Perplexity evaluates model prediction quality; BLEU compares model output to human reference",
+            "Both are identical metrics"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "metrics",
+            "bleu",
+            "perplexity"
+        ],
+        "difficulty": "medium",
+        "explanation": "Perplexity evaluates intrinsic model quality (prediction), while BLEU measures similarity to human text (task output) [cite: 1013-1014]."
+    },
+    {
+        "id": "q24_rag_components",
+        "question": "In RAG systems, which two components work together to ground responses?",
+        "type": "multiple_choice",
+        "options": [
+            "Generator and Retriever",
+            "Retriever and Validator",
+            "Retriever and Fine-tuner",
+            "Generator and Validator"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "rag",
+            "architecture",
+            "components"
+        ],
+        "difficulty": "medium",
+        "explanation": "The retriever finds relevant data, and the generator uses it to synthesize factually grounded answers[cite: 1016]."
+    },
+    {
+        "id": "q25_rapids_platform",
+        "question": "Which NVIDIA platform provides an end-to-end GPU-accelerated data science suite with Pandas and Scikit-learn-like APIs?",
+        "type": "multiple_choice",
+        "options": [
+            "Apache Spark",
+            "Matplotlib",
+            "NVIDIA RAPIDS",
+            "NVIDIA NeMo"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia",
+            "rapids",
+            "data science"
+        ],
+        "difficulty": "medium",
+        "explanation": "RAPIDS includes cuDF and cuML for full GPU-accelerated data workflows with familiar Python APIs[cite: 1018]."
+    },
+    {
+        "id": "q26_eda_objectives",
+        "question": "What are the main objectives of Exploratory Data Analysis (EDA)? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy model",
+            "Identify anomalies and missing values",
+            "Tune hyperparameters",
+            "Summarize data and discover patterns"
+        ],
+        "correct_indices": [
+            1,
+            3
+        ],
+        "tags": [
+            "eda",
+            "data analysis"
+        ],
+        "difficulty": "medium",
+        "explanation": "EDA aims to detect data issues (anomalies, missing values) and summarize characteristics to form hypotheses[cite: 1020]."
+    },
+    {
+        "id": "q27_diffusion_phases",
+        "question": "What are the two core phases in a diffusion model?",
+        "type": "multiple_choice",
+        "options": [
+            "Compression and Rendering",
+            "Forward (add noise) and Reverse (denoise)",
+            "Feature Extraction and Classification",
+            "Generator and Discriminator"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "diffusion models",
+            "generative ai"
+        ],
+        "difficulty": "medium",
+        "explanation": "Diffusion models add noise in the forward process and learn to denoise in reverse to generate images[cite: 1022]."
+    },
+    {
+        "id": "q28_tensorrt_function",
+        "question": "Which NVIDIA SDK optimizes trained models for faster inference on GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "Triton Inference Server",
+            "NeMo Framework",
+            "TensorRT",
+            "Scikit-learn"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia",
+            "tensorrt",
+            "inference optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "TensorRT optimizes trained models via quantization and layer fusion for faster GPU inference[cite: 1024]."
+    },
+    {
+        "id": "q29_onnx_purpose",
+        "question": "Which open standard enables interoperability between ML frameworks like PyTorch and TensorFlow?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorRT",
+            "ONNX",
+            "Docker",
+            "Pickle"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "onnx",
+            "interoperability",
+            "frameworks"
+        ],
+        "difficulty": "easy",
+        "explanation": "ONNX (Open Neural Network Exchange) allows models trained in one framework to be used in another without retraining[cite: 1026]."
+    },
+    {
+        "id": "q30_activation_function_roles",
+        "question": "What are the primary roles of an activation function? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Introduce nonlinearity",
+            "Group inputs like K-means",
+            "Determine neuron activation",
+            "Normalize inputs",
+            "Apply weight updates"
+        ],
+        "correct_indices": [
+            0,
+            2
+        ],
+        "tags": [
+            "activation functions",
+            "neural networks"
+        ],
+        "difficulty": "medium",
+        "explanation": "Activation functions introduce nonlinearity and determine neuron activation, enabling complex pattern learning[cite: 1028]."
+    },
+    {
+        "id": "q31_unsupervised_clustering",
+        "question": "Which algorithm is best for unsupervised clustering without pre-labeled data?",
+        "type": "multiple_choice",
+        "options": [
+            "Linear Regression",
+            "SVM",
+            "GAN",
+            "K-means Clustering"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "clustering",
+            "k-means",
+            "unsupervised learning"
+        ],
+        "difficulty": "easy",
+        "explanation": "K-means partitions unlabeled data into K clusters based on feature similarity[cite: 1030]."
+    },
+    {
+        "id": "q32_ner_task",
+        "question": "Which NLP task extracts entities like names, companies, and monetary values?",
+        "type": "multiple_choice",
+        "options": [
+            "Sentiment Analysis",
+            "Text Summarization",
+            "Machine Translation",
+            "Named Entity Recognition"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nlp",
+            "ner",
+            "tasks"
+        ],
+        "difficulty": "easy",
+        "explanation": "NER identifies and classifies named entities such as people, organizations, and monetary values[cite: 1032]."
+    },
+    {
+        "id": "q33_quantization_advantages",
+        "question": "What are the main advantages of model quantization? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Increases accuracy",
+            "Faster inference speed",
+            "Reduced memory footprint",
+            "Simplifies data preprocessing",
+            "Requires less data"
+        ],
+        "correct_indices": [
+            1,
+            2
+        ],
+        "tags": [
+            "quantization",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization reduces precision for faster computation and smaller model size[cite: 1034]."
+    },
+    {
+        "id": "q34_fp32_to_int8_effects",
+        "question": "What are the direct effects of converting FP32 to INT8 weights in quantization? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Increased throughput and lower latency",
+            "Reduced numerical precision",
+            "Improved accuracy",
+            "Smaller model size and memory needs",
+            "Longer training time"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            3
+        ],
+        "tags": [
+            "quantization",
+            "int8",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization increases speed, reduces precision, and decreases memory requirements[cite: 1037]."
+    },
+    {
+        "id": "q35_f1_score_usage",
+        "question": "Which metric balances precision and recall for binary classification?",
+        "type": "multiple_choice",
+        "options": [
+            "BLEU",
+            "Perplexity",
+            "MAE",
+            "F1 Score"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "metrics",
+            "f1 score",
+            "classification"
+        ],
+        "difficulty": "medium",
+        "explanation": "F1 is the harmonic mean of precision and recall, ideal for imbalanced datasets like fraud detection[cite: 1039]."
+    },
+    {
+        "id": "q36_accuracy_drawback",
+        "question": "Why can accuracy be misleading in rare-event detection models?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy is for regression",
+            "Predicting only the majority class can yield high accuracy",
+            "99% accuracy is too low",
+            "Requires F1 to calculate"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "metrics",
+            "accuracy",
+            "imbalanced datasets"
+        ],
+        "difficulty": "medium",
+        "explanation": "In imbalanced datasets, accuracy ignores minority class performance, meaning a model predicting only the majority class can still have high accuracy[cite: 1042]."
+    },
+    {
+        "id": "q37_mig_technology",
+        "question": "Which NVIDIA technology partitions a GPU into isolated instances?",
+        "type": "multiple_choice",
+        "options": [
+            "NVLink",
+            "Data Parallelism",
+            "RAPIDS",
+            "Multi-Instance GPU (MIG)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nvidia",
+            "gpu",
+            "mig"
+        ],
+        "difficulty": "medium",
+        "explanation": "MIG splits a physical GPU into isolated instances with dedicated compute and memory resources[cite: 1044]."
+    },
+    {
+        "id": "q38_ab_testing_definition",
+        "question": "What experimental method compares two versions (A/B) to test performance differences?",
+        "type": "multiple_choice",
+        "options": [
+            "K-means Clustering",
+            "Decision Tree Analysis",
+            "A/B Testing",
+            "Exploratory Data Analysis"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "experimentation",
+            "a/b testing"
+        ],
+        "difficulty": "easy",
+        "explanation": "A/B testing randomly compares two versions to evaluate impact on a target metric like click rate[cite: 1046]."
+    },
+    {
+        "id": "q39_decision_tree_characteristics",
+        "question": "Which statements describe a single Decision Tree? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Unsupervised clustering",
+            "Used for classification and regression",
+            "Deep neural network",
+            "Learns via if-then rules",
+            "Builds multiple trees"
+        ],
+        "correct_indices": [
+            1,
+            3
+        ],
+        "tags": [
+            "decision tree",
+            "algorithms"
+        ],
+        "difficulty": "medium",
+        "explanation": "Decision trees use if-then rules for classification or regression; multiple trees form a random forest [cite: 1048-1049]."
+    },
+    {
+        "id": "q40_lemmatization_definition",
+        "question": "What is the NLP process of converting words to their base dictionary form?",
+        "type": "multiple_choice",
+        "options": [
+            "Stemming",
+            "Tokenization",
+            "Named Entity Recognition",
+            "Lemmatization"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nlp",
+            "lemmatization",
+            "preprocessing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Lemmatization normalizes words using vocabulary knowledge to return their canonical form (e.g., 'driving' -> 'drive')[cite: 1050]."
+    },
+    {
+        "id": "q41_bigrams_example",
+        "question": "In natural language processing, an n-gram is a contiguous sequence of n items from a given sample of text. Given the sentence 'The quick brown fox jumps', what is the correct set of bigrams (two-grams)?",
+        "type": "multiple_choice",
+        "options": [
+            "The quick brown fox jumps",
+            "A similarity score used to compare it with another sentence",
+            "The quick, quick brown, brown fox, fox jumps",
+            "The quick brown, quick brown fox, brown fox jumps"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nlp",
+            "n-grams"
+        ],
+        "difficulty": "medium",
+        "explanation": "A bigram (2-gram) is a sequence of two consecutive words. By sliding a window of size two, we get 'The quick', 'quick brown', 'brown fox', 'fox jumps' [cite: 1051-1052]."
+    },
+    {
+        "id": "q42_pca_tsne_visualization",
+        "question": "A data scientist is performing EDA on a high-dimensional dataset and wants to visualize it in two dimensions. Which statements correctly describe PCA and t-SNE? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "t-SNE preserves local structure and is excellent for visualizing clusters",
+            "PCA is a supervised learning technique requiring labeled data",
+            "PCA and t-SNE produce nearly identical visualizations",
+            "PCA captures maximum variance and preserves global structure",
+            "Both techniques are used for predictive modeling"
+        ],
+        "correct_indices": [
+            0,
+            3
+        ],
+        "tags": [
+            "dimensionality reduction",
+            "visualization",
+            "pca",
+            "t-sne"
+        ],
+        "difficulty": "medium",
+        "explanation": "PCA is a linear technique capturing global variance, while t-SNE preserves local structure and clusters for visualization[cite: 1055]."
+    },
+    {
+        "id": "q43_nlp_corpus",
+        "question": "In NLP, what is the term for a large structured collection of text documents used for training language models and linguistic research?",
+        "type": "multiple_choice",
+        "options": [
+            "Hyperparameter",
+            "Checkpoint",
+            "Corpus",
+            "Algorithm"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nlp",
+            "corpus"
+        ],
+        "difficulty": "easy",
+        "explanation": "A corpus is a structured set of texts used to train or analyze language models, e.g., Wikipedia or Common Crawl[cite: 1057]."
+    },
+    {
+        "id": "q44_dropout_purpose",
+        "question": "During neural network training, some neurons are randomly ignored. What is the primary purpose of this technique known as dropout?",
+        "type": "multiple_choice",
+        "options": [
+            "To introduce nonlinearity",
+            "To permanently remove neurons",
+            "To prevent overfitting by learning robust features",
+            "To calculate the gradient of the loss function"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "regularization",
+            "dropout",
+            "overfitting"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dropout randomly deactivates neurons during training, preventing dependency on specific paths and improving generalization[cite: 1060]."
+    },
+    {
+        "id": "q45_cnn_applications",
+        "question": "While RNNs process sequential data, CNNs excel in detecting spatial hierarchies. In which applications are CNNs most effectively used?",
+        "type": "multiple_choice",
+        "options": [
+            "Time series forecasting",
+            "Image classification and object detection",
+            "Customer segmentation using K-means",
+            "Predicting housing prices from tabular data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cnn",
+            "image processing",
+            "applications"
+        ],
+        "difficulty": "medium",
+        "explanation": "CNNs process grid-like data (e.g., images), learning spatial hierarchies from simple to complex features[cite: 1063]."
+    },
+    {
+        "id": "q46_rnn_architecture",
+        "question": "What key architectural feature enables an RNN to process sequential data by maintaining information from prior inputs?",
+        "type": "multiple_choice",
+        "options": [
+            "Convolutional layers",
+            "Pure feedforward structure",
+            "Linear activations only",
+            "Feedback loop or hidden state"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "rnn",
+            "architecture",
+            "sequential data"
+        ],
+        "difficulty": "medium",
+        "explanation": "RNNs retain context via a hidden state that passes information between time steps, enabling sequence understanding[cite: 1065]."
+    },
+    {
+        "id": "q47_backpropagation_purpose",
+        "question": "What is the primary purpose of the backpropagation algorithm during neural network training?",
+        "type": "multiple_choice",
+        "options": [
+            "Perform the forward pass",
+            "Randomly deactivate neurons",
+            "Initialize weights",
+            "Calculate gradient of the loss with respect to weights"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "training",
+            "backpropagation",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Backpropagation computes gradients using the chain rule, allowing optimizers to adjust weights and minimize loss[cite: 1067]."
+    },
+    {
+        "id": "q48_nvidia_ngc_purpose",
+        "question": "What is the primary purpose of the NVIDIA NGC catalog?",
+        "type": "multiple_choice",
+        "options": [
+            "Marketplace for third-party licenses",
+            "Open-source collaboration repository",
+            "Cloud platform for renting VMs",
+            "Central hub for GPU-accelerated software like containers and SDKs"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nvidia",
+            "ngc",
+            "software"
+        ],
+        "difficulty": "medium",
+        "explanation": "NGC provides curated, optimized AI software—containers, pretrained models, SDKs—for GPU acceleration[cite: 1069]."
+    },
+    {
+        "id": "q49_epoch_definition",
+        "question": "In ML model training, what is the correct definition of one epoch?",
+        "type": "multiple_choice",
+        "options": [
+            "A single pass of one batch",
+            "Final test evaluation",
+            "One complete pass through the entire training dataset",
+            "Hyperparameter tuning process"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "training",
+            "epoch",
+            "terminology"
+        ],
+        "difficulty": "easy",
+        "explanation": "Each epoch means the model has seen all training samples once. Multiple epochs improve learning but risk overfitting [cite: 1072-1073]."
+    },
+    {
+        "id": "q50_base_command_platform",
+        "question": "What is the primary role of the NVIDIA Base Command Platform in AI data centers?",
+        "type": "multiple_choice",
+        "options": [
+            "Hardware interconnect",
+            "GPU monitoring CLI",
+            "Suite for managing AI workflows and DGX infrastructure",
+            "GPU data processing library"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia",
+            "base command",
+            "infrastructure"
+        ],
+        "difficulty": "medium",
+        "explanation": "Base Command orchestrates DGX systems, managing jobs, resources, and AI workflows[cite: 1075]."
+    },
+    {
+        "id": "q51_nvidia_ai_enterprise",
+        "question": "Which software solution meets enterprise needs for security, stability, and SLAs?",
+        "type": "multiple_choice",
+        "options": [
+            "Open-source packages from repositories",
+            "NVIDIA AI Enterprise",
+            "Cloud VM with base OS",
+            "Single framework like PyTorch"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "ai enterprise",
+            "software"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA AI Enterprise provides secure, optimized, and supported AI software with enterprise-grade SLAs[cite: 1077]."
+    },
+    {
+        "id": "q52_nvidia_nim_offering",
+        "question": "Which NVIDIA offering packages generative AI models into scalable microservices with APIs?",
+        "type": "multiple_choice",
+        "options": [
+            "DGX system",
+            "NVIDIA NIM (Inference Microservices)",
+            "NeMo Framework",
+            "Triton Inference Server"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "nim",
+            "microservices"
+        ],
+        "difficulty": "medium",
+        "explanation": "NIM packages models as ready-to-use microservices, simplifying deployment and integration with APIs[cite: 1079]."
+    },
+    {
+        "id": "q53_backpropagation_function",
+        "question": "What is the primary function of backpropagation in neural network training?",
+        "type": "multiple_choice",
+        "options": [
+            "Distribute model across GPUs",
+            "Serve trained model",
+            "Randomly ignore neurons",
+            "Compute loss gradients for learning"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "training",
+            "backpropagation",
+            "learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Backpropagation calculates loss gradients and updates weights for better predictions[cite: 1081]."
+    },
+    {
+        "id": "q54_nemo_retriever",
+        "question": "Which NVIDIA tool provides optimized microservices for retrieval tasks in RAG applications?",
+        "type": "multiple_choice",
+        "options": [
+            "Omniverse",
+            "NeMo Guardrails",
+            "NeMo Retriever",
+            "Custom scikit-learn script"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia",
+            "nemo retriever",
+            "rag"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Retriever provides microservices for embedding and searching data to support RAG workflows[cite: 1083]."
+    },
+    {
+        "id": "q55_genai_app_stack",
+        "question": "Which combination is correct for building and connecting a generative AI app?",
+        "type": "multiple_choice",
+        "options": [
+            "AI Workflows for connecting, LangChain for building",
+            "AI Workflows for both",
+            "AI Workflows for building, LangChain for connecting",
+            "LangChain for both"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "generative ai",
+            "workflows",
+            "langchain"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA AI Workflows provides an end-to-end framework; LangChain connects models and tools[cite: 1086]."
+    },
+    {
+        "id": "q56_transformer_parallelism",
+        "question": "Which components enable the transformer's parallel processing? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Recurrent feedback loop",
+            "Multi-head attention",
+            "Simultaneous token processing",
+            "K-means clustering",
+            "Serial single attention mechanism"
+        ],
+        "correct_indices": [
+            1,
+            2
+        ],
+        "tags": [
+            "transformers",
+            "parallelism"
+        ],
+        "difficulty": "hard",
+        "explanation": "Transformers achieve parallelism through multi-head attention and simultaneous processing of all input tokens[cite: 1087]."
+    },
+    {
+        "id": "q57_confidential_computing",
+        "question": "Which technology protects data even while it’s processed in memory?",
+        "type": "multiple_choice",
+        "options": [
+            "Software encryption",
+            "VPN",
+            "Confidential Computing",
+            "Firewall"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "security",
+            "confidential computing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Confidential Computing isolates data in secure enclaves, protecting it during active processing[cite: 1089]."
+    },
+    {
+        "id": "q58_sigmoid_activation",
+        "question": "For binary classification, which activation function outputs probabilities (0–1)?",
+        "type": "multiple_choice",
+        "options": [
+            "ReLU",
+            "Tanh",
+            "Softmax",
+            "Sigmoid"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "activation functions",
+            "binary classification",
+            "sigmoid"
+        ],
+        "difficulty": "easy",
+        "explanation": "Sigmoid squashes output to [0,1], ideal for representing binary classification probabilities[cite: 1091]."
+    },
+    {
+        "id": "q59_peft_method",
+        "question": "Which PEFT method freezes model weights and trains few parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "Full fine-tuning",
+            "K-means clustering",
+            "LoRA (Low-Rank Adaptation)",
+            "Post-training quantization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "peft",
+            "lora",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA trains small adapter matrices while freezing main model weights for efficiency[cite: 1093]."
+    },
+    {
+        "id": "q60_generative_ai_distinction",
+        "question": "What distinguishes generative AI from predictive or analytical AI?",
+        "type": "multiple_choice",
+        "options": [
+            "Clustering unlabeled data",
+            "Classifying existing data",
+            "Creating new original content similar to training data",
+            "Predicting continuous values"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "generative ai",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "Generative AI produces new data (text, images, music) based on learned patterns, unlike predictive AI[cite: 1095]."
+    },
+    {
+        "id": "q937_query_key_value",
+        "question": "In the self-attention mechanism, what do the Query (Q), Key (K), and Value (V) matrices represent?",
+        "type": "multiple_choice",
+        "options": [
+            "Q: token weights, K: attention scores, V: final output",
+            "Q: token seeking information, K: compatibility measure, V: information to retrieve",
+            "Q: input embedding, K: positional encoding, V: layer normalization",
+            "Q: encoder output, K: decoder input, V: cross-attention"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformers",
+            "self-attention",
+            "qkv"
+        ],
+        "difficulty": "hard",
+        "explanation": "Query represents the token 'asking' for information, Key is used to compute compatibility/relevance with other tokens, and Value contains the actual information to be retrieved and weighted[cite: 938]."
+    },
+    {
+        "id": "q939_masked_attention",
+        "question": "What is the purpose of masked attention in transformer decoders?",
+        "type": "multiple_choice",
+        "options": [
+            "To reduce computational complexity",
+            "To prevent attention to future tokens during training",
+            "To compress attention weights",
+            "To handle variable sequence lengths"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformers",
+            "masked attention",
+            "decoder"
+        ],
+        "difficulty": "medium",
+        "explanation": "Masked attention ensures that during training, tokens can only attend to previous tokens, maintaining the autoregressive property needed for language generation[cite: 939]."
+    },
+    {
+        "id": "q940_bleu_comparison",
+        "question": "When comparing two LLMs using BLEU metric, if Model A has a higher BLEU score than Model B, what does this indicate?",
+        "type": "multiple_choice",
+        "options": [
+            "Model A has a broader vocabulary than Model B",
+            "Model A shows better understanding of complex sentence structures",
+            "Model A produces text more similar to the reference text",
+            "Model A has higher computational efficiency"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "metrics",
+            "bleu",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "BLEU measures n-gram overlap between generated and reference text. Higher BLEU specifically indicates greater lexical similarity to reference[cite: 940, 941]."
+    },
+    {
+        "id": "q942_summarization_metric",
+        "question": "Which metric is most appropriate for evaluating text summarization tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "BLEU score",
+            "ROUGE score",
+            "Perplexity",
+            "F1-score"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "metrics",
+            "summarization",
+            "rouge"
+        ],
+        "difficulty": "medium",
+        "explanation": "ROUGE (Recall-Oriented Understudy for Gisting Evaluation) is specifically designed for summarization tasks, measuring overlap between generated and reference summaries[cite: 942]."
+    },
+    {
+        "id": "q943_quantization_benefits",
+        "question": "What are the primary benefits of model quantization?",
+        "type": "multiple_choice",
+        "options": [
+            "Increasing model accuracy and reducing training time",
+            "Reducing memory usage and inference latency",
+            "Improving model interpretability and explainability",
+            "Enhancing training stability and convergence"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "quantization",
+            "benefits"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization reduces numerical precision (e.g., FP32 to INT8), leading to smaller models that use less memory and run faster during inference[cite: 943]."
+    },
+    {
+        "id": "q944_transfer_learning_advantage",
+        "question": "What is the main advantage of transfer learning in LLM development?",
+        "type": "multiple_choice",
+        "options": [
+            "Eliminates the need for any labeled training data",
+            "Reduces training time and computational requirements",
+            "Guarantees better performance than training from scratch",
+            "Removes all biases present in the original model"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transfer learning",
+            "llm",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "Transfer learning leverages knowledge from pre-training on large datasets, significantly reducing the time and computational resources needed for task-specific fine-tuning[cite: 944]."
+    },
+    {
+        "id": "q945_eda_fine_tuning",
+        "question": "When fine-tuning an LLM for a specific application, why is Exploratory Data Analysis (EDA) essential?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the model's parameter count",
+            "To uncover patterns and anomalies in the dataset",
+            "To reduce overall training time",
+            "To eliminate the need for pre-trained models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "eda",
+            "fine-tuning",
+            "data analysis"
+        ],
+        "difficulty": "medium",
+        "explanation": "EDA helps understand data distribution, identify biases and anomalies, assess data quality, and determine appropriate preprocessing steps for successful fine-tuning[cite: 945]."
+    },
+    {
+        "id": "q946_catastrophic_forgetting",
+        "question": "In fine-tuning scenarios, what is catastrophic forgetting?",
+        "type": "multiple_choice",
+        "options": [
+            "Model losing pre-trained knowledge during task-specific training",
+            "Model forgetting the current fine-tuning task",
+            "Memory overflow during training process",
+            "Gradient explosion during optimization"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "fine-tuning",
+            "catastrophic forgetting",
+            "concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "Catastrophic forgetting occurs when fine-tuning on new tasks causes the model to lose previously learned knowledge from pre-training or other tasks[cite: 946]."
+    },
+    {
+        "id": "q947_triton_inference_server",
+        "question": "Which NVIDIA tool is specifically designed for high-performance model inference serving?",
+        "type": "multiple_choice",
+        "options": [
+            "NeMo Framework",
+            "Triton Inference Server",
+            "TensorRT",
+            "CUDA Toolkit"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "triton",
+            "inference serving"
+        ],
+        "difficulty": "medium",
+        "explanation": "Triton Inference Server is NVIDIA's solution for deploying AI models at scale, supporting multiple frameworks, dynamic batching, and model ensemble capabilities[cite: 947]."
+    },
+    {
+        "id": "q948_tensorrt_purpose",
+        "question": "What is the primary purpose of TensorRT?",
+        "type": "multiple_choice",
+        "options": [
+            "Training large language models",
+            "Optimizing models for inference performance",
+            "Data preprocessing and augmentation",
+            "Distributed computing coordination"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "tensorrt",
+            "inference optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "TensorRT is NVIDIA's inference optimization library that uses techniques like layer fusion, precision calibration, and kernel auto-tuning to accelerate model inference[cite: 948]."
+    },
+    {
+        "id": "q949_nemo_framework_main",
+        "question": "What is the main purpose of NVIDIA NeMo Framework?",
+        "type": "multiple_choice",
+        "options": [
+            "GPU hardware optimization",
+            "Building and customizing AI applications with pre-trained models",
+            "Database management for AI workflows",
+            "Network communication for distributed training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "nemo",
+            "framework"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo provides pre-trained models and tools for building AI applications, particularly in NLP, speech, and vision domains, with support for easy customization and distributed training[cite: 949]."
+    },
+    {
+        "id": "q950_ab_testing_traffic",
+        "question": "In A/B testing for LLM deployment, what is the recommended approach for traffic distribution?",
+        "type": "multiple_choice",
+        "options": [
+            "Send all traffic to the new model immediately",
+            "Deploy both models and serve traffic equally (50/50)",
+            "Use only internal testing teams",
+            "Gradually increase traffic over several months"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deployment",
+            "ab testing",
+            "traffic distribution"
+        ],
+        "difficulty": "medium",
+        "explanation": "Equal traffic distribution allows for fair comparison and statistical significance testing between models, providing reliable performance metrics for decision-making[cite: 950]."
+    },
+    {
+        "id": "q951_model_versioning_benefit",
+        "question": "What is the primary benefit of model versioning in production environments?",
+        "type": "multiple_choice",
+        "options": [
+            "Faster inference speed",
+            "Seamless rollback and comparison capabilities",
+            "Reduced memory usage",
+            "Better model accuracy"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deployment",
+            "versioning",
+            "mlops"
+        ],
+        "difficulty": "easy",
+        "explanation": "Model versioning enables safe deployment practices, allowing teams to rollback to previous versions if issues arise and compare performance across different model versions[cite: 951]."
+    },
+    {
+        "id": "q952_ner_extraction",
+        "question": "In Named Entity Recognition (NER), what type of information is typically extracted?",
+        "type": "multiple_choice",
+        "options": [
+            "Sentiment polarity of text",
+            "Topic categories of documents",
+            "Person, organization, and location names",
+            "Grammatical structure analysis"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nlp",
+            "ner",
+            "information extraction"
+        ],
+        "difficulty": "easy",
+        "explanation": "NER identifies and classifies named entities in text, commonly including PERSON, ORGANIZATION, LOCATION, DATE, and other predefined entity types[cite: 952]."
+    },
+    {
+        "id": "q953_rag_method",
+        "question": "What is Retrieval-Augmented Generation (RAG)?",
+        "type": "multiple_choice",
+        "options": [
+            "A training technique for faster convergence",
+            "A method combining information retrieval with text generation",
+            "A model compression technique",
+            "An evaluation metric for language models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "concepts",
+            "llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "RAG combines retrieval systems with generative models, allowing access to external knowledge bases to provide more accurate and up-to-date responses while reducing hallucination[cite: 953]."
+    },
+    {
+        "id": "q954_few_shot_learning_meaning",
+        "question": "In the context of LLMs, what does 'few-shot learning' refer to?",
+        "type": "multiple_choice",
+        "options": [
+            "Training models with very few parameters",
+            "Learning new tasks with minimal examples in the prompt",
+            "Fast inference speed optimization",
+            "Processing very short text sequences"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "few-shot learning",
+            "prompting"
+        ],
+        "difficulty": "medium",
+        "explanation": "Few-shot learning enables LLMs to perform new tasks by providing just a few examples in the input prompt, without additional fine-tuning[cite: 954]."
+    },
+    {
+        "id": "q955_forward_reverse_diffusion",
+        "question": "In diffusion models, what is the difference between forward and reverse diffusion processes?",
+        "type": "multiple_choice",
+        "options": [
+            "Forward adds noise, reverse learns to remove noise",
+            "Forward generates images, reverse evaluates quality",
+            "Forward handles text, reverse handles images",
+            "Forward is for training, reverse is for inference"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "diffusion models",
+            "generative ai",
+            "concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "Forward diffusion gradually adds noise to training data until it becomes pure noise. Reverse diffusion learns to denoise, effectively learning the data distribution for generation[cite: 955, 956]."
+    },
+    {
+        "id": "q957_layer_normalization_purpose",
+        "question": "What is the main purpose of layer normalization in transformer networks?",
+        "type": "multiple_choice",
+        "options": [
+            "To reduce overfitting during training",
+            "To stabilize training and enable deeper networks",
+            "To compress model representations",
+            "To speed up inference computation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformers",
+            "layer normalization",
+            "training stability"
+        ],
+        "difficulty": "hard",
+        "explanation": "Layer normalization stabilizes training by normalizing inputs to each layer, reducing internal covariate shift and enabling successful training of very deep networks[cite: 957]."
+    },
+    {
+        "id": "q958_beam_search_purpose",
+        "question": "What is the purpose of beam search in sequence generation?",
+        "type": "multiple_choice",
+        "options": [
+            "To speed up the generation process",
+            "To explore multiple candidate sequences simultaneously",
+            "To reduce memory usage during generation",
+            "To handle longer input sequences"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sequence generation",
+            "beam search",
+            "decoding"
+        ],
+        "difficulty": "medium",
+        "explanation": "Beam search maintains multiple candidate sequences (beams) during generation, exploring different paths to find higher-quality outputs compared to greedy search[cite: 958]."
+    }
+]

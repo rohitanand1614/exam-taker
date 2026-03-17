@@ -1,0 +1,317 @@
+[
+    {
+        "id": "nvidia_prompt_course_001",
+        "question": "What is the primary function of NVIDIA NIM (Neural Inference Microservices) in the context of LLM application development?",
+        "type": "multiple_choice",
+        "options": [
+            "To train large language models from scratch using raw data",
+            "To accelerate and simplify the deployment of generative AI models via containerized microservices",
+            "To provide a Python framework for composing prompts",
+            "To act as a database for storing vector embeddings"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia nim",
+            "deployment",
+            "microservices"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA NIM is a suite of containerized microservices designed to accelerate the deployment of generative AI models across cloud, data center, and workstations, handling complexity like model loading and backend selection."
+    },
+    {
+        "id": "nvidia_prompt_course_002",
+        "question": "What is the specific context window size supported by Llama 3.1 models?",
+        "type": "multiple_choice",
+        "options": [
+            "32,000 tokens",
+            "8,192 tokens",
+            "128,000 tokens",
+            "1,000,000 tokens"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "llama 3.1",
+            "specifications",
+            "context window"
+        ],
+        "difficulty": "easy",
+        "explanation": "Llama 3.1 features an expansive 128,000 token context window across all model variants (8B, 70B, and 405B), allowing for the processing of very large documents."
+    },
+    {
+        "id": "nvidia_prompt_course_003",
+        "question": "Which component of the LangChain ecosystem is specifically designed for detailed tracing, monitoring, and evaluation of LLM workflows?",
+        "type": "multiple_choice",
+        "options": [
+            "LangGraph",
+            "LangServe",
+            "LangSmith",
+            "LangChain Expression Language (LCEL)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "langchain",
+            "ecosystem",
+            "debugging"
+        ],
+        "difficulty": "medium",
+        "explanation": "LangSmith is the tool within the ecosystem used for detailed tracing, monitoring, and evaluation, which helps in debugging and improving performance."
+    },
+    {
+        "id": "nvidia_prompt_course_004",
+        "question": "In the context of prompt engineering, what does the 'Artist Analogy' illustrate?",
+        "type": "multiple_choice",
+        "options": [
+            "That LLMs are creative and do not need instructions",
+            "That prompts should be abstract and open to interpretation",
+            "That specific, detailed instructions (like a detailed commission) yield better aligned results than vague requests",
+            "That prompt engineering is an art form that cannot be taught"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "prompt engineering",
+            "concepts",
+            "analogy"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Artist Analogy compares interacting with an LLM to commissioning an artist: a vague request yields unpredictable results, while a detailed commission (engineered prompt) yields an aligned result."
+    },
+    {
+        "id": "nvidia_prompt_course_005",
+        "question": "What is the primary benefit of using 'streaming' when invoking an LLM?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows the model to process multiple inputs simultaneously",
+            "It improves the responsiveness of the application by sending tokens as they are generated",
+            "It increases the accuracy of the model's reasoning",
+            "It reduces the financial cost of the API call"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "performance",
+            "streaming",
+            "ux"
+        ],
+        "difficulty": "medium",
+        "explanation": "Streaming solves the issue of delay by sending tokens as they are generated, creating an immediate, responsive user experience which is critical for chatbots."
+    },
+    {
+        "id": "nvidia_prompt_course_006",
+        "question": "When processing a large list of inputs (e.g., summarizing hundreds of articles), why is 'batching' preferred over sequential execution?",
+        "type": "multiple_choice",
+        "options": [
+            "It guarantees higher accuracy per article",
+            "It dramatically improves throughput by sending multiple inputs in one request to enable parallel processing",
+            "It allows for larger context windows to be used",
+            "It is required by the HTTP protocol"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "performance",
+            "batching",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "Batching sends multiple inputs in a single request, enabling parallel processing. This dramatically improves throughput compared to inefficient sequential API calls."
+    },
+    {
+        "id": "nvidia_prompt_course_007",
+        "question": "What is the core operator in LangChain Expression Language (LCEL) used to chain Runnables sequentially?",
+        "type": "multiple_choice",
+        "options": [
+            ">>",
+            "+",
+            "&",
+            "|"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "langchain",
+            "lcel",
+            "syntax"
+        ],
+        "difficulty": "easy",
+        "explanation": "The pipe operator (|) is the core operator in LCEL. It chains Runnables sequentially, passing the output from the left component as input to the right component."
+    },
+    {
+        "id": "nvidia_prompt_course_008",
+        "question": "Which message type is described as the 'most influential tool' for defining the persona, role, and constraints of a chat model?",
+        "type": "multiple_choice",
+        "options": [
+            "HumanMessage",
+            "SystemMessage",
+            "AIMessage",
+            "ToolMessage"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompting",
+            "messages",
+            "system prompt"
+        ],
+        "difficulty": "medium",
+        "explanation": "The SystemMessage is the most influential tool for defining the overarching persona, role, and constraints, setting the stage for the entire conversation."
+    },
+    {
+        "id": "nvidia_prompt_course_009",
+        "question": "What is the standard triggering phrase used to initiate Zero-Shot Chain-of-Thought (CoT) prompting?",
+        "type": "multiple_choice",
+        "options": [
+            "Explain this to me like I'm five.",
+            "Let's think step by step.",
+            "Output in JSON format.",
+            "Ignore previous instructions."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompt engineering",
+            "chain of thought",
+            "zero-shot"
+        ],
+        "difficulty": "medium",
+        "explanation": "Zero-Shot CoT is often implemented by appending the simple triggering phrase 'Let's think step by step,' which encourages the model to decompose its thought process."
+    },
+    {
+        "id": "nvidia_prompt_course_010",
+        "question": "Which Python library is recommended for defining data models and validating structured output (like JSON) from LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "NumPy",
+            "Pandas",
+            "Pydantic",
+            "Requests"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "structured output",
+            "libraries",
+            "pydantic"
+        ],
+        "difficulty": "easy",
+        "explanation": "Pydantic is a Python library that provides a simple way to define data models with type hints, handling parsing and validation to ensure data conforms to schemas."
+    },
+    {
+        "id": "nvidia_prompt_course_011",
+        "question": "What is the primary advantage of using `RunnableParallel` in an LCEL chain?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows the chain to run offline without an internet connection",
+            "It executes multiple branches or operations simultaneously, reducing total execution time",
+            "It forces the model to use less memory",
+            "It automatically corrects grammatical errors in the output"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "langchain",
+            "lcel",
+            "parallelism"
+        ],
+        "difficulty": "hard",
+        "explanation": "RunnableParallel executes multiple Runnables concurrently. The total execution time is approximately that of the longest single branch, significantly reducing latency for parallelizable tasks."
+    },
+    {
+        "id": "nvidia_prompt_course_012",
+        "question": "In the context of LangChain, what does `RunnableLambda` allow a developer to do?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy the application to AWS Lambda automatically",
+            "Integrate arbitrary Python functions into a chain",
+            "Convert a chain into a SQL query",
+            "Pause the chain for human approval"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "langchain",
+            "lcel",
+            "custom logic"
+        ],
+        "difficulty": "medium",
+        "explanation": "RunnableLambda wraps custom Python functions as Runnables, allowing developers to inject arbitrary Python logic (like data transformation) anywhere in a workflow."
+    },
+    {
+        "id": "nvidia_prompt_course_013",
+        "question": "What is the recommended best practice for handling API keys in a production environment?",
+        "type": "multiple_choice",
+        "options": [
+            "Hardcoding them directly into the Python script",
+            "Saving them in a plain text file on the desktop",
+            "Using environment variables (e.g., via a .env file) to avoid hardcoding",
+            "Embedding them in the Docker container image"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "security",
+            "best practices",
+            "configuration"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text advises creating a .env file and using `python-dotenv` to manage credentials, ensuring secure access without hardcoding keys into the source code."
+    },
+    {
+        "id": "nvidia_prompt_course_014",
+        "question": "Which prompting technique involves providing examples of desired input-output patterns directly within the prompt?",
+        "type": "multiple_choice",
+        "options": [
+            "Zero-Shot Prompting",
+            "Few-Shot Prompting",
+            "System Prompting",
+            "Reactive Prompting"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompt engineering",
+            "techniques",
+            "few-shot"
+        ],
+        "difficulty": "easy",
+        "explanation": "Few-shot prompting guides model behavior by providing examples (shots) of desired input-output patterns, teaching the model 'in-context' without retraining."
+    },
+    {
+        "id": "nvidia_prompt_course_015",
+        "question": "What is the primary purpose of the `JsonOutputParser` in LangChain?",
+        "type": "multiple_choice",
+        "options": [
+            "To convert JSON data into a SQL database",
+            "To read JSON files from the local disk",
+            "To instruct the LLM to generate structured data and parse the result into a predictable format",
+            "To optimize the network latency of JSON payloads"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "langchain",
+            "structured output",
+            "parsing"
+        ],
+        "difficulty": "medium",
+        "explanation": "JsonOutputParser generates formatting instructions for the prompt and then parses/validates the LLM's output to ensure it conforms to a specific structure (often defined by a Pydantic model)."
+    }
+]

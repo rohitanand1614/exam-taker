@@ -1,0 +1,88 @@
+[
+    {
+        "id": "Backpropagation Part 2 | The How | Complete Deep Learning Playlist_001",
+        "question": "A student is writing an implementation of Backpropagation from scratch for a Regression task using Mean Squared Error (MSE). They then switch to a Classification task using Binary Cross-Entropy loss. Which specific mathematical components of the Backpropagation algorithm will fundamentally change due to this switch?",
+        "type": "multiple_choice",
+        "options": [
+"A) The gradient descent update rule (e.g., $W_{new} = W_{old} - \\alpha \\cdot \\text{gradient}$), which must be inverted for classification.",
+            "B) The formulas for the partial derivatives (gradients) of the loss function with respect to the weights, because the underlying Loss Function and the Output Layer's Activation Function have both mathematically changed.",
+            "C) The number of hidden layers required in the architecture, which must double to handle cross-entropy calculations.",
+            "D) The basic matrix multiplication code used during the Forward Propagation phase."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "backpropagation",
+            "derivatives",
+            "loss_functions",
+            "classification_vs_regression"
+        ],
+        "difficulty": "medium",
+        "explanation": "The core structure of the Backpropagation algorithm remains the same: predict $\\rightarrow$ calculate loss $\\rightarrow$ calculate gradients $\\rightarrow$ update weights. However, the exact mathematical formulas for the gradients (partial derivatives) change. \nFor Regression, the loss function is MSE, and the output activation is Linear. This resulted in the starting derivative term being $-2(y - \\hat{y})$. \nFor Classification, the loss function is Binary Cross-Entropy, and the output activation is Sigmoid. The instructor derives this new starting term, showing that the combination of the Cross-Entropy derivative and the Sigmoid derivative simplifies beautifully to just $-(y - \\hat{y})$. Because these base derivative functions changed, the entire set of 9 derivative formulas for the weights and biases had to be updated in the code. Option A is false; the Gradient Descent update rule is universal. Option C is false; architecture is independent of the loss function type. Option D is false; the basic $W \\cdot X + b$ linear algebra remains identical."
+    },
+    {
+        "id": "Backpropagation Part 2 | The How | Complete Deep Learning Playlist_002",
+        "question": "During the derivation of the gradients for the Classification network, the instructor calculates the derivative of the Binary Cross-Entropy Loss with respect to the final prediction ($\\hat{y}$), and then multiplies it by the derivative of the Sigmoid activation function. What mathematically elegant simplification occurs when these two specific derivatives are multiplied together?",
+        "type": "multiple_choice",
+        "options": [
+"A) The complex terms perfectly cancel each other out, resulting in a beautifully simple initial gradient term of $-(y - \\hat{y})$, or $(\\hat{y} - y)$.",
+            "B) The Sigmoid derivative mathematically squares the Cross-Entropy loss, automatically converting the classification problem back into a Mean Squared Error problem.",
+            "C) The resulting gradient becomes exactly $0$ if the prediction is correct, stopping the backpropagation algorithm permanently.",
+            "D) The multiplication produces the Softmax function, allowing the binary classifier to handle multiple classes."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "derivatives",
+            "binary_cross_entropy",
+            "sigmoid",
+            "math_simplification"
+        ],
+        "difficulty": "hard",
+        "explanation": "This is a classic and beautiful mathematical property of pairing Binary Cross-Entropy loss with a Sigmoid activation function. \nThe derivative of Binary Cross-Entropy with respect to $\\hat{y}$ is: $\\frac{-(y - \\hat{y})}{\\hat{y}(1 - \\hat{y})}$.\nThe derivative of the Sigmoid function (where $\\hat{y} = \\text{Sigmoid}(z)$) with respect to $z$ is: $\\hat{y}(1 - \\hat{y})$.\nWhen applying the chain rule, you multiply these two together. The $\\hat{y}(1 - \\hat{y})$ in the denominator of the loss derivative perfectly cancels out the $\\hat{y}(1 - \\hat{y})$ from the Sigmoid derivative . The final, simplified result is just $-(y - \\hat{y})$ (or $\\hat{y} - y$, depending on the sign convention used for the update rule). This makes the gradient computation incredibly clean and computationally efficient. Options B, C, and D describe fabricated mathematical interactions."
+    },
+    {
+        "id": "Backpropagation Part 2 | The How | Complete Deep Learning Playlist_003",
+        "question": "In the instructor's custom Python implementation of Forward Propagation, the function deliberately returns the final prediction ($A_2$ or $\\hat{y}$) AND the intermediate outputs from the hidden layer ($A_1$). Why is it absolutely necessary to save and return these intermediate hidden layer outputs ($A_1$) during the forward pass?",
+        "type": "multiple_choice",
+        "options": [
+            "A) They are required to calculate the final Mean Squared Error loss.",
+            "B) Because the mathematical formulas for calculating the weight gradients during the backward pass (Backpropagation) explicitly require the activation values from the previous layer.",
+            "C) To provide a secondary output array in case the primary prediction ($A_2$) causes a division-by-zero error.",
+            "D) To act as the target labels ($y$) for the hidden layers, effectively turning the MLP into an Autoencoder."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "forward_propagation",
+            "backpropagation_implementation",
+            "caching_activations"
+        ],
+        "difficulty": "medium",
+        "explanation": "During Backpropagation, the gradient of the loss with respect to a specific weight relies on the activation value that was multiplied by that weight during the forward pass. For example, the gradient for the weight $W_{11}^{(2)}$ (connecting Hidden Node 1 to the Output Node) is calculated as: (Error Term) $\times$ (Output of Hidden Node 1). \nIf you do not save the output of Hidden Node 1 ($A_1$) during the forward pass, you will not have the numbers required to compute the gradients during the backward pass. This is a fundamental concept in training neural networks: forward pass activations must be cached in memory for use in backpropagation. Option A is false; loss only requires the final prediction $\\hat{y}$ and true label $y$. Options C and D are factually incorrect."
+    },
+    {
+        "id": "Backpropagation Part 2 | The How | Complete Deep Learning Playlist_004",
+        "question": "The instructor demonstrates a complete training loop running for a set number of 'Epochs'. At the end of every epoch, they calculate the 'Average Loss'. How is this Average Loss computed in the context of their algorithm?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By taking the mathematical derivative of the final weight matrix.",
+            "B) By adding up the individual loss values calculated for every single student (data point) processed during that epoch, and dividing by the total number of students.",
+            "C) By subtracting the training accuracy from 100%.",
+            "D) By averaging the values of all the updated weights and biases in the network."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "epochs",
+            "average_loss",
+            "training_loop"
+        ],
+        "difficulty": "easy",
+        "explanation": "The inner loop of the algorithm processes one student (data point) at a time, calculating an individual loss (e.g., $L_1$ for student 1, $L_2$ for student 2). An Epoch is complete when the algorithm has processed all students in the dataset (e.g., 4 students). To find the Average Loss (or Cost) for that entire epoch, you sum the individual losses ($L_1 + L_2 + L_3 + L_4$) and divide by the total number of data points (4). Tracking this Average Loss over multiple epochs is how you monitor if the network is actually learning and converging. Options A, C, and D are incorrect methods for calculating the loss or cost function."
+    }
+]

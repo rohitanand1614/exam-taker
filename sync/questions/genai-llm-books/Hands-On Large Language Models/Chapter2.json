@@ -1,0 +1,321 @@
+[
+    {
+        "id": "Hands-On-LLM-Chapter2_001",
+        "question": "What are tokens in the context of large language models?",
+        "type": "multiple_choice",
+        "options": [
+            "Complete sentences processed by the model",
+            "Small chunks of text such as words, subwords, or characters",
+            "Numerical vectors representing meaning",
+            "Entire documents used for training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tokens",
+            "llm-basics",
+            "tokenization"
+        ],
+        "difficulty": "easy",
+        "explanation": "Tokens are small units of text (words, subwords, or characters) that LLMs process."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_002",
+        "question": "What is the primary purpose of a tokenizer in an LLM pipeline?",
+        "type": "multiple_choice",
+        "options": [
+            "To generate responses from embeddings",
+            "To convert token IDs back into text only",
+            "To break raw text into tokens and map them to token IDs",
+            "To fine-tune model weights"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "tokenizer",
+            "llm-pipeline",
+            "preprocessing"
+        ],
+        "difficulty": "easy",
+        "explanation": "A tokenizer splits text into tokens and converts them into numerical token IDs for the model."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_003",
+        "question": "Which tokenization method is most commonly used by GPT-style models?",
+        "type": "multiple_choice",
+        "options": [
+            "WordPiece",
+            "SentencePiece",
+            "Byte Pair Encoding (BPE)",
+            "Character-level tokenization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bpe",
+            "gpt",
+            "tokenization-methods"
+        ],
+        "difficulty": "easy",
+        "explanation": "GPT models primarily use Byte Pair Encoding (BPE) for tokenization."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_004",
+        "question": "Why is subword tokenization generally preferred over word-level tokenization?",
+        "type": "multiple_choice",
+        "options": [
+            "It completely removes punctuation",
+            "It reduces vocabulary size and handles unseen words better",
+            "It requires no training data",
+            "It only works for English"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "subword-tokenization",
+            "vocabulary",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "Subword tokenization reduces vocabulary size and can represent new or rare words by splitting them into parts."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_005",
+        "question": "What information does the input_ids tensor represent when passed to a language model?",
+        "type": "multiple_choice",
+        "options": [
+            "Raw text strings",
+            "Embedding vectors",
+            "Token IDs corresponding to the tokenizer vocabulary",
+            "Attention scores"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "input-ids",
+            "tokenizer",
+            "llm-input"
+        ],
+        "difficulty": "easy",
+        "explanation": "input_ids are integer IDs representing tokens from the tokenizer's vocabulary."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_006",
+        "question": "Which of the following factors influence how a tokenizer breaks down text? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Tokenization method",
+            "Tokenizer parameters and special tokens",
+            "Training dataset domain",
+            "GPU memory size"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "tokenizer-design",
+            "llm",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "Tokenization behavior depends on the method, tokenizer configuration, and training data domain."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_007",
+        "question": "What is a key advantage of byte-level tokenization approaches?",
+        "type": "multiple_choice",
+        "options": [
+            "They completely eliminate tokenizers",
+            "They handle multilingual text and unseen characters well",
+            "They require fewer tokens than subword methods",
+            "They only work for code"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "byte-tokenization",
+            "multilingual",
+            "tokenization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Byte-level tokenization can represent any character, making it robust for multilingual and unseen text."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_008",
+        "question": "What are token embeddings in a language model?",
+        "type": "multiple_choice",
+        "options": [
+            "Final generated sentences",
+            "Static or learned numeric vectors representing tokens",
+            "Attention weights between tokens",
+            "Optimizer parameters"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embeddings",
+            "token-embeddings",
+            "llm"
+        ],
+        "difficulty": "easy",
+        "explanation": "Token embeddings are numeric vectors associated with each token in the vocabulary."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_009",
+        "question": "What distinguishes contextualized token embeddings from static word embeddings?",
+        "type": "multiple_choice",
+        "options": [
+            "They are smaller in size",
+            "They assign the same vector to a word regardless of context",
+            "They change based on surrounding context",
+            "They are only used for recommendation systems"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "contextual-embeddings",
+            "word-embeddings",
+            "llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "Contextualized embeddings represent words differently depending on their surrounding context."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_010",
+        "question": "Which tasks commonly benefit from contextualized token embeddings? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Named-entity recognition",
+            "Extractive text summarization",
+            "Image classification only",
+            "Text classification"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            3
+        ],
+        "tags": [
+            "contextual-embeddings",
+            "nlp-tasks",
+            "applications"
+        ],
+        "difficulty": "medium",
+        "explanation": "Contextual embeddings are widely used in NLP tasks like NER, summarization, and classification."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_011",
+        "question": "What is a text embedding?",
+        "type": "multiple_choice",
+        "options": [
+            "A sequence of token IDs",
+            "A single vector representing a sentence or document",
+            "A list of word embeddings",
+            "An attention map"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "text-embeddings",
+            "sentence-embeddings",
+            "semantic-search"
+        ],
+        "difficulty": "easy",
+        "explanation": "Text embeddings are single vectors that represent the meaning of entire sentences or documents."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_012",
+        "question": "Which library is commonly used to generate high-quality sentence embeddings?",
+        "type": "multiple_choice",
+        "options": [
+            "gensim",
+            "sentence-transformers",
+            "scikit-learn",
+            "matplotlib"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sentence-transformers",
+            "embeddings",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "The sentence-transformers library is widely used for generating sentence-level embeddings."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_013",
+        "question": "What are the two core ideas behind the word2vec algorithm?",
+        "type": "multiple_choice",
+        "options": [
+            "Attention and masking",
+            "Skip-gram and negative sampling",
+            "Tokenization and padding",
+            "Encoding and decoding"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word2vec",
+            "skip-gram",
+            "negative-sampling"
+        ],
+        "difficulty": "medium",
+        "explanation": "Word2vec is built on skip-gram for context prediction and negative sampling for contrastive learning."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_014",
+        "question": "Why are negative examples necessary in word2vec training?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase vocabulary size",
+            "To prevent the model from always predicting positive context",
+            "To reduce embedding dimensions",
+            "To eliminate rare words"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word2vec",
+            "negative-sampling",
+            "contrastive-learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Negative examples prevent the model from trivially predicting all word pairs as related."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter2_015",
+        "question": "How can embeddings be used in recommendation systems?",
+        "type": "multiple_choice",
+        "options": [
+            "By ranking items using attention weights only",
+            "By measuring similarity between embedded items",
+            "By converting recommendations into text",
+            "By removing user preferences"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "recommendation-systems",
+            "embeddings",
+            "similarity"
+        ],
+        "difficulty": "easy",
+        "explanation": "Embeddings enable recommendation systems by finding items with similar vector representations."
+    }
+]

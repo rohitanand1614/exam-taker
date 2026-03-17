@@ -1,0 +1,425 @@
+[
+    {
+        "id": "latest_research_001",
+        "question": "What paradigm shift describes the transition from brute-force scaling of dense model parameters to a focus on architectural efficiency and deployment necessities in late 2025?",
+        "type": "multiple_choice",
+        "options": [
+            "Generative Competence",
+            "Computational Competence",
+            "Scaling Competence",
+            "Deployment Competence"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "computational competence",
+            "ai trends",
+            "scaling laws"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states the industry has moved past 'scaling laws' into a new paradigm best described as 'Computational Competence', driven by physical and economic necessities."
+    },
+    {
+        "id": "latest_research_002",
+        "question": "According to the report, why is reading research papers considered a requirement for NVIDIA Certified LLM Associate Candidates in late 2025?",
+        "type": "multiple_choice",
+        "options": [
+            "To improve academic writing skills",
+            "To understand the operational logic of modern AI systems, as 2023 knowledge is insufficient",
+            "To prepare for becoming a researcher",
+            "To strictly follow the scaling laws of 2023"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia certification",
+            "research papers",
+            "operational logic"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explicitly mentions that reading papers is a requirement to understand the operational logic of modern AI systems because static knowledge from 2023 is insufficient."
+    },
+    {
+        "id": "latest_research_003",
+        "question": "Which of the following is NOT listed as one of the seven 'Mega-Trends' defining the current AI epoch in the late 2025 report?",
+        "type": "multiple_choice",
+        "options": [
+            "The Efficiency Revolution (MoE)",
+            "Context Engineering",
+            "Brute-Force Parameter Expansion",
+            "Agentic Autonomy"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "mega-trends",
+            "ai trends",
+            "efficiency revolution"
+        ],
+        "difficulty": "medium",
+        "explanation": "Brute-force parameter expansion is described as the era the industry has moved *past*. The valid trends listed include Efficiency Revolution, Context Engineering, and Agentic Autonomy."
+    },
+    {
+        "id": "latest_research_004",
+        "question": "What is the primary architectural change driving the 'Efficiency Revolution' in frontier-class systems?",
+        "type": "multiple_choice",
+        "options": [
+            "Adoption of Dense Transformer models",
+            "Rejection of dense models in favor of Mixture-of-Experts (MoE)",
+            "Shift to RNN-based architectures",
+            "Exclusive use of CPU-based inference"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "efficiency revolution",
+            "moe",
+            "mixture-of-experts"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states the most impactful trend is the rejection of dense model architecture in favor of Sparse Mixture-of-Experts (MoE)."
+    },
+    {
+        "id": "latest_research_005",
+        "question": "How does a Mixture-of-Experts (MoE) architecture achieve computational efficiency compared to dense models?",
+        "type": "multiple_choice",
+        "options": [
+            "By reducing the total number of parameters in the model",
+            "By activating only a sparse subset of expert networks for any given input token",
+            "By removing the gating network completely",
+            "By using only one expert for all tokens"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "moe",
+            "computational efficiency",
+            "conditional computation"
+        ],
+        "difficulty": "medium",
+        "explanation": "MoE uses conditional computation where a gate selects a sparse subset of experts to process data, allowing high total parameters with low active parameters per token."
+    },
+    {
+        "id": "latest_research_006",
+        "question": "In the context of MoE models like Llama 4 Scout, what distinguishes 'active parameters' from 'total parameters'?",
+        "type": "multiple_choice",
+        "options": [
+            "Active parameters are used for training, total for inference",
+            "Total parameters are the full capacity (e.g., 109B), while active are those used per token (e.g., 17B)",
+            "Active parameters are stored in RAM, total in VRAM",
+            "There is no difference; they are synonymous"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "moe",
+            "llama 4 scout",
+            "parameters"
+        ],
+        "difficulty": "easy",
+        "explanation": "Llama 4 Scout is cited as having a total count of 109 billion parameters while only activating 17 billion per token."
+    },
+    {
+        "id": "latest_research_007",
+        "question": "What critical discovery regarding MoE experts was made in July 2025?",
+        "type": "multiple_choice",
+        "options": [
+            "Experts are strictly specialized by topic (e.g., biology, coding)",
+            "The existence of 'Super Experts' that are activated with high frequency across all tasks",
+            "Experts can function without a gating network",
+            "Increasing the number of experts linearly increases inference cost"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "super experts",
+            "moe",
+            "research discovery"
+        ],
+        "difficulty": "hard",
+        "explanation": "Research challenged the assumption of topical specialization and discovered 'Super Experts' (SEs) that are activated frequently across all task types."
+    },
+    {
+        "id": "latest_research_008",
+        "question": "Which of the following is a negative implication of 'Super Experts' in MoE architectures? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "They improve load balancing across GPUs",
+            "Pruning them causes catastrophic degradation of model capabilities",
+            "They create bottlenecks or 'hotspots' on specific GPUs during distributed inference",
+            "They allow for aggressive uniform quantization to 4-bit"
+        ],
+        "correct_indices": [
+            1,
+            2
+        ],
+        "tags": [
+            "super experts",
+            "moe",
+            "load balancing",
+            "pruning"
+        ],
+        "difficulty": "hard",
+        "explanation": "Super Experts cause bottlenecks (load balancing issues) and cannot be pruned without catastrophic failure. They also prevent uniform quantization."
+    },
+    {
+        "id": "latest_research_009",
+        "question": "What is the primary function of Chain-of-Model (CoLM) learning?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the width of the model layers",
+            "To address the depth and flexibility of inference by formulating hidden states as hierarchical sub-representations",
+            "To replace the Transformer architecture entirely",
+            "To eliminate the need for Key and Value (KV) states"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "colm",
+            "chain-of-model",
+            "elastic inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "CoLM addresses depth and flexibility by introducing Chain-of-Representation, where hidden states are a combination of hierarchical sub-representations."
+    },
+    {
+        "id": "latest_research_010",
+        "question": "How does 'CoLM-Air' facilitate elastic inference?",
+        "type": "multiple_choice",
+        "options": [
+            "By allowing users to run only the first K chains (e.g., a lighter version) depending on available compute",
+            "By compressing the context window into a single token",
+            "By offloading all computation to the cloud",
+            "By using random weights for the final layers"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "colm-air",
+            "elastic inference",
+            "adaptive ai"
+        ],
+        "difficulty": "medium",
+        "explanation": "CoLM-Air enables elasticity where a user can run only the first K chains to downgrade the model dynamically without reloading weights."
+    },
+    {
+        "id": "latest_research_011",
+        "question": "What approach does 'LongCodeZip' take to manage long contexts in software engineering LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "Increasing the token limit to 100 million",
+            "Dual-Stage Hierarchical Compression (function selection and block optimization)",
+            "Converting all code to pseudocode before processing",
+            "Relying solely on vector database retrieval"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "longcodezip",
+            "context engineering",
+            "compression"
+        ],
+        "difficulty": "hard",
+        "explanation": "LongCodeZip uses a Dual-Stage Hierarchical Compression: Coarse-Grained Function Selection and Fine-Grained Block Optimization."
+    },
+    {
+        "id": "latest_research_012",
+        "question": "In the context of LongCodeZip, how is the relevance of a function determined during the first stage?",
+        "type": "multiple_choice",
+        "options": [
+            "By keyword matching",
+            "By calculating the Conditional Perplexity of the function with respect to the user query",
+            "By checking the date the function was last modified",
+            "By the length of the function code"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "conditional perplexity",
+            "longcodezip",
+            "mutual information"
+        ],
+        "difficulty": "hard",
+        "explanation": "The first stage calculates Conditional Perplexity as a proxy for Mutual Information; lower perplexity means the function is more relevant."
+    },
+    {
+        "id": "latest_research_013",
+        "question": "What is the core argument of the 'Routine' framework regarding early agentic systems?",
+        "type": "multiple_choice",
+        "options": [
+            "They were too structured and rigid",
+            "Their brittleness stemmed from a lack of structure, requiring graph-based constraints",
+            "They required too much data to train",
+            "They were superior to GPT-4o in general tasks"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "routine framework",
+            "agentic ai",
+            "structural planning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Routine argues that early brittleness came from a lack of structure and imposes a Directed Acyclic Graph (DAG) constraint on agent behavior."
+    },
+    {
+        "id": "latest_research_014",
+        "question": "How does the 'Absolute Zero' (R-Zero) framework achieve reasoning improvements without human data?",
+        "type": "multiple_choice",
+        "options": [
+            "By scraping more internet data",
+            "By using a Reinforcement Learning loop with a Challenger (proposing tasks) and a Solver (solving tasks)",
+            "By manually coding logic rules into the model",
+            "By using transfer learning from image models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "absolute zero",
+            "r-zero",
+            "reinforcement learning",
+            "zero-data learning"
+        ],
+        "difficulty": "hard",
+        "explanation": "R-Zero uses a dual-model dynamic (Challenger and Solver) in a vacuum of external data to create an Autocurricula of increasing difficulty."
+    },
+    {
+        "id": "latest_research_015",
+        "question": "What distinguishes 'Artifact-Centric Continual Learning' from standard LLM operation?",
+        "type": "multiple_choice",
+        "options": [
+            "It deletes memory after every session",
+            "It generates and stores condensed summaries (artifacts) of strategies to accumulate wisdom over time",
+            "It strictly prevents the model from learning new strategies",
+            "It relies entirely on pre-training data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "artifact-centric",
+            "continual learning",
+            "agentic ai"
+        ],
+        "difficulty": "medium",
+        "explanation": "This framework stores 'artifacts' (summaries of successful strategies) in long-term memory, transforming the LLM into a learning system that accumulates wisdom."
+    },
+    {
+        "id": "latest_research_016",
+        "question": "What is the main advantage of Reinforcement Learning for Process (RL-P) over traditional Outcome Reward models?",
+        "type": "multiple_choice",
+        "options": [
+            "It rewards the final answer regardless of how it was reached",
+            "It evaluates the reasoning trace step-by-step, reducing rewards for 'lucky guesses'",
+            "It requires no training data",
+            "It is faster to train than standard RLHF"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rl-p",
+            "process rewards",
+            "reinforcement learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "RL-P trains a Process Reward Model to evaluate the reasoning trace itself, ensuring the agent decomposes problems correctly rather than rewarding lucky guesses."
+    },
+    {
+        "id": "latest_research_017",
+        "question": "What does 'Native Multimodality' in models like Llama 4 imply?",
+        "type": "multiple_choice",
+        "options": [
+            "Images are converted to text descriptions before processing",
+            "Separate models process text and images independently",
+            "Image and video data are tokenized into the same embedding space as text tokens (Early Fusion)",
+            "The model can only process text but can output images"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "native multimodality",
+            "early fusion",
+            "llama 4"
+        ],
+        "difficulty": "medium",
+        "explanation": "Native Multimodality using Early Fusion means distinct modalities (text, image, video) are tokenized into the same embedding space at the input layer."
+    },
+    {
+        "id": "latest_research_018",
+        "question": "How does GraphRAG (RAG 2.0) improve upon standard Vector Similarity Search?",
+        "type": "multiple_choice",
+        "options": [
+            "By strictly using keyword matching",
+            "By integrating Knowledge Graphs to traverse connected concepts and understand relationships like 'How X relates to Y'",
+            "By ignoring relationships between entities",
+            "By retrieving only the most recent documents"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "graphrag",
+            "rag 2.0",
+            "knowledge graphs"
+        ],
+        "difficulty": "medium",
+        "explanation": "GraphRAG integrates Knowledge Graphs to handle complex queries about relationships (e.g., 'How does X relate to Y?') which vector search often fails at."
+    },
+    {
+        "id": "latest_research_019",
+        "question": "What capability of Gemini 2.5 allows for 'Video RAG'?",
+        "type": "multiple_choice",
+        "options": [
+            "Processing up to 3 hours of video natively to query scenes without transcripts",
+            "Generating videos from text prompts",
+            "Converting video to frame-by-frame images for external storage",
+            "Using metadata only to search videos"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "gemini 2.5",
+            "video rag",
+            "multimodality"
+        ],
+        "difficulty": "easy",
+        "explanation": "Gemini 2.5 can process up to 3 hours of video natively, enabling queries for specific scenes without reliance on external transcripts."
+    },
+    {
+        "id": "latest_research_020",
+        "question": "In the context of Multimodal RAG, what is 'Generator-Centric RAG'?",
+        "type": "multiple_choice",
+        "options": [
+            "The retrieval system pushes images to the generator automatically",
+            "The LLM decides when to retrieve, potentially issuing a query for an image when needed during generation",
+            "The system only generates text and never retrieves images",
+            "A system that generates synthetic data for training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generator-centric rag",
+            "multimodal rag",
+            "rag"
+        ],
+        "difficulty": "medium",
+        "explanation": "In Generator-Centric RAG, the LLM actively decides when to retrieve information (e.g., realizing it needs a visual aid) and issues the query."
+    }
+]

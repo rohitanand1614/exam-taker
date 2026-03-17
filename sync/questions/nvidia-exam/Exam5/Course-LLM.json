@@ -1,0 +1,3994 @@
+[
+    {
+        "id": "q101",
+        "question": "What are the two main components of a Generative Adversarial Network (GAN)?",
+        "type": "multiple_choice",
+        "options": [
+            "Encoder and Decoder",
+            "Generator and Discriminator",
+            "Actor and Critic",
+            "Transformer and Attention Head"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "gan",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "A GAN consists of a Generator that creates synthetic data and a Discriminator that tries to distinguish between real and synthetic data."
+    },
+    {
+        "id": "q102",
+        "question": "Which mechanism enables Transformer models to focus on the most relevant parts of an input sequence when generating output?",
+        "type": "multiple_choice",
+        "options": [
+            "Convolution",
+            "Pooling",
+            "Self-Attention",
+            "Adversarial Training"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "generative ai",
+            "transformer",
+            "attention"
+        ],
+        "difficulty": "medium",
+        "explanation": "Self-attention allows the model to weigh the importance of different tokens in a sequence relative to each other, capturing context and dependencies effectively."
+    },
+    {
+        "id": "q103",
+        "question": "Why is data diversity (linguistic, domain, cultural) important for training Large Language Models (LLMs)?",
+        "type": "multiple_choice",
+        "options": [
+            "It reduces the size of the model.",
+            "It allows the model to generalize better across different languages, styles, and specialized domains.",
+            "It makes the training process faster.",
+            "It eliminates the need for GPUs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm training",
+            "data",
+            "diversity"
+        ],
+        "difficulty": "medium",
+        "explanation": "Diverse training data ensures the model learns various grammatical structures, cultural nuances, and domain-specific knowledge, improving its overall capability and robustness."
+    },
+    {
+        "id": "q104",
+        "question": "What is the primary trade-off regarding data quality versus quantity in LLM training?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantity is always more important than quality.",
+            "Smaller, high-quality curated datasets often outperform larger, noisy datasets.",
+            "Data quality does not affect model performance.",
+            "Using more noisy data is better than using less clean data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm training",
+            "data",
+            "quality"
+        ],
+        "difficulty": "easy",
+        "explanation": "High-quality, curated data reduces noise and bias, leading to better model performance even if the volume is smaller compared to a massive but noisy dataset."
+    },
+    {
+        "id": "q105",
+        "question": "Which NVIDIA tool is specifically mentioned for streamlining the creation of high-quality training datasets and fine-tuning models?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA GeForce",
+            "NVIDIA TAO Toolkit",
+            "NVIDIA PhysX",
+            "NVIDIA RTX"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "tao",
+            "data curation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The NVIDIA TAO Toolkit is designed to simplify and accelerate the creation of AI models, including data preparation and fine-tuning workflows."
+    },
+    {
+        "id": "q106",
+        "question": "What is 'Data Augmentation' in the context of cleaning LLM data?",
+        "type": "multiple_choice",
+        "options": [
+            "Removing duplicate entries from the dataset.",
+            "Techniques like paraphrasing or back-translation to artificially increase dataset size and diversity.",
+            "Manually labeling every single data point.",
+            "Deleting outliers from the data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data cleaning",
+            "augmentation",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "Data augmentation involves creating new training examples from existing ones (e.g., via paraphrasing) to improve model generalization when data is limited."
+    },
+    {
+        "id": "q107",
+        "question": "What is 'Mixed-Precision Training'?",
+        "type": "multiple_choice",
+        "options": [
+            "Training with a mix of labeled and unlabeled data.",
+            "Using both CPUs and GPUs simultaneously.",
+            "Using lower-precision formats (e.g., FP16) for many operations to speed up training while preserving accuracy.",
+            "Combining different model architectures into one."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "optimization",
+            "training",
+            "mixed-precision"
+        ],
+        "difficulty": "medium",
+        "explanation": "Mixed-precision training utilizes lower precision (like FP16) for calculations to increase throughput and reduce memory usage, while maintaining model performance."
+    },
+    {
+        "id": "q108",
+        "question": "Which LLM learning technique involves using a small number of labeled examples inside the prompt to guide the model?",
+        "type": "multiple_choice",
+        "options": [
+            "Zero-Shot Learning",
+            "Few-Shot Learning",
+            "Reinforcement Learning",
+            "Unsupervised Learning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm learning",
+            "few-shot",
+            "prompting"
+        ],
+        "difficulty": "easy",
+        "explanation": "Few-shot learning explicitly provides a few examples of the task within the prompt itself to demonstrate the desired input-output pattern to the model."
+    },
+    {
+        "id": "q109",
+        "question": "What is the goal of Reinforcement Learning from Human Feedback (RLHF)?",
+        "type": "multiple_choice",
+        "options": [
+            "To train the model from scratch using only human text.",
+            "To align the model's outputs with human preferences and values by optimizing a reward signal derived from human rankings.",
+            "To increase the model's vocabulary size.",
+            "To reduce the inference latency of the model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm alignment",
+            "rlhf",
+            "reinforcement learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "RLHF uses human feedback to train a reward model, which is then used to fine-tune the LLM via reinforcement learning to better align with human intent and safety guidelines."
+    },
+    {
+        "id": "q110",
+        "question": "Which evaluation metric measures the average number of guesses a model needs to correctly predict the next word, with lower scores indicating better performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy",
+            "BLEU",
+            "Perplexity",
+            "ROUGE"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "evaluation metrics",
+            "perplexity",
+            "language modeling"
+        ],
+        "difficulty": "medium",
+        "explanation": "Perplexity quantifies how well a probability model predicts a sample; a lower perplexity means the model is less 'surprised' and more confident in its correct predictions."
+    },
+    {
+        "id": "q111",
+        "question": "What is 'Model Parallelism'?",
+        "type": "multiple_choice",
+        "options": [
+            "Training multiple different models on the same dataset at the same time.",
+            "Splitting a single large model across multiple devices (GPUs) because it is too big to fit in one device's memory.",
+            "Running the same model on multiple devices with different data batches.",
+            "Using parallel cables to connect GPUs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "distributed training",
+            "parallelism"
+        ],
+        "difficulty": "medium",
+        "explanation": "Model parallelism involves partitioning the layers or components of a single massive model across multiple GPUs to overcome memory constraints."
+    },
+    {
+        "id": "q112",
+        "question": "Which NVIDIA framework is described as an open-source toolkit for building, training, and deploying conversational AI and LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA GeForce Experience",
+            "NVIDIA NeMo",
+            "NVIDIA CUDA",
+            "NVIDIA Omniverse"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "nemo",
+            "llm"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NeMo is the specialized framework mentioned for developing and deploying conversational AI models and LLMs."
+    },
+    {
+        "id": "q113",
+        "question": "What does 'Instruction Tuning' involve?",
+        "type": "multiple_choice",
+        "options": [
+            "Adjusting the hardware instructions for the GPU.",
+            "Fine-tuning an LLM on datasets where inputs are natural language instructions paired with desired outputs.",
+            "Manually writing rules for the model to follow.",
+            "Optimizing the learning rate during training."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm learning",
+            "instruction tuning",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Instruction tuning is the process of fine-tuning a model on instruction-response pairs to improve its ability to follow user instructions."
+    },
+    {
+        "id": "q114",
+        "question": "Which of the following metrics is primarily used to evaluate the quality of text summarization by measuring overlap with reference summaries?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy",
+            "Perplexity",
+            "ROUGE",
+            "Mean Squared Error"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "evaluation metrics",
+            "rouge",
+            "summarization"
+        ],
+        "difficulty": "easy",
+        "explanation": "ROUGE (Recall-Oriented Understudy for Gisting Evaluation) is the standard metric for evaluating summarization tasks by checking overlap with reference texts."
+    },
+    {
+        "id": "q115",
+        "question": "Why is 'Human Evaluation' critical for LLMs despite the availability of automated metrics?",
+        "type": "multiple_choice",
+        "options": [
+            "Because automated metrics are too expensive to compute.",
+            "Because humans can assess subjective qualities like creativity, ethics, and nuance that automated metrics miss.",
+            "Because LLMs cannot run without human input.",
+            "Because humans calculate metrics faster than computers."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation",
+            "human evaluation",
+            "alignment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Automated metrics like BLEU or Perplexity cannot capture nuanced human values, ethical considerations, or creative quality, making human judgment essential."
+    },
+    {
+        "id": "q116",
+        "question": "What is 'Constitutional AI' in the context of LLM alignment?",
+        "type": "multiple_choice",
+        "options": [
+            "A law that governs AI development.",
+            "An alignment approach where explicit rules (a 'constitution') define acceptable behavior, and the model is trained to follow them.",
+            "An AI that writes constitutions for countries.",
+            "A model architecture based on political science."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm alignment",
+            "constitutional ai",
+            "safety"
+        ],
+        "difficulty": "medium",
+        "explanation": "Constitutional AI involves training models to adhere to a set of high-level principles or rules (the constitution) to ensure safe and aligned behavior."
+    },
+    {
+        "id": "q117",
+        "question": "What is the main benefit of 'Knowledge Distillation'?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows a smaller 'student' model to learn from a larger 'teacher' model, achieving good performance with lower resource usage.",
+            "It increases the size of the model to improve accuracy.",
+            "It removes the need for training data.",
+            "It converts text data into image data."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "optimization",
+            "knowledge distillation",
+            "compression"
+        ],
+        "difficulty": "medium",
+        "explanation": "Knowledge distillation transfers knowledge from a large, complex model to a smaller, efficient one, enabling deployment on resource-constrained devices."
+    },
+    {
+        "id": "q118",
+        "question": "Which NVIDIA software is designed for high-performance inference serving of AI models in production?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA Triton Inference Server",
+            "NVIDIA Nsight Systems",
+            "NVIDIA Modulus",
+            "NVIDIA Isaac"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia tools",
+            "triton",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA Triton Inference Server is the dedicated tool for serving models efficiently in production environments."
+    },
+    {
+        "id": "q119",
+        "question": "What role do 'Tensor Cores' play in NVIDIA GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "They are used for general-purpose CPU computing.",
+            "They are specialized cores optimized for deep learning matrix operations and mixed-precision calculations.",
+            "They are used solely for video decoding.",
+            "They manage the cooling system of the GPU."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hardware",
+            "gpu",
+            "tensor cores"
+        ],
+        "difficulty": "medium",
+        "explanation": "Tensor Cores are hardware accelerators within NVIDIA GPUs specifically designed to speed up the matrix math central to deep learning training and inference."
+    },
+    {
+        "id": "q120",
+        "question": "What is 'Adversarial Testing' in LLM evaluation?",
+        "type": "multiple_choice",
+        "options": [
+            "Testing the model against another model in a game.",
+            "Designing challenging or malicious prompts to intentionally probe the model for weaknesses and safety issues.",
+            "Testing the model on random noise.",
+            "Comparing the model's speed to a competitor."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation",
+            "adversarial testing",
+            "safety"
+        ],
+        "difficulty": "medium",
+        "explanation": "Adversarial testing involves acting like an adversary to find failure modes, ensuring the model is robust against misuse or difficult inputs."
+    },
+    {
+        "id": "q121",
+        "question": "Which neural network architecture is primarily characterized by the use of convolution layers with filters to detect local patterns like edges and textures?",
+        "type": "multiple_choice",
+        "options": [
+            "Recurrent Neural Network (RNN)",
+            "Multilayer Perceptron (MLP)",
+            "Convolutional Neural Network (CNN)",
+            "Generative Adversarial Network (GAN)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "deep learning",
+            "cnn",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "CNNs are specialized for grid-like data (like images) and use filters to slide over inputs and detect local features."
+    },
+    {
+        "id": "q122",
+        "question": "In the context of a single neuron, what is the role of the 'bias' term?",
+        "type": "multiple_choice",
+        "options": [
+            "To multiply the input features.",
+            "To shift the decision boundary away from the origin, increasing flexibility.",
+            "To convert the output to a probability.",
+            "To prevent overfitting."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deep learning",
+            "neuron",
+            "concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "The bias is a constant added to the weighted sum that allows the activation function to be shifted, ensuring the decision boundary isn't forced to pass through the origin."
+    },
+    {
+        "id": "q123",
+        "question": "Which activation function outputs a value between 0 and 1 and is commonly used in the output layer for binary classification?",
+        "type": "multiple_choice",
+        "options": [
+            "ReLU",
+            "Tanh",
+            "Sigmoid",
+            "Softmax"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "deep learning",
+            "activation functions"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Sigmoid function maps inputs to a (0, 1) range, making it ideal for representing probabilities in binary classification."
+    },
+    {
+        "id": "q124",
+        "question": "What is the primary cause of the 'Vanishing Gradient' problem in deep networks?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradients become exponentially large during backpropagation.",
+            "Gradients become extremely small during backpropagation, often due to saturating activation functions like Sigmoid or Tanh.",
+            "The learning rate is set too high.",
+            "The model has too few parameters."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deep learning",
+            "training",
+            "vanishing gradient"
+        ],
+        "difficulty": "medium",
+        "explanation": "Vanishing gradients occur when gradients shrink exponentially as they propagate back through layers, often caused by the small derivatives of Sigmoid/Tanh in their saturating regions."
+    },
+    {
+        "id": "q125",
+        "question": "Which optimization algorithm variant updates parameters using a single randomly chosen training example per iteration?",
+        "type": "multiple_choice",
+        "options": [
+            "Batch Gradient Descent",
+            "Mini-batch Gradient Descent",
+            "Stochastic Gradient Descent (SGD)",
+            "Adam"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "deep learning",
+            "optimization",
+            "sgd"
+        ],
+        "difficulty": "easy",
+        "explanation": "SGD uses one random sample per step, making it computationally efficient but resulting in noisy updates."
+    },
+    {
+        "id": "q126",
+        "question": "What is the main benefit of 'Transfer Learning'?",
+        "type": "multiple_choice",
+        "options": [
+            "It requires building a model from scratch.",
+            "It allows reusing knowledge from a pre-trained model to solve a new task with less data and faster training.",
+            "It eliminates the need for a loss function.",
+            "It guarantees 100% accuracy on all tasks."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deep learning",
+            "transfer learning"
+        ],
+        "difficulty": "easy",
+        "explanation": "Transfer learning leverages pre-learned features, enabling models to adapt to new tasks efficiently without starting from random weights."
+    },
+    {
+        "id": "q127",
+        "question": "Which component of a Transformer model allows it to process all tokens in a sequence in parallel, unlike RNNs?",
+        "type": "multiple_choice",
+        "options": [
+            "Recurrent connections",
+            "Self-Attention mechanism",
+            "Convolutional filters",
+            "Max pooling layers"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp",
+            "transformers",
+            "attention"
+        ],
+        "difficulty": "medium",
+        "explanation": "Self-attention computes dependencies between all tokens simultaneously, removing the sequential processing constraint of RNNs."
+    },
+    {
+        "id": "q128",
+        "question": "What is 'Positional Encoding' used for in Transformers?",
+        "type": "multiple_choice",
+        "options": [
+            "To normalize the input embeddings.",
+            "To inject information about token order, since self-attention is position-invariant.",
+            "To mask future tokens during training.",
+            "To compress the vocabulary size."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp",
+            "transformers",
+            "positional encoding"
+        ],
+        "difficulty": "medium",
+        "explanation": "Since self-attention treats inputs as a set, positional encodings are added to embeddings to provide the model with sequence order information."
+    },
+    {
+        "id": "q129",
+        "question": "Which LLM fine-tuning technique involves updating only a small subset of parameters (e.g., via low-rank matrices) while keeping most weights frozen?",
+        "type": "multiple_choice",
+        "options": [
+            "Full Fine-Tuning",
+            "Prompt Tuning",
+            "Parameter-Efficient Fine-Tuning (PEFT)",
+            "Pre-training"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "llm",
+            "fine-tuning",
+            "peft"
+        ],
+        "difficulty": "medium",
+        "explanation": "PEFT methods like LoRA update only a small fraction of weights (or added adapters), making fine-tuning much more efficient than full fine-tuning."
+    },
+    {
+        "id": "q130",
+        "question": "What does 'Perplexity' measure in the context of Language Models?",
+        "type": "multiple_choice",
+        "options": [
+            "The training time of the model.",
+            "How 'surprised' a model is by the text; lower perplexity indicates better predictive performance.",
+            "The number of parameters in the model.",
+            "The bias present in the training data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp",
+            "evaluation",
+            "perplexity"
+        ],
+        "difficulty": "medium",
+        "explanation": "Perplexity is a standard metric where a lower score means the model assigns higher probabilities to the actual next words, implying better prediction."
+    },
+    {
+        "id": "q131",
+        "question": "Which Generative AI architecture consists of a Generator and a Discriminator trained in opposition?",
+        "type": "multiple_choice",
+        "options": [
+            "Transformer",
+            "Variational Autoencoder (VAE)",
+            "Generative Adversarial Network (GAN)",
+            "Recurrent Neural Network (RNN)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "generative ai",
+            "gan"
+        ],
+        "difficulty": "easy",
+        "explanation": "GANs are defined by the adversarial relationship between a generator creating fakes and a discriminator trying to detect them."
+    },
+    {
+        "id": "q132",
+        "question": "In 'Reinforcement Learning from Human Feedback' (RLHF), what is the primary role of the reward model?",
+        "type": "multiple_choice",
+        "options": [
+            "To generate new text prompts.",
+            "To predict a scalar reward for LLM outputs based on human preferences, guiding policy optimization.",
+            "To automatically translate text.",
+            "To replace the Transformer architecture."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "rlhf",
+            "alignment"
+        ],
+        "difficulty": "hard",
+        "explanation": "The reward model approximates human ranking/preferences and provides the signal used to optimize the LLM's policy via reinforcement learning."
+    },
+    {
+        "id": "q133",
+        "question": "Which of the following is a 'Decoder-Only' transformer model primarily used for text generation?",
+        "type": "multiple_choice",
+        "options": [
+            "BERT",
+            "T5",
+            "GPT",
+            "ViT"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nlp",
+            "transformers",
+            "gpt"
+        ],
+        "difficulty": "easy",
+        "explanation": "GPT (Generative Pre-trained Transformer) models use a decoder-only architecture optimized for autoregressive text generation."
+    },
+    {
+        "id": "q134",
+        "question": "What is 'Zero-shot learning' in the context of LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "Training a model with zero data.",
+            "The model performs a task it wasn't explicitly trained on, using only the prompt and its pre-training.",
+            "Providing thousands of examples in the prompt.",
+            "Fine-tuning the model on a new dataset."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "zero-shot"
+        ],
+        "difficulty": "medium",
+        "explanation": "Zero-shot learning relies on the model's general capabilities from pre-training to solve tasks without any specific examples provided at inference time."
+    },
+    {
+        "id": "q135",
+        "question": "What is the main function of 'Tokenization' in NLP?",
+        "type": "multiple_choice",
+        "options": [
+            "To remove stop words.",
+            "To break text into smaller units (tokens) like words or subwords for numerical representation.",
+            "To translate text to another language.",
+            "To determine the sentiment of the text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp",
+            "preprocessing",
+            "tokenization"
+        ],
+        "difficulty": "easy",
+        "explanation": "Tokenization splits raw text into manageable units (tokens) that can be mapped to IDs/vectors for model processing."
+    },
+    {
+        "id": "q136",
+        "question": "Which metric is commonly used to evaluate the quality of machine translation by measuring n-gram overlap with reference text?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy",
+            "BLEU",
+            "Recall",
+            "F1 Score"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp",
+            "evaluation",
+            "bleu"
+        ],
+        "difficulty": "medium",
+        "explanation": "BLEU (Bilingual Evaluation Understudy) is the standard metric for translation, focusing on n-gram precision compared to reference translations."
+    },
+    {
+        "id": "q137",
+        "question": "What is 'Instruction Tuning'?",
+        "type": "multiple_choice",
+        "options": [
+            "Tuning the hyperparameters of the optimizer.",
+            "Fine-tuning an LLM on datasets of (instruction, output) pairs to improve its ability to follow commands.",
+            "Writing better prompts for the model.",
+            "Training the model on code only."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "fine-tuning",
+            "instruction tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Instruction tuning specifically trains the model on examples where the input is an instruction, teaching it to follow natural language commands."
+    },
+    {
+        "id": "q138",
+        "question": "Which NVIDIA tool provides a production-grade server for deploying AI models (including LLMs) with features like dynamic batching?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA NeMo",
+            "NVIDIA Triton Inference Server",
+            "NVIDIA CUDA",
+            "NVIDIA Tao"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "deployment",
+            "triton"
+        ],
+        "difficulty": "medium",
+        "explanation": "Triton Inference Server is NVIDIA's solution for serving models efficiently in production, supporting various backends and dynamic batching."
+    },
+    {
+        "id": "q139",
+        "question": "What is 'Hallucination' in the context of LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "The model refusing to answer a question.",
+            "The model generating confident but factually incorrect or nonsensical information.",
+            "The model taking too long to generate a response.",
+            "The model translating text correctly."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "challenges",
+            "hallucination"
+        ],
+        "difficulty": "easy",
+        "explanation": "Hallucination refers to the phenomenon where a generative model produces plausible-sounding but false or fabricated content."
+    },
+    {
+        "id": "q140",
+        "question": "Which of the following is a key reason for using 'Mixed-Precision Training' on GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "It makes the code easier to write.",
+            "It uses lower precision (e.g., FP16) to speed up math and reduce memory usage without losing significant accuracy.",
+            "It eliminates the need for backpropagation.",
+            "It guarantees the model will never overfit."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training",
+            "optimization",
+            "mixed-precision"
+        ],
+        "difficulty": "medium",
+        "explanation": "Mixed-precision training leverages the speed of lower-precision arithmetic (like float16) on Tensor Cores while maintaining model stability."
+    },
+    {
+        "id": "q141",
+        "question": "What are the three main sources of complexity in LLM deployment mentioned in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "Lack of data, slow internet, and expensive hardware.",
+            "Computational demand, infrastructure complexity, and ongoing optimization needs.",
+            "Regulatory hurdles, lack of talent, and software bugs.",
+            "High latency, low accuracy, and poor user interface."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm deployment",
+            "challenges",
+            "infrastructure"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explicitly lists computational demand, infrastructure complexity, and ongoing optimization needs as the sources of complexity."
+    },
+    {
+        "id": "q142",
+        "question": "Which of the following is a drawback of Cloud Deployment for LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "High upfront investment in hardware.",
+            "Requires strong in-house expertise for maintenance.",
+            "Less control over data and underlying hardware.",
+            "Lack of scalability."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "deployment strategy",
+            "cloud",
+            "drawbacks"
+        ],
+        "difficulty": "medium",
+        "explanation": "While cloud deployment offers scalability, a key drawback is the reduced control over data and hardware compared to on-premise solutions."
+    },
+    {
+        "id": "q143",
+        "question": "What is 'Quantization' in the context of model optimization?",
+        "type": "multiple_choice",
+        "options": [
+            "Removing unnecessary connections or weights in the model.",
+            "Training a smaller student model to mimic a larger teacher model.",
+            "Reducing the numerical precision of model parameters to shrink model size and speed up inference.",
+            "Increasing the number of parameters to improve accuracy."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "optimization",
+            "quantization",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization is defined as reducing numerical precision (e.g., from 32-bit to lower precision) to reduce size and increase speed."
+    },
+    {
+        "id": "q144",
+        "question": "Which inference optimization technique involves processing multiple input samples together in a single forward pass?",
+        "type": "multiple_choice",
+        "options": [
+            "Caching",
+            "Pruning",
+            "Batching",
+            "Distillation"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "inference",
+            "optimization",
+            "batching"
+        ],
+        "difficulty": "easy",
+        "explanation": "Batching is the process of handling multiple inputs simultaneously to increase throughput and reduce overhead."
+    },
+    {
+        "id": "q145",
+        "question": "What is the primary role of ONNX (Open Neural Network Exchange)?",
+        "type": "multiple_choice",
+        "options": [
+            "To serve as a cloud platform for training LLMs.",
+            "To act as an interoperability bridge and common format for models across different frameworks.",
+            "To automatically generate training data.",
+            "To replace GPUs with CPUs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "onnx",
+            "interoperability",
+            "standards"
+        ],
+        "difficulty": "medium",
+        "explanation": "ONNX is an open standard that defines a common, framework-agnostic format, enabling model portability and interoperability."
+    },
+    {
+        "id": "q146",
+        "question": "Which NVIDIA tool helps analyze LLM performance in production by providing metrics like latency and throughput?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA NeMo Guardrails",
+            "NVIDIA Triton Model Analyzer",
+            "NVIDIA CUDA",
+            "NVIDIA GeForce"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "triton",
+            "monitoring"
+        ],
+        "difficulty": "medium",
+        "explanation": "Triton Model Analyzer provides visibility into production performance metrics such as latency, throughput, and resource utilization."
+    },
+    {
+        "id": "q147",
+        "question": "What is 'Pruning' in model optimization?",
+        "type": "multiple_choice",
+        "options": [
+            "Training a model on more data.",
+            "Removing unnecessary weights or connections from a neural network.",
+            "converting the model to ONNX format.",
+            "Deploying the model to the cloud."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "pruning",
+            "efficiency"
+        ],
+        "difficulty": "easy",
+        "explanation": "Pruning involves streamlining the model structure by removing unnecessary connections or weights to improve efficiency."
+    },
+    {
+        "id": "q148",
+        "question": "Which fairness metric is commonly used to assess whether model outcomes disproportionately affect certain user groups?",
+        "type": "multiple_choice",
+        "options": [
+            "Perplexity",
+            "Latency",
+            "Disparate Impact Analysis",
+            "F1 Score"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "monitoring",
+            "fairness",
+            "metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Disparate impact analysis checks if model outcomes unfairly affect specific protected groups, making it a key fairness metric."
+    },
+    {
+        "id": "q149",
+        "question": "What is the function of NVIDIA NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "To speed up training of LLMs.",
+            "To monitor and mitigate harmful or biased outputs from LLMs.",
+            "To manage cloud infrastructure costs.",
+            "To convert models between frameworks."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "nemo",
+            "safety"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Guardrails is a toolkit specifically designed to build safer applications by monitoring for and mitigating harmful or biased content."
+    },
+    {
+        "id": "q150",
+        "question": "Why is 'Knowledge Distillation' useful for deployment?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows training on larger datasets.",
+            "It produces a smaller, faster student model that mimics a larger teacher model.",
+            "It eliminates the need for validation data.",
+            "It increases the precision of the model weights."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "knowledge distillation",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Knowledge distillation creates a compact 'student' model that approximates the performance of a large 'teacher' model, making deployment lighter and cheaper."
+    },
+    {
+        "id": "q151",
+        "question": "What is a major benefit of On-Premise Deployment?",
+        "type": "multiple_choice",
+        "options": [
+            "Pay-as-you-go pricing.",
+            "Full control over data and hardware, aiding compliance.",
+            "No need for in-house expertise.",
+            "Immediate scalability without upfront cost."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deployment strategy",
+            "on-premise",
+            "benefits"
+        ],
+        "difficulty": "medium",
+        "explanation": "On-premise deployment offers full control over data and infrastructure, which is critical for strict governance and security requirements."
+    },
+    {
+        "id": "q152",
+        "question": "What does 'Perplexity' measure in the context of LLM monitoring?",
+        "type": "multiple_choice",
+        "options": [
+            "The time it takes to generate a response.",
+            "The model's ability to predict the next word in a sequence.",
+            "The bias present in the model's output.",
+            "The percentage of correct answers."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "monitoring",
+            "metrics",
+            "perplexity"
+        ],
+        "difficulty": "medium",
+        "explanation": "Perplexity is a performance metric used for sequence tasks to measure how well the model predicts the next token."
+    },
+    {
+        "id": "q153",
+        "question": "Which technique helps interpret a model's decision-making process as part of offline monitoring?",
+        "type": "multiple_choice",
+        "options": [
+            "Caching",
+            "Batching",
+            "Explainability (e.g., LIME or SHAP)",
+            "Quantization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "monitoring",
+            "explainability",
+            "offline"
+        ],
+        "difficulty": "medium",
+        "explanation": "Explainability techniques like LIME or SHAP are used in offline monitoring to inspect and understand why a model made specific predictions."
+    },
+    {
+        "id": "q154",
+        "question": "What is the role of ONNX Runtime?",
+        "type": "multiple_choice",
+        "options": [
+            "To design new neural network architectures.",
+            "To execute ONNX models efficiently across CPUs, GPUs, and accelerators.",
+            "To visualize training data.",
+            "To manage cloud subscriptions."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "onnx",
+            "runtime",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "explanation": "ONNX Runtime is the engine that executes optimized ONNX models on various hardware backends."
+    },
+    {
+        "id": "q155",
+        "question": "Which operational metric measures the number of requests the model can handle per second?",
+        "type": "multiple_choice",
+        "options": [
+            "Latency",
+            "Throughput",
+            "Error Rate",
+            "Utilization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "monitoring",
+            "metrics",
+            "operational"
+        ],
+        "difficulty": "easy",
+        "explanation": "Throughput is defined as the rate at which the system processes requests (e.g., requests per second)."
+    },
+    {
+        "id": "q156",
+        "question": "What happens if an LLM in production is not monitored?",
+        "type": "multiple_choice",
+        "options": [
+            "It will automatically improve over time.",
+            "It may lead to customer dissatisfaction, financial losses, and reputational damage.",
+            "The model will stop working immediately.",
+            "It will consume zero resources."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "monitoring",
+            "risks"
+        ],
+        "difficulty": "easy",
+        "explanation": "Lack of monitoring can result in undetected performance degradation, bias, or errors, leading to negative business and user impacts."
+    },
+    {
+        "id": "q157",
+        "question": "What is 'Caching' in the context of inference optimization?",
+        "type": "multiple_choice",
+        "options": [
+            "Storing results of previous computations to avoid recomputing them.",
+            "Deleting old data to free up space.",
+            "Encrypting data for security.",
+            "Training the model on cached data."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "inference",
+            "optimization",
+            "caching"
+        ],
+        "difficulty": "easy",
+        "explanation": "Caching involves storing outputs of prior computations so they can be reused for identical or similar requests, speeding up response times."
+    },
+    {
+        "id": "q158",
+        "question": "Which NVIDIA platform is described as an end-to-end solution for developing, deploying, and managing AI models with built-in monitoring?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA AI Enterprise",
+            "NVIDIA GeForce Now",
+            "NVIDIA Omniverse",
+            "NVIDIA Shield"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia tools",
+            "platform",
+            "ai enterprise"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA AI Enterprise is the comprehensive platform mentioned for managing the full lifecycle of AI models, including deployment and monitoring."
+    },
+    {
+        "id": "q159",
+        "question": "What is 'Data Slicing' in monitoring?",
+        "type": "multiple_choice",
+        "options": [
+            "Cutting the physical storage drive.",
+            "Analyzing model performance on different subsets of data to find hidden issues.",
+            "Compressing data to save space.",
+            "Deleting random parts of the dataset."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "monitoring",
+            "data analysis",
+            "offline"
+        ],
+        "difficulty": "medium",
+        "explanation": "Data slicing involves evaluating performance across specific segments (slices) of data to uncover biases or weaknesses that aggregate metrics might hide."
+    },
+    {
+        "id": "q160",
+        "question": "Which software library optimizes and accelerates LLM inference specifically on NVIDIA GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA TensorRT",
+            "NVIDIA PhysX",
+            "NVIDIA HairWorks",
+            "NVIDIA Ansel"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia tools",
+            "inference",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "TensorRT is NVIDIA's dedicated inference optimizer and runtime for accelerating deep learning models on GPUs."
+    },
+    {
+        "id": "q161",
+        "question": "What is the core intuition behind Parameter-Efficient Fine-Tuning (PEFT)?",
+        "type": "multiple_choice",
+        "options": [
+            "To retrain the entire model from scratch using a new architecture.",
+            "To freeze most of the pre-trained model's parameters and only train a small set of additional parameters.",
+            "To increase the model size by adding billions of new parameters for better accuracy.",
+            "To replace the Transformer architecture with an RNN."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "peft",
+            "fine-tuning",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "PEFT keeps most of the base model frozen and trains only a small subset of parameters (like adapters or prompts) to adapt to new tasks efficiently."
+    },
+    {
+        "id": "q162",
+        "question": "Which PEFT technique involves injecting low-rank matrices into specific layers to reduce the number of trainable parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "BitFit",
+            "LoRA (Low-Rank Adaptation)",
+            "Prefix Tuning",
+            "Prompt Engineering"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "peft",
+            "lora",
+            "methods"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA (Low-Rank Adaptation) decomposes weight updates into low-rank matrices, drastically reducing the parameter count while preserving performance."
+    },
+    {
+        "id": "q163",
+        "question": "What is 'Catastrophic Forgetting' in the context of fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "When a model loses its ability to perform previously learned tasks after being fine-tuned on a new task.",
+            "When the training process crashes due to out-of-memory errors.",
+            "When the model forgets the prompt provided by the user.",
+            "When the validator fails to save the model checkpoints."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "fine-tuning",
+            "challenges",
+            "catastrophic forgetting"
+        ],
+        "difficulty": "medium",
+        "explanation": "Catastrophic forgetting occurs when adapting a model to a new task causes it to overwrite the weights necessary for tasks it learned previously."
+    },
+    {
+        "id": "q164",
+        "question": "How does 'P-tuning' differ from standard prompt engineering?",
+        "type": "multiple_choice",
+        "options": [
+            "P-tuning uses human-readable text instructions only.",
+            "P-tuning learns continuous 'soft prompt' embeddings that are optimized during training.",
+            "P-tuning requires manual rewriting of prompts for every query.",
+            "P-tuning removes the need for an LLM entirely."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "p-tuning",
+            "prompt learning",
+            "methods"
+        ],
+        "difficulty": "hard",
+        "explanation": "P-tuning introduces trainable continuous embeddings (soft prompts) that are optimized via backpropagation, unlike standard prompts which are fixed text."
+    },
+    {
+        "id": "q165",
+        "question": "Which of the following is a primary benefit of using Adapter Layers in PEFT?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows the base model to remain frozen while small task-specific modules are trained.",
+            "It converts the model into a Vision Transformer.",
+            "It increases the inference latency significantly.",
+            "It requires retraining the entire backbone network."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "peft",
+            "adapters",
+            "benefits"
+        ],
+        "difficulty": "medium",
+        "explanation": "Adapter layers are small modules inserted into the frozen backbone; only these adapters are trained, saving compute and preventing catastrophic forgetting."
+    },
+    {
+        "id": "q166",
+        "question": "What is 'BitFit' in the context of PEFT?",
+        "type": "multiple_choice",
+        "options": [
+            "A method that fine-tunes only the bias terms of the model.",
+            "A technique for compressing models to 1-bit precision.",
+            "A fitness tracker for training runs.",
+            "A way to fit the entire model into CPU memory."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "peft",
+            "bitfit",
+            "methods"
+        ],
+        "difficulty": "medium",
+        "explanation": "BitFit is a highly efficient PEFT method where only the bias vectors in the model are updated, while all other weights remain frozen."
+    },
+    {
+        "id": "q167",
+        "question": "What is the function of a 'Soft Prompt' in P-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "It is a polite way of asking the model a question.",
+            "It is a sequence of trainable embedding vectors prepended to the input to guide model behavior.",
+            "It is a prompt that has low temperature settings.",
+            "It is a text string that the user types into the chat window."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "p-tuning",
+            "soft prompts",
+            "concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "Soft prompts are learned vectors in the embedding space that act as task instructions for the model, optimized during the tuning process."
+    },
+    {
+        "id": "q168",
+        "question": "Which NVIDIA toolkit is described as an open-source framework for building conversational AI models like ASR and TTS?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA NeMo",
+            "NVIDIA CUDA",
+            "NVIDIA PhysX",
+            "NVIDIA Omniverse"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia tools",
+            "nemo",
+            "conversational ai"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NeMo is explicitly defined as a toolkit for conversational AI, including ASR (Automatic Speech Recognition) and TTS (Text-to-Speech)."
+    },
+    {
+        "id": "q169",
+        "question": "Why is PEFT considered 'efficient' for deployment?",
+        "type": "multiple_choice",
+        "options": [
+            "It makes the model smaller by deleting layers.",
+            "It allows storing just one base model and swapping small task-specific weights (like adapters) for different tasks.",
+            "It removes the need for a GPU during inference.",
+            "It automatically converts the model to C++ code."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "peft",
+            "deployment",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "PEFT allows a single large backbone to serve multiple tasks by simply loading small, task-specific parameter sets (adapters/LoRA weights), saving massive storage."
+    },
+    {
+        "id": "q170",
+        "question": "What does 'Prefix Tuning' involve?",
+        "type": "multiple_choice",
+        "options": [
+            "Adding a fixed text prefix like 'Translate this:' to every input.",
+            "Learning a sequence of trainable 'prefix' tokens that are prepended to the input embeddings.",
+            "Tuning the model to predict the next word in a prefix.",
+            "Removing the first layer of the neural network."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "peft",
+            "prefix tuning",
+            "methods"
+        ],
+        "difficulty": "medium",
+        "explanation": "Prefix tuning optimizes continuous prefix tokens (virtual tokens) that are attached to the input to steer the frozen model's internal activations."
+    },
+    {
+        "id": "q171",
+        "question": "What is the primary function of the Generator in a Generative Adversarial Network (GAN)?",
+        "type": "multiple_choice",
+        "options": [
+            "To classify input data as real or fake.",
+            "To produce synthetic samples intended to look like real data.",
+            "To optimize the learning rate of the model.",
+            "To tokenize the input text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "gan",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "In a GAN, the Generator's role is to create synthetic samples from random noise that are realistic enough to fool the Discriminator."
+    },
+    {
+        "id": "q172",
+        "question": "Which of the following describes a 'Variational Autoencoder' (VAE)?",
+        "type": "multiple_choice",
+        "options": [
+            "A model that learns a compressed (latent) representation of data to generate new, similar samples.",
+            "A model that uses adversarial training to generate data.",
+            "A model specifically designed for reinforcement learning from human feedback.",
+            "A model that retrieves external documents to answer questions."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "generative ai",
+            "vae",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "VAEs learn a probabilistic latent representation of data, allowing them to sample from this latent space to generate new examples similar to the training set."
+    },
+    {
+        "id": "q173",
+        "question": "Why is 'Continuous Learning' important for Generative AI models?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows models to stop training once they reach 100% accuracy.",
+            "It enables models to keep improving after initial training using new data or feedback loops.",
+            "It reduces the size of the model parameters significantly.",
+            "It prevents the model from generating text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "training",
+            "continuous learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Continuous learning allows models to update and refine their capabilities over time, incorporating new information and user feedback post-deployment."
+    },
+    {
+        "id": "q174",
+        "question": "What is the trade-off between Data Quality and Data Quantity in LLM training?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantity is the only factor that matters.",
+            "High-quality, curated datasets often outperform larger, noisy datasets.",
+            "Low-quality data is preferred because it is cheaper.",
+            "There is no trade-off; they are unrelated."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm training",
+            "data",
+            "quality"
+        ],
+        "difficulty": "easy",
+        "explanation": "The notes emphasize that quality is prioritized; curated datasets reduce noise and bias, often yielding better results than massive but low-quality corpora."
+    },
+    {
+        "id": "q175",
+        "question": "Which NVIDIA toolkit is designed to streamline the creation of high-quality training datasets and fine-tuning workflows?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA GeForce",
+            "NVIDIA TAO Toolkit",
+            "NVIDIA PhysX",
+            "NVIDIA RTX"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "tao",
+            "data curation"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA TAO Toolkit simplifies building and curating datasets and training/fine-tuning AI models."
+    },
+    {
+        "id": "q176",
+        "question": "What is 'Data Augmentation' used for in the context of LLM data cleaning?",
+        "type": "multiple_choice",
+        "options": [
+            "Removing duplicate files.",
+            "Artificially increasing dataset size and diversity using techniques like paraphrasing or back-translation.",
+            "Deleting special characters from text.",
+            "Translating code into English."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data cleaning",
+            "augmentation",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "When data is insufficient, augmentation strategies like paraphrasing are used to expand the dataset and improve model generalization."
+    },
+    {
+        "id": "q177",
+        "question": "Which technique involves training a smaller 'student' model to mimic the behavior of a larger 'teacher' model?",
+        "type": "multiple_choice",
+        "options": [
+            "Pruning",
+            "Quantization",
+            "Knowledge Distillation",
+            "Mixed-Precision Training"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "optimization",
+            "knowledge distillation",
+            "training"
+        ],
+        "difficulty": "medium",
+        "explanation": "Knowledge distillation transfers knowledge from a large model to a smaller one, making deployment more efficient while retaining performance."
+    },
+    {
+        "id": "q178",
+        "question": "What is 'Zero-shot learning'?",
+        "type": "multiple_choice",
+        "options": [
+            "Training a model without any GPUs.",
+            "When a model performs a task it was not explicitly trained on, using only the prompt and pre-training.",
+            "Providing a few examples in the prompt to guide the model.",
+            "Fine-tuning a model on zero-sum games."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm learning",
+            "zero-shot",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "explanation": "Zero-shot learning relies on the model's general capabilities to infer the task from the prompt alone, without specific training examples."
+    },
+    {
+        "id": "q179",
+        "question": "What is the primary purpose of Reinforcement Learning from Human Feedback (RLHF)?",
+        "type": "multiple_choice",
+        "options": [
+            "To speed up the training process by 10x.",
+            "To align the model's outputs with human preferences and values by optimizing a reward signal.",
+            "To replace the Transformer architecture with an RNN.",
+            "To increase the vocabulary size of the model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm alignment",
+            "rlhf",
+            "concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "RLHF uses human feedback to train a reward model, which then guides the LLM to produce outputs that are better aligned with human intent and safety."
+    },
+    {
+        "id": "q180",
+        "question": "Which metric evaluates language models by measuring the average number of guesses needed to predict the next word (lower is better)?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy",
+            "BLEU Score",
+            "Perplexity",
+            "ROUGE Score"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "evaluation metrics",
+            "perplexity",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "Perplexity measures how 'surprised' a model is by text; a lower score indicates the model is more confident and accurate in predicting the next token."
+    },
+    {
+        "id": "q181",
+        "question": "What is 'Constitutional AI'?",
+        "type": "multiple_choice",
+        "options": [
+            "AI that governs nations.",
+            "An alignment approach where explicit rules (a 'constitution') define acceptable behavior for the model.",
+            "A method for compressing models into constitutional formats.",
+            "A database of legal documents."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm alignment",
+            "constitutional ai",
+            "safety"
+        ],
+        "difficulty": "medium",
+        "explanation": "Constitutional AI involves training models to adhere to a predefined set of principles or rules to ensure safe and aligned behavior."
+    },
+    {
+        "id": "q182",
+        "question": "Why are GPUs preferred over CPUs for training LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "GPUs are cheaper to manufacture.",
+            "GPUs excel at massive parallel processing and matrix operations required for neural networks.",
+            "CPUs cannot perform floating-point arithmetic.",
+            "GPUs have lower power consumption for sequential tasks."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hardware",
+            "gpu",
+            "training"
+        ],
+        "difficulty": "easy",
+        "explanation": "GPUs are designed for massive parallelism and high memory bandwidth, making them ideal for the matrix-heavy computations in deep learning."
+    },
+    {
+        "id": "q183",
+        "question": "What is 'Prompt Engineering'?",
+        "type": "multiple_choice",
+        "options": [
+            "Designing the physical hardware for AI servers.",
+            "Systematically designing natural language instructions to guide LLMs toward desired outputs.",
+            "Writing code in Python to build a transformer.",
+            "Engineering the power supply for a GPU."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompt engineering",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "explanation": "Prompt engineering is the practice of crafting clear, structured instructions to elicit accurate and relevant responses from LLMs."
+    },
+    {
+        "id": "q184",
+        "question": "Which PEFT technique involves injecting low-rank matrices into transformer layers to adapt the model?",
+        "type": "multiple_choice",
+        "options": [
+            "Adapter Layers",
+            "Prefix Tuning",
+            "LoRA (Low-Rank Adaptation)",
+            "BitFit"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "peft",
+            "lora",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA freezes the pre-trained weights and injects trainable low-rank matrices, drastically reducing the number of parameters to update."
+    },
+    {
+        "id": "q185",
+        "question": "What is 'Catastrophic Forgetting'?",
+        "type": "multiple_choice",
+        "options": [
+            "When a model's hard drive crashes.",
+            "When a model loses its ability to perform previously learned tasks after being fine-tuned on a new task.",
+            "When the user forgets the prompt.",
+            "When the model hallucinates facts."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fine-tuning",
+            "challenges",
+            "catastrophic forgetting"
+        ],
+        "difficulty": "medium",
+        "explanation": "Catastrophic forgetting occurs when new training overwrites the weights necessary for previous tasks, causing the model to fail at those original tasks."
+    },
+    {
+        "id": "q186",
+        "question": "What is the key difference between P-tuning and standard prompt engineering?",
+        "type": "multiple_choice",
+        "options": [
+            "P-tuning uses hard-coded text prompts.",
+            "P-tuning learns continuous 'soft prompt' embeddings via training, while prompt engineering uses fixed text.",
+            "P-tuning requires no data.",
+            "P-tuning is only for image models."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "p-tuning",
+            "prompt learning",
+            "comparison"
+        ],
+        "difficulty": "hard",
+        "explanation": "P-tuning optimizes learnable continuous vectors (soft prompts) in the embedding space, whereas standard prompt engineering involves crafting human-readable text instructions."
+    },
+    {
+        "id": "q187",
+        "question": "What is the primary function of NVIDIA NeMo?",
+        "type": "multiple_choice",
+        "options": [
+            "To create 3D graphics for video games.",
+            "An open-source toolkit for building, training, and deploying conversational AI models (ASR, TTS, NLP).",
+            "To manage cloud billing services.",
+            "To design hardware circuits."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "nemo",
+            "conversational ai"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NeMo is explicitly defined as a toolkit for simplifying conversational AI development, including ASR, TTS, and NLP tasks."
+    },
+    {
+        "id": "q188",
+        "question": "What does RAG (Retrieval-Augmented Generation) typically use to find relevant external information?",
+        "type": "multiple_choice",
+        "options": [
+            "A random number generator.",
+            "A retrieval system that searches databases or document stores based on the user query.",
+            "The internal parameters of the LLM only.",
+            "A manual lookup by a human operator."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "retrieval",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "RAG integrates a retrieval system that searches external knowledge sources to find relevant context before generating a response."
+    },
+    {
+        "id": "q189",
+        "question": "Which of the following describes 'Hallucination' in LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "The model refusing to answer.",
+            "The model generating confident but incorrect or nonsensical outputs.",
+            "The model taking too long to respond.",
+            "The model accurately citing sources."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "challenges",
+            "hallucination"
+        ],
+        "difficulty": "easy",
+        "explanation": "Hallucination refers to the tendency of generative models to produce plausible-sounding but factually false or fabricated information."
+    },
+    {
+        "id": "q190",
+        "question": "What is the role of 'NeMo Megatron'?",
+        "type": "multiple_choice",
+        "options": [
+            "To play video games.",
+            "A framework within NeMo for training and deploying very large language models at scale.",
+            "A new type of GPU hardware.",
+            "A tool for audio editing."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "nemo megatron",
+            "llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Megatron is a specialized framework within the NeMo ecosystem designed specifically for training and deploying massive language models."
+    },
+    {
+        "id": "q191",
+        "question": "Which category of text visualization techniques focuses on understanding how terms connect or co-occur with each other?",
+        "type": "multiple_choice",
+        "options": [
+            "Frequency-based techniques",
+            "Distribution-based techniques",
+            "Relationship-based techniques",
+            "Time-series techniques"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "text visualization",
+            "relationship-based",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "Relationship-based techniques, such as network graphs, focus on connections and co-occurrences among terms or concepts."
+    },
+    {
+        "id": "q192",
+        "question": "In a Word Cloud, what typically determines the size of each word?",
+        "type": "multiple_choice",
+        "options": [
+            "The length of the word",
+            "The alphabetical order of the word",
+            "The frequency of the word in the corpus",
+            "The sentiment score of the word"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "text visualization",
+            "word cloud",
+            "frequency-based"
+        ],
+        "difficulty": "easy",
+        "explanation": "In a word cloud, words are displayed with sizes proportional to their frequency in the text corpus."
+    },
+    {
+        "id": "q193",
+        "question": "Which visualization technique is best suited for identifying groups of documents that share similar vocabularies by displaying term frequency intensity across a grid?",
+        "type": "multiple_choice",
+        "options": [
+            "Bar Chart",
+            "Heat Map",
+            "Network Graph",
+            "Line Plot"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "text visualization",
+            "heat map",
+            "distribution-based"
+        ],
+        "difficulty": "medium",
+        "explanation": "A heat map uses color intensity in a grid format to show how term usage distributes across different documents or categories."
+    },
+    {
+        "id": "q194",
+        "question": "What is the primary purpose of a Scatter Plot?",
+        "type": "multiple_choice",
+        "options": [
+            "To compare values across discrete categories",
+            "To show the distribution of a single numerical variable",
+            "To display the relationship and correlation between two numerical variables",
+            "To visualize trends over a continuous time period"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data visualization",
+            "scatter plot",
+            "structured data"
+        ],
+        "difficulty": "easy",
+        "explanation": "Scatter plots display individual data points to reveal relationships, correlations, clusters, and outliers between two numerical variables."
+    },
+    {
+        "id": "q195",
+        "question": "When visualizing structured data, which plot type is specifically designed to reveal the central tendency, spread, and skewness of a single numerical variable?",
+        "type": "multiple_choice",
+        "options": [
+            "Scatter Plot",
+            "Histogram",
+            "Line Plot",
+            "Network Graph"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data visualization",
+            "histogram",
+            "structured data"
+        ],
+        "difficulty": "medium",
+        "explanation": "A histogram groups continuous data into bins to visualize the distribution, showing where values are concentrated and the shape of the spread."
+    },
+    {
+        "id": "q196",
+        "question": "Which of the following scenarios would be best served by a Line Plot?",
+        "type": "multiple_choice",
+        "options": [
+            "Comparing the number of employees in different departments.",
+            "Analyzing the correlation between advertising spend and sales revenue.",
+            "Tracking the daily closing price of a stock over the past year.",
+            "Visualizing the frequency of word occurrences in a novel."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data visualization",
+            "line plot",
+            "time series"
+        ],
+        "difficulty": "medium",
+        "explanation": "Line plots are ideal for time series data, allowing for the visualization of trends, fluctuations, and seasonality over a continuous period."
+    },
+    {
+        "id": "q197",
+        "question": "In the context of GPU-accelerated data visualization with NVIDIA RAPIDS and Plotly, what is the role of cuDF?",
+        "type": "multiple_choice",
+        "options": [
+            "It is a Javascript library for rendering charts in the browser.",
+            "It is a GPU DataFrame library that provides a pandas-like API for fast data manipulation.",
+            "It is a specialized hardware component in the GPU.",
+            "It is a tool for creating word clouds only."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia rapids",
+            "cudf",
+            "gpu acceleration"
+        ],
+        "difficulty": "medium",
+        "explanation": "cuDF is the GPU DataFrame library in the RAPIDS ecosystem, enabling data loading, filtering, and aggregation on the GPU significantly faster than CPU-based pandas."
+    },
+    {
+        "id": "q198",
+        "question": "Why is GPU acceleration important when visualizing massive datasets (e.g., millions of rows) with tools like Plotly?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows for higher color depth in images.",
+            "It enables real-time interactivity (zooming, filtering) without long delays or the need for downsampling.",
+            "It automatically corrects spelling errors in text data.",
+            "It removes the need for writing Python code."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gpu acceleration",
+            "big data",
+            "interactivity"
+        ],
+        "difficulty": "medium",
+        "explanation": "GPU acceleration allows complex computations (like aggregations for filtering) to happen in milliseconds, maintaining fluid interactivity even with massive datasets that would stall a CPU."
+    },
+    {
+        "id": "q199",
+        "question": "What distinguishes a Bar Chart from a Histogram?",
+        "type": "multiple_choice",
+        "options": [
+            "Bar charts are for continuous data; histograms are for categorical data.",
+            "Bar charts compare values across discrete categories; histograms show the distribution of a continuous variable.",
+            "Bar charts always use horizontal bars; histograms always use vertical bars.",
+            "There is no difference; the terms are interchangeable."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data visualization",
+            "bar chart",
+            "histogram",
+            "comparison"
+        ],
+        "difficulty": "medium",
+        "explanation": "Bar plots compare discrete groups (categories), while histograms group continuous numerical data into bins to show frequency distribution."
+    },
+    {
+        "id": "q200",
+        "question": "Which visualization would be most effective for identifying 'bridging' terms that connect different topics in a text corpus?",
+        "type": "multiple_choice",
+        "options": [
+            "Word Cloud",
+            "Bar Chart",
+            "Network Graph",
+            "Histogram"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "text visualization",
+            "network graph",
+            "relationship-based"
+        ],
+        "difficulty": "hard",
+        "explanation": "Network graphs explicitly model relationships (edges) between terms (nodes), making them ideal for spotting structural connections and influential bridges between concepts."
+    },
+    {
+        "id": "q201",
+        "question": "Which visualization technique is best suited for identifying influential terms that act as 'bridges' between different topics in a text corpus?",
+        "type": "multiple_choice",
+        "options": [
+            "Word Cloud",
+            "Bar Chart",
+            "Network Graph",
+            "Histogram"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "text visualization",
+            "network graph",
+            "relationship-based"
+        ],
+        "difficulty": "medium",
+        "explanation": "Network graphs explicitly model relationships (edges) between terms (nodes), allowing for the identification of structural connections and influential bridges."
+    },
+    {
+        "id": "q202",
+        "question": "What is the primary purpose of a Heat Map in text visualization?",
+        "type": "multiple_choice",
+        "options": [
+            "To show the distribution of word counts.",
+            "To display the relationship between two numerical variables.",
+            "To show the frequency or intensity of terms across documents or categories using a color grid.",
+            "To visualize the hierarchy of topics."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "text visualization",
+            "heat map",
+            "distribution-based"
+        ],
+        "difficulty": "medium",
+        "explanation": "Heat maps use color intensity in a grid to represent the frequency of terms across different documents or categories."
+    },
+    {
+        "id": "q203",
+        "question": "Which plot type is ideal for visualizing trends over a continuous time period, such as stock prices or sales revenue?",
+        "type": "multiple_choice",
+        "options": [
+            "Bar Chart",
+            "Line Plot",
+            "Scatter Plot",
+            "Histogram"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data visualization",
+            "line plot",
+            "time series"
+        ],
+        "difficulty": "easy",
+        "explanation": "Line plots connect data points with lines, making them perfect for visualizing changes, trends, and fluctuations over time."
+    },
+    {
+        "id": "q204",
+        "question": "What is the function of the WebGL rendering engine 'ScatterGL' in Plotly?",
+        "type": "multiple_choice",
+        "options": [
+            "To create 3D bar charts only.",
+            "To leverage GPU power in the browser for rendering large datasets interactively.",
+            "To convert text data into audio.",
+            "To download datasets from the cloud."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "plotly",
+            "webgl",
+            "gpu acceleration"
+        ],
+        "difficulty": "medium",
+        "explanation": "ScatterGL uses WebGL to tap into the GPU, enabling smooth interaction (zooming, panning) with millions of data points in the browser."
+    },
+    {
+        "id": "q205",
+        "question": "In the accelerated data analysis demo, which library provided the fastest execution time on a single server for the filter-groupby-aggregation workflow?",
+        "type": "multiple_choice",
+        "options": [
+            "Pandas",
+            "cuDF",
+            "Dask-cuDF",
+            "NumPy"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rapids",
+            "cudf",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "In the single-server context described, cuDF was the fastest (~0.22s), outperforming Pandas (~30s) significantly and slightly beating Dask-cuDF (~0.35s) which is optimized for clusters."
+    },
+    {
+        "id": "q206",
+        "question": "What is 'GPU Acceleration' primarily used for in data visualization?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the resolution of the screen.",
+            "To speed up computations and rendering, allowing for interactive visualization of massive datasets.",
+            "To automatically choose the best color palette.",
+            "To store data in the cloud."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gpu acceleration",
+            "visualization",
+            "performance"
+        ],
+        "difficulty": "easy",
+        "explanation": "GPU acceleration uses the parallel processing power of the GPU to handle complex calculations and rendering tasks much faster than a CPU."
+    },
+    {
+        "id": "q207",
+        "question": "What distinguishes a Histogram from a Bar Chart?",
+        "type": "multiple_choice",
+        "options": [
+            "Histograms show the distribution of a single numerical variable by grouping values into bins.",
+            "Histograms compare values across discrete categories.",
+            "Histograms are used for time series data.",
+            "Histograms show the correlation between two variables."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "data visualization",
+            "histogram",
+            "bar chart"
+        ],
+        "difficulty": "medium",
+        "explanation": "Histograms are for continuous numerical distributions (binned), whereas bar charts compare discrete categories."
+    },
+    {
+        "id": "q208",
+        "question": "Which Python library is described as a 'GPU DataFrame' library with an API similar to Pandas?",
+        "type": "multiple_choice",
+        "options": [
+            "Dask",
+            "cuDF",
+            "PyTorch",
+            "Matplotlib"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rapids",
+            "cudf",
+            "libraries"
+        ],
+        "difficulty": "easy",
+        "explanation": "cuDF is part of the RAPIDS ecosystem and provides a pandas-like API that runs on NVIDIA GPUs."
+    },
+    {
+        "id": "q209",
+        "question": "What is the main benefit of using 'Dask-cuDF'?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows for distributed GPU processing across multiple workers or nodes.",
+            "It is faster than cuDF on small datasets.",
+            "It does not require an NVIDIA GPU.",
+            "It is primarily for visualization."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "rapids",
+            "dask-cudf",
+            "distributed computing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dask-cuDF combines Dask's distributed computing capabilities with cuDF's GPU acceleration to handle datasets larger than a single GPU's memory across clusters."
+    },
+    {
+        "id": "q210",
+        "question": "In a Scatter Plot, what does a pattern sloping upwards from left to right indicate?",
+        "type": "multiple_choice",
+        "options": [
+            "Negative correlation",
+            "No correlation",
+            "Positive correlation",
+            "A time series trend"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data visualization",
+            "scatter plot",
+            "correlation"
+        ],
+        "difficulty": "easy",
+        "explanation": "An upward slope in a scatter plot indicates a positive correlation, meaning as one variable increases, the other generally increases as well."
+    },
+    {
+        "id": "q211",
+        "question": "Which principle emphasizes comparing LLM performance against simpler or existing models to gauge meaningful gains?",
+        "type": "multiple_choice",
+        "options": [
+            "Robust Baseline Comparison",
+            "Systematic Parameter Variation",
+            "Task Selection",
+            "Transparency"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "experiment design",
+            "baseline",
+            "comparison"
+        ],
+        "difficulty": "medium",
+        "explanation": "Robust baseline comparison involves benchmarking a new model against simpler models, previous state-of-the-art, or human performance to verify actual improvements."
+    },
+    {
+        "id": "q212",
+        "question": "What is 'Grid Search' in the context of hyperparameter tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "A method that randomly samples hyperparameters.",
+            "A brute-force method that evaluates all combinations of predefined hyperparameter values arranged in a grid.",
+            "An evolutionary algorithm.",
+            "A manual tuning process."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hyperparameter tuning",
+            "grid search",
+            "methods"
+        ],
+        "difficulty": "easy",
+        "explanation": "Grid search exhaustively tries every combination of discrete hyperparameter values defined in a grid, guaranteeing coverage but at high computational cost."
+    },
+    {
+        "id": "q213",
+        "question": "Which testing method involves comparing two variants (A and B) of an LLM system on real user traffic to determine which performs better?",
+        "type": "multiple_choice",
+        "options": [
+            "Unit Testing",
+            "A/B Testing",
+            "Adversarial Testing",
+            "Regression Testing"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "testing",
+            "a/b testing",
+            "experimentation"
+        ],
+        "difficulty": "easy",
+        "explanation": "A/B testing is the standard experimental method for comparing two variants by randomly assigning users to each and measuring performance metrics."
+    },
+    {
+        "id": "q214",
+        "question": "Why is 'Version Control' critical for LLM projects?",
+        "type": "multiple_choice",
+        "options": [
+            "It automatically optimizes the model code.",
+            "It allows tracking and managing evolving code, model weights, and datasets, ensuring reproducibility and collaboration.",
+            "It increases the training speed of the model.",
+            "It reduces the size of the dataset."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "version control",
+            "mlops",
+            "reproducibility"
+        ],
+        "difficulty": "medium",
+        "explanation": "Version control tracks changes in code, data, and model artifacts, which is essential for reproducing experiments, reverting to previous states, and facilitating team collaboration."
+    },
+    {
+        "id": "q215",
+        "question": "What is a 'Hyperparameter' in machine learning?",
+        "type": "multiple_choice",
+        "options": [
+            "A parameter learned from data during training.",
+            "A configuration variable set before training (e.g., learning rate) that guides the training process.",
+            "The output of the model.",
+            "The accuracy score of the model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hyperparameters",
+            "definition",
+            "training"
+        ],
+        "difficulty": "easy",
+        "explanation": "Hyperparameters are external configuration settings (like learning rate or batch size) that are set prior to training and control the learning process."
+    },
+    {
+        "id": "q216",
+        "question": "Which metric is commonly used to evaluate the quality of text summarization by measuring overlap with reference summaries?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy",
+            "BLEU",
+            "ROUGE",
+            "Perplexity"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "evaluation metrics",
+            "rouge",
+            "summarization"
+        ],
+        "difficulty": "medium",
+        "explanation": "ROUGE (Recall-Oriented Understudy for Gisting Evaluation) is specifically designed to evaluate summarization by checking n-gram overlaps with reference texts."
+    },
+    {
+        "id": "q217",
+        "question": "What is the main advantage of 'Bayesian Optimization' over Grid Search for hyperparameter tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "It is simpler to implement.",
+            "It is more sample-efficient, using a probabilistic model to choose promising configurations to evaluate next.",
+            "It guarantees finding the global minimum in one step.",
+            "It does not require validation data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hyperparameter tuning",
+            "bayesian optimization",
+            "efficiency"
+        ],
+        "difficulty": "hard",
+        "explanation": "Bayesian optimization builds a surrogate model of the objective function to smartly select the next hyperparameters to test, balancing exploration and exploitation, which is more efficient than blind grid search."
+    },
+    {
+        "id": "q218",
+        "question": "In A/B testing, what is the purpose of 'Random Assignment'?",
+        "type": "multiple_choice",
+        "options": [
+            "To ensure that only expert users see the new version.",
+            "To ensure that user groups for each variant are comparable and results are unbiased.",
+            "To randomly change the model architecture during the test.",
+            "To assign higher traffic to the variant that is performing better manually."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "a/b testing",
+            "experiment design",
+            "randomization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Random assignment ensures that the groups exposed to variant A and variant B are statistically similar, preventing selection bias from skewing the results."
+    },
+    {
+        "id": "q219",
+        "question": "Which of the following describes 'Early Stopping' in model training?",
+        "type": "multiple_choice",
+        "options": [
+            "Stopping the training before it starts.",
+            "Halting training when validation metrics stop improving to prevent overfitting.",
+            "Stopping data collection early.",
+            "Shutting down the server randomly."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training",
+            "early stopping",
+            "regularization"
+        ],
+        "difficulty": "easy",
+        "explanation": "Early stopping monitors validation performance and terminates training when performance plateaus or degrades, preventing the model from overfitting to the training data."
+    },
+    {
+        "id": "q220",
+        "question": "What does 'Reproducibility' mean in the context of LLM experiments?",
+        "type": "multiple_choice",
+        "options": [
+            "The ability to produce new data.",
+            "The ability for other researchers to recreate experimental results using the same code, data, and procedures.",
+            "The ability to train a model faster.",
+            "The ability to deploy a model to production."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "experiment design",
+            "reproducibility",
+            "science"
+        ],
+        "difficulty": "medium",
+        "explanation": "Reproducibility ensures that an experiment's findings can be consistently replicated by others if they follow the documented procedures and use the same artifacts."
+    },
+    {
+        "id": "q191_v1",
+        "question": "What is the primary function of the Generator in a Generative Adversarial Network (GAN)?",
+        "type": "multiple_choice",
+        "options": [
+            "To classify input data as real or fake.",
+            "To produce synthetic samples intended to look like real data.",
+            "To optimize the learning rate of the model.",
+            "To tokenize the input text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "gan",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "In a GAN, the Generator's role is to create synthetic samples from random noise that are realistic enough to fool the Discriminator."
+    },
+    {
+        "id": "q192_v1",
+        "question": "Which of the following describes a 'Variational Autoencoder' (VAE)?",
+        "type": "multiple_choice",
+        "options": [
+            "A model that learns a compressed (latent) representation of data to generate new, similar samples.",
+            "A model that uses adversarial training to generate data.",
+            "A model specifically designed for reinforcement learning from human feedback.",
+            "A model that retrieves external documents to answer questions."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "generative ai",
+            "vae",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "VAEs learn a probabilistic latent representation of data, allowing them to sample from this latent space to generate new examples similar to the training set."
+    },
+    {
+        "id": "q193_v1",
+        "question": "Why is 'Continuous Learning' important for Generative AI models?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows models to stop training once they reach 100% accuracy.",
+            "It enables models to keep improving after initial training using new data or feedback loops.",
+            "It reduces the size of the model parameters significantly.",
+            "It prevents the model from generating text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "training",
+            "continuous learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Continuous learning allows models to update and refine their capabilities over time, incorporating new information and user feedback post-deployment."
+    },
+    {
+        "id": "q194_v1",
+        "question": "What is the trade-off between Data Quality and Data Quantity in LLM training?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantity is the only factor that matters.",
+            "High-quality, curated datasets often outperform larger, noisy datasets.",
+            "Low-quality data is preferred because it is cheaper.",
+            "There is no trade-off; they are unrelated."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm training",
+            "data",
+            "quality"
+        ],
+        "difficulty": "easy",
+        "explanation": "The notes emphasize that quality is prioritized; curated datasets reduce noise and bias, often yielding better results than massive but low-quality corpora."
+    },
+    {
+        "id": "q195_v1",
+        "question": "Which NVIDIA toolkit is designed to streamline the creation of high-quality training datasets and fine-tuning workflows?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA GeForce",
+            "NVIDIA TAO Toolkit",
+            "NVIDIA PhysX",
+            "NVIDIA RTX"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "tao",
+            "data curation"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA TAO Toolkit simplifies building and curating datasets and training/fine-tuning AI models."
+    },
+    {
+        "id": "q196_v1",
+        "question": "What is 'Data Augmentation' used for in the context of LLM data cleaning?",
+        "type": "multiple_choice",
+        "options": [
+            "Removing duplicate files.",
+            "Artificially increasing dataset size and diversity using techniques like paraphrasing or back-translation.",
+            "Deleting special characters from text.",
+            "Translating code into English."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data cleaning",
+            "augmentation",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "When data is insufficient, augmentation strategies like paraphrasing are used to expand the dataset and improve model generalization."
+    },
+    {
+        "id": "q197_v1",
+        "question": "Which technique involves training a smaller 'student' model to mimic the behavior of a larger 'teacher' model?",
+        "type": "multiple_choice",
+        "options": [
+            "Pruning",
+            "Quantization",
+            "Knowledge Distillation",
+            "Mixed-Precision Training"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "optimization",
+            "knowledge distillation",
+            "training"
+        ],
+        "difficulty": "medium",
+        "explanation": "Knowledge distillation transfers knowledge from a large model to a smaller one, making deployment more efficient while retaining performance."
+    },
+    {
+        "id": "q198_v1",
+        "question": "What is 'Zero-shot learning'?",
+        "type": "multiple_choice",
+        "options": [
+            "Training a model without any GPUs.",
+            "When a model performs a task it was not explicitly trained on, using only the prompt and pre-training.",
+            "Providing a few examples in the prompt to guide the model.",
+            "Fine-tuning a model on zero-sum games."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm learning",
+            "zero-shot",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "explanation": "Zero-shot learning relies on the model's general capabilities to infer the task from the prompt alone, without specific training examples."
+    },
+    {
+        "id": "q199_v1",
+        "question": "What is the primary purpose of Reinforcement Learning from Human Feedback (RLHF)?",
+        "type": "multiple_choice",
+        "options": [
+            "To speed up the training process by 10x.",
+            "To align the model's outputs with human preferences and values by optimizing a reward signal.",
+            "To replace the Transformer architecture with an RNN.",
+            "To increase the vocabulary size of the model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm alignment",
+            "rlhf",
+            "concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "RLHF uses human feedback to train a reward model, which then guides the LLM to produce outputs that are better aligned with human intent and safety."
+    },
+    {
+        "id": "q200_v1",
+        "question": "Which metric evaluates language models by measuring the average number of guesses needed to predict the next word (lower is better)?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy",
+            "BLEU Score",
+            "Perplexity",
+            "ROUGE Score"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "evaluation metrics",
+            "perplexity",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "Perplexity measures how 'surprised' a model is by text; a lower score indicates the model is more confident and accurate in predicting the next token."
+    },
+    {
+        "id": "q201_v1",
+        "question": "What is 'Constitutional AI'?",
+        "type": "multiple_choice",
+        "options": [
+            "AI that governs nations.",
+            "An alignment approach where explicit rules (a 'constitution') define acceptable behavior for the model.",
+            "A method for compressing models into constitutional formats.",
+            "A database of legal documents."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm alignment",
+            "constitutional ai",
+            "safety"
+        ],
+        "difficulty": "medium",
+        "explanation": "Constitutional AI involves training models to adhere to a predefined set of principles or rules to ensure safe and aligned behavior."
+    },
+    {
+        "id": "q202_v1",
+        "question": "Why are GPUs preferred over CPUs for training LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "GPUs are cheaper to manufacture.",
+            "GPUs excel at massive parallel processing and matrix operations required for neural networks.",
+            "CPUs cannot perform floating-point arithmetic.",
+            "GPUs have lower power consumption for sequential tasks."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hardware",
+            "gpu",
+            "training"
+        ],
+        "difficulty": "easy",
+        "explanation": "GPUs are designed for massive parallelism and high memory bandwidth, making them ideal for the matrix-heavy computations in deep learning."
+    },
+    {
+        "id": "q203_v1",
+        "question": "What is 'Prompt Engineering'?",
+        "type": "multiple_choice",
+        "options": [
+            "Designing the physical hardware for AI servers.",
+            "Systematically designing natural language instructions to guide LLMs toward desired outputs.",
+            "Writing code in Python to build a transformer.",
+            "Engineering the power supply for a GPU."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompt engineering",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "explanation": "Prompt engineering is the practice of crafting clear, structured instructions to elicit accurate and relevant responses from LLMs."
+    },
+    {
+        "id": "q204_v1",
+        "question": "Which PEFT technique involves injecting low-rank matrices into transformer layers to adapt the model?",
+        "type": "multiple_choice",
+        "options": [
+            "Adapter Layers",
+            "Prefix Tuning",
+            "LoRA (Low-Rank Adaptation)",
+            "BitFit"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "peft",
+            "lora",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA freezes the pre-trained weights and injects trainable low-rank matrices, drastically reducing the number of parameters to update."
+    },
+    {
+        "id": "q205_v1",
+        "question": "What is 'Catastrophic Forgetting'?",
+        "type": "multiple_choice",
+        "options": [
+            "When a model's hard drive crashes.",
+            "When a model loses its ability to perform previously learned tasks after being fine-tuned on a new task.",
+            "When the user forgets the prompt.",
+            "When the model hallucinates facts."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fine-tuning",
+            "challenges",
+            "catastrophic forgetting"
+        ],
+        "difficulty": "medium",
+        "explanation": "Catastrophic forgetting occurs when new training overwrites the weights necessary for previous tasks, causing the model to fail at those original tasks."
+    },
+    {
+        "id": "q206_v1",
+        "question": "What is the key difference between P-tuning and standard prompt engineering?",
+        "type": "multiple_choice",
+        "options": [
+            "P-tuning uses hard-coded text prompts.",
+            "P-tuning learns continuous 'soft prompt' embeddings via training, while prompt engineering uses fixed text.",
+            "P-tuning requires no data.",
+            "P-tuning is only for image models."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "p-tuning",
+            "prompt learning",
+            "comparison"
+        ],
+        "difficulty": "hard",
+        "explanation": "P-tuning optimizes learnable continuous vectors (soft prompts) in the embedding space, whereas standard prompt engineering involves crafting human-readable text instructions."
+    },
+    {
+        "id": "q207_v1",
+        "question": "What is the primary function of NVIDIA NeMo?",
+        "type": "multiple_choice",
+        "options": [
+            "To create 3D graphics for video games.",
+            "An open-source toolkit for building, training, and deploying conversational AI models (ASR, TTS, NLP).",
+            "To manage cloud billing services.",
+            "To design hardware circuits."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "nemo",
+            "conversational ai"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NeMo is explicitly defined as a toolkit for simplifying conversational AI development, including ASR, TTS, and NLP tasks."
+    },
+    {
+        "id": "q208_v1",
+        "question": "What does RAG (Retrieval-Augmented Generation) typically use to find relevant external information?",
+        "type": "multiple_choice",
+        "options": [
+            "A random number generator.",
+            "A retrieval system that searches databases or document stores based on the user query.",
+            "The internal parameters of the LLM only.",
+            "A manual lookup by a human operator."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "retrieval",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "RAG integrates a retrieval system that searches external knowledge sources to find relevant context before generating a response."
+    },
+    {
+        "id": "q209_v1",
+        "question": "Which of the following describes 'Hallucination' in LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "The model refusing to answer.",
+            "The model generating confident but incorrect or nonsensical outputs.",
+            "The model taking too long to respond.",
+            "The model accurately citing sources."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "challenges",
+            "hallucination"
+        ],
+        "difficulty": "easy",
+        "explanation": "Hallucination refers to the tendency of generative models to produce plausible-sounding but factually false or fabricated information."
+    },
+    {
+        "id": "q210_v1",
+        "question": "What is the role of 'NeMo Megatron'?",
+        "type": "multiple_choice",
+        "options": [
+            "To play video games.",
+            "A framework within NeMo for training and deploying very large language models at scale.",
+            "A new type of GPU hardware.",
+            "A tool for audio editing."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "nemo megatron",
+            "llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Megatron is a specialized framework within the NeMo ecosystem designed specifically for training and deploying massive language models."
+    },
+    {
+        "id": "q211_v1",
+        "question": "What is the core feature of NVIDIA BioNeMo?",
+        "type": "multiple_choice",
+        "options": [
+            "It is a service for streaming movies.",
+            "It provides domain-specific LLMs tailored for biomedical and pharmaceutical applications (e.g., drug discovery).",
+            "It is a general-purpose chatbot for customer service.",
+            "It is a tool for managing financial spreadsheets."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "bionemo",
+            "healthcare"
+        ],
+        "difficulty": "medium",
+        "explanation": "BioNeMo is explicitly described as a cloud service offering LLMs specialized for biomedical fields like drug discovery and clinical research."
+    },
+    {
+        "id": "q212_v1",
+        "question": "What defines an 'AI Agent' in the context of NVIDIA's ecosystem?",
+        "type": "multiple_choice",
+        "options": [
+            "A simple chatbot that only responds to greetings.",
+            "An autonomous system that uses LLMs to reason, plan, and execute actions (e.g., calling tools) to achieve high-level goals.",
+            "A passive database that stores information.",
+            "A hardware component in the GPU."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ai agents",
+            "nvidia",
+            "definition"
+        ],
+        "difficulty": "medium",
+        "explanation": "AI Agents are distinguished by their ability to reason, plan multi-step workflows, and actively use tools/APIs to accomplish complex objectives."
+    },
+    {
+        "id": "q213_v1",
+        "question": "What is 'Mixture of Experts' (MoE) architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "A model that asks human experts for help.",
+            "An architecture that splits a model into specialized sub-networks (experts) and uses a gating network to route inputs to the most relevant ones.",
+            "A monolithic model where every neuron is active for every input.",
+            "A training method that mixes different datasets randomly."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture",
+            "moe",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "MoE replaces a monolithic block with multiple expert networks and uses a gating mechanism to sparsely activate only the relevant experts per input."
+    },
+    {
+        "id": "q214_v1",
+        "question": "Which NVIDIA component provides GPU-accelerated inference microservices for deploying foundation models?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA NIM",
+            "NVIDIA Shield",
+            "NVIDIA GeForce",
+            "NVIDIA PhysX"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia tools",
+            "nim",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA NIM (NVIDIA Inference Microservices) provides containerized, optimized inference services for deploying models like LLMs."
+    },
+    {
+        "id": "q215_v1",
+        "question": "What is the main advantage of 'Sparse Activation' in MoE models?",
+        "type": "multiple_choice",
+        "options": [
+            "It makes the model smaller on disk.",
+            "It reduces the compute required per input because only a subset of experts are activated.",
+            "It eliminates the need for training data.",
+            "It guarantees 100% accuracy."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "moe",
+            "efficiency",
+            "sparse activation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Sparse activation means only the necessary experts (e.g., top-k) run for a given token, significantly lowering the computational cost compared to dense models."
+    },
+    {
+        "id": "q216_v1",
+        "question": "Which software tool is highlighted for monitoring LLM outputs to prevent harmful or biased content?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA NeMo Guardrails",
+            "NVIDIA CUDA",
+            "NVIDIA Nsight",
+            "NVIDIA Drivers"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia tools",
+            "nemo guardrails",
+            "safety"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Guardrails is specifically designed to enforce safety policies, content filtering, and topic control for LLM applications."
+    },
+    {
+        "id": "q217_v1",
+        "question": "In the context of AI Agents, what is 'Tool Calling'?",
+        "type": "multiple_choice",
+        "options": [
+            "Calling customer support.",
+            "The ability of an LLM to invoke external APIs or functions (e.g., a calculator, database search) to perform tasks.",
+            "Using a screwdriver to fix the server.",
+            "Naming the tools used in training."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ai agents",
+            "tool calling",
+            "capabilities"
+        ],
+        "difficulty": "easy",
+        "explanation": "Tool calling refers to the agent's capability to interact with the external world by executing functions or APIs to retrieve data or perform actions."
+    },
+    {
+        "id": "q218_v1",
+        "question": "What does the 'Gating Network' do in a Mixture of Experts model?",
+        "type": "multiple_choice",
+        "options": [
+            "It stops the model from training.",
+            "It routes the input to the most appropriate expert(s) based on the input's characteristics.",
+            "It acts as a firewall for security.",
+            "It compresses the input data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "moe",
+            "gating network",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "The gating network (or router) learns to determine which expert networks are best suited to handle a specific input token."
+    },
+    {
+        "id": "q219_v1",
+        "question": "Which NVIDIA service is mentioned for protein understanding and generation tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "BioMegatron",
+            "ProtT5",
+            "StyleGAN",
+            "NeRF"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "bionemo",
+            "prott5"
+        ],
+        "difficulty": "hard",
+        "explanation": "ProtT5 is identified in the BioNeMo section as a model specifically focused on protein understanding and generation."
+    },
+    {
+        "id": "q220_v1",
+        "question": "What is the primary benefit of using a 'Multi-Agent System'?",
+        "type": "multiple_choice",
+        "options": [
+            "It simplifies the code to a single line.",
+            "It allows specialized agents to collaborate on complex tasks, often managed by an orchestrator.",
+            "It reduces the need for electricity.",
+            "It replaces all human employees."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ai agents",
+            "multi-agent",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multi-agent systems leverage specialization, where different agents handle specific subtasks (e.g., coding, research) and collaborate to solve larger problems."
+    },
+    {
+        "id": "q221",
+        "question": "What is the primary function of NVIDIA TensorRT?",
+        "type": "multiple_choice",
+        "options": [
+            "To train deep learning models on CPUs.",
+            "To optimize trained deep learning models for high-performance inference on NVIDIA GPUs.",
+            "To visualize data distributions using ScatterGL.",
+            "To act as a version control system for models."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tensorrt",
+            "inference",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "TensorRT is explicitly defined as a high-performance deep learning inference optimizer and runtime focused on deployment efficiency."
+    },
+    {
+        "id": "q222",
+        "question": "Which TensorRT optimization technique involves removing redundant or less-important weights to reduce model size?",
+        "type": "multiple_choice",
+        "options": [
+            "Layer Fusion",
+            "Pruning",
+            "Dynamic Batching",
+            "Kernel Auto-tuning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tensorrt",
+            "pruning",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Pruning is the technique of removing less important weights or connections from a network to reduce size and computation."
+    },
+    {
+        "id": "q223",
+        "question": "What is 'Layer Fusion' in the context of TensorRT?",
+        "type": "multiple_choice",
+        "options": [
+            "Combining multiple models into an ensemble.",
+            "Combining sequential layers (e.g., convolution + bias + activation) into a single kernel to reduce overhead.",
+            "Fusing data from different sensors.",
+            "Merging training and validation datasets."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tensorrt",
+            "layer fusion",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Layer fusion combines multiple sequential layers into a single kernel to minimize kernel launch overhead and memory access."
+    },
+    {
+        "id": "q224",
+        "question": "What is the main role of NVIDIA Triton Inference Server?",
+        "type": "multiple_choice",
+        "options": [
+            "To train models using reinforcement learning.",
+            "To simplify the deployment of AI models at scale by supporting multiple frameworks and optimizing inference.",
+            "To clean and preprocess large datasets on CPUs.",
+            "To serve as a code editor for Python developers."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia triton",
+            "deployment",
+            "inference serving"
+        ],
+        "difficulty": "easy",
+        "explanation": "Triton is an open-source inference serving software that simplifies deployment, supports multiple frameworks, and optimizes resource utilization."
+    },
+    {
+        "id": "q225",
+        "question": "Which feature of Triton Inference Server helps improve GPU utilization by bundling multiple inference requests into a single execution?",
+        "type": "multiple_choice",
+        "options": [
+            "Model Pruning",
+            "Dynamic Batching",
+            "Layer Fusion",
+            "Precision Calibration"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia triton",
+            "dynamic batching",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dynamic batching aggregates individual inference requests into larger batches on the fly to maximize GPU throughput."
+    },
+    {
+        "id": "q226",
+        "question": "Which of the following frameworks are supported by NVIDIA Triton Inference Server? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow",
+            "PyTorch",
+            "ONNX Runtime",
+            "Excel Macros"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "nvidia triton",
+            "frameworks",
+            "support"
+        ],
+        "difficulty": "easy",
+        "explanation": "Triton supports multiple deep learning frameworks including TensorFlow, PyTorch, and ONNX Runtime, but not Excel Macros."
+    },
+    {
+        "id": "q227",
+        "question": "What is 'Quantization' in TensorRT?",
+        "type": "multiple_choice",
+        "options": [
+            "Converting higher-precision weights (e.g., FP32) to lower precision (e.g., INT8) to speed up inference.",
+            "Increasing the number of neurons in a layer.",
+            "Counting the number of training epochs.",
+            "Splitting the dataset into quantiles."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia tensorrt",
+            "quantization",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization reduces numerical precision (e.g., from FP32 to INT8) to decrease memory footprint and increase inference speed."
+    },
+    {
+        "id": "q228",
+        "question": "What is a 'Model Repository' in the context of Triton Inference Server?",
+        "type": "multiple_choice",
+        "options": [
+            "A database of user profiles.",
+            "A structured storage location where models and their versions are kept for Triton to load and serve.",
+            "A Git repository for source code.",
+            "A cloud storage bucket for raw training data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia triton",
+            "model repository",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Model Repository is the directory where Triton looks for models and configuration files to load and serve them."
+    },
+    {
+        "id": "q229",
+        "question": "Which TensorRT feature selects the most efficient GPU kernel implementation for a specific architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "Dynamic Tensor Memory",
+            "Kernel Auto-tuning",
+            "Multi-stream Execution",
+            "Precision Calibration"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tensorrt",
+            "kernel auto-tuning",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Kernel auto-tuning automatically benchmarks and selects the best low-level GPU kernel for each operation on the target hardware."
+    },
+    {
+        "id": "q230",
+        "question": "What does 'Concurrent Model Execution' allow in Triton Inference Server?",
+        "type": "multiple_choice",
+        "options": [
+            "Running training and inference simultaneously on the same CPU.",
+            "Executing multiple models on a single GPU or across multiple GPUs at the same time.",
+            "Converting models from PyTorch to TensorFlow automatically.",
+            "Stopping one model to start another."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia triton",
+            "concurrency",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "Concurrent model execution enables multiple models to run simultaneously on the GPU(s), improving resource utilization and throughput."
+    },
+    {
+        "id": "q221_v1",
+        "question": "What is the primary function of NVIDIA TensorRT?",
+        "type": "multiple_choice",
+        "options": [
+            "To train deep learning models on CPUs.",
+            "To optimize trained deep learning models for high-performance inference on NVIDIA GPUs.",
+            "To visualize data distributions using ScatterGL.",
+            "To act as a version control system for models."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tensorrt",
+            "inference",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "TensorRT is explicitly defined as a high-performance deep learning inference optimizer and runtime focused on deployment efficiency."
+    },
+    {
+        "id": "q222_v1",
+        "question": "Which TensorRT optimization technique involves removing redundant or less-important weights to reduce model size?",
+        "type": "multiple_choice",
+        "options": [
+            "Layer Fusion",
+            "Pruning",
+            "Dynamic Batching",
+            "Kernel Auto-tuning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tensorrt",
+            "pruning",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Pruning is the technique of removing less important weights or connections from a network to reduce size and computation."
+    },
+    {
+        "id": "q223_v1",
+        "question": "What is 'Layer Fusion' in the context of TensorRT?",
+        "type": "multiple_choice",
+        "options": [
+            "Combining multiple models into an ensemble.",
+            "Combining sequential layers (e.g., convolution + bias + activation) into a single kernel to reduce overhead.",
+            "Fusing data from different sensors.",
+            "Merging training and validation datasets."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tensorrt",
+            "layer fusion",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Layer fusion combines multiple sequential layers into a single kernel to minimize kernel launch overhead and memory access."
+    },
+    {
+        "id": "q224_v1",
+        "question": "What is the main role of NVIDIA Triton Inference Server?",
+        "type": "multiple_choice",
+        "options": [
+            "To train models using reinforcement learning.",
+            "To simplify the deployment of AI models at scale by supporting multiple frameworks and optimizing inference.",
+            "To clean and preprocess large datasets on CPUs.",
+            "To serve as a code editor for Python developers."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia triton",
+            "deployment",
+            "inference serving"
+        ],
+        "difficulty": "easy",
+        "explanation": "Triton is an open-source inference serving software that simplifies deployment, supports multiple frameworks, and optimizes resource utilization."
+    },
+    {
+        "id": "q225_v1",
+        "question": "Which feature of Triton Inference Server helps improve GPU utilization by bundling multiple inference requests into a single execution?",
+        "type": "multiple_choice",
+        "options": [
+            "Model Pruning",
+            "Dynamic Batching",
+            "Layer Fusion",
+            "Precision Calibration"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia triton",
+            "dynamic batching",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dynamic batching aggregates individual inference requests into larger batches on the fly to maximize GPU throughput."
+    },
+    {
+        "id": "q226_v1",
+        "question": "Which of the following frameworks are supported by NVIDIA Triton Inference Server? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow",
+            "PyTorch",
+            "ONNX Runtime",
+            "Excel Macros"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "nvidia triton",
+            "frameworks",
+            "support"
+        ],
+        "difficulty": "easy",
+        "explanation": "Triton supports multiple deep learning frameworks including TensorFlow, PyTorch, and ONNX Runtime, but not Excel Macros."
+    },
+    {
+        "id": "q227_v1",
+        "question": "What is 'Quantization' in TensorRT?",
+        "type": "multiple_choice",
+        "options": [
+            "Converting higher-precision weights (e.g., FP32) to lower precision (e.g., INT8) to speed up inference.",
+            "Increasing the number of neurons in a layer.",
+            "Counting the number of training epochs.",
+            "Splitting the dataset into quantiles."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia tensorrt",
+            "quantization",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization reduces numerical precision (e.g., from FP32 to INT8) to decrease memory footprint and increase inference speed."
+    },
+    {
+        "id": "q228_v1",
+        "question": "What is a 'Model Repository' in the context of Triton Inference Server?",
+        "type": "multiple_choice",
+        "options": [
+            "A database of user profiles.",
+            "A structured storage location where models and their versions are kept for Triton to load and serve.",
+            "A Git repository for source code.",
+            "A cloud storage bucket for raw training data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia triton",
+            "model repository",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Model Repository is the directory where Triton looks for models and configuration files to load and serve them."
+    },
+    {
+        "id": "q229_v1",
+        "question": "Which TensorRT feature selects the most efficient GPU kernel implementation for a specific architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "Dynamic Tensor Memory",
+            "Kernel Auto-tuning",
+            "Multi-stream Execution",
+            "Precision Calibration"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tensorrt",
+            "kernel auto-tuning",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Kernel auto-tuning automatically benchmarks and selects the best low-level GPU kernel for each operation on the target hardware."
+    },
+    {
+        "id": "q230_v1",
+        "question": "What does 'Concurrent Model Execution' allow in Triton Inference Server?",
+        "type": "multiple_choice",
+        "options": [
+            "Running training and inference simultaneously on the same CPU.",
+            "Executing multiple models on a single GPU or across multiple GPUs at the same time.",
+            "Converting models from PyTorch to TensorFlow automatically.",
+            "Stopping one model to start another."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia triton",
+            "concurrency",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "Concurrent model execution enables multiple models to run simultaneously on the GPU(s), improving resource utilization and throughput."
+    },
+    {
+        "id": "q231",
+        "question": "What is the primary goal of NVIDIA AI Workflows?",
+        "type": "multiple_choice",
+        "options": [
+            "To build hardware.",
+            "To streamline and accelerate the entire AI development lifecycle from data to deployment.",
+            "To replace human developers with AI.",
+            "To increase the cost of cloud computing."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia ai workflows",
+            "lifecycle",
+            "automation"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA AI Workflows are curated collections of tools designed to cover the end-to-end AI lifecycle, streamlining development and deployment."
+    },
+    {
+        "id": "q232",
+        "question": "Which component of NVIDIA AI Workflows is responsible for serving models at scale?",
+        "type": "multiple_choice",
+        "options": [
+            "Data Preparation Tools",
+            "Model Training Frameworks",
+            "NVIDIA Triton Inference Server",
+            "Hyperparameter Optimization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia ai workflows",
+            "triton",
+            "deployment"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA Triton Inference Server is integrated into the workflows specifically for scalable inference serving."
+    },
+    {
+        "id": "q233",
+        "question": "What is NVIDIA cuOpt primarily used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Image recognition tasks.",
+            "Solving complex logistics and route optimization problems (e.g., VRP, TSP).",
+            "Training large language models.",
+            "Generating 3D graphics."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia cuopt",
+            "logistics",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "cuOpt is a GPU-accelerated optimization library specifically targeting logistics problems like vehicle routing and traveling salesperson."
+    },
+    {
+        "id": "q234",
+        "question": "Which of the following problems can NVIDIA cuOpt help solve? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Vehicle Routing Problem (VRP)",
+            "Traveling Salesperson Problem (TSP)",
+            "Facility Location",
+            "Sentiment Analysis"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "nvidia cuopt",
+            "use cases",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "cuOpt handles VRP, TSP, and Facility Location. Sentiment Analysis is an NLP task, not a logistics optimization problem."
+    },
+    {
+        "id": "q235",
+        "question": "What is the key advantage of using GPUs for cuOpt compared to traditional CPU-based solvers?",
+        "type": "multiple_choice",
+        "options": [
+            "GPUs are cheaper.",
+            "GPUs provide massive parallelism, solving optimization problems significantly faster.",
+            "GPUs are easier to program.",
+            "GPUs use less electricity."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia cuopt",
+            "gpu acceleration",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "The primary benefit highlighted is the speedup achieved through GPU parallelism, allowing for faster solutions to complex optimization problems."
+    },
+    {
+        "id": "q236",
+        "question": "What is NVIDIA Riva?",
+        "type": "multiple_choice",
+        "options": [
+            "A video editing software.",
+            "A GPU-accelerated speech AI platform for building real-time speech applications.",
+            "A database management tool.",
+            "A cloud storage service."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia riva",
+            "speech ai",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "explanation": "Riva is defined as a state-of-the-art, GPU-accelerated platform for speech AI tasks like ASR and TTS."
+    },
+    {
+        "id": "q237",
+        "question": "Which capability is NOT a core feature of NVIDIA Riva?",
+        "type": "multiple_choice",
+        "options": [
+            "Automatic Speech Recognition (ASR)",
+            "Text-to-Speech (TTS)",
+            "Image Segmentation",
+            "Natural Language Understanding (NLU)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia riva",
+            "capabilities",
+            "speech ai"
+        ],
+        "difficulty": "easy",
+        "explanation": "Image segmentation is a computer vision task. Riva focuses on speech and language tasks like ASR, TTS, and NLU."
+    },
+    {
+        "id": "q238",
+        "question": "What is NVIDIA Merlin designed to build?",
+        "type": "multiple_choice",
+        "options": [
+            "Autonomous vehicles.",
+            "High-performing recommender systems at scale.",
+            "Medical imaging applications.",
+            "Weather forecasting models."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia merlin",
+            "recommender systems",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA Merlin is specifically an end-to-end framework for building and deploying recommender systems."
+    },
+    {
+        "id": "q239",
+        "question": "Which component of NVIDIA Merlin is used for processing large-scale tabular data and feature engineering?",
+        "type": "multiple_choice",
+        "options": [
+            "HugeCTR",
+            "NVTabular",
+            "Triton",
+            "Riva"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia merlin",
+            "nvtabular",
+            "feature engineering"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVTabular is the Merlin component dedicated to efficient preprocessing and transformation of tabular data."
+    },
+    {
+        "id": "q240",
+        "question": "What does 'HugeCTR' in NVIDIA Merlin stand for/focus on?",
+        "type": "multiple_choice",
+        "options": [
+            "Huge Container Registry.",
+            "High-performance training framework for Click-Through Rate prediction.",
+            "Huge Computer Vision Training.",
+            "High-Utility GPU Engine."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia merlin",
+            "hugectr",
+            "training"
+        ],
+        "difficulty": "medium",
+        "explanation": "HugeCTR is described as a high-performance training framework specifically for click-through rate (CTR) prediction models."
+    },
+    {
+        "id": "q241",
+        "question": "What is the primary function of NVIDIA NGC?",
+        "type": "multiple_choice",
+        "options": [
+            "To manufacture GPUs.",
+            "To act as a central repository for GPU-optimized software, including containers and pretrained models.",
+            "To replace the operating system on a computer.",
+            "To provide video streaming services."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia ngc",
+            "definition",
+            "platform"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NGC is explicitly defined as a platform that acts as a central repository for GPU-optimized software like containers and models."
+    },
+    {
+        "id": "q242",
+        "question": "What are NGC Containers?",
+        "type": "multiple_choice",
+        "options": [
+            "Physical shipping containers for hardware.",
+            "Prepackaged software environments that include all required dependencies, libraries, and frameworks.",
+            "A type of virtual reality headset.",
+            "A new programming language."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia ngc",
+            "containers",
+            "software"
+        ],
+        "difficulty": "easy",
+        "explanation": "NGC containers are described as prepackaged environments containing all necessary dependencies to run specific applications."
+    },
+    {
+        "id": "q243",
+        "question": "Which resource on NGC simplifies the deployment of complex applications on Kubernetes clusters?",
+        "type": "multiple_choice",
+        "options": [
+            "Pretrained Models",
+            "NGC Containers",
+            "Helm Charts",
+            "Jupyter Notebooks"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia ngc",
+            "helm charts",
+            "kubernetes"
+        ],
+        "difficulty": "medium",
+        "explanation": "Helm charts are specifically identified as the tool that simplifies and automates deployment on Kubernetes clusters."
+    },
+    {
+        "id": "q244",
+        "question": "What is a key benefit of using NGC Pretrained Models?",
+        "type": "multiple_choice",
+        "options": [
+            "They require training from scratch, ensuring total control.",
+            "They save time and resources by allowing users to fine-tune existing models instead of training from scratch.",
+            "They are only compatible with CPUs.",
+            "They are designed for manual data entry."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia ngc",
+            "pretrained models",
+            "benefits"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text highlights that pretrained models save time and resources by providing a starting point that can be fine-tuned rather than trained from zero."
+    },
+    {
+        "id": "q245",
+        "question": "Which of the following deployment environments does NVIDIA NGC support? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Cloud",
+            "On-premises",
+            "Edge",
+            "Only NVIDIA DGX systems"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "nvidia ngc",
+            "deployment",
+            "environments"
+        ],
+        "difficulty": "easy",
+        "explanation": "NGC enables deployment across multiple platforms, explicitly listing cloud, on-premises, and edge environments."
+    },
+    {
+        "id": "q246",
+        "question": "Why is NVIDIA NGC considered 'Enterprise-ready'?",
+        "type": "multiple_choice",
+        "options": [
+            "It is expensive.",
+            "It provides security and scalability features essential for production environments.",
+            "It is only available to large corporations.",
+            "It requires a specific enterprise license to access the website."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia ngc",
+            "enterprise",
+            "features"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that being enterprise-ready means providing the security and scalability features required for production use."
+    },
+    {
+        "id": "q247",
+        "question": "How do NGC Containers help with productivity?",
+        "type": "multiple_choice",
+        "options": [
+            "They automatically write code for developers.",
+            "They provide portable, consistent environments with dependencies pre-installed, reducing setup time.",
+            "They increase the clock speed of the GPU.",
+            "They replace the need for project management tools."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia ngc",
+            "containers",
+            "productivity"
+        ],
+        "difficulty": "medium",
+        "explanation": "Containers enhance productivity by offering prepackaged, portable environments that handle dependencies, streamlining deployment."
+    },
+    {
+        "id": "q248",
+        "question": "What is the primary advantage of 'Fine-tuning' an NGC pretrained model?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows the model to be adapted to specific use cases and data domains.",
+            "It reduces the accuracy of the model.",
+            "It converts the model into a container.",
+            "It removes the need for a GPU."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia ngc",
+            "fine-tuning",
+            "pretrained models"
+        ],
+        "difficulty": "easy",
+        "explanation": "Fine-tuning allows users to adapt a general pretrained model to their specific data and domain requirements."
+    },
+    {
+        "id": "q249",
+        "question": "In which industries does the text explicitly mention NGC applications being used?",
+        "type": "multiple_choice",
+        "options": [
+            "AI Research, Healthcare, and Automotive",
+            "Agriculture and Mining only",
+            "Retail and Fashion only",
+            "Gaming and Entertainment only"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia ngc",
+            "use cases",
+            "industries"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text explicitly lists AI Research, Healthcare, and Automotive as key use case examples."
+    },
+    {
+        "id": "q250",
+        "question": "What functionality do Helm charts automate?",
+        "type": "multiple_choice",
+        "options": [
+            "The training of neural networks.",
+            "The deployment and configuration of applications on Kubernetes.",
+            "The downloading of datasets.",
+            "The creation of PowerPoint presentations."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia ngc",
+            "helm charts",
+            "automation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Helm charts are tools for automating the deployment and configuration of applications within Kubernetes clusters."
+    }
+]

@@ -1,0 +1,319 @@
+[
+    {
+        "id": "Hands-On-LLM-Chapter1_001",
+        "question": "According to the text, which year marked the release of ChatGPT, demonstrating the profound potential of Large Language Model technology?",
+        "type": "multiple_choice",
+        "options": [
+            "2012",
+            "2017",
+            "2022",
+            "2023"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "history",
+            "chatgpt",
+            "introduction"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that 2022 marked the release of ChatGPT, which reached one hundred million active users in two months."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_002",
+        "question": "Which of the following best describes the 'Bag-of-Words' technique for representing language?",
+        "type": "multiple_choice",
+        "options": [
+            "It uses neural networks to predict the next word in a sequence.",
+            "It represents text by counting the frequency of words, ignoring order and semantics.",
+            "It utilizes attention mechanisms to understand the context of words.",
+            "It creates dynamic embeddings that change based on sentence structure."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp fundamentals",
+            "bag-of-words",
+            "tokenization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Bag-of-words creates a vocabulary and simply counts how often a word appears in a sentence, creating a vector representation based on frequency while ignoring semantic meaning."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_003",
+        "question": "What is a primary limitation of the word2vec model mentioned in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "It requires labeled data for training.",
+            "It generates static embeddings, meaning a word always has the same vector regardless of context.",
+            "It cannot be trained on large datasets like Wikipedia.",
+            "It is computationally more expensive than Transformer models."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word2vec",
+            "embeddings",
+            "limitations"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explains that word2vec creates static representations; for example, 'bank' will always have the same embedding whether referring to a financial bank or a river bank."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_004",
+        "question": "Which 2017 research paper introduced the Transformer architecture, shifting focus to the attention mechanism?",
+        "type": "multiple_choice",
+        "options": [
+            "Efficient estimation of word representations",
+            "BERT: Pre-training of deep bidirectional transformers",
+            "Attention Is All You Need",
+            "Language models are unsupervised multitask learners"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "transformers",
+            "history",
+            "attention mechanism"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text cites 'Attention Is All You Need' (2017) as the paper that proposed the Transformer architecture, which was solely based on the attention mechanism."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_005",
+        "question": "How does the BERT architecture differ from the original Transformer or GPT models?",
+        "type": "multiple_choice",
+        "options": [
+            "BERT is a decoder-only architecture focused on text generation.",
+            "BERT is an encoder-only architecture focused on representing language.",
+            "BERT combines both encoder and decoder blocks equally.",
+            "BERT relies on Recurrent Neural Networks (RNNs) rather than attention."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "architecture",
+            "encoder-only"
+        ],
+        "difficulty": "medium",
+        "explanation": "BERT is described as an encoder-only architecture introduced in 2018, primarily used for tasks like classification and representing language, unlike decoder-only generative models."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_006",
+        "question": "What are the two primary steps in the training paradigm of Large Language Models described in the chapter?",
+        "type": "multiple_choice",
+        "options": [
+            "Tokenization and Vectorization",
+            "Pretraining and Fine-tuning",
+            "Encoding and Decoding",
+            "Supervised Learning and Reinforcement Learning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training",
+            "pretraining",
+            "fine-tuning"
+        ],
+        "difficulty": "easy",
+        "explanation": "Creating LLMs consists of two steps: Pretraining (learning language patterns from a vast corpus) and Fine-tuning (adapting the model to specific tasks)."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_007",
+        "question": "In the context of LLMs, what does the term 'context length' (or context window) refer to?",
+        "type": "multiple_choice",
+        "options": [
+            "The physical amount of VRAM required to run the model.",
+            "The number of parameters contained within the neural network.",
+            "The maximum number of tokens the model can process at one time.",
+            "The length of time it takes to train the model."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "terminology",
+            "context window",
+            "limitations"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text defines context length or context window as the maximum number of tokens the model can process."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_008",
+        "question": "Which of the following is a characteristic of proprietary (closed source) models like GPT-4 or Claude?",
+        "type": "multiple_choice",
+        "options": [
+            "Their weights and architecture are shared with the public.",
+            "They must be run locally on consumer hardware.",
+            "They are accessed via an API and their underlying code is kept secret.",
+            "They always allow users to fine-tune the model directly on local data."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "proprietary models",
+            "api",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Proprietary models are developed by organizations that keep the code/weights secret and provide access through an API (Application Programming Interface)."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_009",
+        "question": "When running LLMs locally, which hardware specification is cited as the most critical constraint?",
+        "type": "multiple_choice",
+        "options": [
+            "CPU Clock Speed",
+            "VRAM (Video Random-Access Memory)",
+            "Hard Drive Storage Space",
+            "Internet Bandwidth"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hardware",
+            "gpu",
+            "resources"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text emphasizes that VRAM is an important component, stating 'some models simply cannot be used at all if you do not have sufficient VRAM.'"
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_010",
+        "question": "In the provided code example using the `transformers` library, what is the specific role of the `tokenizer`?",
+        "type": "multiple_choice",
+        "options": [
+            "To download the model weights from the Hugging Face Hub.",
+            "To split the input text into tokens (words or subwords) for the model.",
+            "To manage the GPU memory allocation.",
+            "To generate the final probability distribution for the output text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "coding",
+            "transformers",
+            "tokenization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states the tokenizer is in charge of splitting the input text into tokens before feeding it to the generative model."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_011",
+        "question": "According to the section on 'Responsible LLM Development', which of the following are potential ethical implications or risks? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Bias and fairness issues due to training data.",
+            "Generating harmful or misleading content.",
+            "Intellectual property concerns regarding training data and output.",
+            "The inability of LLMs to process non-English languages."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "ethics",
+            "risks",
+            "bias"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text lists Bias and fairness, Generating harmful content, and Intellectual property as key points in responsible development. It does not mention an inability to process non-English languages as a key ethical risk in this context."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_012",
+        "question": "What is the primary advantage of the 'Self-Attention' mechanism in the Transformer architecture compared to RNNs?",
+        "type": "multiple_choice",
+        "options": [
+            "It processes data sequentially, one word at a time.",
+            "It attends to different positions within a single sequence simultaneously/in parallel.",
+            "It removes the need for any training data.",
+            "It requires significantly less VRAM to run."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformers",
+            "self-attention",
+            "architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "Self-attention can attend to different positions within a single sequence and allows the model to look at the entire sequence in one go, enabling parallelization during training unlike the sequential nature of RNNs."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_013",
+        "question": "In the Python code example for generating text, what does the parameter `return_full_text=False` achieve?",
+        "type": "multiple_choice",
+        "options": [
+            "It forces the model to return the prompt along with the answer.",
+            "It ensures only the generated output is returned, excluding the prompt.",
+            "It stops the model from generating text once a full sentence is formed.",
+            "It returns the output in a raw text format rather than a JSON object."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "coding",
+            "transformers",
+            "parameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explains that by setting `return_full_text` to False, the prompt will not be returned but merely the output of the model."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_014",
+        "question": "Which model does the text classify as an 'Encoder-Only' model used primarily for representation tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "GPT-3",
+            "Phi-3",
+            "BERT",
+            "Llama 2"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bert",
+            "model types",
+            "classification"
+        ],
+        "difficulty": "easy",
+        "explanation": "BERT (Bidirectional Encoder Representations from Transformers) is explicitly described as an encoder-only architecture focused on representing language."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter1_015",
+        "question": "What is 'Quantization' referred to as in the context of running models on limited hardware?",
+        "type": "multiple_choice",
+        "options": [
+            "A method of increasing the context window size.",
+            "A type of compression to reduce VRAM usage.",
+            "A technique for fine-tuning the model on new data.",
+            "A way to increase the number of model parameters."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "quantization",
+            "optimization",
+            "resources"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text mentions quantization as a 'type of compression' that allows models to be run using less VRAM (e.g., using less than 6 GB for Phi-3)."
+    }
+]

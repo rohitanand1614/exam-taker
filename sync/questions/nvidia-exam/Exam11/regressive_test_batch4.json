@@ -1,0 +1,548 @@
+[
+    {
+        "id": "Batch_2_revision_2_batch4",
+        "question": "A company is developing an AI-powered hiring system that uses natural language processing to analyze job applications and predict candidate success. Which combination of ethical considerations and mitigation strategies should be prioritized to ensure responsible use of this technology?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement strict data privacy measures and regular algorithmic audits",
+            "Focus on transparency by providing detailed explanations of the AI‘s decision-making process to all candidates",
+            "Ensure diverse representation in the training data and development team, while implementing ongoing bias detection and correction mechanisms",
+            "Combine bias mitigation, transparency, privacy protection, human oversight, and regular ethical impact assessments"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "responsible-ai",
+            "hiring-ai",
+            "ethics",
+            "bias-mitigation",
+            "transparency"
+        ],
+        "difficulty": "hard",
+        "explanation": "A comprehensive strategy addressing bias, transparency, privacy, human oversight, and ethical assessments ensures fair and responsible AI hiring systems."
+    },
+    {
+        "id": "Batch_2_revision_4_batch4",
+        "question": "Which of the following combinations of NVIDIA software and hardware components is most optimized for training large language models (LLMs) with billions of parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA + Tesla V100 GPUs",
+            "NCCL + A100 GPUs + NVLink",
+            "cuDNN + Quadro RTX GPUs",
+            "TensorRT + Jetson AGX Xavier"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "a100",
+            "nccl",
+            "nvlink",
+            "llm-training"
+        ],
+        "difficulty": "medium",
+        "explanation": "NCCL enables efficient multi-GPU communication, A100 offers high memory bandwidth, and NVLink provides fast GPU-to-GPU links—ideal for LLM training."
+    },
+    {
+        "id": "Batch_2_revision_15_batch4",
+        "question": "In the context of responsible AI development, which of the following approaches is most effective in mitigating bias in large language models (LLMs) while also addressing concerns of data privacy and model transparency?",
+        "type": "multiple_choice",
+        "options": [
+            "Using only publicly available datasets for training",
+            "Implementing federated learning techniques",
+            "Applying differential privacy to the training data",
+            "Employing a combination of diverse data sources, bias detection algorithms, and model interpretability techniques"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "responsible-ai",
+            "bias-mitigation",
+            "transparency",
+            "data-privacy",
+            "llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "Combining diverse data, bias detection, and interpretability addresses bias, privacy, and transparency holistically in LLM development."
+    },
+    {
+        "id": "Batch_2_revision_16_batch4",
+        "question": "Which of the following combinations of NVIDIA software and hardware components is most optimized for training large language models with billions of parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA + Tesla V100 GPUs",
+            "TensorRT + Jetson AGX Xavier",
+            "NCCL + DGX A100 systems",
+            "cuDNN + GeForce RTX 3090"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "dgx-a100",
+            "nccl",
+            "nvidia",
+            "llm-training",
+            "distributed-training"
+        ],
+        "difficulty": "medium",
+        "explanation": "DGX A100 systems with NCCL provide purpose-built hardware and optimized communication for large-scale LLM training."
+    },
+    {
+        "id": "Batch_2_revision_17_batch4",
+        "question": "Which advanced technique combines quantization, pruning, and knowledge distillation to achieve maximum inference optimization for large language models?",
+        "type": "multiple_choice",
+        "options": [
+            "Tensor Fusion",
+            "Integrated Gradient Compression",
+            "Holistic Model Compression (HMC)",
+            "Dynamic Adaptive Inference"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "model-compression",
+            "quantization",
+            "pruning",
+            "knowledge-distillation",
+            "hmc"
+        ],
+        "difficulty": "hard",
+        "explanation": "Holistic Model Compression (HMC) integrates quantization, pruning, and distillation for maximal inference efficiency without significant accuracy loss."
+    },
+    {
+        "id": "Batch_2_revision_20_batch4",
+        "question": "In optimizing the deployment of a large language model (LLM) using NVIDIA‘s TensorRT, which of the following techniques can be most effectively utilized to reduce latency without significantly impacting model accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Mixed precision inference using FP32 arithmetic.",
+            "Dynamic batching to maximize throughput.",
+            "Quantization to INT8 precision.",
+            "Redundant computation elimination through model pruning."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "tensorrt",
+            "int8",
+            "quantization",
+            "llm-inference",
+            "latency"
+        ],
+        "difficulty": "medium",
+        "explanation": "INT8 quantization in TensorRT significantly reduces latency and memory usage while maintaining accuracy through calibration."
+    },
+    {
+        "id": "Batch_2_revision_21_batch4",
+        "question": "Which NVIDIA software library is specifically designed for optimizing large language models and provides features like efficient memory management, distributed training, and inference optimizations?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA CUDA",
+            "NVIDIA cuDNN",
+            "NVIDIA FasterTransformer",
+            "NVIDIA NeMo Megatron"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nemo-megatron",
+            "nvidia",
+            "llm",
+            "distributed-training",
+            "memory-management"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA NeMo Megatron is purpose-built for LLMs, offering distributed training, memory optimization, and inference enhancements."
+    },
+    {
+        "id": "Batch_2_revision_22_batch4",
+        "question": "When fine-tuning a large language model using LoRA (Low-Rank Adaptation), which of the following statements is TRUE regarding the process and its advantages?",
+        "type": "multiple_choice",
+        "options": [
+            "LoRA replaces all pre-trained weights in the model with new, task-specific weights.",
+            "LoRA significantly increases the number of parameters in the model, improving performance at the cost of increased memory usage.",
+            "LoRA allows for efficient adaptation of the model to new tasks while keeping most of the pre-trained weights frozen.",
+            "LoRA can only be applied to the attention layers of a transformer model and not to feed-forward networks."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "lora",
+            "parameter-efficient-fine-tuning",
+            "llm",
+            "adaptation"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA freezes the base model and injects small trainable matrices, enabling efficient adaptation with minimal parameter overhead."
+    },
+    {
+        "id": "Batch_2_revision_23_batch4",
+        "question": "Which advanced technique combines the benefits of both full fine-tuning and parameter-efficient fine-tuning methods, allowing for selective updating of specific layers while keeping others frozen?",
+        "type": "multiple_choice",
+        "options": [
+            "Selective Layer Adaptation (SLA)",
+            "LoRA (Low-Rank Adaptation)",
+            "Partial Fine-Tuning (PFT)",
+            "Mixture-of-Experts Fine-Tuning (MoE-FT)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "moe-ft",
+            "fine-tuning",
+            "llm",
+            "selective-update",
+            "mixture-of-experts"
+        ],
+        "difficulty": "hard",
+        "explanation": "MoE-FT uses expert subnetworks to selectively update parts of the model, blending the flexibility of full fine-tuning with the efficiency of PEFT."
+    },
+    {
+        "id": "Batch_2_revision_24_batch4",
+        "question": "When fine-tuning a large language model (LLM) for a specific task, which of the following techniques is most effective for preventing catastrophic forgetting while maintaining the model‘s ability to generalize?",
+        "type": "multiple_choice",
+        "options": [
+            "Full model fine-tuning",
+            "LoRA (Low-Rank Adaptation)",
+            "Elastic Weight Consolidation (EWC)",
+            "Dropout regularization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "catastrophic-forgetting",
+            "fine-tuning",
+            "llm",
+            "generalization"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA prevents catastrophic forgetting by freezing pre-trained weights and adapting only a small set of new parameters."
+    },
+    {
+        "id": "Batch_2_revision_25_batch4",
+        "question": "Which of the following techniques is most effective for mitigating catastrophic forgetting during the fine-tuning process of a large language model?",
+        "type": "multiple_choice",
+        "options": [
+            "Elastic Weight Consolidation (EWC)",
+            "Progressive Neural Networks",
+            "Parameter-Efficient Fine-Tuning (PEFT)",
+            "Gradient Episodic Memory"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "peft",
+            "catastrophic-forgetting",
+            "llm",
+            "fine-tuning"
+        ],
+        "difficulty": "hard",
+        "explanation": "PEFT methods like LoRA preserve pre-trained knowledge by updating only a small subset of parameters, effectively reducing catastrophic forgetting."
+    },
+    {
+        "id": "Batch_2_revision_26_batch4",
+        "question": "Which of the following techniques is NOT typically used for optimizing inference performance of large language models (LLMs) in production environments?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantization",
+            "Knowledge Distillation",
+            "Gradient Accumulation",
+            "TensorRT Optimization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "gradient-accumulation",
+            "inference",
+            "llm-optimization",
+            "training-vs-inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "Gradient accumulation is a training technique to simulate larger batches; it is not used to optimize inference performance."
+    },
+    {
+        "id": "Batch_2_revision_30_batch4",
+        "question": "Which of the following techniques is NOT commonly used in state-of-the-art Generative AI models to mitigate the problem of vanishing gradients in deep neural networks?",
+        "type": "multiple_choice",
+        "options": [
+            "Residual connections",
+            "Layer normalization",
+            "Attention mechanisms",
+            "Dropout regularization"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "vanishing-gradients",
+            "dropout",
+            "residual-connections",
+            "attention",
+            "layer-norm"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dropout prevents overfitting but does not address vanishing gradients; residual connections, layer norm, and attention help stabilize gradient flow."
+    },
+    {
+        "id": "Batch_2_revision_32_batch4",
+        "question": "Which of the following is NOT a recommended approach for mitigating bias in generative AI models?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing adversarial debiasing techniques",
+            "Using diverse and representative training data",
+            "Conducting regular bias audits and assessments",
+            "Removing all demographic information from the training data"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "bias-mitigation",
+            "fairness",
+            "demographic-data",
+            "ai-ethics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Removing demographic data can lead to 'fairness through unawareness,' which often fails to address or may even worsen bias."
+    },
+    {
+        "id": "Batch_2_revision_34_batch4",
+        "question": "In the context of large language model architecture, which of the following techniques addresses the challenge of handling long-range dependencies and mitigates the vanishing gradient problem in transformer models?",
+        "type": "multiple_choice",
+        "options": [
+            "Multi-head attention mechanism",
+            "Rotary Position Embedding (RoPE)",
+            "Layer normalization",
+            "Gradient checkpointing"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rope",
+            "positional-embedding",
+            "long-range-dependencies",
+            "transformer",
+            "llm"
+        ],
+        "difficulty": "hard",
+        "explanation": "Rotary Position Embedding (RoPE) enables better modeling of relative positions over long sequences, improving long-range dependency handling and gradient stability."
+    },
+    {
+        "id": "Batch_2_revision_35_batch4",
+        "question": "Which of the following combinations of NVIDIA software and hardware components is most optimized for training large language models with multi-GPU, multi-node distributed computing?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA + cuDNN + NCCL + Tesla V100 GPUs",
+            "TensorRT + Triton Inference Server + Jetson AGX Xavier",
+            "NVIDIA AI Enterprise + NeMo Megatron + DGX SuperPOD",
+            "RAPIDS + cuML + RTX A6000 GPUs"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "dgx-superpod",
+            "nemo-megatron",
+            "nvidia-ai-enterprise",
+            "distributed-training",
+            "llm"
+        ],
+        "difficulty": "hard",
+        "explanation": "DGX SuperPOD with NeMo Megatron and NVIDIA AI Enterprise provides a fully optimized, scalable stack for massive LLM training."
+    },
+    {
+        "id": "Batch_2_revision_37_batch4",
+        "question": "Which of the following describes the most advanced and complex approach to controlling the output of a generative AI model, allowing for fine-grained control over the generated content?",
+        "type": "multiple_choice",
+        "options": [
+            "Prompt engineering",
+            "Fine-tuning",
+            "Constitutional AI",
+            "Steerable AI"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "steerable-ai",
+            "output-control",
+            "generative-ai",
+            "real-time-control"
+        ],
+        "difficulty": "hard",
+        "explanation": "Steerable AI enables dynamic, real-time adjustment of style, tone, and content during inference, offering the finest level of control."
+    },
+    {
+        "id": "Batch_2_revision_40_batch4",
+        "question": "Which of the following architectural components in a Transformer-based Large Language Model is responsible for capturing long-range dependencies and contextual information across the input sequence?",
+        "type": "multiple_choice",
+        "options": [
+            "Feed-forward Neural Network (FFN)",
+            "Layer Normalization",
+            "Multi-head Self-attention",
+            "Positional Encoding"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "self-attention",
+            "transformer",
+            "long-range-dependencies",
+            "llm-architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "Multi-head self-attention allows each token to attend to all others, capturing global context and long-range dependencies in the input."
+    },
+    {
+        "id": "Batch_2_revision_42_batch4",
+        "question": "Which of the following techniques is most effective for optimizing inference performance of large language models on NVIDIA GPUs when dealing with variable sequence lengths in a batch?",
+        "type": "multiple_choice",
+        "options": [
+            "Tensor Cores",
+            "Continuous Batching",
+            "Persistent Layers",
+            "NVIDIA FlashAttention"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "flashattention",
+            "variable-length",
+            "attention-optimization",
+            "nvidia",
+            "inference"
+        ],
+        "difficulty": "hard",
+        "explanation": "FlashAttention optimizes memory access and computation for attention, especially effective with variable-length sequences on NVIDIA GPUs."
+    },
+    {
+        "id": "Batch_2_revision_43_batch4",
+        "question": "Which of the following techniques is most effective in mitigating the ‘forgetting problem‘ in continual learning for large language models, while also addressing the challenges of catastrophic forgetting and maintaining computational efficiency?",
+        "type": "multiple_choice",
+        "options": [
+            "Elastic Weight Consolidation (EWC)",
+            "Progressive Neural Networks",
+            "Rehearsal Methods",
+            "Parameter-Efficient Fine-Tuning (PEFT)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "peft",
+            "continual-learning",
+            "catastrophic-forgetting",
+            "llm"
+        ],
+        "difficulty": "hard",
+        "explanation": "PEFT methods minimize forgetting by adapting only a small set of parameters, preserving pre-trained knowledge with high computational efficiency."
+    },
+    {
+        "id": "Batch_2_revision_44_batch4",
+        "question": "Which NVIDIA software library provides optimized primitives for deep learning inference on NVIDIA GPUs and is specifically designed to accelerate transformer-based models?",
+        "type": "multiple_choice",
+        "options": [
+            "cuDNN",
+            "TensorRT",
+            "FasterTransformer",
+            "NCCL"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "fastertransformer",
+            "nvidia",
+            "transformer",
+            "inference",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "FasterTransformer provides highly optimized inference kernels specifically for Transformer-based models on NVIDIA GPUs."
+    },
+    {
+        "id": "Batch_2_revision_45_batch4",
+        "question": "Which of the following combinations of NVIDIA software and hardware components provides the most optimized performance for training large language models with mixed precision and distributed computing?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA + cuDNN + Tensor Cores + NVLink",
+            "NCCL + Hopper GPU + NVSwitch + InfiniBand",
+            "NVCR + TensorRT + A100 GPU + NVLink",
+            "NCCL + CUDA + FP8 + Hopper GPU + NVSwitch + InfiniBand"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "hopper",
+            "fp8",
+            "nccl",
+            "infiniband",
+            "nvswitch",
+            "mixed-precision",
+            "llm-training"
+        ],
+        "difficulty": "hard",
+        "explanation": "This stack leverages FP8 precision, Hopper GPUs, NVSwitch, InfiniBand, and NCCL for state-of-the-art distributed LLM training performance."
+    },
+    {
+        "id": "Batch_2_revision_46_batch4",
+        "question": "Which NVIDIA software library is specifically designed for accelerating large language model inference and provides optimizations for transformer architectures?",
+        "type": "multiple_choice",
+        "options": [
+            "cuDNN",
+            "NCCL",
+            "TensorRT-LLM",
+            "CUDA"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "tensorrt-llm",
+            "nvidia",
+            "llm-inference",
+            "transformer-optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "TensorRT-LLM is purpose-built for accelerating LLM inference with transformer-specific optimizations and multi-GPU support."
+    },
+    {
+        "id": "Batch_2_revision_48_batch4",
+        "question": "In the context of Large Language Model architecture, which of the following techniques is most effective for mitigating the ‘forgetting problem‘ in continual learning scenarios, while also optimizing for computational efficiency and model performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Parameter-Efficient Fine-Tuning (PEFT)",
+            "Elastic Weight Consolidation (EWC)",
+            "Progressive Neural Networks",
+            "Rehearsal-free Continual Learning with Selective Synaptic Plasticity"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "selective-synaptic-plasticity",
+            "continual-learning",
+            "forgetting",
+            "llm",
+            "efficiency"
+        ],
+        "difficulty": "hard",
+        "explanation": "This cutting-edge method dynamically adjusts synaptic importance to retain knowledge, offering high efficiency without model expansion or data rehearsal."
+    }
+]

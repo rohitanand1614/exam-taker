@@ -1,0 +1,88 @@
+[
+    {
+        "id": "Backpropagation Part 3 | The Why | Complete Deep Learning Playlist_001",
+        "question": "A student looks at the Loss Function equation ($L = (y - \\hat{y})^2$) and states, 'The Loss is simply a mathematical function of two variables: the true label and the model's prediction.' According to the instructor's deep-dive intuition into Backpropagation, why is this perspective mathematically incomplete when trying to optimize a neural network?",
+        "type": "multiple_choice",
+        "options": [
+"A) Because the true label ($y$) is a constant provided by the dataset, and the prediction ($\\hat{y}$) is actually a massive nested equation containing every single weight and bias in the entire network. Therefore, the Loss is truly a function of *all* trainable parameters.",
+"B) Because the Loss function must always include the learning rate ($\\alpha$) as a core mathematical variable, otherwise it cannot be differentiated.",
+            "C) Because the Loss is only a function of the input features ($X$), and completely ignores the weights until the forward propagation phase is complete.",
+            "D) Because MSE is actually a function of three variables: true label, prediction, and the number of hidden layers."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "loss_function",
+            "intuition",
+            "trainable_parameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "To understand *why* Backpropagation works, you must understand what you are actually optimizing. The true label $y$ is a fixed constant from the training data. The prediction $\\hat{y}$ is not a standalone variable; it is the final output of the entire neural network. If you expand the equation for $\\hat{y}$, you will see it is made up of the inputs multiplied by the weights of the first layer, plus biases, passed through activations, multiplied by the next layer's weights, and so on. Therefore, the Loss Function is mathematically a massive, complex function of *every single weight and bias* in the network. You are turning the \"dials\" of these parameters to minimize the output of this massive function. Options B, C, and D reflect fundamental misunderstandings of what a loss function represents in parameter space."
+    },
+    {
+        "id": "Backpropagation Part 3 | The Why | Complete Deep Learning Playlist_002",
+        "question": "In the gradient descent update rule: $W_{new} = W_{old} - \\alpha \\cdot \\text{Gradient}$, why is there a strictly **negative** sign before the gradient term?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because neural networks are designed to strictly produce negative predictions to avoid integer overflow errors in Python.",
+            "B) Because the gradient (slope) points in the direction of steepest *ascent* (increasing loss). To minimize the loss, we must mathematically force the weight update to move in the exact *opposite* direction of the slope.",
+            "C) Because the loss function is always a negative parabola, meaning the global minimum sits at the highest geometric point.",
+"D) Because the learning rate ($\\alpha$) is always a negative decimal, and subtracting it turns the equation positive."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gradient_descent",
+            "update_rule",
+            "negative_gradient",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Calculus dictates that the derivative (gradient) of a function at a specific point gives the slope, and this slope vector always points in the direction where the function *increases* most rapidly. Because our goal in Machine Learning is to *minimize* the Loss Function , we must move our weights in the exact opposite direction of the gradient. If the slope is positive (loss is increasing as weight increases), we must decrease the weight (subtract positive). If the slope is negative (loss is decreasing as weight increases), subtracting a negative mathematically adds to the weight, moving us toward the minimum. Option B correctly explains this geometric and mathematical reality. Options A, C, and D are factually incorrect."
+    },
+    {
+        "id": "Backpropagation Part 3 | The Why | Complete Deep Learning Playlist_003",
+        "question": "The instructor uses a Google tool to demonstrate the effect of the 'Learning Rate' on optimization. What specifically happens to the optimization process if the Learning Rate is set to an excessively large value?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The optimization becomes perfectly smooth and reaches the global minimum instantly in a single epoch.",
+            "B) The model completely ignores the gradients and defaults to a random grid-search algorithm.",
+            "C) The steps taken during weight updates become so massive that the algorithm overshoots the minimum, bouncing wildly back and forth across the loss curve and potentially diverging entirely.",
+            "D) The gradients automatically shrink to zero to compensate, stalling the training process safely."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "learning_rate",
+            "gradient_descent",
+            "divergence",
+            "hyperparameters"
+        ],
+        "difficulty": "easy",
+        "explanation": "The learning rate controls the *size* of the step taken in the direction of the negative gradient. If the learning rate is too large, the update step will be massive. The instructor visually demonstrates that a massive step will cause the algorithm to completely overshoot the minimum of the loss curve. It will bounce to the opposite side, calculate a new, even steeper gradient, take another massive step, and bounce back higher, ultimately diverging away from the solution . Option A describes the ideal (but impossible) scenario. Option C accurately describes the divergence shown in the demonstration. Option D is false; large learning rates do not auto-correct gradients."
+    },
+    {
+        "id": "Backpropagation Part 3 | The Why | Complete Deep Learning Playlist_004",
+        "question": "How do you mathematically define 'Convergence' in the context of the Backpropagation training loop?",
+        "type": "multiple_choice",
+        "options": [
+"A) When the learning rate ($\\alpha$) automatically decays to exactly $0.0$.",
+            "B) When the calculated gradients become so close to zero that the newly calculated weights ($W_{new}$) are virtually identical to the old weights ($W_{old}$), meaning the loss has hit a minimum and cannot improve further.",
+            "C) When the model achieves 100% accuracy on the testing dataset.",
+            "D) When the number of hidden layers equals the number of input features."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "convergence",
+            "training_loop",
+            "gradient_descent"
+        ],
+        "difficulty": "medium",
+        "explanation": "Convergence occurs when the optimization algorithm reaches a minimum (local or global) on the loss surface. At a minimum, the slope (gradient) is zero. In the update rule $W_{new} = W_{old} - \\alpha \\cdot \\text{gradient}$, if the gradient is near zero, then $W_{new} \\approx W_{old}$. The weights stop changing because the model has found the optimal parameters for that specific architecture and data. This is true mathematical convergence. Option A is false; learning rates are often fixed. Option C describes perfect generalization, which is rare and often indicates overfitting, not the mathematical definition of algorithmic convergence. Option D is irrelevant to training dynamics."
+    }
+]

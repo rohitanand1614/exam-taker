@@ -1,0 +1,89 @@
+[
+    {
+        "id": "Batch Normalization in Deep Learning | Batch Learning in Keras_001",
+        "question": "A data scientist is training a deep neural network and notices that the training process is incredibly slow and highly unstable. They read that 'Internal Covariate Shift' might be the cause. According to the instructor's explanation, what exactly is Internal Covariate Shift?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It is the process where the input data completely changes its fundamental relationship with the target labels (e.g., $X$ no longer predicts $y$), rendering the model permanently useless.",
+            "B) It is a hardware issue where the GPU shifts memory pointers internally, causing the gradients to be miscalculated during backpropagation.",
+            "C) It is the phenomenon where the statistical distribution of the inputs to a hidden layer constantly changes during training because the weights of the *previous* layers are continuously being updated.",
+            "D) It is a deliberate mathematical transformation applied to the output layer to shift binary probabilities into continuous regression values."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "internal_covariate_shift",
+            "batch_normalization",
+            "training_instability"
+        ],
+        "difficulty": "medium",
+        "explanation": "In a deep neural network, the output of Layer 1 becomes the input to Layer 2. During training, the weights of Layer 1 are constantly updated by Gradient Descent. Because Layer 1's weights change, the statistical distribution (mean and variance) of the signals it sends to Layer 2 also constantly changes. Layer 2 is continually forced to adapt to a moving target—it's trying to learn patterns from an input distribution that keeps shifting . This phenomenon, called Internal Covariate Shift, makes training deep networks slow and unstable. Option A describes standard Covariate Shift (a change in the external, real-world data distribution), not *internal* covariate shift. Options B and D are fabricated definitions."
+    },
+    {
+        "id": "Batch Normalization in Deep Learning | Batch Learning in Keras_002",
+        "question": "How does Batch Normalization mathematically solve the problem of Internal Covariate Shift?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By mathematically freezing the weights of the first half of the neural network so their outputs never change distribution.",
+            "B) By replacing all non-linear activation functions (like ReLU) with strictly linear functions, ensuring the distribution remains constant.",
+            "C) By automatically increasing the learning rate whenever it detects that the data distribution has shifted by more than 10%.",
+            "D) By taking the outputs of a hidden layer for a given mini-batch, calculating their mean and variance, and standardizing them so they consistently have a mean of 0 and a standard deviation of 1 before passing them to the next layer."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "batch_normalization",
+            "internal_covariate_shift",
+            "standardization",
+            "mathematics"
+        ],
+        "difficulty": "easy",
+        "explanation": "Batch Normalization intercepts the raw weighted sum ($Z$) coming out of a layer *before* it goes into the activation function (or sometimes right after). It takes the current mini-batch of data, calculates the mean ($\\mu$) and variance ($\\sigma^2$) of those specific $Z$ values, and standardizes them using the formula: $(Z - \\mu) / \\sigma$ . This ensures that no matter how wildly the previous layer's weights update, the inputs flowing into the *next* layer will always be neatly centered around a mean of 0 with a standard deviation of 1. This stable input distribution allows the next layer to learn much faster. Options A, B, and C describe incorrect or impossible algorithmic interventions."
+    },
+    {
+        "id": "Batch Normalization in Deep Learning | Batch Learning in Keras_003",
+        "question": "After standardizing the hidden layer outputs to have a mean of 0 and a standard deviation of 1, the Batch Normalization algorithm applies a final transformation: $Z_{final} = \\gamma \\cdot Z_{norm} + \\beta$. What is the explicit purpose of these $\\gamma$ (gamma) and $\\beta$ (beta) parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "A) They are fixed mathematical constants (like $\\pi$) required to prevent division-by-zero errors in the backpropagation calculus.",
+            "B) They are manually tuned hyperparameters used to control the exact dropout rate of the normalized layer.",
+            "C) They are purely decorative parameters required by the Keras backend to track the number of epochs processed.",
+            "D) They are trainable parameters that allow the neural network to mathematically 'undo' the normalization (shifting the mean and scaling the variance) if the network determines that a non-standardized distribution is actually optimal for that specific layer."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "batch_normalization",
+            "gamma",
+            "beta",
+            "trainable_parameters"
+        ],
+        "difficulty": "hard",
+        "explanation": "Forcing every single hidden layer's output to have a strict mean of 0 and variance of 1 restricts what the network can represent. Sometimes, the optimal representation for a specific layer *needs* a different mean or variance to utilize the non-linear activation function properly. To provide this flexibility, Batch Normalization introduces $\\gamma$ (a scaling factor) and $\\beta$ (a shifting factor).  These are *learnable parameters* updated via Gradient Descent. If the network decides that strict 0-mean/1-variance is bad for a specific node, it can learn values for $\\gamma$ and $\\beta$ that stretch and shift the distribution to whatever optimal shape it needs—even perfectly reversing the initial normalization if necessary. Options A, B, and C completely misrepresent the nature and function of these parameters."
+    },
+    {
+        "id": "Batch Normalization in Deep Learning | Batch Learning in Keras_004",
+        "question": "A developer implements Batch Normalization on a hidden layer with exactly 100 neurons. When they print the `model.summary()` in Keras, they see that this specific Batch Normalization layer has added 400 total parameters. Why are there exactly 400 parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because Batch Normalization automatically generates 4 independent validation batches (100 $\\times$ 4) to test the layer's stability.",
+            "B) Because Batch Normalization requires 4 parameters per neuron: $\\gamma$ (trainable scale), $\\beta$ (trainable shift), the moving average of the mean (non-trainable), and the moving average of the variance (non-trainable).",
+            "C) Because the algorithm creates a $2 \\times 2$ convolution matrix for every neuron to flatten the input data.",
+            "D) Because Keras duplicates the 100 weights and 100 biases for both the forward pass and the backward pass."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "batch_normalization",
+            "parameters",
+            "keras_summary",
+            "moving_averages"
+        ],
+        "difficulty": "medium",
+        "explanation": "Batch Normalization operates on a per-neuron basis. For a layer with 100 neurons, the algorithm must track and apply 4 distinct mathematical components *per neuron*. \n1. $\\gamma$ (Gamma): The trainable scaling parameter.\n2. $\\beta$ (Beta): The trainable shifting parameter.\n3. **Moving Mean:** A non-trainable parameter that keeps a running average of the batch means during training, which is later used during the Testing/Inference phase.\n4. **Moving Variance:** A non-trainable parameter that keeps a running average of the batch variances, also saved for the Testing phase.\n$100 \\text{ neurons} \\times 4 \\text{ parameters} = 400 \\text{ total parameters}$. Options A, C, and D are mathematically fabricated explanations."
+    }
+]

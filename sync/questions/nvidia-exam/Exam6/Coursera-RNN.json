@@ -1,0 +1,252 @@
+[
+    {
+        "id": "seq_models_basic_026",
+        "question": "Which architecture is primarily described for Machine Translation and Image Captioning tasks in the notes?",
+        "type": "multiple_choice",
+        "options": [
+            "Encoder-Decoder (Many-to-Many)",
+            "One-to-One RNN",
+            "Pure CNN without RNN",
+            "Generative Adversarial Network (GAN)"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "sequence models",
+            "architecture",
+            "encoder-decoder"
+        ],
+        "difficulty": "easy",
+        "explanation": "The notes describe an Encoder-Decoder architecture (Many-to-Many) where an RNN (or CNN for images) encodes the input and an RNN decodes the output."
+    },
+    {
+        "id": "mt_vs_lm_027",
+        "question": "How does the probability formulation of Machine Translation differ from a standard Language Model?",
+        "type": "multiple_choice",
+        "options": [
+            "Machine Translation estimates P(y|x) (conditional probability), while Language Models estimate P(y).",
+            "Machine Translation estimates P(x|y), while Language Models estimate P(x).",
+            "Machine Translation uses a loss function, while Language Models do not.",
+            "They use the exact same probability formulation."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "machine translation",
+            "probability",
+            "language model"
+        ],
+        "difficulty": "medium",
+        "explanation": "Language models estimate P(y<1>, ..., y<Ty>), while Machine Translation estimates P(y<1>, ..., y<Ty> | x<1>, ..., x<Tx>)."
+    },
+    {
+        "id": "greedy_search_fail_028",
+        "question": "Why is Greedy Search often insufficient for Machine Translation?",
+        "type": "multiple_choice",
+        "options": [
+            "It requires too much memory.",
+            "It cannot handle long sequences.",
+            "Selecting the most likely word at each step does not guarantee the most likely overall sequence.",
+            "It is slower than Beam Search."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "greedy search",
+            "optimization",
+            "search algorithms"
+        ],
+        "difficulty": "medium",
+        "explanation": "Greedy search fails because choosing the best word at step t (e.g., \"going\" after \"is\") might lead to a suboptimal total sentence compared to a less likely initial choice."
+    },
+    {
+        "id": "beam_search_param_029",
+        "question": "In the Beam Search algorithm, what does the parameter `B` (beam width) control?",
+        "type": "multiple_choice",
+        "options": [
+            "The maximum length of the generated sentence.",
+            "The number of most likely partial sequences kept at each step.",
+            "The learning rate of the RNN.",
+            "The number of layers in the encoder."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "beam search",
+            "hyperparameters"
+        ],
+        "difficulty": "easy",
+        "explanation": "Parameter B is the beam width, which determines how many outputs (best candidates) the algorithm keeps at a time."
+    },
+    {
+        "id": "beam_search_b1_030",
+        "question": "What happens if the Beam Width `B` is set to 1?",
+        "type": "multiple_choice",
+        "options": [
+            "The algorithm becomes equivalent to Greedy Search.",
+            "The algorithm becomes equivalent to Breadth First Search (BFS).",
+            "The algorithm will not produce any output.",
+            "The algorithm will find the exact optimal solution."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "beam search",
+            "greedy search",
+            "theory"
+        ],
+        "difficulty": "easy",
+        "explanation": "If B = 1, the algorithm keeps only the single best choice at each step, which is the definition of Greedy Search."
+    },
+    {
+        "id": "beam_refinement_log_031",
+        "question": "Why are logs of probabilities summed instead of multiplying probabilities directly in Beam Search?",
+        "type": "multiple_choice",
+        "options": [
+            "To make the math harder.",
+            "To prevent numerical underflow caused by multiplying many small fractions.",
+            "Because log probabilities are always positive.",
+            "To penalize short sequences."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "beam search",
+            "numerical stability",
+            "math"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multiplying small fractions causes numerical overflow/underflow; summing logs avoids this issue while maintaining the same maximization objective."
+    },
+    {
+        "id": "beam_refinement_norm_032",
+        "question": "What is the purpose of Length Normalization (dividing by Ty^alpha) in the Beam Search objective function?",
+        "type": "multiple_choice",
+        "options": [
+            "To prevent the model from preferring very short sequences.",
+            "To make the model run faster.",
+            "To ensure the probabilities sum to 1.",
+            "To fix the numerical underflow problem."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "beam search",
+            "length normalization",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Without normalization, the product of probabilities (or sum of logs) favors shorter sequences because multiplying more fractions yields a smaller value."
+    },
+    {
+        "id": "error_analysis_rnn_033",
+        "question": "In Beam Search error analysis, if P(y* | x) <= P(ŷ | x) (where y* is the correct translation and ŷ is the model's output), what is the conclusion?",
+        "type": "multiple_choice",
+        "options": [
+            "Beam search is at fault.",
+            "The RNN model is at fault.",
+            "The data is incorrectly labeled.",
+            "The learning rate was too high."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "error analysis",
+            "beam search",
+            "rnn"
+        ],
+        "difficulty": "hard",
+        "explanation": "If the model assigned a higher probability to the wrong output (ŷ) than the correct one (y*), the RNN is at fault for assigning probabilities incorrectly."
+    },
+    {
+        "id": "error_analysis_beam_034",
+        "question": "In Beam Search error analysis, if P(y* | x) > P(ŷ | x), what is the likely culprit?",
+        "type": "multiple_choice",
+        "options": [
+            "The RNN model.",
+            "The Beam Search algorithm.",
+            "The loss function.",
+            "The optimizer (Adam)."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "error analysis",
+            "beam search"
+        ],
+        "difficulty": "hard",
+        "explanation": "If the correct translation (y*) actually had a higher probability but the search failed to find it, Beam Search is at fault (likely B is too small)."
+    },
+    {
+        "id": "bleu_score_035",
+        "question": "What is the main intuition behind the BLEU score for Machine Translation evaluation?",
+        "type": "multiple_choice",
+        "options": [
+            "It measures the grammatical correctness of the sentence using a parser.",
+            "It checks if the machine-generated translation is close to human reference translations based on n-gram overlap.",
+            "It asks humans to rate the translation on a scale of 1-10.",
+            "It measures the confidence of the model's prediction."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bleu score",
+            "evaluation",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "The intuition is that if the machine translation is close to any of the human references (based on n-grams), it gets a high score."
+    },
+    {
+        "id": "bleu_bp_036",
+        "question": "What is the purpose of the 'BP penalty' (Brevity Penalty) in the BLEU score?",
+        "type": "multiple_choice",
+        "options": [
+            "To penalize translations that are too long.",
+            "To penalize translations that use rare words.",
+            "To penalize translations that are too short.",
+            "To penalize translations that are grammatically incorrect."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bleu score",
+            "brevity penalty",
+            "metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "The BP (Brevity Penalty) handles the issue where machine outputs that are very short could otherwise get artificially high precision scores."
+    },
+    {
+        "id": "bleu_modified_precision_037",
+        "question": "How does 'Modified Precision' in BLEU differ from standard precision?",
+        "type": "multiple_choice",
+        "options": [
+            "It counts total words instead of matching words.",
+            "It clips the count of a word in the output to the maximum frequency of that word in any single reference.",
+            "It ignores stop words like 'the' and 'a'.",
+            "It uses a neural network to estimate precision."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bleu score",
+            "precision",
+            "modified precision"
+        ],
+        "difficulty": "hard",
+        "explanation": "Modified precision clips the count of a word to the max number of times it appears in the reference to prevent repeating words (like 'the the the') from getting a high score."
+    }
+]

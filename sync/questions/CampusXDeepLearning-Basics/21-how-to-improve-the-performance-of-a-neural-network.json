@@ -1,0 +1,110 @@
+[
+    {
+        "id": "Improve-NN-Performance_001",
+        "question": "When designing a neural network architecture, why is it generally preferred to use a 'deep' network (multiple hidden layers) rather than a single, excessively 'wide' hidden layer with thousands of neurons?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Single wide layers are mathematically incapable of approximating non-linear functions, whereas deep networks are universal approximators.",
+            "B) Deep networks leverage hierarchical 'representation learning,' where early layers extract primitive features (edges) and subsequent layers combine them into increasingly complex patterns (shapes, then faces).",
+            "C) Backpropagation calculus cannot compute gradients for a single hidden layer if the neuron count exceeds the input feature count.",
+            "D) Deep networks completely eliminate the need for hyperparameter tuning since deeper layer weights initialize themselves dynamically."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "network_architecture",
+            "hidden_layers",
+            "representation_learning",
+            "deep_vs_wide"
+        ],
+        "difficulty": "medium",
+        "explanation": "Deep learning models excel due to 'representation learning'. A deep architecture naturally captures hierarchical data patterns. The first hidden layer might detect primitive features like simple lines and edges. The second layer combines these into shapes, and deeper layers combine shapes into highly complex representations (like a human face). A single wide layer struggles to construct this hierarchical abstraction as efficiently. Option A is false; the Universal Approximation Theorem proves a single wide hidden layer *can* approximate any continuous function given enough width, though it is highly inefficient. Options C and D describe mathematically and procedurally fabricated constraints."
+    },
+    {
+        "id": "Improve-NN-Performance_002",
+        "question": "In a computer vision project, a team repurposes a neural network originally trained to detect human faces to now detect monkey faces. They freeze the weights of the first few hidden layers and only retrain the final layers. Why is this specific architectural approach (Transfer Learning) conceptually sound?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because freezing the early layers forces the Backpropagation algorithm to use Mean Squared Error, which is optimal for new image domains.",
+            "B) Because the early layers of a deep network act as primitive feature extractors, learning universal patterns (like edges and simple curves) that are highly transferable across related visual tasks.",
+            "C) Because the early layers strictly memorize the exact background pixel colors, which remain mathematically identical between human and monkey datasets.",
+            "D) Because the final layers are the only components capable of applying non-linear activation functions, making early layers irrelevant for learning new data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transfer_learning",
+            "feature_extraction",
+            "hidden_layers"
+        ],
+        "difficulty": "easy",
+        "explanation": "Transfer learning relies on the principle that the earliest layers of a neural network learn highly generalized, primitive features (such as detecting contrasting edges, lines, or basic geometric curves). Because human faces and monkey faces share these fundamental visual building blocks, the pre-trained weights in the early layers are highly reusable. You only need to retrain the deeper layers, which are responsible for combining those primitives into the specific, complex shapes of a monkey's face. Option A is false; freezing layers does not dictate the loss function. Option C is false; early layers learn structural primitives, not just exact background pixel colors. Option D is false; non-linear activations exist throughout the entire network."
+    },
+    {
+        "id": "Improve-NN-Performance_003",
+        "question": "While deciding the number of neurons per hidden layer, what is the fundamental architectural risk of creating an extreme bottleneck (e.g., using only 1 or 2 neurons) in the very first hidden layer of a complex network?",
+        "type": "multiple_choice",
+        "options": [
+            "A) An early bottleneck will force the network to automatically switch from a non-linear activation function to a purely linear one.",
+            "B) If critical input features are dropped or ignored due to a severe early bottleneck, that information is permanently destroyed and cannot be mathematically recovered by wider layers deeper in the network.",
+            "C) The gradient descent optimizer will crash because matrix multiplication is impossible when a layer is smaller than the input layer.",
+            "D) It causes the learning rate to exponentially increase, leading to immediate Exploding Gradients and NaN loss values."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "network_architecture",
+            "neurons_per_layer",
+            "information_bottleneck"
+        ],
+        "difficulty": "medium",
+        "explanation": "Neural networks compress and transform information layer by layer. If you severely bottleneck the network extremely early on (e.g., passing 100 input features into just 2 neurons), the network is forced to discard a massive amount of representational data. Because subsequent layers only receive their input from this bottleneck, any discarded primitive features are permanently lost and cannot be magically reconstructed later, severely capping the model's performance capability. Therefore, hidden layers must have a 'sufficient' number of neurons. Option A is false; architectural width does not change the chosen mathematical activation function. Option C is false; matrix multiplication supports dimensionality reduction perfectly. Option D is false; learning rates are independent hyperparameters and do not scale dynamically based on layer width."
+    },
+    {
+        "id": "Improve-NN-Performance_004",
+        "question": "An engineering team wants to train a model quickly using a very large batch size (e.g., 1024), but they are concerned about the well-documented issue of large batches leading to poor generalization on unseen data. Which specific optimization technique does the instructor recommend to counter this trade-off?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Implementing 'Early Stopping', which forcefully terminates the training before the large batch size can overfit the dataset.",
+            "B) Applying the 'Pyramid Structure' rule to the hidden layers, exponentially reducing the neuron count to match the large batch size.",
+            "C) Implementing 'Learning Rate Warmup', where the model starts with a very small learning rate that gradually increases during the initial epochs to stabilize the training of large batches.",
+            "D) Switching the optimizer from Adam to Vanilla Batch Gradient Descent to ensure the large batch is processed sequentially row-by-row."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "batch_size",
+            "learning_rate_warmup",
+            "generalization",
+            "optimization"
+        ],
+        "difficulty": "hard",
+        "explanation": "There is a known trade-off in Deep Learning: smaller batch sizes naturally regularize the network and generalize better on test data, while large batch sizes execute much faster on GPUs but often converge to sharp, poorly generalizing minima. To get the best of both worlds (speed of large batches + generalization of small batches), researchers utilize 'Learning Rate Warmup.' This technique starts training with a tiny learning rate, allowing the optimizer to safely orient itself, and then gradually ramps the learning rate up over the first several epochs. Option A prevents overfitting but doesn't fix the inherent generalization geometry of large batches. Option B is an architectural design choice unrelated to batch optimization. Option D fundamentally misunderstands gradient descent types; Vanilla Batch GD processes the *entire* dataset simultaneously, not sequentially."
+    },
+    {
+        "id": "Improve-NN-Performance_005",
+        "question": "How does the 'Early Stopping' callback conceptually solve the hyperparameter tuning problem of determining the exact number of training epochs?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By executing a mathematical proof before training begins to calculate the exact iteration count needed to reach the global minimum.",
+            "B) By continuously monitoring the validation loss during training and automatically halting the process when validation performance plateaus or degrades, preventing overfitting without requiring a hardcoded guess.",
+            "C) By dynamically dropping random neurons (Dropout) during every epoch to artificially stretch the training time indefinitely.",
+            "D) By shifting the loss calculation entirely from the training dataset to the testing dataset during the first 10 epochs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "epochs",
+            "early_stopping",
+            "overfitting",
+            "hyperparameter_tuning"
+        ],
+        "difficulty": "easy",
+        "explanation": "Determining the perfect number of epochs in advance is essentially a guessing game. If you guess too few, the model underfits; if you guess too many, the model overfits and memorizes noise. 'Early Stopping' elegantly solves this by allowing you to set an arbitrarily high number of epochs (e.g., 1,000). During training, the callback monitors the model's performance on a separate validation set. Once the validation loss stops improving (or starts worsening) for a defined 'patience' period, the callback automatically cuts the training short. Option A is impossible for complex, non-convex deep learning loss landscapes. Option C describes Dropout, which is a regularization technique, not a stopping mechanism. Option D violates the fundamental rule of machine learning: you never calculate loss against the test set to optimize the model during training."
+    }
+]

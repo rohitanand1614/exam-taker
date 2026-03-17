@@ -1,0 +1,89 @@
+[
+    {
+        "id": "Optimizers in Deep Learning_001",
+        "question": "According to the instructor, the core purpose of an optimizer like Gradient Descent is to find the 'optimal parameter values' for a neural network. In this context, how is 'optimal' mathematically defined?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The values that maximize the computational speed of the forward propagation pass.",
+            "B) The specific combination of weights and biases that results in the absolute minimum possible value for the Loss Function (Cost Function) across the training data.",
+            "C) The values that force all activation functions to output exactly 1.0.",
+            "D) The values that perfectly balance the number of nodes in the input layer with the number of nodes in the output layer."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimizers",
+            "gradient_descent",
+            "loss_function",
+            "optimization_goal"
+        ],
+        "difficulty": "easy",
+        "explanation": "The ultimate goal of training a neural network is to make predictions ($\\hat{y}$) that are as close as possible to the true values ($y$). The difference between the prediction and the true value is quantified by the Loss Function (or Cost Function). Therefore, finding the 'optimal' parameters (weights and biases) simply means finding the specific set of numbers that mathematically minimizes this Loss Function . Option A relates to hardware/software efficiency, not algorithmic optimization. Options C and D are mathematically nonsensical in the context of network training."
+    },
+    {
+        "id": "Optimizers in Deep Learning_002",
+        "question": "The instructor uses a Google tool to demonstrate the effect of the Learning Rate hyperparameter. What specific problem occurs during Gradient Descent optimization if the Learning Rate is set excessively high (e.g., 1.0)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The optimizer takes massive, aggressive steps, causing it to completely overshoot the minimum of the loss function, bouncing wildly and failing to converge.",
+            "B) The optimizer moves so quickly that it triggers a division-by-zero error in the backpropagation calculus.",
+            "C) The optimizer forces the network to perfectly memorize the data in a single epoch, leading to immediate overfitting.",
+            "D) The optimizer automatically switches from Mean Squared Error to Mean Absolute Error to handle the speed."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "learning_rate",
+            "gradient_descent",
+            "divergence",
+            "hyperparameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "The learning rate dictates the *size* of the mathematical step the optimizer takes in the direction of the negative gradient. If this step size is set too high, the optimizer will \"jump\" entirely over the valley containing the minimum. It lands on the other side, calculates an even steeper gradient, takes an even larger jump back, and continues to oscillate wildly, often diverging further and further away from the optimal solution . Option A accurately describes this phenomenon. Options B, C, and D are factually incorrect."
+    },
+    {
+        "id": "Optimizers in Deep Learning_003",
+        "question": "One of the fundamental limitations of standard Gradient Descent algorithms is their inability to assign different learning rates to different parameters. Why is this lack of flexibility a significant problem in complex neural networks?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because it forces the network to use the exact same activation function for every single layer.",
+            "B) Because the loss landscape is often asymmetrical. A single, uniform learning rate forces the optimizer to move at the exact same speed across all dimensions (weights), which is highly inefficient if one weight requires a large update and another requires a tiny, delicate update.",
+            "C) Because a single learning rate prevents the use of Dropout regularization during the training phase.",
+            "D) Because it causes all the biases to permanently freeze at a value of 0.0."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gradient_descent_limitations",
+            "learning_rate",
+            "optimization_geometry"
+        ],
+        "difficulty": "medium",
+        "explanation": "In a complex neural network with thousands of weights, the loss landscape is highly multi-dimensional and rarely perfectly symmetrical. Some weights might be associated with sparse, critical features and require large, aggressive updates. Other weights might require tiny, careful adjustments. Standard Gradient Descent uses one single, global learning rate ($\\alpha$) for every single parameter update ($W_{new} = W_{old} - \\alpha \\cdot \\text{gradient}$). It cannot adapt. If you set $\\alpha$ small enough to safely update the delicate weights, the aggressive weights will train painfully slowly. If you set it high, the delicate weights will overshoot and diverge. Modern optimizers (like Adam or RMSprop) solve this by assigning dynamic, individual learning rates to every single parameter. Options A, C, and D are entirely fabricated issues."
+    },
+    {
+        "id": "Optimizers in Deep Learning_004",
+        "question": "The instructor highlights 'Saddle Points' as a major failure mode for standard Gradient Descent. What makes a Saddle Point so dangerous for optimization algorithms?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It is the absolute highest peak of the loss function, causing the gradients to explode to infinity.",
+            "B) It represents a physical memory leak where the GPU drops the current batch of data.",
+            "C) It is a region where the slope (gradient) evaluates to zero across multiple dimensions, even though it is not the actual minimum. Because the gradient is zero, the update formula ($W_{new} = W_{old} - \\alpha \\cdot 0$) results in no change, permanently trapping the optimizer in a sub-optimal state.",
+            "D) It dynamically scrambles the labels of the dataset, destroying the model's accuracy."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "saddle_points",
+            "optimization_failure",
+            "gradient_descent",
+            "loss_landscape"
+        ],
+        "difficulty": "medium",
+        "explanation": "A saddle point is a specific geometric feature on a high-dimensional surface where the curve looks like a minimum in one direction but a maximum in another . At the exact center of this saddle, the mathematical slope (the derivative/gradient) is zero. Because standard Gradient Descent relies entirely on the current gradient to make a move ($W_{new} = W_{old} - \\text{learning\\_rate} \\cdot \\text{gradient}$), a gradient of zero means the weight doesn't change. The optimizer stops moving, falsely believing it has reached the bottom of the valley (the minimum), when it is actually stuck on a plateau. Options A, B, and D describe wildly incorrect software or mathematical behaviors."
+    }
+]

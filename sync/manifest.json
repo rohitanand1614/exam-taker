@@ -1,0 +1,402 @@
+{
+  "version": 1,
+  "exported_at": "2026-03-17T12:41:42+00:00",
+  "decks": [
+    {
+      "id": "2026-llm-job-week1-3blue1brown-attention",
+      "name": "2026 LLM Job / Week1 / 3Blue1Brown Attention",
+      "path": "questions/2026 LLM Job/Week1/3blue1brown-attention.json",
+      "question_count": 45
+    },
+    {
+      "id": "2026-llm-job-week1-3blue1brown-transformer-gpt",
+      "name": "2026 LLM Job / Week1 / 3Blue1Brown Transformer Gpt",
+      "path": "questions/2026 LLM Job/Week1/3blue1brown-transformer-gpt.json",
+      "question_count": 45
+    },
+    {
+      "id": "2026-llm-job-week1-attention-is-all",
+      "name": "2026 LLM Job / Week1 / Attention Is All",
+      "path": "questions/2026 LLM Job/Week1/attention-is-all.json",
+      "question_count": 45
+    },
+    {
+      "id": "2026-llm-job-week1-harward-annotated-transformer",
+      "name": "2026 LLM Job / Week1 / Harward Annotated Transformer",
+      "path": "questions/2026 LLM Job/Week1/harward-annotated-transformer.json",
+      "question_count": 50
+    },
+    {
+      "id": "2026-llm-job-week1-jalammar-transformer",
+      "name": "2026 LLM Job / Week1 / Jalammar Transformer",
+      "path": "questions/2026 LLM Job/Week1/jalammar-transformer.json",
+      "question_count": 72
+    },
+    {
+      "id": "2026-llm-job-week1-lilliang-weng-transformer-multihead",
+      "name": "2026 LLM Job / Week1 / Lilliang Weng Transformer Multihead",
+      "path": "questions/2026 LLM Job/Week1/Lilliang-weng-transformer-multihead.json",
+      "question_count": 40
+    },
+    {
+      "id": "campusxdeeplearning-basics-03-types-of-neural-networks",
+      "name": "CampusXDeepLearning-Basics / 03 Types Of Neural Networks",
+      "path": "questions/CampusXDeepLearning-Basics/03-types-of-neural-networks.json",
+      "question_count": 12
+    },
+    {
+      "id": "campusxdeeplearning-basics-04-what-is-a-perceptron-perceptron-vs-neuron",
+      "name": "CampusXDeepLearning-Basics / 04 What Is A Perceptron Perceptron Vs Neuron",
+      "path": "questions/CampusXDeepLearning-Basics/04-what-is-a-perceptron-perceptron-vs-neuron.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-basics-05-perceptron-trick",
+      "name": "CampusXDeepLearning-Basics / 05 Perceptron Trick",
+      "path": "questions/CampusXDeepLearning-Basics/05-perceptron-trick.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-basics-06-perceptron-loss-function",
+      "name": "CampusXDeepLearning-Basics / 06 Perceptron Loss Function",
+      "path": "questions/CampusXDeepLearning-Basics/06-perceptron-loss-function.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-basics-08-mlp-notation",
+      "name": "CampusXDeepLearning-Basics / 08 Mlp Notation",
+      "path": "questions/CampusXDeepLearning-Basics/08-mlp-notation.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-14-loss-functions-in-deep-learning",
+      "name": "CampusXDeepLearning-Basics / 14 Loss Functions In Deep Learning",
+      "path": "questions/CampusXDeepLearning-Basics/14-loss-functions-in-deep-learning.json",
+      "question_count": 6
+    },
+    {
+      "id": "campusxdeeplearning-basics-15-backpropagation-in-deep-learning",
+      "name": "CampusXDeepLearning-Basics / 15 Backpropagation In Deep Learning",
+      "path": "questions/CampusXDeepLearning-Basics/15-backpropagation-in-deep-learning.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-16-backpropagation-part-2",
+      "name": "CampusXDeepLearning-Basics / 16 Backpropagation Part 2",
+      "path": "questions/CampusXDeepLearning-Basics/16-backpropagation-part-2.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-17-backpropagation-part-3",
+      "name": "CampusXDeepLearning-Basics / 17 Backpropagation Part 3",
+      "path": "questions/CampusXDeepLearning-Basics/17-backpropagation-part-3.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-19-gradient-descent-in-neural-networks",
+      "name": "CampusXDeepLearning-Basics / 19 Gradient Descent In Neural Networks",
+      "path": "questions/CampusXDeepLearning-Basics/19-gradient-descent-in-neural-networks.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-basics-20-vanishing-gradient-problem-in-ann",
+      "name": "CampusXDeepLearning-Basics / 20 Vanishing Gradient Problem In Ann",
+      "path": "questions/CampusXDeepLearning-Basics/20-vanishing-gradient-problem-in-ann.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-21-how-to-improve-the-performance-of-a-neural-network",
+      "name": "CampusXDeepLearning-Basics / 21 How To Improve The Performance Of A Neural Network",
+      "path": "questions/CampusXDeepLearning-Basics/21-how-to-improve-the-performance-of-a-neural-network.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-basics-22-early-stopping-in-neural-networks",
+      "name": "CampusXDeepLearning-Basics / 22 Early Stopping In Neural Networks",
+      "path": "questions/CampusXDeepLearning-Basics/22-early-stopping-in-neural-networks.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-25-dropout-layers-in-ann",
+      "name": "CampusXDeepLearning-Basics / 25 Dropout Layers In Ann",
+      "path": "questions/CampusXDeepLearning-Basics/25-dropout-layers-in-ann.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-27-activation-functions-in-deep-learning",
+      "name": "CampusXDeepLearning-Basics / 27 Activation Functions In Deep Learning",
+      "path": "questions/CampusXDeepLearning-Basics/27-activation-functions-in-deep-learning.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-28-relu-variants-explained",
+      "name": "CampusXDeepLearning-Basics / 28 Relu Variants Explained",
+      "path": "questions/CampusXDeepLearning-Basics/28-relu-variants-explained.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-basics-29-weight-initialization-techniques",
+      "name": "CampusXDeepLearning-Basics / 29 Weight Initialization Techniques",
+      "path": "questions/CampusXDeepLearning-Basics/29-weight-initialization-techniques.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-31-batch-normalization-in-deep-learning",
+      "name": "CampusXDeepLearning-Basics / 31 Batch Normalization In Deep Learning",
+      "path": "questions/CampusXDeepLearning-Basics/31-batch-normalization-in-deep-learning.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-32-optimizers-in-deep-learning",
+      "name": "CampusXDeepLearning-Basics / 32 Optimizers In Deep Learning",
+      "path": "questions/CampusXDeepLearning-Basics/32-optimizers-in-deep-learning.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-33-exponentially-weighted-moving-average-or-exponential-weighted-average",
+      "name": "CampusXDeepLearning-Basics / 33 Exponentially Weighted Moving Average Or Exponential Weighted Average",
+      "path": "questions/CampusXDeepLearning-Basics/33-exponentially-weighted-moving-average-or-exponential-weighted-average.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-34-sgd-with-momentum-explained-in-detail-with-animations",
+      "name": "CampusXDeepLearning-Basics / 34 Sgd With Momentum Explained In Detail With Animations",
+      "path": "questions/CampusXDeepLearning-Basics/34-sgd-with-momentum-explained-in-detail-with-animations.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-basics-35-nesterov-accelerated-gradient-nag-explained-in-detail",
+      "name": "CampusXDeepLearning-Basics / 35 Nesterov Accelerated Gradient Nag Explained In Detail",
+      "path": "questions/CampusXDeepLearning-Basics/35-nesterov-accelerated-gradient-nag-explained-in-detail.json",
+      "question_count": 8
+    },
+    {
+      "id": "campusxdeeplearning-basics-36-adagrad-explained-in-detail-with-animations",
+      "name": "CampusXDeepLearning-Basics / 36 Adagrad Explained In Detail With Animations",
+      "path": "questions/CampusXDeepLearning-Basics/36-adagrad-explained-in-detail-with-animations.json",
+      "question_count": 7
+    },
+    {
+      "id": "campusxdeeplearning-basics-37-rmsprop-explained-in-detail-with-animations",
+      "name": "CampusXDeepLearning-Basics / 37 Rmsprop Explained In Detail With Animations",
+      "path": "questions/CampusXDeepLearning-Basics/37-rmsprop-explained-in-detail-with-animations.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-basics-38-adam-optimizer-explained-in-detail-with-animations",
+      "name": "CampusXDeepLearning-Basics / 38 Adam Optimizer Explained In Detail With Animations",
+      "path": "questions/CampusXDeepLearning-Basics/38-adam-optimizer-explained-in-detail-with-animations.json",
+      "question_count": 5
+    },
+    {
+      "id": "genai-llm-books-hands-on-large-language-models-chapter1",
+      "name": "genai-llm-books / Hands-On Large Language Models / Chapter1",
+      "path": "questions/genai-llm-books/Hands-On Large Language Models/Chapter1.json",
+      "question_count": 15
+    },
+    {
+      "id": "genai-llm-books-hands-on-large-language-models-chapter2",
+      "name": "genai-llm-books / Hands-On Large Language Models / Chapter2",
+      "path": "questions/genai-llm-books/Hands-On Large Language Models/Chapter2.json",
+      "question_count": 15
+    },
+    {
+      "id": "genai-llm-books-hands-on-large-language-models-chapter3",
+      "name": "genai-llm-books / Hands-On Large Language Models / Chapter3",
+      "path": "questions/genai-llm-books/Hands-On Large Language Models/Chapter3.json",
+      "question_count": 15
+    },
+    {
+      "id": "nvidia-exam-exam1-nvidia-deploying-questions",
+      "name": "nvidia-exam / Exam1 / Nvidia Deploying Questions",
+      "path": "questions/nvidia-exam/Exam1/Nvidia-Deploying-Questions.json",
+      "question_count": 41
+    },
+    {
+      "id": "nvidia-exam-exam1-nvidia-general-questions",
+      "name": "nvidia-exam / Exam1 / Nvidia General Questions",
+      "path": "questions/nvidia-exam/Exam1/Nvidia-General-Questions.json",
+      "question_count": 16
+    },
+    {
+      "id": "nvidia-exam-exam1-nvidia-training-questions",
+      "name": "nvidia-exam / Exam1 / Nvidia Training Questions",
+      "path": "questions/nvidia-exam/Exam1/Nvidia-Training-Questions.json",
+      "question_count": 44
+    },
+    {
+      "id": "nvidia-exam-exam1-nvidia-unkown-questions",
+      "name": "nvidia-exam / Exam1 / Nvidia Unkown Questions",
+      "path": "questions/nvidia-exam/Exam1/Nvidia-Unkown-Questions.json",
+      "question_count": 120
+    },
+    {
+      "id": "nvidia-exam-exam10-nca_genl_questions",
+      "name": "nvidia-exam / Exam10 / Nca Genl Questions",
+      "path": "questions/nvidia-exam/Exam10/nca_genl_questions.json",
+      "question_count": 109
+    },
+    {
+      "id": "nvidia-exam-exam11-regressive_test_batch1",
+      "name": "nvidia-exam / Exam11 / Regressive Test Batch1",
+      "path": "questions/nvidia-exam/Exam11/regressive_test_batch1.json",
+      "question_count": 27
+    },
+    {
+      "id": "nvidia-exam-exam11-regressive_test_batch2",
+      "name": "nvidia-exam / Exam11 / Regressive Test Batch2",
+      "path": "questions/nvidia-exam/Exam11/regressive_test_batch2.json",
+      "question_count": 31
+    },
+    {
+      "id": "nvidia-exam-exam11-regressive_test_batch3",
+      "name": "nvidia-exam / Exam11 / Regressive Test Batch3",
+      "path": "questions/nvidia-exam/Exam11/regressive_test_batch3.json",
+      "question_count": 30
+    },
+    {
+      "id": "nvidia-exam-exam11-regressive_test_batch4",
+      "name": "nvidia-exam / Exam11 / Regressive Test Batch4",
+      "path": "questions/nvidia-exam/Exam11/regressive_test_batch4.json",
+      "question_count": 24
+    },
+    {
+      "id": "nvidia-exam-exam2-nvidia-whizlabs-test1",
+      "name": "nvidia-exam / Exam2 / Nvidia Whizlabs Test1",
+      "path": "questions/nvidia-exam/Exam2/Nvidia-Whizlabs-Test1.json",
+      "question_count": 49
+    },
+    {
+      "id": "nvidia-exam-exam2-nvidia-whizlabs-test2",
+      "name": "nvidia-exam / Exam2 / Nvidia Whizlabs Test2",
+      "path": "questions/nvidia-exam/Exam2/Nvidia-Whizlabs-Test2.json",
+      "question_count": 49
+    },
+    {
+      "id": "nvidia-exam-exam3-ai-questions",
+      "name": "nvidia-exam / Exam3 / Ai Questions",
+      "path": "questions/nvidia-exam/Exam3/AI-Questions.json",
+      "question_count": 83
+    },
+    {
+      "id": "nvidia-exam-exam3-other-website",
+      "name": "nvidia-exam / Exam3 / Other Website",
+      "path": "questions/nvidia-exam/Exam3/Other-Website.json",
+      "question_count": 78
+    },
+    {
+      "id": "nvidia-exam-exam3-yt-questionsion",
+      "name": "nvidia-exam / Exam3 / Yt Questionsion",
+      "path": "questions/nvidia-exam/Exam3/YT-Questionsion.json",
+      "question_count": 93
+    },
+    {
+      "id": "nvidia-exam-exam4-accelerated_tutorial",
+      "name": "nvidia-exam / Exam4 / Accelerated Tutorial",
+      "path": "questions/nvidia-exam/Exam4/Accelerated_Tutorial.json",
+      "question_count": 34
+    },
+    {
+      "id": "nvidia-exam-exam4-deep_learning_tutorial",
+      "name": "nvidia-exam / Exam4 / Deep Learning Tutorial",
+      "path": "questions/nvidia-exam/Exam4/Deep_Learning_tutorial.json",
+      "question_count": 59
+    },
+    {
+      "id": "nvidia-exam-exam4-prompt-engineering-tutorial",
+      "name": "nvidia-exam / Exam4 / Prompt Engineering Tutorial",
+      "path": "questions/nvidia-exam/Exam4/Prompt-engineering-tutorial.json",
+      "question_count": 15
+    },
+    {
+      "id": "nvidia-exam-exam4-rapid-llm-tutorial",
+      "name": "nvidia-exam / Exam4 / Rapid Llm Tutorial",
+      "path": "questions/nvidia-exam/Exam4/RAPID-LLM-tutorial.json",
+      "question_count": 73
+    },
+    {
+      "id": "nvidia-exam-exam4-transformer-tutorial",
+      "name": "nvidia-exam / Exam4 / Transformer Tutorial",
+      "path": "questions/nvidia-exam/Exam4/Transformer-Tutorial.json",
+      "question_count": 24
+    },
+    {
+      "id": "nvidia-exam-exam5-course-dl",
+      "name": "nvidia-exam / Exam5 / Course Dl",
+      "path": "questions/nvidia-exam/Exam5/Course-DL.json",
+      "question_count": 40
+    },
+    {
+      "id": "nvidia-exam-exam5-course-llm",
+      "name": "nvidia-exam / Exam5 / Course Llm",
+      "path": "questions/nvidia-exam/Exam5/Course-LLM.json",
+      "question_count": 190
+    },
+    {
+      "id": "nvidia-exam-exam5-course-ml",
+      "name": "nvidia-exam / Exam5 / Course Ml",
+      "path": "questions/nvidia-exam/Exam5/Course-ML.json",
+      "question_count": 20
+    },
+    {
+      "id": "nvidia-exam-exam5-course-nlp",
+      "name": "nvidia-exam / Exam5 / Course Nlp",
+      "path": "questions/nvidia-exam/Exam5/Course-NLP.json",
+      "question_count": 40
+    },
+    {
+      "id": "nvidia-exam-exam5-course-trust",
+      "name": "nvidia-exam / Exam5 / Course Trust",
+      "path": "questions/nvidia-exam/Exam5/Course-Trust.json",
+      "question_count": 10
+    },
+    {
+      "id": "nvidia-exam-exam6-coursera-cnn",
+      "name": "nvidia-exam / Exam6 / Coursera Cnn",
+      "path": "questions/nvidia-exam/Exam6/Coursera-CNN.json",
+      "question_count": 10
+    },
+    {
+      "id": "nvidia-exam-exam6-coursera-neural",
+      "name": "nvidia-exam / Exam6 / Coursera Neural",
+      "path": "questions/nvidia-exam/Exam6/Coursera-Neural.json",
+      "question_count": 15
+    },
+    {
+      "id": "nvidia-exam-exam6-coursera-rnn",
+      "name": "nvidia-exam / Exam6 / Coursera Rnn",
+      "path": "questions/nvidia-exam/Exam6/Coursera-RNN.json",
+      "question_count": 12
+    },
+    {
+      "id": "nvidia-exam-exam6-coursera-tuning",
+      "name": "nvidia-exam / Exam6 / Coursera Tuning",
+      "path": "questions/nvidia-exam/Exam6/Coursera-Tuning.json",
+      "question_count": 12
+    },
+    {
+      "id": "nvidia-exam-exam7-nvidia-tools",
+      "name": "nvidia-exam / Exam7 / Nvidia Tools",
+      "path": "questions/nvidia-exam/Exam7/Nvidia-tools.json",
+      "question_count": 252
+    },
+    {
+      "id": "nvidia-exam-exam8-nvidia_latest_research",
+      "name": "nvidia-exam / Exam8 / Nvidia Latest Research",
+      "path": "questions/nvidia-exam/Exam8/nvidia_latest_research.json",
+      "question_count": 20
+    },
+    {
+      "id": "nvidia-exam-exam8-nvidia_suggest_read",
+      "name": "nvidia-exam / Exam8 / Nvidia Suggest Read",
+      "path": "questions/nvidia-exam/Exam8/nvidia_suggest_read.json",
+      "question_count": 155
+    },
+    {
+      "id": "nvidia-exam-exam9-transformer-deep-ai",
+      "name": "nvidia-exam / Exam9 / Transformer Deep Ai",
+      "path": "questions/nvidia-exam/Exam9/Transformer-Deep-AI.json",
+      "question_count": 27
+    }
+  ]
+}

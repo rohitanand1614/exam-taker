@@ -1,0 +1,130 @@
+[
+    {
+        "id": "Loss Functions in Deep Learning | Deep Learning | CampusX_001",
+        "question": "A junior data scientist is explaining their model's training process and says, 'I calculated the Loss Function over my entire dataset of 10,000 rows to see the average error per epoch.' According to the formal definitions provided in the tutorial, what terminology error did the data scientist make?",
+        "type": "multiple_choice",
+        "options": [
+            "A) They should have called it the 'Gradient Function' because it is calculated across multiple epochs.",
+            "B) They confused 'Loss Function' with 'Cost Function'; a Loss Function is calculated on a single training example, while a Cost Function is the aggregated average over the entire batch or dataset.",
+            "C) They should have called it the 'Activation Function' because it dictates how the network fires across the entire dataset.",
+            "D) There is no error; 'Loss Function' and 'Cost Function' are mathematically identical and completely interchangeable in formal academic contexts."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "loss_function",
+            "cost_function",
+            "terminology"
+        ],
+        "difficulty": "easy",
+        "explanation": "The instructor explicitly distinguishes between the two terms. A **Loss Function** (or Error Function) calculates the error for a *single* training example (e.g., one student's data point). The **Cost Function** is the average or sum of the Loss Functions calculated across the *entire* training dataset or a specific batch. Therefore, the data scientist should have said they calculated the Cost Function over their 10,000 rows. Option A is a fabricated term. Option C refers to non-linear transformations inside nodes (like ReLU or Sigmoid), not error measurement. Option D contradicts the core instructional point."
+    },
+    {
+        "id": "Loss Functions in Deep Learning | Deep Learning | CampusX_002",
+        "question": "When training a regression model using the Mean Squared Error (MSE) loss function, what specific architectural configuration is strictly required for the final neuron in the Output Layer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The neuron must use a Softmax activation function to normalize the continuous outputs into a probability distribution.",
+            "B) The neuron must use a Sigmoid activation function to constrain the predictions between 0 and 1.",
+            "C) The neuron must use a Linear activation function (or no activation function) so it can output unbounded continuous numerical values.",
+            "D) The neuron must use a Step function to ensure the output snaps to the nearest whole integer."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "mse",
+            "regression",
+            "activation_functions",
+            "output_layer"
+        ],
+        "difficulty": "medium",
+        "explanation": "To perform regression (predicting continuous, unbounded values like a salary of 50 LPA), the final neuron's output cannot be artificially squashed or thresholded. Therefore, it must use a Linear activation function , which simply outputs the raw summation ($z$). Options A and B are used for classification tasks because they output probabilities (0 to 1). Option D outputs binary values, which destroys continuous regression predictions."
+    },
+    {
+        "id": "Loss Functions in Deep Learning | Deep Learning | CampusX_003",
+        "question": "You are training a neural network to predict house prices. Your dataset is generally clean, but contains about 2% extreme outliers (e.g., massive mansions priced 50x higher than normal homes). Why is Mean Squared Error (MSE) a poor choice for this specific dataset?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because MSE requires binary target variables, and house prices are continuous.",
+            "B) Because MSE drops negative error values, ignoring homes that are priced lower than the prediction.",
+            "C) Because the quadratic nature of MSE exponentially magnifies the error of the outliers, causing the gradient descent algorithm to drastically skew the decision boundary to accommodate a few anomalous mansions.",
+            "D) Because MSE cannot be mathematically differentiated, causing backpropagation to fail entirely."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "mse",
+            "outliers",
+            "loss_functions"
+        ],
+        "difficulty": "medium",
+        "explanation": "The formula for MSE squares the difference between the true and predicted values: $(y_{true} - y_{pred})^2$. While this is great for penalizing moderate errors, it becomes highly problematic with extreme outliers. An outlier with an error of 10 units results in a penalty of 100, while an error of 100 results in a massive penalty of 10,000. This disproportionate, quadratic penalty forces the optimization algorithm to violently adjust the model's weights to fix the outlier, ruining the model's accuracy on the remaining 98% of normal data . Option A is false; MSE is strictly for continuous regression. Option B is false; squaring negative numbers makes them positive, so they are always counted. Option D is false; MSE is easily differentiable."
+    },
+    {
+        "id": "Loss Functions in Deep Learning | Deep Learning | CampusX_004",
+        "question": "If your regression dataset has a significant number of outliers and you want a loss function that is robust to them (i.e., it doesn't overly penalize extreme errors), which loss function should you choose?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Mean Absolute Error (MAE)",
+            "B) Mean Squared Error (MSE)",
+            "C) Binary Cross-Entropy",
+            "D) Categorical Cross-Entropy"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "mae",
+            "outliers",
+            "robustness"
+        ],
+        "difficulty": "easy",
+        "explanation": "Mean Absolute Error (MAE) calculates the absolute difference: $|y_{true} - y_{pred}|$. Because it does not square the error, it penalizes errors linearly. An error of 100 is just a penalty of 100, not 10,000. Therefore, it is much more robust to outliers than MSE, as it won't violently drag the decision boundary toward anomalous points. Options C and D are strictly for classification tasks, not regression."
+    },
+    {
+        "id": "Loss Functions in Deep Learning | Deep Learning | CampusX_005",
+        "question": "You are building a Multi-Class Classification neural network to categorize images of clothing into 10 different categories (Shirts, Pants, Shoes, etc.). Which combination of Output Layer configuration and Loss Function is mathematically correct for this task?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 1 Output Neuron with a Linear activation + Mean Squared Error loss.",
+            "B) 10 Output Neurons with Sigmoid activations + Binary Cross-Entropy loss.",
+            "C) 1 Output Neuron with a Step activation + Hinge Loss.",
+            "D) 10 Output Neurons with Softmax activations + Categorical Cross-Entropy loss."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "categorical_cross_entropy",
+            "multi_class_classification",
+            "softmax",
+            "network_architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "For Multi-Class Classification (where an input belongs to exactly one of many classes), the standard architectural rule is: \n1. Create exactly one output neuron per class (10 neurons for 10 classes).\n2. Apply the Softmax activation function across this layer , which converts the raw outputs into a normalized probability distribution where all 10 probabilities sum to 1.0.\n3. Optimize the network using the Categorical Cross-Entropy loss function, which is mathematically designed to compare the Softmax probability distribution against the one-hot encoded true labels. \nOption A is for regression. Option B is for Multi-Label classification (where an image could be *both* a Shirt and Pants simultaneously). Option C is for simple binary SVMs."
+    },
+    {
+        "id": "Loss Functions in Deep Learning | Deep Learning | CampusX_006",
+        "question": "When implementing a model in Keras for a dataset with 1,000 distinct categorical classes, the instructor recommends using `SparseCategoricalCrossentropy` instead of standard `CategoricalCrossentropy`. What is the primary computational advantage of using the 'Sparse' variant?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It mathematically ignores the Softmax activation function, speeding up the forward pass calculation.",
+            "B) It allows the model to accept target labels as integer values (e.g., class '54') rather than requiring a massive, memory-heavy one-hot encoded vector (e.g., 999 zeros and a single 1) for every row in the dataset.",
+            "C) It automatically deletes categories from the dataset if they have fewer than 10 training examples.",
+            "D) It dynamically shifts the loss calculation to Mean Squared Error if the categories become too highly correlated."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sparse_categorical_cross_entropy",
+            "memory_optimization",
+            "keras_implementation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Standard Categorical Cross-Entropy requires the target labels ($y$) to be one-hot encoded. For 1,000 classes, every single label in memory becomes an array of 999 zeros and one 1. This consumes massive amounts of RAM and slows down matrix operations. `SparseCategoricalCrossentropy` is mathematically identical under the hood, but it allows you to feed the labels as raw integers (e.g., class index 54). The framework efficiently calculates the loss against the correct index without ever creating the giant one-hot arrays in memory, making it much faster and more memory-efficient for datasets with many classes. Options A, C, and D describe fabricated, non-existent behaviors."
+    }
+]

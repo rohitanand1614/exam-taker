@@ -1,0 +1,1590 @@
+[
+    {
+        "id": "Transformer_IllustratedTransformer_001",
+        "question": "What is the primary advantage of the Transformer over RNN-based models like seq2seq?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It uses fewer parameters",
+            "B) It allows parallelization during training",
+            "C) It requires no embeddings",
+            "D) It processes sequences character by character"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer",
+            "parallelization",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The Transformer's biggest benefit is parallelization — unlike RNNs which process tokens sequentially, Transformers process all positions simultaneously. RNNs cannot be parallelized because each step depends on the previous hidden state. Practical tip: This parallelism is why Transformers scale so efficiently on GPUs/TPUs."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_002",
+        "question": "In the original Transformer paper 'Attention is All You Need', how many encoder layers are stacked?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 4",
+            "B) 6",
+            "C) 8",
+            "D) 12"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer",
+            "architecture",
+            "encoder"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The paper stacks 6 encoders and 6 decoders. As the post notes, there is nothing magical about the number 6 — it is an architecture choice that can be experimented with. 12 is used in BERT-base, which came later."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_003",
+        "question": "Which two sub-layers are present in EVERY encoder block of the Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Self-attention and cross-attention",
+            "B) Self-attention and feed-forward neural network",
+            "C) Cross-attention and feed-forward neural network",
+            "D) Positional encoding and self-attention"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "encoder",
+            "self-attention",
+            "feed-forward"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Each encoder has: (1) a self-attention layer, and (2) a feed-forward neural network. The decoder has an additional cross-attention layer between them. Cross-attention is not in the encoder. Positional encoding is added before the encoder stack, not inside it."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_004",
+        "question": "What additional sub-layer does the DECODER have that the ENCODER does NOT?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A positional encoding layer",
+            "B) A masked self-attention layer only",
+            "C) An encoder-decoder (cross) attention layer",
+            "D) A second feed-forward network"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "decoder",
+            "cross-attention",
+            "encoder-decoder"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The decoder has three sub-layers: masked self-attention, encoder-decoder attention (cross-attention), and feed-forward. The cross-attention layer allows the decoder to focus on relevant parts of the encoder output. The encoder only has self-attention + feed-forward."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_005",
+        "question": "What is the embedding vector size used for each word in the original Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 64",
+            "B) 256",
+            "C) 512",
+            "D) 1024"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "embedding",
+            "dimensionality",
+            "transformer"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The original Transformer uses embedding vectors of size 512. The Q/K/V vectors within attention heads are smaller at 64 dimensions — this is an architectural choice to keep multi-head attention computation roughly constant."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_006",
+        "question": "What are the three vectors created from each input embedding during self-attention calculation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Input, Output, Hidden",
+            "B) Query, Key, Value",
+            "C) Source, Target, Context",
+            "D) Encoder, Decoder, Attention"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "query-key-value",
+            "mechanism"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Self-attention creates Query (Q), Key (K), and Value (V) vectors by multiplying the input embedding by learned weight matrices WQ, WK, WV. These are core abstractions for computing attention scores and weighted outputs."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_007",
+        "question": "How is the self-attention score between two words calculated?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Cosine similarity between their embeddings",
+            "B) Dot product of the Query vector of one word with the Key vector of another",
+            "C) Dot product of the Value vectors of both words",
+            "D) Euclidean distance between Query vectors"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "dot-product",
+            "score"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The attention score is computed as dot(Q_i, K_j) — the dot product of the query of the current position with the key of the position being scored. This determines how much each word should attend to every other word."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_008",
+        "question": "Why are attention scores divided by the square root of the key dimension (√dk) before softmax?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To normalize scores between 0 and 1",
+            "B) To ensure scores sum to exactly 1",
+            "C) To stabilize gradients and prevent vanishing/exploding values",
+            "D) To reduce the number of attention heads"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "self-attention",
+            "scaling",
+            "gradient-stability"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Dividing by √dk (√64 = 8) leads to more stable gradients. Without scaling, dot products can grow very large in magnitude, pushing softmax into regions with extremely small gradients. Option A is wrong because division by √dk doesn't directly bound scores between 0 and 1 — softmax does that."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_009",
+        "question": "After computing weighted attention scores, what is the final step to produce the self-attention output for a position?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Take the maximum value vector",
+            "B) Average all value vectors equally",
+            "C) Sum the softmax-weighted value vectors",
+            "D) Concatenate all value vectors"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "self-attention",
+            "value-vectors",
+            "output"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Step 5 multiplies each value vector by its softmax score, and step 6 sums these weighted value vectors. This weighted sum is the output of self-attention for that position. Words with higher relevance contribute more via larger softmax scores."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_010",
+        "question": "What is the correct order of steps in computing self-attention?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Compute scores → Softmax → Divide by √dk → Multiply values → Sum",
+            "B) Compute scores → Divide by √dk → Softmax → Multiply values → Sum",
+            "C) Divide by √dk → Compute scores → Softmax → Sum → Multiply values",
+            "D) Softmax → Compute scores → Divide by √dk → Multiply values → Sum"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "process-order",
+            "mechanism"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The correct order is: (1) dot(Q, K) to get scores, (2) divide by √dk for stability, (3) softmax to normalize, (4) multiply each V by its softmax weight, (5) sum weighted Vs. Dividing before softmax is critical — doing it after would produce incorrect distributions."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_011",
+        "question": "What is the compact matrix formula for computing self-attention output?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Attention(Q,K,V) = softmax(QV^T / √dk) * K",
+            "B) Attention(Q,K,V) = softmax(QK^T / √dk) * V",
+            "C) Attention(Q,K,V) = softmax(KV^T / √dk) * Q",
+            "D) Attention(Q,K,V) = sigmoid(QK^T) * V"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "formula",
+            "matrix"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "The standard formula is Attention(Q,K,V) = softmax(QK^T / √dk) * V. The transposition of K is necessary for the dot product alignment. Using sigmoid instead of softmax (option D) would not produce a proper probability distribution that sums to 1."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_012",
+        "question": "How many attention heads does the original Transformer use per encoder/decoder layer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 4",
+            "B) 6",
+            "C) 8",
+            "D) 16"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multi-head-attention",
+            "transformer",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The original Transformer uses 8 attention heads. Each head has its own Q/K/V weight matrices and produces its own output Z matrix. These 8 outputs are then concatenated and projected with WO to produce the final output."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_013",
+        "question": "What is the dimensionality of Q/K/V vectors in each attention head of the original Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 512",
+            "B) 256",
+            "C) 128",
+            "D) 64"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "multi-head-attention",
+            "dimensionality",
+            "q-k-v"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Q/K/V vectors are 64-dimensional, smaller than the 512-dimensional embeddings. With 8 heads × 64 = 512, the total computation remains similar to single-head attention with full 512-dim vectors. This keeps multi-head attention computationally constant."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_014",
+        "question": "After computing 8 separate Z matrices from 8 attention heads, how does multi-head attention combine them into a single output?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Element-wise average of all 8 matrices",
+            "B) Select the best-performing head's output",
+            "C) Concatenate all 8 matrices then multiply by weight matrix WO",
+            "D) Stack them and apply a convolution"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multi-head-attention",
+            "concat",
+            "projection"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The 8 Z matrices are concatenated into a single long matrix, then multiplied by WO (a learned weight matrix) to project back to the expected output dimension. Averaging would lose per-head specialization. Practical tip: WO is also learned during training."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_015",
+        "question": "Which of the following best describes WHY multi-head attention is beneficial? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "A) It allows the model to focus on different positions simultaneously",
+            "B) It provides multiple representation subspaces",
+            "C) It eliminates the need for positional encoding",
+            "D) It reduces model parameters significantly"
+        ],
+        "correct_indices": [
+            0,
+            1
+        ],
+        "tags": [
+            "multi-head-attention",
+            "representation",
+            "benefits"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Multi-head attention (A) expands ability to focus on multiple positions at once — one head may focus on 'animal' while another focuses on 'tired'. (B) Each head learns a different representation subspace. (C) is wrong — positional encoding is still needed. (D) is wrong — multi-head attention doesn't reduce parameters."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_016",
+        "question": "Why does the Transformer need positional encoding?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To reduce the embedding dimension",
+            "B) Because self-attention has no inherent notion of word order",
+            "C) To prevent gradient vanishing in deep networks",
+            "D) Because word embeddings don't capture semantic meaning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "positional-encoding",
+            "sequence-order",
+            "self-attention"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Self-attention treats all positions equivalently — it computes attention between all pairs but has no sense of which token came first. Positional encoding adds order information to embeddings. Unlike RNNs, which inherently process tokens sequentially, Transformers need explicit position signals."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_017",
+        "question": "The original Transformer's positional encoding uses which two mathematical functions?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Logarithm and exponential",
+            "B) Sine and cosine",
+            "C) Tanh and ReLU",
+            "D) Sigmoid and softmax"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "positional-encoding",
+            "sine-cosine",
+            "formula"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The positional encoding uses sine for even dimensions and cosine for odd dimensions. These periodic functions allow the model to generalize to sequence lengths unseen during training, since relative positions can be expressed as linear combinations of these functions."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_018",
+        "question": "How is positional encoding incorporated into the input?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Concatenated to the word embedding",
+            "B) Added element-wise to the word embedding",
+            "C) Multiplied element-wise with the word embedding",
+            "D) Used as a separate input to the attention layer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "positional-encoding",
+            "embedding",
+            "addition"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Positional encoding vectors are added (element-wise) to word embeddings. This is simpler and more parameter-efficient than concatenation. The combined vector then flows through the encoder stack. Practical tip: Modern models like RoPE use different strategies for positional encoding."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_019",
+        "question": "Which architectural feature helps prevent vanishing gradients in each encoder/decoder sub-layer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Dropout regularization",
+            "B) Batch normalization",
+            "C) Residual connections followed by layer normalization",
+            "D) Weight tying between encoder and decoder"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "residual-connections",
+            "layer-norm",
+            "training"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Each sub-layer (self-attention, FFN) has a residual connection (adding the input back to the output) followed by layer normalization: LayerNorm(x + Sublayer(x)). Residuals allow gradients to flow directly, preventing vanishing. Batch norm (B) is less common in NLP than layer norm."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_020",
+        "question": "In the decoder, why is the self-attention layer 'masked'?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To prevent attending to padding tokens",
+            "B) To prevent attending to future positions during training",
+            "C) To prevent attending to encoder outputs",
+            "D) To reduce computation cost"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "decoder",
+            "masked-attention",
+            "autoregressive"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "During training, the decoder receives the entire target sequence at once but should not see future tokens (that would be cheating). Masking sets future position scores to -inf before softmax, effectively zeroing their attention weights. This enforces autoregressive generation behavior."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_021",
+        "question": "In encoder-decoder (cross) attention, where do the Query, Key, and Value matrices come from?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Q from encoder output, K and V from decoder",
+            "B) Q, K, V all from encoder output",
+            "C) Q from decoder layer below, K and V from encoder output",
+            "D) Q from decoder, K from encoder, V from decoder"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cross-attention",
+            "encoder-decoder",
+            "q-k-v"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "In cross-attention, Q comes from the previous decoder layer (what the decoder is currently generating), while K and V come from the encoder output (what was encoded). This allows the decoder to query relevant encoder representations. Option A has it reversed."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_022",
+        "question": "After the decoder stack produces a vector of floats, what converts it to a word?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Embedding lookup table",
+            "B) Linear layer followed by softmax",
+            "C) Softmax followed by argmax",
+            "D) Layer normalization followed by a sigmoid"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "decoder",
+            "output",
+            "linear-softmax"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The decoder output vector passes through a Linear layer that projects to vocab_size logits, then a Softmax converts these to probabilities. The word with the highest probability is selected. The linear layer (not embedding lookup) does this projection."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_023",
+        "question": "What loss function is typically used to train a Transformer for sequence-to-sequence tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Mean squared error",
+            "B) Hinge loss",
+            "C) Cross-entropy loss",
+            "D) Contrastive loss"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "training",
+            "loss-function",
+            "cross-entropy"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Cross-entropy loss compares the predicted probability distribution with the one-hot target distribution. It is standard for classification over vocabulary tokens. MSE is used for regression, not token prediction. KL divergence is closely related but cross-entropy is the standard formulation used."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_024",
+        "question": "What decoding strategy considers multiple partial hypotheses at each step to find a better overall translation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Greedy decoding",
+            "B) Sampling decoding",
+            "C) Beam search",
+            "D) Top-k sampling"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "decoding",
+            "beam-search",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Beam search keeps the top-k partial hypotheses (beam_size) at each step and explores multiple translation paths simultaneously. Greedy decoding always picks the single highest-probability token at each step, which can lead to suboptimal overall sequences. Practical tip: Beam size is a hyperparameter — larger beam = better quality but slower."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_025",
+        "question": "Do the multiple encoder blocks in a Transformer share weights with each other?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Yes, all encoders share the same weights",
+            "B) No, each encoder has its own independent weights",
+            "C) Only the self-attention weights are shared",
+            "D) Only the feed-forward weights are shared"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "encoder",
+            "weights",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The encoders are identical in structure but do NOT share weights. Each of the 6 encoders learns its own parameters independently. This is explicitly stated in the Illustrated Transformer. Weight-tying is a separate concept used in some models between embedding and output matrices."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_026",
+        "question": "Examine this Python pseudo-code for self-attention. What is the bug?\n\nimport numpy as np\n\ndef self_attention(Q, K, V):\n    dk = Q.shape[-1]\n    scores = np.dot(Q, K.T)\n    scores = scores / dk\n    weights = np.exp(scores) / np.sum(np.exp(scores))\n    return np.dot(weights, V)",
+        "type": "multiple_choice",
+        "options": [
+            "A) K should not be transposed",
+            "B) Scores should be divided by sqrt(dk), not dk",
+            "C) Softmax should use log before exponential",
+            "D) Value matrix V should be transposed in the final dot product"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "debugging",
+            "code"
+        ],
+        "difficulty": "medium",
+        "category": "debugging",
+        "explanation": "The bug is dividing by dk instead of sqrt(dk). The correct formula is scores / np.sqrt(dk). Dividing by dk over-scales the normalization, producing scores that are too small and leading to near-uniform attention weights, degrading performance. K.T is correct, and V should not be transposed."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_027",
+        "question": "Which of the following correctly implements scaled dot-product attention in Python?",
+        "type": "multiple_choice",
+        "options": [
+            "A) softmax(Q @ K / dk) @ V",
+            "B) softmax(Q @ K.T / np.sqrt(dk)) @ V",
+            "C) softmax(Q.T @ K / np.sqrt(dk)) @ V",
+            "D) softmax(Q @ K.T * np.sqrt(dk)) @ V"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "code",
+            "implementation"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "Correct: softmax(Q @ K.T / sqrt(dk)) @ V. K must be transposed (K.T) for the matrix multiplication to align (Q is [seq, dk], K.T is [dk, seq] → scores is [seq, seq]). Dividing by sqrt(dk) not dk. Option D multiplies by sqrt(dk) which increases variance — the opposite of what's needed."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_028",
+        "question": "In the sentence 'The animal didn't cross the street because it was too tired', self-attention helps resolve the ambiguity of 'it'. Which word does the model correctly associate 'it' with?",
+        "type": "multiple_choice",
+        "options": [
+            "A) street",
+            "B) cross",
+            "C) animal",
+            "D) didn't"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "self-attention",
+            "coreference",
+            "example"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Self-attention allows 'it' to attend strongly to 'animal', correctly resolving the coreference. This is the canonical example from the Illustrated Transformer showing that self-attention captures long-range dependencies — something RNNs struggle with for long sequences."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_029",
+        "question": "Where in the Transformer architecture is word embedding applied?",
+        "type": "multiple_choice",
+        "options": [
+            "A) In every encoder layer separately",
+            "B) Only in the bottom-most encoder",
+            "C) In the top encoder and top decoder",
+            "D) Before and after each attention layer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embedding",
+            "encoder",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Word embedding is applied only once, at the bottom-most encoder. Upper encoders receive the output of the encoder below them, not raw embeddings. This is why all encoders are designed to handle vectors of size 512 — the embedding output size."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_030",
+        "question": "What is the feed-forward network in each encoder layer applied to?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The entire sequence as a whole",
+            "B) Each position's vector independently and identically",
+            "C) Only the first and last positions",
+            "D) The average of all position vectors"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "feed-forward",
+            "encoder",
+            "position-wise"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The FFN is applied position-wise — the same network is applied independently to each position's vector. This means the FFN has no cross-position dependencies (unlike self-attention). This also enables full parallelization across positions within the FFN sub-layer."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_031",
+        "question": "You are designing a Transformer-based chatbot. The model is generating repetitive or incoherent responses. Which decoding hyperparameter would MOST directly help improve output diversity?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Increasing the number of encoder layers",
+            "B) Increasing embedding dimension from 512 to 1024",
+            "C) Switching from greedy decoding to beam search or sampling",
+            "D) Reducing the number of attention heads"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "decoding",
+            "inference",
+            "system-design"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "Greedy decoding always picks the highest probability token, which often leads to repetitive outputs. Beam search or sampling strategies introduce diversity by exploring multiple paths or sampling from the distribution. Architecture changes (A, B, D) wouldn't directly address inference-time repetition."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_032",
+        "question": "When would you choose a larger beam size in beam search?",
+        "type": "multiple_choice",
+        "options": [
+            "A) When you need faster inference with no quality trade-off",
+            "B) When translation quality matters more than inference speed",
+            "C) When the model vocabulary is very small",
+            "D) When using greedy decoding as a fallback"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "beam-search",
+            "tradeoff",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "explanation": "Larger beam size explores more hypotheses → generally better translation quality but slower inference (more computation per step). Option A is wrong — larger beam size always increases computation. In production, beam size is tuned based on latency/quality trade-off requirements."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_033",
+        "question": "All of the following are true about the Transformer EXCEPT:",
+        "type": "multiple_choice",
+        "options": [
+            "A) It uses residual connections in each sub-layer",
+            "B) Encoders and decoders have the same number of layers",
+            "C) The encoder processes the input sequence sequentially, one token at a time",
+            "D) The decoder generates output tokens autoregressively"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "transformer",
+            "misconception",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "C is FALSE — this is the key misconception. Unlike RNNs, the Transformer's encoder processes ALL input tokens in PARALLEL, not sequentially. This parallelism is the main advantage over seq2seq RNNs. A, B, and D are all true statements about the original Transformer."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_034",
+        "question": "What is the output of the encoder stack that is passed to the decoder?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The hidden states of all encoder layers",
+            "B) Only the Q matrices from the top encoder",
+            "C) The K and V matrices from the top encoder",
+            "D) The softmax probabilities over vocabulary"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "encoder-decoder",
+            "cross-attention",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The top encoder's output is transformed into K (Keys) and V (Values) matrices that every decoder layer uses in its cross-attention layer. The decoder generates Q (Queries) from its own layer. Only the top encoder's output is used, not all intermediate layers."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_035",
+        "question": "You are building a machine translation system that needs to handle sentences up to 500 tokens long, but your training data only has sentences up to 200 tokens. Which positional encoding method would handle this better?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Learned positional embeddings, because they're more accurate",
+            "B) Sinusoidal positional encoding, because it generalizes to unseen lengths",
+            "C) No positional encoding, the model infers position from context",
+            "D) Random positional noise, to encourage robustness"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "positional-encoding",
+            "generalization",
+            "system-design"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "Sinusoidal positional encoding (sine/cosine) can scale to sequence lengths unseen during training because it uses mathematical functions rather than learned parameters. Learned embeddings can only generalize up to the max training length. This is explicitly noted as an advantage in the original Transformer paper."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_036",
+        "question": "What does the WO weight matrix do in multi-head attention?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Initializes Q/K/V matrices for each head",
+            "B) Projects the concatenated multi-head outputs back to model dimension",
+            "C) Applies layer normalization after attention",
+            "D) Computes positional encoding"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multi-head-attention",
+            "WO",
+            "projection"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "After concatenating 8 attention head outputs (each of dim 64 → concat gives 512-dim), WO is a weight matrix that projects this concatenation back to the expected model dimension (512). This is also a learned matrix trained end-to-end with the rest of the model."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_037",
+        "question": "In training, which method is used to represent target words as model outputs?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Word2Vec embeddings",
+            "B) One-hot encoding over the output vocabulary",
+            "C) Continuous bag of words",
+            "D) TF-IDF vectors"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training",
+            "one-hot",
+            "output-representation"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Target words are represented as one-hot vectors over the output vocabulary. The model's softmax output (probability distribution) is compared to this one-hot target using cross-entropy loss. Word2Vec and TF-IDF are input representations, not output targets for generation."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_038",
+        "question": "A colleague claims: 'Since all encoders in the Transformer stack are identical in structure, they must process the input in the same way and produce the same outputs.' What is wrong with this statement?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Nothing is wrong — identical structure means identical outputs",
+            "B) Encoders have different structures at different depths",
+            "C) Although structure is identical, each encoder has different learned weights and receives different inputs",
+            "D) Only the top encoder is identical; lower encoders differ"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "encoder",
+            "weights",
+            "misconception"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Identical structure ≠ identical behavior. Each encoder has its own independently learned weight matrices (WQ, WK, WV, WO, FFN weights). Additionally, each encoder receives different inputs — the bottom encoder gets embeddings, while upper encoders get outputs from the one below. Structure is a blueprint; weights and inputs determine actual behavior."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_039",
+        "question": "You are serving a Transformer translation model in production and need to minimize latency. Which TWO changes would most directly reduce inference time? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Reduce beam search beam size from 5 to 1 (greedy decoding)",
+            "B) Increase number of attention heads from 8 to 16",
+            "C) Reduce the number of decoder layers",
+            "D) Increase embedding dimension"
+        ],
+        "correct_indices": [
+            0,
+            2
+        ],
+        "tags": [
+            "inference",
+            "latency",
+            "system-design"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "explanation": "A) Greedy decoding (beam=1) eliminates multiple hypothesis tracking → significant speed gain. C) Fewer decoder layers means fewer sequential autoregressive steps to compute → direct latency reduction. B) More attention heads increase computation. D) Larger embeddings increase memory and compute. Note that encoder parallelism doesn't help as much as decoder changes since decoding is inherently sequential."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_040",
+        "question": "Why is the decoder generation process inherently sequential (autoregressive) even though the encoder is fully parallel?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The decoder uses RNNs internally",
+            "B) Each decoder output token is conditioned on all previously generated tokens",
+            "C) The encoder-decoder attention prevents parallelism",
+            "D) The decoder stack has more layers than the encoder"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "decoder",
+            "autoregressive",
+            "sequential"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Each decoder step generates one token, which is then fed back as input for the next step. Token t+1 depends on token t's output — this creates a sequential dependency. The masked self-attention also enforces this: at inference time, only previously generated tokens are available. The encoder has no such sequential dependency."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_041",
+        "question": "Analyze this multi-head attention implementation. What is missing?\n\ndef multi_head_attention(X, WQs, WKs, WVs):\n    heads = []\n    for WQ, WK, WV in zip(WQs, WKs, WVs):\n        Q = X @ WQ\n        K = X @ WK\n        V = X @ WV\n        z = self_attention(Q, K, V)\n        heads.append(z)\n    concatenated = np.concatenate(heads, axis=-1)\n    return concatenated",
+        "type": "multiple_choice",
+        "options": [
+            "A) The self_attention function call is incorrect",
+            "B) The final projection through WO weight matrix is missing",
+            "C) The heads should be summed, not concatenated",
+            "D) Layer normalization should be applied inside the loop"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multi-head-attention",
+            "code",
+            "debugging"
+        ],
+        "difficulty": "hard",
+        "category": "debugging",
+        "explanation": "The code correctly computes individual heads and concatenates them, but is missing the final projection: `return concatenated @ WO`. Without WO, the output dimension is num_heads × dk instead of the model dimension (d_model). The WO matrix is essential to project back to d_model=512. Summing heads (C) would discard individual head information."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_042",
+        "question": "When training a Transformer on a seq2seq task, teacher forcing is commonly used. What does this mean in the context of the Transformer decoder?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The teacher (larger model) trains the student (smaller) model",
+            "B) Ground truth target tokens are fed as decoder input during training, not the model's own predictions",
+            "C) A separate teacher network computes the loss",
+            "D) The encoder is frozen while only the decoder is trained"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training",
+            "teacher-forcing",
+            "decoder"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "Teacher forcing means during training, the decoder receives ground truth tokens as input (shifted right) rather than its own predictions. This stabilizes training — if the model makes an early error, subsequent tokens still get correct context. At inference, the model uses its own predictions (autoregressive). This train/inference discrepancy is called 'exposure bias'."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_043",
+        "question": "What is 'exposure bias' in the context of Transformer sequence generation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model being exposed to too much training data",
+            "B) A mismatch between training (teacher forcing) and inference (using own predictions) input distributions",
+            "C) Attention heads being biased toward nearby tokens",
+            "D) Positional encoding causing bias for early positions"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training",
+            "exposure-bias",
+            "teacher-forcing"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "Exposure bias occurs because during training, the decoder sees ground truth tokens (teacher forcing), but at inference it must use its own (potentially wrong) predictions. This distributional mismatch can cause error accumulation during inference — errors compound because the model was never trained to recover from its own mistakes."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_044",
+        "question": "You are comparing a 6-layer Transformer encoder to a 6-layer bidirectional LSTM for a sentence classification task. Which statement most accurately describes a key difference?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The LSTM can capture long-range dependencies better than the Transformer",
+            "B) The Transformer computes attention between all token pairs in one step; the LSTM must process sequentially",
+            "C) The Transformer cannot handle variable-length inputs",
+            "D) The LSTM uses self-attention while the Transformer does not"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer-vs-rnn",
+            "tradeoff",
+            "comparison"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "explanation": "The Transformer's self-attention computes direct connections between all token pairs simultaneously in O(1) operations, making long-range dependencies easier to capture. LSTMs process tokens sequentially and rely on hidden state to carry information, which degrades over long sequences. Option A has it backwards — Transformers generally handle long-range dependencies better."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_045",
+        "question": "Which component of the Transformer is responsible for the model's ability to translate a sentence into a different language token by token at inference time?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The encoder stack only",
+            "B) The positional encoding module",
+            "C) The decoder stack with cross-attention to encoder outputs",
+            "D) The feed-forward layers in the encoder"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "decoder",
+            "inference",
+            "translation"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Token-by-token generation is handled by the decoder. At each step, the decoder attends to previously generated tokens (masked self-attention) and the encoder's representation (cross-attention), then projects through linear+softmax to produce the next token. The encoder alone cannot generate — it only produces representations."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_046",
+        "question": "What is the complexity of self-attention with respect to sequence length n?",
+        "type": "multiple_choice",
+        "options": [
+            "A) O(n)",
+            "B) O(n log n)",
+            "C) O(n²)",
+            "D) O(n³)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "self-attention",
+            "complexity",
+            "scalability"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "Self-attention computes pairwise scores between all n tokens → O(n²) time and memory complexity. This is why vanilla Transformers struggle with very long sequences (e.g., 10k+ tokens). This quadratic scaling motivated variants like Longformer, Linformer, and FlashAttention to reduce complexity. Practical tip: This is a frequent AI engineer interview question."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_047",
+        "question": "You are building a document summarization system for 10,000-token legal documents using the original Transformer. What is the PRIMARY architectural challenge?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The decoder cannot handle multi-sentence outputs",
+            "B) Self-attention's O(n²) memory and compute scales poorly to 10k tokens",
+            "C) Positional encoding only supports up to 512 positions",
+            "D) The feed-forward network cannot process legal vocabulary"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "long-context",
+            "scalability",
+            "system-design"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "explanation": "The original Transformer's self-attention requires computing a 10,000 × 10,000 attention matrix per layer per head — both memory and compute grow quadratically. At 10k tokens this is 100M attention values per head per layer, which is prohibitive. Modern solutions: sparse attention (Longformer), linear attention, or chunked processing. Positional encoding is not the bottleneck here."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_048",
+        "question": "Which of the following is NOT a component that the Transformer's encoder uses?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Multi-head self-attention",
+            "B) Position-wise feed-forward network",
+            "C) Residual connections and layer normalization",
+            "D) Masked future token prevention"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "encoder",
+            "masking",
+            "misconception"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Masking future tokens (causal masking) is specific to the DECODER's self-attention, not the encoder. The encoder can attend to all positions freely since the full input is available. Encoders use A, B, and C. This is a common misconception — BERT uses encoder-only architecture precisely because it can attend bidirectionally."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_049",
+        "question": "During the encoding of 'Thinking Machines', when computing self-attention for the word 'Thinking', which score calculation is performed first?",
+        "type": "multiple_choice",
+        "options": [
+            "A) dot(q1, v1) — query of 'Thinking' with value of 'Thinking'",
+            "B) dot(q1, k1) — query of 'Thinking' with key of 'Thinking'",
+            "C) dot(k1, q2) — key of 'Thinking' with query of 'Machines'",
+            "D) dot(v1, v2) — value of 'Thinking' with value of 'Machines'"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "score-calculation",
+            "mechanism"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "When computing self-attention for 'Thinking' (position 1), scores are computed by dot(q1, k_j) for all j. The first score is dot(q1, k1) — query of current word with its own key — which typically has the highest score. Scores use Q of current position and K of all positions, not V vectors."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_050",
+        "question": "What is the purpose of the <EOS> (end-of-sentence) token in Transformer decoding?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It marks the start of the source sentence",
+            "B) It signals the decoder to stop generating tokens",
+            "C) It separates the encoder from decoder inputs",
+            "D) It is used only during training, not inference"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "decoding",
+            "eos-token",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The EOS token signals the decoder to stop the generation loop. At each inference step, the decoder generates one token. When it generates EOS, the output sequence is complete. Without EOS, the model would generate tokens indefinitely. EOS is also part of the output vocabulary and trained with cross-entropy like any other token."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_051",
+        "question": "What is the fundamental purpose of word embeddings according to the source?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To compress text files for faster storage and retrieval",
+            "B) To turn words into numerical vectors so ML models can process text instead of raw strings",
+            "C) To translate words between different languages using lookup tables",
+            "D) To tokenize sentences into subword units for transformer input"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word-embeddings",
+            "fundamentals",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The source states the core idea directly: word embeddings 'turn words into numerical vectors so ML models (which expect continuous values) can process text instead of raw strings.' ML models fundamentally operate on continuous numerical values — they cannot directly ingest raw strings like 'apple' or 'king.' Embeddings bridge this gap. The source summarizes the goal as converting language into numbers, making textual meaning machine-readable."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_052",
+        "question": "What two key properties do word embeddings provide compared to raw text representations?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Lossless compression and exact reconstruction",
+            "B) Dimensionality reduction and contextual similarity",
+            "C) Tokenization and morphological analysis",
+            "D) Part-of-speech tagging and syntactic parsing"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word-embeddings",
+            "properties",
+            "dimensionality-reduction"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The source explicitly lists the two key properties: 'dimensionality reduction and contextual similarity.' Dimensionality reduction: embeddings map from a high-dimensional sparse space (vocabulary size) to a low-dimensional dense space (embedding dim). Contextual similarity: words used in similar contexts end up close together in the vector space, encoding semantic relationships. These two properties together make embeddings far more useful than raw string representations or one-hot vectors."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_053",
+        "question": "Why is Bag-of-Words (BoW) considered inferior to word embeddings for representing text?",
+        "type": "multiple_choice",
+        "options": [
+            "A) BoW requires labeled data whereas embeddings are unsupervised",
+            "B) BoW creates huge sparse one-hot vectors with dimension equal to vocabulary size, while embeddings create dense low-dimensional vectors that are more efficient and expressive",
+            "C) BoW cannot represent out-of-vocabulary words while embeddings can generalize to new words",
+            "D) BoW only works for English text while embeddings are language-agnostic"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bag-of-words",
+            "word-embeddings",
+            "comparison"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The source directly contrasts: 'BoW creates huge sparse one-hot vectors with dimension equal to vocabulary size' while 'Embeddings create dense low-dimensional word vectors that are more efficient and expressive.' For a vocabulary of 100,000 words, a BoW vector has 100,000 dimensions with exactly one 1 and 99,999 zeros — hugely wasteful and encoding no semantic information. An embedding reduces this to e.g. 300 dense dimensions where geometric proximity encodes meaning. The sparsity of BoW also makes matrix operations computationally expensive and memory-intensive."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_054",
+        "question": "How does contextual similarity work in word embeddings? What makes words end up close together in vector space?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Words with the same spelling patterns (prefixes/suffixes) cluster together",
+            "B) Words appearing in similar contexts (e.g., fruit words appearing near 'grown', 'picked', 'juiced') end up close together in vector space",
+            "C) Words with the same frequency in the corpus are placed at equal distances",
+            "D) Words belonging to the same grammatical category (nouns, verbs) cluster together"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "contextual-similarity",
+            "word-embeddings",
+            "distributional-hypothesis"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The source uses the fruit example: 'Words appearing in similar contexts (e.g., fruit words near grown, picked, juiced) end up close together in vector space.' This reflects the distributional hypothesis in linguistics: 'a word is characterized by the company it keeps' (Firth, 1957). Apples, oranges, and mangoes all appear near the same context words, so their embeddings converge. This is why semantic similarity emerges naturally from the training process — no explicit semantic labels are needed."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_055",
+        "question": "What is the precise definition of word embedding given in the source?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A lookup table mapping word IDs to fixed random vectors",
+            "B) Building a low-dimensional vector representation from a text corpus that preserves contextual similarity between words",
+            "C) A one-hot encoding scheme that assigns each word a unique binary identifier",
+            "D) A hash function mapping word strings to fixed-length numerical codes"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word-embeddings",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The source's formal definition: 'Building a low-dimensional vector representation from a text corpus that preserves contextual similarity between words.' Three components are essential: (1) low-dimensional — far smaller than vocabulary size; (2) from a text corpus — learned from data, not hand-crafted; (3) preserves contextual similarity — the geometric structure of the vector space reflects semantic/contextual relationships. This distinguishes embeddings from arbitrary encodings like hash maps or one-hot vectors, which don't preserve any meaningful structure."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_056",
+        "question": "Word2Vec is described as which type of algorithm?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A deep reinforcement learning algorithm for text generation",
+            "B) A popular algorithm for learning word embeddings using a shallow two-layer neural network, acting as unsupervised dimensionality reduction over text",
+            "C) A supervised classification algorithm for sentiment analysis",
+            "D) A recurrent neural network for sequence-to-sequence translation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word2vec",
+            "definition",
+            "shallow-network"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The source describes Word2Vec as 'a popular algorithm for learning word embeddings using a shallow two-layer neural network' that 'acts as an unsupervised dimensionality reduction technique over text.' Key distinctions: (1) shallow — only two layers, NOT deep learning despite being a neural network; (2) unsupervised — no labels required, learns from raw text; (3) dimensionality reduction — maps from high-dimensional one-hot space to low-dimensional embedding space. The source explicitly notes Word2Vec is NOT deep learning because of its shallow architecture."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_057",
+        "question": "In CBOW (Continuous Bag-of-Words), what are the inputs and what is being predicted?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Input: target word; Predicts: surrounding context words",
+            "B) Input: surrounding context words; Predicts: the target (center) word",
+            "C) Input: sentence; Predicts: next sentence",
+            "D) Input: document; Predicts: document topic label"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cbow",
+            "word2vec",
+            "prediction-task"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "CBOW: 'Takes surrounding context words as input' and 'tries to predict the target (center) word.' Example: given context ['the', 'cat', 'on', 'mat'], predict the missing center word 'sat.' CBOW aggregates context window words (hence 'bag' — order doesn't matter) and predicts what word fits in the middle. This is essentially fill-in-the-blank prediction. CBOW tends to perform better on frequent words and trains faster. The reverse task (Skip-gram) takes the target and predicts context."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_058",
+        "question": "In Skip-gram, what are the inputs and what is being predicted?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Input: surrounding context words; Predicts: the center word",
+            "B) Input: a target word; Predicts: surrounding context words in a fixed window",
+            "C) Input: sentence pairs; Predicts: semantic similarity score",
+            "D) Input: character n-grams; Predicts: full word token"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "skip-gram",
+            "word2vec",
+            "prediction-task"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Skip-gram: 'Takes a target word as input' and 'tries to predict surrounding context words in a fixed window.' Example: given target word 'sat', predict context words ['the', 'cat', 'on', 'mat']. Skip-gram 'skips' around the center word to predict neighbors — hence the name. It makes multiple predictions per training example (one per context position), which makes it slower but better at capturing rare word representations compared to CBOW. Skip-gram is the variant behind most of the famous 'king - man + woman = queen' demonstrations."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_059",
+        "question": "What is the network structure of Word2Vec, and which component serves as the embedding?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Three layers (input → hidden → hidden → output); the second hidden layer is the embedding",
+            "B) Two layers: one-hot input → hidden linear layer → softmax output; the hidden-layer weight matrix IS the embedding matrix, used as a lookup table",
+            "C) Convolutional layers followed by global average pooling; the pooled vector is the embedding",
+            "D) Recurrent layers that process each character sequentially; the final hidden state is the embedding"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word2vec",
+            "network-structure",
+            "embedding-matrix"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The source: 'Inputs are one-hot encoded vectors for words. Passed through: one hidden linear layer → softmax output layer. The hidden-layer weight matrix is the embedding matrix, used as a lookup table for word vectors.' The key insight: the weight matrix W ∈ R^(vocab × embed_dim) learned during training IS the embedding. Multiplying a one-hot vector [0,0,1,0,...] by W simply selects the row corresponding to that word — an O(1) lookup. This is why Word2Vec training is equivalent to learning a good embedding table, even though it's framed as a prediction task."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_060",
+        "question": "What is the size of the embedding matrix in Word2Vec, and how is a word's vector retrieved?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Size: (embed_dim × embed_dim); retrieved by matrix multiplication of two embedding vectors",
+            "B) Size: (vocabulary size × embedding dimension), e.g., 10,000 × 300; each word's vector is an O(1) row lookup",
+            "C) Size: (sequence_length × embed_dim); retrieved by averaging all row vectors",
+            "D) Size: (embed_dim × vocabulary size); retrieved by multiplying the embedding by the word's frequency"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embedding-matrix",
+            "word2vec",
+            "lookup"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The source: 'Size of embedding matrix = (vocabulary size) × (embedding dimension), e.g., 10,000 × 300. Each word's vector is obtained by an O(1) row lookup in this matrix.' For a 10,000-word vocabulary with 300-dimensional embeddings, the matrix has 10,000 rows (one per word) and 300 columns (one per embedding dimension). Looking up word ID 42 means returning row 42 — O(1) regardless of vocabulary size. This is why in PyTorch, nn.Embedding is backed by a matrix and forward() is just an index operation. The 10K×300 example gives 3 million parameters — that's the full embedding table."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_061",
+        "question": "What is the tradeoff when choosing the embedding dimension size?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Larger embeddings always perform better — there is no downside to increasing dimension",
+            "B) Larger size gives more nuanced representations but requires more computation; smaller size is faster but less expressive",
+            "C) Smaller embeddings always perform better because they prevent overfitting",
+            "D) Embedding size must exactly equal the vocabulary size for mathematical consistency"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embedding-dimension",
+            "tradeoff",
+            "hyperparameter"
+        ],
+        "difficulty": "easy",
+        "category": "tradeoff",
+        "explanation": "The source: 'larger size → more nuanced representations but more computation; smaller size → faster but less expressive.' This is a classic capacity vs. efficiency tradeoff. 300-dimensional embeddings (Word2Vec original) capture rich semantics but require 300× more storage and computation than 1D. Typical practical choices: 50-300 for Word2Vec/GloVe, 512-1024 for transformer embeddings (d_model), 12,288 for GPT-3. The source notes embed size is 'typically in the hundreds, much smaller than vocabulary size' (vocabulary is usually 10K-100K+). Choosing too small loses information; too large wastes compute and may overfit on small datasets."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_062",
+        "question": "What does the famous vector arithmetic 'King − Man + Woman ≈ Queen' demonstrate about word embeddings?",
+        "type": "multiple_choice",
+        "options": [
+            "A) That embeddings are exact mathematical encodings of dictionary definitions",
+            "B) That embeddings encode contextual relationships (like gender, tense, geography) as consistent geometric directions, enabling meaningful vector arithmetic",
+            "C) That embedding vectors are always unit vectors with magnitude exactly 1",
+            "D) That all word pairs have exactly the same cosine similarity if they are in the same semantic category"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "vector-arithmetic",
+            "word-analogies",
+            "semantic-relationships"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The source: 'Because vectors encode contextual relationships, you can do arithmetic like King − Man + Woman ≈ Queen. These relationships can capture gender, tense, geography, and other semantic dimensions.' The vector (King - Man) isolates the 'royalty' direction; adding 'Woman' vector gives the female royalty concept. This works because the embedding space has consistent directions for semantic dimensions — the gender direction (Man→Woman) is roughly constant across many word pairs (King→Queen, Actor→Actress, Boy→Girl). This emergent structure from purely unsupervised training on raw text is one of the most remarkable properties of word embeddings."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_063",
+        "question": "What is GloVe and how does it fundamentally differ from Word2Vec?",
+        "type": "multiple_choice",
+        "options": [
+            "A) GloVe uses a deep convolutional network; Word2Vec uses a shallow network",
+            "B) GloVe relies on global word co-occurrence counts across the entire corpus; Word2Vec uses local context prediction (predicting nearby words within a window)",
+            "C) GloVe produces character-level embeddings; Word2Vec produces word-level embeddings",
+            "D) GloVe requires labeled data; Word2Vec is fully unsupervised"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "glove",
+            "word2vec",
+            "comparison",
+            "co-occurrence"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The source: 'GloVe is another word embedding method that relies on global word co-occurrence counts. It differs from Word2Vec's local context prediction approach.' GloVe (Global Vectors) builds a co-occurrence matrix counting how often each word pair appears across the entire corpus, then factorizes this matrix to produce embeddings. Word2Vec's CBOW/Skip-gram instead trains on local sliding windows, treating it as a prediction task. GloVe's global statistics can capture corpus-wide patterns better; Word2Vec's local approach is more computationally efficient. Both produce similar quality embeddings in practice, which is why both remain popular."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_064",
+        "question": "The source explicitly clarifies that Word2Vec is NOT deep learning. Why not, and how do embeddings connect to deep learning?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Word2Vec is not deep learning because it doesn't use backpropagation",
+            "B) Word2Vec is not deep learning because it is a shallow two-layer network; but learned embeddings serve as numeric input features for deep models like RNNs and other neural architectures",
+            "C) Word2Vec is not deep learning because it's trained unsupervised, and deep learning requires supervised training",
+            "D) Word2Vec is not deep learning because it only processes single words, not sequences"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word2vec",
+            "deep-learning",
+            "shallow-network"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The source: 'Word2Vec itself is a shallow (two-layer) network, so it is not deep learning. Learned embeddings serve as numeric input features for deep models like RNNs and other neural architectures.' Deep learning typically refers to models with many layers (3+) enabling hierarchical feature learning. Word2Vec has only 2 layers: input + output (with no nonlinearity in the hidden layer). However, Word2Vec's OUTPUT — the learned embedding matrix — is extremely valuable as INPUT to deep networks. In practice, pre-trained embeddings (Word2Vec, GloVe) were used to initialize the embedding layers of LSTMs, RNNs, and later transformers, enabling transfer learning before BERT popularized contextual embeddings."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_065",
+        "question": "You are building a sentiment classifier for product reviews with a vocabulary of 50,000 words. You're deciding between BoW and word embeddings. What are the concrete dimensions you would be comparing?",
+        "type": "multiple_choice",
+        "options": [
+            "A) BoW: 50,000-dimensional sparse vectors; Embeddings: ~300-dimensional dense vectors",
+            "B) BoW: 300-dimensional dense vectors; Embeddings: 50,000-dimensional sparse vectors",
+            "C) Both produce 50,000-dimensional vectors — the difference is only in sparsity",
+            "D) BoW: 1-dimensional frequency count; Embeddings: 50,000-dimensional contextual vectors"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "bag-of-words",
+            "word-embeddings",
+            "dimensionality",
+            "practical"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "BoW for a 50,000-word vocabulary produces one-hot vectors of dimension 50,000 — exactly one non-zero entry per word. For a review with 100 unique words, you'd have a 50,000-dim vector with ~100 ones and 49,900 zeros. Word embeddings would give each word a ~300-dim dense vector. The practical implications: (1) BoW requires 50,000 input neurons vs. 300; (2) BoW 'apple' and 'orange' vectors are orthogonal (no similarity), while embeddings place them close together; (3) BoW bag of words for a full document averages 50,000-dim vectors, losing all ordering; (4) BoW matrix for all reviews would be 50,000 columns, mostly zeros — huge wasted storage."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_066",
+        "question": "Why is the embedding lookup an O(1) operation despite the embedding matrix having millions of entries?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because embeddings are cached in GPU memory for instant access",
+            "B) Because a word ID is simply a row index — retrieving row i from a matrix requires no searching or computation, just a memory address offset",
+            "C) Because embedding matrices are sparse and most entries are zero",
+            "D) Because embedding vectors are computed on-demand using a hash function"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embedding-lookup",
+            "O(1)-complexity",
+            "implementation"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The source: 'Each word's vector is obtained by an O(1) row lookup in this matrix.' A row lookup in a contiguous 2D array is constant time: given row index i, the memory address is: base_address + i × (row_size × element_size). This is a single arithmetic operation regardless of matrix size. In PyTorch, nn.Embedding(vocab_size, embed_dim) is backed by a tensor, and forward(word_ids) uses torch.index_select — effectively pointer arithmetic. The 'one-hot times weight matrix' framing helps conceptually, but in practice it's always implemented as a direct index operation, never as an actual matrix multiplication (which would be O(vocab_size × embed_dim))."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_067",
+        "question": "Which of the following analogies does word embedding enable that is NOT possible with Bag-of-Words representations?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Counting the frequency of 'positive' words vs. 'negative' words in a review",
+            "B) Paris − France + Italy ≈ Rome (geographic capital relationship encoded in vector arithmetic)",
+            "C) Checking whether a specific word appears in a document",
+            "D) Computing the TF-IDF score of a word across documents"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "vector-arithmetic",
+            "bag-of-words-limitations",
+            "semantic-relationships"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Vector arithmetic like 'Paris − France + Italy ≈ Rome' requires the embedding space to encode geographic relationships as consistent geometric directions. BoW vectors are orthogonal one-hot representations — 'Paris' and 'Rome' are simply different directions with no geometric relationship. Subtraction and addition of BoW vectors is meaningless. Options A, C, and D are all computable with BoW: (A) sum positive word counts; (C) check if the dimension for that word is non-zero; (D) TF-IDF is explicitly a BoW technique. Only analogical reasoning via vector arithmetic is uniquely enabled by embeddings encoding semantic structure geometrically."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_068",
+        "question": "Examine this embedding implementation. What is the conceptual error?\n\nclass WordEmbedding:\n    def __init__(self, vocab_size, embed_dim):\n        self.matrix = np.random.randn(embed_dim, vocab_size)  # embed_dim × vocab_size\n    \n    def lookup(self, word_id):\n        return self.matrix[:, word_id]  # column lookup",
+        "type": "multiple_choice",
+        "options": [
+            "A) The matrix should be initialized to zeros, not random values",
+            "B) The matrix dimensions are transposed — it should be (vocab_size × embed_dim) so each row is a word vector; column lookup in a (embed_dim × vocab_size) matrix gives a scalar per embed dimension rather than a vector",
+            "C) The lookup should use matrix multiplication, not column indexing",
+            "D) embed_dim should be larger than vocab_size for the embedding to work"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embedding-matrix",
+            "debugging",
+            "dimensions"
+        ],
+        "difficulty": "medium",
+        "category": "debugging",
+        "explanation": "The source: 'Size of embedding matrix = (vocabulary size) × (embedding dimension), e.g., 10,000 × 300.' The correct shape is (vocab_size × embed_dim) so that row i is the embed_dim-dimensional vector for word i. In the buggy code, matrix is (embed_dim × vocab_size), and matrix[:, word_id] would return a column of length embed_dim — which technically gives the right shape! However, the conventional and correct layout is row-major: matrix[word_id] returns the word vector. The transposed layout would still work functionally in this case, but breaks when you want to update a specific word's embedding (you'd need matrix[:, word_id] = new_vec), and breaks compatibility with PyTorch's nn.Embedding which uses (vocab × dim) convention. Fix: self.matrix = np.random.randn(vocab_size, embed_dim); return self.matrix[word_id]."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_069",
+        "question": "Why does the source describe word embeddings as the goal of making language 'machine-readable'? What limitation does this specifically address?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Computers cannot store strings in memory, so embeddings provide the only way to persist text",
+            "B) ML algorithms require continuous numerical inputs for operations like gradient descent and distance computation — raw strings have no notion of 'similarity' or 'distance' that algorithms can exploit",
+            "C) Embeddings enable computers to understand grammar rules that raw text cannot encode",
+            "D) Machine-readable means compressible — embeddings reduce file sizes for NLP datasets"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word-embeddings",
+            "machine-readable",
+            "nlp-fundamentals"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The source closes with: 'Overall goal: convert language into numbers so algorithms (including deep nets) can ingest and process natural language more effectively. Word embeddings are essentially language, as numbers, making textual meaning machine-readable.' The core issue: ML algorithms like gradient descent operate on real-valued functions — they compute derivatives, distances, and dot products. You cannot take the derivative with respect to the string 'apple' or compute the L2 distance between 'apple' and 'orange.' Embeddings map these strings to vectors in R^d, where all numerical operations are defined. The embedded vectors also carry semantic information (similarity, relationships) that raw strings lack."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_070",
+        "question": "A team trains a Skip-gram model on a news corpus and a separate one on a medical corpus. Which statement about the resulting embeddings is most accurate based on the contextual similarity principle?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Both models will produce identical embeddings because the words are the same",
+            "B) 'Bank' will cluster near 'river' and 'water' in the news model (news context), but near 'blood' and 'vessel' in the medical model (medical context), illustrating domain-specific contextual similarity",
+            "C) Medical embeddings will always be higher quality because medical text is more structured",
+            "D) Skip-gram cannot be applied to medical text because it was designed for general language"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word-embeddings",
+            "domain-specific",
+            "contextual-similarity",
+            "application"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "explanation": "The contextual similarity principle says words appearing in similar contexts cluster together. In news corpora, 'bank' appears near 'river,' 'flood,' 'water' (geographic) AND 'money,' 'loan,' 'interest' (financial). In medical corpora, 'bank' appears near 'blood bank,' 'tissue,' 'organ' (medical storage), clustering it near entirely different words. Similarly, 'coronary' would be near 'artery' and 'bypass' in medical text, but might barely appear in news. This domain dependence is why pre-trained general embeddings (Word2Vec trained on Google News) sometimes perform poorly on specialized domains, motivating domain-specific or fine-tuned embeddings like BioBERT, FinBERT, etc."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_071",
+        "question": "The source says embedding size is 'typically in the hundreds, much smaller than vocabulary size.' For GPT-3 with d_model=12,288 and vocabulary ~50,257, does this principle hold?",
+        "type": "multiple_choice",
+        "options": [
+            "A) No — GPT-3 violates this principle since d_model is large",
+            "B) Yes — even at d_model=12,288, the embedding dimension is still ~4× smaller than the 50,257 vocabulary size, maintaining the dimensionality reduction property",
+            "C) The comparison does not apply because transformer embeddings are different from word2vec embeddings",
+            "D) GPT-3 uses one-hot vectors, not dense embeddings"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embedding-dimension",
+            "gpt-3",
+            "dimensionality-reduction"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The principle holds: even GPT-3's d_model=12,288 is substantially smaller than its vocabulary of ~50,257 — a ratio of roughly 1:4. Word2Vec typically uses 300 vs. 10,000-50,000 vocabulary (ratio ~1:30 to 1:160). GPT-3's much larger embedding dimension (12,288 vs. 300) reflects its ability to represent richer semantic structure with billions of parameters supporting it, but the fundamental property — embedding dimension << vocabulary size — is maintained. A true one-hot encoding of GPT-3's vocabulary would require 50,257-dimensional vectors with 49,256 wasted zeros per token. The embedding matrix is 50,257 × 12,288 ≈ 617M parameters — the single largest component of GPT-3."
+    },
+    {
+        "id": "Transformer_IllustratedTransformer_072",
+        "question": "What would happen if you used the OUTPUT layer of Word2Vec (after softmax) as word vectors instead of the hidden layer weight matrix?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Nothing would change — the output layer produces the same representation as the hidden layer",
+            "B) The output layer produces probability distributions over vocabulary (summing to 1), not semantic embeddings — these would be poor word representations because they capture prediction probability, not contextual meaning",
+            "C) Output layer vectors would be better because they are normalized by softmax",
+            "D) The output layer is always discarded and never contains meaningful information"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word2vec",
+            "embedding-extraction",
+            "network-structure"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The source specifies: 'The hidden-layer weight matrix is the embedding matrix.' The output layer of Word2Vec (after softmax) produces a probability distribution over all vocabulary words — e.g., [0.001, 0.0003, 0.002, ...] summing to 1. These probabilities answer 'what word comes in this context?' not 'what does this word mean semantically?' The hidden layer weights, however, encode the compact learned representation that captures contextual meaning. Note: in practice, Word2Vec actually has TWO weight matrices (input embedding matrix and output context matrix), and researchers have experimented with averaging both — but the hidden layer (input embedding matrix) is the canonical choice for downstream tasks."
+    }
+]

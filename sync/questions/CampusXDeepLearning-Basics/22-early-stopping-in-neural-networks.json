@@ -1,0 +1,86 @@
+[
+    {
+        "id": "Early-Stopping_001",
+        "question": "A deep learning engineer trains a neural network for 5,000 epochs. They observe that the training loss continues to decrease towards zero, but the validation loss starts to steadily increase after epoch 300. What is this phenomenon, and how does Early Stopping address it?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Underfitting; Early stopping increases the learning rate to force the model to learn the validation data.",
+            "B) Overfitting; Early stopping automatically halts the training process when validation performance stops improving, preventing the model from merely memorizing the training data.",
+            "C) Vanishing Gradients; Early stopping resets the weights to random values every 300 epochs to prevent gradients from reaching zero.",
+            "D) Data Leakage; Early stopping removes duplicate rows between the training and validation datasets during the fit method."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "early_stopping",
+            "overfitting",
+            "training_dynamics"
+        ],
+        "difficulty": "easy",
+        "explanation": "The scenario described is the classic definition of overfitting: the model learns the training data too well (memorizing noise) and loses its ability to generalize to unseen validation data. Early Stopping acts as a regularization technique by monitoring the validation loss and terminating training exactly when this divergence begins, ensuring the model retains its generalization capability. Option A is false; validation loss increasing is not underfitting. Option C is false; early stopping does not reset weights to fix gradient flow. Option D describes a dataset preparation error, not an epoch-based training dynamic."
+    },
+    {
+        "id": "Early-Stopping_002",
+        "question": "In the Keras framework, how is Early Stopping technically integrated into the neural network's training loop?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It is passed as a list of callbacks directly into the `model.fit()` method, allowing it to execute evaluation logic at the end of every epoch.",
+            "B) It is defined as a custom activation function inside the final Dense output layer of the model architecture.",
+            "C) It is configured inside the `model.compile()` method alongside the optimizer and loss function.",
+            "D) It is an independent wrapper function that encapsulates the entire Python script, forcefully shutting down the Python interpreter when loss plateaus."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "keras_implementation",
+            "callbacks",
+            "early_stopping"
+        ],
+        "difficulty": "medium",
+        "explanation": "In Keras, Early Stopping is implemented as a `Callback`. Callbacks are specialized objects passed to the `model.fit()` method via the `callbacks` argument (e.g., `callbacks=[early_stopping_obj]`). The training loop calls these objects at specific points in the training lifecycle (like the end of an epoch) to check conditions and potentially halt training if the monitored metric degrades. Option B is false; it is not an activation function. Option C is false; model compilation configures the static loss and optimizer architecture, not dynamic epoch-to-epoch monitoring. Option D is an absurd misrepresentation of how Python frameworks handle training loops."
+    },
+    {
+        "id": "Early-Stopping_003",
+        "question": "When configuring the Early Stopping callback, what is the exact operational function of the `patience` hyperparameter?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It determines the absolute maximum number of epochs the model is allowed to train, overriding the epochs argument in `model.fit()`.",
+            "B) It sets the time (in seconds) the GPU is allowed to pause and cool down between sequential epochs.",
+            "C) It specifies the number of consecutive epochs with no improvement in the monitored metric before the training is officially terminated.",
+            "D) It dictates how many misclassified data points the model will tolerate in a single batch before updating the weights."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "hyperparameters",
+            "patience",
+            "early_stopping"
+        ],
+        "difficulty": "easy",
+        "explanation": "The `patience` parameter adds a necessary buffer to the early stopping mechanism. Because loss curves during stochastic training can be 'noisy' or jittery (temporarily spiking up for a single epoch before going back down), setting `patience=5` tells the callback to wait for 5 consecutive epochs of zero improvement before officially halting the training. This prevents the model from stopping prematurely due to a minor, temporary statistical fluctuation. Option A describes the standard `epochs` argument itself. Option B is a fabricated hardware cooling concept. Option D describes a batch-level error threshold, which does not exist in standard early stopping logic."
+    },
+    {
+        "id": "Early-Stopping_004",
+        "question": "An engineer sets `patience=10` for their Early Stopping callback. The model reaches its lowest validation loss at epoch 50, but training continues and finally halts at epoch 60 due to the patience threshold. If the engineer left `restore_best_weights=False`, what state will the model be in after training finishes?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It retains the optimal weights from epoch 50, because Early Stopping always defaults to the best historical performance automatically.",
+            "B) It retains the weights from epoch 60, meaning the model is stuck with the sub-optimal, overfitted weights present at the exact moment training stopped.",
+            "C) It reverts to the initial random weights from epoch 1, requiring the engineer to manually trigger a new training session.",
+            "D) It calculates a mathematical average of the weights from epochs 50 through 60 to smooth out the overfitting curve."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "restore_best_weights",
+            "early_stopping",
+            "keras_behavior"
+        ],
+        "difficulty": "hard",
+        "explanation": "When `restore_best_weights=False` (which is historically the default in Keras), the framework simply terminates the training loop and leaves the model exactly as it is in memory. In this scenario, training stopped at epoch 60, meaning the model retains the weights from epoch 60, which correspond to the degraded, overfitted state that triggered the 10-epoch patience limit. To ensure the model automatically reverts to the optimal weights discovered at epoch 50, the engineer must explicitly pass `restore_best_weights=True` to the callback. Options A, C, and D are factually incorrect regarding how the Keras backend handles memory states upon loop termination."
+    }
+]

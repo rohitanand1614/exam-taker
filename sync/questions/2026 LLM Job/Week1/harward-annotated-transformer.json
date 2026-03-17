@@ -1,0 +1,1104 @@
+[
+    {
+        "id": "Transformer_AnnotatedTransformer_001",
+        "question": "What is the primary distinction between the Transformer and previous sequence transduction models like RNNs and CNNs?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Transformer uses convolutions instead of attention for faster computation",
+            "B) The Transformer is the first transduction model relying entirely on self-attention, without sequence-aligned RNNs or convolution",
+            "C) The Transformer uses bidirectional LSTMs to process both input and output sequences",
+            "D) The Transformer processes sequences character by character rather than as tokens"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer",
+            "self-attention",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The Annotated Transformer explicitly states: 'the Transformer is the first transduction model relying entirely on self-attention to compute representations of its input and output without using sequence aligned RNNs or convolution.' ConvS2S and ByteNet use CNNs but still require O(n) and O(log n) operations respectively to relate distant positions."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_002",
+        "question": "In CNN-based sequence models like ConvS2S and ByteNet, how does the number of operations to relate signals from two arbitrary positions scale with distance?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ConvS2S: O(1), ByteNet: O(log n)",
+            "B) ConvS2S: O(n), ByteNet: O(log n)",
+            "C) ConvS2S: O(log n), ByteNet: O(n)",
+            "D) Both: O(n²)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cnn-vs-transformer",
+            "complexity",
+            "long-range-dependencies"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The paper states: 'the number of operations required to relate signals from two arbitrary positions grows in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet.' The Transformer reduces this to O(1) constant operations — though at the cost of reduced effective resolution countered by Multi-Head Attention."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_003",
+        "question": "What is the PyTorch `EncoderDecoder` class's `forward` method doing at a high level?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Encoding the source and target sequences simultaneously in parallel",
+            "B) First encoding the source sequence, then decoding using that memory along with the target sequence",
+            "C) Embedding the source and target, then directly projecting to output vocabulary",
+            "D) Running the encoder and decoder independently with no shared information"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "encoder-decoder",
+            "code",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "category": "code",
+        "explanation": "The `forward` method calls `self.decode(self.encode(src, src_mask), src_mask, tgt, tgt_mask)` — it first encodes the source to produce `memory`, then decodes using that memory together with the target sequence and masks. This is the standard encoder-decoder pipeline: encode first, then decode conditioned on encoder output."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_004",
+        "question": "In the `Generator` class, what does `F.log_softmax(self.proj(x), dim=-1)` compute?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The raw logits before any normalization",
+            "B) A linear projection to vocab size followed by log-probability normalization (log-softmax)",
+            "C) The argmax of the logits across the vocabulary dimension",
+            "D) A softmax followed by a logarithm applied to the input embeddings"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generator",
+            "log-softmax",
+            "code"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "`self.proj` is an `nn.Linear(d_model, vocab)` layer that projects the d_model-dimensional vector to vocab-size logits. `F.log_softmax(..., dim=-1)` applies softmax and takes the log, producing log-probabilities — numerically stable for use with NLLLoss. Using log_softmax rather than softmax is standard practice because cross-entropy loss expects log-probabilities when using `nn.NLLLoss`."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_005",
+        "question": "What does the `clones(module, N)` function do in the Annotated Transformer implementation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Creates N references to the same module, sharing weights",
+            "B) Creates N deep copies of the module, each with independent weights",
+            "C) Creates N instances of the module with Xavier-initialized weights",
+            "D) Creates N shallow copies sharing all parameters except biases"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "clones",
+            "code",
+            "weight-sharing"
+        ],
+        "difficulty": "easy",
+        "category": "code",
+        "explanation": "`clones` uses `copy.deepcopy(module)` for each of N copies, returning an `nn.ModuleList`. Deep copies are independent — each has its own parameters. This is crucial: all N encoder layers have the same structure but different learned weights. Using references (shallow copies) would make all layers share weights, preventing independent learning."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_006",
+        "question": "In the `LayerNorm` implementation, what are `self.a_2` and `self.b_2`, and why are they initialized to ones and zeros respectively?",
+        "type": "multiple_choice",
+        "options": [
+            "A) They are fixed constants that cannot be learned during training",
+            "B) They are learnable scale (γ) and shift (β) parameters initialized to identity transform (scale=1, shift=0)",
+            "C) They are dropout masks applied before normalization",
+            "D) They are the running mean and variance for batch statistics"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "layer-norm",
+            "parameters",
+            "code"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "`self.a_2 = nn.Parameter(torch.ones(features))` is the learnable scale γ (initialized to 1 = identity scaling). `self.b_2 = nn.Parameter(torch.zeros(features))` is the learnable shift β (initialized to 0 = no shift). Initialized this way, LayerNorm starts as an identity transform: `1 * (x - mean)/(std + eps) + 0`. These are trained end-to-end. They are `nn.Parameter` — not fixed constants."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_007",
+        "question": "The `SublayerConnection` implements the residual connection as `x + self.dropout(sublayer(self.norm(x)))`. How does this differ from the original paper's specification?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It applies dropout after the residual addition, not before",
+            "B) It applies LayerNorm BEFORE the sublayer (pre-norm) rather than after (post-norm as in the paper)",
+            "C) It uses BatchNorm instead of LayerNorm",
+            "D) It omits the dropout entirely compared to the paper"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pre-norm",
+            "post-norm",
+            "residual-connection"
+        ],
+        "difficulty": "hard",
+        "category": "code",
+        "explanation": "The paper specifies LayerNorm(x + Sublayer(x)) — post-norm. The code implements x + Sublayer(Norm(x)) — pre-norm. The code comment explicitly acknowledges: 'Note for code simplicity the norm is first as opposed to last.' Pre-norm is actually more stable for training deep networks and has become the standard in modern implementations (GPT-2, GPT-3 use pre-norm), though the original paper used post-norm."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_008",
+        "question": "Why does `d_model` need to be consistent (512) across all sub-layers and embedding layers in the Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because the attention mechanism requires square matrices",
+            "B) To facilitate residual connections — adding x + Sublayer(x) requires both to have the same dimension",
+            "C) Because the softmax function requires fixed-size inputs",
+            "D) To ensure all 8 attention heads have equal computational cost"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "d-model",
+            "residual-connections",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The paper states: 'To facilitate these residual connections, all sub-layers in the model, as well as the embedding layers, produce outputs of dimension d_model=512.' Residual connections compute x + Sublayer(x), which requires x and Sublayer(x) to have the same shape. If dimensions varied between sub-layers, the addition would be undefined. This is the fundamental architectural constraint driving the uniform d_model."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_009",
+        "question": "In `EncoderLayer.forward`, the self-attention is called as `self.self_attn(x, x, x, mask)`. What do the three `x` arguments represent?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Three different linear projections of x computed internally",
+            "B) Query, Key, and Value — all set to the same input x for self-attention",
+            "C) The input, the previous layer output, and the mask placeholder",
+            "D) The source, target, and memory tensors"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "query-key-value",
+            "encoder"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "In self-attention, Q, K, and V all come from the same source — the current layer's input x. The `MultiHeadedAttention.forward(query, key, value, mask)` signature receives (x, x, x, mask). Internally, separate linear projections (WQ, WK, WV) are applied to each copy of x to produce distinct Q, K, V matrices. This is what defines 'self' in self-attention."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_010",
+        "question": "What is the third sub-layer in `DecoderLayer` that is absent in `EncoderLayer`?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A second feed-forward network",
+            "B) An encoder-decoder (cross) attention layer called `src_attn`",
+            "C) A final layer normalization step",
+            "D) A second masked self-attention layer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "decoder-layer",
+            "cross-attention",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "category": "code",
+        "explanation": "The `DecoderLayer` has three sub-layers via `clones(SublayerConnection, 3)`: (1) masked self-attention (self_attn on tgt), (2) encoder-decoder attention (src_attn), and (3) feed-forward. The key call is `self.sublayer[1](x, lambda x: self.src_attn(x, m, m, src_mask))` where m=memory (encoder output). EncoderLayer only has 2 sub-layers (self-attn + feed-forward)."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_011",
+        "question": "In `DecoderLayer.forward`, the cross-attention call is `self.src_attn(x, m, m, src_mask)`. What are `x` and `m` here?",
+        "type": "multiple_choice",
+        "options": [
+            "A) x = encoder output (Q), m = decoder state (K, V)",
+            "B) x = decoder state after masked self-attention (Q), m = encoder memory output (K, V)",
+            "C) x = target embeddings (Q), m = source embeddings (K, V)",
+            "D) x = attention weights, m = value vectors"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cross-attention",
+            "decoder",
+            "q-k-v"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "In `src_attn(x, m, m, src_mask)`: x is the decoder's current state (after masked self-attention) — used as Queries. m is the encoder's memory output — used as both Keys and Values. This is exactly what cross-attention means: the decoder asks questions (Q) of the encoder's representations (K, V). The paper: 'queries come from the previous decoder layer, and the memory keys and values come from the output of the encoder.'"
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_012",
+        "question": "What does `subsequent_mask(size)` produce, and how is it used in the decoder?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A mask that hides padding tokens by setting them to -inf",
+            "B) A lower-triangular boolean mask that allows each position to attend only to itself and earlier positions",
+            "C) A mask that randomly drops attention weights for regularization",
+            "D) A mask that prevents the encoder from attending to the decoder"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "subsequent-mask",
+            "causal-masking",
+            "decoder"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "`np.triu(np.ones(...), k=1)` creates an upper-triangular matrix of ones (future positions), then `== 0` inverts it to a lower-triangular boolean mask. Where True, attention is allowed; where False (upper triangle = future positions), attention is blocked. This implements causal masking — position i can attend to positions 0...i but not i+1...n. Practical tip: `k=1` excludes the diagonal from the upper triangle, allowing self-attention to the current position."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_013",
+        "question": "Examine the `attention` function. What does `scores.masked_fill(mask == 0, -1e9)` do?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Sets attention scores to -1e9 where mask equals 1 (allowed positions)",
+            "B) Sets attention scores to -1e9 where mask equals 0 (disallowed positions), effectively zeroing them after softmax",
+            "C) Clips all scores below -1e9 to prevent underflow",
+            "D) Sets padding token scores to zero before softmax"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "masking",
+            "masked-fill",
+            "attention"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "`mask == 0` identifies positions that should be blocked (future positions or padding). Setting their scores to -1e9 (≈ -∞) means after softmax: exp(-1e9) ≈ 0, so these positions contribute essentially nothing to the output. The remaining positions' softmax values still sum to 1. Using -1e9 rather than -inf avoids NaN issues in floating point. Practical tip: In PyTorch, `float('-inf')` can cause NaN in gradients; -1e9 is a safer approximation."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_014",
+        "question": "Why is dot-product attention preferred over additive attention in practice, despite similar theoretical complexity?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Dot-product attention has lower memory complexity",
+            "B) Dot-product attention is much faster and space-efficient since it uses optimized matrix multiplication, and matches additive attention when scaled",
+            "C) Additive attention cannot handle variable-length sequences",
+            "D) Dot-product attention requires fewer learned parameters"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dot-product-attention",
+            "additive-attention",
+            "tradeoff"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "explanation": "The paper states: 'dot-product attention is much faster and more space-efficient in practice, since it can be implemented using highly optimized matrix multiplication code.' Additive attention uses a feed-forward network for compatibility, which is slower. However, for large dk, unscaled dot-product attention underperforms additive attention — hence the √dk scaling factor to counteract large magnitude dot products."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_015",
+        "question": "Why do dot products grow large in magnitude for large dk values, and why is this problematic?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Large dot products cause the embedding matrix to become rank-deficient",
+            "B) If q and k have variance 1, their dot product has variance dk — large dk pushes softmax into near-zero gradient regions",
+            "C) Large dot products cause numerical overflow in 32-bit floating point",
+            "D) Large dot products make the attention pattern uniform regardless of query-key alignment"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "scaling",
+            "gradient-vanishing",
+            "dot-product"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The paper shows: if q and k components have mean 0, variance 1, then dot(q,k) = Σ q_i*k_i has mean 0 and variance dk. For large dk (e.g., 64), dot products can be large, pushing softmax inputs to extreme values where exp saturates and gradients vanish. Dividing by √dk normalizes variance back to 1. This is the mathematical justification for the √dk scaling factor in scaled dot-product attention."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_016",
+        "question": "Examine this attention function. What is the bug?\n\ndef attention(query, key, value, mask=None):\n    d_k = query.size(-1)\n    scores = torch.matmul(query, key.transpose(-2, -1))\n    scores = scores / math.sqrt(d_k)\n    if mask is not None:\n        scores = scores.masked_fill(mask == 1, -1e9)\n    p_attn = F.softmax(scores, dim=-1)\n    return torch.matmul(p_attn, value), p_attn",
+        "type": "multiple_choice",
+        "options": [
+            "A) key should not be transposed",
+            "B) The mask condition is inverted: `mask == 1` should be `mask == 0` — masking allowed positions instead of forbidden ones",
+            "C) Softmax should be applied on dim=0 instead of dim=-1",
+            "D) The scaling should be d_k not math.sqrt(d_k)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "masking",
+            "debugging",
+            "attention"
+        ],
+        "difficulty": "hard",
+        "category": "debugging",
+        "explanation": "The bug is `mask == 1` should be `mask == 0`. In the Annotated Transformer, mask=1 means 'allowed to attend' and mask=0 means 'blocked.' So `masked_fill(mask == 0, -1e9)` fills positions where mask is 0 (blocked) with -1e9. The buggy version `masked_fill(mask == 1, -1e9)` would block the ALLOWED positions and expose the FORBIDDEN ones — completely inverting the masking logic. Practical tip: Always verify mask convention (0=block or 1=block) when debugging attention."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_017",
+        "question": "In `MultiHeadedAttention.__init__`, why is `assert d_model % h == 0` necessary?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To ensure the model can be loaded onto multiple GPUs evenly",
+            "B) Because d_k = d_model // h must be a whole number — each head gets an equal share of dimensions",
+            "C) To prevent gradient overflow during backpropagation",
+            "D) Because PyTorch's nn.Linear requires square weight matrices"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multi-head-attention",
+            "d-model",
+            "code"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "d_k is computed as `d_model // h`. For this integer division to be exact (no remainder), d_model must be divisible by h. With d_model=512, h=8: d_k=64. If d_model=513, h=8: 513//8=64 with remainder 1, losing one dimension. The assertion prevents silent dimension mismatches. Practical tip: This constraint is why d_model is typically a power of 2 or chosen as a multiple of the number of heads."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_018",
+        "question": "In `MultiHeadedAttention.forward`, why does the implementation use `self.linears[-1](x)` for the final projection rather than a separate `WO` matrix?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The last linear in `self.linears` is the WO output projection, sharing the implementation pattern with WQ, WK, WV",
+            "B) The last linear reuses WQ weights to reduce parameter count",
+            "C) There is no WO matrix in the Annotated Transformer implementation",
+            "D) `self.linears[-1]` applies layer normalization instead of a linear projection"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "multi-head-attention",
+            "WO",
+            "code"
+        ],
+        "difficulty": "hard",
+        "category": "code",
+        "explanation": "`clones(nn.Linear(d_model, d_model), 4)` creates 4 linear layers: linears[0]=WQ, linears[1]=WK, linears[2]=WV, linears[3]=WO. After concatenating heads via `.view(nbatches, -1, self.h * self.d_k)`, `self.linears[-1](x)` applies WO to project from h*d_k back to d_model. All four are separate learned matrices. The elegant implementation packages all four projections in one list. Practical tip: This is a common source of confusion — there IS a WO matrix; it's just stored as linears[3]."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_019",
+        "question": "The Transformer uses multi-head attention in THREE distinct ways. Which option correctly identifies all three?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Encoder self-attention, decoder self-attention, and output projection",
+            "B) Encoder self-attention, decoder masked self-attention, and encoder-decoder cross-attention",
+            "C) Input embedding attention, positional encoding attention, and output attention",
+            "D) Query attention, key attention, and value attention"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multi-head-attention",
+            "three-applications",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The Annotated Transformer lists all three uses: (1) Encoder self-attention — all Q/K/V from encoder, attends to all encoder positions; (2) Decoder masked self-attention — all Q/K/V from decoder, but masked to prevent attending to future positions; (3) Encoder-decoder cross-attention — Q from decoder, K and V from encoder output (memory). Each serves a distinct architectural role."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_020",
+        "question": "What is the formula for the position-wise feed-forward network (FFN) in the Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) FFN(x) = W2 * sigmoid(W1 * x + b1) + b2",
+            "B) FFN(x) = max(0, x*W1 + b1) * W2 + b2",
+            "C) FFN(x) = LayerNorm(x * W1 + b1) * W2 + b2",
+            "D) FFN(x) = softmax(x * W1 + b1) * W2 + b2"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "feed-forward",
+            "relu",
+            "formula"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The FFN formula is: FFN(x) = max(0, xW1 + b1) W2 + b2. Two linear transformations with a ReLU activation in between. max(0, ...) is ReLU. The paper specifies d_model=512 for input/output and d_ff=2048 for the inner layer — a 4x expansion factor. This is the standard transformer FFN structure replicated in virtually all subsequent architectures."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_021",
+        "question": "What are the input/output and inner-layer dimensions of the feed-forward network in the base Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Input/output: 512, inner: 512 (no change)",
+            "B) Input/output: 512 (d_model), inner: 2048 (d_ff = 4 × d_model)",
+            "C) Input/output: 64 (d_k), inner: 512",
+            "D) Input/output: 2048, inner: 512"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "feed-forward",
+            "dimensions",
+            "d-ff"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The paper specifies d_model=512 for FFN input/output and d_ff=2048 for the inner layer. This 4× expansion (512→2048→512) is a design choice that gives the FFN enough capacity to learn complex position-wise transformations. This 4× ratio has become a standard convention adopted in BERT, GPT, and most subsequent transformers. Practical tip: d_ff=4*d_model is so standard it's rarely explained in papers — just assumed."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_022",
+        "question": "Which correctly implements the position-wise FFN in PyTorch, matching the `PositionwiseFeedForward` class?",
+        "type": "multiple_choice",
+        "options": [
+            "A) return self.w_2(F.sigmoid(self.w_1(x)))",
+            "B) return self.w_2(self.dropout(F.relu(self.w_1(x))))",
+            "C) return F.relu(self.w_2(self.dropout(self.w_1(x))))",
+            "D) return self.w_2(F.softmax(self.w_1(x), dim=-1))"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "feed-forward",
+            "relu",
+            "code"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "The correct implementation is: w_1 (expand to d_ff) → ReLU → dropout → w_2 (project back to d_model). Option C applies ReLU after w_2 which would add unwanted non-linearity to the output. Option A uses sigmoid instead of ReLU. Option D uses softmax which would normalize across d_ff — destroying the linear relationship. Dropout is applied after the ReLU activation, not before."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_023",
+        "question": "In the `Embeddings` class, why are embedding weights multiplied by `math.sqrt(self.d_model)`?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To convert embeddings from log-space to linear space",
+            "B) To scale embeddings so they are on a similar magnitude to the positional encodings that will be added to them",
+            "C) To prevent embeddings from becoming too small during backpropagation",
+            "D) To normalize embeddings to unit length"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embeddings",
+            "scaling",
+            "positional-encoding"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The paper states embeddings are multiplied by √d_model. Positional encodings have values in [-1, 1] (sine/cosine). Without scaling, learned embeddings (typically small, e.g., std ≈ 1/√d_model from Xavier init) would be much smaller than positional encodings, causing positions to dominate over word semantics. Multiplying by √d_model (√512 ≈ 22.6) brings embedding magnitudes into a similar range as positional encodings. Practical tip: This is often missed in from-scratch implementations, causing training instability."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_024",
+        "question": "The Transformer shares the embedding weight matrix between the two embedding layers and the pre-softmax linear layer. What is the benefit of this weight tying?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It allows gradients to flow directly from output to input embeddings",
+            "B) It reduces parameter count significantly — one matrix serves three purposes — and improves generalization",
+            "C) It forces the model to use identical representations for source and target vocabularies",
+            "D) It eliminates the need for positional encoding"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "weight-tying",
+            "embeddings",
+            "parameters"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Weight tying uses the same matrix for: (1) source embedding, (2) target embedding, and (3) the pre-softmax linear projection (unembedding). This reduces parameters significantly (a vocab×d_model matrix is large) and encourages the model to learn consistent representations — the embedding and unembedding of the same token should be related. The paper cites this as following prior work (Press & Wolf, 2017). Note: only applicable when source and target share vocabulary."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_025",
+        "question": "What are the exact positional encoding formulas from the Annotated Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) PE(pos, i) = pos / 10000^(i/d_model) for all i",
+            "B) PE(pos, 2i) = sin(pos / 10000^(2i/d_model)), PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))",
+            "C) PE(pos, i) = sin(pos * i / d_model) for even i, cos(pos * i / d_model) for odd i",
+            "D) PE(pos, i) = exp(-pos * i / 10000)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "positional-encoding",
+            "formula",
+            "sine-cosine"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The paper defines: PE(pos,2i) = sin(pos / 10000^(2i/d_model)) for even dimensions and PE(pos,2i+1) = cos(pos / 10000^(2i/d_model)) for odd dimensions. The divisor 10000^(2i/d_model) creates wavelengths forming a geometric progression from 2π to 10000·2π. This allows PE(pos+k) to be a linear function of PE(pos) for any fixed offset k — enabling the model to learn relative positions."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_026",
+        "question": "In `PositionalEncoding.__init__`, what is `self.register_buffer('pe', pe)` doing, and why is it used instead of `nn.Parameter`?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It registers `pe` as a trainable parameter that will be updated during backpropagation",
+            "B) It registers `pe` as a non-trainable buffer — saved with model state but not updated by optimizer",
+            "C) It compresses `pe` for memory efficiency using PyTorch's buffer compression",
+            "D) It registers `pe` for automatic GPU-to-CPU transfer during inference"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "register-buffer",
+            "positional-encoding",
+            "pytorch"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "`register_buffer` saves a tensor as part of model state (included in `state_dict`, moved with `.to(device)`) but NOT as a trainable parameter — the optimizer won't update it. Sinusoidal positional encodings are fixed mathematical functions, not learned. Using `nn.Parameter` would make them trainable (which is an option, but not what the Annotated Transformer does). Practical tip: Use `register_buffer` for any fixed tensor that should follow the model to GPU but not be trained."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_027",
+        "question": "Why did the authors choose sinusoidal positional encoding over learned positional embeddings?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Sinusoidal encodings are faster to compute at inference time",
+            "B) Sinusoidal encodings may allow extrapolation to sequence lengths longer than those seen during training",
+            "C) Learned positional embeddings cause gradient instability in deep networks",
+            "D) Sinusoidal encodings require fewer parameters"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "positional-encoding",
+            "sinusoidal",
+            "generalization"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The paper states: 'We chose the sinusoidal version because it may allow the model to extrapolate to sequence lengths longer than the ones encountered during training.' Learned positional embeddings can only represent positions up to the max training length. Sinusoidal functions are defined for any position — they can generalize mathematically. Also noted: 'the two versions produced nearly identical results,' so generalizability was the deciding factor."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_028",
+        "question": "What is the `make_model` function's initialization step `nn.init.xavier_uniform(p)` doing, and why is it important?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Setting all parameters to uniform random values between -1 and 1",
+            "B) Initializing parameters such that the variance of activations and gradients is maintained across layers (Xavier/Glorot initialization)",
+            "C) Initializing parameters with values from a standard normal distribution N(0,1)",
+            "D) Resetting all parameters to zero to avoid symmetry breaking issues"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "xavier-initialization",
+            "weight-initialization",
+            "training"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Xavier (Glorot) initialization sets weight variance to 2/(fan_in + fan_out), designed to maintain signal variance across layers in deep networks. Without careful initialization, signals in deep networks explode or vanish (too large or too small) even before training begins. The code applies this to all parameters with `p.dim() > 1` (matrices, skipping 1D biases). The comment 'This was important from their code' signals this is not just boilerplate — it affects convergence."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_029",
+        "question": "In the `Batch` class, `self.trg = trg[:, :-1]` and `self.trg_y = trg[:, 1:]`. What is this achieving?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Splitting the target into two equal halves for bidirectional processing",
+            "B) Creating teacher-forced decoder input (trg, shifted right by removing last token) and the gold labels (trg_y, shifted left by removing first token)",
+            "C) Padding the target sequence to a fixed length",
+            "D) Removing the start-of-sequence token from decoder inputs"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "teacher-forcing",
+            "target-shift",
+            "training"
+        ],
+        "difficulty": "hard",
+        "category": "code",
+        "explanation": "This implements teacher forcing with shifted targets: `trg = trg[:, :-1]` removes the last token to give decoder inputs [<BOS>, t1, t2, ..., tn-1]. `trg_y = trg[:, 1:]` removes the first token to give gold labels [t1, t2, ..., tn, <EOS>]. At each decoder position i, the input is token i-1 (teacher-forced) and the label is token i. This creates the standard autoregressive training setup where the decoder sees the ground truth previous token."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_030",
+        "question": "What is the WMT 2014 English-German training dataset size, and what tokenization was used?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 36M sentence pairs encoded with word-piece vocabulary of 50,000",
+            "B) 4.5M sentence pairs encoded with byte-pair encoding (BPE) with shared source-target vocabulary of ~37,000 tokens",
+            "C) 4.5M sentence pairs with separate source/target vocabularies of 50,000 each",
+            "D) 36M sentence pairs with character-level tokenization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training-data",
+            "bpe",
+            "wmt-2014"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The paper trained on WMT 2014 English-German: ~4.5M sentence pairs with BPE encoding, shared vocabulary of ~37,000 tokens. English-French used the larger 36M sentence dataset with 32,000 word-piece vocabulary. BPE (byte-pair encoding) handles unknown words by splitting into subword units — sharing source-target vocabulary enables the model to leverage translation alignment at the subword level."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_031",
+        "question": "What was the training batch size strategy, and why was it organized by sequence length?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Fixed batch size of 32 sentences regardless of length",
+            "B) Approximately 25,000 source tokens and 25,000 target tokens per batch, with sentences grouped by approximate sequence length",
+            "C) Batches of 100 sentences with padding to max length in dataset",
+            "D) Dynamic batches based on GPU memory availability"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "batching",
+            "training",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Sentences were batched by approximate sequence length (~25,000 source tokens, ~25,000 target tokens per batch). Grouping by length minimizes padding — padding wastes compute on masked positions. Token-level batching (not sentence-level) ensures consistent compute per batch. Practical tip: This token-level batching strategy is now standard in transformer training and implemented in libraries like HuggingFace's DataCollator."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_032",
+        "question": "What was the training hardware setup, and how long did base vs. big model training take?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 1 V100 GPU; base: 12 hours, big: 3.5 days",
+            "B) 8 P100 GPUs; base: 100,000 steps (~12 hours), big: 300,000 steps (~3.5 days)",
+            "C) 32 TPU cores; base: 1 day, big: 7 days",
+            "D) 4 P100 GPUs; base: 24 hours, big: 1 week"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training-hardware",
+            "compute",
+            "gpu"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Training used 8 NVIDIA P100 GPUs. The base model trained for 100,000 steps (~12 hours, 0.4 sec/step). The big model trained for 300,000 steps (~3.5 days, 1.0 sec/step). This was remarkable efficiency — the base model surpassed all previous models including ensembles at a fraction of their training cost. Practical tip: This benchmark established the transformer's compute-efficiency advantage, motivating its rapid adoption."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_033",
+        "question": "What optimizer and hyperparameters did the original Transformer use?",
+        "type": "multiple_choice",
+        "options": [
+            "A) SGD with momentum=0.9, fixed learning rate 0.001",
+            "B) Adam with β1=0.9, β2=0.98, ε=10⁻⁹, and a custom learning rate schedule",
+            "C) Adagrad with initial learning rate 0.01 and weight decay 0.0001",
+            "D) RMSprop with β=0.9 and fixed learning rate 0.0001"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimizer",
+            "adam",
+            "hyperparameters"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The Transformer used Adam optimizer with β1=0.9, β2=0.98, ε=10⁻⁹. The ε=10⁻⁹ (vs. standard 10⁻⁸) provides extra numerical stability for the Noam schedule's variable learning rates. These exact hyperparameters, combined with the warmup schedule, are critical for stable training — the note says 'This part is very important.' Many failed transformer reproductions used standard Adam defaults without the warmup schedule."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_034",
+        "question": "What is the Noam learning rate schedule formula, and what does it do during the first warmup_steps?",
+        "type": "multiple_choice",
+        "options": [
+            "A) lrate = fixed constant; warmup has no effect",
+            "B) lrate = d_model^(-0.5) * min(step^(-0.5), step * warmup_steps^(-1.5)); increases linearly during warmup then decreases as inverse square root",
+            "C) lrate = initial_lr * exp(-decay * step); exponential decay from the start",
+            "D) lrate = initial_lr / (1 + decay * step); inverse linear decay"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "learning-rate-schedule",
+            "noam",
+            "warmup"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The Noam schedule: lrate = d_model^(-0.5) × min(step^(-0.5), step × warmup_steps^(-1.5)). During warmup (step < warmup_steps): step × warmup_steps^(-1.5) dominates → linear increase. After warmup: step^(-0.5) dominates → inverse square root decrease. warmup_steps=4000 was used. This warm-up prevents large early updates when gradients are noisy, then gradually reduces the rate as training converges. Practical tip: This schedule is replicated in most modern transformer training recipes."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_035",
+        "question": "Examine this `NoamOpt.rate` implementation. What is the bug?\n\ndef rate(self, step=None):\n    if step is None:\n        step = self._step\n    return self.factor * \\\n        (self.model_size ** (-0.5) *\n        min(step ** (-0.5), step * self.warmup ** (-1.5)))",
+        "type": "multiple_choice",
+        "options": [
+            "A) `self.model_size` should be raised to +0.5, not -0.5",
+            "B) There is no bug — this correctly implements the Noam schedule",
+            "C) `self.warmup` should be raised to -1.5, not `self.warmup ** (-1.5)` — the exponent should be on step",
+            "D) The `min` should be `max` to select the larger learning rate"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "learning-rate",
+            "debugging",
+            "noam-schedule"
+        ],
+        "difficulty": "hard",
+        "category": "debugging",
+        "explanation": "There is no bug — this matches the paper formula exactly: factor × d_model^(-0.5) × min(step^(-0.5), step × warmup^(-1.5)). This correctly implements the warmup-then-decay schedule. Option A is wrong — d_model^(-0.5) correctly makes larger models have smaller learning rates (scaled inversely). Option C misreads the formula. Option D is wrong — min selects the smaller value, which is correct: during warmup step×warmup^(-1.5) < step^(-0.5), so linear growth applies."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_036",
+        "question": "What is label smoothing, and what paradoxical effect does it have on training metrics?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It sharpens the target distribution, improving perplexity and BLEU simultaneously",
+            "B) It replaces one-hot targets with a soft distribution, which hurts perplexity (model becomes less confident) but improves accuracy and BLEU score",
+            "C) It adds random noise to labels during training to prevent memorization",
+            "D) It increases the learning rate for underrepresented vocabulary tokens"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "label-smoothing",
+            "regularization",
+            "training"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The paper states label smoothing (ε_ls=0.1) 'hurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score.' Instead of the target being 100% on the correct token, confidence (1-ε)=0.9 is placed on the correct token and ε/(V-2) is distributed to other tokens. This prevents overconfidence, which hurts log-likelihood (perplexity) but acts as a regularizer improving generalization (accuracy, BLEU). Practical tip: Label smoothing is standard in modern training — PyTorch has `nn.CrossEntropyLoss(label_smoothing=0.1)`."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_037",
+        "question": "In `LabelSmoothing`, why is the padding index explicitly zeroed out with `true_dist[:, self.padding_idx] = 0`?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To prevent the model from predicting the padding token as the next word",
+            "B) To prevent smoothing mass from being assigned to the padding token — it should never be a valid prediction target",
+            "C) To speed up computation by skipping padding positions",
+            "D) Because KLDivLoss requires zero values at padding positions"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "label-smoothing",
+            "padding",
+            "code"
+        ],
+        "difficulty": "hard",
+        "category": "code",
+        "explanation": "When distributing smoothing mass (ε/(size-2)) across all vocabulary tokens, padding tokens would normally receive some mass. But padding is not a valid output token — we should never predict padding as the next word. Setting `true_dist[:, padding_idx] = 0` removes all probability mass from the padding position in the smoothed target distribution. The denominator uses `size-2` (not size-1) to account for both the correct token and padding being excluded from the uniform distribution."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_038",
+        "question": "What BLEU score did the Transformer (big) achieve on WMT 2014 English-German, and what was significant about it?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 25.0 BLEU — matching previous best single models",
+            "B) 28.4 BLEU — surpassing all previous models including ensembles by more than 2.0 BLEU, setting a new state-of-the-art",
+            "C) 41.0 BLEU — the best ever on English-German",
+            "D) 30.0 BLEU — slightly above the best ensemble at the time"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bleu-score",
+            "results",
+            "benchmark"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The big Transformer achieved 28.4 BLEU on WMT 2014 EN-DE, 'outperforms the best previously reported models (including ensembles) by more than 2.0 BLEU.' 41.0 BLEU was achieved on English-French (a different, easier language pair). The combination of quality + training efficiency (fraction of the cost of competitors) made this result transformative for the field."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_039",
+        "question": "What dropout rate was used in the base Transformer model, and where was dropout applied?",
+        "type": "multiple_choice",
+        "options": [
+            "A) p=0.5, applied only to the output of the final decoder layer",
+            "B) p=0.1, applied to the output of each sub-layer (before residual addition) and to the sums of embeddings + positional encodings",
+            "C) p=0.3, applied only inside the feed-forward networks",
+            "D) p=0.1, applied only to attention weights"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dropout",
+            "regularization",
+            "hyperparameters"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The base model uses P_drop=0.1 dropout applied: (1) to each sub-layer output before adding the residual (in SublayerConnection), and (2) to the sums of token embeddings + positional encodings (in PositionalEncoding). The big English-French model used P_drop=0.1 vs. the base English-German model also using 0.1. Note: the bigger model paper used 0.3 for EN-DE but 0.1 for EN-FR. Dropout at multiple points provides comprehensive regularization."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_040",
+        "question": "In `greedy_decode`, what is the general strategy being implemented?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Sampling from the predicted probability distribution with temperature T=1.0",
+            "B) Encoding the source once, then autoregressively decoding by always appending the highest-probability token prediction",
+            "C) Running beam search with beam_size=5 to find the best translation",
+            "D) Encoding and decoding simultaneously in parallel for efficiency"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "greedy-decoding",
+            "inference",
+            "autoregressive"
+        ],
+        "difficulty": "easy",
+        "category": "code",
+        "explanation": "Greedy decoding: (1) encode source once to get `memory`, (2) start with the start symbol, (3) at each step decode using current output sequence + memory, (4) take the token with the highest logit (greedy = argmax), (5) append it and repeat until max_len. This is the simplest inference strategy — no exploration of alternatives. Beam search explores multiple hypotheses simultaneously and generally produces better translations at higher compute cost."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_041",
+        "question": "You are implementing a Transformer from scratch. Your model's training loss decreases but validation BLEU stops improving after epoch 5. What technique from the Annotated Transformer would MOST directly help?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Increase d_model from 512 to 1024",
+            "B) Add label smoothing (ε=0.1) and increase dropout rate (P_drop=0.3)",
+            "C) Switch from Adam to SGD optimizer",
+            "D) Remove positional encoding to reduce overfitting to positions"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "overfitting",
+            "regularization",
+            "system-design"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "explanation": "Loss decreasing + BLEU plateau = overfitting/overconfidence on training data. Label smoothing (ε=0.1) prevents overconfident predictions and improves generalization (the paper confirms it 'improves accuracy and BLEU score'). Increased dropout (0.3 was used for the big EN-DE model) adds explicit regularization. Increasing d_model would worsen overfitting. SGD typically converges slower. Removing positional encoding would cripple the model's ability to use word order."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_042",
+        "question": "All of the following correctly describe the Transformer's multi-head attention EXCEPT:",
+        "type": "multiple_choice",
+        "options": [
+            "A) h=8 parallel attention heads are used in the base model",
+            "B) d_k = d_v = d_model / h = 64 for the base model",
+            "C) The total computational cost of multi-head attention is similar to single-head attention with full dimensionality",
+            "D) Each attention head uses a separate d_model × d_model projection matrix"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "multi-head-attention",
+            "misconception",
+            "dimensions"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "D is FALSE — each head uses d_model × d_k = 512 × 64 projection matrices (not 512 × 512). The reduced dimensionality (d_k=64, not 512) is exactly the point: 8 heads × 64 = 512, so the total parameter count per projection type is the same as single-head full-dimension attention. Full d_model × d_model per head would multiply parameters by 8. Options A, B, and C are all correctly stated in the paper."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_043",
+        "question": "A team is debugging a Transformer that produces good encoder representations but poor decoder outputs. They find that decoder cross-attention weights are nearly uniform across all encoder positions. What is the MOST likely root cause?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The positional encoding is missing from the decoder input",
+            "B) The learning rate warmup is too short, causing the cross-attention weights to be poorly initialized early in training",
+            "C) The dot-product scores are not being divided by √dk, causing saturation that makes all attention weights near-uniform",
+            "D) The encoder-decoder mask is preventing the decoder from attending to any encoder positions"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cross-attention",
+            "debugging",
+            "scaling"
+        ],
+        "difficulty": "hard",
+        "category": "debugging",
+        "explanation": "Nearly uniform attention weights are the canonical symptom of missing √dk scaling. Without scaling, large dk values make dot products very large, pushing softmax into saturation where all outputs are approximately equal (exp(very_large) / sum(exp(very_large)) ≈ 1/n for all). Option A would affect positional sensitivity but not uniformity per se. Option D would cause zero attention on encoder (not uniform). Option B is plausible but learning rate issues wouldn't cause systematic uniformity."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_044",
+        "question": "When would you choose pre-norm (LayerNorm before sublayer) over post-norm (LayerNorm after residual), as discussed implicitly in the Annotated Transformer's implementation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Pre-norm is always worse than post-norm and should never be used",
+            "B) Pre-norm provides more stable training for very deep networks; post-norm matches the original paper and may achieve slightly better final performance on shallow models",
+            "C) Post-norm is required when using the Noam learning rate schedule",
+            "D) Pre-norm requires a larger d_model to compensate for the normalization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pre-norm",
+            "post-norm",
+            "tradeoff"
+        ],
+        "difficulty": "hard",
+        "category": "tradeoff",
+        "explanation": "Pre-norm (x + Sublayer(LayerNorm(x))) provides more stable gradients in very deep networks — the residual path is clean and unobstructed. Post-norm (LayerNorm(x + Sublayer(x))) can cause gradient scale issues in very deep networks. Modern large models (GPT-2, GPT-3, LLaMA) all use pre-norm for stability. Post-norm (original paper) can achieve slightly better results on well-tuned shallow models. The Annotated Transformer chose pre-norm 'for code simplicity' but notes this deviation."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_045",
+        "question": "The Annotated Transformer reports 27,000 tokens per second throughput on 4 GPUs with 400 lines of library code. You want to double throughput without changing model architecture. Which technique would MOST effectively help?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Doubling the batch size without any other changes",
+            "B) Using mixed-precision (FP16) training with gradient scaling to halve memory usage and increase throughput",
+            "C) Removing label smoothing to simplify the loss computation",
+            "D) Reducing warmup_steps to reach peak learning rate faster"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "throughput",
+            "mixed-precision",
+            "system-design"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "explanation": "Mixed-precision (FP16) training roughly halves memory bandwidth requirements and leverages tensor cores for FP16 matrix operations — typically achieving 2-3× speedup. With gradient scaling to prevent underflow, this is the single most impactful throughput improvement available without architecture changes. Doubling batch size alone doesn't directly increase throughput (it processes more data per step but the same compute). Removing label smoothing has negligible compute impact. Warmup affects convergence, not throughput."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_046",
+        "question": "What is the correct PyTorch implementation of `subsequent_mask` that produces a lower-triangular boolean mask?",
+        "type": "multiple_choice",
+        "options": [
+            "A) torch.tril(torch.ones(size, size)).bool()",
+            "B) torch.from_numpy(np.triu(np.ones((1, size, size)), k=1)) == 0",
+            "C) torch.zeros(size, size).fill_diagonal_(1).bool()",
+            "D) torch.from_numpy(np.tril(np.ones((1, size, size)), k=-1)) == 1"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "subsequent-mask",
+            "code",
+            "pytorch"
+        ],
+        "difficulty": "hard",
+        "category": "code",
+        "explanation": "The Annotated Transformer uses: `np.triu(np.ones(...), k=1)` creates upper-triangular ones (future positions), then `== 0` inverts to lower-triangular True (allowed) and upper-triangular False (blocked). Option A is equivalent and cleaner for modern PyTorch. Option B is the exact implementation from the codebase. Option C creates only the diagonal (identity). Option D uses k=-1 which would exclude the diagonal from the lower triangle, blocking self-attention — wrong. Practical tip: Option A (`torch.tril`) is the cleaner modern equivalent."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_047",
+        "question": "Select ALL statements that are true about the Transformer's base model hyperparameters from the Annotated Transformer. (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "A) N=6 encoder and decoder layers",
+            "B) d_model=512, d_ff=2048, h=8, d_k=d_v=64",
+            "C) Dropout rate P_drop=0.3 for the base model",
+            "D) warmup_steps=4000 with Adam optimizer β1=0.9, β2=0.98, ε=10⁻⁹"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            3
+        ],
+        "tags": [
+            "hyperparameters",
+            "base-model",
+            "multi-select"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "A) True — N=6 encoder/decoder layers. B) True — these are the exact base model dimensions (d_model=512, d_ff=2048=4×512, h=8 heads, d_k=d_v=512/8=64). C) FALSE — the base model uses P_drop=0.1. P_drop=0.3 was used for the big model on EN-DE. D) True — warmup_steps=4000 with Adam β1=0.9, β2=0.98, ε=10⁻⁹ as specified in the NoamOpt and get_std_opt implementations."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_048",
+        "question": "What is the purpose of the copy-task (synthetic data) described in the 'A First Example' section?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To demonstrate the model's performance on real translation benchmarks",
+            "B) To verify the implementation is correct — if the model can learn to copy a simple sequence, the forward and backward passes are working",
+            "C) To measure the maximum throughput of the implementation",
+            "D) To pre-train the model on synthetic data before fine-tuning on real data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "copy-task",
+            "debugging",
+            "implementation-verification"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The copy-task is a minimal sanity check — the model should learn to output the same sequence it receives as input. If loss decreases to near-zero, it confirms: (1) forward pass computes predictions correctly, (2) backward pass updates weights correctly, (3) masking is implemented properly, (4) training loop runs without bugs. This is standard practice when building new architectures: verify on a trivially solvable task before running expensive real experiments. Practical tip: Always test your architecture on a copy or sorting task first."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_049",
+        "question": "Based on the `PositionwiseFeedForward` code, what would happen if `dropout` was applied AFTER `self.w_2` instead of between `w_1` and `w_2`?",
+        "type": "multiple_choice",
+        "options": [
+            "A) No difference — dropout position doesn't matter in the FFN",
+            "B) Dropout after w_2 would regularize the FFN output going into the residual connection; dropout between w_1 and w_2 regularizes the hidden representation — both provide regularization but at different points",
+            "C) Dropout after w_2 would prevent the residual connection from functioning",
+            "D) Dropout between w_1 and w_2 disables the ReLU activation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dropout",
+            "feed-forward",
+            "regularization"
+        ],
+        "difficulty": "hard",
+        "category": "tradeoff",
+        "explanation": "Both positions provide regularization, but differently. Dropout between w_1 and w_2 (current implementation) drops neurons in the expanded inner representation (d_ff=2048), forcing the w_2 projection to be robust to missing inner features. Dropout after w_2 regularizes the final output, similar to the SublayerConnection's dropout. In practice, the current position is the standard — it matches how dropout is used in most MLP-in-transformer implementations. Neither disrupts the residual connection (dropout is before the residual addition in SublayerConnection)."
+    },
+    {
+        "id": "Transformer_AnnotatedTransformer_050",
+        "question": "What self-attention property allows the Transformer to reduce operations to relate two arbitrary positions to O(1), unlike RNNs (O(n)) and CNNs (O(n) or O(log n))?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The positional encoding encodes relative distances between all positions",
+            "B) Self-attention computes direct connections between all pairs of positions in a single matrix operation — every position attends to every other in one step",
+            "C) The feed-forward network aggregates information across all positions",
+            "D) The residual connections allow gradients to flow directly across any number of layers"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "complexity",
+            "long-range-dependencies"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Self-attention computes attention(Q, K, V) = softmax(QK^T/√dk)V — a single matrix operation that simultaneously computes all pairwise relationships between positions. Position i can directly attend to position j regardless of distance, in constant O(1) operations (for fixed sequence length). RNNs require O(n) sequential steps to propagate information from position 1 to n. CNNs need O(n/k) or O(log_k n) steps with stacked layers. This constant path length for arbitrary position pairs is the Transformer's key architectural advantage for long-range dependencies."
+    }
+]

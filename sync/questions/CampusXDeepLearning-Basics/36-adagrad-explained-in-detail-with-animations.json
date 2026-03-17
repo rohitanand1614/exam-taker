@@ -1,0 +1,149 @@
+[
+    {
+        "id": "dl_optimizers_adagrad_001",
+        "question": "What is the primary mechanism that differentiates AdaGrad from standard optimization algorithms like Batch Gradient Descent or standard Momentum?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It uses a lookahead step to evaluate gradients before committing to an update.",
+            "B) It completely replaces the learning rate with the moving average of past gradients.",
+            "C) It maintains a distinct, dynamically adapting learning rate for every individual parameter based on its historical gradients.",
+            "D) It dynamically increases the learning rate for all parameters simultaneously when the loss plateau is detected."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "adagrad",
+            "mechanism",
+            "learning_rate"
+        ],
+        "difficulty": "easy",
+        "explanation": "The core philosophy of AdaGrad (Adaptive Gradient) is that it does not use a single, fixed learning rate for all parameters. Instead, it maintains a separate learning rate for each parameter $w$ and $b$, and automatically updates these individual rates based on the historical gradients observed for that specific parameter. Option C is correct. Option A describes Nesterov Accelerated Gradient. Option B is incorrect; it divides the learning rate by a function of past gradients, it doesn't replace it. Option D is incorrect; AdaGrad decreases learning rates over time, it does not increase them, and it does so on a per-parameter basis, not simultaneously."
+    },
+    {
+        "id": "dl_optimizers_adagrad_002",
+        "question": "According to the instructor, in which specific data scenario does AdaGrad significantly outperform standard gradient descent methods?",
+        "type": "multiple_choice",
+        "options": [
+            "A) When the dataset is perfectly normalized and all features are on an identical scale.",
+            "B) When dealing with highly dense image data where every pixel has a non-zero continuous value.",
+            "C) When the dataset contains highly sparse features, where a vast majority of the values for a specific feature are zero.",
+            "D) When the target variable (y) contains extreme outliers that heavily skew the Mean Squared Error."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "adagrad",
+            "use_cases",
+            "sparse_data"
+        ],
+        "difficulty": "easy",
+        "explanation": "AdaGrad is specifically designed to handle sparse data efficiently. The instructor uses the example of an 'IIT JEE' feature, where almost all values are 0 (sparse), except for a few 1s. Standard optimizers struggle with this because the gradient for the sparse feature is frequently zero, leading to very slow updates along that parameter's axis. AdaGrad compensates by keeping the learning rate relatively high for infrequent features while decaying it for frequent features. Option C is correct. Option A is where standard SGD works fine. Option B is the opposite of sparsity. Option D is an issue solved by changing the loss function (e.g., to Huber loss), not necessarily by using AdaGrad."
+    },
+    {
+        "id": "dl_optimizers_adagrad_003",
+        "question": "When visualizing the error surface of a dataset containing sparse features, what geometric shape does the contour plot typically resemble, and why is this problematic for standard Gradient Descent?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A perfect circle; standard SGD gets trapped in continuous circular orbits around the minimum without converging.",
+            "B) An elongated bowl (elliptical); standard SGD wastes time oscillating rapidly across the steep, narrow axis while making agonizingly slow progress along the flat, elongated axis.",
+            "C) A saddle point; standard SGD halts completely because the gradient is zero in all directions simultaneously.",
+            "D) A highly non-convex surface with many local minima; standard SGD lacks the momentum to jump over the peaks."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "error_surface",
+            "sparse_data",
+            "geometry"
+        ],
+        "difficulty": "medium",
+        "explanation": "As demonstrated in the video, sparse features create an 'elongated bowl' error surface. The parameter corresponding to the dense feature (e.g., bias $b$) has frequent, large updates, creating a steep slope. The parameter corresponding to the sparse feature (e.g., weight $m$) has infrequent, small updates, creating a very flat, elongated slope. Standard Gradient Descent will rapidly descend the steep slope but will then crawl along the flat axis, resulting in an inefficient, L-shaped trajectory. Option B accurately describes this 'Long Elongated Bowl Problem'. Option A occurs when features are perfectly scaled. Options C and D describe different optimization challenges not specifically tied to the geometric elongation caused by sparsity."
+    },
+    {
+        "id": "dl_optimizers_adagrad_004",
+        "question": "How does AdaGrad mathematically ensure that parameters associated with sparse features receive larger updates compared to parameters associated with dense, frequently occurring features?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It multiplies the learning rate by the sum of the squares of past gradients, amplifying updates for parameters with high historical activity.",
+            "B) It divides the global learning rate by the square root of the sum of squared historical gradients for that specific parameter.",
+            "C) It actively sets the gradient to zero for dense features after the first few epochs, forcing the model to focus only on sparse features.",
+            "D) It uses a lookahead momentum term that specifically targets dimensions where the gradient has historically been close to zero."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adagrad",
+            "mathematics",
+            "mechanism"
+        ],
+        "difficulty": "medium",
+        "explanation": "AdaGrad achieves its adaptive behavior through the term $v_t$, which is the accumulated sum of the squared historical gradients for a given parameter. The update rule divides the global learning rate $\\eta$ by $\\sqrt{v_t + \\epsilon}$. If a feature is dense (frequent), its gradients are consistently large, so $v_t$ grows rapidly. Dividing by a large $\\sqrt{v_t}$ shrinks the effective learning rate, slowing down updates. Conversely, if a feature is sparse, its gradients are often zero, so $v_t$ remains small. Dividing by a small $\\sqrt{v_t}$ keeps the effective learning rate relatively high, allowing for larger updates when the sparse feature finally appears. Option B perfectly captures this mechanism. Option A is the inverse of the actual formula. Options C and D describe fabricated mechanisms."
+    },
+    {
+        "id": "dl_optimizers_adagrad_005",
+        "question": "In the AdaGrad update formula: $w_{t+1} = w_t - \\frac{\\eta}{\\sqrt{v_t + \\epsilon}} \\nabla L(w_t)$, what is the specific mathematical purpose of accumulating the *squares* of the past gradients ($v_t = \\sum (\\nabla L)^2$) rather than just the sum of the raw gradients?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Squaring ensures that positive and negative gradients do not cancel each other out, strictly measuring the absolute magnitude of historical updates.",
+            "B) Squaring the gradients automatically normalizes the dataset, eliminating the need for preprocessing steps like StandardScaler.",
+            "C) Squaring converts the first-order gradient into a pseudo-second-order Hessian matrix approximation.",
+            "D) Squaring guarantees that the accumulated term $v_t$ will eventually reach zero, allowing the learning rate to naturally increase over time."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "adagrad",
+            "equations",
+            "intuition"
+        ],
+        "difficulty": "hard",
+        "explanation": "When accumulating historical gradients to understand how much a parameter has been updated, you must account for the direction. Gradients can be positive or negative. If you simply summed them, a parameter that fluctuated heavily back and forth (e.g., +5, -5, +4, -4) would have a sum near zero, incorrectly implying it hasn't been updated much. By squaring the gradients before adding them, AdaGrad ensures all values are positive, strictly capturing the *magnitude* of historical activity regardless of direction. Option A correctly identifies this. Option B is a false claim regarding data normalization. Option C is technically incorrect; while related to the Fisher Information matrix, it does not approximate the Hessian directly in this context. Option D is mathematically impossible; a sum of squares cannot reach zero unless all inputs are zero, and it strictly causes the learning rate to decrease, not increase."
+    },
+    {
+        "id": "dl_optimizers_adagrad_006",
+        "question": "Despite its advantages with sparse data, why is AdaGrad generally avoided for training deep, complex neural networks?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It requires storing the history of every single parameter update from epoch 1, leading to rapid Out-Of-Memory (OOM) errors on modern GPUs.",
+            "B) Because the accumulated sum of squared gradients ($v_t$) strictly increases, the effective learning rate aggressively shrinks towards zero, causing training to halt prematurely before reaching the global minimum.",
+            "C) The $\\epsilon$ term in the denominator frequently causes division by zero errors when handling highly non-convex loss landscapes.",
+            "D) It completely ignores the current batch's gradient, relying entirely on the historical average, making it unable to adapt to sudden changes in the loss surface."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adagrad",
+            "disadvantages",
+            "deep_learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "The most significant flaw of AdaGrad is its aggressive learning rate decay. The term $v_t$ is a cumulative sum of squared positive numbers. Therefore, $v_t$ can only grow larger over time; it never shrinks. Because the learning rate is divided by $\\sqrt{v_t}$, the effective learning rate becomes infinitesimally small as training progresses. In deep neural networks, which require extensive training over many epochs, this causes the optimizer to effectively stop learning long before it converges to a good minimum. Option B accurately describes this fatal flaw. Option A is incorrect; it only stores one scalar ($v_t$) per parameter, making memory overhead minimal. Option C is wrong; $\\epsilon$ is specifically added to *prevent* division by zero. Option D is false; the current gradient is still used in the numerator of the update step."
+    },
+    {
+        "id": "dl_optimizers_adagrad_007",
+        "question": "If AdaGrad's learning rate decay is so problematic that it stops training prematurely, what is the primary engineering value of understanding AdaGrad in modern Deep Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It is the only optimizer legally permitted for use in real-time financial forecasting systems.",
+            "B) It serves as the foundational concept for adaptive learning rates, directly paving the way for superior, modern optimizers like RMSprop and Adam.",
+            "C) It acts as a fallback optimizer; modern frameworks automatically switch to AdaGrad when standard SGD fails to compile.",
+            "D) It is utilized exclusively in the final epoch of training to perform extreme fine-tuning on pre-trained ResNet architectures."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adagrad",
+            "context",
+            "history"
+        ],
+        "difficulty": "easy",
+        "explanation": "While rarely used in practice today for deep networks due to its aggressive decay, AdaGrad is a crucial conceptual milestone. It introduced the revolutionary idea of replacing a single global learning rate with individual, dynamically adjusting learning rates for every single parameter based on historical gradients. This specific theoretical foundation was later refined by algorithms like RMSprop (which uses an exponentially decaying average to fix the monotonic growth of $v_t$) and Adam. Option B correctly identifies its historical and theoretical significance. Options A, C, and D are entirely fabricated scenarios."
+    }
+]

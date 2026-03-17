@@ -1,0 +1,884 @@
+[
+    {
+        "id": "LilLog_TF2_001",
+        "question": "According to Lilian Weng's post, what fundamental property of self-attention makes positional encoding necessary?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Self-attention uses recurrence, which erases position information",
+            "B) Self-attention is permutation-invariant — it is an operation on sets, so without positional encoding it cannot distinguish token order",
+            "C) Self-attention normalizes embeddings, destroying absolute position signals",
+            "D) Self-attention computes pairwise distances, which are symmetric and lose directionality"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "positional-encoding",
+            "permutation-invariant"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The post explicitly states: 'self-attention is permutation-invariant; in other words, it is an operation on sets.' Because the output of self-attention is unchanged if you shuffle the input sequence (given the same set of tokens), the model cannot infer any ordering without explicit positional signals. This is why PE(i, delta) is added to the embedding before attention. Contrast with RNNs which are inherently ordered by their sequential processing."
+    },
+    {
+        "id": "LilLog_TF2_002",
+        "question": "In the post's notation, what are the shapes of the per-head weight matrices W^q_i, W^k_i, and W^v_i?",
+        "type": "multiple_choice",
+        "options": [
+            "A) W^q_i, W^k_i ∈ R^(d×dk), W^v_i ∈ R^(d×dv)",
+            "B) W^q_i, W^k_i ∈ R^(d×dk/h), W^v_i ∈ R^(d×dv/h)",
+            "C) W^q_i, W^k_i, W^v_i ∈ R^(dk/h × d)",
+            "D) All three ∈ R^(d×d) — same as the full attention weight matrices"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multi-head-attention",
+            "weight-matrices",
+            "dimensions"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post's notation table explicitly defines: W^q_i, W^k_i ∈ R^(d×dk/h); W^v_i ∈ R^(d×dv/h). Each head operates on a dk/h-dimensional subspace of the full dk-dimensional key/query space. This is what keeps the total compute equivalent to single-head attention with full dimensionality — h heads × (d × dk/h) = d × dk total parameters per projection type. Option A gives the full (not per-head) weight matrix shapes."
+    },
+    {
+        "id": "LilLog_TF2_003",
+        "question": "What does the post identify as the three problems caused by context segmentation in vanilla Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Slow inference, high memory, and poor BLEU scores",
+            "B) Cannot capture long-term dependencies; hard to predict first tokens of each segment; expensive evaluation due to re-processing overlapping tokens",
+            "C) Cannot process variable-length inputs; poor gradient flow; high parameter count",
+            "D) Attention scores explode for long segments; positional encoding fails; softmax saturates"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "context-segmentation",
+            "transformer-xl",
+            "limitations"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post enumerates three exact problems with vanilla Transformer's fixed-length context segmentation: (1) cannot capture very long-term dependencies, (2) it is hard to predict the first few tokens in each segment given no or thin context (cold-start problem), and (3) evaluation is expensive because when the segment shifts right by one, the new segment is re-processed from scratch despite many overlapping tokens. These three problems motivate Transformer-XL's recurrent memory approach."
+    },
+    {
+        "id": "LilLog_TF2_004",
+        "question": "In Transformer-XL, which of Q, K, V uses the extended hidden states (concatenation of previous and current segment), and which uses only current segment hidden states?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Q uses extended states; K and V use current segment only",
+            "B) K and V use extended states (stop-gradient of previous + current); Q uses only current segment hidden states",
+            "C) All three Q, K, V use the extended hidden states equally",
+            "D) Only V uses extended states; Q and K use current segment only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer-xl",
+            "context-memory",
+            "qkv"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "From the post's equations: K^(n)_{τ+1} = h̃^(n-1)_{τ+1} W^k and V^(n)_{τ+1} = h̃^(n-1)_{τ+1} W^v both use the extended hidden state h̃ = [stop-gradient(h^(n-1)_τ) ∘ h^(n-1)_{τ+1}], while Q^(n)_{τ+1} = h^(n-1)_{τ+1} W^q uses only the current segment hidden state. This asymmetry is intentional: queries should focus on what the current segment is asking, while keys and values should expose the broader context (including past segments) that can be attended to."
+    },
+    {
+        "id": "LilLog_TF2_005",
+        "question": "Why does Transformer-XL need to use relative positional encoding instead of absolute positional encoding?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Absolute PE causes gradient explosion when backpropagating through cached hidden states",
+            "B) If absolute positions are used, tokens from previous and current segments at the same absolute position would get the same encoding, making them indistinguishable",
+            "C) Absolute PE is incompatible with the stop-gradient operation applied to cached states",
+            "D) Relative PE reduces memory usage by not storing position vectors in the cache"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer-xl",
+            "relative-positional-encoding",
+            "design-rationale"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post states: 'Transformer-XL needs to use relative positional encoding because previous and current segments would be assigned with the same encoding if we encode absolute positions, which is undesired.' For example, token at position 5 in segment τ and token at position 5 in segment τ+1 would have identical absolute PEs despite being different tokens at different time steps. Relative encoding solves this by encoding the offset i-j between query and key rather than their absolute positions."
+    },
+    {
+        "id": "LilLog_TF2_006",
+        "question": "Transformer-XL's relative attention score a^rel_ij has four terms. What do the four terms represent?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Forward pass, backward pass, self-attention, cross-attention",
+            "B) Content-based addressing, content-dependent positional bias, global content bias, global positional bias",
+            "C) Query projection, key projection, value projection, output projection",
+            "D) Local attention, global attention, positional attention, content attention"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer-xl",
+            "relative-position-encoding",
+            "attention-decomposition"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post shows the Transformer-XL reparameterization decomposes attention into: (1) content-based addressing: x_i W^q (W^k_E)^T x_j — how content of query relates to content of key; (2) content-dependent positional bias: x_i W^q (W^k_R)^T r_{i-j} — how query content relates to relative position; (3) global content bias: u (W^k_E)^T x_j — a global bias for attending to key content; (4) global positional bias: v (W^k_R)^T r_{i-j} — a global bias for attending to relative positions. W^k is split into W^k_E (content) and W^k_R (location)."
+    },
+    {
+        "id": "LilLog_TF2_007",
+        "question": "What is Rotary Position Embedding (RoPE) and what is its key mathematical property?",
+        "type": "multiple_choice",
+        "options": [
+            "A) RoPE adds sinusoidal vectors to embeddings at each layer, similar to vanilla PE but applied repeatedly",
+            "B) RoPE encodes absolute position via a rotation matrix applied to Q and K such that q_i^T k_j depends only on the relative position i-j",
+            "C) RoPE replaces positional encoding entirely by using attention biases proportional to position",
+            "D) RoPE uses learned position embeddings that are rotated during training to encourage diversity"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rope",
+            "rotary-position-embedding",
+            "relative-position"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post explains: RoPE 'encodes the absolute position with a rotation matrix and multiplies key and value matrices of every attention layer with it to inject relative positional information at every layer.' The key property: q_i^T k_j = (R^d_{Θ,i} W^q x_i)^T (R^d_{Θ,j} W^k x_j) = x_i^T W^q R^d_{Θ,j-i} W^k x_j, meaning the inner product depends only on R^d_{Θ,j-i} — the relative rotation — making it a function of only (i-j). This is why RoPE provides relative position information despite encoding absolute positions. RoPE is used in LLaMA, Mistral, and most modern LLMs."
+    },
+    {
+        "id": "LilLog_TF2_008",
+        "question": "How does RoPE's rotation matrix R^d_{Θ,i} handle d-dimensional space?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It applies a single rotation angle θ_i uniformly across all d dimensions",
+            "B) It divides the d-dimensional space into d/2 subspaces and applies a different rotation angle iθ_k to each 2D subspace, forming a block-diagonal rotation matrix",
+            "C) It applies d separate rotation matrices, one per dimension, and sums the results",
+            "D) It uses a random rotation matrix initialized once and kept fixed during training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rope",
+            "rotation-matrix",
+            "implementation"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post shows R^d_{Θ,i} is a d×d block-diagonal matrix where each 2×2 block applies [cos(iθ_k), -sin(iθ_k); sin(iθ_k), cos(iθ_k)] to a pair of dimensions. The d-dimensional space is divided into d/2 subspaces (pairs of dimensions), each getting a distinct angle iθ_k where θ_k = 10000^(-2(k-1)/d). The post notes: 'this is essentially equivalent to sinusoidal positional encoding but formulated as a rotation matrix.' This block-diagonal structure makes RoPE computationally efficient — no full d×d matrix multiply needed."
+    },
+    {
+        "id": "LilLog_TF2_009",
+        "question": "What is the Compressive Transformer and how does it extend Transformer-XL?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It replaces Transformer-XL's memory with a single compressed vector per layer using attention pooling",
+            "B) It extends Transformer-XL by adding a second level of compressed memory — when past activations become old enough they are compressed and stored in compressed memory of size m_cm, extending temporal range to (m_m + c·m_cm)×N",
+            "C) It compresses the model weights rather than activations, reducing parameter count while maintaining context length",
+            "D) It uses gradient compression to allow backpropagating through longer memory windows"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "compressive-transformer",
+            "context-memory",
+            "compression"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post explains: Compressive Transformer 'extends Transformer-XL by compressing past memories to support longer sequences.' It has two types of memory per layer: regular memory (size m_m) and compressed memory (size m_cm). When activations age out of regular memory, they are compressed at rate c (e.g., 4 activations → 1 compressed vector). Temporal range becomes (m_m + c·m_cm)×N vs Transformer-XL's m×N. Compression functions include max/mean pooling, 1D convolution, or dilated convolution — with convolution performing best on EnWiki8."
+    },
+    {
+        "id": "LilLog_TF2_010",
+        "question": "Compressive Transformer uses two auxiliary training losses. What are they and what do they measure?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Reconstruction loss (reproduce original from compressed) and attention-reconstruction loss (match attention patterns over original vs compressed memory)",
+            "B) Perplexity loss on compressed tokens and contrastive loss between memory types",
+            "C) L2 regularization on compression weights and cross-entropy on memory retrieval",
+            "D) Auto-regressive loss over compressed states and KL divergence on attention distributions"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "compressive-transformer",
+            "training-losses",
+            "auxiliary-loss"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post defines two auxiliary losses: (1) Auto-encoding loss L_ac = ||old_mem^(i) - g(new_cm^(i))||_2 — measures how well we can reconstruct original memories from compressed memories (lossless compression objective). (2) Attention-reconstruction loss L_ar = ||attn(h^(i), old_mem^(i)) - attn(h^(i), new_cm^(i))||_2 — minimizes the difference between attention patterns computed over original vs compressed memory (lossy objective). These losses encourage the compression to preserve information that the attention mechanism actually uses."
+    },
+    {
+        "id": "LilLog_TF2_011",
+        "question": "How does kNN-LM combine a pretrained language model with nearest neighbor retrieval?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It replaces the LM's final layer with a kNN classifier trained on training tokens",
+            "B) It linearly interpolates next-token probabilities from a kNN model (built on an external key-value datastore) with the LM's predictions: p(y|x) = λ·p_kNN(y|x) + (1-λ)·p_LM(y|x)",
+            "C) It uses kNN to retrieve the top-k most similar past contexts and averages their next-token distributions",
+            "D) It finetunes the LM using retrieved neighbors as additional training examples at inference time"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "knn-lm",
+            "external-memory",
+            "retrieval-augmented"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post shows: p(y|x) = λ·p_kNN(y|x) + (1-λ)·p_LM(y|x), where p_kNN(y|x) ∝ Σ_{(k_i,w_i)∈N} 1[y=w_i] exp(-d(k_i, f(x))). The datastore stores (context_embedding, next_token) pairs. At inference, the LM embedding of the current context is used to retrieve the k most similar stored contexts via FAISS/ScaNN. λ is tuned and is expected to be larger for out-of-domain data. The key insight: the datastore requires no additional training — just one preprocessing pass. A larger λ gives more weight to retrieved neighbors."
+    },
+    {
+        "id": "LilLog_TF2_012",
+        "question": "What did the Memorizing Transformer find about training with memory vs. fine-tuning into memory?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Training from scratch with large memory always outperforms fine-tuning from a non-memory model",
+            "B) Training with small memory then fine-tuning with larger memory sometimes works better than training with large memory from scratch; a non-memory transformer can be fine-tuned to use memory",
+            "C) Memory size has no effect on perplexity — what matters is the number of attention heads",
+            "D) Fine-tuning with memory always fails due to distributional mismatch between cached and current keys"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "memorizing-transformer",
+            "training-strategy",
+            "memory"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post lists Memorizing Transformer findings: 'training models with a small memory and then finetuned with a larger memory works better than training with a large memory from scratch' and 'A non-memory transformer can be finetuned to use memory.' Additionally, 'a smaller Memorizing Transformer with just 8k tokens in memory can match the perplexity of a larger vanilla Transformer with 5X more trainable parameters,' and 'increasing the size of external memory provided consistent gains up to a size of 262K.' Both keys and values are normalized to prevent large distributional shifts."
+    },
+    {
+        "id": "LilLog_TF2_013",
+        "question": "What is the key difference between ALiBi and DA-Transformer in how they incorporate distance into attention scores?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ALiBi uses learned per-head biases; DA-Transformer uses fixed geometric sequence biases",
+            "B) ALiBi adds a fixed (non-learned) linear bias proportional to distance using a geometric sequence of head scalars; DA-Transformer multiplies attention scores by a learned monotonic function of distance with learnable per-head parameters α_i and β_i",
+            "C) ALiBi modifies key vectors; DA-Transformer modifies query vectors",
+            "D) ALiBi only applies during inference; DA-Transformer applies during both training and inference"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "alibi",
+            "da-transformer",
+            "distance-enhanced-attention"
+        ],
+        "difficulty": "hard",
+        "category": "tradeoff",
+        "explanation": "The post distinguishes: DA-Transformer MULTIPLIES attention scores by f(R^(i); β_i) — a learnable monotonic function with per-head learnable α_i (distance weighting) and β_i (slope control). ALiBi ADDS a bias: softmax(q_i K^T + α_i · [0,-1,-2,...,-(i-1)]) where α_i follows a fixed geometric sequence (e.g., 1/2, 1/4, ..., 1/256 for 8 heads) and is NOT learned. ALiBi's simplicity (no learned parameters) makes it attractive for extrapolation — Press et al. trained on context 1024 and successfully inferred on context 2046."
+    },
+    {
+        "id": "LilLog_TF2_014",
+        "question": "What is the Universal Transformer's key innovation compared to the vanilla Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It uses a different attention mechanism (additive instead of dot-product)",
+            "B) It combines Transformer self-attention with RNN-style recurrence — the same parameters are applied repeatedly across depth steps, and with ACT the number of steps can be dynamically determined per token",
+            "C) It replaces encoder-decoder architecture with a purely encoder-based model",
+            "D) It uses convolutional layers instead of feed-forward networks for position-wise processing"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "universal-transformer",
+            "recurrence",
+            "adaptive-computation"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post: Universal Transformer 'combines self-attention in Transformer with the recurrent mechanism in RNN, aiming to benefit from both a long-term global receptive field of Transformer and learned inductive biases of RNN.' Key properties: (1) parameters are SHARED across recurrent steps (weight tying across depth), making it equivalent to a multi-layer Transformer with tied weights for fixed steps; (2) with ACT, the number of steps T is dynamically determined per-token — easier tokens halt early, harder ones get more processing. This gives both computational efficiency and the Turing-completeness advantage of universal computation."
+    },
+    {
+        "id": "LilLog_TF2_015",
+        "question": "Universal Transformer uses a 2D positional encoding P^t. What information does it encode compared to vanilla Transformer's PE?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It encodes both token position i and recurrence step t using summed sinusoids for each",
+            "B) It encodes only position i but with higher frequency than vanilla PE",
+            "C) It encodes only the recurrence step t, since position is handled by self-attention",
+            "D) It encodes i×t as a single joint index, flattening position and step information"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "universal-transformer",
+            "positional-encoding",
+            "2d-position"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post shows: PE(i, t, δ) uses sin(i/10000^(2δ'/d)) ⊕ sin(t/10000^(2δ'/d)) for even δ, and cosine counterparts for odd δ. The ⊕ is a summation — both the token position i and the recurrence step t are encoded together using sinusoids. This allows the model to know both WHERE in the sequence a token is AND HOW MANY recurrent refinement steps have been applied, enabling it to behave differently at different depths and positions simultaneously."
+    },
+    {
+        "id": "LilLog_TF2_016",
+        "question": "What is the Adaptive Attention Span mechanism, and what is the soft masking function m_z(x)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It dynamically adjusts the number of attention heads; m_z selects which heads are active",
+            "B) It learns a per-head differentiable span parameter z that controls how far back each head attends via a soft mask m_z(x) = clip((1/R)(R+z-x), 0, 1) that smoothly zeros out attention to distant keys",
+            "C) It hard-masks positions beyond a fixed window z; m_z is a binary step function at distance z",
+            "D) It uses temperature scaling on softmax to shrink the effective attention span; m_z is a sigmoid of distance"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adaptive-attention-span",
+            "soft-masking",
+            "efficiency"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post defines: m_z(x) = clip((1/R)(R+z-x), 0, 1), where z ∈ [0, s] is a learnable span parameter per head, R controls the softness of the transition, and x is the distance between query and key. This smoothly interpolates from 1 (within span) to 0 (beyond span) rather than hard-cutting. z is learned jointly with model parameters via gradient descent (it's differentiable), with an L1 penalty Σ z^(i) to encourage shorter spans. The post notes lower layers tend to need shorter spans while some higher-layer heads use very long spans. This significantly reduces FLOPs by focusing computation where needed."
+    },
+    {
+        "id": "LilLog_TF2_017",
+        "question": "What empirical finding did Sukhbaatar et al. (2019) report about attention spans across different layers?",
+        "type": "multiple_choice",
+        "options": [
+            "A) All layers converged to the same span length — adaptive span provided no benefit",
+            "B) Lower layers do not require very long attention spans, while a few attention heads in higher layers may use exceptionally long spans",
+            "C) Higher layers converged to shorter spans as they represent more abstract features",
+            "D) Span length was uniform across layers but varied strongly across attention heads within the same layer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adaptive-attention-span",
+            "empirical-findings",
+            "layer-analysis"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post states the experimental finding: 'lower layers do not require very long attention spans, while a few attention heads in higher layers may use exceptionally long spans.' This is intuitive — lower layers capture local syntax and character-level patterns that need only nearby context, while higher-level semantic and discourse-level patterns may require long-range context. This motivates adaptive (not fixed uniform) spans, especially for models with many layers and large context windows where adaptive spans can dramatically reduce FLOPs."
+    },
+    {
+        "id": "LilLog_TF2_018",
+        "question": "Depth-Adaptive Transformer attaches output classifiers to each layer. What three configurations does it explore for the exit classifier?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Random exit, greedy exit, beam-search exit",
+            "B) Sequence-specific depth classifier (all tokens in sequence exit at same layer); token-specific multinomial classifier (per-token exit via softmax over N layers); token-specific geometric-like classifier (binary exit decision per layer per token)",
+            "C) Early exit, middle exit, late exit — three fixed predetermined exit points",
+            "D) Layer-shared classifier, layer-specific classifier, no classifier (always exit at final layer)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "depth-adaptive-transformer",
+            "early-exit",
+            "adaptive-depth"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post describes three configurations: (1) Sequence-specific: all tokens share the same exit block, determined by the average encoder representation x̄; outputs a multinomial over N layers. (2) Token-specific multinomial: each token has its own exit, predicted from the first decoder hidden state h^1_t via softmax over N layers. (3) Token-specific geometric-like: binary exit decision X^n_t is made independently per layer per token using sigmoid, with RBF kernel smoothing κ(t,t') across time steps to account for impact of current exit on future predictions. The regularization term -λn encourages lower-layer exits in all three cases."
+    },
+    {
+        "id": "LilLog_TF2_019",
+        "question": "What is Shaw et al. (2018)'s relative position encoding approach, and how does it clip positions?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It adds a learned bias to attention scores based on bucket-quantized relative distances",
+            "B) It incorporates learnable relative position representations P^k, P^v ∈ R^(2k+1) into W^k and W^v, clipping relative distances to [-k, k] so that A^k_ij = P^k_{clip(j-i, k)} — enabling generalization to unseen sequence lengths",
+            "C) It modifies the query matrix to encode relative positions, using sinusoidal functions of j-i",
+            "D) It uses a separate relative position embedding matrix added to the attention output"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "relative-position-encoding",
+            "shaw-2018",
+            "clip"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post: Shaw et al. 'incorporated relative positional information into W^k and W^v. Maximum relative position is clipped to a maximum absolute value of k and this clipping enables the model to generalize to unseen sequence lengths. Therefore, 2k+1 unique edge labels are considered.' The clipping function: clip(x, k) = clip(x, -k, k). A^k_ij = P^k_{clip(j-i, k)} and A^v_ij = P^v_{clip(j-i, k)}. Clipping to k means very distant positions all get the same representation — the model learns 'far away' as a single category, enabling length extrapolation unlike absolute PE which has no encoding for unseen positions."
+    },
+    {
+        "id": "LilLog_TF2_020",
+        "question": "A researcher argues: 'RoPE is completely different from sinusoidal PE — they have fundamentally different mathematical bases.' How does the post address this claim?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The post agrees — RoPE and sinusoidal PE have nothing in common mathematically",
+            "B) The post notes RoPE 'is essentially equivalent to sinusoidal positional encoding but formulated as a rotation matrix' — the base frequencies θ_i = 10000^(-2(i-1)/d) match the sinusoidal PE wavelengths",
+            "C) The post says they are equivalent only for 1D sequences; in higher dimensions they diverge",
+            "D) The post does not compare RoPE and sinusoidal PE"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rope",
+            "sinusoidal-pe",
+            "equivalence"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post explicitly states: 'Note that this is essentially equivalent to sinusoidal positional encoding but formulated as a rotation matrix.' The key link: RoPE uses θ_i = 10000^(-2(i-1)/d), which is the same base as vanilla PE. The difference is purely in how position is applied: sinusoidal PE adds position to embeddings before attention (once, at input), while RoPE multiplies Q and K by rotation matrices at EVERY attention layer, injecting relative position into each layer's attention computation. This per-layer injection is why RoPE provides better relative position information than one-time additive PE."
+    },
+    {
+        "id": "LilLog_TF2_021",
+        "question": "What is the SPALM model's gating mechanism and how does it combine short-term and long-term memory?",
+        "type": "multiple_choice",
+        "options": [
+            "A) SPALM uses a hard switch that selects either kNN output or LM output based on confidence score",
+            "B) SPALM uses a learned gate g_t = σ(w_g^T h^R_t) to interpolate between local hidden state h^R_t and kNN-retrieved memory m_t: z_t = (1-g_t)⊙m_t + g_t⊙h^R_t",
+            "C) SPALM concatenates kNN outputs with the LM hidden state and passes them through an MLP gating layer",
+            "D) SPALM uses an additive combination m_t + h^R_t without learned gating"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "spalm",
+            "gating",
+            "external-memory"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post shows SPALM's gating: m_t = attention-weighted sum of retrieved token embeddings y_i using h^R_t as query. Then g_t = σ(w_g^T h^R_t) — a scalar gate learned from the current hidden state. Final representation: z_t = (1-g_t)⊙m_t + g_t⊙h^R_t — when g_t → 1, local LM hidden state dominates; when g_t → 0, long-term kNN memory dominates. The model learns to modulate trust in retrieved memory vs. local context. Unlike kNN-LM, SPALM did not find nearest neighbor distances helpful in aggregation and uses attention-weighted averaging of retrieved embeddings instead."
+    },
+    {
+        "id": "LilLog_TF2_022",
+        "question": "What is the key design principle of ALiBi that enables length extrapolation, according to the post?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ALiBi's learned biases adapt to new sequence lengths during inference",
+            "B) ALiBi introduces a strong recency preference via fixed linear distance penalties on attention scores, penalizing distant keys without any trainable position parameters — allowing inference on sequences longer than training",
+            "C) ALiBi uses a sinusoidal function of distance that is defined for any position value",
+            "D) ALiBi fine-tunes the model for each new context length encountered at inference"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "alibi",
+            "length-extrapolation",
+            "recency-bias"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post states ALiBi 'adds a constant bias term on query-key attention scores, proportional to pairwise distances. The bias introduces a strong recency preference and penalizes keys that are too far away.' For 8 heads, α_i ∈ {1/2, 1/4, ..., 1/256}. The fixed geometric sequence requires NO additional learned parameters for positional information — since longer distances simply get larger penalties (the formula extrapolates naturally), ALiBi can handle sequences longer than training context. Press et al. trained on 1024 and extrapolated to 2046 successfully, unlike sinusoidal or learned PE which degrade outside training range."
+    },
+    {
+        "id": "LilLog_TF2_023",
+        "question": "The post says self-attention is an 'operation on sets' and 'conceptually similar to non-local means.' What does this analogy reveal?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Like non-local means, self-attention uses spatial proximity to weight neighbors — nearby tokens matter more",
+            "B) Like non-local means (which computes a weighted average of all positions in an image based on similarity), self-attention computes a weighted average of all value vectors where weights are determined by query-key similarity — regardless of positional distance",
+            "C) Like non-local means, self-attention only applies to image data and is not suited for text without modification",
+            "D) The analogy means self-attention requires a 2D input structure similar to image patches"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "non-local-means",
+            "analogy"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Non-local means (NLM) is an image denoising algorithm that computes each pixel's value as a weighted average of ALL pixels in the image, weighted by patch similarity — not just nearby pixels. This is content-based, not position-based. Similarly, self-attention computes each token's output as a weighted average of ALL value vectors, weighted by query-key dot products (content similarity). The key shared property: both methods aggregate over the entire input based on content similarity, not spatial proximity. This is why self-attention is called 'permutation-invariant' — positions don't inherently matter, only content similarity does."
+    },
+    {
+        "id": "LilLog_TF2_024",
+        "question": "Examine this Transformer-XL implementation. What is the critical bug?\n\ndef transformer_xl_attention(h_curr, h_prev, W_q, W_k, W_v):\n    # h_curr: current segment hidden states\n    # h_prev: previous segment hidden states (cached)\n    h_extended = torch.cat([h_prev, h_curr], dim=1)\n    Q = h_curr @ W_q\n    K = h_extended @ W_k\n    V = h_extended @ W_v\n    # Standard scaled dot-product attention\n    scores = Q @ K.transpose(-2, -1) / math.sqrt(Q.shape[-1])\n    return F.softmax(scores, dim=-1) @ V",
+        "type": "multiple_choice",
+        "options": [
+            "A) h_prev should not be concatenated with h_curr — they should be processed separately",
+            "B) The code omits stop_gradient on h_prev — gradients will incorrectly flow into cached (previous segment) hidden states, corrupting the memory mechanism",
+            "C) Q should also use h_extended, not just h_curr",
+            "D) The scaling factor should be Q.shape[-2] (sequence length) not Q.shape[-1] (head dim)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer-xl",
+            "debugging",
+            "stop-gradient"
+        ],
+        "difficulty": "hard",
+        "category": "debugging",
+        "explanation": "The post's equations explicitly use stop-gradient: h̃^(n-1)_{τ+1} = [stop-gradient(h^(n-1)_τ) ∘ h^(n-1)_{τ+1}]. The cached h_prev should be detached from the computation graph — its purpose is to provide contextual keys/values without updating those past states through backpropagation. Without stop_gradient (h_prev.detach() in PyTorch), gradients flow backward through all cached states, causing memory corruption and incorrect training. The fix: h_prev = h_prev.detach() before concatenation. This is one of the most common bugs in Transformer-XL implementations."
+    },
+    {
+        "id": "LilLog_TF2_025",
+        "question": "How does the Depth-Adaptive Transformer's geometric-like classifier differ from its multinomial classifier?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The geometric classifier outputs a distribution over N discrete layers; the multinomial classifier outputs a binary decision at each layer",
+            "B) The geometric classifier makes independent binary exit decisions per layer X^n_t via sigmoid, constructing a geometric-like distribution; the multinomial classifier directly outputs a softmax over all N layers simultaneously",
+            "C) The geometric classifier uses beam search over exit layers; the multinomial uses greedy search",
+            "D) The geometric classifier is only used at inference; the multinomial is only used during training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "depth-adaptive-transformer",
+            "geometric-classifier",
+            "multinomial-classifier"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post describes: Multinomial: q_t(n|x, y<t) = softmax(W_n h^1_t + b_n) — a single softmax over all N layer choices simultaneously. Geometric-like: X^n_t = sigmoid(w_n^T h^n_t + b_n) per layer — binary 'stop or continue' at each layer n independently, with the final distribution computed as: P(exit at n) = X^n_t × ∏_{n'<n}(1-X^n'_t). This is analogous to a geometric distribution — the probability of continuing to each layer is the product of 'not stopping' probabilities at all earlier layers. Additionally, the geometric version uses RBF kernel smoothing κ(t,t') to incorporate future token impacts into the exit decision."
+    },
+    {
+        "id": "LilLog_TF2_026",
+        "question": "What does the post identify as the time and memory complexity of naively increasing context length in vanilla Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Time: O(L·d), Memory: O(L)",
+            "B) Time: O(L²·d), Memory: O(L²)",
+            "C) Time: O(L·d²), Memory: O(d²)",
+            "D) Time: O(L²), Memory: O(L·d)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "complexity",
+            "context-length",
+            "scalability"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The post states: 'Naively increasing context length leads to high consumption in both time (O(L²d)) and memory (O(L²)) and may not be supported due to hardware constraints.' The L² terms come from the attention matrix A ∈ R^(L×L): computing all L² pairwise attention scores each of dimension d takes O(L²d) time, and storing the attention matrix requires O(L²) memory. This is the fundamental scaling challenge motivating all the longer-context approaches in the post: Transformer-XL, Compressive Transformer, kNN-LM, sparse attention, etc."
+    },
+    {
+        "id": "LilLog_TF2_027",
+        "question": "You are designing a system that needs to store and retrieve from a kNN-LM-style datastore over a 1TB text corpus. What practical consideration does the post highlight?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The datastore must be rebuilt after every model fine-tuning",
+            "B) Because the datastore can be gigantic, fast dense vector search libraries like FAISS or ScaNN are required; the indexing process only happens once and parallelism is easy at inference time",
+            "C) The datastore only works for in-domain queries — OOD queries must use the LM only",
+            "D) kNN retrieval must be done on CPU since GPU memory cannot hold large datastores"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "knn-lm",
+            "system-design",
+            "faiss",
+            "scalability"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "The post: 'Because the datastore can be gigantic, we need to rely on libraries for fast dense vector search such as FAISS or ScaNN. The indexing process only happens once and parallelism is easy to implement at inference time.' This is the key system design insight — exact nearest neighbor search over billions of vectors is intractable, so approximate nearest neighbor (ANN) search with FAISS (Facebook AI Similarity Search) is essential. The one-time indexing cost and inference-time parallelism make kNN-LM practical. The post also notes λ should be larger for OOD data (more weight on retrieved neighbors) — so kNN-LM actually HELPS more for OOD, contrary to option C."
+    },
+    {
+        "id": "LilLog_TF2_028",
+        "question": "In Adaptive Attention Span, the span parameter z has an L1 penalty in the loss. What is the purpose of this penalty?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To prevent z from growing beyond the maximum sequence length s",
+            "B) To encourage shorter attention spans — the L1 penalty on Σ z^(i) pushes z toward 0 unless a longer span is necessary, reducing compute",
+            "C) To ensure all heads converge to the same span for consistency",
+            "D) To regularize the soft masking function against overfitting to training sequence lengths"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adaptive-attention-span",
+            "l1-regularization",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post states: 'the loss function has an extra L1 penalty on Σ_{i=1}^h z^(i).' The L1 penalty creates a sparse pressure — it pushes each z^(i) toward zero unless there is a sufficient gradient signal from the task loss to justify a larger span. This is an explicit efficiency incentive: the model must 'pay' (in training loss) for each unit of attention span used. The result is heads that learn the minimum necessary span, significantly reducing FLOPs especially in lower layers where long spans provide little benefit. This is analogous to L1 regularization on weights producing sparse networks."
+    },
+    {
+        "id": "LilLog_TF2_029",
+        "question": "The post distinguishes between encoder-only (BERT) and decoder-only (GPT) transformers as 'later simplified' versions. What property of each architecture makes them suited for their respective tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "A) BERT uses causal masking for generation; GPT uses bidirectional attention for classification",
+            "B) BERT's encoder-only architecture uses bidirectional (unmasked) self-attention, ideal for understanding tasks that can see full context; GPT's decoder-only uses causal (masked) self-attention, ideal for generation where future tokens are unavailable",
+            "C) Both use identical attention mechanisms — the difference is only in pretraining objective",
+            "D) BERT processes tokens right-to-left; GPT processes left-to-right, giving each model different inductive biases"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "gpt",
+            "encoder-only",
+            "decoder-only"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The post mentions BERT (encoder-only) and GPT (decoder-only) as simplified transformers achieving 'great performance in language modeling tasks.' The architectural split: BERT's encoder uses unmasked self-attention so every token can attend to every other token bidirectionally — ideal for NLU tasks (classification, NER, QA) where the full context is available. GPT's decoder uses causally masked self-attention so each token can only attend to previous tokens — required for autoregressive generation (next-token prediction). The encoder decoder split in the vanilla Transformer serves MT where encoder sees full source and decoder generates target autoregressively."
+    },
+    {
+        "id": "LilLog_TF2_030",
+        "question": "The post describes the encoder's point-wise FFN as 'a convolutional layer with filter size 1.' You are implementing a Transformer in a framework that only supports convolutions. How would you implement the FFN using Conv1D?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Use Conv1D with kernel_size=L (sequence length) to capture full sequence context",
+            "B) Use two Conv1D layers with kernel_size=1: first projecting from d to d_ff with ReLU, then projecting back from d_ff to d — this applies the same weights at each position independently",
+            "C) Use Conv1D with kernel_size=3 to capture local context, followed by a linear projection",
+            "D) Use a single Conv1D with kernel_size=1 and d_ff output channels, then apply softmax"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "feed-forward-network",
+            "convolution-analogy",
+            "implementation"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "The post: 'By point-wise, it means that it applies the same linear transformation (with same weights) to each element in the sequence. This can also be viewed as a convolutional layer with filter size 1.' A 1D convolution with kernel_size=1 is exactly a linear transformation applied independently at each position — the kernel slides across positions but each application only looks at one position. Two such layers with ReLU between them: Conv1D(d→d_ff, k=1) → ReLU → Conv1D(d_ff→d, k=1) is mathematically equivalent to FFN(x) = max(0, xW1+b1)W2+b2. kernel_size=3 would look at neighbors, breaking the position-independence of the FFN."
+    },
+    {
+        "id": "LilLog_TF2_031",
+        "question": "What are the four terms in Transformer-XL's relative attention score, and which weight matrices are introduced?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Two content terms and two position terms; introduces W^k_E and W^k_R to split W^k, and learnable vectors u and v",
+            "B) Four content terms; introduces W^q_E, W^q_R, W^k_E, W^k_R",
+            "C) One content and three position terms; introduces only r_{i-j} relative position vectors",
+            "D) Four position terms; content information is handled by separate content attention"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "transformer-xl",
+            "relative-attention",
+            "weight-matrices"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "The post shows Transformer-XL reparameterizes into four terms: (1) content-based addressing: x_i W^q (W^k_E)^T x_j; (2) content-dependent positional bias: x_i W^q (W^k_R)^T r_{i-j}; (3) global content bias: u (W^k_E)^T x_j; (4) global positional bias: v (W^k_R)^T r_{i-j}. New parameters introduced: W^k_E and W^k_R (W^k split into content and location parts); trainable vectors u and v (replacing p_i W^q with separate global biases for content and location); relative position encoding r_{i-j} (replacing absolute p_j). The key insight: p_i W^q is replaced by global biases u, v that don't depend on i — this simplifies the computation while preserving positional information."
+    },
+    {
+        "id": "LilLog_TF2_032",
+        "question": "A team is building a language model that needs to handle very long documents (50K+ tokens). Based on the methods covered in this post, what architecture would best balance temporal range, compute cost, and simplicity?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Vanilla Transformer with positional encoding — just increase context window",
+            "B) Memorizing Transformer (kNN cache of past KV pairs near top of decoder) combined with ALiBi for length extrapolation — provides efficient O(L²+Lm) attention with long-term kNN retrieval and no learned positional parameters",
+            "C) Universal Transformer with ACT — recursively refines all tokens for variable depth",
+            "D) Depth-Adaptive Transformer — exits early for easy tokens to save compute"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "system-design",
+            "long-context",
+            "architecture-selection"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "explanation": "For 50K+ tokens: (A) is ruled out — O(L²) at 50K would be 2.5 billion operations per layer, infeasible. (C) Universal Transformer addresses compute depth, not sequence length. (D) Depth-Adaptive addresses per-token compute, not sequence length. (B) combines two complementary approaches: Memorizing Transformer's FIFO kNN cache provides efficient access to past context at O(L²+Lm) rather than O(L²·50K), and ALiBi provides length extrapolation without learned positional parameters — enabling inference beyond training context. The post notes Memorizing Transformer can match 5× larger vanilla Transformers with just 8k token memory, suggesting strong efficiency gains."
+    },
+    {
+        "id": "LilLog_TF2_033",
+        "question": "The post notes that in Memorizing Transformer, 'both keys and values in the cache are normalized.' Why is this normalization important?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To ensure the kNN distance metric is meaningful — unnormalized vectors have varying magnitudes that distort L2 distance",
+            "B) To prevent large distributional shifts in value magnitude between recently computed and cached KV pairs, ensuring stable attention computation",
+            "C) To reduce memory usage by keeping all cached vectors in a fixed-point format",
+            "D) To match the layer normalization applied inside the transformer blocks"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "memorizing-transformer",
+            "normalization",
+            "cache"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post explicitly states: 'To prevent large distributional shifts in value magnitude, both keys and values in the cache are normalized.' As the model trains, the scale of key and value vectors may change significantly. Without normalization, older cached KV pairs could have very different magnitudes than current ones, causing the attention mechanism to either over-emphasize or under-emphasize retrieved memories. Normalizing ensures the cached representations remain comparable to current ones despite potential distributional drift during training. This is a practical stability consideration specific to the FIFO cache design."
+    },
+    {
+        "id": "LilLog_TF2_034",
+        "question": "Which model would you choose and why if you need strong performance on out-of-domain text where the training distribution is well-known but inference data is different?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Depth-Adaptive Transformer — it adapts computation to input difficulty",
+            "B) kNN-LM with a large domain-specific datastore — larger λ for OOD data gives more weight to retrieved neighbors from the target domain, improving perplexity without model retraining",
+            "C) Universal Transformer — its weight tying provides better generalization to new distributions",
+            "D) Vanilla Transformer with longer context — more context improves OOD generalization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "knn-lm",
+            "out-of-domain",
+            "system-design"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "The post states: 'the weighting scalar λ should be tuned, but in general it is expected to be larger for out-of-domain data compared to in-domain data.' kNN-LM's key advantage for OOD scenarios: the datastore can store target-domain text without any model retraining. By building a large datastore from the target domain and using a larger λ (more weight on kNN predictions), the system effectively specializes to the new domain without expensive fine-tuning. The post also notes: 'larger datastore size or larger k is correlated with better perplexity' — so investing in a comprehensive target-domain datastore directly improves OOD performance."
+    },
+    {
+        "id": "LilLog_TF2_035",
+        "question": "This is a curveball: the post says self-attention has O(L²d) per-layer time complexity AND O(L²) memory. If you double the sequence length from 512 to 1024, by what factor do time and memory increase?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Time: 2×, Memory: 2×",
+            "B) Time: 4× (L² term), Memory: 4× (L² term)",
+            "C) Time: 4×, Memory: 8×",
+            "D) Time: 8×, Memory: 4×"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "complexity",
+            "quadratic-scaling",
+            "curveball"
+        ],
+        "difficulty": "medium",
+        "category": "curveball",
+        "explanation": "Time complexity is O(L²d): doubling L from 512→1024 gives (1024²×d)/(512²×d) = 1024²/512² = (1024/512)² = 2² = 4×. Memory complexity is O(L²): same calculation gives 4×. Both scale with L² so both increase by 4× when L doubles. This is the fundamental reason why scaling context from 1K to 4K tokens (4×) increases attention cost by 16× and context from 1K to 32K (32×) increases cost by 1024×. This quadratic scaling is precisely why the entire 'Longer Context' section of the post exists — all the methods (Transformer-XL, Compressive Transformer, kNN-LM, sparse attention) are strategies to escape or mitigate this quadratic bottleneck."
+    },
+    {
+        "id": "LilLog_TF2_036",
+        "question": "The post describes Compressive Transformer's attention weight ordering: 'from oldest to newest, stored in three locations.' What is the correct order?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Causally masked sequence → memory → compressed memory (newest to oldest)",
+            "B) Compressed memory → memory → causally masked sequence (oldest to newest)",
+            "C) Memory → compressed memory → causally masked sequence",
+            "D) Causally masked sequence → compressed memory → memory"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "compressive-transformer",
+            "memory-ordering",
+            "attention-weights"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post: 'Attention weights, from oldest to newest, are stored in three locations: compressed memory → memory → causally masked sequence.' Oldest activations are compressed first and stored in compressed memory. As time progresses, newer activations move from causally masked sequence into regular memory, and old regular memory gets compressed into compressed memory. The experiment finding: 'an increase in attention weights from oldest activations stored in the regular memory, to activations stored in the compressed memory, implying that the network is learning to preserve salient information' — i.e., the model actively learns which memories are worth keeping compressed."
+    },
+    {
+        "id": "LilLog_TF2_037",
+        "question": "What does the post mean when it calls Adaptive Attention Span's span parameter z 'differentiable'? Why does this matter for training?",
+        "type": "multiple_choice",
+        "options": [
+            "A) z is stored as a floating-point number, allowing high-precision span estimation",
+            "B) z can receive gradients through the soft masking function m_z, allowing end-to-end training — z is learned jointly with other model parameters via gradient descent rather than via search or RL",
+            "C) z is differentiable with respect to the input sequence, enabling dynamic span at inference",
+            "D) z uses a differentiable approximation of argmax to select discrete attention positions"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adaptive-attention-span",
+            "differentiability",
+            "gradient-descent"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post states: 'z is differentiable so it is trained jointly with other parts of the model.' The soft masking function m_z(x) = clip((1/R)(R+z-x), 0, 1) is continuous and piecewise linear in z — gradients flow through it into z. This is crucial because it means: no discrete optimization (which would require RL or evolutionary methods), no separate training phase for span learning, and the span naturally adapts to minimize task loss + L1 penalty simultaneously with the regular model parameters. The R hyperparameter controls gradient flow — larger R means a smoother transition zone, providing larger gradients for z during training."
+    },
+    {
+        "id": "LilLog_TF2_038",
+        "question": "Lilian Weng notes this Version 2.0 post is 'a superset of the old version, about twice the length.' This post covers RoPE. In what year was RoPE introduced and what models currently use it?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 2019, used in BERT and GPT-2",
+            "B) 2021 (Su et al. 2021), currently used in modern LLMs like LLaMA family models",
+            "C) 2023, introduced alongside this blog post",
+            "D) 2020, introduced in GPT-3"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rope",
+            "history",
+            "modern-llms"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The post cites 'RoPE; Su et al. 2021' with arxiv link 2104.09864 (April 2021). RoPE is now the dominant positional encoding scheme in modern LLMs: LLaMA 1, 2, and 3, Mistral, Falcon, Qwen, and many others all use RoPE. Its dominance stems from: (1) relative position information without explicit position matrix additions, (2) good length extrapolation with techniques like RoPE scaling/interpolation, (3) compatibility with flash attention and other optimization techniques. GPT-3 (2020) used learned absolute positional embeddings. BERT used sinusoidal or learned absolute PE. RoPE's 2021 timing meant it arrived after GPT-3 and before the LLaMA era that popularized it."
+    },
+    {
+        "id": "LilLog_TF2_039",
+        "question": "All of the following are compression functions discussed for Compressive Transformer EXCEPT:",
+        "type": "multiple_choice",
+        "options": [
+            "A) Max/mean pooling with kernel and stride size c",
+            "B) 1D convolution with kernel and stride size c",
+            "C) Dilated convolution",
+            "D) Cross-attention over the full activation history"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "compressive-transformer",
+            "compression-functions",
+            "multi-select"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The post lists four compression function choices: (1) Max/mean pooling of kernel and stride size c, (2) 1D convolution with kernel and stride size c (learns additional parameters), (3) Dilated convolution (learns additional parameters) — which performed best on EnWik8, and (4) Most used memories (retaining activations that received highest attention weights). Cross-attention over full activation history (option D) is NOT listed — that would defeat the purpose of compression since it would require accessing all original activations. The best-performing method in experiments was 1D/dilated convolution."
+    },
+    {
+        "id": "LilLog_TF2_040",
+        "question": "A critic argues: 'Learned positional encoding is strictly better than sinusoidal because it adapts to the training data.' Based on the post's content and related knowledge, what is the most nuanced counterargument?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Learned PE is never better — sinusoidal always achieves higher BLEU scores",
+            "B) Learned PE is better for in-distribution sequences but cannot extrapolate to lengths unseen during training, while sinusoidal functions are defined for any position. Modern alternatives like RoPE and ALiBi outperform both for length generalization",
+            "C) Learned PE requires twice as many parameters as sinusoidal PE, making it impractical",
+            "D) Learned PE cannot be applied per-layer, limiting its expressiveness"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "positional-encoding",
+            "tradeoff",
+            "length-generalization"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "explanation": "The post describes both approaches: sinusoidal PE was chosen in vanilla Transformer 'because it may allow the model to extrapolate to sequence lengths longer than the ones encountered during training.' Learned PE 'can be learned differently per layer' (more expressive) but is limited to positions seen during training — position embeddings for index 1025 don't exist if trained on max-length-1024 sequences. The post also covers superior alternatives: RoPE provides both relative position information and reasonable length generalization via rotation matrix composition. ALiBi explicitly achieves extrapolation with its fixed linear bias. The field has moved beyond both sinusoidal and learned absolute PE for frontier models."
+    }
+]

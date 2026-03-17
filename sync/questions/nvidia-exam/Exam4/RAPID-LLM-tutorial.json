@@ -1,0 +1,1536 @@
+[
+    {
+        "id": "dl_basics_001",
+        "question": "According to the text, what is the fundamental difference between Classical Computing and Deep Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "Classical computing learns from data, while Deep Learning requires manual function definitions.",
+            "Classical computing requires explicit function definition, while Deep Learning learns the function automatically from data.",
+            "Deep Learning is used for simple linear problems, while Classical Computing handles complex non-linear problems.",
+            "Classical computing uses neural networks, while Deep Learning uses logic gates."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deep learning",
+            "classical computing",
+            "machine learning basics"
+        ],
+        "difficulty": "easy",
+        "explanation": "Classical computing requires the user to explicitly define the function or algorithm, whereas Deep Learning uses data (inputs and outputs) to learn the function automatically."
+    },
+    {
+        "id": "dl_basics_002",
+        "question": "What is the primary goal of supervised machine learning as described in the course introduction?",
+        "type": "multiple_choice",
+        "options": [
+            "To perfectly memorize the training data.",
+            "To specify an algorithm manually for complex tasks.",
+            "To create a function that can generalize to new, unseen data.",
+            "To eliminate the need for a loss metric."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "supervised learning",
+            "generalization",
+            "deep learning"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that the goal of supervised machine learning is to create a function that can generalize to new, unseen data."
+    },
+    {
+        "id": "dl_arch_003",
+        "question": "Which type of layer is described as using 'local features' to reason about small resolutions first?",
+        "type": "multiple_choice",
+        "options": [
+            "Dense Layers",
+            "Convolutional (Sparse) Layers",
+            "Recurrent Layers",
+            "Output Layers"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "layers",
+            "convolutional",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Convolutional (Sparse) Layers are based on the insight of using local features, reasoning about small resolutions first and building upon them."
+    },
+    {
+        "id": "dl_arch_004",
+        "question": "In a Deep Learning architecture, which component is generally considered 'transferable' to other tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "Task-Specific Heads",
+            "The Loss Metric",
+            "Feature Extractors",
+            "The Optimizer"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "transfer learning",
+            "feature extractors",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Feature extractors (often convolutional layers) create general representations that are transferable. Task-specific heads are generally not transferable."
+    },
+    {
+        "id": "dl_optim_005",
+        "question": "Why is it strictly required that the entire Deep Learning model pipeline be differentiable?",
+        "type": "multiple_choice",
+        "options": [
+            "To ensure the model is compatible with HuggingFace pipelines.",
+            "To allow the calculation of gradients (slope) necessary for optimization.",
+            "To ensure the model can process natural language tokens.",
+            "To prevent the model from overfitting on training data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "gradients",
+            "differentiability"
+        ],
+        "difficulty": "medium",
+        "explanation": "Differentiability allows the system to find the gradient of any part of the network, which is required for the optimization process to adjust weights."
+    },
+    {
+        "id": "dl_nlp_006",
+        "question": "How is language modeling fundamentally categorized in the context of Deep Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "As a classification problem based on a finite vocabulary.",
+            "As a regression problem predicting continuous values.",
+            "As an unsupervised clustering problem.",
+            "As a manual feature extraction problem."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nlp",
+            "language modeling",
+            "classification"
+        ],
+        "difficulty": "medium",
+        "explanation": "Modeling language is described as essentially a classification problem based on a finite vocabulary (tokens), with the added complexity of ordered sequences."
+    },
+    {
+        "id": "hf_pipeline_007",
+        "question": "Which of the following is NOT one of the three main components of a HuggingFace 'pipeline' call?",
+        "type": "multiple_choice",
+        "options": [
+            "Preprocessing (Tokenizer)",
+            "Model processing",
+            "Hyperparameter Tuning",
+            "Post-processing (Task-specific head)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "huggingface",
+            "pipeline",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "A pipeline call consists of Preprocessing (Tokenizer), Model, and Post-processing. Hyperparameter tuning is part of training, not the inference pipeline."
+    },
+    {
+        "id": "hf_config_008",
+        "question": "What is the specific purpose of the `config` file in a HuggingFace model repository?",
+        "type": "multiple_choice",
+        "options": [
+            "It serves as a README detailing the model's limitations.",
+            "It contains the raw binary weights of the model.",
+            "It specifies the model's architecture and settings for loading weights.",
+            "It converts natural language strings into numerical representations."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "huggingface",
+            "configuration",
+            "model loading"
+        ],
+        "difficulty": "medium",
+        "explanation": "The config file is a JSON file that specifies the model's architecture and settings, telling the Transformers library how to load the weights correctly."
+    },
+    {
+        "id": "hf_usage_009",
+        "question": "Why does the text advise checking the End User License Agreement (EULA) for HuggingFace models?",
+        "type": "multiple_choice",
+        "options": [
+            "Some models are restricted to research or proof-of-concept use only.",
+            "Models without a EULA cannot be downloaded via the Transformers library.",
+            "Commercial models are always incompatible with the pipeline syntax.",
+            "To ensure the model was created by a large company like Google or Meta."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "huggingface",
+            "ethics",
+            "licensing"
+        ],
+        "difficulty": "easy",
+        "explanation": "Users must check the EULA because some models are for research or proof-of-concept only and cannot be used for commercial applications."
+    },
+    {
+        "id": "hf_intro_001",
+        "question": "Which specific package is identified as HuggingFace\u2019s primary library for loading and working with language models?",
+        "type": "multiple_choice",
+        "options": [
+            "sklearn",
+            "transformers",
+            "pipelines",
+            "torch"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "huggingface",
+            "transformers",
+            "libraries"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that loading the model requires the use of the `transformers` package, which is HuggingFace\u2019s primary library for language models."
+    },
+    {
+        "id": "hf_pipeline_002",
+        "question": "In a HuggingFace pipeline, which component facilitates the 'preprocess' stage (converting human-intuitive input to tensor inputs)?",
+        "type": "multiple_choice",
+        "options": [
+            "The Model",
+            "The GPU",
+            "The Tokenizer",
+            "The Task Head"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "huggingface",
+            "pipeline",
+            "preprocessing"
+        ],
+        "difficulty": "easy",
+        "explanation": "The pipeline workflow describes the `preprocess` stage as converting human-intuitive input to tensor inputs, which is facilitated by the `tokenizer`."
+    },
+    {
+        "id": "token_ids_003",
+        "question": "What do `input_ids` represent in the context of tokenization?",
+        "type": "multiple_choice",
+        "options": [
+            "The probabilities of the next word prediction.",
+            "The semantic meaning of the sentence.",
+            "The individual entries of tokens out of a set vocabulary.",
+            "Flags indicating which sentence a token belongs to."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "tokenization",
+            "input_ids",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "`input_ids` are defined as the IDs of the tokens that make up the sentence, representing individual entries out of a set vocabulary."
+    },
+    {
+        "id": "bert_embeddings_004",
+        "question": "Which of the following is NOT one of the three core components of BERT's embedding strategy?",
+        "type": "multiple_choice",
+        "options": [
+            "Word Embeddings",
+            "Position Embeddings",
+            "Context Embeddings",
+            "Token Type Embeddings"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bert",
+            "embeddings",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text identifies the three components as Word Embeddings, Position Embeddings, and Token Type Embeddings. Context Embeddings is not listed as a separate component."
+    },
+    {
+        "id": "similarity_metrics_005",
+        "question": "When comparing Cosine Similarity to Softmax Attention for embeddings, what is a key characteristic of the Softmax approach?",
+        "type": "multiple_choice",
+        "options": [
+            "It produces a symmetric matrix.",
+            "It ignores the magnitude of the embeddings.",
+            "It factors magnitude into the decision process.",
+            "It is computationally cheaper than Cosine Similarity."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "embeddings",
+            "similarity",
+            "softmax"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text notes that Softmax metrics factor magnitude into the decision process (unlike basic cosine similarity which discards it), making it useful for injecting similarity into optimization."
+    },
+    {
+        "id": "layernorm_006",
+        "question": "What is the primary function of the `LayerNorm` layer described in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "To mask out random values during training to prevent overfitting.",
+            "To normalize data so each minibatch subscribes to a similar distribution.",
+            "To convert input strings into numerical tokens.",
+            "To calculate the gradient for backpropagation."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "normalization",
+            "layernorm",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "`LayerNorm` normalizes the data flowing through it so that each minibatch subscribes to a similar distribution, covering layer outputs."
+    },
+    {
+        "id": "attention_components_007",
+        "question": "In the Transformer self-attention mechanism, which three semantic spaces are mapped from the embeddings?",
+        "type": "multiple_choice",
+        "options": [
+            "Input, Hidden, Output",
+            "Key, Query, Value",
+            "Encoder, Decoder, Attention",
+            "Positive, Negative, Neutral"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer",
+            "attention",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states we train a mapping from embeddings into three semantic spaces: K (Key), Q (Query), and V (Value)."
+    },
+    {
+        "id": "multihead_attention_008",
+        "question": "How does BERT implement Multi-Headed Attention given its 768-dimensional vectors?",
+        "type": "multiple_choice",
+        "options": [
+            "It duplicates the 768-dimensional vector 12 times.",
+            "It slices the vectors into 12 trios of 64 dimensions each.",
+            "It increases the dimension to 3072 using an MLP.",
+            "It processes the 768 dimensions sequentially."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "multi-head attention",
+            "dimensions"
+        ],
+        "difficulty": "hard",
+        "explanation": "Multi-Headed Attention in BERT slices up the embedding dimension (768) such that we get 12 trios with dimension 768/12 = 64."
+    },
+    {
+        "id": "residual_connections_009",
+        "question": "What is the main purpose of adding Residual Connections around transformer components?",
+        "type": "multiple_choice",
+        "options": [
+            "To reduce the number of parameters in the model.",
+            "To prevent the model from attending to padding tokens.",
+            "To help propagate token-level information and improve gradient flow.",
+            "To normalize the output distribution."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "residual connections",
+            "optimization",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Residual connections are added to help the network keep token-level information propagating through the network and improve the overall gradient flow."
+    },
+    {
+        "id": "reasoning_types_010",
+        "question": "Why is pure 'Token-by-token reasoning' insufficient for language modeling?",
+        "type": "multiple_choice",
+        "options": [
+            "It requires too much memory.",
+            "Tokens need to understand the context of other tokens in the sequence.",
+            "It cannot handle numerical inputs.",
+            "It is too slow for real-time applications."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "reasoning",
+            "context",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states the problem with token-by-token reasoning is that tokens need to understand the context of other tokens in the sequence."
+    },
+    {
+        "id": "embed_matrix_001",
+        "question": "Why do LLMs use an embedding matrix instead of one-hot vectors for token representation?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the dimensionality of the data.",
+            "To avoid the inefficiency of massive sparse vectors by using a dense vector lookup.",
+            "To ensure the model is differentiable.",
+            "To directly encode the position of the token."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embeddings",
+            "efficiency",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "One-hot vectors are inefficient for large vocabularies. An embedding matrix acts as an efficient index lookup to get a dense vector for each token."
+    },
+    {
+        "id": "pos_embed_002",
+        "question": "What is the primary purpose of adding Positional Embeddings to the Token Embeddings?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the vocabulary size.",
+            "To provide a unique signal for the order of words since the feed-forward layers treat them as disjointed.",
+            "To calculate the attention score between tokens.",
+            "To mask out future tokens during training."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "positional embeddings",
+            "sequence order",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "Positional embeddings give the model a sense of order (1st word, 2nd word, etc.) because standard feed-forward layers treat words in a sequence as disjointed."
+    },
+    {
+        "id": "self_attn_mech_003",
+        "question": "In the self-attention mechanism, the 'attention matrix' is created by multiplying which two representations?",
+        "type": "multiple_choice",
+        "options": [
+            "Query (Q) and Value (V)",
+            "Key (K) and Value (V)",
+            "Query (Q) and Key (K)",
+            "Input Embeddings and Positional Embeddings"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "self-attention",
+            "qkv",
+            "mechanism"
+        ],
+        "difficulty": "medium",
+        "explanation": "The attention matrix, representing the similarity between tokens, is created by multiplying the Query (Q) matrix by the Key (K) matrix."
+    },
+    {
+        "id": "bert_training_004",
+        "question": "What was the specific pre-training objective used for BERT?",
+        "type": "multiple_choice",
+        "options": [
+            "Next Token Prediction (Autoregression)",
+            "Image Classification",
+            "Masked Language Modeling (MLM)",
+            "Translation from English to German"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bert",
+            "training objective",
+            "masked language modeling"
+        ],
+        "difficulty": "easy",
+        "explanation": "BERT was pre-trained on Masked Language Modeling (MLM), which involves predicting randomly masked-out tokens in a sentence."
+    },
+    {
+        "id": "encoder_tasks_005",
+        "question": "For a Text Classification task using an Encoder model like BERT, which part of the output is typically used for the prediction?",
+        "type": "multiple_choice",
+        "options": [
+            "The average of all token embeddings.",
+            "The final embedding of the very first token (often [CLS]).",
+            "The final embedding of the very last token.",
+            "The output of the decoder layer."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "text classification",
+            "encoder",
+            "bert"
+        ],
+        "difficulty": "medium",
+        "explanation": "For text classification, a dense layer is added to only the final embedding of the very first token (often the [CLS] token), which gathers info from the whole sentence."
+    },
+    {
+        "id": "encoder_weakness_006",
+        "question": "What is the core weakness of Encoder-only architectures described in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "They cannot perform classification tasks.",
+            "They are not good at generating new tokens that aren't in the input.",
+            "They require significantly more memory than Decoders.",
+            "They cannot handle bidirectional context."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "encoder",
+            "limitations",
+            "generation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Encoders are designed to select or classify existing tokens but fail at generating new tokens that aren't in the input (e.g., translation or conversation)."
+    },
+    {
+        "id": "decoder_mask_007",
+        "question": "How does 'Masked Self-Attention' in Decoder models differ from standard self-attention?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows tokens to see future tokens to improve accuracy.",
+            "It prevents a token from attending to itself.",
+            "It masks the attention matrix so a token can only see itself and previous tokens.",
+            "It uses a different mathematical formula for matrix multiplication."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "decoder",
+            "masked attention",
+            "autoregression"
+        ],
+        "difficulty": "medium",
+        "explanation": "Masked self-attention ensures a token can only 'see' itself and the tokens that came before it, preventing it from 'looking into the future' during training."
+    },
+    {
+        "id": "arch_types_008",
+        "question": "Which architecture is best suited for tasks with a strong separation between input and output, such as Machine Translation?",
+        "type": "multiple_choice",
+        "options": [
+            "Encoder-Only (e.g., BERT)",
+            "Decoder-Only (e.g., GPT)",
+            "Encoder-Decoder (The original Transformer)",
+            "Recurrent Neural Networks (RNN)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "architecture",
+            "machine translation",
+            "encoder-decoder"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Encoder-Decoder architecture is best for tasks like Machine Translation where there is a clear separation between the input (context) and the output (generation)."
+    },
+    {
+        "id": "cross_attention_009",
+        "question": "In an Encoder-Decoder architecture, how does the 'Cross-Attention' mechanism work?",
+        "type": "multiple_choice",
+        "options": [
+            "The encoder attends to the decoder's output.",
+            "The decoder (using Q) looks at the encoder's final output (using K and V).",
+            "The decoder attends only to its own previous outputs.",
+            "The encoder and decoder process data independently without connection."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cross-attention",
+            "encoder-decoder",
+            "mechanism"
+        ],
+        "difficulty": "hard",
+        "explanation": "Cross-Attention connects the two parts: the decoder uses its Queries (Q) to 'look at' the encoder's final output Keys (K) and Values (V) at every step."
+    },
+    {
+        "id": "cot_prompting_010",
+        "question": "What is the main idea behind Chain-of-Thought (CoT) prompting?",
+        "type": "multiple_choice",
+        "options": [
+            "To reduce the number of tokens generated to save cost.",
+            "To force the model to generate a reasoned explanation ('think step-by-step') before the final answer.",
+            "To fine-tune the model on millions of new tasks.",
+            "To use a chain of multiple models to answer a single question."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "chain-of-thought",
+            "prompt engineering",
+            "reasoning"
+        ],
+        "difficulty": "easy",
+        "explanation": "CoT prompting involves prompting the model to 'think step-by-step,' forcing it to generate intermediate reasoning steps before providing the final answer."
+    },
+    {
+        "id": "qa_encoder_011",
+        "question": "How does an Encoder-only model perform Question Answering (QA)?",
+        "type": "multiple_choice",
+        "options": [
+            "By generating a new sentence that answers the question.",
+            "By predicting the start and end token indices of the answer within the provided context.",
+            "By retrieving the answer from an external database.",
+            "Encoders cannot perform Question Answering."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "encoder",
+            "question answering",
+            "limitations"
+        ],
+        "difficulty": "medium",
+        "explanation": "For QA, an encoder cannot generate new text; it predicts the start and end token of the answer found within the provided context (extractive QA)."
+    },
+    {
+        "id": "decoder_only_pros_012",
+        "question": "What is a key advantage of Decoder-Only models (like GPT) mentioned in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "They have superior bidirectional reasoning capabilities.",
+            "They are specialized for tasks with clear input-output separation.",
+            "They are very flexible and learn from all data (questions and answers) in a single pathway.",
+            "They require less training data than Encoder-Decoder models."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "decoder-only",
+            "gpt",
+            "advantages"
+        ],
+        "difficulty": "medium",
+        "explanation": "Decoder-Only models are very flexible because they treat everything as a sequence generation task, learning from all data (questions, answers) in one pathway."
+    },
+    {
+        "id": "token_pred_mech_001",
+        "question": "In a Transformer Encoder (like BERT), how is token-level prediction (such as mask filling) typically performed after the sequence propagates through the network?",
+        "type": "multiple_choice",
+        "options": [
+            "By averaging all output vectors into a single prediction.",
+            "By passing each embedded entry through a dense net to perform prediction.",
+            "By feeding the output into a separate recurrent neural network.",
+            "By using a decoder to autoregressively generate the token."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "token prediction",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explains that if the output is semantically rich, the system passes each embedded entry through a dense net to perform token-level prediction."
+    },
+    {
+        "id": "bert_head_002",
+        "question": "Which specific activation function is mentioned as being used in the BERT classification head?",
+        "type": "multiple_choice",
+        "options": [
+            "ReLU",
+            "Sigmoid",
+            "GELU (Gaussian Error Linear Unit)",
+            "Tanh"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bert",
+            "activation functions",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "The source code breakdown lists 'GELUActivation' and the text describes GELU as 'Like ReLU, but a bit smoother.'"
+    },
+    {
+        "id": "qa_range_pred_003",
+        "question": "How is Question Answering (QA) typically implemented using an encoder-only model like RoBERTa?",
+        "type": "multiple_choice",
+        "options": [
+            "The model generates the answer word-by-word.",
+            "The model predicts the start and end token indices of the answer substring.",
+            "The model classifies the question as answerable or not.",
+            "The model retrieves the answer from an external database."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "question answering",
+            "roberta",
+            "token prediction"
+        ],
+        "difficulty": "medium",
+        "explanation": "For QA, the classifier is trained to predict the start and end tokens of the model input to generate a subset as the response."
+    },
+    {
+        "id": "nsp_objective_004",
+        "question": "What is the training goal of the Next-Sentence Prediction (NSP) task in BERT?",
+        "type": "multiple_choice",
+        "options": [
+            "To predict the next word in the sentence.",
+            "To predict if sentence A follows sentence B.",
+            "To determine the sentiment of the sentence.",
+            "To sort the tokens into grammatical classes."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "nsp",
+            "training objectives"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states the NSP training goal is to predict if sentence A follows sentence B."
+    },
+    {
+        "id": "seq_classification_005",
+        "question": "For sequence-level classification (e.g., Sentiment Analysis) in BERT, which part of the output is processed by the task-specific head?",
+        "type": "multiple_choice",
+        "options": [
+            "Every token's embedding vector.",
+            "The average of all token vectors.",
+            "A specific output entry (usually the [CLS] token) from the base model.",
+            "The positional embeddings only."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "sequence classification",
+            "bert",
+            "cls token"
+        ],
+        "difficulty": "medium",
+        "explanation": "The workflow for classification involves taking just a specific output entry (i.e., 0th, `CLS`) from the base model and running it through dense layers."
+    },
+    {
+        "id": "zero_shot_006",
+        "question": "What defines 'Zero-Shot Inference' as described in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "The model is asked to predict things exemplified in the context.",
+            "The model is asked to predict things it was never specifically trained to predict.",
+            "The model makes predictions with zero latency.",
+            "The model is retrained on a new dataset before inference."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "zero-shot",
+            "inference",
+            "definitions"
+        ],
+        "difficulty": "easy",
+        "explanation": "Zero-Shot Inference is defined as when a model is asked to predict things that it was never specifically trained to predict."
+    },
+    {
+        "id": "decoder_only_007",
+        "question": "How do Decoder-Only models (like GPT-2) primarily generate text?",
+        "type": "multiple_choice",
+        "options": [
+            "They encode the entire input first, then decode.",
+            "They predict the middle token of a sentence using bidirectional attention.",
+            "They generate text autoregressively, predicting the next token based on previous ones.",
+            "They select the best sentence from a pre-defined list."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "gpt",
+            "decoder-only",
+            "autoregression"
+        ],
+        "difficulty": "easy",
+        "explanation": "Decoder-only models are designed for autoregressive text generation, predicting the next token in a sequence based on the previous ones."
+    },
+    {
+        "id": "data_rep_008",
+        "question": "According to the text, what is an 'Implicit (Latent) Representation'?",
+        "type": "multiple_choice",
+        "options": [
+            "The form of data that is human/software interpretable.",
+            "The form of data optimized into existence for an end-goal (e.g., intermediate embeddings).",
+            "The raw string input provided to the tokenizer.",
+            "The final probability distribution output by the model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "representations",
+            "latent space",
+            "theory"
+        ],
+        "difficulty": "hard",
+        "explanation": "Implicit (Latent) Representation is defined as the form of data that is optimized into existence for an end-goal, such as intermediate representations in a multi-layered pipeline."
+    },
+    {
+        "id": "cross_attention_009_v1",
+        "question": "What is 'Cross-Attention' in the context of the original Transformer architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "Attention that prevents the model from seeing future tokens.",
+            "Attention that factors components from two sequences together (Encoder and Decoder).",
+            "Attention that calculates the similarity between two different models.",
+            "Attention that only looks at the position of words."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cross-attention",
+            "transformer",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Cross-attention is described as attention that factors components from two sequences together, allowing the decoder to use the encoder's bidirectional reasoning."
+    },
+    {
+        "id": "encoder_decoder_criteria_010",
+        "question": "Which of the following is NOT a criterion listed for using Encoder-Decoder architectures?",
+        "type": "multiple_choice",
+        "options": [
+            "The sequences follow the same distribution and format.",
+            "The problem requires reasoning from at least two sequences with potentially differing lengths.",
+            "The problem requires progressive generation of at least one sequence.",
+            "The sequences follow disjoint distributions (formats, purposes, modalities)."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "encoder-decoder",
+            "architecture selection",
+            "best practices"
+        ],
+        "difficulty": "hard",
+        "explanation": "If sequences follow the same distribution, the text suggests it is better to feed them both through the same network pathway, rather than using an encoder-decoder."
+    },
+    {
+        "id": "t5_finetuning_011",
+        "question": "Why does the text suggest T5 models are particularly good for task-specific fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "They have the largest parameter count of all models.",
+            "The encoder allows reasoning about new input formats with few gradient updates.",
+            "They do not use an encoder, making them faster.",
+            "They are trained exclusively on code, not natural language."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "t5",
+            "fine-tuning",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states T5 excels at fine-tuning because the encoder can start reasoning about new input formats with relatively few gradient updates."
+    },
+    {
+        "id": "modality_def_001",
+        "question": "In the context of deep learning, how is a 'modality' best defined according to the text?",
+        "type": "multiple_choice",
+        "options": [
+            "Any data that is strictly text-based.",
+            "Data that requires a specific structure and architecture to model it effectively.",
+            "A statistical outlier in a dataset.",
+            "The speed at which a model processes information."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "modality",
+            "deep learning basics",
+            "theory"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text defines a modality in deep learning as data that requires a specific structure and architecture (e.g., CNNs for images, Transformers for sequences) to model effectively."
+    },
+    {
+        "id": "clip_training_002",
+        "question": "What is the core training objective used by CLIP to align text and image encoders?",
+        "type": "multiple_choice",
+        "options": [
+            "Masked Language Modeling (MLM)",
+            "Next Token Prediction",
+            "Contrastive Learning",
+            "Pixel Reconstruction"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "clip",
+            "training objective",
+            "contrastive learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "CLIP uses contrastive pre-training, where the goal is to pull matched (positive) pairs together in the embedding space and push mismatched (negative) pairs apart."
+    },
+    {
+        "id": "early_fusion_003",
+        "question": "In the context of Image-to-Text generation, how does 'Early Fusion' handle image inputs?",
+        "type": "multiple_choice",
+        "options": [
+            "The image is processed by a separate encoder and attended to via cross-attention.",
+            "The image embeddings are projected directly into the text embedding space and treated as tokens in the sequence.",
+            "The image is discarded and only the caption is used.",
+            "The image is converted into audio frequencies before processing."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fusion strategies",
+            "multimodality",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Early Fusion projects image embeddings directly into the text embedding space, allowing the model to treat image data as just another 'token' in the sequence."
+    },
+    {
+        "id": "diffusion_vs_transformer_004",
+        "question": "Why are pure Transformers generally considered inefficient for generating high-fidelity images compared to Diffusion models?",
+        "type": "multiple_choice",
+        "options": [
+            "Transformers cannot process color information.",
+            "Images require dense high-frequency detail, causing memory and compute to explode with pixel-level tokenization.",
+            "Transformers are incapable of learning spatial relationships.",
+            "Diffusion models do not require any training data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "diffusion",
+            "transformers",
+            "image generation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text notes that generating images one pixel or token at a time is inefficient for Transformers due to the complexity and high-fidelity detail required, whereas Diffusion excels at progressive refinement."
+    },
+    {
+        "id": "autoencoder_role_005",
+        "question": "What is the primary function of an autoencoder in modern image generation architectures?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the file size of the image.",
+            "To compress images into a latent bottleneck representation.",
+            "To generate text captions for images.",
+            "To act as a router for API requests."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "autoencoders",
+            "latent space",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "Autoencoders are used to compress high-dimensional images down to a small latent representation (bottleneck) which is more efficient for models to work with."
+    },
+    {
+        "id": "production_quantization_006",
+        "question": "In the context of productionizing AI models, what does 'quantization' refer to?",
+        "type": "multiple_choice",
+        "options": [
+            "Splitting the model across multiple GPUs.",
+            "Reducing numerical precision (e.g., from float32 to int8) to speed up math.",
+            "Increasing the number of parameters in the model.",
+            "Batching multiple user requests together."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "production",
+            "optimization",
+            "quantization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization involves reducing numerical precision (for example, using lower precision floats or integers) to achieve faster mathematical operations and lower memory usage."
+    },
+    {
+        "id": "nvidia_nim_007",
+        "question": "What is the primary purpose of NVIDIA NIM?",
+        "type": "multiple_choice",
+        "options": [
+            "To provide a dataset for training large language models.",
+            "To provide optimized inference microservices for hosting models on your own infrastructure.",
+            "To replace the need for GPUs entirely.",
+            "To act as a front-end web framework for chatbots."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia nim",
+            "deployment",
+            "microservices"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NIM provides pre-optimized inference microservices in containers, allowing developers to deploy and host models on their own infrastructure."
+    },
+    {
+        "id": "bi_vs_cross_encoder_008",
+        "question": "Which statement best describes a 'Bi-Encoder' (Late Fusion) formulation like CLIP?",
+        "type": "multiple_choice",
+        "options": [
+            "It fuses information at the very beginning of the input pathway.",
+            "It processes modalities separately and compares them in a shared embedding space.",
+            "It uses a single transformer to process concatenated text and image tokens.",
+            "It cannot be used for retrieval tasks."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bi-encoder",
+            "fusion strategies",
+            "clip"
+        ],
+        "difficulty": "hard",
+        "explanation": "Bi-Encoders process modalities (like text and image) independently into separate embeddings and then compare them in a shared space, which is a form of late fusion."
+    },
+    {
+        "id": "diffusion_mechanism_009",
+        "question": "How do Diffusion models primarily generate data?",
+        "type": "multiple_choice",
+        "options": [
+            "By predicting the next token in a sequence autoregressively.",
+            "By selecting the closest match from a database.",
+            "Through iterative progressive denoising from random noise.",
+            "By masking out random patches and reconstructing them in one pass."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "diffusion",
+            "generative mechanism",
+            "denoising"
+        ],
+        "difficulty": "medium",
+        "explanation": "Diffusion models work by starting with pure noise and iteratively removing that noise (denoising) step-by-step to recover the data distribution."
+    },
+    {
+        "id": "cross_attention_role_010",
+        "question": "What is the role of 'Cross-Attention' in encoder-decoder multimodal models (e.g., Whisper)?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows the decoder to dynamically reference and attend to the encoder's output sequences.",
+            "It forces the model to ignore the encoder output.",
+            "It is used solely for compressing the input data.",
+            "It merges two inputs into a single sequence before processing."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cross-attention",
+            "architecture",
+            "multimodality"
+        ],
+        "difficulty": "medium",
+        "explanation": "Cross-Attention bridges the encoder and decoder, allowing the decoder to 'look at' (attend to) relevant parts of the encoded input sequence (e.g., audio) while generating the output (e.g., text)."
+    },
+    {
+        "id": "sharding_def_011",
+        "question": "In the context of large model deployment, what does 'Sharding' refer to?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantizing the model weights.",
+            "Distributing a model that is too large for one GPU across multiple resources.",
+            "Sharing the model API key with multiple users.",
+            "Deleting unused layers of the network."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sharding",
+            "deployment",
+            "infrastructure"
+        ],
+        "difficulty": "easy",
+        "explanation": "Sharding addresses the challenge of models being too large for a single GPU by distributing the model's components across multiple computing resources."
+    },
+    {
+        "id": "joint_embedding_012",
+        "question": "What capability is enabled by creating a 'Joint Embedding Space' in models like CLIP and ImageBind?",
+        "type": "multiple_choice",
+        "options": [
+            "Pixel-perfect image reconstruction.",
+            "Cross-modal retrieval (e.g., using audio to find images).",
+            "Faster training speeds for text-only models.",
+            "Eliminating the need for a tokenizer."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "joint embedding",
+            "retrieval",
+            "multimodality"
+        ],
+        "difficulty": "medium",
+        "explanation": "A joint embedding space maps different modalities to similar points, enabling cross-modal retrieval, such as using text or audio queries to find matching images."
+    },
+    {
+        "id": "q1_orchestration_def",
+        "question": "According to the text, what distinguishes GenAI orchestration from deploying primitive model endpoints?",
+        "type": "multiple_choice",
+        "options": [
+            "Orchestration relies solely on the model's internal weights without external data.",
+            "Orchestration involves using primitive models and adding state, logic, and tools.",
+            "Orchestration is primarily focused on reducing the latency of single API calls.",
+            "Orchestration removes the need for a system prompt or augmented input."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "orchestration",
+            "genai",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text defines orchestration as the combination of LLMs with other software to route, direct, and influence both the software and the LLM, moving beyond primitive endpoints by adding state, logic, and tools."
+    },
+    {
+        "id": "q2_rag_pattern",
+        "question": "Which orchestration pattern involves searching a vector store for relevant documents to 'augment' the LLM's context before generation?",
+        "type": "multiple_choice",
+        "options": [
+            "Semantic Routing",
+            "Retrieval Augmented Generation (RAG)",
+            "Prompt Priming",
+            "Constrained Decoding"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "orchestration",
+            "patterns"
+        ],
+        "difficulty": "easy",
+        "explanation": "RAG is described as the most common pattern where a user query searches a vector store, and relevant documents are added to the context to provide knowledge the model wasn't trained on."
+    },
+    {
+        "id": "q3_structured_generation",
+        "question": "Which of the following is described as the 'strongest' method for enforcing structured generation by directly manipulating the model's output probabilities?",
+        "type": "multiple_choice",
+        "options": [
+            "Prompt Engineering (Few-shot)",
+            "Tool Training (Fine-tuning)",
+            "Prompt Priming",
+            "Constrained Decoding"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "structured generation",
+            "decoding",
+            "reliability"
+        ],
+        "difficulty": "medium",
+        "explanation": "Constrained decoding is identified as the strongest method because it illegalizes (sets probability to zero) any token that would break the required grammar (e.g., JSON schema) at each step."
+    },
+    {
+        "id": "q4_agentic_loop",
+        "question": "In the context of 'Agentic Systems', what characterizes the ReAct (Reason-and-Act) loop?",
+        "type": "multiple_choice",
+        "options": [
+            "The LLM immediately executes a tool without prior reasoning.",
+            "The agent iterates through a cycle of Reasoning, Acting (calling a tool), and Observing results.",
+            "The system runs multiple LLMs in parallel and averages their answers.",
+            "The user must manually approve every tool call before it executes."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "agents",
+            "react",
+            "loops"
+        ],
+        "difficulty": "medium",
+        "explanation": "The ReAct loop is described as a framework where the LLM receives input, Reasons about what to do, Acts by choosing a tool, receives an Observation, and repeats until finished."
+    },
+    {
+        "id": "q5_modern_system_capabilities",
+        "question": "Select all capabilities that are explicitly mentioned as features of modern orchestration systems compared to basic chatbots.",
+        "type": "multiple_choice",
+        "options": [
+            "They can intercept model output to call external tools (e.g., a Python interpreter).",
+            "They manage state by retrieving information from external websites or knowledge bases.",
+            "They eliminate the need for prompt engineering entirely.",
+            "They rely exclusively on training data for all knowledge retrieval."
+        ],
+        "correct_indices": [
+            0,
+            1
+        ],
+        "tags": [
+            "capabilities",
+            "modern systems",
+            "tools"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states modern systems can 'Call Tools' (intercept output/execute software) and 'Manage State' (retrieve info from external sources), unlike basic chatbots or systems relying just on weights."
+    },
+    {
+        "id": "q6_tooling_interaction",
+        "question": "For an LLM to interact with an external environment (Tooling), which of the following conditions must be met?",
+        "type": "multiple_choice",
+        "options": [
+            "The LLM must have a context window larger than 100,000 tokens.",
+            "The system must be an Observing System (context enriched by query) or an Interacting System (query changes state).",
+            "The LLM must be fine-tuned on the specific API documentation of the tool.",
+            "The environment must be written in Python."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tooling",
+            "interaction",
+            "theory"
+        ],
+        "difficulty": "hard",
+        "explanation": "The section 'Fundamentals of Tooling' states that for interaction, the system must either be observing (enriched context) or interacting (sending a query that changes application state)."
+    },
+    {
+        "id": "q7_parallel_generation",
+        "question": "Which technique involves reasoning about independent components of a task separately and joining the results later to avoid slow iterative generation?",
+        "type": "multiple_choice",
+        "options": [
+            "Sliding Window",
+            "Prompt Priming",
+            "Parallel Generation / Ensembling",
+            "Constrained Decoding"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "parallel generation",
+            "ensembling",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text describes Parallel Generation (including Canonicalization, Structurization, and Ensembling) as a way to handle tasks with independent components by reasoning about them independently and combining results."
+    },
+    {
+        "id": "q1_agent_min_component",
+        "question": "According to the text, what is the 'bare minimum' component an agent generally needs?",
+        "type": "multiple_choice",
+        "options": [
+            "A buffer to accumulate memory",
+            "A routing mechanism to pick a pathway",
+            "A prediction of arguments",
+            "An overarching directive"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "agentic systems",
+            "core concepts",
+            "theory"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states: 'At a bare minimum, an agent generally needs only one component: - A routing mechanism to pick a pathway.'"
+    },
+    {
+        "id": "q2_agent_definition",
+        "question": "How does the text define an 'agentic' system?",
+        "type": "multiple_choice",
+        "options": [
+            "A system that strictly follows a pre-defined linear script without deviation.",
+            "A system that can observe, think about, react to, and act upon an environment with a personal directive.",
+            "A system that utilizes only one tool at a time.",
+            "A system that stores all conversation history in a SQL database."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "definitions",
+            "agentic systems"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text defines a system as agentic if it 'can observe, think about, react to, and act upon an environment with a personal directive' or pick tools based on state to impact goals."
+    },
+    {
+        "id": "q3_code_routing_heuristic",
+        "question": "In the provided 'basic agentic loop' code example, what serves as the routing mechanism?",
+        "type": "multiple_choice",
+        "options": [
+            "The 'sys_msg' variable definition",
+            "The 'StrOutputParser' object",
+            "The logic checking if '[stop]' is in 'agent_msg'",
+            "The 'keyboardInterrupt' exception handler"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "code analysis",
+            "routing",
+            "implementation"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text explains that the loop uses a simple 'does the output contain [stop]' heuristic to decide whether to continue or break, identifying this explicitly as the routing mechanism."
+    },
+    {
+        "id": "q4_agent_extensions",
+        "question": "Which of the following are listed as potential extensions or features of a multi-tool agent?",
+        "type": "multiple_choice",
+        "options": [
+            "State Management (tool choice changes behavior)",
+            "Retrieval (tool enriches context)",
+            "Agentic Multimodality (outputting images/audio/video)",
+            "Select all that apply"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "multi-tool agents",
+            "capabilities",
+            "extensions"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text lists State Management, Retrieval, and Agentic Multimodality as 'What if' scenarios that extend the basic agent concept."
+    },
+    {
+        "id": "q5_tool_decorator",
+        "question": "In the calculator agent code snippet, which decorator is used to define the functions (add, subtract, etc.) as tools?",
+        "type": "multiple_choice",
+        "options": [
+            "@agent",
+            "@runnable",
+            "@tool",
+            "@register"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "langchain",
+            "code",
+            "syntax"
+        ],
+        "difficulty": "easy",
+        "explanation": "The code snippet explicitly uses the `@tool` decorator from `langchain_core.tools` above each function definition."
+    },
+    {
+        "id": "q6_no_tool_purpose",
+        "question": "What is the purpose of the `no_tool` function in the calculator agent example?",
+        "type": "multiple_choice",
+        "options": [
+            "To handle division by zero errors",
+            "To reset the agent's memory",
+            "To explicitly indicate that no tool should be used",
+            "To stop the agent loop immediately"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "code analysis",
+            "tooling"
+        ],
+        "difficulty": "medium",
+        "explanation": "The docstring for the `no_tool` function states: 'Null tool; says no tool should be used'."
+    },
+    {
+        "id": "q1_router_limitation",
+        "question": "According to the text, what is a specific limitation of the internal router in the server deployment described?",
+        "type": "multiple_choice",
+        "options": [
+            "It cannot handle JSON output.",
+            "It is only capable of thinking one tool call at a time.",
+            "It enforces schemas before generation begins.",
+            "It requires the user to manually input the tool schema."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "router",
+            "limitations",
+            "tool calling"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states: 'This internal router in this server deployment is only capable of thinking one tool call at a time.'"
+    },
+    {
+        "id": "q2_conversational_tool_calling_benefits",
+        "question": "Why does the text suggest implementing conversational tool-calling (doing conversation and tool-calling in a single generation)?",
+        "type": "multiple_choice",
+        "options": [
+            "To reduce the server costs by 50%.",
+            "To enable code parity with models like GPT-4 and support streamlined frameworks like LangGraph.",
+            "To completely eliminate the need for an LLM in the loop.",
+            "To force the model to always output unstructured text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "conversational tool calling",
+            "langgraph",
+            "gpt-4"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text mentions that conversational tool-calling allows code parity with GPT-4 and makes leveraging LangGraph significantly easier."
+    },
+    {
+        "id": "q3_react_loop_assumption",
+        "question": "What is the core assumption of the ReAct (Reason+Act) loop implemented in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "The agent must ask the user for permission before every tool call.",
+            "The agent should output all possible tool calls at once.",
+            "The agent keeps calling and observing tool results in an interleaving manner until a final answer is reached.",
+            "The agent ignores tool outputs and relies solely on pre-trained knowledge."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "react",
+            "agentic loop",
+            "methodology"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text describes the ReAct loop assumption as: 'Keep calling for and observing the results of tool calls in an interleaving manner until you have a final answer.'"
+    },
+    {
+        "id": "q4_code_tool_observation_role",
+        "question": "In the provided ReAct loop code, how is the result of a tool call added to the conversation history?",
+        "type": "multiple_choice",
+        "options": [
+            "As a 'system' message.",
+            "As an 'ai' message with a specific flag.",
+            "As a 'user' message.",
+            "It is not added to the history; it is printed only."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "code analysis",
+            "react",
+            "message roles"
+        ],
+        "difficulty": "hard",
+        "explanation": "The code explanation states: '[(\"user\", tool_resp)] * bool(tool_resp): Adds the tool's result ... to the history, formatted as a \"user\" message.'"
+    },
+    {
+        "id": "q5_code_loop_continuation",
+        "question": "In the ReAct loop code, what causes the agent to immediately run again without asking the user for input?",
+        "type": "multiple_choice",
+        "options": [
+            "If the user types 'continue'.",
+            "If the last message in the history is from the 'ai' (indicating it is waiting for a reply).",
+            "If the last message in the history is NOT from the 'ai' (e.g., a tool result formatted as 'user').",
+            "The agent never runs automatically; it always waits for input."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "code analysis",
+            "control flow",
+            "python"
+        ],
+        "difficulty": "hard",
+        "explanation": "The loop checks `if not state[\"messages\"] or state[\"messages\"][-1][0] == \"ai\"` to prompt the user. If a tool was called, the last message is 'user' (the tool result), making this condition False, so it skips input and the agent runs again."
+    },
+    {
+        "id": "q6_langgraph_mention",
+        "question": "Which streamlined agentic framework is mentioned as a motivation for implementing conversational tool-calling?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow Agents",
+            "LangGraph",
+            "AutoGPT",
+            "BabyAGI"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "frameworks",
+            "langgraph",
+            "tools"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states: 'For the assessment, we would like to leverage a more streamlined agentic framework called LangGraph...'"
+    }
+]

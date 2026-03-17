@@ -1,0 +1,247 @@
+[
+    {
+        "id": "opt_adam_params_001",
+        "question": "In the Adam optimization algorithm, what are the recommended default values for beta1, beta2, and epsilon respectively?",
+        "type": "multiple_choice",
+        "options": [
+            "0.9, 0.99, 10^-8",
+            "0.9, 0.999, 10^-8",
+            "0.99, 0.9, 10^-10",
+            "0.5, 0.9, 10^-6"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "adam",
+            "hyperparameters"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text recommends default values: beta1 = 0.9, beta2 = 0.999, and epsilon = 10^-8."
+    },
+    {
+        "id": "opt_learning_decay_002",
+        "question": "Which formula represents the learning rate decay method described where epoch_num is the number of passes through the entire dataset?",
+        "type": "multiple_choice",
+        "options": [
+            "learning_rate = learning_rate_0 * (decay_rate / epoch_num)",
+            "learning_rate = (1 / (1 + decay_rate * epoch_num)) * learning_rate_0",
+            "learning_rate = learning_rate_0 - decay_rate * epoch_num",
+            "learning_rate = learning_rate_0 * 0.95^epoch_num"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "learning rate decay",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "One technique is learning_rate = (1 / (1 + decay_rate * epoch_num)) * learning_rate_0."
+    },
+    {
+        "id": "opt_local_optima_003",
+        "question": "According to the notes, why are 'bad' local optima unlikely to be a problem in high-dimensional Deep Neural Networks?",
+        "type": "multiple_choice",
+        "options": [
+            "Because the cost function is always convex.",
+            "Because optimization algorithms always skip them.",
+            "Because for a point to be a local optimum, it must be a local optimum in all dimensions, which is unlikely.",
+            "Because local optima only occur in linear regression models."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "local optima",
+            "saddle points",
+            "theory"
+        ],
+        "difficulty": "medium",
+        "explanation": "For a point to be a local optima it has to be a local optima for each of the dimensions which is highly unlikely; saddle points are much more common."
+    },
+    {
+        "id": "opt_plateau_004",
+        "question": "What is a 'plateau' in the context of neural network optimization?",
+        "type": "multiple_choice",
+        "options": [
+            "A region where the derivative is undefined.",
+            "A region where the derivative is close to zero for a long time.",
+            "The point where the cost function reaches its global minimum.",
+            "A region where the learning rate increases exponentially."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "plateaus",
+            "gradients"
+        ],
+        "difficulty": "easy",
+        "explanation": "A plateau is a region where the derivative is close to zero for a long time, making learning slow."
+    },
+    {
+        "id": "hyper_priority_005",
+        "question": "Which hyperparameter does Andrew Ng consider the most important to tune first?",
+        "type": "multiple_choice",
+        "options": [
+            "Number of layers",
+            "Mini-batch size",
+            "Learning rate (alpha)",
+            "Momentum (beta)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "hyperparameter tuning",
+            "learning rate"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text lists 'Learning rate' as the first priority in hyperparameter importance."
+    },
+    {
+        "id": "hyper_sampling_006",
+        "question": "When tuning hyperparameters, which sampling strategy is generally recommended over using a grid?",
+        "type": "multiple_choice",
+        "options": [
+            "Grid search",
+            "Random sampling",
+            "Manual selection",
+            "Linear sampling"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hyperparameter tuning",
+            "sampling strategy"
+        ],
+        "difficulty": "easy",
+        "explanation": "One of the ways to tune is to try random values: don't use a grid, as it allows testing more distinct values for important parameters."
+    },
+    {
+        "id": "hyper_scale_007",
+        "question": "For the momentum hyperparameter beta (ranging from 0.9 to 0.999), what is the recommended method for sampling values?",
+        "type": "multiple_choice",
+        "options": [
+            "Sample beta uniformly on a linear scale between 0.9 and 0.999.",
+            "Sample 1 - beta on a logarithmic scale between 0.001 and 0.1.",
+            "Sample beta on a logarithmic scale between 0.9 and 0.999.",
+            "Fix beta to 0.9."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hyperparameters",
+            "sampling scale",
+            "momentum"
+        ],
+        "difficulty": "hard",
+        "explanation": "You should search for 1 - beta in range 0.001 to 0.1 using a logarithmic scale, then calculate beta = 1 - 10^r."
+    },
+    {
+        "id": "hyper_caviar_panda_008",
+        "question": "What is the key difference between the 'Panda' and 'Caviar' approaches to hyperparameter tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "Panda uses random sampling; Caviar uses grid search.",
+            "Panda babysits one model over time; Caviar trains many models in parallel.",
+            "Panda is for Computer Vision; Caviar is for NLP.",
+            "Panda uses batch norm; Caviar does not."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hyperparameter tuning",
+            "methodology"
+        ],
+        "difficulty": "medium",
+        "explanation": "Panda approach involves babysitting one model (nudging parameters daily), while Caviar involves running many models in parallel."
+    },
+    {
+        "id": "batch_norm_009",
+        "question": "In Batch Normalization, what is the role of the learnable parameters gamma and beta?",
+        "type": "multiple_choice",
+        "options": [
+            "They are used to compute the gradients during backpropagation.",
+            "They allow the network to scale and shift the normalized value to any distribution.",
+            "They are fixed constants to ensure zero mean and unit variance.",
+            "They are used only during test time."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "batch normalization",
+            "parameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "Gamma and beta are learnable parameters that allow the network to scale (gamma) and shift (beta) the normalized values to a new distribution."
+    },
+    {
+        "id": "batch_norm_test_010",
+        "question": "How are the mean and variance calculated for Batch Normalization during test time?",
+        "type": "multiple_choice",
+        "options": [
+            "Using the mean and variance of the single test example.",
+            "Using the mean and variance of the entire test set at once.",
+            "Using a running average (exponentially weighted average) of mean and variance gathered during training.",
+            "They are set to 0 and 1 respectively."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "batch normalization",
+            "test time"
+        ],
+        "difficulty": "medium",
+        "explanation": "In testing, we use estimated values of mean and variance (often a running/weighted average across mini-batches from training)."
+    },
+    {
+        "id": "softmax_loss_011",
+        "question": "Which loss function is used for Softmax Regression (multiclass classification)?",
+        "type": "multiple_choice",
+        "options": [
+            "Squared Error Loss",
+            "Hinge Loss",
+            "Cross-Entropy Loss (sum of -y * log(y_hat))",
+            "Absolute Error Loss"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "softmax",
+            "loss function"
+        ],
+        "difficulty": "medium",
+        "explanation": "The loss function used with softmax is L(y, y_hat) = - sum(y[j] * log(y_hat[j]))."
+    },
+    {
+        "id": "softmax_deriv_012",
+        "question": "What is the derivative of the cost function with respect to Z (dZ) for Softmax Regression?",
+        "type": "multiple_choice",
+        "options": [
+            "dZ = Y_hat * (1 - Y_hat)",
+            "dZ = Y_hat - Y",
+            "dZ = Y - Y_hat",
+            "dZ = sum(Y_hat)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "softmax",
+            "backpropagation",
+            "derivatives"
+        ],
+        "difficulty": "hard",
+        "explanation": "Back propagation with softmax yields dZ[L] = Y_hat - Y."
+    }
+]

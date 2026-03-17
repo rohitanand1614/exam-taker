@@ -1,0 +1,843 @@
+[
+    {
+        "id": "q61",
+        "question": "What is the primary difference between Stemming and Lemmatization?",
+        "type": "multiple_choice",
+        "options": [
+            "Stemming always results in a valid dictionary word, while Lemmatization does not.",
+            "Stemming reduces words to a base form (often effectively chopping off ends), whereas Lemmatization reduces words to a valid dictionary base form (lemma).",
+            "Stemming is used for images, while Lemmatization is used for text.",
+            "Lemmatization increases the vocabulary size, while Stemming reduces it."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "text preprocessing",
+            "normalization",
+            "stemming",
+            "lemmatization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Stemming is a heuristic process that chops off ends of words (e.g., 'running' to 'run'), often resulting in non-words, while Lemmatization uses linguistic knowledge to map words to their valid dictionary base form."
+    },
+    {
+        "id": "q62",
+        "question": "Which NLP task involves identifying and classifying mentions of entities such as people, organizations, and locations in text?",
+        "type": "multiple_choice",
+        "options": [
+            "Sentiment Analysis",
+            "Named Entity Recognition (NER)",
+            "Part-of-Speech (POS) Tagging",
+            "Machine Translation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp tasks",
+            "ner",
+            "information extraction"
+        ],
+        "difficulty": "easy",
+        "explanation": "Named Entity Recognition (NER) is specifically defined as identifying and classifying mentions of entities like people, locations, and organizations."
+    },
+    {
+        "id": "q63",
+        "question": "What is the main advantage of Subword Tokenization (e.g., in models like BERT or FastText) over simple Word-based Tokenization?",
+        "type": "multiple_choice",
+        "options": [
+            "It eliminates the need for GPUs.",
+            "It helps handle Out-Of-Vocabulary (OOV) words by breaking them into frequent subunits.",
+            "It removes all punctuation from the text.",
+            "It converts all text to uppercase."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tokenization",
+            "subword",
+            "oov"
+        ],
+        "difficulty": "medium",
+        "explanation": "Subword tokenization breaks words into meaningful sub-units, allowing the model to construct representations for words it hasn't seen before (OOV) using those known sub-parts."
+    },
+    {
+        "id": "q64",
+        "question": "In the context of Word2Vec, how does the Continuous Bag of Words (CBOW) architecture function?",
+        "type": "multiple_choice",
+        "options": [
+            "It predicts the surrounding context words given a single target word.",
+            "It predicts the target (center) word given its surrounding context words.",
+            "It translates text from English to French.",
+            "It classifies the sentiment of the entire sentence."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word embeddings",
+            "word2vec",
+            "cbow"
+        ],
+        "difficulty": "medium",
+        "explanation": "CBOW takes the surrounding context words as input and attempts to predict the single target (center) word."
+    },
+    {
+        "id": "q65",
+        "question": "Which NVIDIA RAPIDS library provides a GPU-accelerated DataFrame API similar to pandas for text and tabular data manipulation?",
+        "type": "multiple_choice",
+        "options": [
+            "cuML",
+            "cuGraph",
+            "cuDF",
+            "TensorRT"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia tools",
+            "rapids",
+            "cudf"
+        ],
+        "difficulty": "easy",
+        "explanation": "cuDF is the GPU DataFrame library in the RAPIDS ecosystem, providing a pandas-like API for accelerated data manipulation."
+    },
+    {
+        "id": "q66",
+        "question": "What is the purpose of TF-IDF (Term Frequency–Inverse Document Frequency) in feature engineering?",
+        "type": "multiple_choice",
+        "options": [
+            "To count the total number of words in a document.",
+            "To assign weights to terms based on their frequency in a document versus across the whole corpus, highlighting informative terms.",
+            "To convert all words to their root form.",
+            "To identify the grammatical structure of a sentence."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "feature engineering",
+            "tf-idf",
+            "preprocessing"
+        ],
+        "difficulty": "medium",
+        "explanation": "TF-IDF weighs terms higher if they are frequent in a specific document but rare globally, helping to identify terms that are characteristic of that specific document."
+    },
+    {
+        "id": "q67",
+        "question": "Which Word2Vec architecture is generally considered better for learning representations of infrequent (rare) words?",
+        "type": "multiple_choice",
+        "options": [
+            "Continuous Bag of Words (CBOW)",
+            "Skip-Gram",
+            "One-Hot Encoding",
+            "TF-IDF"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word embeddings",
+            "word2vec",
+            "skip-gram"
+        ],
+        "difficulty": "hard",
+        "explanation": "Skip-Gram works better for rare words because it treats the target word as the input and predicts multiple context words, giving rare words more opportunities to update the model weights."
+    },
+    {
+        "id": "q68",
+        "question": "What is the key feature of the FastText embedding method compared to standard Word2Vec?",
+        "type": "multiple_choice",
+        "options": [
+            "It uses a transformer architecture.",
+            "It represents words as compositions of character n-grams (subword units).",
+            "It requires labeled data for training.",
+            "It ignores the order of words in a sentence."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word embeddings",
+            "fasttext",
+            "subword"
+        ],
+        "difficulty": "medium",
+        "explanation": "FastText extends Word2Vec by treating words as bags of character n-grams, allowing it to capture morphology and handle out-of-vocabulary words better."
+    },
+    {
+        "id": "q69",
+        "question": "In an NLP pipeline, what is the role of 'Stopword Removal'?",
+        "type": "multiple_choice",
+        "options": [
+            "To remove high-frequency function words (like 'the', 'is') that usually contribute little semantic meaning.",
+            "To remove offensive language from the text.",
+            "To stop the pipeline if an error occurs.",
+            "To remove all verbs from the sentence."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "text preprocessing",
+            "stopwords",
+            "cleaning"
+        ],
+        "difficulty": "easy",
+        "explanation": "Stopword removal filters out very common words that often add noise rather than semantic value, reducing the size of the data for downstream tasks."
+    },
+    {
+        "id": "q70",
+        "question": "Which NVIDIA framework is described as an open-source library for building and deploying compositional AI and NLP models, including LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA NeMo",
+            "NVIDIA PhysX",
+            "NVIDIA GeForce",
+            "NVIDIA Omniverse"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia tools",
+            "nemo",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NeMo is the framework for building conversational AI models, LLMs, and speech applications."
+    },
+    {
+        "id": "q71",
+        "question": "What does Part-of-Speech (POS) Tagging do?",
+        "type": "multiple_choice",
+        "options": [
+            "It translates the text into another language.",
+            "It assigns grammatical roles (e.g., noun, verb, adjective) to each token.",
+            "It summarizes the text into a single sentence.",
+            "It determines if the sentiment is positive or negative."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp tasks",
+            "pos tagging",
+            "syntax"
+        ],
+        "difficulty": "easy",
+        "explanation": "POS tagging involves analyzing the text and assigning a grammatical category (like noun, verb, adjective) to every token."
+    },
+    {
+        "id": "q72",
+        "question": "In the hands-on spaCy tutorial, what attribute is used to access the base form of a token?",
+        "type": "multiple_choice",
+        "options": [
+            "token.text",
+            "token.lemma_",
+            "token.pos_",
+            "token.shape_"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "spacy",
+            "lemmatization",
+            "coding"
+        ],
+        "difficulty": "medium",
+        "explanation": "In spaCy, `token.lemma_` provides the lemmatized (base dictionary) form of the token."
+    },
+    {
+        "id": "q73",
+        "question": "Which of the following is an example of an 'N-gram' feature extraction technique?",
+        "type": "multiple_choice",
+        "options": [
+            "One-Hot Encoding",
+            "Using bigrams (sequences of 2 consecutive words) or trigrams.",
+            "Removing all numbers from the text.",
+            "Applying a Softmax function."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "feature engineering",
+            "n-grams",
+            "preprocessing"
+        ],
+        "difficulty": "easy",
+        "explanation": "N-gram extraction involves creating features from contiguous sequences of `n` items from a given sample of text (e.g., 'New York' is a bigram)."
+    },
+    {
+        "id": "q74",
+        "question": "Why are Word Embeddings generally preferred over One-Hot Encoding for deep learning NLP tasks? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "They capture semantic relationships (similar words are close in vector space).",
+            "They drastically reduce dimensionality compared to sparse one-hot vectors.",
+            "They require no training data.",
+            "They result in binary vectors."
+        ],
+        "correct_indices": [
+            0,
+            1
+        ],
+        "tags": [
+            "word embeddings",
+            "one-hot encoding",
+            "comparison"
+        ],
+        "difficulty": "medium",
+        "explanation": "Embeddings are dense vectors that capture semantic meaning (geometry/analogies) and are much lower dimensional than the vocabulary-sized sparse vectors used in one-hot encoding."
+    },
+    {
+        "id": "q75",
+        "question": "What is the 'Geometric Intuition' often cited regarding word embeddings like Word2Vec?",
+        "type": "multiple_choice",
+        "options": [
+            "Words are arranged alphabetically in the vector space.",
+            "Vector arithmetic can express semantic analogies (e.g., King - Man + Woman ≈ Queen).",
+            "All vectors have a length of 1.",
+            "Words are stored as binary trees."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word embeddings",
+            "intuition",
+            "geometry"
+        ],
+        "difficulty": "easy",
+        "explanation": "The classic example of geometric intuition in embeddings is that vector operations reflect semantic relationships, such as the analogy 'King is to Man as Queen is to Woman'."
+    },
+    {
+        "id": "q76",
+        "question": "In the context of NLP pipelines, what does 'Normalization' typically involve?",
+        "type": "multiple_choice",
+        "options": [
+            "Standardizing text by lowercasing, stemming, or lemmatizing to reduce surface-form variation.",
+            "Ensuring the length of every sentence is exactly the same.",
+            "Converting all text to numeric integers.",
+            "Removing all named entities."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nlp pipeline",
+            "normalization",
+            "preprocessing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Normalization aims to treat different forms of the same word (e.g., 'Text', 'text', 'TEXT') consistently by standardizing them, often via lowercasing or lemmatization."
+    },
+    {
+        "id": "q77",
+        "question": "Which of the following describes 'Stochastic Gradient Descent (SGD)' as used in the text classification demo?",
+        "type": "multiple_choice",
+        "options": [
+            "It updates model parameters using the entire dataset at once.",
+            "It updates model parameters using a single training example or small mini-batch per iteration.",
+            "It does not use gradients for optimization.",
+            "It is only used for unsupervised learning."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "sgd",
+            "training"
+        ],
+        "difficulty": "medium",
+        "explanation": "SGD updates parameters iteratively using a single example or a mini-batch, making it computationally efficient for training compared to processing the full batch every step."
+    },
+    {
+        "id": "q78",
+        "question": "What is the primary goal of 'Language Modeling'?",
+        "type": "multiple_choice",
+        "options": [
+            "To classify text into categories.",
+            "To predict the probability of sequences of words or the next word given a context.",
+            "To translate text between languages.",
+            "To extract named entities from text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp tasks",
+            "language modeling"
+        ],
+        "difficulty": "easy",
+        "explanation": "Language modeling is defined as predicting the probability of word sequences or generating the most likely next token in a sequence."
+    },
+    {
+        "id": "q79",
+        "question": "In the GloVe (Global Vectors) embedding method, what information is combined to create embeddings?",
+        "type": "multiple_choice",
+        "options": [
+            "Only local context windows.",
+            "Global matrix factorization (co-occurrence statistics) and local context window information.",
+            "Only character n-grams.",
+            "Manual feature engineering."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word embeddings",
+            "glove",
+            "methodology"
+        ],
+        "difficulty": "hard",
+        "explanation": "GloVe is distinct because it combines global statistics (factorizing the co-occurrence matrix of the whole corpus) with local context window methods."
+    },
+    {
+        "id": "q80",
+        "question": "Which of the following is a challenge associated with 'High Dimensionality' in NLP?",
+        "type": "multiple_choice",
+        "options": [
+            "It makes the data too small to train deep models.",
+            "Large vocabularies and long sequences increase memory footprint and compute costs.",
+            "It reduces the ambiguity of the language.",
+            "It eliminates the need for preprocessing."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp challenges",
+            "dimensionality",
+            "compute"
+        ],
+        "difficulty": "medium",
+        "explanation": "High dimensionality, resulting from massive vocabularies and long text sequences, leads to high memory usage and computational costs for training and inference."
+    },
+    {
+        "id": "q81",
+        "question": "What is the primary characteristic of Sequence Models that distinguishes them from traditional machine learning models?",
+        "type": "multiple_choice",
+        "options": [
+            "They process data where the order of elements matters.",
+            "They only work with image data.",
+            "They do not require labeled data for training.",
+            "They always use convolutional layers."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "sequence models",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "explanation": "Sequence models are specifically designed for sequential data (like text or time series) where the order of events or tokens changes the meaning, unlike traditional models that often treat inputs as independent."
+    },
+    {
+        "id": "q82",
+        "question": "Which of the following are examples of sequential data? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "DNA sequences",
+            "Audio waveforms",
+            "A static collection of independent photos",
+            "Natural language sentences"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            3
+        ],
+        "tags": [
+            "sequence models",
+            "data types"
+        ],
+        "difficulty": "easy",
+        "explanation": "DNA, audio, and sentences are inherently sequential where order defines the structure. A static collection of independent photos does not have a sequential dependency."
+    },
+    {
+        "id": "q83",
+        "question": "What is the main function of the 'Hidden State' in a Recurrent Neural Network (RNN)?",
+        "type": "multiple_choice",
+        "options": [
+            "To store the final output prediction only.",
+            "To act as the memory of the network, carrying information from previous time steps.",
+            "To encrypt the input data for security.",
+            "To apply a convolutional filter to the input."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rnn",
+            "hidden state",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "The hidden state serves as the memory of the RNN, updating at each step to summarize past inputs and influence current processing."
+    },
+    {
+        "id": "q84",
+        "question": "Which two specific RNN variants were designed to mitigate the Vanishing Gradient problem and capture long-term dependencies?",
+        "type": "multiple_choice",
+        "options": [
+            "CNN and MLP",
+            "LSTM and GRU",
+            "BERT and GPT",
+            "ReLU and Tanh"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rnn",
+            "lstm",
+            "gru",
+            "vanishing gradient"
+        ],
+        "difficulty": "easy",
+        "explanation": "LSTM (Long Short-Term Memory) and GRU (Gated Recurrent Unit) are explicitly designed with gating mechanisms to handle long-term dependencies and vanishing gradients."
+    },
+    {
+        "id": "q85",
+        "question": "What happens during the 'Exploding Gradient' problem in deep neural networks?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradients become exponentially larger during backpropagation, causing unstable weight updates.",
+            "Gradients become zero, causing the model to stop learning.",
+            "The model deletes its own weights.",
+            "The learning rate automatically decreases to zero."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "optimization",
+            "exploding gradient",
+            "training"
+        ],
+        "difficulty": "medium",
+        "explanation": "Exploding gradients occur when gradient values grow exponentially large during backpropagation, leading to massive weight updates, instability, and divergence."
+    },
+    {
+        "id": "q86",
+        "question": "Which technique is commonly used to prevent Exploding Gradients?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Clipping",
+            "Increasing the learning rate",
+            "Removing all activation functions",
+            "Using Sigmoid activation in all layers"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "optimization",
+            "gradient clipping",
+            "solutions"
+        ],
+        "difficulty": "medium",
+        "explanation": "Gradient clipping caps the maximum magnitude of gradients to a preset threshold, preventing them from growing large enough to cause instability."
+    },
+    {
+        "id": "q87",
+        "question": "In an LSTM, which gate decides what information to discard from the cell state?",
+        "type": "multiple_choice",
+        "options": [
+            "Input gate",
+            "Output gate",
+            "Forget gate",
+            "Update gate"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "lstm",
+            "architecture",
+            "gates"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Forget gate is responsible for deciding which information from the previous cell state is no longer needed and should be removed."
+    },
+    {
+        "id": "q88",
+        "question": "What is the key structural difference between a GRU and an LSTM?",
+        "type": "multiple_choice",
+        "options": [
+            "GRU has more gates than LSTM.",
+            "GRU uses a different loss function.",
+            "GRU has fewer gates (Update and Reset) and parameters than LSTM.",
+            "GRU cannot handle sequential data."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "gru",
+            "lstm",
+            "comparison"
+        ],
+        "difficulty": "medium",
+        "explanation": "GRU is a simplified variant of LSTM with fewer gates (Update and Reset) and fewer parameters, making it computationally less expensive."
+    },
+    {
+        "id": "q89",
+        "question": "The Transformer architecture, introduced in 'Attention Is All You Need', relies entirely on which mechanism?",
+        "type": "multiple_choice",
+        "options": [
+            "Recurrence",
+            "Convolution",
+            "Self-Attention",
+            "Gradient Boosting"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "transformer",
+            "attention",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "Transformers rely solely on self-attention mechanisms to model dependencies, discarding recurrence and convolution used in previous sequence models."
+    },
+    {
+        "id": "q90",
+        "question": "Why is 'Positional Encoding' necessary in Transformer models?",
+        "type": "multiple_choice",
+        "options": [
+            "To compress the input text.",
+            "To convert text into images.",
+            "Because Self-Attention is position-invariant and does not inherently know the order of tokens.",
+            "To remove stop words from the sequence."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "transformer",
+            "positional encoding",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Self-attention treats input as a set (unordered); positional encoding injects order information so the model knows the relative positions of tokens."
+    },
+    {
+        "id": "q91",
+        "question": "In the Self-Attention mechanism, what are the three vectors generated for each token?",
+        "type": "multiple_choice",
+        "options": [
+            "Query (Q), Key (K), Value (V)",
+            "Input (I), Output (O), Hidden (H)",
+            "Alpha (A), Beta (B), Gamma (G)",
+            "Forget (F), Input (I), Output (O)"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "transformer",
+            "self-attention",
+            "qkv"
+        ],
+        "difficulty": "easy",
+        "explanation": "Self-attention computes Query (Q), Key (K), and Value (V) vectors from the input embeddings to determine attention weights and outputs."
+    },
+    {
+        "id": "q92",
+        "question": "What is the benefit of 'Multi-Head Attention' over single-head attention?",
+        "type": "multiple_choice",
+        "options": [
+            "It reduces the model size significantly.",
+            "It allows the model to focus on different types of relationships (syntactic, semantic) simultaneously.",
+            "It forces the model to ignore long-range dependencies.",
+            "It eliminates the need for positional encoding."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer",
+            "multi-head attention",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multi-head attention runs parallel attention mechanisms, allowing the model to capture diverse relationships and improve expressivity."
+    },
+    {
+        "id": "q93",
+        "question": "In a Transformer Decoder, why is the self-attention layer 'Masked'?",
+        "type": "multiple_choice",
+        "options": [
+            "To hide the input from the user.",
+            "To prevent the model from attending to future tokens (peeking ahead) during generation.",
+            "To reduce the computational cost by 50%.",
+            "To filter out offensive words."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer",
+            "decoder",
+            "masked attention"
+        ],
+        "difficulty": "medium",
+        "explanation": "Masking ensures that when predicting the next token, the model can only attend to previous tokens, preserving the autoregressive property."
+    },
+    {
+        "id": "q94",
+        "question": "Which Transformer variant is an 'Encoder-Only' model primarily used for understanding tasks like classification and NER?",
+        "type": "multiple_choice",
+        "options": [
+            "GPT",
+            "BERT",
+            "T5",
+            "BART"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer variants",
+            "bert",
+            "encoder-only"
+        ],
+        "difficulty": "easy",
+        "explanation": "BERT (Bidirectional Encoder Representations from Transformers) is an encoder-only model designed for understanding tasks."
+    },
+    {
+        "id": "q95",
+        "question": "Which Transformer variant is a 'Decoder-Only' model primarily used for text generation?",
+        "type": "multiple_choice",
+        "options": [
+            "BERT",
+            "GPT",
+            "ViT",
+            "Longformer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer variants",
+            "gpt",
+            "decoder-only"
+        ],
+        "difficulty": "easy",
+        "explanation": "GPT (Generative Pre-Trained Transformer) is a decoder-only model optimized for generative tasks."
+    },
+    {
+        "id": "q96",
+        "question": "What is the role of 'Encoder-Decoder Attention' in a Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows the encoder to ignore the decoder.",
+            "It allows the decoder to attend to the encoded input representation (keys/values from encoder).",
+            "It replaces the feed-forward networks.",
+            "It generates the positional encodings."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer",
+            "attention",
+            "encoder-decoder"
+        ],
+        "difficulty": "medium",
+        "explanation": "Encoder-Decoder attention acts as a bridge where the decoder (using queries) attends to the relevant parts of the input sequence (keys/values from encoder)."
+    },
+    {
+        "id": "q97",
+        "question": "Which specific Transformer model treats every NLP task as a 'text-to-text' problem?",
+        "type": "multiple_choice",
+        "options": [
+            "BERT",
+            "T5",
+            "ViT",
+            "ResNet"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer variants",
+            "t5",
+            "encoder-decoder"
+        ],
+        "difficulty": "medium",
+        "explanation": "T5 (Text-to-Text Transfer Transformer) frames all tasks, including classification and translation, as text input to text output."
+    },
+    {
+        "id": "q98",
+        "question": "What is 'Sinusoidal Positional Encoding'?",
+        "type": "multiple_choice",
+        "options": [
+            "A learned embedding layer.",
+            "A fixed scheme using sine and cosine functions at different frequencies to encode position.",
+            "A random noise added to the input.",
+            "A type of recurrent layer."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer",
+            "positional encoding",
+            "math"
+        ],
+        "difficulty": "medium",
+        "explanation": "Sinusoidal positional encoding uses fixed sine and cosine functions to generate unique deterministic patterns for each position."
+    },
+    {
+        "id": "q99",
+        "question": "In the self-attention formula, why is the dot product of Q and K scaled by the square root of the key dimension (dk)?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the magnitude of the gradients.",
+            "To prevent dot products from becoming too large, which would push the Softmax into regions with small gradients.",
+            "To make the calculation faster.",
+            "To force the output to be zero."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer",
+            "self-attention",
+            "scaling"
+        ],
+        "difficulty": "hard",
+        "explanation": "Scaling is applied to counteract the growth of dot product magnitude with dimension size, ensuring gradients remain stable during training."
+    },
+    {
+        "id": "q100",
+        "question": "Which of the following is NOT a component of a standard Transformer block?",
+        "type": "multiple_choice",
+        "options": [
+            "Multi-Head Attention",
+            "Feed-Forward Neural Network",
+            "Recurrent Memory Cell",
+            "Layer Normalization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "transformer",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "Transformers do not use recurrent memory cells (like those in RNN/LSTM); they rely on attention and feed-forward networks."
+    }
+]

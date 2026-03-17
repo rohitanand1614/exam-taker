@@ -1,0 +1,341 @@
+[
+    {
+        "id": "nvidia_general_206",
+        "question": "Which statement best defines Generative AI and describes how it operates?",
+        "type": "multiple_choice",
+        "options": [
+            "Generative AI models create new content, such as text, images, or audio, by learning underlying data distributions and generating new samples from those distributions.",
+            "Generative AI is a system that filters and selects data from a large database to produce new content.",
+            "Generative AI requires manual data input for each new output it creates.",
+            "Generative AI uses pre-existing rules to generate content in a deterministic way."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "generative ai",
+            "definition",
+            "fundamental concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "Generative AI is distinct because it autonomously generates new content by learning patterns from vast data, rather than just selecting or filtering existing data."
+    },
+    {
+        "id": "nvidia_general_207",
+        "question": "In generative AI, diffusion-based models generate high-quality images by applying a specific iterative process. Which statement accurately describes this process?",
+        "type": "multiple_choice",
+        "options": [
+            "The model starts with a noisy image and progressively denoises it to improve quality",
+            "The model uses a predefined template and fills in missing details",
+            "The model generates images directly from noise in a single pass",
+            "The model uses a GAN (Generative Adversarial Network) to create images from scratch"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "diffusion models",
+            "image generation",
+            "denoising"
+        ],
+        "difficulty": "medium",
+        "explanation": "Diffusion models work by starting with noise and iteratively removing it (denoising) over a series of steps to reveal a coherent high-quality image."
+    },
+    {
+        "id": "nvidia_general_208",
+        "question": "Which of the following challenges is most critical when scaling up Large Language Models (LLMs) beyond billions of parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "Increased latency in response due to large model size.",
+            "Difficulty in ensuring data privacy and compliance.",
+            "The exponential increase in computational power and costs required for training.",
+            "Lack of sufficient training datasets for effective learning."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "scaling challenges",
+            "computational cost",
+            "llm training"
+        ],
+        "difficulty": "medium",
+        "explanation": "As LLMs grow in size, the demand for hardware and training time increases exponentially, making computational power and cost the primary bottleneck."
+    },
+    {
+        "id": "nvidia_general_209",
+        "question": "What is one of the primary challenges when scaling up the number of parameters in a Large Language Model (LLM) that remains unaddressed by simply increasing computational resources?",
+        "type": "multiple_choice",
+        "options": [
+            "Decreased accuracy when training on diverse datasets",
+            "Linear growth in inference time with parameters",
+            "Diminishing returns in performance improvement",
+            "Reduced model interpretability"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "scaling laws",
+            "diminishing returns",
+            "llm performance"
+        ],
+        "difficulty": "hard",
+        "explanation": "While adding parameters increases potential power, the performance gains eventually yield diminishing returns compared to the disproportionately high computational cost involved."
+    },
+    {
+        "id": "nvidia_general_210",
+        "question": "Which of the following is a key challenge in developing high-performance Large Language Models (LLMs) that can effectively interpret and generate human-like text?",
+        "type": "multiple_choice",
+        "options": [
+            "Ensuring high computational efficiency without sacrificing accuracy.",
+            "Designing LLMs that do not rely on natural language processing (NLP) techniques.",
+            "Avoiding the usage of transformer architectures for scalability.",
+            "Integrating explicit rule-based programming for language generation tasks."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "efficiency vs accuracy",
+            "llm development",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "A major development hurdle is balancing the high resource requirements (efficiency) with the need for the model to perform effectively across diverse tasks (accuracy)."
+    },
+    {
+        "id": "nvidia_general_211",
+        "question": "What is the primary challenge in scaling up Large Language Models (LLMs) to improve their performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Increasing the vocabulary size",
+            "Enhancing the model‘s interpretability",
+            "Managing the computational resources and efficiency",
+            "Improving the model‘s ability to generate diverse outputs"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "scaling challenges",
+            "computational resources",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "As models grow, the sheer volume of memory, processing power, and data throughput required becomes the primary management challenge for ensuring practicality."
+    },
+    {
+        "id": "nvidia_general_212",
+        "question": "What is a significant challenge in scaling the architecture of Large Language Models (LLMs) related to computational resource management?",
+        "type": "multiple_choice",
+        "options": [
+            "Parallelizing training across multiple GPUs without memory bottlenecks",
+            "Reducing the number of parameters while improving model accuracy",
+            "Implementing regularization techniques to prevent overfitting",
+            "Improving language model‘s understanding of semantic context"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "distributed training",
+            "gpu memory",
+            "parallelization"
+        ],
+        "difficulty": "hard",
+        "explanation": "Scaling architectures requires distributing the model across multiple GPUs, which introduces complex challenges in memory management and mitigating bottlenecks via parallelism strategies."
+    },
+    {
+        "id": "nvidia_general_213",
+        "question": "Which factor is critical in determining the scaling laws for the performance of large language models (LLMs), according to recent research?",
+        "type": "multiple_choice",
+        "options": [
+            "The size of the dataset used for training",
+            "The number of parameters in the model",
+            "The computational resources available",
+            "The relationship between model size, dataset size, and compute resources"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "scaling laws",
+            "chinchilla scaling",
+            "llm research"
+        ],
+        "difficulty": "hard",
+        "explanation": "Scaling laws (like Chinchilla) demonstrate that optimal performance is determined by a specific balance between model size, dataset size, and available compute, not just one factor alone."
+    },
+    {
+        "id": "nvidia_general_214",
+        "question": "Which of the following strategies is most effective for scaling large language models across a GPU cluster to optimize for both cost and performance during deployment?",
+        "type": "multiple_choice",
+        "options": [
+            "Horizontally scaling with data parallelism across multiple GPUs.",
+            "Vertically scaling single GPU performance by optimizing memory management and computation.",
+            "Implementing model parallelism to divide a single LLM into smaller parts processed on different GPUs.",
+            "Utilizing mixed precision techniques to reduce computation time and memory usage."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "model parallelism",
+            "deployment",
+            "distributed systems"
+        ],
+        "difficulty": "hard",
+        "explanation": "Model parallelism splits the layers or components of a single large model across multiple GPUs, which is essential when the model itself is too large to fit into the memory of a single device."
+    },
+    {
+        "id": "nvidia_general_215",
+        "question": "You are tasked with evaluating the performance metrics of a newly trained Language Learning Model (LLM) designed for sentiment analysis. The model shows strong performance in identifying positive and negative sentiments but exhibits difficulties in accurately classifying neutral sentiments, leading to an unbalanced overall performance. A senior team member has asked you to identify the root cause of this issue and propose a suitable solution. What should be your next step to effectively address this performance imbalance?",
+        "type": "multiple_choice",
+        "options": [
+            "Augment the training data with more diverse and representative examples of neutral sentiments.",
+            "Increase the number of layers in the neural network to capture more complex patterns.",
+            "Adjust the learning rate to speed up the convergence of the model.",
+            "Switch to a different loss function that prioritizes minority classes."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "sentiment analysis",
+            "class imbalance",
+            "data augmentation"
+        ],
+        "difficulty": "hard",
+        "explanation": "Difficulty in classifying a specific class (neutral sentiment) usually indicates a data imbalance or lack of representative examples for that class. Augmenting the data directly addresses the root cause."
+    },
+    {
+        "id": "nvidia_general_216",
+        "question": "During the system analysis phase, it has come to light that the LLM occasionally identifies accurate code as flawed, resulting in false positives. What strategy should the team implement to enhance the accuracy of the LLM in performing code reviews?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement a secondary validation layer that cross-checks the LLMs output before flagging code",
+            "Rely on user feedback after deployment to refine the LLMs accuracy over time",
+            "Increase the size of the dataset used to train the LLM without changing other parameters",
+            "Reduce the LLM‘s sensitivity to errors to decrease the number of flags raised"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "code review ai",
+            "validation",
+            "accuracy enhancement"
+        ],
+        "difficulty": "medium",
+        "explanation": "Implementing a secondary validation layer provides a safety net to verify the model's flags, significantly reducing false positives and improving the reliability of the automated code review process."
+    },
+    {
+        "id": "nvidia_general_217",
+        "question": "As a member of a software development team, you are tasked with enhancing a knowledge management system that employs a Retrieval-Augmented Generation (RAG) model. This system aims to effectively retrieve pertinent documents from a vast corpus and generate relevant and coherent responses in real-time. What are the most effective actions to improve the performance of the RAG model in achieving accurate and contextually appropriate responses?",
+        "type": "multiple_choice",
+        "options": [
+            "Increase the model‘s parameter count",
+            "Use a rule-based approach to filter responses",
+            "Fine-tune the LLM on domain-specific data",
+            "Implement a vector-based search algorithm",
+            "Use a smaller dataset for retrieval"
+        ],
+        "correct_indices": [
+            2,
+            3
+        ],
+        "tags": [
+            "rag",
+            "fine-tuning",
+            "vector search"
+        ],
+        "difficulty": "hard",
+        "explanation": "Fine-tuning on domain data ensures the generation is accurate to the topic, while a vector-based search algorithm ensures the retrieval step finds the most semantically relevant documents."
+    },
+    {
+        "id": "nvidia_general_218",
+        "question": "Which of the following scenarios would require a combination of multiple generative AI models to optimize performance and achieve desired results, given their distinct strengths in language understanding, image recognition, and data analysis?",
+        "type": "multiple_choice",
+        "options": [
+            "Developing a chatbot that provides emotionally-intelligent responses using sentiment analysis.",
+            "Creating an autonomous vehicle that navigates traffic using real-time video feeds and predictive analytics.",
+            "Designing an AI-powered tool for generating automated customer service emails based on simple queries.",
+            "Implementing a voice-activated personal assistant that plays user-requested music and controls smart home devices."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multi-modal ai",
+            "autonomous vehicles",
+            "system integration"
+        ],
+        "difficulty": "medium",
+        "explanation": "An autonomous vehicle is a complex multi-modal system requiring distinct models for visual processing (image recognition) and decision-making/prediction (data analytics) working in tandem."
+    },
+    {
+        "id": "nvidia_general_219",
+        "question": "In a complex multi-modal AI system for autonomous vehicles, which of the following LLM applications would be LEAST likely to contribute directly to real-time decision-making during vehicle operation?",
+        "type": "multiple_choice",
+        "options": [
+            "Natural language processing for voice commands",
+            "Visual scene understanding and object detection",
+            "Predictive maintenance scheduling",
+            "Path planning and trajectory optimization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "autonomous vehicles",
+            "real-time inference",
+            "edge cases"
+        ],
+        "difficulty": "medium",
+        "explanation": "Predictive maintenance is a background operational task based on long-term data trends, whereas voice commands, scene understanding, and path planning are critical for immediate, real-time vehicle control."
+    },
+    {
+        "id": "nvidia_general_220",
+        "question": "You are developing a complex prompt engineering strategy for a large language model to generate product descriptions for an e-commerce platform. Which of the following advanced techniques would be most effective in optimizing the model‘s output for diversity, relevance, and adherence to brand guidelines?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing a multi-step prompting approach with intermediate reasoning",
+            "Using a combination of few-shot learning and chain-of-thought prompting",
+            "Applying a hybrid method of constrained decoding and prompt tuning",
+            "Employing a dynamic prompt template with conditional branching and self-consistency checks"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "prompt engineering",
+            "dynamic prompting",
+            "e-commerce"
+        ],
+        "difficulty": "hard",
+        "explanation": "Dynamic prompt templates with conditional branching adapt to specific product attributes (relevance), while self-consistency checks enforce strict adherence to brand guidelines, offering the necessary control for this complex task."
+    },
+    {
+        "id": "nvidia_general_221",
+        "question": "You are tasked with analyzing a large dataset of unlabelled text in order to identify distinct patterns or topics. Considering this requirement, why would you choose the KMeans algorithm from cuML for your analysis?",
+        "type": "multiple_choice",
+        "options": [
+            "Because KMeans is designed to find clusters in unlabeled data",
+            "Because KMeans is used to classify text into predefined categories",
+            "Because KMeans performs dimensionality reduction before clustering",
+            "Because KMeans requires labeled data to function"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "kmeans",
+            "unsupervised learning",
+            "cuml",
+            "clustering"
+        ],
+        "difficulty": "medium",
+        "explanation": "KMeans is a fundamental unsupervised learning algorithm used for clustering. It is specifically designed to discover inherent groupings and patterns in unlabelled datasets."
+    }
+]

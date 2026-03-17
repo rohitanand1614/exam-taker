@@ -1,0 +1,786 @@
+{
+  "version": 1,
+  "exported_at": "2026-03-17T12:41:42+00:00",
+  "notes": {
+    "arrow-007": {
+      "user_notes": "<p>Apache Arrow’s <strong>Zero-Copy Data Sharing</strong> works by allowing <span style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">multiple tools</span> to access the <strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">same in-memory data format</strong><span style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">,</span> which <strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-ffff00, #ffff1a);\" data-darkreader-inline-color=\"\">eliminates serialization and deserialization</strong><strong style=\"color: rgb(255, 255, 0); --darkreader-inline-color: var(--darkreader-text-ffff00, #ffff1a);\" data-darkreader-inline-color=\"\"> </strong><strong>overhead</strong>—significantly speeding up data exchange without copying.</p>",
+      "user_diagram": "flowchart TB\n    A[\"Apache Arrow Memory Format\"]\n\n    T1[\"Tool 1: Pandas\"]\n    T2[\"Tool 2: Spark\"]\n    T3[\"Tool 3: PyArrow\"]\n    T4[\"Tool 4: GPU Libraries\"]\n\n    A -.->|\"Zero-Copy Data Sharing\"| T1\n    A -.->|\"Zero-Copy Data Sharing\"| T2\n    A -.->|\"Zero-Copy Data Sharing\"| T3\n    A -.->|\"Zero-Copy Data Sharing\"| T4\n"
+    },
+    "aug-homography-004": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(102, 185, 102); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-66b966, #71be71);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Homography</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> is a mathematical transformation using </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">matrix multiplication </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">that projects images in 3D space</strong></h2>",
+      "user_diagram": ""
+    },
+    "autoencoder-009": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Autoencoders</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> are </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">self-supervised models </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">trained with the objective that the output should match the input after passing through a bottleneck.</strong></h2>",
+      "user_diagram": ""
+    },
+    "autoencoder_role_005": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">autoencoder </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">---&gt; </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">high-dimensional</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> images down to a small</strong></h2>",
+      "user_diagram": ""
+    },
+    "bagging-006": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(102, 185, 102); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-66b966, #71be71);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Bagging</strong><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> (Bootstrap Aggregating)&nbsp;--&gt; Random Forest  --&gt; </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(102, 185, 102); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-66b966, #71be71);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">no </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(102, 185, 102); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-66b966, #71be71);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">overfitting</strong></h2>",
+      "user_diagram": ""
+    },
+    "batch_norm_009": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Batch Normalization --&gt; &nbsp;role --&gt;   gamma and beta --&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">scale and shift the normalized value &nbsp;to any distribution</strong></h2>",
+      "user_diagram": ""
+    },
+    "batch_norm_test_010": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Batch Normalization --&gt; mean and variance --&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Using a running average (exponentially weighted average)&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "beam_refinement_norm_032": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Length Normalization</strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> --&gt;  Beam Search --&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">prevent&nbsp; preferring very short sequences</strong></h2>",
+      "user_diagram": ""
+    },
+    "bert_embeddings_004": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(255, 153, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-ff9900, #ffa31a);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Context Embeddings </strong><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">is </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">not</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> listed as a separate component.</span></h2>",
+      "user_diagram": ""
+    },
+    "bert_head_002": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">BERT </strong><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">---&gt;  </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">GELU</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Activation' ---&gt;  Like </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">ReLU,</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> but a bit </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">smoother.</span></h2>",
+      "user_diagram": ""
+    },
+    "bi_vs_cross_encoder_008": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">CLIP</strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> --&gt; </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Bi-Encoders</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> process modalities ---&gt;  </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">(like text and image)</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> independently into separate embeddings&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "binary-loss-010": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">binary classification task --&gt; </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(255, 153, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">transfer learning</span><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> project --&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(224, 172, 64); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e0ac40, #e2b24d);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">nn.BCEWithLogitsLoss()&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "bleu_bp_036": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230);\">Brevity Penalty   ---&gt; BLEU score ---&gt;  </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">translations that are too short</strong></h2>",
+      "user_diagram": ""
+    },
+    "bleu_modified_precision_037": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Modified Precision</strong><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">  --&gt; </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">BLEU </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">--&gt; differ from </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">standard precision</span><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> ---&gt;</span><span style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> c</span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">ount</strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> of a word in the output to the </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">maximum frequency </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">of that word</strong></h2>",
+      "user_diagram": ""
+    },
+    "bleu_score_035": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230);\">BLEU score  ---&gt;  </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;human reference translations ---&gt; &nbsp;n-gram overlap.</strong></h2>",
+      "user_diagram": ""
+    },
+    "centrality-006": {
+      "user_notes": "<p><strong style=\"color: rgb(102, 185, 102);\">Betweenness Centrality</strong><span style=\"color: rgb(230, 0, 0);\"> </span>identifies nodes that act as <strong>bridges</strong> by lying on many <strong>shortest paths</strong> between other nodes.</p><h3>Quick Notes on All Options</h3><ul><li><strong>Degree Centrality </strong>Measures how <strong>many direct connections</strong> a node has; indicates popularity but not its role in connecting distant parts of the network.</li><li><strong>Closeness Centrality </strong>Measures how <strong>close a node is to all others</strong> based on shortest paths; high values mean fast reachability across the network.</li><li><strong>Betweenness Centrality</strong> ✅ Captures how often a node lies on <strong>shortest paths between other nodes</strong>, identifying <strong style=\"color: rgb(102, 185, 102);\">bridge</strong> or <strong>broker</strong> nodes.</li><li><strong style=\"color: rgb(230, 0, 0);\">PageRank </strong><strong>Centrality </strong>Measures a node’s <span style=\"color: rgb(230, 0, 0);\">importance </span>based on <strong>incoming links weighted by the importance of the linking nodes</strong>; originally used by Google for ranking web pages.</li></ul>",
+      "user_diagram": "flowchart TB\n\n    A[\"Node A (High Degree)\"]\n    B[\"Node B (High Betweenness)\"]\n    C[\"Node C (High Closeness)\"]\n    D[\"Node D (High PageRank)\"]\n    E[\"Node E\"]\n\n    A --> B\n    A --> C\n    B --> C\n    B --> D\n    E --> D\n    C --> D\n"
+    },
+    "cnn-data-shape-005": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(224, 172, 64); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e0ac40, #e2b24d);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">[Batch, </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Channels</strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(224, 172, 64); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e0ac40, #e2b24d);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">, Height, Width]</strong></h2><p><br></p><h2><strong style=\"color: rgb(153, 51, 255);\">BC</strong></h2>",
+      "user_diagram": ""
+    },
+    "cnn-motivation-001": {
+      "user_notes": "<h2><span style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">Dense networks</span> tend to <strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">overfit on images </strong>because they treat <span style=\"color: rgb(230, 0, 0);\">every pixel</span> as an <span style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">independent feature</span>, resulting in <strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">millions of parameters</strong><span style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\"> </span>and no built-in ability to capture <strong>spatial patterns</strong>, causing them to memorize training data instead of learning generalizable features</h2>",
+      "user_diagram": ""
+    },
+    "cross_attention_009_v1": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Cross-attention</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp; --&gt;&gt;</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;decoder</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> to use the </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">encoder's</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> bidirectional reasoning.</strong></h2>",
+      "user_diagram": ""
+    },
+    "cugraph-impl-009": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0);\">automatically</strong><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> dispatch NetworkX API  ---&gt;  </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(224, 172, 64); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e0ac40, #e2b24d);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">NX_CUGRAPH_</strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">AUTO</strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(224, 172, 64); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e0ac40, #e2b24d);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">_CONFIG</strong></h2>",
+      "user_diagram": ""
+    },
+    "data_rep_008": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Implicit (Latent) Representation </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">---&gt;  &nbsp;</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">optimized</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> ---&gt; &nbsp;for an end-goal,</strong></h2>",
+      "user_diagram": ""
+    },
+    "dbscan-008": {
+      "user_notes": "<h2><strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">K-Means </strong>groups data into<strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\"> k fixed spherical clusters,</strong> while <strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">DBSCAN</strong><span style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\"> </span>finds <strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">arbitrarily shaped</strong><strong> clusters</strong> based on density and can automatically detect <strong>noise/outliers</strong>.</h2>",
+      "user_diagram": "flowchart TB\n\n    K[\"K-Means<br/>• k fixed clusters<br/>• Spherical shapes<br/>• Not good with noise\"]\n    D[\"DBSCAN<br/>• Arbitrary shapes<br/>• Density-based<br/>• Detects noise/outliers\"]\n\n    K -->|\"Spherical cluster\"| S1[\"(  ◉  )\"]\n    D -->|\"Arbitrary cluster shape\"| S2[\"~ irregular shape ~\"]\n\n    D -->|\"Noise detected\"| N[\"•  •  •\"]\n"
+    },
+    "dist-009": {
+      "user_notes": "<p><span style=\"color: rgb(229, 227, 223); background-color: rgb(26, 30, 36);\">scaling across</span><span style=\"color: rgb(255, 255, 0); background-color: rgb(26, 30, 36);\"> </span><strong style=\"color: rgb(255, 255, 0); background-color: rgb(26, 30, 36);\">multiple GPUs</strong></p>",
+      "user_diagram": "flowchart TB\n    D[\"Dask\"]\n\n    G1[\"GPU 1\"]\n    G2[\"GPU 2\"]\n    G3[\"GPU 3\"]\n\n    D --> G1\n    D --> G2\n    D --> G3\n"
+    },
+    "dl-intro-001": {
+      "user_notes": "<h2><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Relaxed alertness</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'&nbsp; fun,</span></h2>",
+      "user_diagram": ""
+    },
+    "dl_activ_010": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Tanh activation function&nbsp; ---&gt; </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">mean </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">of its output is </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">closer to zero,</strong></h2>",
+      "user_diagram": ""
+    },
+    "dl_nlp_006": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Modeling language is described as essentially a </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(102, 185, 102); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-66b966, #71be71);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">classification problem</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> based on a </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(102, 185, 102); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">finite vocabulary </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">(tokens), with the added complexity of ordered sequences.</strong></h2>",
+      "user_diagram": ""
+    },
+    "dreaming-006": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(255, 153, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-ff9900, #ffa31a);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'Dreaming'</span><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> ---&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">maximizing the loss </strong><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">---&gt;</strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> amplify patterns</strong></h2>",
+      "user_diagram": ""
+    },
+    "dropout-warning-011": {
+      "user_notes": "<h2><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">A </span><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">dropout rate of 1 </strong><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">means </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">100%</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> of neurons are </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">dropped</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> (turned off)</span></h2>",
+      "user_diagram": ""
+    },
+    "embeddings-002": {
+      "user_notes": "<h2><span style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Word embeddings </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">--&gt; &nbsp;</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">lower-dimensional</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> continuous space</span></h2>",
+      "user_diagram": ""
+    },
+    "encoder_tasks_005": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">For </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(255, 153, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-ff9900, #ffa31a);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">text classification</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> ---&gt;  </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(255, 153, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-ff9900, #ffa31a);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">[CLS] </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">token) ---&gt; info from the </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(255, 153, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">whole sentence</strong></h2>",
+      "user_diagram": ""
+    },
+    "fine-tuning-011": {
+      "user_notes": "<h2><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Fine-tuning involves </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(255, 153, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-ff9900, #ffa31a);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">unfreezing the entire model </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">(`vgg_model.requires_grad_(True)`) and training with a </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(255, 153, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">very small learning rate</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> (e.g., .000001) to adapt features without destroying prior knowledge.</span></h2>",
+      "user_diagram": ""
+    },
+    "freezing-004": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'</span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">freezing</strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">' weights  </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(224, 172, 64); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e0ac40, #e2b24d);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">overfitting on small datasets&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "graph-fund-001": {
+      "user_notes": "",
+      "user_diagram": "flowchart TB\n    V1[\"Vertex 1\"]\n    V2[\"Vertex 2\"]\n    V3[\"Vertex 3\"]\n\n    V1 -->|\"Edge: V1 → V2\"| V2\n    V2 -->|\"Edge: V2 → V3\"| V3\n    V1 -.->|\"Edge: V1 → V3\"| V3\n"
+    },
+    "graph-rep-005": {
+      "user_notes": "",
+      "user_diagram": "flowchart TB\n\n    M[\"Adjacency Matrix (n × n)\"]\n\n    Z1[\"Many zeros\"]\n    Z2[\"Sparse graph\"]\n    C[\"Consumes large memory\"]\n\n    M --> Z1\n    Z1 --> C\n    Z2 --> C\n"
+    },
+    "graph-types-002": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Digraphs ---&gt;  </strong><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223);\">specific directions</span></h2>",
+      "user_diagram": "flowchart TB\n    A[\"Vertex A\"]\n    B[\"Vertex B\"]\n    C[\"Vertex C\"]\n\n    A --> B\n    B --> C\n"
+    },
+    "hyper_caviar_panda_008": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'Panda' --&gt; </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Babysits</span></h2><h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Caviar' --&gt; </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Parallel</span></h2>",
+      "user_diagram": ""
+    },
+    "hyper_sampling_006": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">t</strong><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e);\" data-darkreader-inline-bgcolor=\"\">uning </strong><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); color: rgb(230, 0, 0);\" data-darkreader-inline-bgcolor=\"\">hyperparameters</strong><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e);\" data-darkreader-inline-bgcolor=\"\">, --&gt;   sampling strategy --&gt;  </strong><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> </strong><strong style=\"background-color: rgb(26, 30, 36); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">random</strong><strong style=\"background-color: rgb(26, 30, 36); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d);\" data-darkreader-inline-bgcolor=\"\"> values</strong></h2>",
+      "user_diagram": ""
+    },
+    "know-graph-004": {
+      "user_notes": "<h1><span style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">graphs----&gt; semantically rich</span></h1>",
+      "user_diagram": ""
+    },
+    "latest_research_014": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">&nbsp;'Absolute Zero' </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 0, 0);\">(R-Zero)</span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\"> framework </span>Reinforcement Learning <span style=\"color: rgb(230, 0, 0);\">Challenger</span> proposes tasks, <span style=\"color: rgb(230, 0, 0);\">solver</span> solves the task</h2>",
+      "user_diagram": ""
+    },
+    "latest_research_016": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">Reinforcement Learning for Process</span><span style=\"background-color: rgb(14, 17, 23); color: rgb(255, 153, 0);\"> (RL-P) </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">--&gt; </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">&nbsp;evaluate the </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">reasoning trace</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> itself,&nbsp;</span></h2>",
+      "user_diagram": ""
+    },
+    "layernorm_006": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">`LayerNorm`</strong><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;  ---&gt;  each </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">minibatch</span></h2>",
+      "user_diagram": ""
+    },
+    "libs-008": {
+      "user_notes": "<p><strong>Polars</strong> is built in <strong style=\"color: rgb(255, 255, 0);\">Rust</strong><span style=\"color: rgb(255, 255, 0);\"> </span>and uses a <strong style=\"color: rgb(255, 255, 0);\">multi-threaded, lazy execution engine</strong>, enabling fast, efficient data processing compared to traditional single-threaded libraries.</p>",
+      "user_diagram": "flowchart TB\n    P[\"Polars Library\"]\n\n    R[\"Built in Rust\"]\n    L[\"Lazy Execution Engine\"]\n\n    P --> R\n    P --> L\n"
+    },
+    "loss-func-013": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Categorical Cross Entropy</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> ---&gt; </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">logarithmic </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">scale --&gt; heavily </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">penalize</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> predictions</strong></h2>",
+      "user_diagram": ""
+    },
+    "maxpool-006": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(153, 51, 255); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Max Pooling</strong><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> downsamples the image (reduces spatial dimensions) by selecting the </span><strong style=\"background-color: rgb(26, 30, 36); color: rgb(153, 51, 255); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-9933ff, #9e3dff);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">maximum value</strong><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> within a specific window&nbsp;</span></h2>",
+      "user_diagram": ""
+    },
+    "multihead_attention_008": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">BERT ---&gt; Multi-Headed Attention ---&gt; 768-dimensional ---&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">12 trios of 64 dimensions&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "Nvidia-Perplexity-Deep-Research-6": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Memory-mapped files</span> enable efficient training by allowing the system to access portions of large datasets directly from disk without loading everything into RAM.</h2>",
+      "user_diagram": ""
+    },
+    "Nvidia-Perplexity-Deep-Research-8": {
+      "user_notes": "<h2>The <span style=\"color: rgb(255, 153, 0);\">NVIDIA NGC catalog</span> is a curated repository of GPU-optimized software for AI, machine learning, and data science.</h2>",
+      "user_diagram": ""
+    },
+    "Nvidia-Perplexity-Deep-Research-9": {
+      "user_notes": "<h2>The <span style=\"color: rgb(255, 153, 0);\">ring all-reduce algorithm</span> is highly efficient for synchronizing weights across distributed devices. It organizes devices in a ring topology, allowing gradients to be aggregated and distributed with minimal communication overhead. This is superior to master-worker approaches (which create bottlenecks), sequential epoch-end synchronization (which is inefficient), and keeping weights independent (which violates data parallelism principles).</h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_344": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">minimize several significant </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">outliers</strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> ---&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Mean Absolute Error (L1 Loss)</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_347": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">unexpected predictions for </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">certain applicants</span><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">.--&gt;  </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">model's behavior around a </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">single </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">data point  </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Local Interpretable Model-agnostic Explanations (LIME)&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_356": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">divided by the </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">square root</span><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> of the key </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">dimension --&gt;  </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">softmax</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> function from entering </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">saturation regions</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">, --&gt; </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">stable gradients</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> during training</span></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_361": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;feedforward layers --&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">non-linear transformations&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_364": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">selecting models for text embeddings,--&gt; semantic similarity tasks --&gt;</span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Cosine similarity preservation</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_369": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">NVIDIA Triton Inference Server --&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">serve multiple models concurrently&nbsp;--&gt; from different frameworks&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_370": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">MIG partitions&nbsp; --&gt; </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> single</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> NVIDIA </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">GPU</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">  --&gt; enabling </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">multiple users</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_373": {
+      "user_notes": "<h2><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Comprehensive</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> logging,</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> metrics, and health checks&nbsp;---&gt;  </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">monitoring</span><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> LLM applications&nbsp;</span></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_374": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">scalable LLM chatbot applications  ---&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Microservices&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_376": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">maintainable LLM ---&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Clear documentation, modular design, and comprehensive testing</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_379": {
+      "user_notes": "<h2><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">performance scores of two different models --&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Paired t-test</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_380": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">text generation quality  ---&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">BLEU score</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_383": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); color: rgb(230, 0, 0);\" data-darkreader-inline-bgcolor=\"\">evaluate prompt engineering </span><span style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e);\" data-darkreader-inline-bgcolor=\"\">techniques, </span><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e);\" data-darkreader-inline-bgcolor=\"\">Controlling for </strong><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">variables</strong><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e);\" data-darkreader-inline-bgcolor=\"\">&nbsp;&amp; </strong><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">reproducible</strong><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e);\" data-darkreader-inline-bgcolor=\"\"> results&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_AI_384": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">dataset splits </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">in LLM evaluation experiments  ---&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Stratified </strong><strong style=\"background-color: rgb(11, 14, 18); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">splits that maintain data distribution&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_deployment_141": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230);\">significantly enhance performance without compromising model accuracy   ---&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(224, 172, 64); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e0ac40, #e2b24d);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Use Tensor Cores for mixed precision</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_deployment_154": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">performance of a large language model (LLM) on a specific task, ---&gt;  </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">error analysis focusing on task-specific outputs</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_nim_007": {
+      "user_notes": "<p><strong>Explanation:</strong></p><p><br></p><h2>NVIDIA <strong>NIM </strong><strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">(NVIDIA Inference Microservices)</strong> provides <strong>optimized, </strong><strong style=\"color: rgb(230, 0, 0);\">ready-to-use inference </strong><strong>microservices</strong> that let you deploy and run AI models efficiently on your own infrastructure.</h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_018": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">dialogue flows in NeMo Guardrails  --&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Colang</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_051": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;NeMo fine-tuning  </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(224, 172, 64); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e0ac40, #e2b24d);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">JSONL (JSON Lines) format&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_149": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">LoRA adapter file  ---&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">A small add-on module&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_155": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'LLM-as-a-Judge' a</span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">ssess another model's output using a rubric</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_159": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'perplexity'</span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;text sequences (fluency)&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_165": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">P-tuning&nbsp; --&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Adding virtual tokens via learned prompt</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_166": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">techniques are supported by </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(255, 153, 0);\">NeMo Customizer</strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">&nbsp;</strong><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">Supervised Fine-Tuning </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">(SFT),</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> Reinforcement Learning from Human Feedback </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">(RLHF)</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">, and Direct Preference Optimization</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\"> (DPO).</span></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_169": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230);\">NeMo Curator ---&gt; Synthetic Data Generation (SDG)&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_171": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">NeMo Curator (near-duplicate) documents </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">MinHash and Locality-Sensitive Hashing (LSH)</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_176": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230);\">Direct Preference Optimization (DPO)&nbsp; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Preference pairs of 'preferred' and 'rejected' responses&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_183": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">MMLU tests general knowledge; GSM8K tests mathematical reasoning</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_192": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230);\">NeMo Retriever Parse </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Structured document understanding using a Vision Language Model (VLM)</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_200": {
+      "user_notes": "<h2><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">BEIR (Benchmarking IR) and MTEB (Massive Text </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Embedding Benchmark)</span></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_208": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">exceed the available GPU VRAM </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Unified Virtual Memory (U VM) to automatically page data between CPU and GPU</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_232": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230);\">'Prompt Injection'</strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;prompts alter an LLM’s intended behavior</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_233": {
+      "user_notes": "<p><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">diverse 3D datasets to reduce bias ---&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Omniverse Replicator</strong></p>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_237": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;'JailbreakDetect NIM' </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">adversarial prompts before they reach the main LLM&nbsp; </strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_tool_238": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">VEX&nbsp; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Vulnerability Exploitability eXchange </strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_training_182": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230);\">‘AI alignment‘ ---&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(224, 172, 64); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e0ac40, #e2b24d);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">accordance with human values and intentions&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_training_187": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">most effective approach to mitigate the risk of model bias and ensure ethical usage? ---&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Regularly retrain the model with diverse datasets and monitor outcomes for bias.</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_training_193": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">ranks male candidates higher for technical positions,&nbsp; ----&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Conduct a thorough audit of the entire AI pipeline, including data collection, feature selection, model architecture, and decision-making process,</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_training_203": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;most significant ethical and regulatory challenges ---&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">medical diagnosis using language models.&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_training_204": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">most complex </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">ethical dilemma </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">when deploying a large language model (LLM)&nbsp; ---&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">An LLM prioritizing patient care in an overcrowded emergency room&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_009": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">handling long-range dependencies&nbsp;---&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Rotary Position Embedding (RoPE)&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_022": {
+      "user_notes": "<h2>most <span style=\"color: rgb(230, 0, 0);\">effective</span> in reducing the <span style=\"color: rgb(230, 0, 0);\">model's complexity</span> without <span style=\"color: rgb(230, 0, 0);\">significant loss of semantic</span> information</h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_023": {
+      "user_notes": "<h2>Handle <span style=\"color: rgb(230, 0, 0);\">polysemy</span>---&gt;Word Sense <span style=\"color: rgb(230, 0, 0);\">Disambiguation</span></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_025": {
+      "user_notes": "<h2>reducing the <span style=\"color: rgb(230, 0, 0);\">dimensionality</span> of a <span style=\"color: rgb(230, 0, 0);\">text</span> dataset -----&gt;Word embeddings (like <span style=\"color: rgb(230, 0, 0);\">Word2Vec or GloVe)</span></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_028": {
+      "user_notes": "<h2><strong style=\"color: rgb(255, 153, 0);\">regularization</strong><strong> technique is most effective </strong><strong style=\"color: rgb(255, 153, 0);\">Dropout</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_029": {
+      "user_notes": "<h2><strong>drop in model performance on the validation set implement early stopping to monitor and halt training</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_030": {
+      "user_notes": "<h2><strong>notice a sudden spike in the </strong><strong style=\"color: rgb(255, 153, 0);\">training loss</strong><strong> after a few epochs, The </strong><strong style=\"color: rgb(255, 153, 0);\">learning rate</strong><strong> is set too high,</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_032": {
+      "user_notes": "<h2><strong>produces </strong><strong style=\"color: rgb(255, 153, 0);\">nonsensical outputs</strong><strong> after several epochs of training---&gt;  </strong><strong style=\"color: rgb(255, 153, 0);\">exploding gradients</strong><strong> and apply gradient clipping</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_034": {
+      "user_notes": "<h2>model‘s loss does <span style=\"color: rgb(255, 153, 0);\">not decrease</span> and sometimes <span style=\"color: rgb(255, 153, 0);\">oscillates</span> ---&gt;  The <span style=\"color: rgb(255, 153, 0);\">learning rate</span> is too high,</h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_035": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">NOT training process --&gt;  Quantum Annealing</span></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_043": {
+      "user_notes": "<h2>NOT typically used in the <span style=\"color: rgb(255, 153, 0);\">pre-training</span> phase ---&gt; <span style=\"color: rgb(255, 153, 0);\">Few-shot</span> Learning</h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_062": {
+      "user_notes": "<h2><strong>When </strong><strong style=\"color: rgb(255, 153, 0);\">fine-tuning</strong><strong> a large language model (LLM) ---&gt; catastrophic forgetting ---&gt; </strong><strong style=\"color: rgb(0, 138, 0);\">LoRA</strong><strong> --&gt; </strong><strong style=\"color: rgb(230, 0, 0);\">(EWC)</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_074": {
+      "user_notes": "<h2><strong>combines quantization, pruning, and knowledge distillation ---&gt; </strong><strong style=\"color: rgb(255, 153, 0);\">Holistic Model Compression (HMC</strong><strong>)</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_075": {
+      "user_notes": "<h2><strong style=\"color: rgb(0, 138, 0);\">NOT</strong><strong> typically used for </strong><strong style=\"color: rgb(0, 138, 0);\">optimizing inference</strong><strong> performance of large language models (LLMs) ---&gt; </strong><strong style=\"color: rgb(0, 138, 0);\">Gradient Accumulation</strong></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_077": {
+      "user_notes": "<h2>optimizing the performance of <strong>large language models </strong><strong style=\"color: rgb(0, 102, 204);\">(LLMs)</strong> NVIDIA <strong style=\"color: rgb(0, 138, 0);\">Megatron</strong>-LM</h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_078": {
+      "user_notes": "<h2><span style=\"color: rgb(0, 138, 0);\">multi-modal</span> AI system ---&gt; NVIDIA <span style=\"color: rgb(0, 138, 0);\">Omniverse</span></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_079": {
+      "user_notes": "<h2>NOT for optimizing inference performance. Branch Prediction</h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_081": {
+      "user_notes": "<p>distributed training. NVIDIA Fabric Manager</p>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_091": {
+      "user_notes": "<h2>variable sequence lengths in a batch --&gt; NVIDIA FlashAttention</h2>",
+      "user_diagram": ""
+    },
+    "nvidia_unknown_111": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(14, 17, 23); color: rgb(230, 0, 0);\">&nbsp;healthcare diagnosis system</strong><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\"> using Generative AI LLMs, which strategy would be most effective in improving the models interpretability while maintaining high accuracy </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">Using attention mechanisms&nbsp; </span></h2>",
+      "user_diagram": ""
+    },
+    "nvidia_whizlabs_298": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0); background-color: rgb(33, 38, 45);\">DPO is simpler than RLHF </span><span style=\"color: rgb(250, 250, 250); background-color: rgb(33, 38, 45);\">because it uses a direct optimization approach&nbsp;</span></h2>",
+      "user_diagram": ""
+    },
+    "opt_plateau_004": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'plateau' </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">--&gt;  neural network optimization?  --&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">derivative is </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">close to zero </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">long time.</strong></h2>",
+      "user_diagram": ""
+    },
+    "overfitting-014": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">validatio<span class=\"ql-cursor\">﻿</span>n</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> performance --&gt;  </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Early Stopping</strong></h2>",
+      "user_diagram": ""
+    },
+    "pagerank-007": {
+      "user_notes": "<h4><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">PageRank Centrality&nbsp;</span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">importance of its neighbors</strong></h4>",
+      "user_diagram": ""
+    },
+    "q101": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">two main components</span> of a Generative Adversarial Network <span style=\"color: rgb(255, 153, 0);\">(GAN)</span> Generator and Discriminator</h2>",
+      "user_diagram": ""
+    },
+    "q104": {
+      "user_notes": "<h2>Smaller, <span style=\"color: rgb(0, 138, 0);\">high-quality</span> curated datasets &gt;&gt;&gt; <span style=\"color: rgb(255, 153, 0);\">noisy datasets</span></h2>",
+      "user_diagram": ""
+    },
+    "q105": {
+      "user_notes": "<h2>NVIDIA <span style=\"color: rgb(255, 153, 0);\">TAO Toolkit</span>  streamlining the <span style=\"color: rgb(255, 153, 0);\">creation of high-quality training datasets</span></h2>",
+      "user_diagram": ""
+    },
+    "q112": {
+      "user_notes": "<h2>NVIDIA <span style=\"color: rgb(255, 153, 0);\">NeMo</span> is the specialized framework mentioned for developing and deploying <span style=\"color: rgb(255, 153, 0);\">conversational AI </span>models and LLMs.</h2>",
+      "user_diagram": ""
+    },
+    "q116": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Constitutional AI</span> involves training models to <span style=\"color: rgb(255, 153, 0);\">adhere</span> to a set of <span style=\"color: rgb(255, 153, 0);\">high-level principles</span> or rules</h2>",
+      "user_diagram": ""
+    },
+    "q125": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">SGD</span> uses <span style=\"color: rgb(255, 153, 0);\">one random sample</span> per step,</h2>",
+      "user_diagram": ""
+    },
+    "q146": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Triton Model Analyzer</span> provides visibility into production performance metrics such as latency, throughput, and resource utilization.</h2>",
+      "user_diagram": ""
+    },
+    "q148": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Disparate Impact Analysis</span> fairness metric is commonly used to assess whether model outcomes disproportionately affect <span style=\"color: rgb(255, 153, 0);\">certain user groups</span></h2>",
+      "user_diagram": ""
+    },
+    "q153": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Explainability</span> techniques like <span style=\"color: rgb(255, 153, 0);\">LIME or SHAP</span> are used in <span style=\"color: rgb(255, 153, 0);\">offline monitoring</span></h2>",
+      "user_diagram": ""
+    },
+    "q155": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Throughput</span> is defined as the rate at which the system <span style=\"color: rgb(255, 153, 0);\">processes requests</span></h2>",
+      "user_diagram": ""
+    },
+    "q157": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Caching</span> Storing results of <span style=\"color: rgb(255, 153, 0);\">previous computations</span></h2>",
+      "user_diagram": ""
+    },
+    "q159": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Data Slicing</span> Analyzing model performance on different <span style=\"color: rgb(255, 153, 0);\">subsets of data</span></h2>",
+      "user_diagram": ""
+    },
+    "q164": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">P-tuning learns continuous 'soft prompt' embeddings that are optimized during training</strong></h2>",
+      "user_diagram": ""
+    },
+    "q165": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">benefit of using Adapter Layers in PEFT  </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">model to remain frozen while small task-specific modules are trained</strong></h2>",
+      "user_diagram": ""
+    },
+    "q166": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">'BitFit' in the context of PEFT </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(210, 153, 34);\">&nbsp;fine-tunes only the bias terms of the mode</strong></h2>",
+      "user_diagram": ""
+    },
+    "q167": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">function of a 'Soft Prompt' in P-tuning --&gt; </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">sequence of trainable embedding vectors prepended to the input</strong></h2>",
+      "user_diagram": ""
+    },
+    "q170": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">&nbsp;'Prefix Tuning'&nbsp; --&gt; </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">Learning a sequence of trainable 'prefix' tokens that are prepended to the input embeddings</strong></h2>",
+      "user_diagram": ""
+    },
+    "q171": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">&nbsp;Generator in a Generative Adversarial Network (GAN) --&gt; </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">produce synthetic samples&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "q172": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">'Variational Autoencoder' (VAE)---&gt; </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">learns a compressed (latent) representation of data to generate new</strong></h2>",
+      "user_diagram": ""
+    },
+    "q175": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">NVIDIA</strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(0, 138, 0);\"> TAO Toolkit</strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> simplifies building and </strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(0, 138, 0);\">curating datasets</strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> and training/fine-tuning AI models.</strong></h2>",
+      "user_diagram": ""
+    },
+    "q181": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(14, 17, 23); color: rgb(255, 153, 0);\">Constitutional AI</strong><strong style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\"> </strong><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">An alignment approach where explicit rules (a 'constitution')</strong></h2>",
+      "user_diagram": ""
+    },
+    "q184": {
+      "user_notes": "<h2><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">LoRA </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">freezes the pre-trained weights and injects </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(0, 138, 0);\">trainable low-rank matrices</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">,</span></h2>",
+      "user_diagram": ""
+    },
+    "q190": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(255, 153, 0);\">'NeMo Megatron' </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">---&gt; </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">designed specifically for training and deploying</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\"> massive</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> language models.</span></h2>",
+      "user_diagram": ""
+    },
+    "q191": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">Relationship-based techniques&nbsp;</strong><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">text </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(255, 153, 0);\">visualization techniques </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">focuses on understanding </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(255, 153, 0);\">how terms connect or co-occur</span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\"> with each other</span></h2>",
+      "user_diagram": ""
+    },
+    "q192": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">word cloud</strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">, words are displayed with </strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">sizes </strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">proportional to their</strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\"> frequency</strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> in the text corpus.</strong></h2>",
+      "user_diagram": ""
+    },
+    "q192_v1": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'Variational Autoencoder' (VAE) ---&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">A model that learns a compressed (latent) representation of data</strong></h2>",
+      "user_diagram": ""
+    },
+    "q194": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">Scatter plots</strong><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> reveal relationships between </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">two</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> numerical variables.</span></h2>",
+      "user_diagram": ""
+    },
+    "q195": {
+      "user_notes": "<h2><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">A </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">histogram groups</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> continuous data into bins to visualize the distribution, </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">designed to reveal the central tendency, spread, and skewness of a </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(255, 153, 0);\">single numerical variable</strong></h2>",
+      "user_diagram": ""
+    },
+    "q198": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">GPU acceleration important when </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(255, 153, 0);\">visualizing </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">massive datasets&nbsp;--&gt; </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">enables real-time interactivity (zooming, filtering)</strong></h2>",
+      "user_diagram": ""
+    },
+    "q199": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">Bar charts compare values across discrete categories; histograms show the distribution of a continuous variable</strong></h2>",
+      "user_diagram": ""
+    },
+    "q1_orchestration_def": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">orchestration state, logic, and tools.</strong></h2>",
+      "user_diagram": ""
+    },
+    "q200": {
+      "user_notes": "<h2><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">Network graphs</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> explicitly model relationships (edges) between terms (nodes), making them ideal for </span><strong style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">spotting structural connections</strong><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> and influential bridges between</span><strong style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> </strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">concepts.</strong></h2>",
+      "user_diagram": ""
+    },
+    "q202": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 0, 0);\">Heat Map</span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\"> in text visualization </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">frequency or intensity of terms across documents</strong></h2>",
+      "user_diagram": ""
+    },
+    "q204": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">WebGL rendering engine 'ScatterGL' in Plotly </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">GPU power in the browser for rendering large datasets</strong></h2>",
+      "user_diagram": ""
+    },
+    "q211": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">Robust baseline comparison</strong><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> involves benchmarking a new model </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">against simpler models</span></h2>",
+      "user_diagram": ""
+    },
+    "q215": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">'</span><span style=\"background-color: rgb(14, 17, 23); color: rgb(255, 153, 0);\">Hyperparameter</span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">' in machine learning </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">A configuration variable set before training</strong></h2>",
+      "user_diagram": ""
+    },
+    "q217": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">&nbsp;'Bayesian Optimization' over Grid Search for hyperparameter tuning </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">sample-efficient, using a probabilistic model to choose&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "q218": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">'Random Assignment'  A/B testing ---&gt; </span><strong style=\"background-color: rgb(14, 17, 23); color: rgb(63, 185, 80);\">user groups for each variant are comparable and results are unbiased</strong></h2>",
+      "user_diagram": ""
+    },
+    "q22": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">`StandardScaler</span>`standardizes features to have a <span style=\"color: rgb(255, 153, 0);\">mean of 0</span> and a <span style=\"color: rgb(255, 153, 0);\">variance of 1</span></h2>",
+      "user_diagram": ""
+    },
+    "q223_v1": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'Layer Fusion'  ---&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Combining sequential layers</strong></h2>",
+      "user_diagram": ""
+    },
+    "q225": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Dynamic Batching ---&gt; </strong><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">bundling multiple inference requests into a single execution</span></h2>",
+      "user_diagram": ""
+    },
+    "q229": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">TensorRT&nbsp; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Kernel Auto-tuning </strong><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">selects the most efficient GPU kernel</span></h2>",
+      "user_diagram": ""
+    },
+    "q23": {
+      "user_notes": "<h2><span style=\"color: rgb(230, 0, 0);\">False Positive (FP)</span> is also called a '<span style=\"color: rgb(230, 0, 0);\">Type I error' </span>in statistics.</h2>",
+      "user_diagram": ""
+    },
+    "q230_v1": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'Concurrent Model Execution'  ---&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Executing multiple models on a single GPU or across multiple GPUs</strong></h2>",
+      "user_diagram": ""
+    },
+    "q239": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">NVIDIA Merlin is used for processing large-scale tabular data&nbsp; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">NVTabular</strong></h2>",
+      "user_diagram": ""
+    },
+    "q240": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'HugeCTR' in NVIDIA Merlin ---&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Click-Through Rate prediction</strong></h2>",
+      "user_diagram": ""
+    },
+    "q242": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">NGC containers</strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> are described as prepackaged environments containing </strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">all necessary dependencies</strong><strong style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> to run specific applications.</strong></h2>",
+      "user_diagram": ""
+    },
+    "q34": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">GridSearchCV</span> performs an exhaustive search, guaranteeing that it finds the <span style=\"color: rgb(255, 153, 0);\">best combination</span> specifically</h2>",
+      "user_diagram": ""
+    },
+    "q39": {
+      "user_notes": "<h2>An <span style=\"color: rgb(230, 0, 0);\">R2 of 1 </span>indicates a perfect fit, where the model <span style=\"color: rgb(230, 0, 0);\">explains 100% of the variance</span> in the target variable.</h2>",
+      "user_diagram": ""
+    },
+    "q3_structured_generation": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(102, 185, 102); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-66b966, #71be71);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Constrained decoding </strong><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">is identified as the strongest method because</span><strong style=\"background-color: rgb(26, 30, 36); color: rgb(102, 185, 102); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> it illegalizes</strong><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> (sets probability to zero) any token that would break the required grammar (e.g., JSON schema) at each step.</span></h2>",
+      "user_diagram": ""
+    },
+    "q40": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Residuals (or noise) </span>are defined as the random fluctuations<span style=\"color: rgb(255, 153, 0);\"> of a time series</span></h2>",
+      "user_diagram": ""
+    },
+    "q46": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">SGD</span> is computationally efficient per update because it uses <span style=\"color: rgb(255, 153, 0);\">only one sample</span> to compute <span style=\"color: rgb(255, 235, 204);\">gradients</span></h2>",
+      "user_diagram": ""
+    },
+    "q48": {
+      "user_notes": "<h2><span style=\"color: rgb(0, 138, 0);\">ReLU</span> is computationally efficient and helps <span style=\"color: rgb(0, 138, 0);\">mitigate vanishing gradients</span>.</h2>",
+      "user_diagram": ""
+    },
+    "q52": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">`categorical_crossentropy`</span> as the loss function for <span style=\"color: rgb(255, 153, 0);\">multiclass classification</span></h2>",
+      "user_diagram": ""
+    },
+    "q53": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Convolutional layers</span> use filters (kernels) to slide over the input and <span style=\"color: rgb(255, 153, 0);\">extract features</span></h2>",
+      "user_diagram": ""
+    },
+    "q56": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Feature extraction</span> uses the pre-trained model as a fixed extractor where <span style=\"color: rgb(255, 153, 0);\">weights are frozen</span></h2>",
+      "user_diagram": ""
+    },
+    "q57": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Translational Invariance</span> CNNs recognize objects even when they are <span style=\"color: rgb(255, 153, 0);\">shifted or slightly</span></h2>",
+      "user_diagram": ""
+    },
+    "q7_parallel_generation": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Parallel Generation / Ensembling  ---&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">task separately and </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">joining the results later&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "q7_transparency_technique": {
+      "user_notes": "<h2><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">RAG increases transparency by letting LLMs cite verifiable external sources for their responses ---&gt; </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">mitigate the black-box problem in LLMs,</span></h2>",
+      "user_diagram": ""
+    },
+    "qa-model-008": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;BERT </span><span style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Question Answering </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">The QA model outputs </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">`start_logits` and `end_logits`&nbsp;</span></h2>",
+      "user_diagram": ""
+    },
+    "ring-attention-024": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Ring Attention</span> is a technique to handle <span style=\"color: rgb(255, 153, 0);\">massive context windows</span> by distributing the attention calculation in a ring topology across multiple GPUs/TPUs.</h2>",
+      "user_diagram": ""
+    },
+    "rmsnorm-026": {
+      "user_notes": "<h2><strong style=\"color: rgb(255, 153, 0);\">(RMSNorm)</strong> typically applied <span style=\"color: rgb(255, 153, 0);\">Before</span> the <span style=\"color: rgb(255, 153, 0);\">self-attention</span> and FFN layers (Pre-Norm)</h2>",
+      "user_diagram": ""
+    },
+    "sharding_def_011": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">'Sharding' </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">---&gt; solution for --&gt;  </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">models being </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">too large</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">&nbsp;---&gt;  multiple computing resources </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">GPU</strong></h2>",
+      "user_diagram": ""
+    },
+    "shortest-path-010": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Single </strong><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Source </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0);\">Shortest Path </strong><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">algorithm --&gt;  </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">all reachable nodes</strong></h2>",
+      "user_diagram": ""
+    },
+    "similarity_metrics_005": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Softmax </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Attention --&gt;  </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">factor </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(230, 0, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">magnitude</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> --&gt; that is ignored by cosine</strong></h2>",
+      "user_diagram": ""
+    },
+    "softmax-012": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Softmax </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">normalizes the output</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> values so that they each become a probability and the sum of all </strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(102, 185, 102); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">probabilities equals 100%</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">.</strong></h2>",
+      "user_diagram": ""
+    },
+    "softmax_loss_011": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Softmax&nbsp; --&gt; </strong><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Cross-Entropy Loss (sum of -y * log(y_hat))</strong></h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_002": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">GraphSurgeon</span> (from NVIDIA TensorRT) used for easy <span style=\"color: rgb(255, 153, 0);\">graph editing</span></h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_003": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Quality, Diversity, Speed</span> evaluating Generative AI models</h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_005": {
+      "user_notes": "<h2><span style=\"color: rgb(230, 0, 0);\">Sigmoid</span> disadvantage <span style=\"color: rgb(230, 0, 0);\">vanishing gradient</span> </h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_006": {
+      "user_notes": "<h2><strong style=\"color: rgb(255, 153, 0);\">Continuous Bag of Words (CBOW) </strong> <span style=\"color: rgb(0, 138, 0);\">averages</span> the embeddings of context words via a <span style=\"color: rgb(0, 138, 0);\">lambda layer</span></h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_007": {
+      "user_notes": "<h2><span style=\"color: rgb(0, 138, 0);\">CBOW</span> model predict the <span style=\"color: rgb(0, 138, 0);\">target (center)</span> word given the surrounding context words</h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_008": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Autoregressive (AR) </span>model where the output variable depends linearly on its own previous values plus a stochastic (random) term.</h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_010": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Visualize exported ONNX</span> models with <span style=\"color: rgb(255, 153, 0);\">Netron</span></h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_018": {
+      "user_notes": "<h2>NVIDIA <span style=\"color: rgb(255, 153, 0);\">NeMo framework</span>' as the tool that lets businesses create <span style=\"color: rgb(255, 153, 0);\">multi-billion/trillion</span> parameter transformers.</h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_020": {
+      "user_notes": "<h2><span style=\"color: rgb(255, 153, 0);\">Autoregressive (AR)</span> model's output variable output variable depends linearly on its own previous values plus a <span style=\"color: rgb(255, 153, 0);\">stochastic (random) term</span></h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_054": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(33, 38, 45); color: rgb(230, 0, 0);\">'sycophancy'</strong><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> in the context of </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(230, 0, 0);\">RLHF</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> as the model aligning with user preference over truth, which can lead to </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(230, 0, 0);\">hallucinations.</span></h2>",
+      "user_diagram": ""
+    },
+    "suggested_read_069": {
+      "user_notes": "<h2><span style=\"background-color: rgb(14, 17, 23); color: rgb(230, 237, 243);\">'Context Relevancy' score&nbsp; </span><span style=\"background-color: rgb(14, 17, 23); color: rgb(255, 153, 0);\">RAGAs </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\">&nbsp;'most context is useful' and </span><span style=\"background-color: rgb(33, 38, 45); color: rgb(255, 153, 0);\">low scores</span><span style=\"background-color: rgb(33, 38, 45); color: rgb(250, 250, 250);\"> imply much is noise</span></h2>",
+      "user_diagram": ""
+    },
+    "transfer-learning-003": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-008a00, #6bff6b);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Early layers</strong><strong style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\"> </strong><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">detect </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(0, 138, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">general features </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">(edges, textures) </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">later layers are too dataset-specific&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "triton-011": {
+      "user_notes": "<h2><strong>Triton’s </strong><strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">dynamic batching</strong><strong> automatically </strong><strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">groups incoming requests</strong><strong> into optimal batches, which </strong><strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">maximizes GPU utilization</strong><strong> and significantly </strong><strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">improves throughput(</strong>The amount of data or tasks <span style=\"color: rgb(230, 0, 0);\">processed per unit time</span>.<strong style=\"color: rgb(230, 0, 0); --darkreader-inline-color: var(--darkreader-text-e60000, #ff2b2b);\" data-darkreader-inline-color=\"\">)</strong><strong> compared to manual or single-threaded processing.</strong></h2>",
+      "user_diagram": ""
+    },
+    "trt_llm_013": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Weight-Stripped Engines  </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">To separate weights from the graph,</strong></h2>",
+      "user_diagram": ""
+    },
+    "trt_llm_015": {
+      "user_notes": "<h2><span style=\"background-color: rgb(11, 14, 18); color: rgb(203, 218, 230); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-cbdae6, #b8cddd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">benchmarking metric&nbsp; batch summarization --&gt; </span><strong style=\"background-color: rgb(11, 14, 18); color: rgb(87, 198, 103); --darkreader-inline-bgcolor: var(--darkreader-background-0b0e12, #090b0e); --darkreader-inline-color: var(--darkreader-text-57c667, #63ca72);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Total Output Throughput (tokens/sec)&nbsp;</strong></h2>",
+      "user_diagram": ""
+    },
+    "viz-010": {
+      "user_notes": "<h2><strong style=\"background-color: rgb(11, 14, 18); color: rgb(255, 255, 0);\">&nbsp;DataShader&nbsp;</strong></h2><ol><li><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Rasterization (</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(255, 255, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-ffff00, #ffff1a);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">aggregating </span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">to pixel grid),</span></li><li><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Transformation (</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(255, 255, 0); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-ffff00, #ffff1a);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">shading</span><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">/normalization), </span></li><li><span style=\"background-color: rgb(26, 30, 36); color: rgb(229, 227, 223); --darkreader-inline-bgcolor: var(--darkreader-background-1a1e24, #15181d); --darkreader-inline-color: var(--darkreader-text-e5e3df, #d6d2cd);\" data-darkreader-inline-bgcolor=\"\" data-darkreader-inline-color=\"\">Rendering</span></li></ol>",
+      "user_diagram": ""
+    }
+  }
+}

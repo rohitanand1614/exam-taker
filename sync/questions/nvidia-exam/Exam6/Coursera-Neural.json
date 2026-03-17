@@ -1,0 +1,317 @@
+[
+    {
+        "id": "dl_intro_001",
+        "question": "According to the notes, a single neuron with a sigmoid activation function acts equivalent to which machine learning algorithm?",
+        "type": "multiple_choice",
+        "options": [
+            "Linear Regression",
+            "Support Vector Machine (SVM)",
+            "Logistic Regression",
+            "K-Nearest Neighbors"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "neural networks",
+            "logistic regression",
+            "basics"
+        ],
+        "difficulty": "easy",
+        "explanation": "If a sigmoid activation function is applied, a single neuron will act as Logistic Regression. [cite: 75]"
+    },
+    {
+        "id": "dl_trends_002",
+        "question": "What are the three main reasons cited for why Deep Learning is taking off?",
+        "type": "multiple_choice",
+        "options": [
+            "Data, Computation, and Algorithms",
+            "Python, Cloud Computing, and Social Media",
+            "Gaming, Finance, and Healthcare",
+            "Robotics, IOT, and 5G"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "deep learning trends",
+            "drivers"
+        ],
+        "difficulty": "easy",
+        "explanation": "Deep learning is taking off for 3 reasons: Data, Computation (GPUs/CPUs), and Creative Algorithms. [cite: 100, 101, 123, 128]"
+    },
+    {
+        "id": "dl_loss_003",
+        "question": "Why is the square root error (squared error) not used as the loss function for Logistic Regression in this course?",
+        "type": "multiple_choice",
+        "options": [
+            "It is too computationally expensive to calculate.",
+            "It leads to a non-convex optimization problem with local optima.",
+            "It cannot handle negative values.",
+            "It is only suitable for multi-class classification."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "loss function",
+            "optimization",
+            "convexity"
+        ],
+        "difficulty": "medium",
+        "explanation": "Squared error is not used because it leads to an optimization problem which is non-convex, meaning it contains local optimum points. [cite: 163]"
+    },
+    {
+        "id": "dl_deriv_004",
+        "question": "In the context of a Computation Graph, derivatives are most efficiently computed in which direction?",
+        "type": "multiple_choice",
+        "options": [
+            "Left to right",
+            "Top to bottom",
+            "Right to left",
+            "Randomly"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "computation graph",
+            "derivatives",
+            "backpropagation"
+        ],
+        "difficulty": "easy",
+        "explanation": "We compute the derivatives on a graph from right to left as it makes the calculation much easier. [cite: 229]"
+    },
+    {
+        "id": "dl_vect_005",
+        "question": "What is the primary benefit of using Vectorization in Deep Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "It increases the accuracy of the model.",
+            "It removes the need for activation functions.",
+            "It allows the code to run on CPUs only.",
+            "It eliminates explicit for-loops to speed up execution."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "vectorization",
+            "optimization",
+            "python"
+        ],
+        "difficulty": "medium",
+        "explanation": "Vectorization is needed to get rid of for-loops, which can make you wait a lot for a result; it speeds up models significantly. [cite: 305, 306, 309]"
+    },
+    {
+        "id": "dl_dims_006",
+        "question": "If you have a matrix `a` with shape (5,1), which command is recommended to verify its shape and prevent bugs?",
+        "type": "multiple_choice",
+        "options": [
+            "print(a.shape)",
+            "assert(a.shape == (5,1))",
+            "if a.shape != (5,1): exit()",
+            "a.reshape(5,1)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "python",
+            "numpy",
+            "debugging"
+        ],
+        "difficulty": "medium",
+        "explanation": "The notes recommend using `assert(a.shape == (5,1))` to check if your matrix shape is the required one and eliminate strange bugs. [cite: 330]"
+    },
+    {
+        "id": "dl_activ_007",
+        "question": "Which activation function is described as the most popular right now for making deep NNs train faster?",
+        "type": "multiple_choice",
+        "options": [
+            "Sigmoid",
+            "Tanh",
+            "ReLU (Rectified Linear Unit)",
+            "Leaky ReLU"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "activation functions",
+            "relu",
+            "training speed"
+        ],
+        "difficulty": "easy",
+        "explanation": "RELU (rectified linear unit) is the most popular activation function right now that makes deep NNs train faster. [cite: 81]"
+    },
+    {
+        "id": "dl_init_008",
+        "question": "What happens if you initialize all weights to zero in a Neural Network?",
+        "type": "multiple_choice",
+        "options": [
+            "The network trains very slowly.",
+            "The network performs effectively like Logistic Regression.",
+            "All hidden units become identical (symmetric) and update the same way.",
+            "The cost function will be zero immediately."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "initialization",
+            "weights",
+            "symmetry breaking"
+        ],
+        "difficulty": "medium",
+        "explanation": "If weights are initialized to zero, all hidden units will be completely identical (symmetric) and will always update the same on each gradient descent iteration. [cite: 558, 559, 560]"
+    },
+    {
+        "id": "dl_hyper_009",
+        "question": "Which of the following are classified as Hyperparameters? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Weights (W)",
+            "Learning rate",
+            "Number of hidden layers",
+            "Biases (b)"
+        ],
+        "correct_indices": [
+            1,
+            2
+        ],
+        "tags": [
+            "hyperparameters",
+            "parameters",
+            "model config"
+        ],
+        "difficulty": "medium",
+        "explanation": "Hyperparameters include learning rate, number of iterations, number of hidden layers, and choice of activation functions. W and b are parameters. [cite: 690, 691, 692, 694]"
+    },
+    {
+        "id": "dl_activ_010",
+        "question": "Why is the Tanh activation function generally preferred over Sigmoid for hidden units?",
+        "type": "multiple_choice",
+        "options": [
+            "It is computationally cheaper.",
+            "Its output is always positive.",
+            "The mean of its output is closer to zero, centering data for the next layer.",
+            "It prevents the dying ReLU problem."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "activation functions",
+            "tanh",
+            "sigmoid"
+        ],
+        "difficulty": "hard",
+        "explanation": "Tanh usually works better than sigmoid for hidden units because the mean of its output is closer to zero, which centers the data better for the next layer. [cite: 450]"
+    },
+    {
+        "id": "dl_dims_011",
+        "question": "In a deep neural network, what is the dimension of the weight matrix W[l] for layer l?",
+        "type": "multiple_choice",
+        "options": [
+            "(n[l], n[l])",
+            "(n[l-1], n[l])",
+            "(n[l], n[l-1])",
+            "(n[l-1], n[l-1])"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "matrix dimensions",
+            "architecture",
+            "deep learning"
+        ],
+        "difficulty": "hard",
+        "explanation": "The dimension of W is (n[l], n[l-1]), which can be thought of from right to left. [cite: 595]"
+    },
+    {
+        "id": "dl_broad_012",
+        "question": "What is 'Broadcasting' in NumPy?",
+        "type": "multiple_choice",
+        "options": [
+            "Distributing code across multiple GPUs.",
+            "Automatically adjusting matrix shapes to allow operations between mismatched dimensions.",
+            "Sending data from the CPU to the GPU.",
+            "Sharing variables between different functions."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "numpy",
+            "broadcasting",
+            "python"
+        ],
+        "difficulty": "medium",
+        "explanation": "Broadcasting works when you do a matrix operation with matrices that don't match; NumPy automatically makes the shapes ready by broadcasting values (copying them). [cite: 322, 323]"
+    },
+    {
+        "id": "dl_trivia_013",
+        "question": "Ian Goodfellow, interviewed in the course, is best known as the creator of which deep learning concept?",
+        "type": "multiple_choice",
+        "options": [
+            "Convolutional Neural Networks (CNNs)",
+            "Generative Adversarial Networks (GANs)",
+            "Recurrent Neural Networks (RNNs)",
+            "Dropout Regularization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "trivia",
+            "ian goodfellow",
+            "gans"
+        ],
+        "difficulty": "easy",
+        "explanation": "Ian Goodfellow is the creator of GANs (Generative Adversarial Networks) and works mainly with generative models. [cite: 712]"
+    },
+    {
+        "id": "dl_model_014",
+        "question": "When computing the derivative of the sigmoid function g(z), what is the correct formula?",
+        "type": "multiple_choice",
+        "options": [
+            "g'(z) = g(z) * (1 - g(z))",
+            "g'(z) = 1 - (g(z))^2",
+            "g'(z) = z * (1 - z)",
+            "g'(z) = 1 / (1 + e^-z)"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "derivatives",
+            "sigmoid",
+            "calculus"
+        ],
+        "difficulty": "hard",
+        "explanation": "The derivative of the sigmoid function is g'(z) = g(z) * (1 - g(z)). [cite: 474]"
+    },
+    {
+        "id": "dl_backprop_015",
+        "question": "In the context of backpropagation, what does `dz` typically represent?",
+        "type": "multiple_choice",
+        "options": [
+            "The learning rate.",
+            "The input features.",
+            "The derivative of the cost function with respect to the linear output z.",
+            "The derivative of the activation function."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "backpropagation",
+            "derivatives",
+            "notation"
+        ],
+        "difficulty": "hard",
+        "explanation": "In the context of the notes and code, `dz` represents the derivative of the cost function with respect to z (e.g., dZ = A - Y). [cite: 317, 520]"
+    }
+]

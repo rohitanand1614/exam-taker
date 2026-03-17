@@ -1,0 +1,108 @@
+[
+    {
+        "id": "Perceptron-Loss Function_001",
+        "question": "The instructor highlights a critical flaw in the 'Perceptron Trick' (a heuristic-based weight update rule), explaining why it is not the perfect solution for finding the best decision boundary. What is this fundamental flaw?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Perceptron Trick requires all input features to be strictly binary (0 or 1), making it useless for continuous data like CGPA.",
+            "B) The trick only updates weights when a point is misclassified. If multiple valid lines separate the data, it cannot mathematically quantify or guarantee which of those lines is the optimal 'best' boundary.",
+            "C) The Perceptron Trick forces the model to use the Sigmoid activation function, which suffers from vanishing gradients on large datasets.",
+            "D) The trick systematically deletes correctly classified points from the dataset, artificially shrinking the training size in every epoch."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "perceptron_trick_flaws",
+            "convergence",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The primary flaw of the Perceptron Trick is that it lacks a quantitative measure of *how good* a line is. The trick only updates the weights (moves the line) if it randomly selects a *misclassified* point. If a dataset is perfectly linearly separable and the line manages to classify all points correctly, the algorithm stops updating. However, there could be infinitely many lines that achieve 100% accuracy on the training set (e.g., one line might be extremely close to a data point, while another is perfectly centered between classes). Because the Perceptron Trick doesn't use a continuous loss function to quantify the \"error\" or \"margin,\" it cannot determine which of the valid lines is the optimal one. Options A, C, and D describe fabricated mechanisms that do not exist in the Perceptron algorithm."
+    },
+    {
+        "id": "Perceptron-Loss Function_002",
+        "question": "To solve the limitations of the Perceptron Trick, machine learning relies on Loss Functions. In the context of training a linear classifier, what is the exact mathematical role of a Loss Function?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It acts as a mathematical function of the weights ($w_1, w_2$) and bias ($b$), outputting a single number that quantifies the total error of the current decision boundary, allowing an optimizer to search for the minimum error.",
+            "B) It automatically generates new, synthetic data points to balance the classes before the step function is applied.",
+"C) It directly calculates the optimal learning rate ($\\alpha$) dynamically during each epoch of Gradient Descent.",
+            "D) It converts the non-linear input features into a high-dimensional linear space using the kernel trick."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "loss_function",
+            "optimization",
+            "gradient_descent"
+        ],
+        "difficulty": "easy",
+        "explanation": "A loss function $L(w_1, w_2, b)$ takes the model's parameters (weights and bias) as input and outputs a single scalar value representing the \"error\" or \"badness\" of the model's current predictions compared to the ground truth. By providing a continuous, quantifiable landscape of error, it allows optimization algorithms like Gradient Descent  to mathematically navigate the parameter space toward the minimum possible error, thereby finding the \"best\" line. Option B describes data augmentation (e.g., SMOTE). Option C describes adaptive learning rate algorithms (like Adam), not the loss function itself. Option D describes Support Vector Machines (SVM kernels)."
+    },
+    {
+        "id": "Perceptron-Loss Function_003",
+        "question": "The instructor explains the geometric intuition behind the specific loss function used by Scikit-Learn's Perceptron implementation (`max(0, -y_i * f(x_i))`, related to Hinge Loss). If a data point is **correctly** classified by the current decision boundary, what does this specific mathematical formula contribute to the total loss?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It contributes a penalty proportional to its absolute distance from the decision boundary.",
+            "B) It contributes exactly $0$ to the total loss.",
+            "C) It contributes a negative value, actively reducing the overall error score.",
+            "D) It contributes a fixed penalty of $+1$ to signify it has been processed."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hinge_loss",
+            "loss_calculation",
+            "geometric_intuition"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Perceptron loss function is heavily based on the Hinge Loss variant: $\\max(0, -y_i * f(x_i))$. \nHere, $y_i$ is the true label (+1 or -1), and $f(x_i)$ is the raw output of the linear equation ($w \\cdot x + b$). \nIf a point is *correctly* classified, $y_i$ and $f(x_i)$ will have the same sign (both positive or both negative). Their product ($y_i * f(x_i)$) will be a positive number. \nThe formula multiplies this by $-1$, resulting in a negative number. \nFinally, the $\\max(0, \\text{negative number})$ evaluates to exactly $0$. Therefore, a correctly classified point contributes absolutely nothing to the loss; the model is not penalized. Option A happens only when the point is *misclassified*. Options C and D are mathematically incorrect based on the formula."
+    },
+    {
+        "id": "Perceptron-Loss Function_004",
+        "question": "The instructor demonstrates that the basic Perceptron architecture (Inputs $\rightarrow$ Summation $\rightarrow$ Activation $\rightarrow$ Loss Calculation) is incredibly flexible. If you swap the Perceptron's 'Step Function' for a 'Sigmoid Function', and swap the 'Hinge Loss' for 'Binary Cross-Entropy', what well-known Machine Learning algorithm have you perfectly recreated?",
+        "type": "multiple_choice",
+        "options": [
+            "A) K-Nearest Neighbors (KNN)",
+            "B) Random Forest Classifier",
+            "C) Logistic Regression",
+            "D) Support Vector Machine (SVM)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "perceptron_flexibility",
+            "logistic_regression",
+            "activation_functions",
+            "loss_functions"
+        ],
+        "difficulty": "easy",
+        "explanation": "The structural architecture of a single artificial neuron is highly modular. If you take the standard linear summation ($z = w \\cdot x + b$) and pass it through a Sigmoid activation function  (which squashes the output into a probability between 0 and 1), and then optimize those weights using the Binary Cross-Entropy (Log Loss) function, you have constructed the exact mathematical equivalent of Logistic Regression. \nKNN (Option A) is a distance-based algorithm without weights. Random Forest (Option B) is an ensemble of decision trees. SVM (Option D) typically relies on Hinge Loss but without the Sigmoid probability squashing."
+    },
+    {
+        "id": "Perceptron-Loss Function_005",
+        "question": "Continuing the theme of the Perceptron's modular design, how would you modify the architecture of a single Perceptron to perform a basic Linear Regression task predicting continuous numerical values (like housing prices)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Use a Softmax activation function and Categorical Cross-Entropy loss.",
+            "B) Use a Step activation function and Mean Absolute Error (MAE) loss.",
+            "C) Remove the activation function entirely (or use a 'Linear' identity function) and optimize using Mean Squared Error (MSE) loss.",
+            "D) Use a ReLU activation function and Hinge Loss."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "perceptron_flexibility",
+            "linear_regression",
+            "mse_loss"
+        ],
+        "difficulty": "medium",
+        "explanation": "To predict continuous, unbounded numerical values (Linear Regression), you do not want to 'squash' or 'step' the output of the summation block ($w \\cdot x + b$). Therefore, you must use a Linear activation function , which simply outputs the exact value it receives ($f(z) = z$). To train this model to fit a continuous line to the data, you apply the standard regression loss function: Mean Squared Error (MSE). \nOption A defines Softmax Regression for multi-class classification. Option B is flawed because a Step function outputs binary values, destroying the continuous prediction needed for regression. Option D mixes a non-linear activation (ReLU) with a classification loss (Hinge), which is incorrect for basic linear regression."
+    }
+]

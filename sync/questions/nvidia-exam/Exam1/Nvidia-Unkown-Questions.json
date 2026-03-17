@@ -1,0 +1,2524 @@
+[
+    {
+        "id": "nvidia_unknown_001",
+        "question": "In the context of understanding large language models, which of the following statements best describes the role of attention mechanisms in transformer architectures?",
+        "type": "multiple_choice",
+        "options": [
+            "Attention mechanisms encode positional information to differentiate between various token positions.",
+            "Attention mechanisms allow the model to focus on specific parts of the input sequence, facilitating the computation of context-dependent word representations.",
+            "Attention mechanisms are solely responsible for reducing model size and improving computational efficiency.",
+            "Attention mechanisms transform the transformer model's output into a fixed-size vector for classification tasks."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformers",
+            "attention mechanism",
+            "llm architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "In transformer models, attention mechanisms are crucial for allowing the model to weigh the relevance of different words in the input sequence, enabling it to produce more nuanced and contextually relevant word embeddings."
+    },
+    {
+        "id": "nvidia_unknown_002",
+        "question": "You are tasked with developing a customer support chatbot that must effectively manage complex, context-sensitive dialogues. Which architectural approach would best support these advanced requirements for handling dynamic interactions?",
+        "type": "multiple_choice",
+        "options": [
+            "Transformer-based architecture",
+            "LSTM (Long Short-Term Memory)",
+            "RNN (Recurrent Neural Network)",
+            "CNN (Convolutional Neural Network)"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "transformers",
+            "chatbots",
+            "model selection"
+        ],
+        "difficulty": "easy",
+        "explanation": "The transformer-based architecture is the most suitable for developing a customer support chatbot due to its ability to manage complex, context-sensitive conversations effectively via attention mechanisms."
+    },
+    {
+        "id": "nvidia_unknown_003",
+        "question": "In the context of understanding generative AI models, what is the primary purpose of using attention mechanisms in transformer architectures?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the depth of the network for capturing complex patterns.",
+            "To mitigate the vanishing gradient problem in deep networks.",
+            "To enable the model to weigh the importance of different input tokens when generating output.",
+            "To provide a mechanism for transferring knowledge across different tasks."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "generative ai",
+            "attention mechanism",
+            "transformers"
+        ],
+        "difficulty": "medium",
+        "explanation": "Attention mechanisms are crucial for transformer models as they focus on different parts of the input data, allowing the model to understand which parts of the sequence are more important for generating the output."
+    },
+    {
+        "id": "nvidia_unknown_004",
+        "question": "Which architectural component in a Transformer-based LLM is primarily responsible for capturing long-range dependencies and contextual information across the input sequence?",
+        "type": "multiple_choice",
+        "options": [
+            "Feedforward Neural Network (FFN)",
+            "Positional Encoding",
+            "Multi-Head Attention",
+            "Layer Normalization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "transformers",
+            "multi-head attention",
+            "contextual information"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multi-Head Attention is a key component in Transformer-based LLMs that enables the model to capture long-range dependencies by attending to different parts of the input simultaneously."
+    },
+    {
+        "id": "nvidia_unknown_005",
+        "question": "Which architectural feature in large language models allows them to focus on different parts of the input sequence and is crucial for handling long-range dependencies?",
+        "type": "multiple_choice",
+        "options": [
+            "Residual connections",
+            "Attention mechanisms",
+            "Layer normalization",
+            "Positional encoding"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm architecture",
+            "attention mechanism",
+            "dependencies"
+        ],
+        "difficulty": "easy",
+        "explanation": "Attention mechanisms directly enable the model to weigh the importance of different input elements when generating output, making them essential for understanding context and relationships in language."
+    },
+    {
+        "id": "nvidia_unknown_006",
+        "question": "Which of the following statements accurately describes the role of the 'feed-forward network' (FFN) in a transformer-based large language model architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "It processes the input sequence in a left-to-right manner, similar to RNNs.",
+            "It applies non-linear transformations to each position in the sequence independently.",
+            "It calculates attention weights between different positions in the sequence.",
+            "It generates the final output probabilities for the next token prediction."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ffn",
+            "feed-forward network",
+            "transformers"
+        ],
+        "difficulty": "hard",
+        "explanation": "The FFN operates after the self-attention mechanism in each transformer block and applies non-linear transformations to each position in the sequence independently to help learn complex representations."
+    },
+    {
+        "id": "nvidia_unknown_007",
+        "question": "In the context of Large Language Model architecture, what is the primary purpose of the 'key' and 'value' vectors in the self-attention mechanism?",
+        "type": "multiple_choice",
+        "options": [
+            "To generate random noise for model regularization",
+            "To compute the attention scores and aggregate information from relevant parts of the input",
+            "To perform dimensionality reduction on the input sequence",
+            "To initialize the model's parameters before training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "self-attention",
+            "key-value vectors",
+            "llm architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "Key vectors are used to compute attention scores (determining focus), while Value vectors are used to aggregate information from the input based on these scores."
+    },
+    {
+        "id": "nvidia_unknown_008",
+        "question": "Which of the following best describes the role of the 'feed-forward network' (FFN) in a transformer-based large language model architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "It processes the input sequence in a left-to-right manner, similar to RNNs.",
+            "It applies non-linear transformations to each position independently, allowing the model to capture complex patterns.",
+            "It generates attention weights for the self-attention mechanism.",
+            "It handles the positional encoding of the input sequence."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ffn",
+            "transformers",
+            "model architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "The FFN applies non-linear transformations to each position in the sequence independently, allowing the model to capture complex patterns and relationships in the data."
+    },
+    {
+        "id": "nvidia_unknown_009",
+        "question": "In the context of large language model architecture, which of the following techniques addresses the challenge of handling long-range dependencies and mitigates the vanishing gradient problem in transformer models?",
+        "type": "multiple_choice",
+        "options": [
+            "Multi-head attention mechanism",
+            "Rotary Position Embedding (RoPE)",
+            "Layer normalization",
+            "Gradient checkpointing"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rope",
+            "positional embedding",
+            "vanishing gradient"
+        ],
+        "difficulty": "hard",
+        "explanation": "Rotary Position Embedding (RoPE) introduces a relative position encoding scheme that allows the model to capture position information more effectively across long sequences."
+    },
+    {
+        "id": "nvidia_unknown_010",
+        "question": "Which of the following architectural components in a Transformer-based Large Language Model is responsible for capturing long-range dependencies and contextual information across the input sequence?",
+        "type": "multiple_choice",
+        "options": [
+            "Feed-forward Neural Network (FFN)",
+            "Layer Normalization",
+            "Multi-head Self-attention",
+            "Positional Encoding"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "self-attention",
+            "transformers",
+            "dependencies"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multi-head Self-attention allows each position in the sequence to attend to all other positions, creating a global receptive field to understand complex relationships between distant parts of the input."
+    },
+    {
+        "id": "nvidia_unknown_011",
+        "question": "Which architectural component in a Transformer-based Large Language Model is primarily responsible for capturing long-range dependencies and contextual information across the entire input sequence?",
+        "type": "multiple_choice",
+        "options": [
+            "Feed-Forward Neural Networks (FFNs)",
+            "Positional Encodings",
+            "Self-Attention Mechanism",
+            "Layer Normalization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "self-attention",
+            "contextual information",
+            "transformers"
+        ],
+        "difficulty": "medium",
+        "explanation": "The self-attention mechanism allows each token to attend to all other tokens, weighing their relevance and incorporating this information into the token's representation."
+    },
+    {
+        "id": "nvidia_unknown_012",
+        "question": "Which of the following statements about the Mixture of Experts (MoE) architecture in large language models is NOT correct?",
+        "type": "multiple_choice",
+        "options": [
+            "MoE models dynamically route inputs to specialized sub-networks",
+            "MoE models generally have a smaller parameter count than dense models of similar capacity",
+            "MoE architecture can potentially improve model efficiency and scalability",
+            "MoE models can adapt to diverse tasks without fine-tuning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "mixture of experts",
+            "moe",
+            "model parameters"
+        ],
+        "difficulty": "hard",
+        "explanation": "MoE models typically have a larger total parameter count than dense models of similar capacity, but they activate only a subset of these parameters for each input."
+    },
+    {
+        "id": "nvidia_unknown_013",
+        "question": "In the context of large language model architectures, what is the primary advantage of using a mixture of experts (MoE) approach over a standard transformer model?",
+        "type": "multiple_choice",
+        "options": [
+            "Reduced memory footprint during inference",
+            "Increased model capacity without proportional increase in computation",
+            "Improved parallel processing capabilities",
+            "Enhanced ability to handle multi-modal inputs"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "moe",
+            "efficiency",
+            "model capacity"
+        ],
+        "difficulty": "medium",
+        "explanation": "MoE allows the model to have a much larger total parameter count (capacity) while only activating a small portion of the model for any given input, avoiding a linear increase in computation."
+    },
+    {
+        "id": "nvidia_unknown_014",
+        "question": "In the context of Large Language Model architectures, what is the primary advantage of using Sparse Mixture of Experts (MoE) over traditional dense models?",
+        "type": "multiple_choice",
+        "options": [
+            "Increased model capacity without proportional increase in computational cost",
+            "Improved training speed and convergence",
+            "Reduced memory footprint during inference",
+            "Enhanced interpretability of model decisions"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "sparse moe",
+            "dense models",
+            "computational cost"
+        ],
+        "difficulty": "medium",
+        "explanation": "Sparse MoE architectures enable the model to handle a wider range of tasks effectively by significantly increasing capacity without a proportional increase in computational cost."
+    },
+    {
+        "id": "nvidia_unknown_015",
+        "question": "Which advanced technique combines the benefits of both full fine-tuning and parameter-efficient fine-tuning methods, allowing for selective updating of specific layers while keeping others frozen?",
+        "type": "multiple_choice",
+        "options": [
+            "Selective Layer Adaptation (SLA)",
+            "LoRA (Low-Rank Adaptation)",
+            "Partial Fine-Tuning (PFT)",
+            "Mixture-of-Experts Fine-Tuning (MoE-FT)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "fine-tuning",
+            "moe-ft",
+            "parameter efficiency"
+        ],
+        "difficulty": "hard",
+        "explanation": "Mixture-of-Experts Fine-Tuning (MoE-FT) allows for selective updating of specific 'expert' layers while keeping others frozen, combining full fine-tuning benefits with parameter efficiency."
+    },
+    {
+        "id": "nvidia_unknown_016",
+        "question": "In the context of Large Language Models (LLMs), what is the primary advantage of using a technique called 'Mixture of Experts' (MoE) architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "It reduces the overall parameter count of the model",
+            "It improves the model's ability to handle multilingual tasks",
+            "It allows for more efficient computation by activating only a subset of the model for each input",
+            "It eliminates the need for fine-tuning on specific tasks"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "moe",
+            "efficiency",
+            "model architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "MoE uses a gating network to decide which expert(s) to activate, meaning only a small portion of the total network is used for each forward pass (computational efficiency)."
+    },
+    {
+        "id": "nvidia_unknown_017",
+        "question": "Which of the following statements about the Mixture of Experts (MoE) architecture in large language models is NOT correct?",
+        "type": "multiple_choice",
+        "options": [
+            "MoE models use a gating network to route inputs to specialized expert networks",
+            "MoE models can significantly reduce computational costs during inference",
+            "MoE architecture always results in smaller model sizes compared to dense models",
+            "MoE models can potentially handle a wider range of tasks more effectively than traditional dense models"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "moe",
+            "dense models",
+            "misconceptions"
+        ],
+        "difficulty": "hard",
+        "explanation": "MoE models often have a larger total number of parameters than dense models; their advantage lies in efficient parameter usage (sparse activation), not smaller total size."
+    },
+    {
+        "id": "nvidia_unknown_018",
+        "question": "Which of the following techniques is the most effective for reducing the dimensionality of a dataset while preserving variance in the data for training Generative AI models?",
+        "type": "multiple_choice",
+        "options": [
+            "Principal Component Analysis (PCA)",
+            "Linear Discriminant Analysis (LDA)",
+            "t-Distributed Stochastic Neighbor Embedding (t-SNE)",
+            "Autoencoders"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "dimensionality reduction",
+            "pca",
+            "data preprocessing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Principal Component Analysis (PCA) projects data onto orthogonal axes (principal components) that maximize variance, making it the most effective linear technique for reducing dimensionality while preserving data variance."
+    },
+    {
+        "id": "nvidia_unknown_019",
+        "question": "You are tasked with analyzing a large dataset derived from an online retail platform, aiming to predict which customers are likely to stop using the service. The dataset comprises numerous features, some of which may be irrelevant or redundant. What technique should you utilize to effectively select the most pertinent features that can enhance both the accuracy and interpretability of your predictive model?",
+        "type": "multiple_choice",
+        "options": [
+            "Utilize Recursive Feature Elimination (RFE) with cross-validation",
+            "Implement PCA (Principal Component Analysis) to minimize dimensionality",
+            "Select features based solely on their correlation with the target variable",
+            "Include all features to ensure no potentially useful information is lost"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "feature selection",
+            "rfe",
+            "machine learning"
+        ],
+        "difficulty": "hard",
+        "explanation": "Recursive Feature Elimination (RFE) with cross-validation systematically identifies and retains important features while discarding those that do not enhance performance, improving both accuracy and interpretability."
+    },
+    {
+        "id": "nvidia_unknown_020",
+        "question": "Which data preparation task can be most efficiently executed using cuDF on a GPU prior to inputting the data into a machine learning model?",
+        "type": "multiple_choice",
+        "options": [
+            "Running a basic text search on a small dataset",
+            "Loading data into a pandas DataFrame and then transferring it to the GPU",
+            "Sorting a small dataset of less than a thousand rows",
+            "Performing complex joins and aggregations on a large dataset with millions of rows"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "cudf",
+            "gpu acceleration",
+            "data preparation"
+        ],
+        "difficulty": "medium",
+        "explanation": "cuDF is optimized for parallel processing on GPUs, making it significantly more efficient than CPU-based tools for high-complexity, high-volume tasks like complex joins and aggregations on millions of rows."
+    },
+    {
+        "id": "nvidia_unknown_021",
+        "question": "Which of the following data preprocessing techniques is most effective for reducing dimensionality while preserving variance in high-dimensional datasets used in training large language models?",
+        "type": "multiple_choice",
+        "options": [
+            "Principal Component Analysis (PCA)",
+            "Min-Max Scaling",
+            "One-Hot Encoding",
+            "Data Augmentation"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "dimensionality reduction",
+            "pca",
+            "preprocessing"
+        ],
+        "difficulty": "medium",
+        "explanation": "PCA is specifically designed to reduce dimensionality by transforming the dataset into orthogonal components that capture the maximum variance, which is crucial for handling high-dimensional data."
+    },
+    {
+        "id": "nvidia_unknown_022",
+        "question": "When preprocessing text data for training an LLM, which of the following techniques is most effective in reducing the model's complexity without significant loss of semantic information?",
+        "type": "multiple_choice",
+        "options": [
+            "Removing all stop words from the dataset",
+            "Using byte pair encoding (BPE) for tokenization",
+            "Converting all text to lowercase",
+            "Lemmatizing all words in the text"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tokenization",
+            "bpe",
+            "llm preprocessing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Byte Pair Encoding (BPE) efficiently tokenizes text into subword units, balancing vocabulary size and expressiveness, which reduces model complexity while retaining semantic meaning."
+    },
+    {
+        "id": "nvidia_unknown_023",
+        "question": "When dealing with a large corpus of text data for training a generative LLM, which advanced preprocessing technique is crucial to handle polysemy and improve semantic understanding?",
+        "type": "multiple_choice",
+        "options": [
+            "Tokenization",
+            "Part-of-Speech Tagging",
+            "Word Sense Disambiguation",
+            "Stop Word Removal"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nlp",
+            "polysemy",
+            "word sense disambiguation"
+        ],
+        "difficulty": "hard",
+        "explanation": "Word Sense Disambiguation (WSD) is specifically aimed at resolving ambiguity in words with multiple meanings (polysemy), ensuring the model interprets the correct semantic context."
+    },
+    {
+        "id": "nvidia_unknown_024",
+        "question": "When preparing data for training a large language model, which of the following operations is crucial to ensure that subtle semantic nuances in text are preserved during preprocessing?",
+        "type": "multiple_choice",
+        "options": [
+            "Tokenizing the text using whitespace as delimiters.",
+            "Applying stemming to reduce words to their base form.",
+            "Using byte-pair encoding (BPE) to create subword tokens from the text.",
+            "Removing stop words to decrease data dimensionality."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bpe",
+            "tokenization",
+            "semantics"
+        ],
+        "difficulty": "medium",
+        "explanation": "BPE allows the model to handle rare words and morphological variations by breaking them into subwords, thus preserving subtle nuances that might be lost with simple word-level tokenization or stemming."
+    },
+    {
+        "id": "nvidia_unknown_025",
+        "question": "Which of the following approaches is most effective in reducing the dimensionality of a text dataset for use in training large language models, while retaining semantic information?",
+        "type": "multiple_choice",
+        "options": [
+            "Using Bag-of-Words (BoW) representation.",
+            "Employing Principal Component Analysis (PCA) on term frequencies.",
+            "Applying word embeddings such as word2vec or GloVe.",
+            "Using one-hot encoding for all words in the dataset."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "word embeddings",
+            "dimensionality reduction",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "Word embeddings (like Word2Vec or GloVe) represent words in dense vector spaces where semantic relationships are captured, effectively reducing dimensionality compared to sparse methods like one-hot encoding."
+    },
+    {
+        "id": "nvidia_unknown_026",
+        "question": "Which of the following data preprocessing techniques is most suitable for reducing feature dimensionality while preserving the variance in the data for training a generative AI model?",
+        "type": "multiple_choice",
+        "options": [
+            "Normalization",
+            "Feature Encoding",
+            "Principal Component Analysis (PCA)",
+            "Imputation"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "pca",
+            "dimensionality reduction",
+            "preprocessing"
+        ],
+        "difficulty": "medium",
+        "explanation": "PCA reduces feature dimensionality by transforming the dataset into orthogonal components, preserving the maximum possible variance which is critical for model training."
+    },
+    {
+        "id": "nvidia_unknown_027",
+        "question": "Which of the following data preprocessing techniques is most critical when preparing a dataset for training a generative language model on diverse multilingual text data?",
+        "type": "multiple_choice",
+        "options": [
+            "Tokenization and encoding using a multilingual tokenizer",
+            "Data normalizing using standard scaling methods",
+            "Dimensionality reduction using PCA",
+            "Handling missing values using mean imputation"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "multilingual",
+            "tokenization",
+            "preprocessing"
+        ],
+        "difficulty": "easy",
+        "explanation": "A multilingual tokenizer is essential for correctly processing text from different languages, ensuring that the model can interpret and generate diverse linguistic structures."
+    },
+    {
+        "id": "nvidia_unknown_028",
+        "question": "Which regularization technique is most effective in preventing overfitting in deep learning models that have a large number of parameters, ensuring that the model‘s accuracy is still maintained?",
+        "type": "multiple_choice",
+        "options": [
+            "Data Augmentation",
+            "Dropout",
+            "Early Stopping",
+            "L2 Regularization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "regularization",
+            "overfitting",
+            "deep learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dropout is widely used to mitigate overfitting by randomly dropping connections during training, which prevents units from co-adapting and promotes learning redundant representations."
+    },
+    {
+        "id": "nvidia_unknown_029",
+        "question": "During the fine-tuning of a large language model, you notice a significant drop in model performance on the validation set after a certain number of epochs. Which of the following is the most likely cause of this issue and the best initial step to troubleshoot it?",
+        "type": "multiple_choice",
+        "options": [
+            "The model is underfitting; consider increasing the model‘s complexity.",
+            "The model is overfitting; try reducing the learning rate.",
+            "The model is overfitting; implement early stopping to monitor and halt training.",
+            "The training data is insufficient; consider augmenting it with more examples."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "fine-tuning",
+            "overfitting",
+            "early stopping"
+        ],
+        "difficulty": "medium",
+        "explanation": "A drop in validation performance after initial improvement is a classic sign of overfitting. Early stopping halts training when validation loss starts to increase, preventing the model from memorizing noise."
+    },
+    {
+        "id": "nvidia_unknown_030",
+        "question": "While training an LLM, you notice a sudden spike in the training loss after a few epochs, even though the loss was steadily decreasing up till that point. What is the most likely cause of this issue?",
+        "type": "multiple_choice",
+        "options": [
+            "The learning rate is set too high, causing instability in the optimization process.",
+            "There is a data processing error that introduced corrupted data into the training set.",
+            "The model architecture is too complex, leading to overfitting.",
+            "The gradient accumulation step was not reset between mini-batches."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "training dynamics",
+            "learning rate",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "A sudden spike in training loss typically indicates that the learning rate is too high, causing the optimizer to overshoot the optimal parameters and destabilize the training process."
+    },
+    {
+        "id": "nvidia_unknown_031",
+        "question": "Which of the following strategies is most effective for mitigating the overfitting of a large language model during training?",
+        "type": "multiple_choice",
+        "options": [
+            "Increasing the model‘s parameters to capture more training data details.",
+            "Implementing dropout with an appropriate rate during training.",
+            "Reducing the batch size to make training more efficient.",
+            "Utilizing a smaller learning rate for the optimizer."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "overfitting",
+            "dropout",
+            "training strategies"
+        ],
+        "difficulty": "easy",
+        "explanation": "Dropout is a standard regularization technique that prevents overfitting by randomly deactivating neurons during training, forcing the network to learn more robust features."
+    },
+    {
+        "id": "nvidia_unknown_032",
+        "question": "While optimizing an LLM, you encounter a problem where the model diverges and produces nonsensical outputs after several epochs of training. What is the most likely step you should take to troubleshoot this issue?",
+        "type": "multiple_choice",
+        "options": [
+            "Increase the learning rate to hasten convergence.",
+            "Check for exploding gradients and apply gradient clipping.",
+            "Add more layers to the model for better complexity management.",
+            "Decrease weight regularization to avoid underfitting."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "troubleshooting",
+            "exploding gradients",
+            "gradient clipping"
+        ],
+        "difficulty": "hard",
+        "explanation": "Model divergence and nonsensical outputs are often caused by exploding gradients, where parameter updates become too large. Gradient clipping limits the norm of gradients to stabilize training."
+    },
+    {
+        "id": "nvidia_unknown_033",
+        "question": "In the context of training large language models (LLMs), which technique is most effective for dynamically adjusting the learning rate based on gradient variance during optimization?",
+        "type": "multiple_choice",
+        "options": [
+            "Stochastic Gradient Descent",
+            "RMSprop",
+            "Layer-wise Adaptive Rate Scaling (LARS)",
+            "Momentum"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "rmsprop",
+            "learning rate"
+        ],
+        "difficulty": "medium",
+        "explanation": "RMSprop adjusts the learning rate dynamically based on the moving average of squared gradients (variance), making it effective for non-stationary objectives common in LLM training."
+    },
+    {
+        "id": "nvidia_unknown_034",
+        "question": "While fine-tuning a Large Language Model (LLM) on custom data, you notice that the model‘s loss does not decrease and sometimes oscillates. Which of the following is the most likely cause of this issue?",
+        "type": "multiple_choice",
+        "options": [
+            "The learning rate is too high, causing the optimization process to diverge.",
+            "The model is perfectly aligned with the pre-training dataset, and fine-tuning is not necessary.",
+            "The batch size is too large, resulting in poor generalization on the fine-tuning dataset.",
+            "The dataset used for fine-tuning is too biased towards one class, leading to a lack of diversity."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "fine-tuning",
+            "learning rate",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Oscillating loss or failure to converge usually suggests the learning rate is too high, causing the optimizer to bounce around the minimum rather than settling into it."
+    },
+    {
+        "id": "nvidia_unknown_035",
+        "question": "Which of the following techniques is NOT typically used in the training process of large language models to improve their performance and efficiency?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Accumulation",
+            "Reinforcement Learning from Human Feedback (RLHF)",
+            "Quantum Annealing",
+            "Mixed Precision Training"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "training techniques",
+            "llm",
+            "quantum computing"
+        ],
+        "difficulty": "easy",
+        "explanation": "Quantum Annealing is a technique used in quantum computing for optimization problems and is not currently used in the standard training pipeline of classical Large Language Models."
+    },
+    {
+        "id": "nvidia_unknown_036",
+        "question": "Which advanced technique combines the benefits of both full fine-tuning and parameter-efficient fine-tuning methods, allowing for selective adaptation of specific model components while keeping others frozen?",
+        "type": "multiple_choice",
+        "options": [
+            "Sparse Fine-Tuning",
+            "Hybrid Adaptive Fine-Tuning (HAFT)",
+            "Mixed Precision Training",
+            "Gradient Accumulation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fine-tuning",
+            "haft",
+            "advanced techniques"
+        ],
+        "difficulty": "hard",
+        "explanation": "Hybrid Adaptive Fine-Tuning (HAFT) selectively updates specific model components while keeping others frozen, combining the flexibility of full fine-tuning with the efficiency of parameter-efficient methods."
+    },
+    {
+        "id": "nvidia_unknown_037",
+        "question": "Which of the following techniques is NOT typically used in the fine-tuning process of large language models (LLMs) to improve performance on specific tasks or domains?",
+        "type": "multiple_choice",
+        "options": [
+            "Prompt engineering",
+            "Low-rank adaptation (LoRA)",
+            "Prefix tuning",
+            "Quantization-aware training"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "fine-tuning",
+            "prompt engineering",
+            "llm adaptation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Prompt engineering involves crafting inputs to guide the model's output but does not involve updating the model's weights or parameters, which is the definition of fine-tuning."
+    },
+    {
+        "id": "nvidia_unknown_038",
+        "question": "Which of the following techniques is NOT typically used in the fine-tuning process of large language models for specific tasks or domains?",
+        "type": "multiple_choice",
+        "options": [
+            "Prompt-tuning",
+            "Quantization-aware training",
+            "LoRA (Low-Rank Adaptation)",
+            "Prefix-tuning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fine-tuning",
+            "quantization",
+            "llm optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization-aware training is primarily for optimizing inference efficiency (reducing model size/precision), whereas prompt-tuning, LoRA, and prefix-tuning are specifically for adapting model behavior to new tasks."
+    },
+    {
+        "id": "nvidia_unknown_039",
+        "question": "Which of the following techniques is NOT typically used in the training process of large language models to improve their performance and efficiency?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Accumulation",
+            "Mixed Precision Training",
+            "Quantum Annealing",
+            "Distributed Training"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "training techniques",
+            "efficiency",
+            "misconceptions"
+        ],
+        "difficulty": "easy",
+        "explanation": "Quantum Annealing is a quantum computing optimization method and is not applicable to the standard training of LLMs on classical hardware."
+    },
+    {
+        "id": "nvidia_unknown_040",
+        "question": "In the context of advanced Large Language Model (LLM) training, which of the following techniques is primarily used to improve the model‘s understanding of context and nuances in human language through leveraging multiple training objectives?",
+        "type": "multiple_choice",
+        "options": [
+            "Mask Language Modeling (MLM)",
+            "Contrastive Language Image Pre-Training (CLIP)",
+            "Multitask Learning (MTL)",
+            "Backpropagation Through Time (BPTT)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multitask learning",
+            "mtl",
+            "contextual understanding"
+        ],
+        "difficulty": "hard",
+        "explanation": "Multitask Learning (MTL) trains a single model on multiple related tasks simultaneously, encouraging the learning of shared representations that improve generalization and contextual understanding."
+    },
+    {
+        "id": "nvidia_unknown_041",
+        "question": "Which of the following techniques is NOT typically used in the training process of large language models to improve their performance and generalization?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Descent with Adaptive Learning Rates",
+            "Federated Learning",
+            "Layer Normalization",
+            "Masked Language Modeling"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "federated learning",
+            "training techniques",
+            "llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "Federated Learning is a decentralized training method used primarily for privacy, not as a standard technique for improving the performance or generalization of centralized LLMs like GPT."
+    },
+    {
+        "id": "nvidia_unknown_042",
+        "question": "Which of the following techniques is NOT typically used in the training process of large language models to improve their performance and generalization?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Descent",
+            "Federated Learning",
+            "Attention Mechanisms",
+            "Overfitting"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "training concepts",
+            "overfitting",
+            "misconceptions"
+        ],
+        "difficulty": "easy",
+        "explanation": "Overfitting is a failure mode where the model memorizes training data, not a technique used to improve performance. The question asks for a technique used to *improve* performance."
+    },
+    {
+        "id": "nvidia_unknown_043",
+        "question": "Which of the following techniques is NOT typically used in the pre-training phase of a large language model to improve its performance on downstream tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "Masked Language Modeling (MLM)",
+            "Next Sentence Prediction (NSP)",
+            "Causal Language Modeling (CLM)",
+            "Few-shot Learning"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "pre-training",
+            "few-shot learning",
+            "llm phases"
+        ],
+        "difficulty": "medium",
+        "explanation": "Few-shot Learning is an inference or adaptation technique where the model is given examples at runtime; it is not a pre-training objective like MLM, NSP, or CLM."
+    },
+    {
+        "id": "nvidia_unknown_044",
+        "question": "Which of the following techniques is NOT typically used in the training process of large language models to improve their performance and efficiency?",
+        "type": "multiple_choice",
+        "options": [
+            "Federated Learning",
+            "Mixture of Experts",
+            "Reinforcement Learning from Human Feedback",
+            "Sparse Attention"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "federated learning",
+            "training techniques",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "Federated Learning is for decentralized privacy-preserving training. Mixture of Experts, RLHF, and Sparse Attention are standard techniques for improving LLM performance and efficiency."
+    },
+    {
+        "id": "nvidia_unknown_045",
+        "question": "Which of the following techniques is NOT typically used in the fine-tuning process of large language models (LLMs) to improve performance on specific tasks or domains?",
+        "type": "multiple_choice",
+        "options": [
+            "Prompt engineering",
+            "Low-rank adaptation (LoRA)",
+            "Gradient accumulation",
+            "Prefix tuning"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "fine-tuning",
+            "prompt engineering",
+            "llm adaptation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Prompt engineering optimizes inputs to the model but does not update the model's weights or parameters, unlike LoRA, gradient accumulation (used during training/tuning), and prefix tuning."
+    },
+    {
+        "id": "nvidia_unknown_046",
+        "question": "Which of the following techniques is NOT typically used in the training process of large language models (LLMs) for generative AI?",
+        "type": "multiple_choice",
+        "options": [
+            "Federated Learning",
+            "Masked Language Modeling",
+            "Causal Language Modeling",
+            "Next Sentence Prediction"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "training objectives",
+            "federated learning",
+            "generative ai"
+        ],
+        "difficulty": "medium",
+        "explanation": "Federated Learning is a decentralized data privacy technique, not a core training objective or architectural component for standard Generative AI LLMs."
+    },
+    {
+        "id": "nvidia_unknown_047",
+        "question": "Which of the following techniques is NOT typically used in fine-tuning large language models for specific tasks or domains?",
+        "type": "multiple_choice",
+        "options": [
+            "Prompt engineering",
+            "Low-rank adaptation (LoRA)",
+            "Prefix tuning",
+            "Quantized aware training (QAT)"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "fine-tuning",
+            "prompt engineering",
+            "model adaptation"
+        ],
+        "difficulty": "easy",
+        "explanation": "Prompt engineering does not involve updating model parameters or structure, making it distinct from fine-tuning techniques like LoRA, prefix tuning, or QAT."
+    },
+    {
+        "id": "nvidia_unknown_048",
+        "question": "Which of the following techniques is NOT commonly used in state-of-the-art Generative AI models to mitigate the problem of vanishing gradients in deep neural networks?",
+        "type": "multiple_choice",
+        "options": [
+            "Residual connections",
+            "Layer normalization",
+            "Attention mechanisms",
+            "Dropout regularization"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "vanishing gradient",
+            "dropout",
+            "deep learning architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "Dropout prevents overfitting. Residual connections, layer normalization, and attention mechanisms specifically help signal propagation and mitigate vanishing gradients in deep networks."
+    },
+    {
+        "id": "nvidia_unknown_049",
+        "question": "In the context of training large language models (LLMs), which of the following techniques is most effective for reducing the problem of catastrophic forgetting during continuous training?",
+        "type": "multiple_choice",
+        "options": [
+            "Data augmentation with diverse datasets.",
+            "Elastic Weight Consolidation (EWC).",
+            "Hyperparameter tuning.",
+            "Dropout regularization."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "catastrophic forgetting",
+            "ewc",
+            "continuous training"
+        ],
+        "difficulty": "medium",
+        "explanation": "Elastic Weight Consolidation (EWC) selectively preserves certain learned weights essential for past tasks, minimizing the loss of pre-existing knowledge (catastrophic forgetting)."
+    },
+    {
+        "id": "nvidia_unknown_050",
+        "question": "Which of the following methods is most effective for mitigating catastrophic forgetting in LLMs when fine-tuning on a new dataset?",
+        "type": "multiple_choice",
+        "options": [
+            "Using a lower learning rate during fine-tuning.",
+            "Applying knowledge distillation from the original model.",
+            "Incorporating a replay buffer with examples from the original dataset.",
+            "Increasing the model size to accommodate more information."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "fine-tuning",
+            "replay buffer",
+            "catastrophic forgetting"
+        ],
+        "difficulty": "medium",
+        "explanation": "A replay buffer mixes examples from the original dataset with new data during fine-tuning to maintain previous knowledge while learning new information."
+    },
+    {
+        "id": "nvidia_unknown_051",
+        "question": "In the context of advanced model understanding for LLMs, which approach is most effective in addressing the challenge of catastrophic forgetting during model fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "Linear probing",
+            "Knowledge distillation",
+            "Elastic weight consolidation",
+            "Data augmentation"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "ewc",
+            "fine-tuning",
+            "regularization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Elastic Weight Consolidation (EWC) adds a regularization term to the loss function to help the model remember previously learned tasks while adapting to new ones."
+    },
+    {
+        "id": "nvidia_unknown_052",
+        "question": "Which of the following advanced techniques is crucial for optimizing the fine-tuning of a generative AI model to effectively reduce catastrophic forgetting while maintaining model performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Data Augmentation",
+            "Elastic Weight Consolidation (EWC)",
+            "Learning Rate Scheduling",
+            "Batch Normalization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "ewc",
+            "model optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "EWC optimizes transfer and retention capabilities by remembering important parameters from previous tasks, specifically designed to reduce catastrophic forgetting."
+    },
+    {
+        "id": "nvidia_unknown_053",
+        "question": "You are fine-tuning a large language model for a specialized medical application. Which of the following techniques would be most effective in mitigating catastrophic forgetting while ensuring the model retains its general knowledge and adapts to the medical domain?",
+        "type": "multiple_choice",
+        "options": [
+            "Elastic Weight Consolidation (EWC)",
+            "Knowledge Distillation",
+            "Gradient Accumulation",
+            "Layer Freezing"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain adaptation",
+            "ewc",
+            "medical llm"
+        ],
+        "difficulty": "hard",
+        "explanation": "EWC adds a penalty term encouraging the model to keep parameters important for the original task close to their initial values, balancing new learning with general knowledge retention."
+    },
+    {
+        "id": "nvidia_unknown_054",
+        "question": "Which technique is most effective for addressing catastrophic forgetting during the fine-tuning process of a large language model?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient accumulation",
+            "Elastic Weight Consolidation (EWC)",
+            "Layer freezing",
+            "Dropout regularization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fine-tuning",
+            "ewc",
+            "stability-plasticity"
+        ],
+        "difficulty": "medium",
+        "explanation": "EWC penalizes large changes to parameters critical for previous tasks, effectively balancing stability (remembering old tasks) and plasticity (learning new tasks)."
+    },
+    {
+        "id": "nvidia_unknown_055",
+        "question": "Which of the following techniques is most effective for mitigating catastrophic forgetting during the fine-tuning of large language models?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Accumulation",
+            "Elastic Weight Consolidation (EWC)",
+            "Layer Normalization",
+            "Dropout"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ewc",
+            "fine-tuning",
+            "llm training"
+        ],
+        "difficulty": "medium",
+        "explanation": "EWC is specifically designed for this purpose; it discourages large changes to weights that were important for previously learned tasks via a penalty term in the loss function."
+    },
+    {
+        "id": "nvidia_unknown_056",
+        "question": "In the context of Large Language Model architecture, which of the following techniques is most effective for mitigating the 'forgetting problem' in continual learning scenarios, while also optimizing for computational efficiency and model performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Parameter-Efficient Fine-Tuning (PEFT)",
+            "Elastic Weight Consolidation (EWC)",
+            "Progressive Neural Networks",
+            "Rehearsal-free Continual Learning with Selective Synaptic Plasticity"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "continual learning",
+            "synaptic plasticity",
+            "advanced techniques"
+        ],
+        "difficulty": "hard",
+        "explanation": "This technique selectively adjusts synaptic plasticity based on importance, offering better computational efficiency than EWC and avoiding the model size increase of Progressive Neural Networks."
+    },
+    {
+        "id": "nvidia_unknown_057",
+        "question": "In implementing a use case that requires fine-tuning a pre-trained Large Language Model (LLM) to perform a specific task, which of the following strategies would maximize performance without significantly increasing computational cost?",
+        "type": "multiple_choice",
+        "options": [
+            "Use a larger batch size during fine-tuning to improve generalization.",
+            "Apply parameter-efficient fine-tuning methods such as LoRA (Low-rank Adaptation) to adjust only a subset of the model‘s parameters.",
+            "Increase the number of layers in the pre-trained model to enhance learning capacity.",
+            "Double the learning rate to increase the speed of convergence during fine-tuning."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fine-tuning",
+            "lora",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "Parameter-efficient fine-tuning methods like LoRA optimize model performance by selectively tuning a smaller number of parameters, maintaining computational efficiency while adapting the model."
+    },
+    {
+        "id": "nvidia_unknown_058",
+        "question": "In the context of fine-tuning a large language model (LLM) for domain-specific tasks, which of the following techniques is most effective for maintaining the balance between model performance and computational efficiency?",
+        "type": "multiple_choice",
+        "options": [
+            "Using a larger dataset to further pre-train the model",
+            "Applying parameter-efficient fine-tuning methods like Low-Rank Adaptation (LoRA)",
+            "Increasing the model‘s size and re-training from scratch with domain-specific data",
+            "Regularization techniques like dropout with increasing values during fine-tuning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "efficiency",
+            "domain adaptation"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA allows for effective model adaptation without the high computational costs of training all parameters, achieving a balance between performance and efficiency."
+    },
+    {
+        "id": "nvidia_unknown_059",
+        "question": "When fine-tuning a large language model (LLM) using Parameter-Efficient Fine-Tuning (PEFT) techniques, which of the following methods is most effective for maintaining model performance while significantly reducing the number of trainable parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "LoRA (Low-Rank Adaptation)",
+            "Prefix Tuning",
+            "Adapter Layers",
+            "Full Fine-tuning"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "peft",
+            "lora",
+            "model performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA is considered one of the most effective PEFT techniques, reducing trainable parameters significantly by adding rank decomposition matrices while maintaining performance comparable to full fine-tuning."
+    },
+    {
+        "id": "nvidia_unknown_060",
+        "question": "Which of the following techniques is most effective for improving the performance of a large language model on specific tasks while minimizing the risk of catastrophic forgetting?",
+        "type": "multiple_choice",
+        "options": [
+            "Full fine-tuning",
+            "Parameter-efficient fine-tuning (PEFT)",
+            "Zero-shot learning",
+            "Unsupervised pre-training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "catastrophic forgetting",
+            "peft",
+            "task adaptation"
+        ],
+        "difficulty": "medium",
+        "explanation": "PEFT methods update only a small subset of parameters, allowing for task-specific adaptations without significantly altering the pre-trained knowledge, thus minimizing catastrophic forgetting."
+    },
+    {
+        "id": "nvidia_unknown_061",
+        "question": "When fine-tuning a large language model using LoRA (Low-Rank Adaptation), which of the following statements is TRUE regarding the process and its advantages?",
+        "type": "multiple_choice",
+        "options": [
+            "LoRA replaces all pre-trained weights in the model with new, task-specific weights.",
+            "LoRA significantly increases the number of parameters in the model, improving performance at the cost of increased memory usage.",
+            "LoRA allows for efficient adaptation of the model to new tasks while keeping most of the pre-trained weights frozen.",
+            "LoRA can only be applied to the attention layers of a transformer model and not to feed-forward networks."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "lora",
+            "fine-tuning mechanism",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA works by adding small, trainable rank decomposition matrices to existing weights while keeping most of the original weights frozen, ensuring efficient adaptation."
+    },
+    {
+        "id": "nvidia_unknown_062",
+        "question": "When fine-tuning a large language model (LLM) for a specific task, which of the following techniques is most effective for preventing catastrophic forgetting while maintaining the model‘s ability to generalize?",
+        "type": "multiple_choice",
+        "options": [
+            "Full model fine-tuning",
+            "LoRA (Low-Rank Adaptation)",
+            "Elastic Weight Consolidation (EWC)",
+            "Dropout regularization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "catastrophic forgetting",
+            "lora",
+            "generalization"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA freezes pre-trained weights and injects trainable matrices, significantly reducing the risk of overwriting pre-trained knowledge (catastrophic forgetting) compared to full fine-tuning."
+    },
+    {
+        "id": "nvidia_unknown_063",
+        "question": "Which of the following techniques is most effective for mitigating catastrophic forgetting during the fine-tuning process of a large language model?",
+        "type": "multiple_choice",
+        "options": [
+            "Elastic Weight Consolidation (EWC)",
+            "Progressive Neural Networks",
+            "Parameter-Efficient Fine-Tuning (PEFT)",
+            "Gradient Episodic Memory"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "peft",
+            "catastrophic forgetting",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "PEFT keeps the base model weights frozen and trains only a small number of additional parameters, preserving original knowledge and effectively mitigating catastrophic forgetting."
+    },
+    {
+        "id": "nvidia_unknown_064",
+        "question": "When fine-tuning a large language model (LLM) using Prompt-Tuning with Soft Prompts, which of the following statements is true regarding the model‘s parameters and performance?",
+        "type": "multiple_choice",
+        "options": [
+            "All of the model‘s parameters are updated during fine-tuning, resulting in a completely new model.",
+            "Only the input embedding layer of the model is updated, while all other parameters remain frozen.",
+            "A small set of trainable tokens (soft prompts) is prepended to the input, and only these tokens are updated during fine-tuning.",
+            "The model‘s attention mechanisms are selectively updated to focus on task-specific information."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "prompt-tuning",
+            "soft prompts",
+            "peft"
+        ],
+        "difficulty": "medium",
+        "explanation": "Prompt-Tuning involves prepending trainable token embeddings (soft prompts) to the input; only these are updated while the original model remains frozen."
+    },
+    {
+        "id": "nvidia_unknown_065",
+        "question": "Which of the following techniques is most effective in mitigating the ‘forgetting problem‘ in continual learning for large language models, while also addressing the challenges of catastrophic forgetting and maintaining computational efficiency?",
+        "type": "multiple_choice",
+        "options": [
+            "Elastic Weight Consolidation (EWC)",
+            "Progressive Neural Networks",
+            "Rehearsal Methods",
+            "Parameter-Efficient Fine-Tuning (PEFT)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "continual learning",
+            "peft",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "PEFT is effective for continual learning as it adapts only a small subset of parameters for each task, keeping the majority of knowledge intact and maintaining high computational efficiency."
+    },
+    {
+        "id": "nvidia_unknown_066",
+        "question": "During the fine-tuning phase of a Large Language Model (LLM) using a distributed training approach, which of the following techniques is most effective in managing the communication overhead and ensuring scalability?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient checkpointing",
+            "Data parallelism with synchronous updates",
+            "Model parallelism",
+            "Mixed precision training with asynchronous gradient updates"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "distributed training",
+            "scalability",
+            "communication overhead"
+        ],
+        "difficulty": "hard",
+        "explanation": "Mixed precision training with asynchronous updates effectively handles communication overhead and provides scalability by allowing efficient resource usage and quicker convergence in distributed setups."
+    },
+    {
+        "id": "nvidia_unknown_067",
+        "question": "When training a large language model (LLM) using a distributed architecture, which optimization strategy is most beneficial for efficiently handling memory constraints while ensuring gradient updates are coordinated across multiple GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Accumulation",
+            "Model Parallelism",
+            "Data Parallelism with ZeRO Optimization",
+            "Asynchronous Stochastic Gradient Descent"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "zero optimization",
+            "distributed training",
+            "gpu memory"
+        ],
+        "difficulty": "hard",
+        "explanation": "Data Parallelism combined with ZeRO (Zero Redundancy Optimizer) Optimization efficiently addresses memory distribution challenges and synchronizes gradient updates among multiple GPUs."
+    },
+    {
+        "id": "nvidia_unknown_068",
+        "question": "Which of the following techniques is most effective in reducing inference latency for large language models without significantly sacrificing the accuracy of the model?",
+        "type": "multiple_choice",
+        "options": [
+            "Model quantization.",
+            "Model distillation.",
+            "Using larger batch sizes during inference.",
+            "Applying dropout during inference."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "inference optimization",
+            "quantization",
+            "latency"
+        ],
+        "difficulty": "medium",
+        "explanation": "Model quantization reduces the precision of operations (e.g., from float32 to int8), leading to faster computations and lower memory usage while maintaining acceptable accuracy."
+    },
+    {
+        "id": "nvidia_unknown_069",
+        "question": "In a scenario where you need to deploy a large language model (LLM) for real-time inference with strict latency requirements, which combination of techniques would be most effective for optimizing inference speed while maintaining model quality?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantization to INT8, Knowledge Distillation, and TensorRT",
+            "Pruning, ONNX Runtime, and Tensor Parallelism",
+            "KV Cache, FlashAttention, and FP16 Precision",
+            "Continuous Batching, Byte-Pair Encoding, and Paged Attention"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "inference optimization",
+            "continuous batching",
+            "paged attention"
+        ],
+        "difficulty": "hard",
+        "explanation": "Continuous Batching (efficient request processing), Byte-Pair Encoding (reduced sequence length), and Paged Attention (optimized memory) provide the best balance for real-time inference speed and quality."
+    },
+    {
+        "id": "nvidia_unknown_070",
+        "question": "Which advanced technique can be used to significantly reduce the memory footprint and computational requirements of large language models during inference, while maintaining most of the model‘s performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantization-Aware Training (QAT)",
+            "Pruning and Sparsification",
+            "Knowledge Distillation",
+            "Activation-Aware Weight Quantization (AAWQ)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "aawq",
+            "quantization",
+            "memory optimization"
+        ],
+        "difficulty": "hard",
+        "explanation": "Activation-Aware Weight Quantization (AAWQ) reduces weight precision based on activation patterns, achieving significant memory savings and reduced computation while preserving performance."
+    },
+    {
+        "id": "nvidia_unknown_071",
+        "question": "In a complex production environment, you need to optimize the deployment of a large language model for inference. Which combination of techniques would provide the most significant performance improvement while maintaining accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantization to INT8, model pruning, and tensor parallelism",
+            "Knowledge distillation, pipeline parallelism, and dynamic batching",
+            "Mixed precision training, model compression, and asynchronous inference",
+            "KV cache, Tensor Parallelism, Pipeline Parallelism, and Continuous Batching"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "production deployment",
+            "parallelism",
+            "kv cache"
+        ],
+        "difficulty": "hard",
+        "explanation": "This combination addresses multiple bottlenecks: KV cache (memory bandwidth), Tensor/Pipeline Parallelism (distributed computation/long sequences), and Continuous Batching (GPU utilization)."
+    },
+    {
+        "id": "nvidia_unknown_072",
+        "question": "In a production environment, you need to optimize the inference of a large language model (LLM) for low latency and high throughput. Which combination of techniques would be most effective for achieving this goal?",
+        "type": "multiple_choice",
+        "options": [
+            "Use FP16 precision, enable CUDA Graph, and implement dynamic batching",
+            "Implement KV cache, use INT8 quantization, and enable Tensor Cores",
+            "Use FP8 precision, implement pipeline parallelism, and enable persistent CUDA kernels",
+            "Implement KV cache, use INT4 quantization, enable Tensor Cores, and use CUDA Graph with Fusion"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "cuda optimization",
+            "int4 quantization",
+            "latency"
+        ],
+        "difficulty": "hard",
+        "explanation": "This stack maximizes efficiency: KV cache reduces redundant compute; INT4/Tensor Cores accelerate math and save memory; CUDA Graph with Fusion optimizes kernel launches."
+    },
+    {
+        "id": "nvidia_unknown_073",
+        "question": "Which advanced technique can significantly reduce the memory footprint and inference latency of large language models while maintaining most of their performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Model Pruning",
+            "Quantization-Aware Training",
+            "Knowledge Distillation",
+            "Int8 Quantization with Calibration"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "int8",
+            "calibration",
+            "inference speed"
+        ],
+        "difficulty": "medium",
+        "explanation": "Int8 quantization reduces weights to 8-bit integers, drastically lowering memory usage. Calibration ensures the quantization parameters are tuned to the specific model, minimizing accuracy loss."
+    },
+    {
+        "id": "nvidia_unknown_074",
+        "question": "Which advanced technique combines quantization, pruning, and knowledge distillation to achieve maximum inference optimization for large language models?",
+        "type": "multiple_choice",
+        "options": [
+            "Tensor Fusion",
+            "Integrated Gradient Compression",
+            "Holistic Model Compression (HMC)",
+            "Dynamic Adaptive Inference"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "hmc",
+            "model compression",
+            "optimization techniques"
+        ],
+        "difficulty": "hard",
+        "explanation": "Holistic Model Compression (HMC) is a comprehensive approach that integrates quantization, pruning, and knowledge distillation simultaneously to maximize efficiency and performance."
+    },
+    {
+        "id": "nvidia_unknown_075",
+        "question": "Which of the following techniques is NOT typically used for optimizing inference performance of large language models (LLMs) in production environments?",
+        "type": "multiple_choice",
+        "options": [
+            "Quantization",
+            "Knowledge Distillation",
+            "Gradient Accumulation",
+            "TensorRT Optimization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "inference vs training",
+            "gradient accumulation",
+            "misconceptions"
+        ],
+        "difficulty": "easy",
+        "explanation": "Gradient accumulation is a training technique used to simulate larger batch sizes when memory is limited; it is not used during the inference phase."
+    },
+    {
+        "id": "nvidia_unknown_076",
+        "question": "Which NVIDIA tool is specifically designed for optimizing and deploying large language models (LLMs) on NVIDIA GPUs, providing features like quantization, pruning, and efficient inference?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA TensorRT",
+            "NVIDIA CUDA",
+            "NVIDIA FasterTransformer",
+            "NVIDIA TensorRT-LLM"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nvidia",
+            "tensorrt-llm",
+            "llm deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA TensorRT-LLM is a specialized library specifically tailored for optimizing and deploying LLMs, offering features like quantization, pruning, and efficient inference."
+    },
+    {
+        "id": "nvidia_unknown_077",
+        "question": "Which NVIDIA software component is specifically designed for optimizing the performance of large language models (LLMs) and provides features like automatic mixed precision and distributed training?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA CUDA",
+            "NVIDIA TensorRT",
+            "NVIDIA NeMo",
+            "NVIDIA Megatron-LM"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "megatron-lm",
+            "distributed training",
+            "mixed precision"
+        ],
+        "difficulty": "hard",
+        "explanation": "NVIDIA Megatron-LM is specifically designed for optimizing large language models, providing features like model parallelism, automatic mixed precision, and distributed training."
+    },
+    {
+        "id": "nvidia_unknown_078",
+        "question": "A company is developing a complex multi-modal AI system that combines natural language processing, computer vision, and speech recognition for an advanced virtual assistant. Which NVIDIA technology would be most suitable for optimizing the performance of this system across different AI models and modalities?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA TensorRT",
+            "NVIDIA CUDA",
+            "NVIDIA Triton Inference Server",
+            "NVIDIA Omniverse"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nvidia omniverse",
+            "multi-modal ai",
+            "virtual assistant"
+        ],
+        "difficulty": "hard",
+        "explanation": "NVIDIA Omniverse provides a universal platform for connecting and orchestrating different AI models and modalities, enabling real-time collaboration and simulation for complex systems."
+    },
+    {
+        "id": "nvidia_unknown_079",
+        "question": "Which of the following techniques is NOT typically used for optimizing inference performance of large language models on NVIDIA GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "Tensor Core Acceleration",
+            "Quantization",
+            "Kernel Fusion",
+            "Branch Prediction"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "gpu optimization",
+            "inference",
+            "cpu vs gpu"
+        ],
+        "difficulty": "medium",
+        "explanation": "Branch Prediction is a CPU optimization technique. GPU optimization for LLMs relies on Tensor Core acceleration, quantization, and kernel fusion."
+    },
+    {
+        "id": "nvidia_unknown_080",
+        "question": "Which of the following best describes the purpose of NVIDIA TensorRT in the context of AI infrastructure?",
+        "type": "multiple_choice",
+        "options": [
+            "A deep learning compiler for optimizing neural network models",
+            "A high-performance deep learning inference optimizer and runtime",
+            "A distributed training framework for large language models",
+            "A data preprocessing library for AI workloads"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt",
+            "inference optimizer",
+            "runtime"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA TensorRT is a high-performance deep learning inference optimizer and runtime designed to deliver low latency and high throughput for deep learning applications."
+    },
+    {
+        "id": "nvidia_unknown_081",
+        "question": "In a complex NVIDIA AI infrastructure deployment using multiple DGX systems and InfiniBand networking, you encounter inconsistent performance across nodes during distributed training of a large language model. Which advanced NVIDIA tool would be most effective for identifying and resolving potential bottlenecks in this scenario?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA DALI",
+            "NVIDIA NSight Systems",
+            "NVIDIA DCGM",
+            "NVIDIA Fabric Manager"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "fabric manager",
+            "infiniband",
+            "distributed training troubleshooting"
+        ],
+        "difficulty": "hard",
+        "explanation": "NVIDIA Fabric Manager provides advanced capabilities for managing InfiniBand fabrics, including topology awareness and congestion control, crucial for resolving inter-node communication bottlenecks."
+    },
+    {
+        "id": "nvidia_unknown_082",
+        "question": "Which NVIDIA tool is specifically designed for optimizing and deploying large language models (LLMs) on NVIDIA GPUs, and can achieve up to 6x faster inference compared to unoptimized models?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA CUDA",
+            "NVIDIA TensorRT-LLM",
+            "NVIDIA Triton Inference Server",
+            "NVIDIA RAPIDS"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt-llm",
+            "performance gain",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA TensorRT-LLM leverages optimization techniques like quantization and fusion to achieve significant speedups (up to 6x) for LLM inference on NVIDIA GPUs."
+    },
+    {
+        "id": "nvidia_unknown_083",
+        "question": "Which NVIDIA software tool is specifically designed for optimizing and accelerating large language models (LLMs) on NVIDIA GPUs, and includes features like automatic mixed precision, distributed training, and gradient accumulation?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA CUDA",
+            "NVIDIA TensorRT",
+            "NVIDIA NeMo",
+            "NVIDIA Nsight"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia nemo",
+            "llm framework",
+            "distributed training"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA NeMo is a framework tailored for LLMs, including essential features for efficient training such as automatic mixed precision, distributed training, and gradient accumulation."
+    },
+    {
+        "id": "nvidia_unknown_084",
+        "question": "Which of the following accurately describes the relationship between NVIDIA CUDA-X AI libraries, CUDA, and hardware acceleration for LLM inference?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA-X AI libraries are independent of CUDA and can be used directly with any GPU for LLM inference",
+            "CUDA-X AI libraries provide optimized implementations of common AI operations, which are then compiled to run on CUDA cores",
+            "CUDA is a high-level API that abstracts away the need for CUDA-X AI libraries in LLM inference",
+            "Hardware acceleration for LLM inference requires direct programming of tensor cores, bypassing both CUDA and CUDA-X AI libraries"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cuda-x",
+            "cuda",
+            "hardware acceleration"
+        ],
+        "difficulty": "medium",
+        "explanation": "CUDA-X AI libraries sit on top of CUDA, providing optimized implementations of AI operations that leverage the underlying parallel computing platform and hardware like Tensor Cores."
+    },
+    {
+        "id": "nvidia_unknown_085",
+        "question": "You are optimizing a large language model for deployment on NVIDIA GPUs. Which of the following techniques would provide the most significant reduction in memory usage and inference latency while maintaining model quality for a production environment?",
+        "type": "multiple_choice",
+        "options": [
+            "Using mixed precision with FP16",
+            "Applying knowledge distillation",
+            "Implementing 4-bit quantization with NVIDIA TensorRT-LLM",
+            "Utilizing model pruning"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "quantization",
+            "4-bit",
+            "tensorrt-llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "4-bit quantization with TensorRT-LLM dramatically reduces memory footprint and improves inference speed while preserving sufficient model quality for production."
+    },
+    {
+        "id": "nvidia_unknown_086",
+        "question": "Which of the following combinations of NVIDIA software and hardware components is most optimized for training large language models (LLMs) with billions of parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA + Tesla V100 GPUs",
+            "NCCL + A100 GPUs + NVLink",
+            "cuDNN + Quadro RTX GPUs",
+            "TensorRT + Jetson AGX Xavier"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "a100",
+            "nvlink",
+            "training hardware"
+        ],
+        "difficulty": "medium",
+        "explanation": "The combination of NCCL (communication), A100 GPUs (compute/memory), and NVLink (interconnect) provides the high bandwidth and efficient communication required for training massive LLMs."
+    },
+    {
+        "id": "nvidia_unknown_087",
+        "question": "Which of the following combinations of NVIDIA software and hardware components is most optimized for training large language models with billions of parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA + Tesla V100 GPUs",
+            "TensorRT + Jetson AGX Xavier",
+            "NCCL + DGX A100 systems",
+            "cuDNN + GeForce RTX 3090"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "dgx a100",
+            "nccl",
+            "distributed training"
+        ],
+        "difficulty": "medium",
+        "explanation": "NCCL combined with DGX A100 systems offers the purpose-built hardware and optimized communication primitives necessary for scaling LLM training across multiple GPUs and nodes."
+    },
+    {
+        "id": "nvidia_unknown_088",
+        "question": "In optimizing the deployment of a large language model (LLM) using NVIDIA‘s TensorRT, which of the following techniques can be most effectively utilized to reduce latency without significantly impacting model accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Mixed precision inference using FP32 arithmetic.",
+            "Dynamic batching to maximize throughput.",
+            "Quantization to INT8 precision.",
+            "Redundant computation elimination through model pruning."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "int8",
+            "quantization",
+            "latency reduction"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization to INT8 precision significantly lowers latency and computational cost. When calibrated correctly, it minimizes the impact on model accuracy."
+    },
+    {
+        "id": "nvidia_unknown_089",
+        "question": "Which NVIDIA software library is specifically designed for optimizing large language models and provides features like efficient memory management, distributed training, and inference optimizations?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA CUDA",
+            "NVIDIA cuDNN",
+            "NVIDIA FasterTransformer",
+            "NVIDIA NeMo Megatron"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nemo megatron",
+            "llm optimization",
+            "distributed training"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA NeMo Megatron is specifically designed for LLMs, providing an end-to-end framework with efficient memory management and distributed training capabilities."
+    },
+    {
+        "id": "nvidia_unknown_090",
+        "question": "Which of the following combinations of NVIDIA software and hardware components is most optimized for training large language models with multi-GPU, multi-node distributed computing?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA + cuDNN + NCCL + Tesla V100 GPUs",
+            "TensorRT + Triton Inference Server + Jetson AGX Xavier",
+            "NVIDIA AI Enterprise + NeMo Megatron + DGX SuperPOD",
+            "RAPIDS + cuML + RTX A6000 GPUs"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "dgx superpod",
+            "nemo megatron",
+            "ai enterprise"
+        ],
+        "difficulty": "hard",
+        "explanation": "This combination offers the complete stack: AI Enterprise (software foundation), NeMo Megatron (LLM framework), and DGX SuperPOD (optimized infrastructure) for training at scale."
+    },
+    {
+        "id": "nvidia_unknown_091",
+        "question": "Which of the following techniques is most effective for optimizing inference performance of large language models on NVIDIA GPUs when dealing with variable sequence lengths in a batch?",
+        "type": "multiple_choice",
+        "options": [
+            "Tensor Cores",
+            "Continuous Batching",
+            "Persistent Layers",
+            "NVIDIA FlashAttention"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "flashattention",
+            "variable sequence length",
+            "attention mechanism"
+        ],
+        "difficulty": "hard",
+        "explanation": "NVIDIA FlashAttention uses a tiled algorithm that is highly efficient for attention calculations, particularly when dealing with the computational challenges of variable-length sequences."
+    },
+    {
+        "id": "nvidia_unknown_092",
+        "question": "Which NVIDIA software library provides optimized primitives for deep learning inference on NVIDIA GPUs and is specifically designed to accelerate transformer-based models?",
+        "type": "multiple_choice",
+        "options": [
+            "cuDNN",
+            "TensorRT",
+            "FasterTransformer",
+            "NCCL"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "fastertransformer",
+            "inference",
+            "transformers"
+        ],
+        "difficulty": "medium",
+        "explanation": "FasterTransformer is an NVIDIA library specifically built to provide optimized primitives for accelerating the inference of transformer-based models."
+    },
+    {
+        "id": "nvidia_unknown_093",
+        "question": "Which of the following combinations of NVIDIA software and hardware components provides the most optimized performance for training large language models with mixed precision and distributed computing?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA + cuDNN + Tensor Cores + NVLink",
+            "NCCL + Hopper GPU + NVSwitch + InfiniBand",
+            "NVCR + TensorRT + A100 GPU + NVLink",
+            "NCCL + CUDA + FP8 + Hopper GPU + NVSwitch + InfiniBand"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "hopper gpu",
+            "fp8",
+            "nvswitch",
+            "training stack"
+        ],
+        "difficulty": "hard",
+        "explanation": "This stack represents the cutting edge: FP8 precision on Hopper GPUs, combined with NVSwitch/InfiniBand for communication and CUDA/NCCL for software orchestration."
+    },
+    {
+        "id": "nvidia_unknown_094",
+        "question": "Which NVIDIA software library is specifically designed for accelerating large language model inference and provides optimizations for transformer architectures?",
+        "type": "multiple_choice",
+        "options": [
+            "cuDNN",
+            "NCCL",
+            "TensorRT-LLM",
+            "CUDA"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "tensorrt-llm",
+            "inference acceleration",
+            "transformer optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "TensorRT-LLM is designed specifically for LLM inference, providing optimizations like dynamic shape support and multi-GPU inference for transformer architectures."
+    },
+    {
+        "id": "nvidia_unknown_095",
+        "question": "You are developing a complex prompt engineering strategy for a multi-modal AI system that combines text and image inputs. The system needs to generate highly detailed and contextually relevant responses based on both the textual and visual information provided. Which of the following advanced prompt engineering techniques would be MOST effective in optimizing the system‘s performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Chain-of-Thought (CoT) prompting with visual anchors",
+            "Few-shot learning with interleaved text-image examples",
+            "Multi-modal prompt fusion with dynamic weighting",
+            "Recursive prompt refinement with visual feedback loops"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multi-modal ai",
+            "prompt engineering",
+            "dynamic weighting"
+        ],
+        "difficulty": "hard",
+        "explanation": "Multi-modal prompt fusion with dynamic weighting allows for the seamless integration of textual and visual information by dynamically adjusting the importance of each modality based on context."
+    },
+    {
+        "id": "nvidia_unknown_096",
+        "question": "Which advanced prompt engineering technique involves providing the model with a series of examples demonstrating the desired input-output behavior before presenting the actual task?",
+        "type": "multiple_choice",
+        "options": [
+            "Chain-of-thought prompting",
+            "Few-shot learning",
+            "Zero-shot prompting",
+            "Retrieval-augmented generation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "few-shot learning",
+            "prompt engineering",
+            "in-context learning"
+        ],
+        "difficulty": "easy",
+        "explanation": "Few-shot learning is defined by providing a small number of examples (shots) demonstrating the desired input-output behavior to the model before the actual task."
+    },
+    {
+        "id": "nvidia_unknown_097",
+        "question": "Which of the following scenarios best demonstrates the concept of 'few-shot learning' in the context of LLM applications?",
+        "type": "multiple_choice",
+        "options": [
+            "An LLM that has been fine-tuned on a large dataset of medical records to provide diagnostic assistance",
+            "An LLM that can generate a coherent story after being provided with just a title and a brief description",
+            "An LLM that can accurately classify customer reviews after being shown only 3-5 examples of each category",
+            "An LLM that continuously improves its performance on a task through user feedback and corrections"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "few-shot learning",
+            "llm applications",
+            "classification"
+        ],
+        "difficulty": "medium",
+        "explanation": "Showing the model 3-5 examples of each category to guide its classification is a classic textbook example of few-shot learning."
+    },
+    {
+        "id": "nvidia_unknown_098",
+        "question": "Which of the following advanced prompt engineering techniques is most effective for improving the performance of a language model on multi-step reasoning tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "Zero-shot prompting",
+            "Few-shot prompting",
+            "Chain-of-thought prompting",
+            "Retrieval-augmented generation"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "chain-of-thought",
+            "reasoning",
+            "prompt engineering"
+        ],
+        "difficulty": "medium",
+        "explanation": "Chain-of-thought (CoT) prompting explicitly guides the model to generate intermediate reasoning steps, which significantly improves performance on complex multi-step reasoning tasks."
+    },
+    {
+        "id": "nvidia_unknown_099",
+        "question": "In a complex prompt engineering scenario, you‘re tasked with optimizing a prompt for a financial analysis LLM. The model needs to generate detailed stock market predictions based on historical data, current economic indicators, and recent news events. Which of the following approaches would be most effective for achieving high-quality, context-aware outputs?",
+        "type": "multiple_choice",
+        "options": [
+            "Use a single, lengthy prompt that includes all possible variables and instructions",
+            "Implement a chain-of-thought prompting strategy with multiple, interconnected prompts",
+            "Rely solely on few-shot learning with a set of example predictions",
+            "Use a generic prompt and fine-tune the model on a large dataset of financial predictions"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "chain-of-thought",
+            "financial analysis",
+            "prompt strategies"
+        ],
+        "difficulty": "hard",
+        "explanation": "A chain-of-thought strategy with interconnected prompts allows the model to break down complex financial analysis into manageable steps (history, indicators, news) sequentially for better reasoning."
+    },
+    {
+        "id": "nvidia_unknown_100",
+        "question": "You are working on a complex prompt engineering task that requires the LLM to generate a detailed technical report based on multiple input sources. Which advanced prompt engineering technique would be most effective in improving the model‘s ability to synthesize information from diverse sources while maintaining context and coherence throughout the generated report?",
+        "type": "multiple_choice",
+        "options": [
+            "Chain-of-Thought Prompting",
+            "Few-Shot Learning",
+            "Recursive Refinement",
+            "In-Context Learning with Dynamic Memory"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "dynamic memory",
+            "long-form generation",
+            "information synthesis"
+        ],
+        "difficulty": "hard",
+        "explanation": "In-Context Learning with Dynamic Memory enables the LLM to maintain and update relevant information from multiple sources, ensuring coherence and context in long-form reports."
+    },
+    {
+        "id": "nvidia_unknown_101",
+        "question": "When implementing chain-of-thought prompting for a complex reasoning task, which of the following techniques is most effective for improving the model‘s performance and reducing hallucinations?",
+        "type": "multiple_choice",
+        "options": [
+            "Increasing the temperature parameter to encourage more diverse outputs",
+            "Using few-shot examples with explicitly stated reasoning steps",
+            "Applying aggressive truncation to limit the model‘s response length",
+            "Implementing a random forest classifier to filter the model‘s outputs"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "chain-of-thought",
+            "few-shot learning",
+            "hallucination reduction"
+        ],
+        "difficulty": "medium",
+        "explanation": "Combining CoT with few-shot examples that demonstrate explicit reasoning steps provides a clear template for the model to follow, improving reasoning accuracy and reducing hallucinations."
+    },
+    {
+        "id": "nvidia_unknown_102",
+        "question": "Which advanced prompt engineering technique involves providing the model with a series of examples demonstrating the desired input-output behavior before presenting the actual task?",
+        "type": "multiple_choice",
+        "options": [
+            "Chain-of-thought prompting",
+            "Few-shot learning",
+            "Zero-shot prompting",
+            "Retrieval-augmented generation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "few-shot learning",
+            "prompt engineering",
+            "definitions"
+        ],
+        "difficulty": "easy",
+        "explanation": "This is the definition of few-shot learning: providing a small number of examples to demonstrate the task before asking the model to perform it."
+    },
+    {
+        "id": "nvidia_unknown_103",
+        "question": "Which advanced prompt engineering technique involves providing the model with a series of examples demonstrating the desired input-output behavior before asking it to perform a specific task?",
+        "type": "multiple_choice",
+        "options": [
+            "Chain-of-Thought Prompting",
+            "Few-Shot Learning",
+            "Zero-Shot Prompting",
+            "Prompt Chaining"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "few-shot learning",
+            "prompt engineering",
+            "context learning"
+        ],
+        "difficulty": "easy",
+        "explanation": "Few-Shot Learning helps the model understand the context and expected output format by providing examples prior to the task."
+    },
+    {
+        "id": "nvidia_unknown_104",
+        "question": "You are implementing a complex prompt engineering technique called 'Chain-of-Thought' (CoT) prompting for a critical reasoning task. Which of the following approaches is most likely to yield the best results when combined with CoT?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing a fixed template for CoT reasoning across all tasks",
+            "Using a single, long prompt that includes all possible reasoning steps",
+            "Combining CoT with few-shot learning and dynamic prompting",
+            "Relying solely on the model‘s pre-trained knowledge without additional prompting"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "chain-of-thought",
+            "few-shot learning",
+            "dynamic prompting"
+        ],
+        "difficulty": "hard",
+        "explanation": "Combining CoT (reasoning steps) with few-shot learning (examples) and dynamic prompting (adaptability) creates a robust framework for handling complex critical reasoning tasks."
+    },
+    {
+        "id": "nvidia_unknown_105",
+        "question": "What is the primary advantage of utilizing a heatmap to visualize attention weights in the output of a generative AI model?",
+        "type": "multiple_choice",
+        "options": [
+            "Identifies patterns in the distribution of attention across tokens",
+            "Provides exact numerical values of attention weights",
+            "Optimizes hyperparameters automatically",
+            "Shows the models overall accuracy"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "visualization",
+            "attention weights",
+            "heatmaps"
+        ],
+        "difficulty": "medium",
+        "explanation": "Heatmaps visualize attention weights, offering insight into how a model prioritizes specific tokens, identifying patterns in decision-making and the influence of inputs."
+    },
+    {
+        "id": "nvidia_unknown_106",
+        "question": "In evaluating the performance of a large language model (LLM), which of the following metrics is most suitable for assessing its ability to generate contextually coherent and semantically rich responses?",
+        "type": "multiple_choice",
+        "options": [
+            "BLEU Score",
+            "Perplexity",
+            "ROUGE Score",
+            "BERTScore"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "evaluation metrics",
+            "bertscore",
+            "semantic coherence"
+        ],
+        "difficulty": "medium",
+        "explanation": "BERTScore leverages contextual embeddings to compare semantic similarity, making it better suited for assessing coherence and richness than n-gram based metrics like BLEU or ROUGE."
+    },
+    {
+        "id": "nvidia_unknown_107",
+        "question": "In evaluating the performance of a generative AI model, which metric would be most appropriate to ensure that the model‘s generated outputs maintain coherence and relevance in extended text generation?",
+        "type": "multiple_choice",
+        "options": [
+            "BLEU Score",
+            "Perplexity",
+            "FID (Fréchet Inception Distance)",
+            "ROUGE Score"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation metrics",
+            "perplexity",
+            "text generation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Perplexity measures the likelihood of the next word sequence, making it appropriate for assessing the model's ability to maintain coherence and predictiveness in extended text."
+    },
+    {
+        "id": "nvidia_unknown_108",
+        "question": "In evaluating the effectiveness of a language model, which metric is most appropriate for assessing its ability to generate coherent and contextually appropriate responses in dialogue systems?",
+        "type": "multiple_choice",
+        "options": [
+            "BLEU Score",
+            "Perplexity",
+            "ROUGE Score",
+            "BERTScore"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "evaluation metrics",
+            "dialogue systems",
+            "bertscore"
+        ],
+        "difficulty": "medium",
+        "explanation": "Traditional metrics like BLEU often miss semantic nuances. BERTScore uses contextual embeddings, making it better equipped to evaluate response coherence and relevance in dialogue."
+    },
+    {
+        "id": "nvidia_unknown_109",
+        "question": "Which advanced evaluation metric is most suitable for comparing the performance of different Generative AI models in a zero-shot learning context?",
+        "type": "multiple_choice",
+        "options": [
+            "Perplexity",
+            "Bleu score",
+            "F1 score",
+            "NDCG (Normalized Discounted Cumulative Gain)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "evaluation metrics",
+            "zero-shot learning",
+            "ndcg"
+        ],
+        "difficulty": "hard",
+        "explanation": "NDCG is a ranking quality metric useful for evaluating how well models perform on unseen test categories (zero-shot) by assessing the relevance ranking of generated outputs."
+    },
+    {
+        "id": "nvidia_unknown_110",
+        "question": "When evaluating a Large Language Model (LLM) using perplexity, which of the following is true regarding the relationship between model complexity and underfitting or overfitting?",
+        "type": "multiple_choice",
+        "options": [
+            "A lower perplexity always indicates that a model is more accurate and does not overfit or underfit the data.",
+            "A higher perplexity suggests the model is underfitting the data, while too low a perplexity might suggest overfitting.",
+            "An optimal perplexity ensures a model neither overfits not underfits, regardless of model complexity.",
+            "Balancing model complexity and dataset diversity guarantees an optimal perplexity regardless of training time."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "perplexity",
+            "overfitting",
+            "model complexity"
+        ],
+        "difficulty": "hard",
+        "explanation": "High perplexity indicates the model is struggling to predict data (underfitting), while extremely low perplexity on training data might indicate it is memorizing noise (overfitting)."
+    },
+    {
+        "id": "nvidia_unknown_111",
+        "question": "In implementing a healthcare diagnosis system using Generative AI LLMs, which strategy would be most effective in improving the models interpretability while maintaining high accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Incorporating a rule-based system alongside the LLM to provide transparent decision paths.",
+            "Using feature attribution techniques such as SHAP or LIME to explain LLM predictions.",
+            "Restricting the model‘s training data to only the most relevant features with clear interpretability.",
+            "Employing attention mechanisms within the LLM to highlight relevant aspects of input data during predictions."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "interpretability",
+            "attention mechanism",
+            "healthcare ai"
+        ],
+        "difficulty": "hard",
+        "explanation": "Using attention mechanisms allows practitioners to see which parts of the input the model focused on, enhancing interpretability and transparency without sacrificing the model's predictive power."
+    },
+    {
+        "id": "nvidia_unknown_112",
+        "question": "You are tasked with evaluating the latency-performance trade-off of a generative AI model designed for real-time applications. Which metric is most crucial to prioritize for ensuring low-latency performance without significantly compromising model accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Throughput",
+            "Inference latency",
+            "Model accuracy",
+            "Energy efficiency"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "latency",
+            "real-time ai",
+            "performance metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "For real-time applications, inference latency (the time taken to generate a response) is the most critical metric to optimize to ensure responsiveness."
+    },
+    {
+        "id": "nvidia_unknown_113",
+        "question": "Which of the following describes the most advanced and complex approach to controlling the output of a generative AI model, allowing for fine-grained control over the generated content?",
+        "type": "multiple_choice",
+        "options": [
+            "Prompt engineering",
+            "Fine-tuning",
+            "Constitutional AI",
+            "Steerable AI"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "steerable ai",
+            "controllability",
+            "advanced techniques"
+        ],
+        "difficulty": "hard",
+        "explanation": "Steerable AI involves techniques allowing dynamic, fine-grained control over model behavior (style, tone, specific elements) during inference, surpassing standard prompt engineering or fine-tuning."
+    },
+    {
+        "id": "nvidia_unknown_114",
+        "question": "You are working on embedding a large dataset of legal documents for a retrieval-augmented generation (RAG) system. Upon embedding similar legal clauses, you find substantial variation in their embeddings. What is the likely reason for this inconsistency, and how can you resolve it?",
+        "type": "multiple_choice",
+        "options": [
+            "The model was not fine-tuned on legal text; fine-tune the embedding model on legal documents",
+            "The dataset lacks diversity; add more diverse examples",
+            "The embedding model uses a non-contextual embedding method; switch to a contextual embedding model",
+            "The model‘s embedding dimension is too high; reduce the dimension"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rag",
+            "embeddings",
+            "legal ai"
+        ],
+        "difficulty": "hard",
+        "explanation": "Non-contextual embedding methods often fail to capture the nuanced meaning required for specialized text like legal clauses. Switching to a contextual model ensures similar clauses map to similar vector spaces."
+    },
+    {
+        "id": "nvidia_unknown_115",
+        "question": "In the context of real-time translation for multilingual meetings, a research paper suggests enhancing translation accuracy and speed by integrating a large language model (LLM) with a specific emerging technology. Which technology is likely recommended for this purpose?",
+        "type": "multiple_choice",
+        "options": [
+            "Blockchain for secure data storage",
+            "Reinforcement learning for better model training",
+            "Federated learning for distributed data processing",
+            "Edge computing for reduced latency"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "edge computing",
+            "latency",
+            "real-time translation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Edge computing processes data closer to the source, significantly reducing the latency required for real-time translation applications compared to centralized cloud processing."
+    },
+    {
+        "id": "nvidia_unknown_116",
+        "question": "Your team is integrating a generative large language model (LLM) into a financial analytics platform that must comply with strict regulatory standards, including data privacy and accuracy in financial forecasts. During your analysis, you discover the LLM sometimes processes customer data in ways that may not align fully with data privacy regulations. What action should you prioritize to ensure adherence to required data privacy specifications?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement data anonymization techniques before feeding data into the LLM",
+            "Consult with the legal team after deployment to address any compliance issues that arise",
+            "Rely on the LLM‘s internal mechanisms to handle data privacy",
+            "Reduce the amount of customer data used by the LLM to minimize risks"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "data privacy",
+            "compliance",
+            "financial ai"
+        ],
+        "difficulty": "medium",
+        "explanation": "Implementing data anonymization (masking PII) before the data reaches the model is a fundamental safeguard to ensure compliance with privacy regulations like GDPR or CCPA."
+    },
+    {
+        "id": "nvidia_unknown_117",
+        "question": "You are tasked with selecting a language model that performs well across a range of languages, with a specific focus on low-resource languages. The model must be deployed on cloud infrastructure where costs are associated with the number of parameters and inference time. What is the best approach to balance multilingual support and cost efficiency?",
+        "type": "multiple_choice",
+        "options": [
+            "Select T5-Multilingual and fine-tune on a few selected languages",
+            "Use a separate smaller model for each language",
+            "Use GPT-3 with fine-tuning on each specific language",
+            "Choose mBERT (Multilingual BERT) and perform task-specific fine-tuning"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "mbert",
+            "multilingual",
+            "cost optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "mBERT provides robust multilingual capabilities in a relatively compact architecture, offering a balance between performance on low-resource languages and inference cost compared to larger models."
+    },
+    {
+        "id": "nvidia_unknown_118",
+        "question": "In the context of implementing a generative AI use case for financial forecasting, which of the following approaches would best enhance the model‘s predictive accuracy on non-stationary time series data?",
+        "type": "multiple_choice",
+        "options": [
+            "Using fixed sliding windows to segment the time series data and training a standard Transformer model.",
+            "Incorporating dynamic masking mechanisms to capture temporal dependencies in conjunction with a Transformer model.",
+            "Applying a standard recurrent neural network (RNN) model without additional modifications.",
+            "Utilizing simple exponential smoothing techniques to preprocess the data before feeding it to an LLM-based model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "time series",
+            "transformers",
+            "financial forecasting"
+        ],
+        "difficulty": "hard",
+        "explanation": "Dynamic masking allows the Transformer to adapt to non-stationary data (changing statistical properties over time) by focusing on the most relevant variable historical information."
+    },
+    {
+        "id": "nvidia_unknown_119",
+        "question": "In the context of fine-tuning large language models (LLMs) using constitutional AI techniques, which of the following approaches is most effective for mitigating model hallucinations while maintaining high performance on downstream tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement a multi-stage fine-tuning process with iterative feedback loops",
+            "Use reinforcement learning from human feedback (RLHF) exclusively",
+            "Apply a combination of supervised fine-tuning and debate-based self-improvement",
+            "Implement a hybrid approach combining RLHF, debate, and recursive reward modeling"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "constitutional ai",
+            "hallucination",
+            "rlhf"
+        ],
+        "difficulty": "hard",
+        "explanation": "A hybrid approach combining RLHF, debate (for self-correction), and recursive reward modeling is a comprehensive strategy used in Constitutional AI to align models and reduce hallucinations."
+    },
+    {
+        "id": "nvidia_unknown_120",
+        "question": "Which of the following techniques is NOT commonly used to address the challenge of hallucination in large language models?",
+        "type": "multiple_choice",
+        "options": [
+            "Retrieval-augmented generation",
+            "Temperature scaling",
+            "Adversarial training",
+            "Quantum annealing"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "hallucination",
+            "mitigation techniques",
+            "quantum computing"
+        ],
+        "difficulty": "easy",
+        "explanation": "Retrieval-augmented generation (RAG), temperature scaling, and adversarial training are standard LLM techniques. Quantum annealing is an optimization method used in quantum computing, not LLM hallucination mitigation."
+    }
+]

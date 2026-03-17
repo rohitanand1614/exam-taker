@@ -1,0 +1,2259 @@
+[
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-1",
+    "question": "In the context of autoregressive language models, what does the model predict when generating text sequentially?",
+    "type": "multiple_choice",
+    "options": [
+      "The probability of the next token based on all previously generated tokens",
+      "The probability of the next token using Monte Carlo sampling without considering past context",
+      "The next token using only future context in the sequence",
+      "The complete sentence based on the input prompt in one step"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "transformers",
+      "autoregressive",
+      "language_modeling",
+      "core_concepts"
+    ],
+    "difficulty": "easy",
+    "explanation": "Autoregressive models predict the next token sequentially based on all previous tokens, which is the fundamental mechanism of LLMs like GPT. This is the standard approach for generative AI, where each token is predicted conditioned on the history. The model does not use future information (which would be non-causal), nor does it predict complete sentences in one step."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-2",
+    "question": "What is the primary purpose of positional encoding in Transformer architectures?",
+    "type": "multiple_choice",
+    "options": [
+      "To remove irrelevant information from embeddings",
+      "To inject information about the order of tokens in the sequence into the model",
+      "To reduce the dimensionality of the embedding space",
+      "To weight the importance of different tokens based on their frequency"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "transformers",
+      "positional_encoding",
+      "attention_mechanism"
+    ],
+    "difficulty": "easy",
+    "explanation": "Positional encoding provides information about the relative or absolute positions of tokens in the sequence. Unlike RNNs, Transformers process all tokens in parallel, so they need positional information to understand word order. This is typically achieved by adding fixed sine/cosine functions or learned vectors to token embeddings at each position in the sequence."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-3",
+    "question": "In Transformer attention mechanisms, what is the primary function of the attention layer?",
+    "type": "multiple_choice",
+    "options": [
+      "To compress the input sequence into fixed-size vectors",
+      "To enable each token to attend to and weight other tokens based on their relevance",
+      "To apply convolutional filters to the input embeddings",
+      "To reduce model parameters through weight sharing"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "transformers",
+      "attention_mechanism",
+      "self_attention"
+    ],
+    "difficulty": "easy",
+    "explanation": "The attention mechanism computes relevance scores between tokens, allowing each token to dynamically weight its attention to other tokens in the sequence. This enables the model to learn contextual relationships and dependencies. Multi-head attention applies this mechanism in parallel with different learned attention patterns, improving expressiveness."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-4",
+    "question": "Which fine-tuning technique allows efficient adaptation of large pre-trained models with minimal computational resources by keeping the majority of model parameters frozen?",
+    "type": "multiple_choice",
+    "options": [
+      "Gradient accumulation",
+      "Low-Rank Adaptation (LoRA)",
+      "Mixed precision training",
+      "Reinforcement Learning from Human Feedback (RLHF)"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "fine_tuning",
+      "lora",
+      "parameter_efficient",
+      "model_optimization"
+    ],
+    "difficulty": "medium",
+    "explanation": "LoRA (Low-Rank Adaptation) is a parameter-efficient fine-tuning method that adds trainable low-rank matrices to specific layers while freezing the original model weights. This dramatically reduces the computational and memory requirements for fine-tuning large LLMs, making it practical for domain-specific tasks. Gradient accumulation, mixed precision, and RLHF serve different purposes but don't directly address parameter efficiency in the same way."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-5",
+    "question": "How can Retrieval-Augmented Generation (RAG) help developers build more trustworthy AI systems?",
+    "type": "multiple_choice",
+    "options": [
+      "By enhancing security features through confidential computing and encrypted traffic",
+      "By improving energy efficiency and reducing computational resource consumption",
+      "By generating responses that cite reference material from external knowledge bases, ensuring transparency and verifiability",
+      "By automatically detecting and correcting all types of AI model biases"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "rag",
+      "retrieval_augmented_generation",
+      "trustworthy_ai",
+      "hallucination_mitigation"
+    ],
+    "difficulty": "medium",
+    "explanation": "RAG grounds model responses in verifiable external sources, reducing hallucinations and improving transparency. By retrieving relevant documents before generating responses, RAG ensures that outputs cite their sources, making the AI system more trustworthy and interpretable. This aligns with NVIDIA's emphasis on transparency and verifiability in trustworthy AI frameworks."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-6",
+    "question": "In the context of LLM training with datasets larger than available RAM, which approach is most efficient for handling the memory constraint?",
+    "type": "multiple_choice",
+    "options": [
+      "Moving the entire dataset in and out of GPU memory using PCI bandwidth",
+      "Discarding excess data and pruning the dataset to fit within available RAM",
+      "Using memory-mapped files to access data from disk without loading it fully into RAM",
+      "Converting the dataset into a smaller compressed format that sacrifices data quality"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "data_management",
+      "memory_optimization",
+      "training_efficiency"
+    ],
+    "difficulty": "medium",
+    "explanation": "Memory-mapped files enable efficient training by allowing the system to access portions of large datasets directly from disk without loading everything into RAM. This leverages virtual memory to map file contents, reducing memory bottlenecks while maintaining data quality. PCI bandwidth transfers are inefficient for this use case, and data pruning compromises model quality."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-7",
+    "question": "Which principles are widely recognized for building trustworthy AI? (Select two)",
+    "type": "multiple_choice",
+    "options": [
+      "Conversational interaction capabilities",
+      "Privacy protection and data confidentiality",
+      "Low latency response times",
+      "Nondiscrimination and fairness",
+      "Maximum model scalability"
+    ],
+    "correct_indices": [
+      1,
+      3
+    ],
+    "tags": [
+      "trustworthy_ai",
+      "responsible_ai",
+      "ethics",
+      "fairness"
+    ],
+    "difficulty": "medium",
+    "explanation": "Privacy (protecting user data and ensuring confidentiality) and nondiscrimination (avoiding biases and ensuring fair treatment) are core principles of trustworthy AI as emphasized in NVIDIA's framework. Privacy can be achieved through techniques like confidential computing and data anonymization. Nondiscrimination focuses on mitigating biases and ensuring equitable model behavior. Conversational capability, latency, and scalability are performance or technical considerations, not trustworthiness principles."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-8",
+    "question": "What is the primary purpose of the NVIDIA NGC (NVIDIA GPU Cloud) catalog?",
+    "type": "multiple_choice",
+    "options": [
+      "To provide a platform for collaborative software development and version control",
+      "To serve as a marketplace for buying and selling AI development tools",
+      "To provide a curated collection of GPU-optimized AI and data science software, including containers and pre-trained models",
+      "To offer real-time debugging and profiling tools for AI applications"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "nvidia_tools",
+      "ngc_catalog",
+      "gpu_optimization",
+      "deployment"
+    ],
+    "difficulty": "easy",
+    "explanation": "The NVIDIA NGC catalog is a curated repository of GPU-optimized software for AI, machine learning, and data science. It provides pre-built containers, pre-trained models, and tools optimized for NVIDIA GPUs, enabling faster development and deployment of AI solutions. These resources are freely available and designed to streamline workflows while ensuring compatibility with NVIDIA hardware."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-9",
+    "question": "In data parallel training of LLMs, which algorithm is most efficient for synchronizing model weights across multiple GPUs?",
+    "type": "multiple_choice",
+    "options": [
+      "Master-worker synchronization for centralized weight updates",
+      "Ring all-reduce algorithm for distributed gradient aggregation",
+      "Sequential synchronization at the end of each epoch",
+      "Independent weight updates without synchronization between processes"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "distributed_training",
+      "data_parallelism",
+      "optimization",
+      "gpu_training"
+    ],
+    "difficulty": "hard",
+    "explanation": "The ring all-reduce algorithm is highly efficient for synchronizing weights across distributed devices. It organizes devices in a ring topology, allowing gradients to be aggregated and distributed with minimal communication overhead. This is superior to master-worker approaches (which create bottlenecks), sequential epoch-end synchronization (which is inefficient), and keeping weights independent (which violates data parallelism principles)."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-10",
+    "question": "What does 'hallucination' mean in the context of large language models?",
+    "type": "multiple_choice",
+    "options": [
+      "Outputs that are only similar to the input data but not novel",
+      "Generating images from text prompts",
+      "Outputs that sound plausible and correct but are factually incorrect or fabricated",
+      "Grammatically incorrect or incomplete text generation"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "llm_challenges",
+      "trustworthy_ai",
+      "model_behavior",
+      "hallucinations"
+    ],
+    "difficulty": "easy",
+    "explanation": "LLM hallucinations are outputs that are grammatically coherent and sound correct but are factually inaccurate or fabricated. This occurs when models generate responses based on learned patterns without grounding in factual knowledge. Hallucinations are a significant challenge for trustworthy AI, which is why techniques like RAG are important for grounding outputs in verified sources."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-11",
+    "question": "What is the primary function of the NVIDIA NeMo Guardrails platform?",
+    "type": "multiple_choice",
+    "options": [
+      "To ensure scalability and performance optimization during LLM pre-training",
+      "To provide a framework for monitoring and enforcing compliance with predefined rules for ethical and safe LLM outputs",
+      "To develop machine learning models capable of processing multimodal data",
+      "To build large-scale data factories for generative AI services"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "nemo_guardrails",
+      "safety",
+      "trustworthy_ai",
+      "responsible_ai"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA NeMo Guardrails is a platform designed to ensure ethical and safe use of LLMs by enforcing predefined rules and regulations. It monitors and controls LLM outputs to prevent harmful, inappropriate, or non-compliant responses, enhancing the safety and trustworthiness of AI systems. This is distinct from performance optimization or data processing roles."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-12",
+    "question": "How does the Chain-of-Thought (CoT) prompting technique enhance language model performance?",
+    "type": "multiple_choice",
+    "options": [
+      "By reducing the total number of model parameters",
+      "By providing intermediate reasoning steps that guide the model through multi-step problem solving",
+      "By simplifying tokenization and reducing vocabulary size",
+      "By increasing the model's context window without architectural changes"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "prompt_engineering",
+      "chain_of_thought",
+      "reasoning",
+      "llm_techniques"
+    ],
+    "difficulty": "medium",
+    "explanation": "Chain-of-Thought prompting enhances model performance by encouraging the model to show its reasoning steps. Instead of jumping directly to answers, CoT guides models through intermediate reasoning steps, improving accuracy especially on complex, multi-step problems. This technique has been shown to significantly boost performance on reasoning and mathematical tasks while using the same underlying model."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-13",
+    "question": "Which model quantization approach typically offers the best accuracy-performance trade-off for LLM inference, according to recent NVIDIA research?",
+    "type": "multiple_choice",
+    "options": [
+      "INT4 quantization for all model layers",
+      "FP8 (floating-point 8-bit) quantization for comprehensive model coverage",
+      "FP16 (half-precision) without further quantization",
+      "Mixed INT8/INT4 with minimal optimization"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "quantization",
+      "model_optimization",
+      "inference",
+      "gpu_optimization"
+    ],
+    "difficulty": "hard",
+    "explanation": "Recent NVIDIA research shows FP8 quantization provides effective lossless or near-lossless quantization across various LLMs with superior workload coverage compared to INT8. FP8 offers better dynamic range representation than fixed-point integers while maintaining strong accuracy, making it increasingly preferred for production LLM inference. It supports a broader range of operations while delivering significant speedup and memory reduction."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-14",
+    "question": "What is the key benefit of using NVIDIA TensorRT for LLM inference deployment?",
+    "type": "multiple_choice",
+    "options": [
+      "Simplified model architecture design without optimization",
+      "Significant latency reduction and throughput improvement through hardware-specific optimizations",
+      "Automatic generation of training data for model fine-tuning",
+      "Real-time model interpretability and explainability without inference cost"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "tensorrt",
+      "inference_optimization",
+      "deployment",
+      "performance"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA TensorRT is a high-performance deep learning inference optimizer that delivers up to 6x faster inference on NVIDIA GPUs through hardware-specific optimizations. It enables layer fusion, precision reduction (INT8, FP16), and memory optimization while maintaining accuracy. TensorRT is essential for deploying LLMs in production environments where latency and throughput are critical."
+  },
+  {
+    "id": "Nvidia-Perplexity-Deep-Research-15",
+    "question": "In few-shot prompt engineering for LLMs, what is the primary purpose of providing multiple examples in the prompt?",
+    "type": "multiple_choice",
+    "options": [
+      "To reduce the model's parameter count through example-based compression",
+      "To demonstrate the desired input-output format and reasoning pattern so the model can solve new tasks following the established examples",
+      "To automatically fine-tune the model weights without requiring additional training",
+      "To bypass the model's learned representations entirely"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "prompt_engineering",
+      "few_shot_learning",
+      "llm_techniques",
+      "in_context_learning"
+    ],
+    "difficulty": "medium",
+    "explanation": "Few-shot prompting provides the model with multiple solved examples (typically 3-5) to establish patterns and expected output format. This allows the model to apply in-context learning, understanding the task structure and solving new problems consistently with the demonstrated pattern. This is particularly effective for complex or domain-specific tasks where zero-shot or one-shot approaches lack sufficient information."
+  },
+  {
+    "id": "Nvidia-Grok-Deep-Research-1",
+    "question": "What is the primary purpose of positional encoding in transformer-based models like those used in large language models (LLMs)?",
+    "type": "multiple_choice",
+    "options": [
+      "To add information about the relative or absolute position of tokens in the sequence to enable the model to capture order dependencies",
+      "To normalize the input embeddings to prevent vanishing gradients during training",
+      "To compute attention scores between query and key vectors in multi-head attention",
+      "To convert text into numerical tokens for processing by the neural network"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "transformers",
+      "llms"
+    ],
+    "difficulty": "easy",
+    "explanation": "Positional encoding provides sequence order information to transformers, which lack inherent positional awareness in self-attention mechanisms."
+  },
+  {
+    "id": "Nvidia-Grok-Deep-Research-2",
+    "question": "In the context of NVIDIA's ecosystem for LLMs, which framework is specifically designed for customizing large language models through prompt engineering, fine-tuning, and parameter-efficient techniques on GPUs?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA NeMo",
+      "NVIDIA RAPIDS",
+      "Hugging Face Transformers",
+      "LangChain"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nvidia nemo",
+      "llm customization"
+    ],
+    "difficulty": "easy",
+    "explanation": "NVIDIA NeMo is an end-to-end platform for developing custom generative AI models, including LLMs, optimized for NVIDIA GPUs."
+  },
+  {
+    "id": "Nvidia-Grok-Deep-Research-3",
+    "question": "A developer is building an LLM application for text summarization and needs to evaluate model performance using a metric that measures the overlap between generated and reference summaries based on n-grams. Which metric should they use?",
+    "type": "multiple_choice",
+    "options": [
+      "ROUGE",
+      "Euclidean Distance",
+      "t-SNE",
+      "Mean Squared Error"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "evaluation metrics",
+      "summarization"
+    ],
+    "difficulty": "medium",
+    "explanation": "ROUGE (Recall-Oriented Understudy for Gisting Evaluation) assesses summarization quality by comparing n-gram overlaps with human references."
+  },
+  {
+    "id": "Nvidia-Grok-Deep-Research-4",
+    "question": "During the training of an LLM, which technique is used to stabilize the training process by normalizing the inputs to each layer, helping to mitigate issues like vanishing gradients in deep networks?",
+    "type": "multiple_choice",
+    "options": [
+      "Layer Normalization",
+      "Positional Encoding",
+      "Backpropagation",
+      "Tokenization"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "layer normalization",
+      "training stability"
+    ],
+    "difficulty": "medium",
+    "explanation": "Layer Normalization normalizes activations across features for each data point, improving gradient flow in transformers and LLMs."
+  },
+  {
+    "id": "Nvidia-Grok-Deep-Research-5",
+    "question": "You are tasked with deploying a fine-tuned LLM for real-time inference in a production environment. Which NVIDIA tool optimizes the model for higher throughput and lower latency on GPUs?",
+    "type": "multiple_choice",
+    "options": [
+      "TensorRT",
+      "cuDF",
+      "NeMo",
+      "RAPIDS"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "tensorrt",
+      "inference optimization"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA TensorRT is a deep learning inference optimizer that accelerates model deployment with reduced latency and increased throughput."
+  },
+  {
+    "id": "Nvidia-Grok-Deep-Research-6",
+    "question": "In a scenario where an LLM is generating factually inaccurate responses due to reliance on its training data, which technique integrates external knowledge retrieval to improve accuracy without retraining the model?",
+    "type": "multiple_choice",
+    "options": [
+      "Retrieval-Augmented Generation (RAG)",
+      "Few-Shot Prompting",
+      "Parameter-Efficient Fine-Tuning (PEFT)",
+      "Chain-of-Thought Prompting"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "rag",
+      "knowledge retrieval"
+    ],
+    "difficulty": "medium",
+    "explanation": "RAG combines LLMs with a retrieval system to fetch relevant documents, enhancing response accuracy and reducing hallucinations."
+  },
+  {
+    "id": "Nvidia-Grok-Deep-Research-7",
+    "question": "A data scientist is preprocessing a large corpus for LLM training using GPU acceleration. Which NVIDIA library provides pandas-like functionality for accelerated data manipulation?",
+    "type": "multiple_choice",
+    "options": [
+      "cuDF",
+      "TensorRT",
+      "Triton Inference Server",
+      "ONNX"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "cudf",
+      "data preprocessing"
+    ],
+    "difficulty": "easy",
+    "explanation": "cuDF is part of NVIDIA RAPIDS, offering GPU-accelerated DataFrames for faster ETL and data preparation tasks."
+  },
+  {
+    "id": "Nvidia-Grok-Deep-Research-8",
+    "question": "Consider a multi-step scenario: You are developing an agentic AI workflow using LangChain to chain multiple LLM calls for a complex reasoning task, such as financial analysis. The workflow involves prompt engineering for each step, integration with a vector database for RAG, and deployment on NVIDIA GPUs. Which combination of tools best supports this end-to-end pipeline?",
+    "type": "multiple_choice",
+    "options": [
+      "LangChain for orchestration, FAISS for vector search, and Triton for deployment",
+      "Hugging Face for orchestration, cuDF for vector search, and NeMo for deployment",
+      "RAPIDS for orchestration, TensorRT for vector search, and ONNX for deployment",
+      "BERT for orchestration, Dask for vector search, and cuGraph for deployment"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "langchain",
+      "rag",
+      "deployment"
+    ],
+    "difficulty": "hard",
+    "explanation": "LangChain enables LLM chaining and agents; FAISS (via RAPIDS integration) handles vector search for RAG; Triton deploys optimized models on NVIDIA hardware."
+  },
+  {
+    "id": "Nvidia-Grok-Deep-Research-9",
+    "question": "For classifying emotions in customer feedback text using an LLM, which type of transformer model architecture is most suitable, and why?",
+    "type": "multiple_choice",
+    "options": [
+      "Encoder-only models like BERT, as they excel at understanding contextual embeddings for classification tasks",
+      "Decoder-only models like GPT, as they generate sequential outputs for sentiment",
+      "Encoder-decoder models like T5, as they translate emotions across languages",
+      "Autoregressive models like Llama, as they predict next-token emotions"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "encoder models",
+      "classification"
+    ],
+    "difficulty": "hard",
+    "explanation": "Encoder models like BERT are bidirectional and optimized for tasks requiring deep contextual understanding, such as emotion classification."
+  },
+  {
+    "id": "Nvidia-Grok-Deep-Research-10",
+    "question": "In trustworthy AI principles for LLMs, which factor addresses the need to ensure models do not perpetuate biases, leading to equitable outcomes across diverse user groups?",
+    "type": "multiple_choice",
+    "options": [
+      "Fairness / Nondiscrimination",
+      "Explainability",
+      "Privacy",
+      "Robustness"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "trustworthy ai",
+      "fairness"
+    ],
+    "difficulty": "medium",
+    "explanation": "Fairness ensures AI systems treat all groups equitably, mitigating biases in training data or model decisions."
+  },
+  {
+    "id": "Nvidia-Qwen-Deep-Research-1",
+    "question": "Which NVIDIA framework is specifically designed to support pretraining, post-training, and reinforcement learning for large language models (LLMs) and multimodal generative AI models?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA RAPIDS",
+      "NVIDIA NeMo Framework",
+      "NVIDIA AI Workbench",
+      "NVIDIA cuOpt"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "nemo",
+      "llm",
+      "generative_ai"
+    ],
+    "difficulty": "easy",
+    "explanation": "The NVIDIA NeMo Framework is a development platform tailored for building custom generative AI models, supporting pretraining, post-training, and reinforcement learning for LLMs and multimodal models ."
+  },
+  {
+    "id": "Nvidia-Qwen-Deep-Research-2",
+    "question": "A developer is preparing a high-quality dataset for fine-tuning a domain-specific LLM and needs to perform scalable, GPU-accelerated data curation. Which NVIDIA tool is purpose-built for this task?",
+    "type": "multiple_choice",
+    "options": [
+      "cuDF",
+      "NeMo Curator",
+      "NVIDIA NIM",
+      "cuML"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "data_curation",
+      "nemo",
+      "gpu_acceleration"
+    ],
+    "difficulty": "medium",
+    "explanation": "NeMo Curator provides GPU-accelerated workflows for high-throughput filtering, captioning, and embedding stages to enhance dataset quality for LLM training ."
+  },
+  {
+    "id": "Nvidia-Qwen-Deep-Research-3",
+    "question": "Which component of NVIDIA AI Enterprise 5.0 is designed to accelerate the deployment of generative AI models as microservices with minimal code changes?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA cuOpt",
+      "NVIDIA NIM",
+      "NVIDIA RAPIDS",
+      "NVIDIA Triton"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "ai_enterprise",
+      "deployment",
+      "nim"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA NIM (NVIDIA Inference Microservices) is a key feature of AI Enterprise 5.0 that enables rapid deployment of optimized generative AI models as easy-to-use microservices ."
+  },
+  {
+    "id": "Nvidia-Qwen-Deep-Research-4",
+    "question": "When evaluating a generative AI application using NVIDIA tools, which component provides 'LLM-as-a-judge' capabilities for end-to-end assessment?",
+    "type": "multiple_choice",
+    "options": [
+      "NeMo Evaluator",
+      "NeMo Guardrails",
+      "RAPIDS cuML",
+      "NVIDIA AI Workbench"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "evaluation",
+      "nemo",
+      "llm_as_judge"
+    ],
+    "difficulty": "medium",
+    "explanation": "NeMo Evaluator simplifies end-to-end evaluation of generative AI apps and includes LLM-as-a-judge functionality for automated quality assessment ."
+  },
+  {
+    "id": "Nvidia-Qwen-Deep-Research-5",
+    "question": "Which NVIDIA libraries enable GPU-accelerated data preprocessing and machine learning that integrate seamlessly into LLM data pipelines using familiar pandas- and scikit-learn–like APIs?",
+    "type": "multiple_choice",
+    "options": [
+      "cuDF and cuML",
+      "cuGraph and cuOpt",
+      "Triton and NIM",
+      "RAPIDS and DALI"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "rapids",
+      "data_preprocessing",
+      "gpu_acceleration"
+    ],
+    "difficulty": "easy",
+    "explanation": "cuDF and cuML are part of RAPIDS and provide GPU-accelerated DataFrame and ML operations with APIs similar to pandas and scikit-learn, commonly used in LLM data pipelines ."
+  },
+  {
+    "id": "Nvidia-Qwen-Deep-Research-6",
+    "question": "A data scientist wants to train a custom LLM using reinforcement learning from human feedback (RLHF). Which NVIDIA framework officially supports this capability?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA Clara",
+      "NVIDIA NeMo Framework",
+      "NVIDIA Morpheus",
+      "NVIDIA cuOpt"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "rlhf",
+      "nemo",
+      "llm_training"
+    ],
+    "difficulty": "medium",
+    "explanation": "The NVIDIA NeMo Framework supports reinforcement learning for LLMs, including RLHF, as part of its end-to-end generative AI development capabilities ."
+  },
+  {
+    "id": "Nvidia-Qwen-Deep-Research-7",
+    "question": "Which of the following is a core topic explicitly covered in the NVIDIA-Certified Associate Generative AI LLMs (NCA-GENL) exam?",
+    "type": "multiple_choice",
+    "options": [
+      "CUDA kernel optimization",
+      "Prompt engineering",
+      "GPU hardware architecture",
+      "Container orchestration with Kubernetes"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "exam_topics",
+      "prompt_engineering",
+      "certification"
+    ],
+    "difficulty": "easy",
+    "explanation": "Prompt engineering is a confirmed exam topic for the NCA-GENL certification, along with LLM foundations and adaptation techniques ."
+  },
+  {
+    "id": "Nvidia-Qwen-Deep-Research-8",
+    "question": "An enterprise plans to deploy a generative AI copilot using NVIDIA AI Enterprise 5.0. Which feature enables developers to rapidly build and deploy such applications across their existing GPU infrastructure?",
+    "type": "multiple_choice",
+    "options": [
+      "NeMo Curator",
+      "NVIDIA NIM microservices",
+      "RAPIDS cuGraph",
+      "NVIDIA Base Command"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "ai_enterprise",
+      "copilot",
+      "deployment"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA AI Enterprise 5.0 introduces NIM microservices to accelerate the creation and deployment of generative AI copilots across the installed base of CUDA GPUs ."
+  },
+  {
+    "id": "Nvidia-Qwen-Deep-Research-9",
+    "question": "Which statement accurately describes the role of NeMo Curator in the LLM development lifecycle?",
+    "type": "multiple_choice",
+    "options": [
+      "It deploys fine-tuned models to production endpoints.",
+      "It provides GPU-accelerated data curation for building high-quality training datasets.",
+      "It optimizes transformer attention mechanisms for inference speed.",
+      "It generates synthetic training data using GANs."
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "nemo",
+      "data_curation",
+      "llm_pipeline"
+    ],
+    "difficulty": "medium",
+    "explanation": "NeMo Curator is designed for GPU-accelerated data curation, including filtering and embedding, to improve dataset quality for training accurate AI models ."
+  },
+  {
+    "id": "Nvidia-Qwen-Deep-Research-10",
+    "question": "For a data preprocessing pipeline in an LLM project, a team wants to stay on the GPU from data loading through feature engineering to model training. Which combination of NVIDIA libraries best supports this end-to-end GPU workflow?",
+    "type": "multiple_choice",
+    "options": [
+      "cuDF for data loading, cuML for ML, and cuGraph for relationship analysis",
+      "Pandas for data, scikit-learn for ML, and NetworkX for graphs",
+      "DALI for images, cuOpt for optimization, and Triton for inference",
+      "NeMo for curation, RAPIDS for visualization, and NIM for deployment"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "rapids",
+      "gpu_pipeline",
+      "cuDF",
+      "cuML"
+    ],
+    "difficulty": "hard",
+    "explanation": "cuDF, cuML, and cuGraph (all part of RAPIDS) enable end-to-end GPU-accelerated data science workflows without data movement off the GPU ."
+  },
+  {
+    "id": "Nvidia-DeepSeek-Deep-Research-1",
+    "question": "An AI team wants to deploy a generative AI application for a highly regulated financial institution. The primary requirement is API stability and security for at least the next three years. Which NVIDIA AI Enterprise software branch would be the most appropriate choice?",
+    "type": "multiple_choice",
+    "options": [
+      "Feature Branch (FB)",
+      "Production Branch (PB)",
+      "Long-Term Support Branch (LTSB)",
+      "Development Branch (DB)"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "nvidia ai enterprise",
+      "deployment",
+      "software branches"
+    ],
+    "difficulty": "medium",
+    "explanation": "The Long-Term Support Branch (LTSB) is designed for regulated industries requiring extended API stability and a secure environment, providing 36 months of support. This aligns with the financial institution's need for long-term stability."
+  },
+  {
+    "id": "Nvidia-DeepSeek-Deep-Research-2",
+    "question": "A developer is tasked with improving the domain-specific accuracy of a pre-trained large language model (LLM) for a customer support chatbot. They want the chatbot to answer questions using the company's latest internal documentation. Which technique should they prioritize implementing?",
+    "type": "multiple_choice",
+    "options": [
+      "Implementing fine-tuning with a custom dataset",
+      "Applying Chain-of-Thought (CoT) prompting",
+      "Implementing Retrieval-Augmented Generation (RAG)",
+      "Optimizing the model using GPU acceleration"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "rag",
+      "deployment",
+      "llm applications"
+    ],
+    "difficulty": "medium",
+    "explanation": "Retrieval-Augmented Generation (RAG) is a primary method for grounding LLMs in specific, up-to-date knowledge sources, allowing chatbots to provide accurate, domain-specific answers by retrieving information from a designated knowledge base. This is more suitable for leveraging current documentation than fine-tuning a static dataset."
+  },
+  {
+    "id": "Nvidia-DeepSeek-Deep-Research-3",
+    "question": "According to the official exam blueprint, which topic area represents the LARGEST percentage of the NVIDIA-Certified Associate: Generative AI LLMs (NCA-GENL) exam?",
+    "type": "multiple_choice",
+    "options": [
+      "Software Development",
+      "Core Machine Learning and AI Knowledge",
+      "Experimentation",
+      "Data Analysis and Visualization"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "exam blueprint",
+      "exam content"
+    ],
+    "difficulty": "easy",
+    "explanation": "The official exam blueprint for the NCA-GENL certification states that 'Core Machine Learning and AI Knowledge' constitutes 30% of the exam, which is the largest single topic area."
+  },
+  {
+    "id": "Nvidia-DeepSeek-Deep-Research-4",
+    "question": "A solutions architect is evaluating NVIDIA's portfolio to find a set of easy-to-use, performance-optimized microservices for deploying foundation models. The key requirement is stable APIs backed by enterprise-grade support for production applications. Which NVIDIA offering most directly addresses this need?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA NeMo",
+      "NVIDIA NIM",
+      "NVIDIA CUDA",
+      "NVIDIA TensorRT"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "nvidia nim",
+      "deployment",
+      "microservices"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA NIM is a set of microservices specifically designed to accelerate the deployment of foundation models with production-grade runtimes, stable APIs, and enterprise support. This directly matches the requirement for stable, supported deployment microservices."
+  },
+  {
+    "id": "Nvidia-DeepSeek-Deep-Research-5",
+    "question": "Which of the following is a primary benefit of using generative AI to create synthetic data, as highlighted in NVIDIA's solutions overview?",
+    "type": "multiple_choice",
+    "options": [
+      "To reduce the cost of data storage",
+      "To improve the accuracy and efficiency of other AI systems during training",
+      "To eliminate the need for data preprocessing",
+      "To guarantee the synthetic data is free from bias"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "generative ai fundamentals",
+      "synthetic data"
+    ],
+    "difficulty": "easy",
+    "explanation": "NVIDIA identifies one key benefit of generative AI as the ability to create synthetic data that can be used to train and evaluate other AI algorithms, thereby improving their efficiency and accuracy."
+  },
+  {
+    "id": "Nvidia-DeepSeek-Deep-Research-6",
+    "question": "For the NCA-GENL certification exam, which prerequisite is explicitly stated by NVIDIA?",
+    "type": "multiple_choice",
+    "options": [
+      "2-3 years of practical experience with LLMs",
+      "Proficiency in C++ for optimization",
+      "A basic understanding of generative AI and large language models",
+      "Hands-on experience with NVIDIA Triton Inference Server"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "exam prerequisites",
+      "certification details"
+    ],
+    "difficulty": "easy",
+    "explanation": "The official certification details for the associate-level NCA-GENL exam list 'A basic understanding of generative AI and large language models' as the prerequisite. More extensive experience is required for the professional-level (NCP-GENL) exam."
+  },
+  {
+    "id": "Nvidia-DeepSeek-Deep-Research-7",
+    "question": "An ML engineer is building an AI agent designed to handle complex, multi-step problems that require planning and reasoning. According to NVIDIA's vision, what term best describes this next generation of autonomous AI systems?",
+    "type": "multiple_choice",
+    "options": [
+      "Multimodal AI",
+      "Agentic AI",
+      "Retrieval-Augmented AI",
+      "Sovereign AI"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "agentic ai",
+      "generative ai fundamentals"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA distinguishes between initial chatbots and the future of 'agentic AI'—autonomous systems that use advanced reasoning and iterative planning to tackle complex, multi-step challenges."
+  },
+  {
+    "id": "Nvidia-DeepSeek-Deep-Research-8",
+    "question": "Which component of the NVIDIA AI Enterprise platform is specifically categorized as 'Infrastructure Software' used for managing hardware accelerators?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA NIM microservices",
+      "NVIDIA NeMo framework",
+      "NVIDIA GPU Operator",
+      "NVIDIA TensorRT"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "nvidia ai enterprise",
+      "infrastructure",
+      "kubernetes operators"
+    ],
+    "difficulty": "hard",
+    "description": "The question tests knowledge of the specific components within the NVIDIA AI Enterprise software suite, distinguishing between application and infrastructure layers.",
+    "explanation": "The NVIDIA GPU Operator is listed as part of the Infrastructure Software within NVIDIA AI Enterprise, which includes Kubernetes operators for the deployment and lifecycle management of hardware accelerators like GPUs."
+  },
+  {
+    "id": "Nvidia-DeepSeek-Deep-Research-9",
+    "question": "What is the standard validity period for the NVIDIA-Certified Associate: Generative AI LLMs (NCA-GENL) credential upon issuance?",
+    "type": "multiple_choice",
+    "options": [
+      "1 year",
+      "2 years",
+      "3 years",
+      "5 years"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "certification details",
+      "validity"
+    ],
+    "difficulty": "easy",
+    "explanation": "The NCA-GENL certification is valid for two years from the date of issuance, after which recertification is required."
+  },
+  {
+    "id": "Nvidia-DeepSeek-Deep-Research-10",
+    "question": "A key concept in prompt engineering involves providing the model with several examples of a task before asking it to perform a new, similar one. What is this technique called?",
+    "type": "multiple_choice",
+    "options": [
+      "Zero-shot learning",
+      "One-shot learning",
+      "Few-shot learning",
+      "Chain-of-Thought prompting"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "prompt engineering",
+      "few-shot learning"
+    ],
+    "difficulty": "medium",
+    "explanation": "Few-shot learning is a prompt engineering technique where the model is given a small number of examples (shots) to demonstrate the task before it is asked to perform on a new input. This is a listed topic within the broader category of prompt engineering for the professional certification."
+  },
+  {
+    "id": "Nvidia-Manus-Deep-Research-1",
+    "question": "A developer is using the NVIDIA NeMo framework to ensure their LLM-powered application adheres to strict enterprise safety and compliance policies by preventing the model from generating responses on prohibited topics. Which specific NeMo component is designed to enforce these guardrails and control the AI interaction flow?",
+    "type": "multiple_choice",
+    "options": [
+      "NeMo Guardrails",
+      "NeMo Curator",
+      "NeMo Customizer",
+      "NeMo Evaluator"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "trustworthy ai",
+      "alignment",
+      "nemo"
+    ],
+    "difficulty": "medium",
+    "explanation": "NeMo Guardrails is the component within the NeMo suite specifically designed to enforce safety, compliance, and control across AI interactions, preventing the model from generating undesirable or off-topic content. This aligns with the Trustworthy AI domain (10%)."
+  },
+  {
+    "id": "Nvidia-Manus-Deep-Research-2",
+    "question": "An AI engineer needs to deploy a fine-tuned LLM for high-performance, low-latency inference in a production environment. They want to use an optimized microservice that is exposed via an API compatible with the OpenAI standard. Which NVIDIA product is the most current and appropriate solution for this deployment requirement?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA NeMo Framework",
+      "NVIDIA NIM",
+      "NVIDIA TensorRT",
+      "NVIDIA Triton Inference Server"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "software development",
+      "llm integration",
+      "nim"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA NIM (NVIDIA Inference Microservices) provides prebuilt, optimized inference microservices for rapidly deploying the latest AI models, exposed as OpenAI-compatible APIs. This is the current, high-level solution for LLM deployment and inference, aligning with the Software Development domain (24%)."
+  },
+  {
+    "id": "Nvidia-Manus-Deep-Research-3",
+    "question": "In the context of Retrieval-Augmented Generation (RAG) pipelines built with NVIDIA tools, which metric is most directly used to assess the quality of the retrieved context documents before they are passed to the LLM for answer generation?",
+    "type": "multiple_choice",
+    "options": [
+      "Faithfulness",
+      "Relevance",
+      "Toxicity",
+      "Coherence"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "experimentation",
+      "rag",
+      "evaluation"
+    ],
+    "difficulty": "medium",
+    "explanation": "Relevance is a key metric in RAG evaluation, specifically measuring how pertinent the retrieved context documents are to the user's query. Faithfulness, Toxicity, and Coherence are typically used to evaluate the final generated answer or the model's output, not the retrieval step itself. This falls under the Experimentation domain (22%)."
+  },
+  {
+    "id": "Nvidia-Manus-Deep-Research-4",
+    "question": "A data scientist is preparing a large, unstructured text dataset for use in fine-tuning a domain-specific LLM. Which NVIDIA NeMo component is primarily responsible for cleaning, filtering, and preparing this multimodal data into a high-quality, AI-ready format?",
+    "type": "multiple_choice",
+    "options": [
+      "NeMo Evaluator",
+      "NeMo Retriever",
+      "NeMo Curator",
+      "NeMo Agent Toolkit"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "data preprocessing",
+      "nemo",
+      "core ml"
+    ],
+    "difficulty": "medium",
+    "explanation": "NeMo Curator is the component dedicated to processing existing multimodal datasets, including cleaning and filtering, to create high-quality, AI-ready data for development pipelines. This is a critical step in the Data Analysis and Visualization domain (14%) and Core ML/AI Knowledge (30%)."
+  },
+  {
+    "id": "Nvidia-Manus-Deep-Research-5",
+    "question": "Which of the following is the primary goal of the 'Alignment' process in the development of Large Language Models (LLMs)?",
+    "type": "multiple_choice",
+    "options": [
+      "To increase the model's parameter count for better performance.",
+      "To ensure the model's outputs are consistent with human values and intentions.",
+      "To reduce the computational cost of model inference.",
+      "To convert the model to a lower precision format (e.g., INT8)."
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "core ml",
+      "alignment",
+      "trustworthy ai"
+    ],
+    "difficulty": "easy",
+    "explanation": "Alignment is the process of fine-tuning an LLM to ensure its behavior and outputs are consistent with human values, intentions, and ethical guidelines, often achieved through techniques like Reinforcement Learning from Human Feedback (RLHF). This is a foundational concept in the Core ML/AI Knowledge (30%) and Trustworthy AI (10%) domains."
+  },
+  {
+    "id": "Nvidia-Manus-Deep-Research-6",
+    "question": "A developer is building an AI agent using the NVIDIA NeMo Agent Toolkit. According to the NeMo AI Agent Lifecycle, which phase immediately follows the 'Build' phase, where the custom model is turned into a scalable application?",
+    "type": "multiple_choice",
+    "options": [
+      "Optimize",
+      "Monitor",
+      "Deploy",
+      "Pre-train"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "software development",
+      "nemo",
+      "ai agent"
+    ],
+    "difficulty": "easy",
+    "explanation": "The NVIDIA NeMo AI Agent Lifecycle is structured into three main phases: Build, Deploy, and Optimize. The 'Deploy' phase, which includes optimizing the agent for production and enforcing guardrails, immediately follows the 'Build' phase. This is a core concept in the Software Development domain (24%)."
+  },
+  {
+    "id": "Nvidia-Manus-Deep-Research-7",
+    "question": "A prompt engineer is designing a complex prompt for an LLM that requires the model to first analyze a provided document, then summarize the key findings, and finally generate a list of action items. Which prompt engineering technique is being utilized to guide the model through these sequential steps?",
+    "type": "multiple_choice",
+    "options": [
+      "Zero-shot prompting",
+      "Chain-of-Thought (CoT) prompting",
+      "Few-shot prompting",
+      "Role-playing prompting"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "prompt engineering",
+      "experimentation",
+      "llm"
+    ],
+    "difficulty": "medium",
+    "explanation": "Chain-of-Thought (CoT) prompting is a technique that encourages the model to break down a complex problem into intermediate steps, which is essential for multi-step tasks like analysis, summarization, and action item generation. This is a key topic in the Experimentation domain (22%)."
+  },
+  {
+    "id": "Nvidia-Manus-Deep-Research-8",
+    "question": "Which of the following best describes the 'Data Flywheel' concept as promoted by NVIDIA in the context of LLM development and optimization?",
+    "type": "multiple_choice",
+    "options": [
+      "A method for parallelizing data loading across multiple GPUs.",
+      "A process for iteratively retraining and improving an AI agent using real-world feedback and data.",
+      "A technique for reducing the size of the model's vocabulary.",
+      "A specialized data structure for storing vector embeddings."
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "experimentation",
+      "llmops",
+      "nemo"
+    ],
+    "difficulty": "medium",
+    "explanation": "The Data Flywheel is a concept emphasizing continuous improvement. It involves gathering feedback and data from the monitoring phase of an AI agent, which is then used to iteratively retrain and optimize the agent, ensuring it continuously improves and stays effective over time. This is a core concept in the Experimentation and LLM Integration domains."
+  },
+  {
+    "id": "Nvidia-Manus-Deep-Research-9",
+    "question": "In the Transformer architecture, what is the primary function of the self-attention mechanism?",
+    "type": "multiple_choice",
+    "options": [
+      "To reduce the dimensionality of the input data.",
+      "To calculate the probability distribution over the next token.",
+      "To weigh the importance of different words in the input sequence relative to each other.",
+      "To introduce non-linearity into the model."
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "core ml",
+      "fundamentals",
+      "transformer"
+    ],
+    "difficulty": "easy",
+    "explanation": "The self-attention mechanism allows the model to weigh the importance of different words in the input sequence when processing a specific word, effectively capturing long-range dependencies and context. This is a fundamental concept in the Core Machine Learning and AI Knowledge domain (30%)."
+  },
+  {
+    "id": "Nvidia-Manus-Deep-Research-10",
+    "question": "When developing an LLM application, a developer chooses to use the NeMo Retriever component. What is the primary function of the NeMo Retriever in the LLM application workflow?",
+    "type": "multiple_choice",
+    "options": [
+      "To fine-tune the base LLM on a custom dataset.",
+      "To provide extraction, embedding, and reranking models for RAG pipelines.",
+      "To monitor the LLM's performance in a production environment.",
+      "To enforce ethical and safety guidelines on the LLM's output."
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "software development",
+      "rag",
+      "nemo"
+    ],
+    "difficulty": "medium",
+    "explanation": "The NeMo Retriever component is specifically designed to support Retrieval-Augmented Generation (RAG) pipelines by providing the necessary extraction, embedding, and reranking models to anchor agent responses in trusted knowledge. This is part of the LLM Integration and Deployment topics (24%)."
+  },
+  {
+    "id": "Nvidia-GenSpark-Deep-Research-001",
+    "question": "A company is deploying a large language model for production using NVIDIA TensorRT-LLM. To optimize memory usage and increase throughput, they need to implement an efficient attention mechanism that reduces memory fragmentation when handling variable-length sequences. Which technique should they implement to manage KV cache memory more efficiently?",
+    "type": "multiple_choice",
+    "options": [
+      "Paged Attention with dynamic memory allocation",
+      "Standard attention with pre-allocated buffers",
+      "Multi-head attention with fixed sequence length",
+      "Encoder-only attention without KV cache"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "tensorrt-llm",
+      "inference-optimization",
+      "kv-cache",
+      "paged-attention"
+    ],
+    "difficulty": "medium",
+    "explanation": "Paged Attention allocates GPU memory slots on demand to reduce internal fragmentation and efficiently manage the KV cache for variable-length sequences, making it ideal for production LLM deployments with TensorRT-LLM."
+  },
+  {
+    "id": "Nvidia-GenSpark-Deep-Research-002",
+    "question": "You are implementing a Retrieval-Augmented Generation (RAG) system using NVIDIA NIM microservices. The system needs to fetch relevant documents from a knowledge base and provide them as context to an LLM for answer generation. What is the primary benefit of using RAG over standard LLM inference?",
+    "type": "multiple_choice",
+    "options": [
+      "RAG enhances accuracy by grounding responses in retrieved external knowledge rather than relying solely on training data",
+      "RAG eliminates the need for GPU acceleration during inference",
+      "RAG reduces the model size by half through compression",
+      "RAG automatically fine-tunes the model parameters in real-time"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "rag",
+      "retrieval-augmented-generation",
+      "nvidia-nim",
+      "knowledge-grounding"
+    ],
+    "difficulty": "easy",
+    "explanation": "RAG improves accuracy and reliability by retrieving relevant information from external sources and using it as context for generation, rather than depending only on the model's training data which may be outdated or incomplete."
+  },
+  {
+    "id": "Nvidia-GenSpark-Deep-Research-003",
+    "question": "A research team is fine-tuning a 70B parameter LLM but has limited GPU memory. They want to use Parameter-Efficient Fine-Tuning (PEFT) to adapt the model without updating all parameters. Which technique uses low-rank matrix decomposition to represent weight updates efficiently?",
+    "type": "multiple_choice",
+    "options": [
+      "LoRA (Low-Rank Adaptation)",
+      "Full fine-tuning with gradient checkpointing",
+      "Prompt tuning only",
+      "Knowledge distillation"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "lora",
+      "peft",
+      "fine-tuning",
+      "parameter-efficient"
+    ],
+    "difficulty": "medium",
+    "explanation": "LoRA employs low-rank matrix decomposition to represent weight updates, providing an efficient way to fine-tune large models by training only a small number of additional parameters rather than all model weights."
+  },
+  {
+    "id": "Nvidia-GenSpark-Deep-Research-004",
+    "question": "An engineer is deploying an LLM inference service and needs to reduce model size and memory consumption while maintaining acceptable accuracy. They are considering quantization techniques. Which quantization format is specifically optimized for NVIDIA Tensor Cores and provides a balance between performance and precision for LLM inference?",
+    "type": "multiple_choice",
+    "options": [
+      "FP8 (8-bit floating point)",
+      "FP32 (32-bit floating point)",
+      "Binary quantization (1-bit)",
+      "FP64 (64-bit floating point)"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "quantization",
+      "fp8",
+      "tensor-cores",
+      "model-optimization"
+    ],
+    "difficulty": "medium",
+    "explanation": "FP8 quantization is optimized for NVIDIA Tensor Cores and provides an excellent balance between model size reduction, inference speed, and accuracy preservation for LLM deployments."
+  },
+  {
+    "id": "Nvidia-GenSpark-Deep-Research-005",
+    "question": "You need to evaluate the quality of text generated by an LLM for a summarization task. Which metric specifically measures the overlap of n-grams between generated summaries and reference summaries, focusing on recall?",
+    "type": "multiple_choice",
+    "options": [
+      "ROUGE (Recall-Oriented Understudy for Gisting Evaluation)",
+      "BLEU (Bilingual Evaluation Understudy)",
+      "Perplexity",
+      "F1 Score for token classification"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "evaluation-metrics",
+      "rouge",
+      "summarization",
+      "nlp-metrics"
+    ],
+    "difficulty": "easy",
+    "explanation": "ROUGE measures recall by analyzing n-gram overlap between generated and reference texts, making it particularly suitable for evaluating summarization tasks where capturing key content is important."
+  },
+  {
+    "id": "Nvidia-GenSpark-Deep-Research-006",
+    "question": "A developer is building an application using NVIDIA NeMo Framework to train a custom LLM. During the training process, they observe high GPU utilization but slow throughput. Which optimization technique in NeMo can help by computing activations on-the-fly during backward pass instead of storing them all in memory?",
+    "type": "multiple_choice",
+    "options": [
+      "Activation checkpointing (gradient checkpointing)",
+      "Increasing batch size only",
+      "Reducing learning rate",
+      "Disabling mixed precision training"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nemo-framework",
+      "activation-checkpointing",
+      "training-optimization",
+      "memory-efficiency"
+    ],
+    "difficulty": "medium",
+    "explanation": "Activation checkpointing trades computation for memory by recomputing activations during the backward pass instead of storing all intermediate activations, allowing larger batch sizes and better throughput."
+  },
+  {
+    "id": "Nvidia-GenSpark-Deep-Research-007",
+    "question": "You are designing a prompt for an LLM to perform sentiment analysis without any training examples in the prompt. The model should classify text based only on the instruction. What type of learning paradigm is this?",
+    "type": "multiple_choice",
+    "options": [
+      "Zero-shot learning",
+      "Few-shot learning",
+      "One-shot learning",
+      "Supervised fine-tuning"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "zero-shot-learning",
+      "prompt-engineering",
+      "in-context-learning"
+    ],
+    "difficulty": "easy",
+    "explanation": "Zero-shot learning involves the model performing tasks based solely on instructions without any demonstration examples in the prompt, relying on its pre-trained knowledge."
+  },
+  {
+    "id": "Nvidia-GenSpark-Deep-Research-008",
+    "question": "A team is implementing RLHF (Reinforcement Learning from Human Feedback) to align their LLM with human preferences. In the RLHF pipeline, what is the primary purpose of the reward model?",
+    "type": "multiple_choice",
+    "options": [
+      "To predict human preference scores for model outputs and guide policy optimization",
+      "To generate training data automatically without human input",
+      "To compress the model weights for faster inference",
+      "To tokenize input text into subword units"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "rlhf",
+      "alignment",
+      "reward-model",
+      "human-feedback"
+    ],
+    "difficulty": "medium",
+    "explanation": "The reward model in RLHF is trained to predict human preference scores for model outputs, which then guides the reinforcement learning process to align the LLM's behavior with human values and preferences."
+  },
+  {
+    "id": "Nvidia-GenSpark-Deep-Research-009",
+    "question": "When tokenizing text for LLM input, you need to choose a tokenization algorithm. Which subword tokenization method uses a unigram language model and can tokenize text directly from raw input without pre-tokenization, treating spaces as regular characters?",
+    "type": "multiple_choice",
+    "options": [
+      "SentencePiece",
+      "Byte Pair Encoding (BPE) only",
+      "WordPiece",
+      "Character-level tokenization"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "tokenization",
+      "sentencepiece",
+      "subword-tokenization",
+      "preprocessing"
+    ],
+    "difficulty": "hard",
+    "explanation": "SentencePiece is a versatile tokenization toolkit that can use unigram or BPE algorithms and tokenizes raw text as a seamless stream, treating spaces as regular tokens without requiring pre-tokenization."
+  },
+  {
+    "id": "Nvidia-GenSpark-Deep-Research-010",
+    "question": "Your organization is deploying multiple LLM models using NVIDIA NIM microservices. NIM provides pre-optimized containers for various foundation models. What is a key advantage of using NVIDIA NIM for LLM deployment compared to building custom inference pipelines?",
+    "type": "multiple_choice",
+    "options": [
+      "NIM provides pre-built, optimized inference microservices with industry-standard APIs, simplifying deployment across different environments",
+      "NIM only supports models smaller than 7B parameters",
+      "NIM eliminates the need for GPU hardware entirely",
+      "NIM requires retraining models from scratch for each deployment"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nvidia-nim",
+      "microservices",
+      "deployment",
+      "inference-optimization"
+    ],
+    "difficulty": "easy",
+    "explanation": "NVIDIA NIM offers pre-built, optimized inference microservices that support industry-standard APIs, dramatically simplifying the deployment of foundation models across cloud, data center, and edge environments without requiring extensive custom infrastructure."
+  },
+  {
+    "id": "Nvidia-Gemini-Deep-Research-003",
+    "question": "You are compiling a Llama 3 70B model using `trtllm-build` for a real-time chatbot application. To minimize the Time-To-First-Token (TTFT) by avoiding the processing of padding tokens in the input batch, which flag must be enabled?",
+    "type": "multiple_choice",
+    "options": [
+      "--remove_input_padding",
+      "--max_batch_size 128",
+      "--use_custom_all_reduce",
+      "--enable_context_fmha false"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "tensorrt-llm",
+      "optimization",
+      "inference"
+    ],
+    "difficulty": "hard",
+    "explanation": "The `--remove_input_padding` flag instructs the engine to remove padding from the input batch and pack the tokens, which avoids wasting compute on pad tokens and significantly improves pre-fill latency."
+  },
+  {
+    "id": "Nvidia-Gemini-Deep-Research-005",
+    "question": "You are configuring a Triton Inference Server deployment for a TensorRT-LLM model. The requirement is to support streaming responses where tokens are sent to the client as they are generated. Which parameter in the `config.pbtxt` must be set to `true`?",
+    "type": "multiple_choice",
+    "options": [
+      "decoupled",
+      "batch_scheduler_policy",
+      "max_queue_delay_microseconds",
+      "preserve_ordering"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "triton",
+      "deployment",
+      "streaming"
+    ],
+    "difficulty": "medium",
+    "explanation": "The `decoupled` parameter in Triton allows a backend to send multiple responses for a single request, which is the mechanism required for streaming individual tokens in LLM inference."
+  },
+  {
+    "id": "Nvidia-Gemini-Deep-Research-007",
+    "question": "Which specific configuration in a NeMo PEFT YAML file would you use to enable Low-Rank Adaptation for fine-tuning a model?",
+    "type": "multiple_choice",
+    "options": [
+      "peft_scheme: \"lora\"",
+      "peft_scheme: \"ptuning\"",
+      "peft_scheme: \"adapter\"",
+      "peft_scheme: \"ia3\""
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nemo",
+      "peft",
+      "configuration"
+    ],
+    "difficulty": "medium",
+    "explanation": "In the NeMo Framework configuration (Hydra), setting `peft_scheme: \"lora\"` activates Low-Rank Adaptation. `ptuning` activates Prompt Tuning."
+  },
+  {
+    "id": "Nvidia-Deep-Research-1",
+    "question": "In the context of NVIDIA generative AI, what does RAG stand for?",
+    "type": "multiple_choice",
+    "options": [
+      "Retrieval-Augmented Generation",
+      "Randomized AI Generator",
+      "Recurrent Attention Graph",
+      "Reinforcement Alignment Guide"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "rag",
+      "retrieval"
+    ],
+    "difficulty": "easy",
+    "explanation": "RAG stands for Retrieval-Augmented Generation. It is a technique that enhances the accuracy of generative models by retrieving relevant information from external data sources to support generation."
+  },
+  {
+    "id": "Nvidia-Deep-Research-2",
+    "question": "How does Retrieval-Augmented Generation (RAG) improve the output of an LLM?",
+    "type": "multiple_choice",
+    "options": [
+      "By providing relevant external context to reduce factual errors",
+      "By increasing the model's training data size",
+      "By compressing the model parameters",
+      "By shortening the inference time"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "rag",
+      "hallucination"
+    ],
+    "difficulty": "medium",
+    "explanation": "RAG improves LLM output by supplying relevant external information during generation. This provides sources the model can cite, which increases factual accuracy and reduces the chance of producing plausible-sounding but incorrect answers (known as hallucinations)."
+  },
+  {
+    "id": "Nvidia-Deep-Research-3",
+    "question": "In LLM terminology, what does \"hallucination\" refer to?",
+    "type": "multiple_choice",
+    "options": [
+      "A fluent response that is factually incorrect",
+      "A model generating random output",
+      "The model outputting repeated tokens",
+      "The model failing to respond"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "hallucination",
+      "llm"
+    ],
+    "difficulty": "easy",
+    "explanation": "Hallucination refers to the phenomenon where a language model generates an answer that sounds plausible but is actually incorrect. RAG is one approach to mitigate hallucinations by grounding the model in real data."
+  },
+  {
+    "id": "Nvidia-Deep-Research-4",
+    "question": "What is the primary goal of Reinforcement Learning from Human Feedback (RLHF) in LLM training?",
+    "type": "multiple_choice",
+    "options": [
+      "Aligning model outputs with human preferences",
+      "Reducing model size during inference",
+      "Increasing GPU training speed",
+      "Generating more creative responses"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "rlhf",
+      "alignment"
+    ],
+    "difficulty": "medium",
+    "explanation": "RLHF is used to align a model with human values and preferences. It involves training a reward model from human feedback and using it to fine-tune the LLM, improving the quality and appropriateness of generated responses."
+  },
+  {
+    "id": "Nvidia-Deep-Research-5",
+    "question": "Which NVIDIA offering provides prebuilt, optimized microservices for deploying pretrained and custom AI models on GPUs?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA NIM",
+      "NVIDIA NeMo",
+      "NVIDIA Triton Inference Server",
+      "NVIDIA CUDA Graphs"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nim",
+      "inference"
+    ],
+    "difficulty": "easy",
+    "explanation": "NVIDIA NIM (NVIDIA Inference Microservices) provides prebuilt, optimized inference microservices for deploying AI models on any NVIDIA-accelerated infrastructure."
+  },
+  {
+    "id": "Nvidia-Deep-Research-6",
+    "question": "Where can NVIDIA NIM microservices be deployed?",
+    "type": "multiple_choice",
+    "options": [
+      "On any NVIDIA-accelerated infrastructure (cloud, data center, edge)",
+      "Only on NVIDIA DGX systems",
+      "Only on desktop PCs",
+      "Only on mobile devices"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nim",
+      "deployment"
+    ],
+    "difficulty": "easy",
+    "explanation": "NIM microservices are designed to deploy on any NVIDIA-accelerated infrastructure, including cloud, data centers, workstations, or edge devices."
+  },
+  {
+    "id": "Nvidia-Deep-Research-7",
+    "question": "What components do NVIDIA NIM microservices include to streamline deployment of AI models?",
+    "type": "multiple_choice",
+    "options": [
+      "Pre-optimized model inference engines and standard APIs",
+      "Custom data preprocessing pipelines",
+      "Proprietary GPU hardware",
+      "Open-source training algorithms"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nim",
+      "microservices"
+    ],
+    "difficulty": "medium",
+    "explanation": "NIM microservices include optimized inference engines from NVIDIA (such as TensorRT, TensorRT-LLM, vLLM, etc.) and expose industry-standard APIs. They are delivered as containers with everything needed (models, engines, runtimes) to deploy AI inference with high performance."
+  },
+  {
+    "id": "Nvidia-Deep-Research-8",
+    "question": "Which of the following inference engines is used by NVIDIA NIM for serving large language models?",
+    "type": "multiple_choice",
+    "options": [
+      "TensorRT-LLM",
+      "cuDNN",
+      "OpenCV",
+      "ONNX Runtime"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nim",
+      "trt-llm"
+    ],
+    "difficulty": "medium",
+    "explanation": "NIM microservices leverage specialized inference engines for LLMs. For example, NVIDIA provides the TensorRT-LLM engine (an open-source library) specifically for defining and optimizing large language models."
+  },
+  {
+    "id": "Nvidia-Deep-Research-9",
+    "question": "Where can developers find pretrained NVIDIA NeMo models for language and speech applications?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA NGC catalog and Hugging Face Hub",
+      "PyPI",
+      "Docker Hub",
+      "Nvidia.com downloads section"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nemo",
+      "ngc"
+    ],
+    "difficulty": "easy",
+    "explanation": "NVIDIA NeMo provides pretrained models that can be downloaded from NVIDIA's NGC catalog and the Hugging Face Hub."
+  },
+  {
+    "id": "Nvidia-Deep-Research-10",
+    "question": "Which framework does NVIDIA NeMo use for efficient multi-GPU and mixed-precision training of models?",
+    "type": "multiple_choice",
+    "options": [
+      "PyTorch Lightning",
+      "TensorFlow Estimator",
+      "JAX",
+      "Apache Spark"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nemo",
+      "pytorch"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA NeMo is built on top of PyTorch Lightning to efficiently support multi-GPU and multi-node mixed-precision training."
+  },
+  {
+    "id": "Nvidia-Deep-Research-11",
+    "question": "NVIDIA NeMo is built on top of which libraries specifically for training and optimizing LLMs and multimodal models?",
+    "type": "multiple_choice",
+    "options": [
+      "Megatron-LM and Transformer Engine",
+      "TensorFlow and Keras",
+      "Scikit-learn and XGBoost",
+      "OpenCV and SciPy"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nemo",
+      "transformer-engine"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA NeMo leverages Megatron-LM and NVIDIA's Transformer Engine for efficient training of large language models and multimodal models."
+  },
+  {
+    "id": "Nvidia-Deep-Research-12",
+    "question": "NVIDIA PyTriton is used for which purpose in model deployment?",
+    "type": "multiple_choice",
+    "options": [
+      "Bringing up the Triton Inference Server with a single Python command",
+      "Optimizing GPU memory allocation",
+      "Training GANs",
+      "Converting models to ONNX"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "triton",
+      "python"
+    ],
+    "difficulty": "easy",
+    "explanation": "PyTriton is a library that allows developers to start the Triton Inference Server with a single Python function call, simplifying deployment of inference servers from Python environments."
+  },
+  {
+    "id": "Nvidia-Deep-Research-13",
+    "question": "Which inference backend does NVIDIA Triton provide for low-latency, high-throughput large language model (LLM) inference?",
+    "type": "multiple_choice",
+    "options": [
+      "TensorRT-LLM",
+      "TensorFlow Serving",
+      "MXNet",
+      "TorchServe"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "triton",
+      "trt-llm"
+    ],
+    "difficulty": "easy",
+    "explanation": "NVIDIA Triton Inference Server includes support for the TensorRT-LLM backend, an open-source library for optimizing and serving transformer-based LLMs for low-latency, high-throughput inference."
+  },
+  {
+    "id": "Nvidia-Deep-Research-14",
+    "question": "Large language models may exceed the memory of a single GPU. Which NVIDIA solution allows serving such models across multiple GPUs and nodes?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA Triton Inference Server with TensorRT-LLM (multi-node)",
+      "NVIDIA CUDA MPS",
+      "NVIDIA Nsight",
+      "NVIDIA cuFFT"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "triton",
+      "multi-node"
+    ],
+    "difficulty": "medium",
+    "explanation": "When an LLM is too large for one GPU, NVIDIA Triton can be deployed in a multi-GPU setting using the TensorRT-LLM backend. This allows splitting the model or its computation across multiple GPUs (and even across nodes) for inference."
+  },
+  {
+    "id": "Nvidia-Deep-Research-15",
+    "question": "What is NVIDIA NVLink used for in GPU-accelerated computing?",
+    "type": "multiple_choice",
+    "options": [
+      "High-bandwidth GPU-to-GPU interconnect",
+      "Enhancing GPU power efficiency",
+      "Storing model checkpoints",
+      "Visualizing GPU utilization"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nvlink",
+      "gpu"
+    ],
+    "difficulty": "easy",
+    "explanation": "NVLink is a high-bandwidth, direct GPU-to-GPU interconnect developed by NVIDIA. It provides very high bandwidth (up to 1.8 TB/s) between GPUs, allowing faster communication in multi-GPU systems."
+  },
+  {
+    "id": "Nvidia-Deep-Research-16",
+    "question": "What role does the NVIDIA NVSwitch play in GPU clusters?",
+    "type": "multiple_choice",
+    "options": [
+      "It connects multiple NVLink connections across racks for all-to-all GPU communication",
+      "It manages GPU power states",
+      "It monitors thermal sensors",
+      "It schedules GPU tasks"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nvswitch",
+      "nvlink"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVSwitch is a specialized switch chip that connects multiple NVLink links, enabling all-to-all communication between GPUs at full NVLink speed. It allows extending NVLink connectivity across multiple GPUs and racks for large clusters."
+  },
+  {
+    "id": "Nvidia-Deep-Research-17",
+    "question": "What is the NVIDIA Multi-Instance GPU (MIG) feature?",
+    "type": "multiple_choice",
+    "options": [
+      "Partitioning a single GPU into multiple isolated GPU instances",
+      "A virtual reality SDK",
+      "A software library for GPU monitoring",
+      "A cooling technology"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "mig",
+      "gpu"
+    ],
+    "difficulty": "easy",
+    "explanation": "MIG is a technology that lets an NVIDIA GPU (such as Blackwell or Hopper GPUs) be partitioned into as many as seven separate instances. Each instance has its own dedicated compute cores, memory, and cache, enabling concurrent workloads and guaranteed quality-of-service."
+  },
+  {
+    "id": "Nvidia-Deep-Research-18",
+    "question": "Up to how many independent GPU instances can a single NVIDIA GPU be partitioned into using MIG technology?",
+    "type": "multiple_choice",
+    "options": [
+      "7",
+      "2",
+      "4",
+      "16"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "mig",
+      "gpu"
+    ],
+    "difficulty": "easy",
+    "explanation": "With Multi-Instance GPU (MIG), a single GPU (e.g., NVIDIA A100, H100, or Blackwell GPU) can be partitioned into up to 7 independent instances, each isolated with its own resources."
+  },
+  {
+    "id": "Nvidia-Deep-Research-19",
+    "question": "Which NVIDIA GPUs support the MIG feature?",
+    "type": "multiple_choice",
+    "options": [
+      "NVIDIA Hopper (H100) and Blackwell GPUs",
+      "NVIDIA RTX 3060 and GTX 1080",
+      "NVIDIA Jetson modules",
+      "NVIDIA GeForce FX series"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "mig",
+      "gpu"
+    ],
+    "difficulty": "medium",
+    "explanation": "The MIG feature is supported on NVIDIA data center GPUs starting with Hopper (H100) and the newer Blackwell architecture. These GPUs can be partitioned into multiple instances with dedicated compute and memory."
+  },
+  {
+    "id": "Nvidia-Deep-Research-20",
+    "question": "What is the primary benefit of using MIG on an NVIDIA GPU in a multi-user environment?",
+    "type": "multiple_choice",
+    "options": [
+      "Running multiple workloads in parallel with isolated resources",
+      "Significantly increasing single-thread performance",
+      "Reducing GPU power consumption by half",
+      "Doubling the GPU's clock speed"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "mig",
+      "utilization"
+    ],
+    "difficulty": "medium",
+    "explanation": "MIG allows multiple users or workloads to run concurrently on a single GPU by allocating each its own isolated instance (compute, memory, cache). This provides guaranteed Quality-of-Service and higher overall utilization compared to time-sharing a single GPU."
+  },
+  {
+    "id": "Nvidia-Deep-Research-21",
+    "question": "What is the FP8 data type introduced with NVIDIA H100 GPUs?",
+    "type": "multiple_choice",
+    "options": [
+      "An 8-bit floating-point format",
+      "An 8-bit integer format",
+      "A special form of FP16",
+      "A compressed 8-bit fixed-point"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "fp8",
+      "h100"
+    ],
+    "difficulty": "easy",
+    "explanation": "H100 (Hopper) GPUs introduced the FP8 data type, which is an 8-bit floating-point format. FP8 enables higher throughput for matrix multiplications and convolutions during training and inference."
+  },
+  {
+    "id": "Nvidia-Deep-Research-22",
+    "question": "How does the FP8 format improve LLM training performance on Hopper GPUs?",
+    "type": "multiple_choice",
+    "options": [
+      "By enabling higher throughput on tensor cores",
+      "By increasing model precision",
+      "By enabling larger batch sizes due to compression",
+      "By automatically parallelizing computation"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "fp8",
+      "performance"
+    ],
+    "difficulty": "medium",
+    "explanation": "The FP8 format allows Tensor Cores in Hopper GPUs to perform matrix multiplications with 8-bit precision, significantly increasing throughput. Using FP8 for suitable operations speeds up training without noticeably affecting model accuracy."
+  },
+  {
+    "id": "Nvidia-Deep-Research-23",
+    "question": "What is the purpose of CUDA Graphs in NVIDIA's GPU programming model?",
+    "type": "multiple_choice",
+    "options": [
+      "To reduce CPU overhead by launching multiple GPU operations through a single graph",
+      "To visualize CUDA kernels",
+      "To simplify GPU memory allocation",
+      "To emulate GPU tasks on CPU"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "cuda-graphs",
+      "optimization"
+    ],
+    "difficulty": "medium",
+    "explanation": "CUDA Graphs allow a sequence of GPU operations (kernels, memory copies) to be captured as a single graph. Launching the graph as one operation reduces the CPU overhead of launching many individual GPU kernels."
+  },
+  {
+    "id": "Nvidia-Deep-Research-24",
+    "question": "Which architecture component enables a transformer model to learn long-range context in data?",
+    "type": "multiple_choice",
+    "options": [
+      "Self-attention mechanism",
+      "Convolutional layers",
+      "LSTM cells",
+      "Fourier transform"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "transformer",
+      "self-attention"
+    ],
+    "difficulty": "easy",
+    "explanation": "Transformers use self-attention mechanisms to learn relationships between all elements of the input sequence, enabling the model to capture long-range dependencies and context within data."
+  },
+  {
+    "id": "Nvidia-Deep-Research-25",
+    "question": "What is a key advantage of transformer models compared to older neural network models like CNNs and RNNs?",
+    "type": "multiple_choice",
+    "options": [
+      "They can be trained in parallel and often do not require large labeled datasets",
+      "They consume less memory than CNNs",
+      "They are always more accurate than any model",
+      "They do not use any attention mechanisms"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "transformer",
+      "parallel"
+    ],
+    "difficulty": "medium",
+    "explanation": "Transformers use self-attention which allows them to be parallelized across GPUs. They also can be trained with self-supervised learning on unlabeled data, eliminating the need for large labeled datasets. This yields more efficient training and scalability."
+  },
+  {
+    "id": "Nvidia-Deep-Research-26",
+    "question": "What role do positional encodings play in a transformer model?",
+    "type": "multiple_choice",
+    "options": [
+      "They provide information about the order of tokens in a sequence",
+      "They determine the learning rate",
+      "They control overfitting",
+      "They replace the need for hidden layers"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "transformer",
+      "positional-encoding"
+    ],
+    "difficulty": "medium",
+    "explanation": "In transformers, positional encodings are added to token embeddings to give the model information about the position of tokens in the sequence. This allows the model to distinguish word order since the architecture itself is permutation-invariant."
+  },
+  {
+    "id": "Nvidia-Deep-Research-27",
+    "question": "How would you define prompt engineering in the context of LLM usage?",
+    "type": "multiple_choice",
+    "options": [
+      "The process of designing input prompts to elicit specific outputs from an LLM",
+      "The process of tuning hyperparameters of an LLM",
+      "The process of training an LLM from scratch",
+      "The process of compressing an LLM for inference"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "prompt-engineering"
+    ],
+    "difficulty": "medium",
+    "explanation": "Prompt engineering refers to the practice of carefully crafting input prompts to guide a language model to produce the desired type of output. The structure and content of the prompt can significantly influence the model's responses."
+  },
+  {
+    "id": "Nvidia-Deep-Research-28",
+    "question": "Which of the following is an example of a constraint you might include in an LLM prompt?",
+    "type": "multiple_choice",
+    "options": [
+      "Tone of voice or response length",
+      "Number of GPUs",
+      "Operating system",
+      "Cryptographic key"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "prompt",
+      "constraints"
+    ],
+    "difficulty": "easy",
+    "explanation": "Prompts can include specific constraints or requirements, such as the desired tone, style, or length of the response. For example, a prompt might say 'Explain in a formal tone, and use no more than 50 words.'"
+  },
+  {
+    "id": "Nvidia-Deep-Research-29",
+    "question": "What does \"zero-shot\" prompting mean?",
+    "type": "multiple_choice",
+    "options": [
+      "Providing a query to the LLM without any example of the expected answer format",
+      "Using exactly one example in the prompt",
+      "Using hundreds of examples",
+      "Training a model with no data"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "prompting",
+      "zero-shot"
+    ],
+    "difficulty": "easy",
+    "explanation": "Zero-shot prompting means giving the LLM a task without any example demonstrations in the prompt. For instance, simply asking a question with no examples is a zero-shot prompt."
+  },
+  {
+    "id": "Nvidia-Deep-Research-30",
+    "question": "What does \"few-shot\" prompting entail?",
+    "type": "multiple_choice",
+    "options": [
+      "Providing a few example question–answer pairs before the actual question",
+      "Asking multiple questions in one prompt",
+      "Training on few GPUs",
+      "Using a smaller model"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "prompting",
+      "few-shot"
+    ],
+    "difficulty": "easy",
+    "explanation": "Few-shot prompting involves including a few example pairs of inputs and correct outputs in the prompt before asking the model a new question. This gives the model a pattern to follow when generating its answer."
+  },
+  {
+    "id": "Nvidia-Deep-Research-31",
+    "question": "Which of the following prompts is an example of chain-of-thought prompting?",
+    "type": "multiple_choice",
+    "options": [
+      "\"Calculate 24 × 18.\"",
+      "\"Calculate 24 × 18. First write down your calculation steps and reasoning.\"",
+      "\"Translate the sentence to French.\"",
+      "\"Classify this text as spam or not spam.\""
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "prompting",
+      "chain-of-thought"
+    ],
+    "difficulty": "medium",
+    "explanation": "Chain-of-thought prompting instructs the model to articulate its reasoning step-by-step. For example, appending something like 'First write down your steps' encourages the LLM to explain the intermediate reasoning process."
+  },
+  {
+    "id": "Nvidia-Deep-Research-32",
+    "question": "What effect does using a chain-of-thought prompt have on complex problem-solving by an LLM?",
+    "type": "multiple_choice",
+    "options": [
+      "It encourages the model to output intermediate reasoning steps, often improving accuracy on logic tasks",
+      "It increases the randomness of the output",
+      "It prevents the model from answering",
+      "It reduces inference speed by an order of magnitude"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "chain-of-thought",
+      "reasoning"
+    ],
+    "difficulty": "medium",
+    "explanation": "Chain-of-thought prompts guide the model to break down a problem into intermediate steps, effectively getting it to 'think out loud.' This often leads to better performance on complex reasoning tasks compared to standard prompts."
+  },
+  {
+    "id": "Nvidia-Deep-Research-33",
+    "question": "If an LLM is giving an incorrect answer to a complex question, which prompting strategy might help it arrive at the correct solution?",
+    "type": "multiple_choice",
+    "options": [
+      "Using a chain-of-thought prompt with detailed reasoning examples",
+      "Reducing the model size",
+      "Clearing the GPU cache",
+      "Training from scratch"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "chain-of-thought",
+      "prompting"
+    ],
+    "difficulty": "hard",
+    "explanation": "Providing a chain-of-thought prompt (by including example reasoning steps or explicit instructions like 'Explain step by step') can help the LLM reason through a complex problem. NVIDIA documentation shows that giving examples of the reasoning process leads to more accurate answers on logical tasks."
+  },
+  {
+    "id": "Nvidia-Deep-Research-34",
+    "question": "What is NVIDIA's LoRA technique used for in the context of LLMs?",
+    "type": "multiple_choice",
+    "options": [
+      "Efficient fine-tuning of large language models",
+      "A data augmentation method",
+      "A new optimizer",
+      "A visualization tool for attention"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "lora",
+      "finetuning"
+    ],
+    "difficulty": "medium",
+    "explanation": "LoRA stands for Low-Rank Adaptation. It is a parameter-efficient fine-tuning technique for large language models. NVIDIA incorporated LoRA in MLPerf Training v4.0 for LLM fine-tuning benchmarks."
+  },
+  {
+    "id": "Nvidia-Deep-Research-35",
+    "question": "What is the main function of NVIDIA's Triton Inference Server in LLM workflows?",
+    "type": "multiple_choice",
+    "options": [
+      "Serving and optimizing machine learning models for inference",
+      "Training neural networks",
+      "Managing data pipelines",
+      "Generating synthetic training data"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "triton",
+      "inference"
+    ],
+    "difficulty": "easy",
+    "explanation": "Triton Inference Server is an NVIDIA platform for deploying and serving trained models at inference time. It provides high-throughput, low-latency serving of models, including support for LLMs via specialized backends like TensorRT-LLM."
+  },
+  {
+    "id": "Nvidia-Deep-Research-36",
+    "question": "In large-scale AI clusters, what is NVIDIA NCCL used for?",
+    "type": "multiple_choice",
+    "options": [
+      "High-performance communication between GPUs",
+      "Data loading from disk",
+      "Hyperparameter tuning",
+      "Visualization of neural networks"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "nccl",
+      "gpu"
+    ],
+    "difficulty": "medium",
+    "explanation": "NVIDIA NCCL (NVIDIA Collective Communications Library) is used to optimize communication primitives (like all-reduce, broadcast) across multiple GPUs in a node or across nodes, which is critical for data- and model-parallel training in large AI clusters."
+  },
+  {
+    "id": "Nvidia-Deep-Research-37",
+    "question": "Which NVIDIA software library is specifically optimized for fast transformer attention operations on GPUs?",
+    "type": "multiple_choice",
+    "options": [
+      "FlashAttention",
+      "cuFFT",
+      "cuBLAS",
+      "Thrust"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "flashattention",
+      "transformer"
+    ],
+    "difficulty": "medium",
+    "explanation": "FlashAttention is an NVIDIA-optimized algorithm for computing the attention mechanism in transformers efficiently on GPUs. It significantly accelerates attention operations by improving memory access patterns and throughput compared to naive implementations."
+  },
+  {
+    "id": "Nvidia-Deep-Research-38",
+    "question": "Which precision levels are commonly used together for mixed precision training of large language models on NVIDIA GPUs?",
+    "type": "multiple_choice",
+    "options": [
+      "FP16 for forward/backward and FP32 for accumulation",
+      "INT8 for all operations",
+      "BF16 exclusively",
+      "FP8 and FP4 exclusively"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "mixed-precision",
+      "training"
+    ],
+    "difficulty": "medium",
+    "explanation": "A common mixed precision strategy on NVIDIA GPUs (like Ampere and Hopper) is to perform matrix multiplies in FP16 or lower (e.g. FP8 for some layers) while keeping some critical accumulations or layernorm computations in FP32 to maintain numeric stability."
+  },
+  {
+    "id": "Nvidia-Deep-Research-39",
+    "question": "How did NVIDIA achieve faster training of a 175B parameter GPT-3 model in MLPerf Training v4.0?",
+    "type": "multiple_choice",
+    "options": [
+      "Using 11,616 H100 GPUs with optimized software",
+      "By switching to CPU-only servers",
+      "Using only INT4 arithmetic",
+      "By reducing model size to 50B"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "mlperf",
+      "scaling"
+    ],
+    "difficulty": "hard",
+    "explanation": "NVIDIA set a record by training a 175B GPT-3 model in 3.4 minutes using 11,616 H100 GPUs and a highly optimized software stack (NeMo, Transformer Engine, CUDA graphs, etc.) to achieve near-linear scaling."
+  },
+  {
+    "id": "Nvidia-Deep-Research-40",
+    "question": "What benefit do NVIDIA's CUDA Graphs provide in the context of high-throughput model training?",
+    "type": "multiple_choice",
+    "options": [
+      "They reduce CPU overhead by launching many GPU operations with a single call",
+      "They automatically parallelize code across GPUs",
+      "They improve GPU memory efficiency",
+      "They convert the model to half precision"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "cuda-graphs",
+      "training"
+    ],
+    "difficulty": "medium",
+    "explanation": "CUDA Graphs reduce the overhead of repeatedly launching GPU operations by capturing a sequence of operations (kernels, memory transfers) into one graph. Launching this graph as a whole reduces CPU launch overhead, which can improve overall throughput in training loops."
+  },
+  {
+    "id": "Nvidia-Deep-Research-41",
+    "question": "Transformers often consist of encoder/decoder blocks and what key addition that enables them to capture relationships between tokens?",
+    "type": "multiple_choice",
+    "options": [
+      "Multi-headed self-attention",
+      "Max pooling layers",
+      "LSTM units",
+      "Convolution filters"
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "transformer",
+      "attention"
+    ],
+    "difficulty": "medium",
+    "explanation": "Transformers are composed of stacked encoder/decoder layers that include the key addition of multi-headed self-attention mechanisms. These attention layers allow the model to weigh the influence of all tokens in the sequence when computing representations."
+  }
+]

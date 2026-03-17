@@ -1,0 +1,212 @@
+[
+    {
+        "id": "q251",
+        "question": "Which core ethical principle of AI is concerned with ensuring that AI systems do not disproportionately harm specific groups or produce discriminatory outcomes?",
+        "type": "multiple_choice",
+        "options": [
+            "Transparency",
+            "Fairness",
+            "Accountability",
+            "Robustness"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ethical principles",
+            "fairness",
+            "bias"
+        ],
+        "difficulty": "easy",
+        "explanation": "Fairness focuses on preventing discriminatory or biased outcomes and ensuring equitable treatment across different demographic groups."
+    },
+    {
+        "id": "q252",
+        "question": "What is the primary purpose of a 'Model Card' in the context of AI transparency?",
+        "type": "multiple_choice",
+        "options": [
+            "To store the model's weights and biases.",
+            "To provide detailed documentation on model development, intended use, limitations, and inherent biases.",
+            "To serve as a license key for the software.",
+            "To visualize the neural network architecture."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transparency",
+            "model card",
+            "documentation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Model Cards (and ModelCard++) are documentation tools that communicate key information about a model's creation, capabilities, and limitations to users and stakeholders."
+    },
+    {
+        "id": "q253",
+        "question": "Which NVIDIA tool generates diverse synthetic datasets to help mitigate dataset bias and improve AI model robustness?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA NeMo",
+            "NVIDIA Omniverse Replicator (Applicator)",
+            "NVIDIA Triton",
+            "NVIDIA CUDA"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "omniverse",
+            "synthetic data"
+        ],
+        "difficulty": "medium",
+        "explanation": "Omniverse Replicator (or Applicator) is used to generate synthetic data, which helps creating more balanced and diverse datasets to reduce bias."
+    },
+    {
+        "id": "q254",
+        "question": "What is 'Federated Learning' primarily used for in the context of data privacy?",
+        "type": "multiple_choice",
+        "options": [
+            "To compress data into smaller files.",
+            "To allow multiple parties to collaboratively train a model without sharing their raw, sensitive data.",
+            "To speed up training by using all available GPUs in a single data center.",
+            "To encrypt data while it is stored on a hard drive."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "privacy",
+            "federated learning",
+            "collaborative training"
+        ],
+        "difficulty": "medium",
+        "explanation": "Federated Learning enables collaborative model training where data remains local on edge devices or silos, and only model updates (gradients) are shared."
+    },
+    {
+        "id": "q255",
+        "question": "Which concept refers to the protection of data 'in use' by leveraging hardware-based security features like secure enclaves?",
+        "type": "multiple_choice",
+        "options": [
+            "Differential Privacy",
+            "Confidential Computing",
+            "Data Minimization",
+            "Anonymization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "privacy",
+            "security",
+            "confidential computing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Confidential Computing protects data while it is being processed (in use) by isolating computations in a hardware-protected secure environment."
+    },
+    {
+        "id": "q256",
+        "question": "What is the goal of 'Data Minimization' as a privacy best practice?",
+        "type": "multiple_choice",
+        "options": [
+            "To collect as much data as possible for future use.",
+            "To compress data to save storage space.",
+            "To collect only the minimum necessary data needed to achieve the specific, stated purpose.",
+            "To remove all metadata from a file."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "privacy",
+            "data minimization",
+            "best practices"
+        ],
+        "difficulty": "easy",
+        "explanation": "Data minimization is the principle of limiting data collection to only what is strictly required for the immediate purpose."
+    },
+    {
+        "id": "q257",
+        "question": "Which NVIDIA toolkit is described as a 'low-code' platform that facilitates ethical and explainable AI development?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA TAO Toolkit",
+            "NVIDIA GeForce Experience",
+            "NVIDIA PhysX",
+            "NVIDIA Gameworks"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia tools",
+            "tao",
+            "low-code"
+        ],
+        "difficulty": "medium",
+        "explanation": "The NVIDIA TAO Toolkit is highlighted as a low-code solution that simplifies the creation of AI models, including features for fairness and explainability."
+    },
+    {
+        "id": "q258",
+        "question": "In the context of AI ethics, what does 'Explainable AI' (XAI) aim to achieve?",
+        "type": "multiple_choice",
+        "options": [
+            "To make the model run faster.",
+            "To ensure model decisions are interpretable and understandable to humans.",
+            "To encrypt the model's source code.",
+            "To prevent the model from being copied."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transparency",
+            "explainable ai",
+            "xai"
+        ],
+        "difficulty": "easy",
+        "explanation": "Explainable AI focuses on making the internal logic and decision-making processes of AI systems transparent and understandable to users."
+    },
+    {
+        "id": "q259",
+        "question": "Which of the following is a common source of bias in AI systems?",
+        "type": "multiple_choice",
+        "options": [
+            "The use of GPUs instead of CPUs.",
+            "Biased training data that reflects societal prejudices.",
+            "The programming language used (e.g., Python).",
+            "The high electricity consumption of data centers."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bias",
+            "causes",
+            "data"
+        ],
+        "difficulty": "easy",
+        "explanation": "Bias often originates from training data that contains historical or societal prejudices, which the model then learns and perpetuates."
+    },
+    {
+        "id": "q260",
+        "question": "What is the function of NVIDIA NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "To physically secure the server room.",
+            "To enhance safety, compliance, and content risk management for conversational AI models.",
+            "To optimize the cooling of the GPU.",
+            "To generate synthetic images for training."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "nemo guardrails",
+            "safety"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Guardrails is a toolkit designed to ensure that conversational AI models operate within safe, ethical, and secure boundaries."
+    }
+]

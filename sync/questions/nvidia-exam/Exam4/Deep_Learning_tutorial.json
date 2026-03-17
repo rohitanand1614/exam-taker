@@ -1,0 +1,1182 @@
+[
+    {
+        "id": "dl-intro-001",
+        "question": "According to the course introduction, which concept is used to describe the learning approach that combines learning with fun?",
+        "type": "multiple_choice",
+        "options": [
+            "Rigorous discipline",
+            "Relaxed alertness",
+            "Competitive gamification",
+            "Passive absorption"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "introduction",
+            "learning philosophy"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text describes 'Relaxed alertness' as the approach for learning while having fun, comparing the brain's modes to neural net training and prediction phases."
+    },
+    {
+        "id": "dl-intro-002",
+        "question": "What architecture forms the basis of modern CPUs, which became standard during the WWII era?",
+        "type": "multiple_choice",
+        "options": [
+            "Neural Network Architecture",
+            "Quantum Architecture",
+            "Von Neumann Architecture",
+            "Parallel Processing Architecture"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "history",
+            "hardware"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Von Neumann architecture became standard during the WWII era and forms the basis of modern CPUs."
+    },
+    {
+        "id": "dl-intro-003",
+        "question": "Which game AI used brute force calculation with hard-coded rules to defeat a world champion in the 1990s?",
+        "type": "multiple_choice",
+        "options": [
+            "AlphaGo",
+            "Deep Blue",
+            "Stockfish",
+            "Watson"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "history",
+            "ai milestones"
+        ],
+        "difficulty": "easy",
+        "explanation": "Deep Blue is identified as the AI that defeated the reigning chess world champion in the 1990s using brute force calculation."
+    },
+    {
+        "id": "dl-intro-004",
+        "question": "What are the two key enabling factors for the rise of Deep Learning mentioned in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "Better algorithms and faster internet speeds",
+            "Data availability and Computing Power",
+            "Robotics advancements and cloud storage",
+            "Quantum computing and 5G networks"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deep learning drivers",
+            "trends"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text lists 'Data Availability' (from the internet) and 'Computing Power' (specifically GPUs) as the key enabling factors."
+    },
+    {
+        "id": "dl-concept-005",
+        "question": "How does the Deep Learning programming paradigm differ from Traditional Programming?",
+        "type": "multiple_choice",
+        "options": [
+            "Traditional: Data + Output = Rules; Deep Learning: Rules + Data = Output",
+            "Traditional: Rules + Data = Output; Deep Learning: Data + Output = Rules",
+            "Traditional: Data + Rules = Output; Deep Learning: Output + Rules = Data",
+            "There is no fundamental difference."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "concepts",
+            "paradigms"
+        ],
+        "difficulty": "medium",
+        "explanation": "In Traditional Programming, humans define rules to process data into output. In Deep Learning, the model learns rules from data and correct outputs."
+    },
+    {
+        "id": "dl-concept-006",
+        "question": "Which of the following scenarios is suitable for using Deep Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "When rules are clear and straightforward",
+            "When tasks involve simple arithmetic",
+            "When rules are nuanced, complex, and hard for humans to describe",
+            "When there is very little training data available"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "deep learning usage",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "Deep Learning is recommended when rules are nuanced or complex and hard for humans to describe or program explicitly."
+    },
+    {
+        "id": "data-prep-007",
+        "question": "Why are pixel values in the 28x28 image dataset divided by 255 during data preparation?",
+        "type": "multiple_choice",
+        "options": [
+            "To convert them to grayscale",
+            "To reshape the array",
+            "To normalize the values between 0 and 1",
+            "To increase the contrast of the images"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data preparation",
+            "normalization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dividing by 255 (the max pixel value) scales the pixel values to a range between 0 and 1, which is a standard normalization step."
+    },
+    {
+        "id": "nn-arch-008",
+        "question": "In the described neural network architecture, how many neurons are in the input layer for a 28x28 pixel image?",
+        "type": "multiple_choice",
+        "options": [
+            "10",
+            "512",
+            "784",
+            "1024"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "neural network architecture",
+            "input layer"
+        ],
+        "difficulty": "easy",
+        "explanation": "The input layer has 784 neurons, corresponding to one for each pixel in a 28x28 image (28 * 28 = 784)."
+    },
+    {
+        "id": "nn-calc-009",
+        "question": "What is the primary goal of Gradient Descent in training a neural network?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the number of hidden layers",
+            "To find the maximum point on the error surface",
+            "To find the minimum point on the error surface (minimize loss)",
+            "To randomize the weights for every epoch"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "gradient descent",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Gradient Descent aims to find the minimum point on the error surface, thereby minimizing the loss or error of the model."
+    },
+    {
+        "id": "activation-010",
+        "question": "Which activation function is described as an S-shaped curve useful for probabilities?",
+        "type": "multiple_choice",
+        "options": [
+            "ReLU (Rectified Linear Unit)",
+            "Sigmoid",
+            "Linear",
+            "Softmax"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "activation functions",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Sigmoid function is described as an S-shaped curve ranging from 0 to 1, making it useful for representing probabilities."
+    },
+    {
+        "id": "sine-activ-011",
+        "question": "Why might sinusoidal activation functions be preferred for datasets representing a sum of waves?",
+        "type": "multiple_choice",
+        "options": [
+            "They remove the need for a linear output layer",
+            "They force the network to learn rules from scratch",
+            "They align the model architecture with the data's physical structure for faster convergence",
+            "They are the default activation for all image processing tasks"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "advanced architectures",
+            "activation functions"
+        ],
+        "difficulty": "hard",
+        "explanation": "Using sinusoidal activations leverages domain knowledge to align the architecture with the data's underlying periodic structure, leading to faster convergence and efficiency."
+    },
+    {
+        "id": "softmax-012",
+        "question": "What is the specific function of the Softmax activation in the output layer of a multi-class classification model?",
+        "type": "multiple_choice",
+        "options": [
+            "It sets all negative values to zero",
+            "It acts as a linear regression model",
+            "It normalizes raw outputs into probabilities that sum to 100%",
+            "It adds sinusoidal nonlinearity to the model"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "softmax",
+            "classification"
+        ],
+        "difficulty": "medium",
+        "explanation": "Softmax normalizes the output values so that they each become a probability and the sum of all probabilities equals 100%."
+    },
+    {
+        "id": "loss-func-013",
+        "question": "Which loss function is preferred for classification tasks because it heavily penalties confident wrong predictions?",
+        "type": "multiple_choice",
+        "options": [
+            "Mean Squared Error (MSE)",
+            "Categorical Cross Entropy",
+            "Mean Absolute Error (MAE)",
+            "Hinge Loss"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "loss functions",
+            "classification"
+        ],
+        "difficulty": "medium",
+        "explanation": "Categorical Cross Entropy is preferred for classification as it uses a logarithmic scale to heavily penalize predictions that are confident but wrong."
+    },
+    {
+        "id": "overfitting-014",
+        "question": "What technique helps prevent overfitting by stopping training when validation performance plateaus?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Descent",
+            "Early Stopping",
+            "Batch Normalization",
+            "Data Augmentation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "overfitting",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "Early Stopping is a technique where training is halted once the validation performance stops improving, preventing the model from memorizing the training data."
+    },
+    {
+        "id": "cnn-motivation-001",
+        "question": "What was the primary motivation for switching from dense neural networks to Convolutional Neural Networks (CNNs) for image tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "Dense networks could not handle color images",
+            "Dense networks showed signs of overfitting (high training accuracy, low validation accuracy)",
+            "CNNs are slower but more accurate",
+            "Dense networks required too much memory for small images"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "introduction",
+            "overfitting"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that the previous dense network achieved ~90% accuracy but showed signs of overfitting, which CNNs help address by preserving spatial relationships."
+    },
+    {
+        "id": "kernel-def-002",
+        "question": "In image processing, what is a 'kernel'?",
+        "type": "multiple_choice",
+        "options": [
+            "The central processing unit of the GPU",
+            "A small matrix or window that moves over the image to manipulate pixels",
+            "The output layer of the neural network",
+            "A technique to increase image brightness"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "definitions",
+            "kernels"
+        ],
+        "difficulty": "easy",
+        "explanation": "A kernel is defined as a small area (window) that moves over an image to manipulate pixels via mathematical operations like multiplication and summation."
+    },
+    {
+        "id": "stride-003",
+        "question": "What is the trade-off when using a larger 'stride' (e.g., Stride 2) in a convolution?",
+        "type": "multiple_choice",
+        "options": [
+            "Slower computation but higher resolution",
+            "Faster computation but potential loss of information",
+            "Increased memory usage but better edge detection",
+            "No trade-off; it is always better"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "parameters",
+            "stride"
+        ],
+        "difficulty": "medium",
+        "explanation": "A larger stride means the window skips pixels, leading to less data to process (faster) but potentially missing important details (info loss)."
+    },
+    {
+        "id": "padding-004",
+        "question": "What is the purpose of 'Zero Padding' in a CNN?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the contrast of the image",
+            "To remove the edges of the image",
+            "To maintain image size and ensure edge pixels are processed",
+            "To randomly set neuron weights to zero"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "parameters",
+            "padding"
+        ],
+        "difficulty": "medium",
+        "explanation": "Padding adds a border of zeros to the image to prevent shrinking the output size and to ensure edge pixels are included in the convolution window."
+    },
+    {
+        "id": "cnn-data-shape-005",
+        "question": "What is the required data shape for a PyTorch CNN input as described in the notebook?",
+        "type": "multiple_choice",
+        "options": [
+            "[Height, Width, Channels, Batch]",
+            "[Batch, Height, Width, Channels]",
+            "[Batch, Channels, Height, Width]",
+            "[Channels, Batch, Height, Width]"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "pytorch",
+            "data preparation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The notebook exercise specifies that the data must be reshaped to `[Batch, Channels, Height, Width]` (e.g., `32, 1, 28, 28`)."
+    },
+    {
+        "id": "maxpool-006",
+        "question": "What is the function of the `nn.MaxPool2d` layer?",
+        "type": "multiple_choice",
+        "options": [
+            "It adds non-linearity to the network",
+            "It normalizes the batch data",
+            "It reduces spatial dimensions by taking the maximum value in a window",
+            "It flattens the 3D tensor into a 1D vector"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "layers",
+            "pooling"
+        ],
+        "difficulty": "easy",
+        "explanation": "Max Pooling downsamples the image (reduces spatial dimensions) by selecting the maximum value within a specific window (e.g., 2x2)."
+    },
+    {
+        "id": "dropout-007",
+        "question": "Why is `nn.Dropout` included in the CNN architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "To improve the resolution of the input image",
+            "To prevent overfitting by randomly disabling neurons during training",
+            "To speed up the convolution operation",
+            "To convert color images to grayscale"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "layers",
+            "regularization"
+        ],
+        "difficulty": "easy",
+        "explanation": "Dropout prevents overfitting by randomly 'turning off' a percentage of neurons during training, forcing the network to learn robust features."
+    },
+    {
+        "id": "batchnorm-008",
+        "question": "What is the primary benefit of using `nn.BatchNorm2d`?",
+        "type": "multiple_choice",
+        "options": [
+            "It performs the final classification",
+            "It stabilizes and speeds up training by normalizing filter outputs",
+            "It resizes the image to be larger",
+            "It detects vertical edges specifically"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "layers",
+            "normalization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Batch Normalization stabilizes and speeds up training by normalizing the output of the filters to have a consistent mean and variance."
+    },
+    {
+        "id": "flatten-009",
+        "question": "Which layer is responsible for converting 3D feature maps into a 1D vector for the final dense layers?",
+        "type": "multiple_choice",
+        "options": [
+            "nn.Conv2d",
+            "nn.MaxPool2d",
+            "nn.Flatten",
+            "nn.ReLU"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "layers",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "The `nn.Flatten()` layer converts the multi-dimensional feature maps (e.g., 75 x 3 x 3) into a single 1D vector required by the linear/dense layers."
+    },
+    {
+        "id": "code-fix-010",
+        "question": "In the notebook exercise for `MyDataset`, what value is used to normalize the pixel data?",
+        "type": "multiple_choice",
+        "options": [
+            "128",
+            "255",
+            "1024",
+            "100"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "coding",
+            "preprocessing"
+        ],
+        "difficulty": "easy",
+        "explanation": "The code snippet shows `x_df = x_df.values / 255`, which normalizes the pixel values (0-255) to a range of 0-1."
+    },
+    {
+        "id": "data-quality-001",
+        "question": "In the context of data quality, what does the principle 'Garbage in, garbage out' imply?",
+        "type": "multiple_choice",
+        "options": [
+            "The model automatically cleans poor quality data",
+            "Model performance is directly dependent on the quality of input data",
+            "Garbage collection is a critical part of memory management",
+            "Data augmentation can fix all quality issues"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data quality",
+            "principles"
+        ],
+        "difficulty": "easy",
+        "explanation": "The principle 'Garbage in, garbage out' means that a model's performance depends heavily on the quality of the input data; poor data leads to poor models."
+    },
+    {
+        "id": "negative-examples-002",
+        "question": "Why are 'negative examples' important when teaching a model to identify a specific category (e.g., dogs)?",
+        "type": "multiple_choice",
+        "options": [
+            "To show the model what the category IS NOT (e.g., coyotes, foxes)",
+            "To decrease the size of the dataset",
+            "To increase the brightness of the images",
+            "To teach the model to ignore color"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "training",
+            "concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "Negative examples are needed to show the model what the category is NOT, helping it distinguish the target from similar but distinct objects."
+    },
+    {
+        "id": "aug-flip-003",
+        "question": "For which of the following datasets would horizontal flipping be considered 'bad' or inappropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "American Sign Language (ASL)",
+            "Flower identification",
+            "MNIST (Handwritten digits)",
+            "Landscape photography"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data augmentation",
+            "image flipping"
+        ],
+        "difficulty": "medium",
+        "explanation": "Horizontal flipping is bad for MNIST because flipping a digit like '6' can create a '9', changing the label and confusing the model."
+    },
+    {
+        "id": "aug-homography-004",
+        "question": "What is 'Homography' in the context of image augmentation?",
+        "type": "multiple_choice",
+        "options": [
+            "A method for color correction",
+            "A mathematical transformation projecting images in 3D space using matrix multiplication",
+            "The process of converting RGB images to grayscale",
+            "A technique for random cropping"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "homography",
+            "technical foundation"
+        ],
+        "difficulty": "hard",
+        "explanation": "Homography is a mathematical transformation using matrix multiplication that projects images in 3D space based on camera and image positions."
+    },
+    {
+        "id": "color-channels-005",
+        "question": "In the RGB color model, what is the range of values for each color channel?",
+        "type": "multiple_choice",
+        "options": [
+            "0-100",
+            "0-1",
+            "0-255",
+            "-1 to 1"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rgb",
+            "color channels"
+        ],
+        "difficulty": "easy",
+        "explanation": "In the RGB color model, channel values range from 0 to 255 for each color component (Red, Green, Blue)."
+    },
+    {
+        "id": "nb-convblock-006",
+        "question": "In the notebook, what is the primary purpose of creating the `MyConvBlock` class?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the training speed by 50%",
+            "To bundle a repeatable convolutional pattern (Conv2d -> BatchNorm -> ReLU...) into a reusable module",
+            "To automatically download datasets from the internet",
+            "To perform data augmentation on the GPU"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "coding",
+            "refactoring"
+        ],
+        "difficulty": "medium",
+        "explanation": "`MyConvBlock` is created to define a repeatable convolutional pattern (Conv2d, BatchNorm, ReLU, Dropout, MaxPool) in a cleaner, reusable `nn.Module` class."
+    },
+    {
+        "id": "nb-training-loop-007",
+        "question": "Why are random transformations (`random_transforms(x)`) applied inside the training loop but NOT in the validation loop?",
+        "type": "multiple_choice",
+        "options": [
+            "Because validation data must remain original and unmodified to accurately assess performance",
+            "Because transformations are too slow for validation",
+            "Because the validation dataset is already augmented",
+            "Because PyTorch does not allow transformations during validation"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "training",
+            "best practices"
+        ],
+        "difficulty": "medium",
+        "explanation": "Validation must always be performed on the original, unmodified data to provide a true benchmark of model performance; augmentation is only for training to improve generalization."
+    },
+    {
+        "id": "aug-rotation-008",
+        "question": "Why is it advised to limit rotation degrees when augmenting ASL (American Sign Language) images?",
+        "type": "multiple_choice",
+        "options": [
+            "Because cameras cannot rotate",
+            "Because large rotations (e.g., 90°) are unrealistic for signing and can confuse the model",
+            "Because rotation requires too much CPU power",
+            "Because ASL signs are identical regardless of rotation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data augmentation",
+            "rotation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Large rotations are unrealistic because people rarely sign upside down or sideways, and excessive rotation might change the meaning or confusing the model."
+    },
+    {
+        "id": "deployment-dims-009",
+        "question": "What is a common preprocessing solution when real-world input images differ in size from the model's training data?",
+        "type": "multiple_choice",
+        "options": [
+            "Retraining the model from scratch",
+            "Image Resizing (rescaling to match expected width and height)",
+            "Cropping the center only",
+            "Converting to grayscale"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deployment",
+            "preprocessing"
+        ],
+        "difficulty": "easy",
+        "explanation": "Image resizing is the standard solution to rescale real-world images to match the model's expected input width and height."
+    },
+    {
+        "id": "batch-format-010",
+        "question": "How is a single image typically converted to be compatible with a batch-trained model?",
+        "type": "multiple_choice",
+        "options": [
+            "By adding a new axis (outer brackets) to convert it to batch format",
+            "By duplicating the image 32 times",
+            "By flattening the image into a 1D vector immediately",
+            "By removing the color channels"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "deployment",
+            "batch processing"
+        ],
+        "difficulty": "medium",
+        "explanation": "To make a single image compatible with a batch-trained model, a new axis is added (often via `unsqueeze` or adding brackets) to create a batch of size 1."
+    },
+    {
+        "id": "dropout-warning-011",
+        "question": "What happens if the dropout rate is set to 1?",
+        "type": "multiple_choice",
+        "options": [
+            "The model learns twice as fast",
+            "It disables all learning by turning off all neurons",
+            "It prevents overfitting perfectly",
+            "It acts as a pass-through layer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dropout",
+            "warnings"
+        ],
+        "difficulty": "easy",
+        "explanation": "A dropout rate of 1 means 100% of neurons are dropped (turned off), which disables all learning."
+    },
+    {
+        "id": "aug-zooming-012",
+        "question": "What is a potential risk of using 'Zooming in' as a data augmentation technique?",
+        "type": "multiple_choice",
+        "options": [
+            "It changes the color balance",
+            "It risks losing critical information if objects become unrecognizable",
+            "It increases the file size of the dataset",
+            "It requires a GPU to perform"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data augmentation",
+            "zooming"
+        ],
+        "difficulty": "medium",
+        "explanation": "Zooming in too much can crop out important features or make objects unrecognizable, leading to loss of critical information."
+    },
+    {
+        "id": "nn-components-001",
+        "question": "What is the primary function of the 'Learning Rate' in a neural network?",
+        "type": "multiple_choice",
+        "options": [
+            "It determines the number of layers in the network",
+            "It introduces nonlinearity to the model",
+            "It controls how much weights update during gradient descent",
+            "It normalizes the input data"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "neural network components",
+            "learning rate"
+        ],
+        "difficulty": "easy",
+        "explanation": "The learning rate controls the step size of weight updates during gradient descent."
+    },
+    {
+        "id": "vgg16-origin-002",
+        "question": "Which competition did the VGG16 model win?",
+        "type": "multiple_choice",
+        "options": [
+            "2012 DARPA Grand Challenge",
+            "2014 ImageNet Challenge",
+            "2016 AlphaGo Match",
+            "2018 Kaggle Data Science Bowl"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "vgg16",
+            "history"
+        ],
+        "difficulty": "easy",
+        "explanation": "VGG16 was the winner of the 2014 ImageNet Challenge."
+    },
+    {
+        "id": "transfer-learning-003",
+        "question": "In the context of Transfer Learning, why are early convolutional layers often reused (frozen) while later layers are replaced?",
+        "type": "multiple_choice",
+        "options": [
+            "Early layers contain the most biases",
+            "Early layers detect general features like edges and textures, while later layers are too dataset-specific",
+            "Early layers require more memory to train",
+            "Later layers are always smaller and less important"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transfer learning",
+            "concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "Early layers detect general features (edges, textures) applicable to many tasks, whereas deeper layers learn patterns specific to the original training data."
+    },
+    {
+        "id": "freezing-004",
+        "question": "What is the primary advantage of 'freezing' weights during transfer learning?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows the model to learn new features faster",
+            "It increases the model's capacity",
+            "It avoids overfitting on small datasets and reduces training time",
+            "It automatically balances the dataset"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "transfer learning",
+            "freezing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Freezing prevents pre-trained weights from updating, which helps avoid overfitting when the new dataset is small and reduces computational cost."
+    },
+    {
+        "id": "data-bias-005",
+        "question": "How is 'Data Bias' defined in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "When a model has too many layers",
+            "When the learning rate is set too high",
+            "When some categories are overrepresented in training data, causing poor performance on others",
+            "When the model is trained on grayscale images only"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data bias",
+            "ethics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Data bias occurs when certain categories are overrepresented in the training data, leading to poor performance on underrepresented groups."
+    },
+    {
+        "id": "dreaming-006",
+        "question": "How does the 'Dreaming' technique visualize what a neural network perceives?",
+        "type": "multiple_choice",
+        "options": [
+            "By minimizing the loss function",
+            "By maximizing the loss to amplify patterns the model sees",
+            "By randomizing the input weights",
+            "By reducing the image resolution"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "visualization",
+            "dreaming"
+        ],
+        "difficulty": "hard",
+        "explanation": "Dreaming involves feeding an image through the network and maximizing the loss to amplify and visualize the patterns the early layers perceive."
+    },
+    {
+        "id": "pytorch-loading-007",
+        "question": "Which line of code correctly loads the VGG16 model with default pre-trained weights?",
+        "type": "multiple_choice",
+        "options": [
+            "model = vgg16(pretrained=False)",
+            "model = vgg16(weights=VGG16_Weights.DEFAULT)",
+            "model = vgg16(weights=None)",
+            "model = load_model('vgg16')"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "coding",
+            "pytorch"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text specifies `model = vgg16(weights=VGG16_Weights.DEFAULT)` to load the best default pre-trained weights."
+    },
+    {
+        "id": "preprocessing-008",
+        "question": "What is the standard input size for VGG16 as defined by its pre-trained transforms?",
+        "type": "multiple_choice",
+        "options": [
+            "128x128",
+            "224x224",
+            "256x256",
+            "512x512"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "preprocessing",
+            "vgg16"
+        ],
+        "difficulty": "easy",
+        "explanation": "VGG16 transforms resize images to 224x224 pixels."
+    },
+    {
+        "id": "code-freeze-009",
+        "question": "Which PyTorch method is used to freeze the parameters of the VGG model?",
+        "type": "multiple_choice",
+        "options": [
+            "vgg_model.freeze()",
+            "vgg_model.train(False)",
+            "vgg_model.requires_grad_(False)",
+            "vgg_model.stop_gradient()"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "coding",
+            "pytorch"
+        ],
+        "difficulty": "medium",
+        "explanation": "The method `vgg_model.requires_grad_(False)` sets the `requires_grad` attribute to False for all parameters, effectively freezing them."
+    },
+    {
+        "id": "binary-loss-010",
+        "question": "Which loss function is chosen for the binary classification task (Bo vs. Not-Bo) in the transfer learning project?",
+        "type": "multiple_choice",
+        "options": [
+            "nn.CrossEntropyLoss()",
+            "nn.MSELoss()",
+            "nn.BCEWithLogitsLoss()",
+            "nn.NLLLoss()"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "coding",
+            "loss functions"
+        ],
+        "difficulty": "medium",
+        "explanation": "`nn.BCEWithLogitsLoss()` (Binary Cross-Entropy with Logits) is the standard loss function used for binary classification tasks in the project."
+    },
+    {
+        "id": "fine-tuning-011",
+        "question": "What characterizes the 'Fine-Tuning' phase described in the Presidential Doggy Door project?",
+        "type": "multiple_choice",
+        "options": [
+            "Freezing the new layer and training the base model",
+            "Unfreezing the entire model and training with a very small learning rate",
+            "Replacing the VGG16 model with ResNet",
+            "Increasing the learning rate to speed up convergence"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fine-tuning",
+            "training"
+        ],
+        "difficulty": "hard",
+        "explanation": "Fine-tuning involves unfreezing the entire model (`vgg_model.requires_grad_(True)`) and training with a very small learning rate (e.g., .000001) to adapt features without destroying prior knowledge."
+    },
+    {
+        "id": "nlp-intro-001",
+        "question": "What is the primary function of tokenization in Natural Language Processing?",
+        "type": "multiple_choice",
+        "options": [
+            "To translate text into a different language",
+            "To convert words into numerical tokens",
+            "To remove all punctuation from a sentence",
+            "To visually highlight important words in a text"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp",
+            "tokenization"
+        ],
+        "difficulty": "easy",
+        "explanation": "Tokenization creates a dictionary of unique words and assigns each a number, converting text into numerical tokens for model processing."
+    },
+    {
+        "id": "embeddings-002",
+        "question": "Why are Word Embeddings often preferred over One-Hot Encoding?",
+        "type": "multiple_choice",
+        "options": [
+            "They use a larger number of dimensions for better accuracy",
+            "They represent words in a lower-dimensional continuous space, which is more efficient",
+            "They assign a single unique integer to every word in the dictionary",
+            "They eliminate the need for training data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embeddings",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "Word embeddings map high-dimensional categorical data to a lower-dimensional continuous space, offering a more efficient representation than the sparse and large vectors of one-hot encoding."
+    },
+    {
+        "id": "attention-003",
+        "question": "In the context of the Attention Mechanism, how is the attention matrix calculated?",
+        "type": "multiple_choice",
+        "options": [
+            "By adding the query and key matrices together",
+            "By multiplying the query matrix with the transposed key matrix",
+            "By dividing the value matrix by the query matrix",
+            "By randomly initializing weights and applying a softmax function"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention mechanism",
+            "calculation"
+        ],
+        "difficulty": "hard",
+        "explanation": "The attention matrix is created by creating query and key embeddings for each word, transposing one matrix, and multiplying them to show relationships between word pairs."
+    },
+    {
+        "id": "bert-arch-004",
+        "question": "What is the core component of the BERT architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "Convolutional Neural Networks (CNNs)",
+            "Recurrent Neural Networks (RNNs)",
+            "The Attention Mechanism",
+            "Genetic Algorithms"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bert",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "BERT (Bidirectional Encoder Representations from Transformers) uses the attention mechanism as its core component to achieve bidirectional processing."
+    },
+    {
+        "id": "tokenizer-special-005",
+        "question": "Which special tokens are automatically added by the BERT tokenizer?",
+        "type": "multiple_choice",
+        "options": [
+            "[START] and [END]",
+            "[CLS] and [SEP]",
+            "[HEAD] and [TAIL]",
+            "[UNK] and [PAD]"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "tokenization"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text notes that `[CLS]` (start) and `[SEP]` (separator) tokens are automatically added by the tokenizer."
+    },
+    {
+        "id": "segment-ids-006",
+        "question": "What is the purpose of `segment_ids` in BERT processing?",
+        "type": "multiple_choice",
+        "options": [
+            "To identify which language the text is in",
+            "To distinguish between multiple sentences (e.g., Sentence A vs. Sentence B)",
+            "To mark the beginning and end of a paragraph",
+            "To assign part-of-speech tags to each word"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "preprocessing"
+        ],
+        "difficulty": "medium",
+        "explanation": "`segment_ids` are a parallel list of 0s and 1s used to tell the model which tokens belong to which sentence in a multi-sentence input."
+    },
+    {
+        "id": "masked-lm-007",
+        "question": "In the Masked Language Modeling task, what is the model trying to predict?",
+        "type": "multiple_choice",
+        "options": [
+            "The sentiment of the sentence",
+            "The next sentence in the paragraph",
+            "The original identity of the word replaced by the [MASK] token",
+            "The grammatical structure of the sentence"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "masked language modeling",
+            "training tasks"
+        ],
+        "difficulty": "medium",
+        "explanation": "In Masked Language Modeling, a word is replaced with a `[MASK]` token, and the model's goal is to predict the original word based on context."
+    },
+    {
+        "id": "qa-model-008",
+        "question": "What output does the BERT Question Answering model produce instead of word predictions?",
+        "type": "multiple_choice",
+        "options": [
+            "A generated summary of the answer",
+            "Start and End logits (scores) indicating the span of the answer",
+            "A boolean value (True/False) indicating if the answer exists",
+            "Translation of the question into another language"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "question answering"
+        ],
+        "difficulty": "medium",
+        "explanation": "The QA model outputs `start_logits` and `end_logits` which represent scores predicting the start and end positions of the answer span within the text."
+    },
+    {
+        "id": "autoencoder-009",
+        "question": "What is the primary training objective of an Autoencoder?",
+        "type": "multiple_choice",
+        "options": [
+            "To predict the next frame in a video",
+            "To classify images into 1000 categories",
+            "To reproduce its input as closely as possible (match output to input)",
+            "To generate completely new random data"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "autoencoders",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "Autoencoders are self-supervised models trained with the objective that the output should match the input after passing through a bottleneck."
+    },
+    {
+        "id": "diffusion-models-010",
+        "question": "How do Diffusion Models generate meaningful images?",
+        "type": "multiple_choice",
+        "options": [
+            "By compressing large images into small vectors",
+            "By starting with a noisy image and gradually removing the noise",
+            "By stitching together patches of existing photographs",
+            "By rotating a source image 360 degrees"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "diffusion models",
+            "generative ai"
+        ],
+        "difficulty": "medium",
+        "explanation": "Diffusion models work by starting from a noisy image and gradually removing small amounts of noise until a meaningful image emerges."
+    },
+    {
+        "id": "rl-concept-011",
+        "question": "What is the core idea behind Reinforcement Learning (RL)?",
+        "type": "multiple_choice",
+        "options": [
+            "Learning via rewards and penalties over time based on actions",
+            "Learning by memorizing labeled examples",
+            "Learning by compressing data into lower dimensions",
+            "Learning by predicting the next word in a sentence"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "reinforcement learning",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "RL systems learn sequences of behaviors through positive rewards (good actions) and negative penalties (bad actions) over time."
+    },
+    {
+        "id": "philosophical-012",
+        "question": "Which philosophical thought experiment is mentioned to question whether a machine truly understands or is just matching patterns?",
+        "type": "multiple_choice",
+        "options": [
+            "Schrödinger's Cat",
+            "The Trolley Problem",
+            "The Chinese Room (person trapped in a room with books)",
+            "The Ship of Theseus"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "philosophy",
+            "ai understanding"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text describes a thought experiment (often known as the Chinese Room) where a person trapped in a room copies solutions from books without comprehension, mirroring AI pattern matching."
+    }
+]

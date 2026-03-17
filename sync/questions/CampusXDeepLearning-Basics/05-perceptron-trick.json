@@ -1,0 +1,107 @@
+[
+    {
+        "id": "Perceptron-Trick_001",
+        "question": "When developing the intuition for the 'Perceptron Trick,' the instructor demonstrates how a misclassified point 'pulls' the decision boundary (a line) toward itself. If a line is represented by the equation $Ax + By + C = 0$, what geometric transformation occurs if you subtract the coordinates of a data point $(p, q)$ directly from the line's coefficients?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The line rotates 90 degrees strictly around the origin point (0,0).",
+            "B) The line undergoes a combination of rotation and parallel translation, moving it geometrically towards the negative region defined by that point.",
+            "C) The line's slope is inverted, but its y-intercept remains perfectly anchored.",
+            "D) The line is converted into a non-linear parabolic curve."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "perceptron_trick",
+            "geometric_transformation",
+            "decision_boundary"
+        ],
+        "difficulty": "medium",
+        "explanation": "The instructor uses Desmos to visually demonstrate that altering the coefficients ($A$, $B$, $C$) of a line equation simultaneously causes both rotation (changing slopes via $A$ and $B$) and parallel translation (moving up/down via $C$). By subtracting the coordinates of a specific point from the line's coefficients, the line undergoes a combined transformation that physically moves it toward the \"negative region\" associated with that point. Option A is incorrect; rotation is not strictly 90 degrees nor strictly around the origin. Option C is incorrect; changing $C$ changes the intercept. Option D is incorrect; altering linear coefficients ($A, B, C$) in an $Ax+By+C=0$ equation always results in another straight line, never a parabola."
+    },
+    {
+        "id": "Perceptron-Trick_002",
+        "question": "In the context of the Perceptron Trick, what is the explicit purpose of adding a 'Learning Rate' multiplier when updating the weights?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To drastically accelerate the calculation of the dot product during the forward pass.",
+            "B) To prevent the decision boundary from making massive, erratic jumps that could overshoot the optimal position in a single update step.",
+            "C) To convert a non-linearly separable dataset into a linearly separable one before training begins.",
+            "D) To ensure the step activation function outputs continuous probabilities instead of binary 0s and 1s."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "learning_rate",
+            "weight_update",
+            "perceptron_trick"
+        ],
+        "difficulty": "easy",
+        "explanation": "The instructor explicitly states that you \"never apply a large transformation in a single step\" because the line would jump too drastically and miss the optimal boundary. Instead, a small number called the Learning Rate (e.g., 0.01) is multiplied by the coordinate values before they are added to/subtracted from the coefficients. This ensures the decision boundary takes small, deliberate steps toward convergence. Option A is false; learning rates are used in the backward/update pass, not the forward dot product. Option C is false; a learning rate cannot change the fundamental geometry of the dataset. Option D is false; a step function always outputs binary values regardless of the learning rate; continuous probabilities require functions like Sigmoid."
+    },
+    {
+        "id": "Perceptron-Trick_003",
+        "question": "The instructor derives a simplified, unified weight update rule: `W_new = W_old + Learning_Rate * (Actual_y - Predicted_y) * X_i`. Why is this single equation mathematically equivalent to using complex `if/else` statements to check for positive/negative misclassifications?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because the term `(Actual_y - Predicted_y)` automatically evaluates to $0$ if correctly classified, $+1$ if a positive point is misclassified as negative, and $-1$ if a negative point is misclassified as positive, naturally dictating the direction and necessity of the update.",
+            "B) Because the learning rate dynamically becomes negative whenever the Perceptron encounters a perfectly classified point.",
+            "C) Because the step function inside the Perceptron automatically deletes any `X_i` vectors that are already on the correct side of the boundary.",
+            "D) Because the `w_old` term is mathematically designed to decay to zero unless the `if/else` conditions are explicitly coded out."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "weight_update_rule",
+            "mathematical_simplification",
+            "perceptron"
+        ],
+        "difficulty": "hard",
+        "explanation": "The brilliance of this unified update rule  lies in the `(Actual_y - Predicted_y)` term. \nIf Actual = 1 and Predicted = 1, the term is 0. No update happens.\nIf Actual = 0 and Predicted = 0, the term is 0. No update happens.\nIf Actual = 1 (Positive Point) but Predicted = 0 (Negative Region), the term is $+1$. The rule becomes `W + LR * X`, effectively pulling the line toward the positive region.\nIf Actual = 0 (Negative Point) but Predicted = 1 (Positive Region), the term is $-1$. The rule becomes `W - LR * X`, effectively pushing the line toward the negative region.\nOptions B, C, and D describe fabricated, mathematically unsound mechanisms that do not occur in Perceptron training."
+    },
+    {
+        "id": "Perceptron-Trick_004",
+        "question": "During the practical code implementation of the Perceptron Trick, why must the programmer explicitly insert an array of `1`s into the input feature matrix ($X$)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To ensure that the input matrix is perfectly square, satisfying the requirements of numpy's dot product function.",
+            "B) To act as a placeholder for the dataset's target labels ($y$) during the forward pass calculation.",
+            "C) To represent the fictitious input $x_0$ that allows the bias term ($w_0$) to be treated mathematically as just another weight during vector multiplication.",
+            "D) To scale all input features between 0 and 1, preventing the vanishing gradient problem."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bias_term",
+            "matrix_multiplication",
+            "implementation_details"
+        ],
+        "difficulty": "medium",
+        "explanation": "The equation for a Perceptron is $w_1x_1 + w_2x_2 + b$. To write this efficiently in code using vector dot products, programmers treat the bias $b$ as an additional weight, $w_0$. To make the math work ($w_0x_0 + w_1x_1 + w_2x_2$), they must introduce a \"dummy\" input feature $x_0$ that is permanently set to $1$. This allows the entire operation to be executed as a single, clean dot product between a weight vector and an input vector. Option A is false; dot products require matching inner dimensions, not square matrices. Option B is false; target labels ($y$) are kept entirely separate from input features ($X$). Option D describes feature scaling/normalization, which is done via division/min-max formulas, not by appending a column of 1s."
+    },
+    {
+        "id": "Perceptron-Trick_005",
+        "question": "The instructor builds a training loop defined by `for i in range(epochs):`. Inside this loop, a single data point is chosen at random, and the weights are updated based *only* on that single point. Which gradient descent optimization technique does this specific algorithm closely mirror?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Batch Gradient Descent, because it requires multiple epochs to converge.",
+            "B) Stochastic Gradient Descent (SGD), because the model updates its parameters incrementally using one randomly selected sample at a time.",
+            "C) Mini-Batch Gradient Descent, because it splits the dataset into predetermined, sequential chunks.",
+            "D) Principal Component Analysis (PCA), because it randomly projects points to find the line of maximum variance."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "stochastic_gradient_descent",
+            "training_loop",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "The algorithm described—selecting a *single*, random data point from the dataset, calculating the error, and immediately updating the weights—is the defining characteristic of Stochastic Gradient Descent (SGD). Option A (Batch) calculates the error across the *entire* dataset before making a single update. Option C (Mini-batch) processes small chunks (e.g., 32 points) at a time. Option D (PCA) is an unsupervised dimensionality reduction technique, completely unrelated to supervised weight optimization in neural networks."
+    }
+]

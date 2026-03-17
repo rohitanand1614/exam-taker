@@ -1,0 +1,995 @@
+[
+    {
+        "id": "Transformer_3B1B_Attention_001",
+        "question": "What is the core problem that the attention mechanism solves with respect to token embeddings?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Initial embeddings are too large and need to be compressed",
+            "B) Initial token embeddings are context-free lookup vectors that need to be updated based on surrounding tokens",
+            "C) Token embeddings cannot represent rare words accurately",
+            "D) Initial embeddings encode too much positional information"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention",
+            "embedding",
+            "context"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The initial embedding step is effectively a lookup table — the vector for 'mole' is the same whether it means an animal, a unit of chemistry, or a skin growth. The attention block is responsible for updating these context-free embeddings based on surrounding tokens. Option D is the opposite — initial embeddings lack positional context, not contain too much of it."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_002",
+        "question": "In the 'mole' example (American shrew mole / one mole of carbon dioxide / take a biopsy of the mole), what does the attention block do differently for each sentence?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It assigns a different initial embedding to 'mole' based on the sentence",
+            "B) It calculates what to add to the same generic 'mole' embedding to move it toward the contextually correct meaning",
+            "C) It replaces the 'mole' token with a more specific token",
+            "D) It ignores the 'mole' token and focuses only on surrounding context tokens"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention",
+            "context",
+            "embedding-update"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The initial embedding of 'mole' is identical in all three cases (it's a lookup). The attention block computes what delta to add to this generic embedding to move it toward the direction in embedding space encoding the specific meaning (animal, chemistry unit, or skin growth). The token is never replaced — it's refined in-place."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_003",
+        "question": "In the 'Eiffel Tower' example, if the phrase is 'miniature Eiffel Tower', what is the expected effect of attention on the 'tower' embedding?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The embedding should move toward directions correlating with large, tall structures",
+            "B) The embedding for 'Eiffel' should be updated to absorb meaning from 'tower'",
+            "C) The 'tower' embedding should be updated away from large/tall associations and toward miniature/small",
+            "D) All token embeddings should merge into a single context vector"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "attention",
+            "context",
+            "embedding-update"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "In this example, 'Eiffel' first updates 'tower' toward Paris/France/iron associations. Then 'miniature' further updates 'tower' so it no longer correlates with large, tall things. This illustrates how multiple context tokens can iteratively refine an embedding through attention across layers."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_004",
+        "question": "What is a Query vector in the attention mechanism, intuitively?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A compressed representation of the full sentence",
+            "B) A vector that encodes what kind of context a token is looking for",
+            "C) A vector that encodes what information a token is offering to others",
+            "D) The final output vector after attention computation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "query",
+            "self-attention",
+            "intuition"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "A Query vector encodes a 'question' — for example, a noun asking 'are there any adjectives in front of me?' The Query is computed by multiplying the token embedding by the WQ matrix. Keys are potential answers (option C describes Keys, not Queries). Practical tip: Think of Q as the seeker and K as the responder."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_005",
+        "question": "What is a Key vector in the attention mechanism, intuitively?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A vector encoding positional information of the token",
+            "B) A vector encoding what updates a token wants to make to others",
+            "C) A potential answer to the query — encoding what information a token is offering",
+            "D) A compressed version of the embedding for storage efficiency"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "key",
+            "self-attention",
+            "intuition"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Key vectors are conceptually 'potential answers' to queries. In the adjective-noun example, the keys of 'fluffy' and 'blue' are closely aligned with the query of 'creature', indicating these adjectives are relevant to updating the noun. Keys and queries live in the same smaller-dimensional space for this alignment to work."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_006",
+        "question": "How is the relevance (attention score) between a Query vector and a Key vector measured?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Cosine similarity followed by normalization",
+            "B) Euclidean distance between the two vectors",
+            "C) Dot product of the Query and Key vectors",
+            "D) Cross product of the Query and Key vectors"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "attention-score",
+            "dot-product",
+            "query-key"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The dot product of Q and K measures alignment — a larger dot product means stronger alignment (higher relevance). The dot product is efficient to compute and differentiable, making it suitable for training. Euclidean distance would penalize magnitude, not just direction. Cross products are not scalar and not applicable here."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_007",
+        "question": "What is the 'attention pattern' in the Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The weight matrix WQ used to compute queries",
+            "B) A grid of softmax-normalized relevance scores between all token pairs",
+            "C) The sequence of value vectors before weighting",
+            "D) The final output embeddings after the attention block"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention-pattern",
+            "softmax",
+            "self-attention"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The attention pattern is the n×n grid where entry [i,j] represents how much token i should influence token j, after applying softmax column-by-column. Each column sums to 1, forming a probability distribution over source tokens for each target token. Practical tip: Visualizing attention patterns is a key interpretability tool."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_008",
+        "question": "Why is softmax applied column-by-column to the raw dot-product scores to form the attention pattern?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To convert scores to negative values for masking",
+            "B) To normalize scores in each column to a probability distribution between 0 and 1 that sums to 1",
+            "C) To reduce the dimensionality of the score matrix",
+            "D) To apply the masking before computing attention weights"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "softmax",
+            "attention-pattern",
+            "normalization"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Raw dot products can range from -∞ to +∞. Softmax applied column-by-column converts each column into a proper probability distribution (values between 0-1, sum to 1), allowing them to act as weights in a weighted sum of value vectors. Masking is applied before softmax, not during it."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_009",
+        "question": "What is the purpose of the Value vector (computed via the WV matrix) in attention?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To determine how relevant one token is to another",
+            "B) To encode the positional information of each token",
+            "C) To encode the specific update a token should add to another token's embedding when relevant",
+            "D) To compress the embedding dimension for efficiency"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "value-vector",
+            "WV",
+            "embedding-update"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The Value vector answers: 'If I (source token) am relevant to another token, what exactly should I add to that token's embedding?' For example, if 'fluffy' attends to 'creature', the value vector of 'fluffy' encodes the delta to add to 'creature's embedding to encode 'fluffy creature'. Keys/queries determine relevance; values determine content."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_010",
+        "question": "In the adjective-noun example (\"A fluffy blue creature roamed the verdant forest\"), when updating the embedding of 'creature', what happens mathematically?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The embedding of 'creature' is replaced by the average of all token embeddings",
+            "B) Value vectors for 'fluffy' and 'blue' are scaled by large attention weights and summed; this delta is added to creature's embedding",
+            "C) The embeddings of 'fluffy' and 'blue' are directly added to the embedding of 'creature'",
+            "D) The query of 'creature' is added to its own embedding"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "value-vector",
+            "weighted-sum",
+            "embedding-update"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The value vectors of 'fluffy' and 'blue' are multiplied by their large attention weights (since they align well with creature's query), and value vectors of irrelevant words get near-zero weights. These weighted values are summed to form ΔE, which is added to creature's original embedding producing E' — a richer 'fluffy blue creature' representation."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_011",
+        "question": "What is the correct sequence of operations in a single attention head?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Compute values → Compute keys/queries → Score → Softmax → Update embeddings",
+            "B) Compute queries and keys → Dot product scores → Scale by √dk → Softmax → Weight value vectors → Sum to get ΔE → Add to embeddings",
+            "C) Embed tokens → Softmax → Score → Multiply by WV → Add positional encoding",
+            "D) Score → Normalize → Compute Q/K/V → Weighted sum → Layer norm"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention",
+            "process-order",
+            "single-head"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The correct pipeline: (1) Compute Q=X·WQ and K=X·WK, (2) compute dot products Q·KT, (3) scale by 1/√dk for stability, (4) apply softmax column-wise, (5) multiply each value vector V=X·WV by its softmax weight, (6) sum weighted values to get ΔE, (7) add ΔE to original embedding. Computing Q/K/V before scoring is required — you need them to compute scores."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_012",
+        "question": "Why is dividing by √dk necessary before applying softmax to dot-product scores?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To ensure all attention weights equal exactly 0.5",
+            "B) To prevent extremely large dot products that push softmax into near-zero gradient regions",
+            "C) To convert the scores into a valid probability distribution",
+            "D) To reduce the rank of the attention matrix"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "scaling",
+            "gradient-stability",
+            "softmax"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "When dk is large, dot products can grow very large in magnitude, pushing softmax into saturation regions where gradients become near-zero — hurting learning. Dividing by √dk keeps scores in a reasonable range. Softmax (not the division) converts to probabilities. This is explicitly stated as a 'numerical stability' measure in the 3B1B lesson."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_013",
+        "question": "What is 'masking' in the context of the Transformer attention mechanism?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Setting padding token scores to zero",
+            "B) Setting future token positions to -∞ before softmax so they contribute zero attention weight",
+            "C) Randomly zeroing out attention weights during training for regularization",
+            "D) Hiding the key matrix from the query computation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "masking",
+            "causal-attention",
+            "decoder"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Masking sets scores for future positions to -∞ before softmax. After softmax, e^(-∞) = 0, so those positions contribute nothing to the weighted sum. This prevents later tokens from 'leaking' information into earlier positions during training, preserving the autoregressive training objective. Option C describes dropout, not masking."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_014",
+        "question": "Why is masking applied during training but described as 'less relevant' when the model runs as a chatbot?",
+        "type": "multiple_choice",
+        "options": [
+            "A) During inference, the model processes all tokens in parallel like the encoder",
+            "B) During inference, the model generates one token at a time so future tokens don't exist yet",
+            "C) During inference, masking is replaced by beam search",
+            "D) During inference, the model uses a different architecture without masking"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "masking",
+            "inference",
+            "autoregressive"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "During training, the full target sequence is available simultaneously (teacher forcing), so masking is needed to prevent future tokens from influencing earlier ones. During inference/chatbot use, the model generates token by token — future tokens don't exist yet, so there's nothing to mask. The constraint is naturally satisfied by the sequential generation process."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_015",
+        "question": "What is the computational complexity (in terms of context size n) of the attention pattern matrix?",
+        "type": "multiple_choice",
+        "options": [
+            "A) O(n) — linear in sequence length",
+            "B) O(n log n) — quasi-linear",
+            "C) O(n²) — quadratic in sequence length",
+            "D) O(n³) — cubic in sequence length"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "complexity",
+            "context-size",
+            "scalability"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The attention pattern is an n×n matrix (one row and one column per token), so it grows as O(n²) in both memory and computation. This quadratic scaling is why scaling context windows is 'nontrivial' as stated in the lesson. At n=10,000 tokens, this is 100M entries per head per layer. Practical tip: Sparse/linear attention variants (Longformer, FlashAttention) aim to reduce this."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_016",
+        "question": "In GPT-3, how many attention heads are used in each multi-head attention block?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 8",
+            "B) 16",
+            "C) 64",
+            "D) 96"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "gpt-3",
+            "multi-head-attention",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "GPT-3 uses 96 attention heads per block, each with its own distinct WQ, WK, and WV matrices, producing 96 distinct attention patterns. This is significantly more than the 8 heads in the original Transformer paper. The larger number of heads gives GPT-3 the capacity to learn more diverse contextual relationships simultaneously."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_017",
+        "question": "In GPT-3, what are the dimensions of the Key and Query weight matrices (WK, WQ)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 12,288 rows × 12,288 columns (square matrix)",
+            "B) 128 rows × 12,288 columns",
+            "C) 12,288 rows × 128 columns",
+            "D) 128 rows × 128 columns"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gpt-3",
+            "dimensionality",
+            "wq-wk"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "In GPT-3, WQ and WK have 12,288 columns (matching embedding dimension) and 128 rows (matching the key-query space dimension). This means they project from a 12,288-dim embedding space down to a 128-dim Q/K space: shape [128, 12288]. This gives 1,572,864 parameters per matrix. The smaller 128-dim space is where dot-product scores are computed."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_018",
+        "question": "Why is the Value matrix in GPT-3 factored into two smaller matrices (Value↓ and Value↑) instead of being a single large square matrix?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A single square value matrix would not produce meaningful context vectors",
+            "B) A single 12,288×12,288 value matrix would have ~150M parameters — far more than WQ and WK combined — making it parameter-inefficient",
+            "C) Two matrices allow the model to apply separate attention heads to each part",
+            "D) Factoring is required for backpropagation to work correctly"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "value-matrix",
+            "low-rank",
+            "parameter-efficiency"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "A full 12,288×12,288 value matrix would have ~150M parameters per head — vastly more than WQ and WK. By factoring into Value↓ (maps to 128-dim) and Value↑ (maps back to 12,288-dim), the parameter count matches WQ/WK at ~1.57M each. This low-rank factorization keeps computation efficient while preserving expressiveness. Practical tip: This is why papers often show WV as one matrix in equations but it's conceptually two."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_019",
+        "question": "What does the low-rank factorization of the Value matrix in attention imply mathematically?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Value transformation is an invertible linear map",
+            "B) The overall Value transformation is constrained to be a low-rank linear transformation",
+            "C) The Value vectors live in a higher-dimensional space than embeddings",
+            "D) The Value matrix applies a non-linear transformation to embeddings"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "low-rank",
+            "linear-algebra",
+            "value-matrix"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "Factoring the Value map as Value↓ × Value↑ (e.g., [12288,128] × [128,12288]) means the combined map is a product of two rank-128 matrices — constraining it to be at most rank-128. This is a low-rank transformation of the 12,288-dim embedding space. Low-rank transformations are not invertible in general and are not non-linear — they remain linear."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_020",
+        "question": "Approximately how many parameters does one attention head contribute in GPT-3 (using all four matrices: WQ, WK, Value↓, Value↑)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ~1.5 million",
+            "B) ~3 million",
+            "C) ~6.3 million",
+            "D) ~150 million"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "gpt-3",
+            "parameter-count",
+            "attention"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "Each of the four matrices (WQ, WK, Value↓, Value↑) has approximately 12,288 × 128 = 1,572,864 parameters. Four matrices × 1,572,864 ≈ 6.3 million parameters per attention head. With 96 heads × 96 layers, total attention parameters reach ~58 billion — about one-third of GPT-3's total parameters."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_021",
+        "question": "What is the approximate total number of parameters devoted to attention heads across all 96 layers of GPT-3?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ~600 million",
+            "B) ~6 billion",
+            "C) ~58 billion",
+            "D) ~175 billion"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "gpt-3",
+            "parameter-count",
+            "scale"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "~6.3M parameters per head × 96 heads per block × 96 layers ≈ 58 billion attention parameters. The lesson states this is about one-third of GPT-3's total 175 billion parameters. The remaining two-thirds come from MLP/feed-forward blocks — making the point that 'attention gets all the attention but MLPs have more parameters.'"
+    },
+    {
+        "id": "Transformer_3B1B_Attention_022",
+        "question": "What does multi-head attention enable that single-head attention cannot?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Processing longer sequences without quadratic complexity",
+            "B) Learning multiple distinct types of contextual relationships simultaneously using separate attention patterns",
+            "C) Computing attention without the WV matrix",
+            "D) Attending to tokens outside the context window"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multi-head-attention",
+            "representation",
+            "parallelism"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Each attention head learns different WQ, WK, WV matrices and thus captures different types of relationships — one head might track grammatical dependencies, another might track coreference, another semantic similarity. A single head uses one set of Q/K/V matrices and one attention pattern, limiting representational diversity. Practical tip: Different heads in BERT have been shown to specialize in syntactic roles, coreference, etc."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_023",
+        "question": "In GPT-3's multi-head attention, how are the outputs of 96 heads combined to produce the final embedding update for each token?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The head with the highest attention score is selected as the winner",
+            "B) All 96 ΔE vectors (one per head) are averaged",
+            "C) All 96 ΔE vectors (one per head) are summed together and added to the original embedding",
+            "D) The 96 ΔE vectors are concatenated and passed through a linear layer"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multi-head-attention",
+            "output",
+            "gpt-3"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Per the 3B1B lesson: each of the 96 heads produces a ΔE (proposed change) for each token position. All 96 ΔE vectors are summed together, and this total is added to the original embedding. This is different from the classical description (concatenate then project with WO), but equivalent. The lesson frames it as summing all head contributions."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_024",
+        "question": "Why does the 3B1B lesson emphasize that the true behavior of attention heads is 'difficult to parse'?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because the math is too complex to compute analytically",
+            "B) Because attention head behavior emerges from gradient descent on a loss function and may not correspond to human-interpretable patterns",
+            "C) Because attention heads operate on binary sparse patterns",
+            "D) Because the WV matrix is never disclosed in published models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "interpretability",
+            "attention",
+            "deep-learning"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The adjective-noun example is acknowledged as illustrative but not necessarily what any real attention head does. Real attention head behavior is determined by what minimizes the training loss — a high-dimensional optimization process. The weights are set to 'do whatever the model needs to best predict the next token', which may not correspond to clean linguistic patterns. This is a fundamental challenge in AI interpretability."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_025",
+        "question": "What is the key reason the attention mechanism is described as extremely valuable from an engineering perspective?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It requires fewer parameters than RNNs",
+            "B) It is highly parallelizable, enabling large-scale training on GPUs",
+            "C) It eliminates the need for positional encoding",
+            "D) It can handle infinite context windows"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "parallelization",
+            "gpu",
+            "scalability"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The 3B1B lesson explicitly states that a big part of the attention mechanism's success is that it's 'extremely parallelizable — meaning that it can run a huge number of computations in a short time using GPUs.' Scale combined with parallelism led to qualitative improvements. The lesson notes that scale alone has been shown to give huge qualitative leaps in model performance."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_026",
+        "question": "How does the Transformer make training more data-efficient by using a single sequence?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It uses data augmentation to create multiple training variants",
+            "B) It simultaneously predicts the next token for every subsequence in the input, treating one passage as many training examples",
+            "C) It caches computed embeddings across training batches",
+            "D) It uses transfer learning from a pre-trained encoder"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training",
+            "efficiency",
+            "next-token-prediction"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The model doesn't just predict the next token at the end — it simultaneously predicts what comes after every token in the sequence. A sentence of n tokens effectively gives n-1 training examples in one forward pass. This is why masking is needed during training: position t cannot see tokens t+1...n when making its prediction. Practical tip: This is why transformers need far less data per sequence than older RNN training approaches."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_027",
+        "question": "In the mystery novel example ('Therefore the murderer was...'), what must the attention blocks have done to the last embedding ('was') for the model to predict the murderer correctly?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Replaced the 'was' embedding with the first token's embedding",
+            "B) Updated the 'was' embedding through multiple attention layers to encode all relevant information from the entire context window",
+            "C) Computed the average of all embeddings in the novel",
+            "D) Stored the context in external memory beyond the embedding space"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention",
+            "context",
+            "information-aggregation"
+        ],
+        "difficulty": "medium",
+        "category": "scenario",
+        "difficulty_actual": "medium",
+        "explanation": "The last vector ('was') must serve as a summary of all contextually relevant information from the full novel for predicting the next word. Through multiple attention layers, this embedding is iteratively updated by information from preceding tokens — each layer adding more context. Only the last position's final embedding is used for the final prediction in autoregressive models."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_028",
+        "question": "You are debugging a transformer attention implementation. The attention weights for all tokens are nearly uniform (close to 1/n for all pairs). What is the MOST likely cause?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The WV matrix is initialized to zeros",
+            "B) The dot-product scores are not being divided by √dk, causing them to be very large and pushing softmax toward uniform distribution",
+            "C) Masking is applied to all positions, not just future ones",
+            "D) The embedding dimension is too small"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "debugging",
+            "softmax",
+            "scaling"
+        ],
+        "difficulty": "hard",
+        "category": "debugging",
+        "explanation": "When dot products are very large (common with high-dim Q/K), softmax saturates toward a uniform distribution because all inputs to softmax become relatively equal after the exponential. The fix is dividing by √dk before softmax. Option A (WV=0) would zero out all output updates but wouldn't affect attention weight distribution. Practical tip: Always check whether your implementation scales by √dk."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_029",
+        "question": "Examine this attention implementation. What is the bug?\n\ndef attention(Q, K, V):\n    dk = K.shape[-1]\n    scores = Q @ K.T\n    scores = scores / np.sqrt(dk)\n    weights = softmax(scores, axis=0)\n    return weights @ V",
+        "type": "multiple_choice",
+        "options": [
+            "A) K should not be transposed",
+            "B) Softmax should be applied along axis=-1 (row-wise), not axis=0 (column-wise)",
+            "C) V should be transposed in the final matmul",
+            "D) The scaling factor should be dk, not sqrt(dk)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "debugging",
+            "code",
+            "softmax-axis"
+        ],
+        "difficulty": "hard",
+        "category": "debugging",
+        "explanation": "The bug is softmax(scores, axis=0) — this applies softmax column-wise (each column sums to 1). The correct behavior is softmax along axis=-1 (row-wise) so each row (query) produces a normalized distribution over all keys. The 3B1B lesson uses column-wise softmax because it visualizes which source tokens influence each target — but in code, rows represent queries and columns represent keys, so axis=-1 is correct."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_030",
+        "question": "Which of the following best explains why deeper Transformer layers can capture more abstract concepts like 'tone' and 'sentiment'?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Deeper layers have access to more training data",
+            "B) Each successive attention block refines embeddings using increasingly nuanced representations from previous layers, enabling hierarchical abstraction",
+            "C) Deeper layers use larger WQ/WK matrices",
+            "D) Deeper layers apply more aggressive masking"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deep-learning",
+            "abstraction",
+            "layer-depth"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "As data flows through successive attention blocks, each embedding ingests context from increasingly nuanced representations of surrounding tokens. Early layers may encode surface-level patterns (adjectives modifying nouns); deeper layers build on these to capture higher-order patterns like sentiment, narrative tone, or coreference chains. This hierarchical representation learning is a core property of deep networks."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_031",
+        "question": "A team is building a long-context document QA system needing 32,768-token context. The original Transformer architecture would struggle PRIMARILY because of which reason?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Sinusoidal positional encoding cannot represent 32,768 positions",
+            "B) The attention pattern grows to 32,768 × 32,768 ≈ 1 billion entries per head per layer, making memory and compute prohibitive",
+            "C) The vocabulary size limits context to 4,096 tokens",
+            "D) The feed-forward network cannot process sequences longer than its input dimension"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "long-context",
+            "scalability",
+            "system-design"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "explanation": "At n=32,768 tokens, the attention matrix is 32,768² ≈ 1.07 billion entries per head. With 96 heads × 96 layers in GPT-3 scale, this is computationally infeasible with vanilla attention. Modern solutions include FlashAttention (memory-efficient computation), sparse attention, or sliding window attention. Sinusoidal encoding (A) actually generalizes to unseen lengths — it's the compute/memory that's the bottleneck."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_032",
+        "question": "Referring to the 'Harry' example in the lesson: if 'wizard' is in the passage, the model associates Harry with Harry Potter; if 'Queen, Sussex, William' are present, Harry maps to Prince Harry. What does this illustrate about attention?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Attention is limited to grammatical (noun-adjective) relationships only",
+            "B) Attention can capture long-range, non-grammatical, semantically rich associations across an entire context",
+            "C) Attention always chooses the most recent mention of a concept",
+            "D) Attention requires explicit entity tags to resolve ambiguity"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention",
+            "long-range",
+            "semantics"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The Harry example shows attention resolving named-entity ambiguity using contextually distant, semantically associated tokens ('wizard' vs. 'Queen, Sussex'). This goes far beyond local grammatical patterns — it demonstrates attention's power for long-range, content-based associations that are learned implicitly from data, not hard-coded rules."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_033",
+        "question": "All of the following are true about a single attention head EXCEPT:",
+        "type": "multiple_choice",
+        "options": [
+            "A) It is parameterized by three matrices: WQ, WK, and WV",
+            "B) It produces a proposed change ΔE for each token position",
+            "C) It can only attend to the immediately preceding token",
+            "D) Its Q/K vectors live in a smaller-dimensional space than the embeddings"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "attention",
+            "misconception",
+            "single-head"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "C is FALSE — attention computes scores between ALL token pairs, not just adjacent ones. This long-range capability is one of the defining advantages over RNNs. All other options are correct: A) WQ, WK, WV are the three parameter matrices; B) each head outputs ΔE for every position; D) Q/K are in a smaller space (128-dim vs. 12,288-dim in GPT-3)."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_034",
+        "question": "When would you prefer a Transformer over an LSTM for a sequence modeling task?",
+        "type": "multiple_choice",
+        "options": [
+            "A) When sequences are very short (< 10 tokens) and computation is limited",
+            "B) When you need to capture long-range dependencies and have enough GPU resources to train at scale",
+            "C) When you need online/streaming inference where each token is processed immediately",
+            "D) When the training dataset is very small (< 1,000 examples)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer-vs-lstm",
+            "tradeoff",
+            "use-cases"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "explanation": "Transformers excel at long-range dependencies (direct O(1) path between any two tokens) and parallelize well on GPUs for large datasets. For very short sequences, LSTMs may be competitive with less overhead. For online/streaming inference (C), LSTMs are more natural — Transformers require the full context window. For very small datasets (D), LSTMs may generalize better due to lower parameter count."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_035",
+        "question": "What is the conceptual difference between how a Query vector and how a Key vector are used during attention computation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Queries are multiplied by WQ; Keys are multiplied by WK — there is no conceptual difference",
+            "B) Queries represent what a token is looking for; Keys represent what a token is offering — they are matched via dot product",
+            "C) Queries are used to compute output updates; Keys determine which layer processes a token",
+            "D) Queries come from the decoder; Keys always come from the encoder"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "query-key",
+            "intuition",
+            "attention-mechanism"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Queries encode 'what am I looking for?' (a noun asking 'are there adjectives before me?'). Keys encode 'what do I offer as context?' (adjective signaling 'I can describe a noun'). High dot product between Q_i and K_j means token j's key matches token i's query — j should attend to i. Option D confuses cross-attention (encoder-decoder) with self-attention — in self-attention both Q and K come from the same source."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_036",
+        "question": "You are building a sentiment analysis model for customer reviews. You decide to use only the encoder portion of a Transformer (BERT-style) rather than a full encoder-decoder. What is the primary justification?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Encoder-only models cannot perform masking so they train faster",
+            "B) Sentiment classification is not a sequence generation task — only a contextualized representation of the input is needed, not output token generation",
+            "C) Encoder-only models use larger embedding dimensions",
+            "D) Encoder-decoder is only appropriate for languages other than English"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "encoder-only",
+            "bert",
+            "system-design"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "Sentiment classification is a discriminative (classification) task, not a generative task. An encoder-only model (like BERT) processes the full input bidirectionally to produce rich contextual embeddings, then a classification head predicts sentiment. The decoder is unnecessary since we don't need to generate sequences. Encoder-only models also benefit from bidirectional (non-causal) attention since they see the full input at once."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_037",
+        "question": "Referring to the 3B1B lesson: what fraction of GPT-3's total parameters are devoted to attention mechanisms?",
+        "type": "multiple_choice",
+        "options": [
+            "A) About 10%",
+            "B) About one-third",
+            "C) About two-thirds",
+            "D) About 90%"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gpt-3",
+            "parameter-count",
+            "mlp-vs-attention"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The lesson states attention parameters total ~58 billion, which is about one-third of GPT-3's ~175 billion total parameters. The majority (~two-thirds) come from the MLP/feed-forward blocks between attention layers. This is a key insight: 'even though attention gets all the attention, the majority of parameters come from the blocks sitting in between these steps.'"
+    },
+    {
+        "id": "Transformer_3B1B_Attention_038",
+        "question": "A colleague claims: 'In a well-trained Transformer, each attention head captures a specific, interpretable linguistic rule (e.g., subject-verb agreement).' Is this claim accurate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Yes — each head is explicitly trained with a linguistic supervision signal",
+            "B) Partially — some heads show interpretable patterns (like coreference), but most heads learn arbitrary functions optimized for next-token prediction",
+            "C) No — attention heads are purely random and cannot be interpreted",
+            "D) Yes — the WQ/WK matrices are initialized with linguistic priors"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "interpretability",
+            "attention-heads",
+            "misconception"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "Research (e.g., Clark et al., 2019 on BERT heads) shows some heads do specialize in interpretable patterns (certain heads attend to previous tokens, others to separators, some track syntax). However, the 3B1B lesson explicitly cautions that 'the true behavior is much harder to parse' and weights are set to 'do whatever the model needs to best accomplish its goal.' No explicit linguistic supervision is used."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_039",
+        "question": "Which statement correctly describes what happens to the original embedding after an attention block?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The original embedding is discarded and replaced by the attention output",
+            "B) The attention output ΔE is added to the original embedding, producing a refined E'",
+            "C) The embedding is multiplied by the attention weights directly",
+            "D) The original embedding is averaged with the attention output"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "residual-connection",
+            "embedding-update",
+            "attention-output"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The attention output (ΔE, the weighted sum of value vectors) is added to the original embedding: E' = E + ΔE. This is the residual connection. The original signal is preserved while contextual information is incorporated additively. This is NOT a replacement or average — the additive structure is essential for gradient flow and is connected to residual networks (ResNets)."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_040",
+        "question": "What would happen if you removed all masking from a GPT-style language model during training?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model would train faster since it has access to more information",
+            "B) The model would 'cheat' by using future tokens to predict current ones, learning a trivial identity mapping that fails at inference time",
+            "C) The model would learn bidirectional representations like BERT",
+            "D) The attention pattern would collapse to a uniform distribution"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "masking",
+            "training",
+            "autoregressive"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "Without masking, token at position t can see token at t+1 during training, making next-token prediction trivially easy (just copy the next token). The model would not learn meaningful language representations and would fail completely at inference when future tokens are not available. Option C (BERT-style) does remove causal masking but uses a different training objective (masked language modeling, not next-token prediction)."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_041",
+        "question": "Consider the compact attention formula: Attention(Q,K,V) = softmax(K^T Q / √dk) · V. What does the K^T Q term represent geometrically?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The L2 norm between query and key vectors",
+            "B) The full grid of dot products between all key-query pairs, measuring pairwise alignment",
+            "C) The projection of queries onto the key space",
+            "D) The outer product of K and Q vectors"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention-formula",
+            "matrix-multiplication",
+            "geometric"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "K^T Q computes all pairwise dot products between key vectors (rows of K^T) and query vectors (columns of Q), producing the [seq × seq] score grid. Each entry [i,j] = dot(k_i, q_j), measuring alignment between key of token i and query of token j. This is the 'grid of dots' visualization from the 3B1B lesson. It's not a projection (which would project one set onto another, changing dimensionality in only one direction)."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_042",
+        "question": "You are designing a real-time translation system where latency is critical. You have a choice between 96-head attention (GPT-3 style) and 8-head attention (original Transformer). Setting aside quality, which has lower inference latency and why?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 96-head is faster because more heads can parallelize more computation",
+            "B) 8-head has lower latency because it computes fewer Q/K/V projections and attention patterns per layer",
+            "C) Both have identical latency since total parameter count is the same",
+            "D) 96-head is faster because it uses smaller per-head dimensions"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "latency",
+            "tradeoff",
+            "multi-head-attention"
+        ],
+        "difficulty": "hard",
+        "category": "tradeoff",
+        "explanation": "96 heads require 96 sets of WQ/WK/WV projections and 96 attention pattern computations per layer — more total FLOPs. Although all heads run in parallel on GPU, each layer still requires more memory bandwidth and computation than 8 heads. With 8 heads, fewer parameters are applied per layer → lower per-layer latency. Quality tradeoff: 8 heads capture fewer relationship types. In production, head count is tuned to meet quality/latency SLAs."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_043",
+        "question": "Select ALL true statements about the Value matrix and its role in attention. (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Value vectors are used to determine which tokens are relevant to each other",
+            "B) Value vectors encode what specific information should be transferred when attention is high",
+            "C) The Value matrix is factored into two smaller matrices in practice to reduce parameter count",
+            "D) Value vectors live in the same high-dimensional embedding space as the input embeddings"
+        ],
+        "correct_indices": [
+            1,
+            2,
+            3
+        ],
+        "tags": [
+            "value-matrix",
+            "multi-select",
+            "attention"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "B) Correct — V encodes 'what to transfer' when relevant. C) Correct — Value is factored into Value↓ × Value↑ for parameter efficiency. D) Correct — the final value vectors (after Value↑) are added to the embedding space, so they live in the same space. A) is WRONG — relevance is determined by Q·K dot products, not Value vectors. Confusing Q/K (relevance) with V (content) is the most common misconception about attention."
+    },
+    {
+        "id": "Transformer_3B1B_Attention_044",
+        "question": "Why does the initial token embedding encode position information in addition to word identity?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because word meaning changes based on frequency rank in the vocabulary",
+            "B) Because self-attention is permutation-invariant and would otherwise treat 'dog bites man' and 'man bites dog' identically",
+            "C) Because larger position indices need larger embedding values for numerical stability",
+            "D) Because the WQ matrix requires positional information to compute valid queries"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "positional-encoding",
+            "permutation-invariance",
+            "self-attention"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Self-attention computes relationships between all pairs of tokens regardless of their order — the attention scores for 'dog bites man' and 'man bites dog' would be identical without positional information. By encoding position into the embeddings, the model distinguishes tokens by both identity and position. The 3B1B lesson notes 'the entries of this vector are enough to tell you both what the word is as well as where it exists in the context.'"
+    },
+    {
+        "id": "Transformer_3B1B_Attention_045",
+        "question": "A researcher proposes skipping the attention mechanism and instead updating each token's embedding by simply averaging all other embeddings in the context. What crucial capability would be lost?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model could no longer process sequences longer than 512 tokens",
+            "B) Content-based, dynamic routing of information — some tokens contribute more than others based on learned relevance, not equal averaging",
+            "C) The model could no longer use positional encoding",
+            "D) Backpropagation would not work through an averaging operation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention",
+            "content-based-routing",
+            "comparison"
+        ],
+        "difficulty": "hard",
+        "category": "tradeoff",
+        "explanation": "Simple averaging gives equal weight to all tokens regardless of relevance — 'fluffy' and 'the' would contribute equally to updating 'creature'. Attention's power lies in dynamically routing information based on content (Q·K alignment), learned from data. This content-based, input-dependent weighting is what allows attention to selectively incorporate relevant context. Backpropagation (D) works fine through averaging — that's not the issue."
+    }
+]

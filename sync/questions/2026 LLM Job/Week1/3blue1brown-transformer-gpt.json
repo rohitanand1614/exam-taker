@@ -1,0 +1,993 @@
+[
+    {
+        "id": "Transformer_3B1B_GPT_001",
+        "question": "What does the acronym GPT stand for?",
+        "type": "multiple_choice",
+        "options": [
+            "A) General Purpose Transformer",
+            "B) Generative Pre-Trained Transformer",
+            "C) Gradient Pre-Tuned Transformer",
+            "D) Generalized Probabilistic Transformer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gpt",
+            "terminology",
+            "llm"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "GPT stands for Generative Pre-Trained Transformer. Generative = it generates new text. Pre-Trained = trained on large amounts of data before fine-tuning. Transformer = the underlying neural network architecture. 'General Purpose' (A) is a common misconception — GPT is task-specific by design (next-token prediction)."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_002",
+        "question": "What is the core task that GPT-style models are trained to perform?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Classifying input text into predefined categories",
+            "B) Translating text between two specific languages",
+            "C) Predicting the next token as a probability distribution over all possible tokens",
+            "D) Summarizing long documents into short paragraphs"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "gpt",
+            "next-token-prediction",
+            "training-objective"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "GPT models are trained for next-token prediction — given an input sequence, they output a probability distribution over all possible next tokens. Text generation emerges from repeatedly sampling this distribution. Classification (A) and summarization (D) are downstream fine-tuning tasks, not the core pre-training objective."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_003",
+        "question": "How does a GPT model generate a long piece of text from a next-token prediction model?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It predicts all tokens simultaneously in a single forward pass",
+            "B) It uses a separate decoder network to expand one prediction into a full sequence",
+            "C) It repeatedly predicts the next token, appends a sample from that distribution to the input, and runs again",
+            "D) It copies the most frequent n-gram from its training data"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "text-generation",
+            "autoregressive",
+            "sampling"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Text generation is autoregressive: (1) predict probability distribution over next tokens, (2) sample one token from that distribution, (3) append it to input, (4) repeat. This is what produces the word-by-word streaming effect seen in ChatGPT. Option A describes parallel generation (like masked language models), not GPT."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_004",
+        "question": "What are 'tokens' in the context of a transformer-based language model?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Always complete words from a fixed dictionary",
+            "B) Small chunks of text such as sub-word pieces or punctuation that the input is broken into",
+            "C) Individual characters of the input text",
+            "D) Sentence-level units used for parsing"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tokenization",
+            "tokens",
+            "preprocessing"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Tokens are small chunks of text — often sub-word units, not necessarily full words. For example, 'cleverest' might tokenize as 'cle|ve|rest'. This sub-word approach handles rare words and keeps vocabulary size manageable (~50,000 tokens for GPT-3). Tokenization is a pre-processing step before vectors enter the transformer."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_005",
+        "question": "What is the high-level data flow through a GPT transformer from input text to next-token prediction?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Tokenize → Embed → [Attention + MLP] × N layers → Unembed → Softmax",
+            "B) Embed → Tokenize → Attention → Softmax → MLP",
+            "C) Tokenize → Softmax → Embed → Attention → Unembed",
+            "D) Embed → MLP → Attention → Tokenize → Softmax"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "transformer-architecture",
+            "data-flow",
+            "gpt"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The correct pipeline is: (1) tokenize input text into chunks, (2) embed each token as a vector via the embedding matrix, (3) pass through alternating Attention Blocks and MLP blocks (many times), (4) unembed the final vector into logits over vocabulary, (5) apply softmax to get probabilities. Tokenization always precedes embedding, and softmax always comes last."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_006",
+        "question": "What is the primary role of the Attention Block in a transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To compress the token sequence into a single fixed-size vector",
+            "B) To allow vectors to communicate and update each other based on context",
+            "C) To apply a non-linear activation function to each token independently",
+            "D) To convert token vectors into probability distributions"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention-block",
+            "context",
+            "communication"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The Attention Block enables vectors to 'talk to each other' — each vector can update its values by incorporating information from other vectors in the context. This is how 'model' in 'machine learning model' gets different contextualization than 'model' in 'fashion model'. The MLP block (not attention) processes each vector independently."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_007",
+        "question": "What is the primary role of the Multilayer Perceptron (MLP/Feed-Forward) block in a transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To allow tokens to share context with each other",
+            "B) To apply a learned transformation to each token vector independently and in parallel",
+            "C) To compute the dot products between Query and Key vectors",
+            "D) To embed the input tokens into high-dimensional vectors"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "mlp",
+            "feed-forward",
+            "transformer"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "In the MLP block, vectors do NOT communicate with each other — each vector is processed independently through the same network in parallel. The lesson describes this as 'asking a long list of questions about each vector and updating them based on the answers.' Communication between vectors happens only in Attention blocks, not MLPs."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_008",
+        "question": "What does 'deep' in 'deep learning' refer to in the context of transformers?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The high dimensionality of the embedding vectors",
+            "B) The large number of training examples used",
+            "C) The large number of stacked Attention + MLP layers",
+            "D) The depth of the vocabulary hierarchy"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "deep-learning",
+            "layers",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "As the 3B1B lesson states: 'A large number of layers like this is what puts the deep in deep learning.' Depth refers to the many stacked Attention + MLP blocks. GPT-3 has 96 such layers. Embedding dimensionality (A) is a different kind of 'depth' (width) and is not what the term 'deep' refers to."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_009",
+        "question": "What is machine learning, as distinguished from traditional programming?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A method that requires no data and uses explicit rules only",
+            "B) A body of methods where data is used to determine program behavior via tunable parameters, rather than explicit rules",
+            "C) A technique exclusively for image recognition tasks",
+            "D) A method that replaces all matrix operations with lookup tables"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "machine-learning",
+            "definition",
+            "parameters"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Machine learning uses data to tune parameters (weights) that determine behavior, rather than hand-coding rules. In a traditional program, a developer would write explicit if-then logic. In ML, the 'engineer's job is not to set those dials, but to determine a procedure to tune those parameters based on data' — exactly as described in the 3B1B lesson."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_010",
+        "question": "Why must deep learning model inputs be formatted as arrays of real numbers (tensors)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because GPUs can only process integer data types",
+            "B) Because the backpropagation algorithm requires differentiable operations on numerical arrays",
+            "C) Because tensors compress data to reduce memory usage",
+            "D) Because the attention mechanism only works on binary inputs"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deep-learning",
+            "backpropagation",
+            "tensor"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Backpropagation requires computing gradients of a loss function with respect to model parameters. This requires all operations to be differentiable with respect to real-valued inputs. The lesson explicitly states: 'in order for this algorithm to work well at scale, these models have to adhere to a specific format' — arrays of real numbers processed through differentiable operations (primarily matrix multiplications)."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_011",
+        "question": "In deep learning, model parameters are almost always called 'weights'. Why?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because they are always positive values between 0 and 1",
+            "B) Because they interact with data primarily through weighted sums, packaged as matrices",
+            "C) Because they measure the importance of each training example",
+            "D) Because they are initialized using weight decay"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "weights",
+            "parameters",
+            "matrix-multiplication"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Parameters are called 'weights' because they appear in weighted sums — each output neuron is a weighted sum of inputs. These weighted sums are packaged as matrix-vector products for computational efficiency. The lesson states: 'the only way they interact with the data being processed is through weighted sums.' Weights are not necessarily between 0 and 1 — they can be any real number."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_012",
+        "question": "How many weight matrices does GPT-3 contain, and how many total parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ~1,000 matrices and 1 billion parameters",
+            "B) ~28,000 matrices and 175 billion parameters",
+            "C) ~96 matrices and 96 billion parameters",
+            "D) ~50,000 matrices and 50 billion parameters"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gpt-3",
+            "parameter-count",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "GPT-3 organizes its 175 billion parameters into just under 28,000 distinct matrices across 8 categories. The 96 layers contain most of these matrices (attention + MLP weight matrices per layer). ~28,000 matrices is significantly more than 96 — each layer contains many matrices (WQ, WK, WV, WO, MLP weights, etc.)."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_013",
+        "question": "What is the purpose of non-linear functions (like softmax) interspersed between matrix-vector products in deep learning models?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To normalize gradients during backpropagation",
+            "B) To prevent the entire model from collapsing to a single linear transformation",
+            "C) To reduce the number of required weight matrices",
+            "D) To ensure all outputs are between 0 and 1"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "non-linearity",
+            "deep-learning",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Without non-linear activations, any sequence of matrix multiplications reduces to a single matrix multiplication (because the composition of linear functions is linear). Non-linearities break this, enabling the network to learn complex, non-linear functions. This is why universal approximation theorems require at least one hidden layer with non-linear activations."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_014",
+        "question": "What is the embedding matrix (WE) in a transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A matrix that converts probability distributions back into tokens",
+            "B) A matrix with one column per vocabulary token that maps tokens to high-dimensional vectors",
+            "C) A matrix that applies positional encoding to token embeddings",
+            "D) A matrix shared between the encoder and decoder for efficiency"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embedding-matrix",
+            "WE",
+            "vocabulary"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "WE is a lookup table — each column corresponds to one vocabulary token, and selecting a token retrieves its corresponding column vector (the embedding). In GPT-3, WE has 50,257 columns (vocabulary size) × 12,288 rows (embedding dimension) = ~617M parameters. The values start random and are learned during training."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_015",
+        "question": "What are the dimensions of GPT-3's embedding matrix (WE)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 12,288 rows × 12,288 columns",
+            "B) 50,257 rows × 12,288 columns",
+            "C) 12,288 rows × 50,257 columns",
+            "D) 2,048 rows × 50,257 columns"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "embedding-matrix",
+            "dimensions",
+            "gpt-3"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "WE has 12,288 rows (embedding dimension) × 50,257 columns (vocabulary size). Each column is the embedding vector for one token. To embed a token, you select its column — a matrix-vector product of WE with a one-hot vector. This gives 12,288 × 50,257 ≈ 617M parameters. Note: unembedding matrix WU has the transposed shape — 50,257 rows × 12,288 columns."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_016",
+        "question": "In word embedding space, what is the geometric significance of directions?",
+        "type": "multiple_choice",
+        "options": [
+            "A) All directions are equally meaningless — only distances matter",
+            "B) Specific directions in embedding space encode semantic concepts (e.g., gender, plurality, nationality)",
+            "C) Directions encode syntactic parse trees",
+            "D) Directions represent the frequency of words in the training corpus"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embedding-space",
+            "semantic-directions",
+            "word2vec"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "During training, the model settles on embeddings where directions encode meaningful semantic properties. The classic example: vector(woman) - vector(man) ≈ vector(queen) - vector(king), suggesting a 'gender direction.' The lesson also shows plurality and nationality directions. These emerge naturally from training on large text corpora — they are not hand-coded."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_017",
+        "question": "What does the classic word embedding relationship 'king - man + woman ≈ queen' demonstrate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) That the embedding matrix has rank deficiency",
+            "B) That word embeddings encode semantic relationships as linear directions in vector space",
+            "C) That gender information is always orthogonal to royal status information",
+            "D) That king and queen have identical embeddings except for a noise term"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word-embedding",
+            "analogy",
+            "semantic-directions"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "king - man + woman ≈ queen demonstrates that relationships like gender are encoded as consistent linear directions (vector offsets) in embedding space. The offset (woman - man) represents a 'gender direction' that can be applied to other gendered word pairs. The lesson notes this isn't perfect in practice — 'queen' is used differently than just a feminine king — but it illustrates the principle."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_018",
+        "question": "What does the dot product between two embedding vectors measure?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Euclidean distance between the two word meanings",
+            "B) How frequently the two words co-occur in training data",
+            "C) How well the two vectors align — positive for similar direction, zero for perpendicular, negative for opposite",
+            "D) The number of shared characters between the two words"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "dot-product",
+            "similarity",
+            "geometry"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The dot product measures directional alignment: positive when vectors point similarly (semantically related words), zero when perpendicular (unrelated), negative when opposite. The lesson explicitly states: 'the dot product of two vectors can be thought of as measuring how well they align.' This is why dot products are used to compute attention scores — high dot product means high relevance."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_019",
+        "question": "If Embedding(cats) - Embedding(cat) represents a 'plurality direction', what would you expect when computing its dot product with the embedding of the word 'two'?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A large negative value, since 'two' is not a noun",
+            "B) A value close to zero, since number words are unrelated to plurality",
+            "C) A positive value, since 'two' implies plurality",
+            "D) The same value as for the word 'one'"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "dot-product",
+            "embedding-direction",
+            "plurality"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The lesson explicitly tests this: taking the dot product of the plurality direction with embeddings of 'one, two, three, four' gives increasing values — as if quantitatively measuring how plural the model finds a word. 'Two' implies plurality (more than one), so its embedding aligns positively with the plurality direction. 'One' would give a lower value than 'two.'"
+    },
+    {
+        "id": "Transformer_3B1B_GPT_020",
+        "question": "Based on the lesson's word analogy examples, what would you expect from: Embedding(Italy) - Embedding(Germany) + Embedding(Hitler)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Something close to Embedding(Churchill)",
+            "B) Something close to Embedding(Mussolini)",
+            "C) Something close to Embedding(Rome)",
+            "D) Something close to Embedding(Berlin)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "word-embedding",
+            "analogy",
+            "semantic-directions"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Italy - Germany captures an 'Italian-ness offset.' Adding it to Hitler (a German WWII Axis leader) points toward an Italian WWII Axis leader — Mussolini. This illustrates the lesson's point that 'the model learned to associate some directions with Italian-ness and others with WWII Axis leaders.' Churchill (A) was Allied, not Axis."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_021",
+        "question": "What embedding dimension does GPT-3 use for each token vector?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 512",
+            "B) 2,048",
+            "C) 12,288",
+            "D) 50,257"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "gpt-3",
+            "embedding-dimension",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "GPT-3 uses 12,288-dimensional embedding vectors. This high dimensionality is important — as the lesson notes, 'it matters to work in a space with lots of distinct directions' to encode rich semantic information. 50,257 is the vocabulary size. 2,048 is GPT-3's context window size. 512 is the original Transformer's embedding dimension."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_022",
+        "question": "What is GPT-3's context window size, and what practical consequence does this have?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 512 tokens — the model cannot handle full paragraphs",
+            "B) 2,048 tokens — limits how much text the model can incorporate, causing early ChatGPT to lose conversational thread in long chats",
+            "C) 12,288 tokens — matching the embedding dimension for efficiency",
+            "D) 50,257 tokens — matching the vocabulary size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "context-window",
+            "gpt-3",
+            "limitations"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "GPT-3 was trained with a context size of 2,048 tokens. This limits how much preceding text it can reference when making predictions. The lesson notes this is 'why long conversations with the early versions of ChatGPT often gave the feeling of the bot losing the thread of conversation' — once context exceeded 2,048 tokens, early text fell out of the window."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_023",
+        "question": "What does the unembedding matrix (WU) do in a GPT model?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Converts token indices into embedding vectors (the inverse of WE)",
+            "B) Maps the final context vector to a list of ~50,000 logit values — one per vocabulary token",
+            "C) Applies positional encoding to the final layer's embeddings",
+            "D) Normalizes the final layer's vectors using layer normalization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "unembedding-matrix",
+            "WU",
+            "logits"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "WU maps the last vector in the final layer (a 12,288-dim embedding) to a 50,257-dim vector of logits — one raw score per vocabulary token. Softmax then converts these logits to probabilities. WU is the inverse operation to WE in shape (50,257 rows × 12,288 columns vs WE's 12,288 × 50,257) but is not literally the matrix inverse of WE — both are learned independently."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_024",
+        "question": "What are the dimensions of GPT-3's unembedding matrix (WU)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 12,288 rows × 50,257 columns",
+            "B) 50,257 rows × 12,288 columns",
+            "C) 2,048 rows × 12,288 columns",
+            "D) 12,288 rows × 12,288 columns"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "unembedding-matrix",
+            "dimensions",
+            "gpt-3"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "WU has 50,257 rows (one per vocabulary token) × 12,288 columns (embedding dimension). Each row is a 12,288-dim vector; the dot product of the last embedding with each row gives the logit for that token. This is the transposed shape of WE (which is 12,288 × 50,257), giving the same ~617M parameters as the embedding matrix."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_025",
+        "question": "Why is only the LAST vector in the final layer used to make the next-token prediction at inference time?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The last vector is always the largest and most informative",
+            "B) All other vectors are discarded after attention computation",
+            "C) During training, each vector simultaneously predicts what follows it, making the last position predict the true next token at inference",
+            "D) The last vector is the only one that has seen all attention heads"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "unembedding",
+            "training-efficiency",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "During training, all positions simultaneously predict the next token (masked language modeling efficiency). At inference, the last position's vector has processed the full input context and its job is to predict token n+1. The lesson explains: 'the training process turns out to be much more efficient if we use each vector in this final layer to simultaneously make a prediction for what comes immediately after it.'"
+    },
+    {
+        "id": "Transformer_3B1B_GPT_026",
+        "question": "What is the softmax function, and what problem does it solve in neural networks?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It clips values to [-1, 1] to prevent gradient explosion",
+            "B) It converts an arbitrary list of real numbers into a valid probability distribution (all positive, summing to 1)",
+            "C) It applies L2 normalization to the weight matrices",
+            "D) It selects the single maximum value and sets all others to zero"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "softmax",
+            "probability-distribution",
+            "normalization"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Neural network outputs (logits) can be any real number — negative, greater than 1, and don't sum to 1. Softmax converts these to valid probabilities: exp(x_i) / sum(exp(x_j)) gives positive values that sum to 1. It's 'soft' because unlike argmax it gives weight to all relatively large values proportionally, not just the single maximum."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_027",
+        "question": "How is softmax computed mathematically?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Divide each value by the sum of all values",
+            "B) Raise e to the power of each value, then divide each by the sum of all e^values",
+            "C) Subtract the minimum value then divide by the range",
+            "D) Apply sigmoid to each value independently"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "softmax",
+            "formula",
+            "computation"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Softmax: (1) compute exp(x_i) for each value x_i, giving all positive values; (2) divide each exp(x_i) by the sum of all exp(x_j). The exponential ensures all values are positive; the division normalizes to sum to 1. Simple division by sum (A) would fail for negative inputs. Sigmoid (D) processes each element independently and doesn't normalize across all elements."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_028",
+        "question": "What are 'logits' in the context of a language model?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The softmax output probabilities for each token",
+            "B) The raw, unnormalized scores output by the unembedding matrix before softmax",
+            "C) The attention weights before normalization",
+            "D) The gradient values during backpropagation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "logits",
+            "terminology",
+            "softmax"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Logits are the raw, unnormalized output values produced by the unembedding matrix (WU × last_embedding) before softmax is applied. They can be any real number. The term comes from 'log-odds' but in modern ML usage it simply means pre-softmax scores. The lesson: 'machine learning people would refer to the components of that raw unnormalized output as the logits for the next word prediction.'"
+    },
+    {
+        "id": "Transformer_3B1B_GPT_029",
+        "question": "What is the 'temperature' parameter T in the softmax function, and what effect does increasing T have?",
+        "type": "multiple_choice",
+        "options": [
+            "A) T scales the output probabilities and increasing T makes the distribution more peaked (deterministic)",
+            "B) T is inserted into the exponents (exp(x/T)) and increasing T makes the distribution more uniform (random)",
+            "C) T adds a constant offset to all logits and has no effect on relative probabilities",
+            "D) T controls the learning rate during training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "temperature",
+            "softmax",
+            "sampling"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Temperature T is used as exp(x_i / T). When T is large, x_i/T becomes small → exp values are closer together → more uniform distribution → more random/creative outputs. When T approaches 0, x_i/T → ±∞, concentrating all weight on the max → deterministic (greedy) selection. The lesson: 'larger T gives more weight to lower values making distribution more uniform; smaller T makes larger values dominate.' Practical tip: T=0 is greedy decoding; T=1 is standard sampling."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_030",
+        "question": "You are building a creative writing assistant and want GPT outputs to be more diverse and surprising. Which temperature setting should you use?",
+        "type": "multiple_choice",
+        "options": [
+            "A) T = 0 (argmax selection)",
+            "B) T = 0.1 (very low temperature)",
+            "C) T = 1.5 (high temperature)",
+            "D) T does not affect output diversity"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "temperature",
+            "sampling",
+            "system-design"
+        ],
+        "difficulty": "easy",
+        "category": "system_design",
+        "explanation": "Higher temperature (T > 1) makes the softmax distribution more uniform — lower-probability tokens get more weight → more diverse, surprising, creative outputs. T = 0 is fully deterministic (always picks the top token). T = 0.1 is near-deterministic. For creative writing, higher T introduces useful variation; for factual Q&A or code generation, lower T is preferred for accuracy. Practical tip: T is a key hyperparameter to tune per use case."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_031",
+        "question": "You are designing a code completion system where correctness is critical. Which temperature setting is most appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) T = 2.0 for maximum diversity",
+            "B) T = 0 or very low T (e.g., 0.1) for near-deterministic, highest-probability outputs",
+            "C) T = 1.0 always gives the best code",
+            "D) Temperature is irrelevant for code generation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "temperature",
+            "tradeoff",
+            "code-generation"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "explanation": "For code completion, correctness > creativity. Low temperature concentrates probability mass on the most likely (usually most syntactically/semantically correct) tokens. T=0 gives greedy decoding — always the highest-probability token. High temperature would introduce random, potentially incorrect tokens. In production code assistants (like GitHub Copilot), low temperatures are typical. Practical tip: Use beam search + low T for code generation."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_032",
+        "question": "Examine this softmax implementation. What is the bug?\n\nimport numpy as np\n\ndef softmax(logits, T=1.0):\n    exps = np.exp(logits / T)\n    return exps / np.sum(exps, axis=0)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Temperature should multiply logits, not divide",
+            "B) np.exp should be np.log",
+            "C) For a 1D logit array, axis=0 sums all elements correctly, but for batched 2D inputs this would sum across the batch dimension instead of vocabulary dimension",
+            "D) The division should use np.prod instead of np.sum"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "softmax",
+            "debugging",
+            "code"
+        ],
+        "difficulty": "hard",
+        "category": "debugging",
+        "explanation": "For 1D input, axis=0 correctly sums all elements. But for batched 2D input (batch_size × vocab_size), axis=0 sums across the batch dimension — normalizing across examples instead of across vocabulary. The correct axis is axis=-1 (or axis=1) to normalize each example's logits independently. This is a subtle but critical bug in batched inference. Practical tip: Always use axis=-1 for softmax over vocabulary."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_033",
+        "question": "Which of the following correctly implements temperature-scaled softmax in Python?",
+        "type": "multiple_choice",
+        "options": [
+            "A) np.exp(logits * T) / np.sum(np.exp(logits * T))",
+            "B) np.exp(logits / T) / np.sum(np.exp(logits / T))",
+            "C) np.exp(logits) / np.sum(np.exp(logits)) * T",
+            "D) np.log(np.exp(logits / T)) / np.sum(logits)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "softmax",
+            "temperature",
+            "code"
+        ],
+        "difficulty": "medium",
+        "category": "code",
+        "explanation": "Correct: exp(logits/T) / sum(exp(logits/T)). Dividing by T before the exponential properly scales the distribution. Option A multiplies by T (wrong direction — higher T should flatten, not sharpen). Option C applies T after softmax which doesn't give a valid probability distribution. Option D applies log then sum of raw logits — completely incorrect formula."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_034",
+        "question": "All of the following are true about the embedding matrix WE EXCEPT:",
+        "type": "multiple_choice",
+        "options": [
+            "A) Its values are initialized randomly and learned during training",
+            "B) It has one column for each vocabulary token",
+            "C) It maps tokens to high-dimensional vectors",
+            "D) It is recomputed fresh for every input sequence at inference time"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "embedding-matrix",
+            "misconception",
+            "training"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "D is FALSE — WE is a learned weight matrix that is fixed after training. At inference, it's used as a lookup table: the same pre-trained matrix is used for every input sequence. Only the data (which column to look up) changes per input. A, B, and C are all true. The misconception in D conflates the data (which token is input) with the weights (how tokens are embedded)."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_035",
+        "question": "What is the combined parameter count of GPT-3's embedding matrix (WE) and unembedding matrix (WU)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ~617 million (they share weights)",
+            "B) ~1.23 billion (two separate matrices of ~617M each)",
+            "C) ~175 billion (they contain all parameters)",
+            "D) ~12 million (they are small lookup tables)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "parameter-count",
+            "embedding",
+            "unembedding"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "explanation": "WE is 12,288 × 50,257 ≈ 617M parameters. WU is 50,257 × 12,288 ≈ 617M parameters. Together: ~1.23 billion parameters. This is 'a small but not insignificant fraction of the 175 billion' total — about 0.7%. Note: some models tie WE and WU weights (same matrix) to reduce parameters, but GPT-3 treats them as separate learned matrices."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_036",
+        "question": "Why do word embeddings need to be high-dimensional (e.g., 12,288 dimensions in GPT-3)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To match the context window size of 2,048 tokens",
+            "B) To enable gradient flow through 96 layers without vanishing",
+            "C) To have enough distinct directions in the space to simultaneously encode many different semantic properties",
+            "D) To ensure matrix multiplications are computationally efficient on GPUs"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "embedding-dimension",
+            "high-dimensional",
+            "semantic-directions"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The lesson explicitly states: 'it matters to work in a space with lots of distinct directions.' High-dimensional spaces have exponentially more near-orthogonal directions, allowing the model to encode many independent semantic properties simultaneously (gender, number, tense, sentiment, topic, etc.) without interference. Low-dimensional spaces quickly run out of orthogonal directions for encoding independent features."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_037",
+        "question": "A language model is trained with vocabulary size V=32,000 and embedding dimension d=4,096. What are the shapes of WE and WU?",
+        "type": "multiple_choice",
+        "options": [
+            "A) WE: [32000, 4096], WU: [32000, 4096]",
+            "B) WE: [4096, 32000], WU: [32000, 4096]",
+            "C) WE: [32000, 4096], WU: [4096, 32000]",
+            "D) WE: [4096, 4096], WU: [4096, 32000]"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embedding-matrix",
+            "unembedding-matrix",
+            "dimensions"
+        ],
+        "difficulty": "hard",
+        "category": "code",
+        "explanation": "WE maps tokens (V=32,000) to embedding vectors (d=4,096): shape [d, V] = [4096, 32000] — each column is a token embedding. WU maps embedding vectors (d=4,096) back to logits over vocabulary (V=32,000): shape [V, d] = [32000, 4096] — each row is a token's unembedding vector. WU × embedding_vector (shape [d]) = logits (shape [V]). This requires WU to be [V, d] for the matrix-vector product to work."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_038",
+        "question": "Why might a very large model like GPT-3 (175B parameters) risk overfitting if trained on insufficient data?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Large models use more GPU memory, which corrupts gradients",
+            "B) With more parameters than effective training examples, the model can memorize training data rather than learning generalizable patterns",
+            "C) Large models cannot apply backpropagation correctly above 100B parameters",
+            "D) Large models automatically regularize themselves through attention dropout"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "overfitting",
+            "generalization",
+            "scale"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Overfitting occurs when a model memorizes training data instead of learning generalizable patterns — common when parameters >> effective training examples. The lesson warns: 'simply giving a model a huge number of parameters does not guarantee that it will perform better. Models at such scales risk being either completely intractable to train, prone to overfitting, or both.' GPT-3 avoids this by training on massive web-scale data."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_039",
+        "question": "The 3B1B lesson compares model weights (blue/red) vs. data (grey). What is the key distinction between these two?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Weights are always positive; data can be negative",
+            "B) Weights are the learned parameters (brains) fixed after training; data is the input-specific information that changes with each inference",
+            "C) Weights are stored in RAM; data is stored in GPU VRAM",
+            "D) Weights represent probabilities; data represents raw token indices"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "weights",
+            "data",
+            "inference-vs-training"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Weights (blue/red in the lesson) are the 'brains' — learned during training and fixed afterwards. They determine the model's behavior. Data (grey) encodes the specific input for a given inference call — it changes with every new prompt. This distinction is fundamental: weights are persistent across calls; activations/data are ephemeral per-call. The same weights process millions of different inputs."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_040",
+        "question": "Given the Harry Potter example from the lesson: 'Therefore the murderer was...', what must the token vector for 'was' encode by the time it reaches the unembedding matrix?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Only the grammatical role of 'was' as a past-tense verb",
+            "B) The full contextual summary of the mystery novel relevant to predicting the murderer's name",
+            "C) The average embedding of all tokens in the input sequence",
+            "D) The positional encoding for the last token position"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "context-aggregation",
+            "final-vector",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The lesson states: 'all the information necessary to predict the next word needs to be encoded into the last vector of the sequence.' The 'was' token vector begins as a generic past-tense verb embedding, but through multiple attention + MLP layers, it must accumulate all contextually relevant information from the novel — clues, suspects, motives — to assign high probability to the correct murderer's name."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_041",
+        "question": "You are serving a GPT-3-scale model in production and notice inference latency is too high. You need to reduce the per-token generation time. Which two approaches from the architecture would most directly help? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Use a smaller model (fewer layers / smaller embedding dimension)",
+            "B) Implement KV-caching to avoid recomputing attention keys and values for previous tokens",
+            "C) Increase the vocabulary size from 50,257 to 100,000",
+            "D) Increase the temperature to reduce the number of sampling steps"
+        ],
+        "correct_indices": [
+            0,
+            1
+        ],
+        "tags": [
+            "inference-optimization",
+            "latency",
+            "system-design"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "explanation": "A) Smaller models (fewer layers, smaller d_model) directly reduce FLOPs per forward pass — the most direct lever. B) KV-caching reuses computed Key/Value matrices from previous tokens instead of recomputing them — dramatically reduces per-token latency for autoregressive generation. C) Larger vocabulary increases WU size and slows the final projection step. D) Temperature affects output distribution, not compute — it doesn't reduce the number of forward passes needed."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_042",
+        "question": "What would happen to a GPT model's ability to generate coherent text if the softmax temperature was set to T = 0 for all tokens?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model would generate completely random text",
+            "B) The model would always generate the same deterministic sequence by always picking the highest-probability token",
+            "C) The model would refuse to generate any text",
+            "D) The model would generate text using beam search automatically"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "temperature",
+            "greedy-decoding",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "T=0 makes softmax collapse to argmax — all probability mass goes to the single highest-logit token. Every inference call with the same input generates the exact same output (deterministic greedy decoding). This is often coherent but repetitive — the model gets stuck in loops. T=0 is equivalent to greedy decoding: always picking the most probable next token."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_043",
+        "question": "All of the following statements about softmax are true EXCEPT:",
+        "type": "multiple_choice",
+        "options": [
+            "A) Softmax outputs always sum to 1",
+            "B) Softmax outputs are always positive",
+            "C) Softmax is equivalent to simply dividing each logit by the sum of all logits",
+            "D) Softmax gives higher output values to higher input logits"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "softmax",
+            "misconception",
+            "formula"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "C is FALSE — softmax first applies the exponential function: exp(x_i) / sum(exp(x_j)). Simple division by sum (x_i / sum(x_j)) would fail for negative logits (producing negative 'probabilities'). The exponential is critical for ensuring positivity. A, B, and D are all true properties of softmax."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_044",
+        "question": "Why is the transformer architecture described as computationally looking like 'a giant pile of matrix multiplications'?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because transformers only use matrix multiplication and no other operations",
+            "B) Because every major operation (embedding lookup, attention, MLP, unembedding) is implemented as matrix-vector products with learned weight matrices",
+            "C) Because the attention pattern is a square matrix",
+            "D) Because GPUs are only optimized for matrix multiplication"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "matrix-multiplication",
+            "architecture",
+            "deep-learning"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Every key operation in a transformer is a matrix-vector product: WE × token_id, WQ × embedding, WK × embedding, WV × embedding, WO × concat(heads), MLP_W1 × embedding, MLP_W2 × hidden, WU × final_embedding. Non-linearities (softmax, ReLU) are sprinkled in between but the dominant computation is matrix multiplication. This is why GPUs/TPUs (optimized for matrix ops) are ideal for transformers."
+    },
+    {
+        "id": "Transformer_3B1B_GPT_045",
+        "question": "What does the 3B1B lesson suggest about the capacity of transformer embeddings to encode meaning beyond individual words?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Embeddings can only encode the syntactic role of each word",
+            "B) After passing through attention and MLP blocks, embeddings can encode rich, contextual meanings far beyond individual word definitions",
+            "C) Embeddings are frozen after the initial lookup and cannot change",
+            "D) Embeddings only encode the frequency of each word in the training corpus"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "contextual-embeddings",
+            "attention",
+            "representation"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The lesson illustrates this with 'king': a vector starting as a generic 'king' embedding can be progressively updated through attention + MLP blocks to encode 'a king who lived in Scotland, who had achieved his post after murdering the previous king, described in Shakespearean language.' This contextual enrichment is the fundamental purpose of the entire transformer network — transforming static word embeddings into rich contextual representations."
+    }
+]

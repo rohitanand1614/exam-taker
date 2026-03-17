@@ -1,0 +1,86 @@
+[
+    {
+        "id": "Vanishing Gradient Problem in ANN | Exploding Gradient Problem | Code Example_001",
+        "question": "What is the primary mathematical cause of the Vanishing Gradient Problem, particularly when using the Sigmoid activation function in deep neural networks?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Sigmoid function always outputs negative values, causing weight updates to move in the opposite direction.",
+            "B) The maximum derivative of the Sigmoid function is 0.25. When many such small derivatives are multiplied together via the chain rule during backpropagation, the final gradient approaches zero.",
+            "C) There is a bug in the backpropagation algorithm that divides the learning rate by zero after 5 layers.",
+            "D) Weights in deep networks grow so large that they break the boundaries of the Sigmoid function, causing gradients to disappear."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "vanishing_gradient",
+            "sigmoid_derivative",
+            "chain_rule"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Vanishing Gradient Problem arises directly from the Chain Rule. The derivative of the Sigmoid activation function always lies between 0 and 0.25 [Image of Sigmoid function and its derivative]. In a deep network, updating the weights of early layers (near the input) requires multiplying the derivatives of multiple layers together. Multiplying many numbers smaller than 1 (e.g., 0.1 * 0.2 * 0.15) results in a value that exponentially shrinks toward zero. Consequently, the weights of the initial layers barely update, and training stalls. The other options are mathematically incorrect."
+    },
+    {
+        "id": "Vanishing Gradient Problem in ANN | Exploding Gradient Problem | Code Example_002",
+        "question": "If a deep neural network is suffering from the Vanishing Gradient Problem, which symptom makes it easiest to identify during training?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model's loss will rapidly increase to infinity or NaN after every epoch.",
+            "B) The weights of the initial layers will barely change after the first few epochs, while the loss plateaus at a fixed value.",
+            "C) The model's accuracy will immediately jump to 100%, but it will perform at 0% on test data.",
+            "D) The neural network architecture will automatically start adding new hidden layers."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "vanishing_gradient",
+            "debugging",
+            "symptoms"
+        ],
+        "difficulty": "easy",
+        "explanation": "A vanishing gradient means the error signal reaching the initial layers has shrunk to almost zero. The weight update formula is: `New Weight = Old Weight - (Learning Rate * Gradient)`. Because the gradient is near zero, practically nothing is subtracted from the `Old Weight`, meaning the weights do not change. When weights don't change, the model learns nothing new, and the loss graph plateaus. Option A is a symptom of the Exploding Gradient problem. Option C indicates severe overfitting, and Option D is impossible."
+    },
+    {
+        "id": "Vanishing Gradient Problem in ANN | Exploding Gradient Problem | Code Example_003",
+        "question": "To solve the Vanishing Gradient Problem, why does the instructor recommend using the ReLU (Rectified Linear Unit) activation function instead of Sigmoid?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because ReLU converts all negative inputs into positive ones, ensuring the loss always decreases.",
+            "B) Because the derivative of ReLU for any positive input is always exactly 1. Multiplying by 1 during the chain rule prevents gradients from shrinking and vanishing.",
+            "C) Because ReLU automatically reduces the depth of the network, eliminating the need for backpropagation.",
+            "D) Because ReLU is strictly designed for classification problems where vanishing gradients never occur."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "relu",
+            "activation_functions",
+            "vanishing_gradient_solution"
+        ],
+        "difficulty": "medium",
+        "explanation": "The ReLU function is defined as $f(x) = \\max(0, x)$. This means if the input is positive, the output is exactly the input ($y = x$). The derivative (slope) of a linear function like $y = x$ is exactly 1 . When applying the chain rule during backpropagation, multiplying multiple 1s together does not shrink the result ($1 \\times 1 \\times 1 = 1$). This allows the gradients to flow safely back to the initial layers without vanishing. Option A is false because ReLU turns negative values to 0, not positive. Options C and D are factually incorrect."
+    },
+    {
+        "id": "Vanishing Gradient Problem in ANN | Exploding Gradient Problem | Code Example_004",
+        "question": "What is the Exploding Gradient Problem, and how does it fundamentally differ from the Vanishing Gradient Problem?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Exploding gradients occur when the learning rate is too low, whereas vanishing gradients occur when the learning rate is too high.",
+            "B) Exploding gradients occur when local derivatives are greater than 1. When multiplied via the chain rule, they become so massive that weight updates spiral out of control, often resulting in NaN loss.",
+            "C) Exploding gradients only occur in the Input Layer, whereas vanishing gradients only occur in the Output Layer.",
+            "D) Exploding gradients are actually beneficial because they force the model to reach 100% accuracy in a single epoch."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "exploding_gradient",
+            "gradients",
+            "chain_rule"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Exploding Gradient problem is the exact opposite of the Vanishing Gradient. If, for some reason, the local derivatives during backpropagation are consistently greater than 1 (e.g., 2, 5, 10), multiplying them via the chain rule (e.g., $5 \\times 5 \\times 5 = 125$) produces a massive number. This enormous gradient causes a massive weight update that completely destabilizes the model's weight space, often causing the loss to shoot to infinity or NaN. This issue is historically prominent in Recurrent Neural Networks (RNNs). All other options are misleading or entirely false."
+    }
+]

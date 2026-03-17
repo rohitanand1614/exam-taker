@@ -1,0 +1,90 @@
+[
+    {
+        "id": "Weight Initialization Techniques_001",
+        "question": "A junior developer is building a deep neural network to predict housing prices. To keep the code simple, they initialize every single weight in the network to exactly 0.0. They are using the ReLU activation function in all hidden layers. When they start training, what will fundamentally happen to the network?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The network will train extremely fast because calculating gradients from 0.0 requires zero computational overhead.",
+            "B) The network will experience the Exploding Gradient Problem, as the zeros cause a division-by-zero error in the backpropagation calculus.",
+            "C) The network will completely fail to train. All neurons will output zero, causing the error gradients for all weights to evaluate to zero, permanently freezing the weights at 0.0.",
+            "D) The network will automatically switch to a linear activation function to compensate for the dead neurons."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "weight_initialization",
+            "zero_initialization",
+            "relu",
+            "training_failure"
+        ],
+        "difficulty": "easy",
+        "explanation": "If all weights are initialized to exactly zero ($w = 0$), the weighted sum ($z = WX + b$) for every neuron will be exactly zero (assuming biases are also initialized to zero or are negligible). When passed through the ReLU function ($f(x) = \\max(0, x)$), the output remains exactly zero. During backpropagation, the derivative of ReLU at exactly zero is mathematically 0. Because the gradient is 0, the weight update rule ($W_{new} = W_{old} - \\alpha \\cdot 0$) results in no change. The weights remain zero forever, and no learning takes place.  Option A is a fundamental misunderstanding of backpropagation. Option B is factually incorrect. Option D describes a fabricated, impossible mechanism."
+    },
+    {
+        "id": "Weight Initialization Techniques_002",
+        "question": "Realizing that initializing weights to 0.0 breaks the network, the junior developer decides to initialize every single weight to a constant value of 0.5 instead. They use the Sigmoid activation function. Why is this approach also mathematically flawed?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It breaks the 'Symmetry' of the network. Because every weight connected to a specific neuron has the exact same starting value, they will all compute the exact same gradient and receive the exact same update, forcing the deep network to act like a single, simplistic linear neuron.",
+            "B) It causes immediate gradient explosions because 0.5 multiplied across deep layers results in numbers approaching infinity.",
+            "C) The Sigmoid function cannot mathematically process inputs greater than 0.25, causing the network to crash.",
+            "D) Constant initialization disables the bias terms, forcing the decision boundary to permanently cross through the origin (0,0)."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "weight_initialization",
+            "constant_initialization",
+            "symmetry_breaking",
+            "network_capacity"
+        ],
+        "difficulty": "medium",
+        "explanation": "This phenomenon is known as the 'Symmetry' problem. If you initialize all weights to the exact same non-zero constant (e.g., 0.5), every neuron in a given hidden layer will calculate the exact same weighted sum, produce the exact same activation output, and consequently compute the exact same error gradient during backpropagation. Therefore, every weight will receive the exact same update value. If you start with 100 neurons in a hidden layer, they will all update perfectly in sync, effectively acting as just one single neuron.  The network entirely loses its deep, complex representational capacity. Options B, C, and D describe fabricated mathematical limitations."
+    },
+    {
+        "id": "Weight Initialization Techniques_003",
+        "question": "A team decides to initialize the weights of a deep, 10-layer neural network using very small, random values (e.g., pulling from a Gaussian distribution and multiplying by 0.01). They use the Tanh activation function. According to the instructor's histograms, what happens to the data distributions as they pass through the deeper layers?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The activations become exponentially larger, eventually exceeding the bounds of the Tanh function and causing an overflow error.",
+            "B) The activations are perfectly maintained as a standard normal distribution across all 10 layers, resulting in optimal training speed.",
+            "C) Because the weights are so small, the activations aggressively shrink layer by layer until almost all neurons in the deep layers are outputting values extremely close to 0.0, triggering severe Vanishing Gradients.",
+            "D) The small weights cause the Tanh function to automatically flip to a ReLU function to preserve the signal."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "weight_initialization",
+            "small_random_initialization",
+            "tanh",
+            "vanishing_gradient"
+        ],
+        "difficulty": "medium",
+        "explanation": "When weights are initialized to very small random numbers, the weighted sum ($z = WX$) calculated at each node is also very small. The Tanh function  maps small inputs to small outputs near zero. As this signal passes through layer after layer of small weights, the signal aggressively decays. By the time it reaches the 5th or 10th layer, the activations are almost entirely concentrated at 0.0 (as shown in the instructor's histograms). When activations are near zero, the gradients calculated during backpropagation also become infinitesimally small. This is the classic cause of the Vanishing Gradient Problem; the early layers receive almost zero gradient signal and completely stop updating. Options A, B, and D describe physically impossible or completely opposite behaviors."
+    },
+    {
+        "id": "Weight Initialization Techniques_004",
+        "question": "To counter the vanishing signal, the team re-initializes the network using very large random values (e.g., numbers between -1.0 and 1.0). They are still using the Tanh activation function. Why does this 'Large Random Initialization' also fail?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Large weights cause the input data to be permanently erased from RAM.",
+            "B) Large weights cause the weighted sum ($z$) to be very large (positive or negative). This pushes the Tanh function to its extreme flat tails (-1 or +1), where the derivative is nearly zero, immediately causing Vanishing Gradients and stalling training.",
+            "C) The Tanh function mathematically requires inputs to be strictly between -0.1 and 0.1; larger inputs cause the Python compiler to crash.",
+            "D) Large weights force the optimizer to use Mean Absolute Error instead of Mean Squared Error, which slows down convergence."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "weight_initialization",
+            "large_random_initialization",
+            "saturating_functions",
+            "vanishing_gradient"
+        ],
+        "difficulty": "medium",
+        "explanation": "This is the problem of 'Saturation'. If you initialize with large weights, the weighted sum ($Z$) entering the neuron will be a large positive or large negative number. The Tanh function is a saturating function; it squashes large inputs flat against its ceilings of +1 or -1.  If you look at the derivative of the Tanh curve at these extremes, the slope is practically zero. Because the derivative is zero, backpropagation calculates a gradient of zero, and the weights do not update. The network is paralyzed immediately. Options A, C, and D are entirely fabricated software or algorithmic constraints."
+    }
+]

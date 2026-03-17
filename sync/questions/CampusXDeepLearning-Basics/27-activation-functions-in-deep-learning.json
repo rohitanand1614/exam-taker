@@ -1,0 +1,89 @@
+[
+    {
+        "id": "Activation Functions in Deep Learning_001",
+        "question": "A data scientist is training a neural network on a highly complex, non-linear dataset (e.g., separating concentric circles of data points). They build a deep architecture with 5 hidden layers, but accidentally leave the activation function for every layer as 'Linear' (or essentially, no activation function). What will be the specific mathematical capability of this 5-layer network?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It will perfectly capture the non-linear concentric circles because the depth of the 5 layers naturally creates mathematical curves.",
+            "B) It will mathematically collapse into the equivalent of a single-layer linear regression model, entirely incapable of learning any non-linear boundaries.",
+            "C) It will trigger an immediate 'Exploding Gradient' error because linear functions have derivatives that scale exponentially during backpropagation.",
+            "D) It will automatically default to using the Sigmoid function under the hood to prevent the matrix operations from failing."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "activation_functions",
+            "linear_activation",
+            "non_linearity",
+            "network_capacity"
+        ],
+        "difficulty": "medium",
+        "explanation": "If you do not use a non-linear activation function (i.e., you use a Linear function where $f(x) = x$), the entire deep neural network collapses mathematically. As the instructor demonstrates with equations, feeding a linear equation into another linear equation simply produces a third linear equation ($W_2(W_1X + b_1) + b_2 = (W_2W_1)X + (W_2b_1 + b_2) = W_{new}X + b_{new}$). No matter how many hidden layers you stack, if there are no non-linear activations, the network remains a basic linear classifier (like Logistic Regression) . It will draw a single straight line and completely fail to capture complex patterns like concentric circles. Option A is the exact opposite of reality. Options C and D are fabricated behaviors."
+    },
+    {
+        "id": "Activation Functions in Deep Learning_002",
+        "question": "The Sigmoid activation function was historically popular but has fallen out of favor for hidden layers in modern Deep Learning. According to the instructor, what is the primary mathematical reason for avoiding Sigmoid in deep networks?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Sigmoid is fundamentally incapable of outputting values between 0 and 1, making it useless for probability calculations.",
+            "B) Sigmoid is a 'saturating' function. For very large or very small inputs, its curve flattens out, causing its derivative to shrink to near zero. This triggers the Vanishing Gradient Problem during backpropagation.",
+            "C) Sigmoid is not mathematically differentiable, meaning gradient descent cannot calculate the necessary partial derivatives to update the weights.",
+            "D) Sigmoid outputs are strictly zero-centered (ranging from -1 to 1), which naturally causes the Exploding Gradient Problem in the early layers."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sigmoid",
+            "vanishing_gradient",
+            "saturating_functions"
+        ],
+        "difficulty": "medium",
+        "explanation": "Sigmoid is a saturating (or squashing) function. It maps any input, from $-\\infty$ to $+\\infty$, into a tight range between 0 and 1. If a node receives a large positive or negative input ($z$), the Sigmoid curve becomes almost perfectly flat. On a flat curve, the slope (derivative) is practically zero . During backpropagation, these near-zero derivatives are multiplied together via the chain rule, causing the error gradient to vanish completely before it reaches the early layers. Consequently, the network stops learning. Option A is false; Sigmoid *excels* at outputting probabilities between 0 and 1. Option C is false; Sigmoid is fully differentiable. Option D is false; Tanh is zero-centered (-1 to 1), whereas Sigmoid is NOT zero-centered (0 to 1)."
+    },
+    {
+        "id": "Activation Functions in Deep Learning_003",
+        "question": "The instructor explains that 'Zero-Centered' outputs (where the mean of the activations is around zero) are highly desirable for training speed. Why does the non-zero-centered nature of the Sigmoid function slow down the convergence of Gradient Descent?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because non-zero-centered outputs mathematically force the loss function to switch from Mean Squared Error to Binary Cross-Entropy dynamically.",
+            "B) Because if all activations from a layer are strictly positive (like Sigmoid's 0 to 1 range), the gradients calculated for the weights of the next layer are forced to all be the exact same sign (all positive or all negative) during a single update step, leading to inefficient, zig-zag optimization.",
+            "C) Because non-zero-centered data automatically triggers Dropout regularization, slowing down the processing speed of the CPU.",
+            "D) Because zero-centered functions like ReLU are computationally cheaper to calculate than Sigmoid."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "zero_centered",
+            "sigmoid",
+            "gradient_descent",
+            "optimization_efficiency"
+        ],
+        "difficulty": "hard",
+        "explanation": "This is a nuanced optimization problem. The derivative of the loss with respect to a weight ($w$) relies on the activation ($a$) from the previous layer: $\\frac{\\partial L}{\\partial w} = \\text{Error\\_Term} \\times a$. Because the Sigmoid function *only* outputs positive numbers (between 0 and 1), the $a$ term is always positive. Therefore, the sign of the gradient for *every single weight* connected to that neuron is entirely dictated by the 'Error_Term'. If the Error_Term is positive, all weight gradients are positive; if it's negative, all are negative. Gradient Descent is forced to update all weights in the same direction simultaneously. If the optimal path requires increasing one weight while decreasing another, the optimizer cannot do it efficiently. It is forced into a restrictive, zig-zag path toward the minimum, slowing down convergence significantly. Options A, C, and D are incorrect explanations for this specific optimization geometry."
+    },
+    {
+        "id": "Activation Functions in Deep Learning_004",
+        "question": "The ReLU (Rectified Linear Unit) activation function is currently the industry standard for hidden layers. Which of the following is a primary mathematical advantage of ReLU over Sigmoid and Tanh?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ReLU is a non-saturating function in the positive domain. Its derivative is exactly 1 for all positive inputs, which explicitly prevents the Vanishing Gradient Problem during backpropagation.",
+            "B) ReLU restricts all outputs to a strict range between -1 and 1, perfectly zero-centering the data without requiring Batch Normalization.",
+            "C) ReLU is completely linear across all possible inputs ($-\\infty$ to $\\infty$), making the mathematical forward pass significantly faster than Sigmoid.",
+            "D) ReLU automatically calculates the optimal learning rate by taking the maximum value of the input array."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "relu",
+            "vanishing_gradient",
+            "activation_functions",
+            "non_saturating"
+        ],
+        "difficulty": "easy",
+        "explanation": "ReLU is defined as $f(x) = \\max(0, x)$. For any positive input, it simply outputs the input ($f(x) = x$). Because the equation is $y = x$, the derivative (slope) is a constant 1 . This is its greatest advantage: because the derivative is exactly 1 for positive numbers, multiplying these derivatives via the chain rule during backpropagation does not shrink the gradient. It flows backward perfectly, completely eliminating the Vanishing Gradient Problem that plagues Sigmoid and Tanh. Option B describes Tanh, not ReLU (which is unbounded positively and not zero-centered). Option C is false; ReLU is non-linear because it snaps to 0 for negative inputs. Option D is a fabricated function."
+    }
+]

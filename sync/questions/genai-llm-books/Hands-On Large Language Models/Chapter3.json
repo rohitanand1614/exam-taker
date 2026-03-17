@@ -1,0 +1,319 @@
+[
+    {
+        "id": "Hands-On-LLM-Chapter3_001",
+        "question": "Which term describes a model that uses its own earlier predictions as input to generate subsequent predictions?",
+        "type": "multiple_choice",
+        "options": [
+            "Bidirectional model",
+            "Autoregressive model",
+            "Sparse model",
+            "Encoder-only model"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "autoregressive",
+            "text generation",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "Text generation LLMs are called autoregressive models because they consume their earlier generated tokens to predict the next token in the sequence."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_002",
+        "question": "What is the correct order of components in the forward pass of a Transformer LLM?",
+        "type": "multiple_choice",
+        "options": [
+            "Tokenizer -> LM Head -> Transformer Stack",
+            "Transformer Stack -> Tokenizer -> LM Head",
+            "Tokenizer -> Transformer Stack -> LM Head",
+            "LM Head -> Transformer Stack -> Tokenizer"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "architecture",
+            "forward pass",
+            "components"
+        ],
+        "difficulty": "medium",
+        "explanation": "The standard flow is: Tokenizer (text to IDs) -> Stack of Transformer blocks (processing) -> LM Head (output probability scores)."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_003",
+        "question": "Which decoding strategy always selects the token with the highest probability score?",
+        "type": "multiple_choice",
+        "options": [
+            "Top-k sampling",
+            "Nucleus sampling",
+            "Greedy decoding",
+            "Random sampling"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "decoding",
+            "inference",
+            "greedy search"
+        ],
+        "difficulty": "easy",
+        "explanation": "Greedy decoding is the strategy of choosing the highest scoring token every time (equivalent to temperature zero)."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_004",
+        "question": "What is the primary purpose of the 'keys and values (KV) cache' in text generation?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the accuracy of the model predictions",
+            "To speed up generation by avoiding re-computation of previous tokens",
+            "To reduce the memory footprint of the model weights",
+            "To enable bidirectional attention in decoder models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "kv cache",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "The KV cache stores the results of previous calculations (keys and values) so that only the new token's stream needs to be computed during the next forward pass, significantly speeding up generation."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_005",
+        "question": "Which component of the Transformer block is primarily responsible for memorizing facts and interpolating information from the training data?",
+        "type": "multiple_choice",
+        "options": [
+            "Self-attention layer",
+            "Feedforward neural network",
+            "Layer normalization",
+            "Positional embedding"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture",
+            "feedforward network",
+            "concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "The feedforward neural network houses the majority of the model's processing capacity and is viewed as the source of memorized information and interpolation."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_006",
+        "question": "In the self-attention mechanism, which calculation is performed to determine the 'relevance score' of previous tokens?",
+        "type": "multiple_choice",
+        "options": [
+            "Query vector multiplied by Value vector",
+            "Key vector multiplied by Value vector",
+            "Query vector multiplied by Key matrix",
+            "Input vector multiplied by Output vector"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "attention",
+            "math",
+            "architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "Relevance scoring is conducted by multiplying the query vector of the current position with the keys matrix of the previous positions."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_007",
+        "question": "How does 'Grouped-Query Attention' (GQA) differ from standard Multi-Head Attention?",
+        "type": "multiple_choice",
+        "options": [
+            "It uses a single key and value matrix for all heads.",
+            "It allows multiple groups of heads to share specific sets of key/value matrices.",
+            "It removes the query matrix entirely.",
+            "It processes all tokens in reverse order."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention",
+            "optimization",
+            "gqa"
+        ],
+        "difficulty": "hard",
+        "explanation": "GQA is a middle ground between Multi-Head Attention (unique K/V per head) and Multi-Query Attention (one K/V for all heads). It groups heads and shares K/V matrices within those groups."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_008",
+        "question": "What is 'Flash Attention' designed to optimize?",
+        "type": "multiple_choice",
+        "options": [
+            "The accuracy of the attention scores",
+            "The memory movement between GPU SRAM and HBM",
+            "The tokenization speed of the input text",
+            "The disk storage requirements of the model"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "hardware",
+            "flash attention"
+        ],
+        "difficulty": "medium",
+        "explanation": "Flash Attention speeds up calculation by optimizing IO-awareness, specifically how values are loaded and moved between the GPU's shared memory (SRAM) and high bandwidth memory (HBM)."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_009",
+        "question": "Where are Rotary Positional Embeddings (RoPE) applied in the Transformer architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "Added to the input embeddings before the first layer",
+            "Applied to the query and key matrices during the attention step",
+            "Applied to the value matrix after the attention step",
+            "Added to the output of the Feedforward network"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rope",
+            "positional embeddings",
+            "architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "RoPE injects positional information by rotating vectors in the embedding space specifically into the queries and keys matrices just before relevance scoring."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_010",
+        "question": "Which of the following are characteristics of modern Transformer blocks (e.g., Llama 3) compared to the original 2017 architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "Pre-normalization (normalization before layers)",
+            "Use of RMSNorm instead of LayerNorm",
+            "Use of SwiGLU activation instead of ReLU",
+            "Removal of the Feedforward network"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "architecture",
+            "modern llms",
+            "llama"
+        ],
+        "difficulty": "hard",
+        "explanation": "Modern architectures often use Pre-normalization (for training stability), RMSNorm (efficiency), and SwiGLU activation functions. They still retain the Feedforward network."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_011",
+        "question": "What is the purpose of 'packing' during the training of Large Language Models?",
+        "type": "multiple_choice",
+        "options": [
+            "To compress the model weights into a smaller file size",
+            "To group multiple short documents into a single context to minimize padding",
+            "To combine the tokenizer and model into one object",
+            "To merge multiple attention heads into one"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training",
+            "optimization",
+            "packing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Packing involves organizing short training documents efficiently into the context window to maximize computational efficiency and minimize wasted padding tokens."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_012",
+        "question": "When creating a text-generation pipeline using the Transformers library, what does the argument `return_full_text=False` control?",
+        "type": "multiple_choice",
+        "options": [
+            "It ensures only the newly generated tokens are returned, excluding the input prompt.",
+            "It prevents the model from generating any text.",
+            "It forces the model to return the entire prompt plus the generation.",
+            "It disables the tokenizer output."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "coding",
+            "transformers library",
+            "pipeline"
+        ],
+        "difficulty": "medium",
+        "explanation": "Setting `return_full_text=False` in the pipeline configuration ensures that the output contains only the generated text, stripping out the original input prompt."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_013",
+        "question": "What does the model's 'context length' represent?",
+        "type": "multiple_choice",
+        "options": [
+            "The number of layers in the Transformer stack",
+            "The size of the vocabulary",
+            "The limit on how many tokens the model can process at once",
+            "The number of training epochs"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "definitions",
+            "context length",
+            "limitations"
+        ],
+        "difficulty": "easy",
+        "explanation": "Context length is the limit on the number of tokens (input + output) that the model can process simultaneously in its computation streams."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_014",
+        "question": "In the code example provided, what does `token_id = lm_head_output[0,-1].argmax(-1)` achieve?",
+        "type": "multiple_choice",
+        "options": [
+            "It calculates the loss function for the model.",
+            "It selects the token ID with the highest probability score for the last token position.",
+            "It tokenizes the input string into IDs.",
+            "It randomly samples a token from the distribution."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "coding",
+            "inference",
+            "decoding"
+        ],
+        "difficulty": "hard",
+        "explanation": "This code selects the last token position (`-1`), looks at the probability scores, and uses `argmax` to find the index (Token ID) with the highest score (greedy decoding)."
+    },
+    {
+        "id": "Hands-On-LLM-Chapter3_015",
+        "question": "What is the primary motivation for using 'Sparse Attention' or 'Sliding Window Attention'?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the vocabulary size",
+            "To improve the efficiency of the attention calculation for long sequences",
+            "To remove the need for positional embeddings",
+            "To allow the model to see future tokens"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention",
+            "efficiency",
+            "sparse attention"
+        ],
+        "difficulty": "medium",
+        "explanation": "Sparse and sliding window attention mechanisms limit the context a model attends to (e.g., only local neighbors), reducing the computational cost compared to full attention, especially for long sequences."
+    }
+]

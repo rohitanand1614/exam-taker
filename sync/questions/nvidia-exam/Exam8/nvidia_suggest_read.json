@@ -1,0 +1,3289 @@
+[
+    {
+        "id": "suggested_read_001",
+        "question": "According to the NVIDIA developer blog on ONNX, which method is recommended for exporting PyTorch models that contain dynamic behavior such as loops and if-statements?",
+        "type": "multiple_choice",
+        "options": [
+            "torch.onnx.export",
+            "torch.jit.trace",
+            "torch.jit.script",
+            "torch.autograd.Function"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "onnx",
+            "pytorch",
+            "model export",
+            "dynamic behavior"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that for dynamic behavior, TorchScript scripting (torch.jit.script) is recommended before exporting to ONNX, as standard export methods like torch.jit.trace may unroll loops and fail to capture data-dependent control flow."
+    },
+    {
+        "id": "suggested_read_002",
+        "question": "Which tool referenced in the text is specifically designed for modifying ONNX graphs, such as removing or renaming nodes, without needing to re-export the model from the source framework?",
+        "type": "multiple_choice",
+        "options": [
+            "Netron",
+            "GraphSurgeon",
+            "TorchScript",
+            "TensorRT"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "onnx",
+            "graphsurgeon",
+            "model optimization",
+            "debugging"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explicitly identifies GraphSurgeon (from NVIDIA TensorRT) as the tool used for easy graph editing, such as removing, renaming, or changing nodes like custom operators."
+    },
+    {
+        "id": "suggested_read_003",
+        "question": "What are the three key requirements listed for evaluating Generative AI models?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy, Precision, Recall",
+            "Quality, Diversity, Speed",
+            "Latency, Throughput, Scalability",
+            "Fidelity, Compression, Transmission"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "model evaluation",
+            "metrics"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text lists three key requirements for evaluating Generative AI models: Quality (high-fidelity outputs), Diversity (covering minority data modes/reducing bias), and Speed (fast generation for interactive applications)."
+    },
+    {
+        "id": "suggested_read_004",
+        "question": "Which generative AI architecture is described as using a forward process to add noise and a reverse process to remove noise to generate new data?",
+        "type": "multiple_choice",
+        "options": [
+            "Variational Autoencoders (VAEs)",
+            "Generative Adversarial Networks (GANs)",
+            "Diffusion models",
+            "Transformers"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "generative ai",
+            "diffusion models",
+            "model architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text defines Diffusion models as those that use forward (add noise) and reverse (remove noise) steps to generate new data, usually yielding high-quality outputs."
+    },
+    {
+        "id": "suggested_read_005",
+        "question": "In the context of activation functions, what is the primary disadvantage of 'saturating' functions like Sigmoid?",
+        "type": "multiple_choice",
+        "options": [
+            "They result in an infinite output range.",
+            "They cannot handle negative inputs.",
+            "The gradient approaches zero as input grows, leading to the vanishing gradient problem.",
+            "They are not continuously differentiable."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "activation functions",
+            "deep learning",
+            "vanishing gradient",
+            "sigmoid"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text distinguishes between saturating and nonsaturating functions, noting that for saturating functions, the gradient approaches zero as input grows, which causes the vanishing gradient problem."
+    },
+    {
+        "id": "suggested_read_006",
+        "question": "Which of the following is a characteristic of the Continuous Bag of Words (CBOW) model architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "It predicts context words based on a target word.",
+            "It maintains the order of context words strictly.",
+            "It averages the embeddings of context words via a lambda layer.",
+            "It uses a discriminator to judge real vs fake content."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cbow",
+            "nlp",
+            "word2vec",
+            "model architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text describes the CBOW architecture using Keras/TensorFlow, stating that context words are passed to an embedding layer and then averaged with a lambda layer, noting that CBOW ignores the order of context."
+    },
+    {
+        "id": "suggested_read_007",
+        "question": "According to the provided text, what is the primary goal of the CBOW model?",
+        "type": "multiple_choice",
+        "options": [
+            "To predict the target (center) word given the surrounding context words.",
+            "To predict the surrounding context words given the target word.",
+            "To classify the sentiment of a sentence.",
+            "To translate text from one language to another."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cbow",
+            "nlp",
+            "word embeddings"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text explicitly states that the main goal of CBOW is to predict the target word (center word) given the surrounding context words."
+    },
+    {
+        "id": "suggested_read_008",
+        "question": "What defines an Autoregressive (AR) model of order 'p'?",
+        "type": "multiple_choice",
+        "options": [
+            "The output depends linearly on future values and a stochastic term.",
+            "The output depends linearly on its own previous values plus a stochastic term.",
+            "The output is determined solely by a differential equation.",
+            "The output is a weighted average of all future inputs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "autoregressive model",
+            "statistics",
+            "time series"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text defines an Autoregressive (AR) model where the output variable depends linearly on its own previous values plus a stochastic (random) term."
+    },
+    {
+        "id": "suggested_read_009",
+        "question": "Which activation function is described as acting on linear combinations of input variables (e.g., ReLU, linear, logistic)?",
+        "type": "multiple_choice",
+        "options": [
+            "Radial functions",
+            "Fold functions",
+            "Ridge functions",
+            "Periodic functions"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "activation functions",
+            "ridge functions",
+            "neural networks"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text categorizes activation functions and defines Ridge functions as those that act on linear combinations of input variables, giving examples like ReLU, linear, and logistic."
+    },
+    {
+        "id": "suggested_read_010",
+        "question": "Which tool is recommended for visualizing exported ONNX models to view the graph and properties panel for debugging?",
+        "type": "multiple_choice",
+        "options": [
+            "GraphSurgeon",
+            "Netron",
+            "PyTorch",
+            "TensorRT"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "onnx",
+            "visualization",
+            "debugging",
+            "tools"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states: 'Visualize exported ONNX models with Netron (graph and properties panel for debugging and analysis).'"
+    },
+    {
+        "id": "suggested_read_011",
+        "question": "Which set of equations is explicitly mentioned as a method to link auto-covariances to Autoregressive (AR) parameters for estimation?",
+        "type": "multiple_choice",
+        "options": [
+            "Yule-Walker equations",
+            "Maxwell's equations",
+            "Bellman equations",
+            "Navier-Stokes equations"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "autoregressive model",
+            "statistics",
+            "parameter estimation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that the Yule-Walker equations create a system that links auto-covariances to AR parameters, which can be solved in matrix form."
+    },
+    {
+        "id": "suggested_read_012",
+        "question": "In the context of an AR(1) model, what determines whether the power spectral density resembles low-pass (red noise) or high-pass (blue noise)?",
+        "type": "multiple_choice",
+        "options": [
+            "The variance of the white noise",
+            "The sign of the parameter phi_1",
+            "The length of the time series",
+            "The initial value of the series"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "autoregressive model",
+            "spectral analysis",
+            "time series"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text notes that for an AR(1) process, the spectrum shape depends on the sign of phi_1: positive yields low-pass (red noise) and negative yields high-pass (blue noise)."
+    },
+    {
+        "id": "suggested_read_013",
+        "question": "What is the primary characteristic of 'Foundation Models' regarding their training data?",
+        "type": "multiple_choice",
+        "options": [
+            "They are trained on small, highly curated labeled datasets.",
+            "They are trained on massive unlabeled datasets using unsupervised learning.",
+            "They require manual labeling for all training data.",
+            "They are trained exclusively on synthetic data generated by rules."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "foundation models",
+            "ai",
+            "training data"
+        ],
+        "difficulty": "easy",
+        "explanation": "Foundation models are defined as AI neural networks trained on massive unlabeled datasets, meaning no manual labeling is needed (unsupervised learning)."
+    },
+    {
+        "id": "suggested_read_014",
+        "question": "In the context of Foundation Models, what does the term 'Homogenization' refer to?",
+        "type": "multiple_choice",
+        "options": [
+            "The cleaning of datasets to remove outliers.",
+            "The blending of model architectures and algorithms (like Transformers) across the field.",
+            "The process of making all model outputs identical.",
+            "The standardization of hardware requirements."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "foundation models",
+            "ai terminology",
+            "model architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explains 'Homogenization' as the blending of model architectures and algorithms that shaped the field, leading to unified approaches like Transformers."
+    },
+    {
+        "id": "suggested_read_015",
+        "question": "How does LoRA (Low-Rank Adaptation) achieve parameter efficiency when fine-tuning large language models?",
+        "type": "multiple_choice",
+        "options": [
+            "It prunes 50% of the layers from the original model.",
+            "It freezes pretrained weights and injects trainable low-rank matrices.",
+            "It reduces the precision of all weights to 4-bit integers.",
+            "It only trains the embedding layer and freezes the rest."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "llm",
+            "fine-tuning",
+            "parameter efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA works by freezing the pretrained model weights and injecting trainable low-rank matrices (A and B) into each layer, significantly reducing the number of trainable parameters."
+    },
+    {
+        "id": "suggested_read_016",
+        "question": "What is a major advantage of LoRA regarding inference latency compared to using adapter layers?",
+        "type": "multiple_choice",
+        "options": [
+            "LoRA introduces a small but negligible latency.",
+            "LoRA requires parallel GPUs to run without latency.",
+            "LoRA has no added inference latency because weights can be merged.",
+            "LoRA reduces latency by skipping layers."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "lora",
+            "inference",
+            "latency",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that LoRA allows for the merged weights (frozen + LoRA) to be used at deployment, resulting in no added inference latency compared to the original model."
+    },
+    {
+        "id": "suggested_read_017",
+        "question": "According to the LoRA paper's empirical results, what was observed regarding the rank 'r' needed for adaptation?",
+        "type": "multiple_choice",
+        "options": [
+            "A very high rank (r > 64) is always required.",
+            "The rank must match the hidden dimension of the model.",
+            "Very low ranks (e.g., r=1 to r=4) are often sufficient.",
+            "Rank has no impact on model performance."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "lora",
+            "hyperparameters",
+            "model tuning"
+        ],
+        "difficulty": "hard",
+        "explanation": "The notes on empirical results mention that a very low rank (even r=1 to r=4) is often sufficient for effective adaptation."
+    },
+    {
+        "id": "suggested_read_018",
+        "question": "Which NVIDIA framework is explicitly mentioned as enabling businesses to create multi-billion parameter transformers?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA NeMo",
+            "NVIDIA GeForce",
+            "NVIDIA PhysX",
+            "NVIDIA CUDA"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia",
+            "frameworks",
+            "foundation models"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text identifies the 'NVIDIA NeMo framework' as the tool that lets businesses create multi-billion/trillion parameter transformers."
+    },
+    {
+        "id": "suggested_read_019",
+        "question": "When implementing LoRA using the `loralib` package, how does one typically ensure only LoRA parameters are trained?",
+        "type": "multiple_choice",
+        "options": [
+            "By setting `requires_grad=True` for all parameters.",
+            "By manually deleting non-LoRA layers.",
+            "By marking only parameters containing 'lora_' in their names as trainable.",
+            "By using a special optimizer that ignores large weights."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "lora",
+            "implementation",
+            "pytorch"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Quickstart notes state that one should mark LoRA parameters as trainable before the training loop, typically by identifying parameters with 'lora_' in their names."
+    },
+    {
+        "id": "suggested_read_020",
+        "question": "What is the mathematical definition of an Autoregressive (AR) model's output variable?",
+        "type": "multiple_choice",
+        "options": [
+            "It depends linearly on its own previous values plus a stochastic term.",
+            "It depends exponentially on future values minus a constant.",
+            "It is a moving average of past error terms only.",
+            "It is derived solely from the input of a separate exogenous variable."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "autoregressive model",
+            "statistics",
+            "definitions"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text defines an Autoregressive (AR) model as one where the output variable depends linearly on its own previous values plus a stochastic (random) term."
+    },
+    {
+        "id": "suggested_read_001",
+        "question": "According to the NVIDIA research spotlight, what is the 'critical challenge' identified in the sampling process of diffusion models?",
+        "type": "multiple_choice",
+        "options": [
+            "The network runs out of memory on small GPUs.",
+            "The step direction from the network is only locally valid, so large steps degrade quality.",
+            "The dataset used for training is too small to generalize.",
+            "The model cannot handle color images effectively."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "diffusion models",
+            "sampling",
+            "nvidia"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text identifies the critical challenge as the step direction from the network being only locally valid, meaning taking large steps can degrade the quality of the generated image."
+    },
+    {
+        "id": "suggested_read_002",
+        "question": "Which specific improvement for sampling in diffusion models involves choosing noise schedules that make flow lines straighter?",
+        "type": "multiple_choice",
+        "options": [
+            "Adaptive time steps",
+            "Higher-order solvers",
+            "Straightening the flow lines",
+            "Loss scaling"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "generative ai",
+            "diffusion models",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text lists 'Straightening the flow lines' as an improvement where time/noise schedules are chosen to make flow lines straighter for efficient sampling."
+    },
+    {
+        "id": "suggested_read_003",
+        "question": "In the context of training diffusion models, when is 'noise prediction' preferred over 'image prediction'?",
+        "type": "multiple_choice",
+        "options": [
+            "At high noise levels.",
+            "At low noise levels.",
+            "When using a small dataset.",
+            "When training on CPUs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "diffusion models",
+            "training dynamics"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text states that at low noise levels, noise prediction is better because it minimizes unreliable network contributions compared to predicting the clean image directly."
+    },
+    {
+        "id": "suggested_read_004",
+        "question": "What is the primary limitation of the single-layer Perceptron described in the Stanford text?",
+        "type": "multiple_choice",
+        "options": [
+            "It requires too much memory.",
+            "It can only solve linearly separable problems (cannot solve XOR).",
+            "It cannot be trained using gradient descent.",
+            "It is too slow for real-time applications."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "neural networks",
+            "perceptron",
+            "deep learning history"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text highlights that the Perceptron is limited to solving linearly separable problems and explicitly mentions its inability to solve the XOR problem."
+    },
+    {
+        "id": "suggested_read_005",
+        "question": "Which technique is used in backpropagation to prevent identical weight trajectories and stalled learning?",
+        "type": "multiple_choice",
+        "options": [
+            "Weight Decay",
+            "Momentum",
+            "Symmetry Breaking (Random Initialization)",
+            "Batch Normalization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "backpropagation",
+            "neural networks",
+            "training techniques"
+        ],
+        "difficulty": "medium",
+        "explanation": "Symmetry Breaking involves initializing all weights randomly to avoid identical trajectories, which would otherwise cause the hidden units to learn the exact same features."
+    },
+    {
+        "id": "suggested_read_006",
+        "question": "What is the purpose of the 'Momentum' term in neural network weight updates?",
+        "type": "multiple_choice",
+        "options": [
+            "To penalize large weights for better generalization.",
+            "To add a fraction of the last weight change to accelerate learning and escape local minima.",
+            "To randomly drop units during training.",
+            "To normalize the input data to a standard range."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "neural networks",
+            "optimization",
+            "momentum"
+        ],
+        "difficulty": "medium",
+        "explanation": "Momentum adds a fraction of the previous weight change to the current update, which helps accelerate learning and assists the network in escaping shallow local minima."
+    },
+    {
+        "id": "suggested_read_007",
+        "question": "Which RAPIDS library provides a GPU-accelerated dataframe processing API that is compatible with pandas?",
+        "type": "multiple_choice",
+        "options": [
+            "cuML",
+            "cuGraph",
+            "cuDF",
+            "RAFT"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rapids",
+            "data science",
+            "gpu acceleration",
+            "python"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text defines cuDF as the library for GPU-accelerated dataframe processing with a pandas-like API."
+    },
+    {
+        "id": "suggested_read_008",
+        "question": "How does the 'cudf.pandas' accelerator function for existing pandas workflows?",
+        "type": "multiple_choice",
+        "options": [
+            "It requires rewriting all pandas code into C++.",
+            "It runs workflows on GPU with zero code change, falling back to CPU if needed.",
+            "It only works for graph analytics tasks.",
+            "It replaces pandas with a completely different non-compatible API."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rapids",
+            "pandas",
+            "optimization",
+            "workflow"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that the cuDF pandas accelerator runs pandas workflows on GPU with zero code change (simply importing cudf.pandas) and falls back to CPU if necessary."
+    },
+    {
+        "id": "suggested_read_009",
+        "question": "Which company is cited in the text as using RAPIDS and XGBoost for demand forecasting to boost precision?",
+        "type": "multiple_choice",
+        "options": [
+            "Bumble",
+            "AT&T",
+            "Walmart",
+            "Amazon"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rapids",
+            "case study",
+            "industry application"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Enterprise Use Cases section notes that Walmart uses XGBoost with RAPIDS for demand forecasting, saving billions."
+    },
+    {
+        "id": "suggested_read_010",
+        "question": "In the context of backpropagation error measures, which function is noted as minimizing the total squared error?",
+        "type": "multiple_choice",
+        "options": [
+            "Cross-entropy error",
+            "LMS (Least Mean Squares) procedure",
+            "Logistic function",
+            "Softmax function"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "backpropagation",
+            "loss functions",
+            "mathematics"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text identifies the LMS (Least Mean Squares) procedure as the method that minimizes the total squared error between the target and actual output."
+    },
+    {
+        "id": "suggested_read_021",
+        "question": "Which popular Python machine learning library does cuML imitate with its 'fit-predict-transform' API paradigm?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow",
+            "scikit-learn",
+            "PyTorch",
+            "Keras"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cuml",
+            "machine learning",
+            "api compatibility"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that cuML provides an API similar to scikit-learn, using the familiar fit-predict-transform paradigm."
+    },
+    {
+        "id": "suggested_read_022",
+        "question": "Which tool is primarily used to enable multi-GPU and multi-node scaling for cuML workflows?",
+        "type": "multiple_choice",
+        "options": [
+            "Kubernetes",
+            "Docker",
+            "Dask",
+            "Spark"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cuml",
+            "scaling",
+            "dask"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text highlights that cuML offers extensive multi-GPU and multi-node support via Dask."
+    },
+    {
+        "id": "suggested_read_023",
+        "question": "According to the CUDA-X Data Science overview, which library is specifically designed for high-speed vector search?",
+        "type": "multiple_choice",
+        "options": [
+            "cuVS",
+            "cuGraph",
+            "RAFT",
+            "cuCIM"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cuda-x",
+            "cuvs",
+            "vector search"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text lists 'cuVS' as the library containing algorithms for high-speed vector search (e.g., CAGRA)."
+    },
+    {
+        "id": "suggested_read_024",
+        "question": "What technology does the KvikIO library leverage to provide powerful file I/O on GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "NVLink",
+            "NVIDIA GPUDirect Storage",
+            "Tensor Cores",
+            "CUDA Stream Execution"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cuda-x",
+            "kvikio",
+            "storage",
+            "io"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text describes KvikIO as using NVIDIA GPUDirect Storage for powerful file I/O on GPUs."
+    },
+    {
+        "id": "suggested_read_025",
+        "question": "Which library does cuGraph aim to accelerate with zero code changes, and what is the approximate speedup cited?",
+        "type": "multiple_choice",
+        "options": [
+            "pandas (50x)",
+            "scikit-learn (100x)",
+            "NetworkX (~48x)",
+            "Matplotlib (10x)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cugraph",
+            "networkx",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that cuGraph provides GPU-accelerated graph analytics ~48x faster than NetworkX with zero code change."
+    },
+    {
+        "id": "suggested_read_026",
+        "question": "What is the function of the RAFT library within the CUDA-X ecosystem?",
+        "type": "multiple_choice",
+        "options": [
+            "It provides interactive visualization dashboards.",
+            "It offers pre-trained generative AI models.",
+            "It contains CUDA-accelerated algorithmic primitives for composing analytics.",
+            "It acts as a driver for connecting multiple GPUs."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cuda-x",
+            "raft",
+            "primitives",
+            "algorithms"
+        ],
+        "difficulty": "hard",
+        "explanation": "RAFT is described as containing CUDA-accelerated algorithmic primitives for composing analytics."
+    },
+    {
+        "id": "suggested_read_027",
+        "question": "Which operating systems are currently supported for cuML installation?",
+        "type": "multiple_choice",
+        "options": [
+            "Windows and macOS",
+            "Linux/WSL2",
+            "Android and iOS",
+            "All operating systems with Python support"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cuml",
+            "installation",
+            "os support"
+        ],
+        "difficulty": "easy",
+        "explanation": "The installation notes explicitly state that cuML is supported only on Linux/WSL2."
+    },
+    {
+        "id": "suggested_read_028",
+        "question": "Which CUDA-X library is designed for creating interactive data visualizations for large tabular datasets?",
+        "type": "multiple_choice",
+        "options": [
+            "cuCIM",
+            "cuxfilter",
+            "cuVS",
+            "Polars"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cuda-x",
+            "cuxfilter",
+            "visualization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text defines cuxfilter as a tool for interactive data visualizations for large tabular datasets."
+    },
+    {
+        "id": "suggested_read_029",
+        "question": "What is the typical performance improvement of cuML compared to CPU-based alternatives for realistic workloads as stated in the documentation?",
+        "type": "multiple_choice",
+        "options": [
+            "2x - 5x",
+            "10x - 50x",
+            "100x - 500x",
+            "1000x+"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cuml",
+            "performance",
+            "benchmarks"
+        ],
+        "difficulty": "easy",
+        "explanation": "The documentation states that cuML delivers 10-50x faster performance on average compared to CPU-based alternatives."
+    },
+    {
+        "id": "suggested_read_030",
+        "question": "Which feature allows users to accelerate pandas code with zero code changes using cuDF?",
+        "type": "multiple_choice",
+        "options": [
+            "cudf.accel",
+            "cudf.pandas",
+            "cudf.spark",
+            "cudf.optimize"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cudf",
+            "pandas",
+            "acceleration"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text mentions the 'cuDF pandas accelerator' which runs pandas workflows on GPU with zero code change by simply importing `cudf.pandas`."
+    },
+    {
+        "id": "suggested_read_031",
+        "question": "According to Zuur's protocol for data exploration, which specific tool is recommended for detecting outliers in a dataset?",
+        "type": "multiple_choice",
+        "options": [
+            "Residual plots",
+            "Boxplot",
+            "VIF (Variance Inflation Factor)",
+            "PCA biplot"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data exploration",
+            "outliers",
+            "visualization"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text lists 'boxplot' and 'Cleveland dot plot' as the tools used to find extreme values that may skew results."
+    },
+    {
+        "id": "suggested_read_032",
+        "question": "Which statistical assumption does the 'Homogeneity in variance' step of data exploration primarily check for?",
+        "type": "multiple_choice",
+        "options": [
+            "That data points are independent of each other.",
+            "That feature variances are similar.",
+            "That the data follows a normal distribution.",
+            "That there are no missing values."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data exploration",
+            "statistics",
+            "variance"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that homogeneity in variance involves checking if feature variances are similar, which is important for regression and ANOVA."
+    },
+    {
+        "id": "suggested_read_033",
+        "question": "What is a primary warning associated with using t-SNE for dimensionality reduction?",
+        "type": "multiple_choice",
+        "options": [
+            "It is limited to linear projections only.",
+            "It requires a target variable (supervised learning).",
+            "It does not preserve cluster variance and output is nondeterministic.",
+            "It cannot handle high-dimensional data."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "t-sne",
+            "dimensionality reduction",
+            "visualization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text warns that t-SNE 'Doesn’t preserve cluster variance' and produces 'nondeterministic output per run'."
+    },
+    {
+        "id": "suggested_read_034",
+        "question": "Which metric is used to detect 'Collinearity' where highly correlated features can confuse the analysis?",
+        "type": "multiple_choice",
+        "options": [
+            "Mean Squared Error (MSE)",
+            "Variance Inflation Factor (VIF)",
+            "Kullback-Leibler (KL) divergence",
+            "TF-IDF score"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data exploration",
+            "collinearity",
+            "statistics"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text lists 'VIF' (Variance Inflation Factor), scatterplots, correlation, or PCA biplot as methods to detect collinearity."
+    },
+    {
+        "id": "suggested_read_035",
+        "question": "In the context of UMAP, what role does the `n_neighbors` hyperparameter play?",
+        "type": "multiple_choice",
+        "options": [
+            "It controls the packing density of data points.",
+            "It balances local versus global structure preservation.",
+            "It determines the final output dimension.",
+            "It sets the learning rate for gradient descent."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "umap",
+            "hyperparameters",
+            "dimensionality reduction"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text describes `n_neighbors` as the hyperparameter responsible for the 'local/global balance' in UMAP."
+    },
+    {
+        "id": "suggested_read_036",
+        "question": "Which scikit-learn vectorizer class weighs word frequency by considering its commonality across the entire corpus?",
+        "type": "multiple_choice",
+        "options": [
+            "CountVectorizer",
+            "TfidfVectorizer",
+            "HashingVectorizer",
+            "Word2Vec"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp",
+            "scikit-learn",
+            "feature engineering"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text explains that `TfidfVectorizer` weighs word frequency considering commonality across the corpus, enhancing the value of rare, descriptive terms."
+    },
+    {
+        "id": "suggested_read_037",
+        "question": "When customizing a scikit-learn vectorizer, which argument should be used to provide a function that returns a list of tokens after preprocessing?",
+        "type": "multiple_choice",
+        "options": [
+            "preprocessor",
+            "tokenizer",
+            "analyzer",
+            "stop_words"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "scikit-learn",
+            "nlp",
+            "tokenization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text distinguishes the options: `preprocessor` operates on the string, `tokenizer` returns a list of tokens, and `analyzer` replaces the whole pipeline."
+    },
+    {
+        "id": "suggested_read_038",
+        "question": "Why is the logarithm included in the TF-IDF formula?",
+        "type": "multiple_choice",
+        "options": [
+            "To ensure all values are positive.",
+            "To prevent rare words from dominating scores and penalize highly frequent terms.",
+            "To convert the values into a probability distribution.",
+            "To simplify the calculation of gradients."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp",
+            "tf-idf",
+            "mathematics"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that the logarithm in TF-IDF 'prevents rare words from dominating scores and penalizes highly frequent terms'."
+    },
+    {
+        "id": "suggested_read_039",
+        "question": "Which Python module is suggested in the text to help compose multiple processing functions (like stemming and tokenization) together?",
+        "type": "multiple_choice",
+        "options": [
+            "itertools",
+            "functools",
+            "collections",
+            "operator"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "python",
+            "coding",
+            "functional programming"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text mentions that function composition with `functools` is useful for combining tokenization and stemming steps."
+    },
+    {
+        "id": "suggested_read_040",
+        "question": "According to the Data Exploration blog, what was the specific flaw in Amazon's AI resume screener?",
+        "type": "multiple_choice",
+        "options": [
+            "It had too many missing values.",
+            "It became biased due to unbalanced gender data.",
+            "It suffered from extreme collinearity.",
+            "It was trained on image data instead of text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data exploration",
+            "bias",
+            "case study"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Introduction cites Amazon’s AI resume screener as an example that 'became biased due to unbalanced gender data', which could have been detected via data exploration."
+    },
+    {
+        "id": "suggested_read_041",
+        "question": "In the context of A/B testing for machine learning, what term is commonly used to describe the current production model that serves as the control?",
+        "type": "multiple_choice",
+        "options": [
+            "The Challenger",
+            "The Champion",
+            "The Bandit",
+            "The Draft Model"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "a/b testing",
+            "machine learning",
+            "experimentation"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that the control is often the current production model, referred to as the 'champion', while the treatment is the new model, known as the 'challenger'."
+    },
+    {
+        "id": "suggested_read_042",
+        "question": "Which adaptive traffic allocation strategy is mentioned as a method to reduce user exposure to underperforming models during experimentation?",
+        "type": "multiple_choice",
+        "options": [
+            "Random 50-50 splitting",
+            "Static batching",
+            "Multi-armed bandit algorithms",
+            "Sequence parallelism"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "experimentation",
+            "a/b testing",
+            "multi-armed bandit",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text notes that traffic allocation strategies can include adaptive methods like Thompson Sampling or multi-armed bandit algorithms to reduce exposure to underperforming models."
+    },
+    {
+        "id": "suggested_read_043",
+        "question": "According to the text on LLM inference, which phase is described as being memory-bound and generating tokens one at a time?",
+        "type": "multiple_choice",
+        "options": [
+            "Prefill phase",
+            "Decode phase",
+            "Training phase",
+            "Quantization phase"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "inference",
+            "performance",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text distinguishes between the two phases: the Prefill phase (processes inputs in parallel) and the Decode phase (generates tokens one at a time and is memory-bound)."
+    },
+    {
+        "id": "suggested_read_044",
+        "question": "Which batching technique is recommended to mitigate the inefficiency of static batching when requests finish at different times?",
+        "type": "multiple_choice",
+        "options": [
+            "In-flight batching",
+            "Offline batching",
+            "Sequence parallelism",
+            "Grouped-query batching"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "llm",
+            "batching",
+            "inference",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explains that static batching is suboptimal if requests finish at different times, and 'in-flight batching' mitigates this by dynamically updating active requests."
+    },
+    {
+        "id": "suggested_read_045",
+        "question": "What is the primary benefit of using PagedAttention for KV cache management?",
+        "type": "multiple_choice",
+        "options": [
+            "It fuses multiple operations into a single kernel.",
+            "It reduces memory fragmentation by storing KV cache in non-contiguous blocks.",
+            "It trains a smaller student model to mimic a teacher model.",
+            "It splits the model vertically across multiple GPUs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "pagedattention",
+            "memory management",
+            "kv cache"
+        ],
+        "difficulty": "hard",
+        "explanation": "PagedAttention is described as being inspired by OS paging, where the KV cache is block-based and stored non-contiguously, which reduces fragmentation and memory waste."
+    },
+    {
+        "id": "suggested_read_046",
+        "question": "Which attention optimization technique is described as a hybrid approach that enables quality close to Multi-head attention (MHA) with efficiency near Multi-query attention (MQA)?",
+        "type": "multiple_choice",
+        "options": [
+            "FlashAttention",
+            "Grouped-query attention (GQA)",
+            "PagedAttention",
+            "Tensor Parallelism"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "attention mechanisms",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text defines Grouped-query attention (GQA) as a hybrid approach that enables quality close to MHA with efficiency near MQA."
+    },
+    {
+        "id": "suggested_read_047",
+        "question": "What is the core mechanism behind 'Speculative Inference' as a model serving technique?",
+        "type": "multiple_choice",
+        "options": [
+            "It uses a small 'draft' model to generate token candidates that are verified by the main model.",
+            "It processes all input tokens in parallel to saturate the GPU.",
+            "It splits the model layers across multiple devices to handle larger contexts.",
+            "It converts model weights from FP32 to INT8 precision."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "llm",
+            "speculative inference",
+            "serving",
+            "optimization"
+        ],
+        "difficulty": "hard",
+        "explanation": "Speculative inference is defined as using a small 'draft' model to generate token candidates, which are then verified or discarded by the main model in parallel to boost speed."
+    },
+    {
+        "id": "suggested_read_048",
+        "question": "What distinguishes Generalized Zero-shot Learning (GZSL) from standard Zero-shot Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "GZSL requires one labeled example for every class.",
+            "GZSL involves both seen and unseen classes appearing during testing.",
+            "GZSL only tests on classes that were present in the training set.",
+            "GZSL does not require any auxiliary information."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "zero-shot learning",
+            "generalized zsl",
+            "machine learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that while standard ZSL only has unseen classes at test time, Generalized ZSL (GZSL) allows both seen and unseen classes to appear during testing."
+    },
+    {
+        "id": "suggested_read_049",
+        "question": "Which of the following is NOT listed as a main type of auxiliary information used in Zero-shot learning?",
+        "type": "multiple_choice",
+        "options": [
+            "Structured attributes",
+            "Textual description",
+            "Class-class similarity",
+            "Backpropagation gradients"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "zero-shot learning",
+            "auxiliary information",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text lists 'Structured attributes', 'Textual description', and 'Class-class similarity' as the main types of auxiliary information. 'Backpropagation gradients' is a training mechanism, not auxiliary info for ZSL."
+    },
+    {
+        "id": "suggested_read_050",
+        "question": "Which NVIDIA tool is explicitly mentioned as helping to implement LLM inference optimizations like PagedAttention and in-flight batching?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA TensorRT-LLM",
+            "NVIDIA GeForce Experience",
+            "NVIDIA PhysX",
+            "NVIDIA Omniverse"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "nvidia",
+            "tensorrt-llm",
+            "tools",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text explicitly states: 'Tools like NVIDIA TensorRT-LLM... help implement these optimizations.'"
+    },
+    {
+        "id": "suggested_read_051",
+        "question": "What specific problem does the 'modified n-gram precision' in the BLEU metric address compared to standard unigram precision?",
+        "type": "multiple_choice",
+        "options": [
+            "It corrects for the length of the translation.",
+            "It prevents the over-counting of repeated words in the candidate translation.",
+            "It adjusts the score based on the difficulty of the source language.",
+            "It measures the grammatical correctness of the sentence structure."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bleu",
+            "nlp",
+            "metrics",
+            "machine translation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explains that standard unigram precision can be artificially high (e.g., 'the the the...'). Modified n-gram precision counts candidate n-grams in references and clips them to the maximum reference count to prevent over-counting."
+    },
+    {
+        "id": "suggested_read_052",
+        "question": "In the BLEU metric calculation, at what level is the 'Brevity Penalty' applied?",
+        "type": "multiple_choice",
+        "options": [
+            "Per individual sentence",
+            "Per n-gram match",
+            "Corpus-wide",
+            "Per block of 25 sentences"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bleu",
+            "nlp",
+            "metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that the Brevity Penalty, which penalizes translations that are too short, is calculated corpus-wide, not per sentence."
+    },
+    {
+        "id": "suggested_read_053",
+        "question": "According to the survey on LLM hallucinations, which type of hallucination is characterized by output that diverges from the user's input or provided context, regardless of real-world factuality?",
+        "type": "multiple_choice",
+        "options": [
+            "Factuality Hallucination",
+            "Faithfulness Hallucination",
+            "Fabrication",
+            "Factual Contradiction"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "hallucinations",
+            "taxonomy",
+            "ai safety"
+        ],
+        "difficulty": "medium",
+        "explanation": "Faithfulness Hallucination is defined as output that diverges from user input, provided context, or is internally inconsistent (e.g., instruction or context inconsistency)."
+    },
+    {
+        "id": "suggested_read_054",
+        "question": "What phenomenon in Reinforcement Learning from Human Feedback (RLHF) is cited as a cause for hallucinations where the model aligns with user preference over truth?",
+        "type": "multiple_choice",
+        "options": [
+            "Over-confidence",
+            "Sycophancy",
+            "Softmax bottleneck",
+            "Exposure bias"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "rlhf",
+            "training",
+            "alignment"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text describes 'sycophancy' in the context of RLHF as the model aligning with user preference over truth, which can lead to hallucinations."
+    },
+    {
+        "id": "suggested_read_055",
+        "question": "Which inference-related issue is described as limiting probability expressiveness and inducing errors in LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "Decoding strategies",
+            "Softmax bottleneck",
+            "Reasoning failure",
+            "Exposure bias"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "inference",
+            "architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text lists 'Softmax bottleneck' under inference causes, noting that it limits probability expressiveness and induces errors."
+    },
+    {
+        "id": "suggested_read_056",
+        "question": "What is the primary goal of the GLUE benchmark?",
+        "type": "multiple_choice",
+        "options": [
+            "To evaluate models on a single specific task like Question Answering.",
+            "To encourage models that can represent general linguistic knowledge across diverse NLU tasks.",
+            "To generate new, synthetic datasets for low-resource languages.",
+            "To test the speed and latency of model inference."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "glue",
+            "benchmark",
+            "nlu",
+            "generalization"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that GLUE is a collection of diverse NLU tasks designed to favor models that can represent general linguistic knowledge."
+    },
+    {
+        "id": "suggested_read_057",
+        "question": "How does the 'Diagnostic Analysis Set' in GLUE differ from the primary benchmark tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "It consists of massive datasets for pre-training.",
+            "It is a small, manually-curated set designed to probe specific linguistic phenomena.",
+            "It is used solely for hyperparameter tuning.",
+            "It focuses exclusively on computer vision tasks."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "glue",
+            "diagnostic",
+            "linguistics"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Diagnostic Analysis Set is described as a small, manually-curated test set for diagnosing model performance on specific linguistic phenomena (like logic or lexical semantics), not for general benchmarking."
+    },
+    {
+        "id": "suggested_read_058",
+        "question": "Which Retrieval-Augmented Generation (RAG) challenge refers to the failure to utilize context effectively when it is located in the middle of a long input?",
+        "type": "multiple_choice",
+        "options": [
+            "Retrieval Failure",
+            "Softmax Bottleneck",
+            "Lost-in-the-middle effect",
+            "Sycophancy"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rag",
+            "llm",
+            "context",
+            "challenges"
+        ],
+        "difficulty": "medium",
+        "explanation": "The notes on RAG challenges mention generation bottlenecks such as failure in context utilization, specifically citing the 'lost-in-the-middle' effect."
+    },
+    {
+        "id": "suggested_read_059",
+        "question": "Which component was found to be especially vital for generalization in multi-task settings according to the GLUE baseline analysis?",
+        "type": "multiple_choice",
+        "options": [
+            "Convolutional filters",
+            "Attention mechanisms",
+            "MaxPooling layers",
+            "Sigmoid activation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "glue",
+            "deep learning",
+            "attention",
+            "multi-task learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "The detailed baseline performance analysis in the GLUE text notes that 'Attention mechanisms' are vital for generalization, especially in multi-task settings."
+    },
+    {
+        "id": "suggested_read_060",
+        "question": "Why does BLEU use the geometric mean of modified n-gram precisions rather than the arithmetic mean?",
+        "type": "multiple_choice",
+        "options": [
+            "It is easier to calculate.",
+            "It provides robustness.",
+            "It results in higher scores for all models.",
+            "It eliminates the need for a brevity penalty."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bleu",
+            "mathematics",
+            "metrics"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text mentions that BLEU uses the geometric mean of modified n-gram precisions for robustness."
+    },
+    {
+        "id": "suggested_read_061",
+        "question": "Which specific RAGAs metric evaluates the factual accuracy of the generated answer compared to the provided context?",
+        "type": "multiple_choice",
+        "options": [
+            "Context Recall",
+            "Answer Relevancy",
+            "Faithfulness",
+            "Context Precision"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "ragas",
+            "metrics",
+            "rag evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text defines Faithfulness as the metric that measures the factual accuracy of the answer compared to the provided context."
+    },
+    {
+        "id": "suggested_read_062",
+        "question": "What is a potential drawback of using 'reference-free' evaluation methods like RAGAs, as mentioned in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "They are more expensive than human evaluation.",
+            "They require significantly more manual labeling.",
+            "They may introduce LLM bias.",
+            "They cannot be automated."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "ragas",
+            "evaluation",
+            "llm bias"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text notes that while reference-free evaluation is cheaper, it uses LLMs to automate assessment which 'may introduce LLM bias'."
+    },
+    {
+        "id": "suggested_read_063",
+        "question": "In the context of Stratified Cross-Validation, what is the primary reason for using stratified sampling over standard random sampling?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the size of the training set.",
+            "To ensure the training and test sets have the same target class distribution as the original dataset.",
+            "To automatically tune hyperparameters during the split.",
+            "To reduce the computational time of the training process."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "machine learning",
+            "cross-validation",
+            "stratified sampling"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that stratified sampling ensures that the training and test sets maintain the same proportion of the target variable as the original data, which is crucial for imbalanced datasets."
+    },
+    {
+        "id": "suggested_read_064",
+        "question": "Which Scikit-Learn class is explicitly recommended for implementing k-fold cross-validation that preserves class proportions in every split?",
+        "type": "multiple_choice",
+        "options": [
+            "KFold",
+            "StratifiedKFold",
+            "ShuffleSplit",
+            "TimeSeriesSplit"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "scikit-learn",
+            "cross-validation",
+            "python"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text identifies `StratifiedKFold` as the class to use for k-fold cross-validation with stratified sampling, ensuring each fold preserves class proportions."
+    },
+    {
+        "id": "suggested_read_065",
+        "question": "What characterizes the tasks included in the LMentry benchmark?",
+        "type": "multiple_choice",
+        "options": [
+            "They are complex reasoning problems requiring chain-of-thought.",
+            "They are trivial elementary language tasks for humans (e.g., rhyming, alphabetical ordering).",
+            "They are massive multi-document summarization tasks.",
+            "They are code generation challenges in Python and C++."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lmentry",
+            "benchmark",
+            "llm capabilities"
+        ],
+        "difficulty": "easy",
+        "explanation": "LMentry focuses on 25 compact tasks that are 'trivial for humans,' such as writing a sentence with a given word, picking words from a category, or alphabetical ordering."
+    },
+    {
+        "id": "suggested_read_066",
+        "question": "According to the LMentry experiments, what effect did 'instruction finetuning' have on model performance?",
+        "type": "multiple_choice",
+        "options": [
+            "It significantly improved accuracy but did not necessarily boost robustness.",
+            "It reduced accuracy but improved robustness.",
+            "It had no measurable effect on either accuracy or robustness.",
+            "It caused the models to fail on all numeric comparison tasks."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "lmentry",
+            "finetuning",
+            "llm robustness"
+        ],
+        "difficulty": "medium",
+        "explanation": "The experiments section notes that instruction finetuning significantly improves accuracy but 'does not necessarily boost robustness'."
+    },
+    {
+        "id": "suggested_read_067",
+        "question": "Which specific input field is required by RAGAs to calculate the 'Context Recall' metric?",
+        "type": "multiple_choice",
+        "options": [
+            "contexts",
+            "question",
+            "answer",
+            "ground_truths"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "ragas",
+            "metrics",
+            "data requirements"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text mentions that `ground_truths` (human-annotated answers) are required mainly for the `context_recall` metric."
+    },
+    {
+        "id": "suggested_read_068",
+        "question": "What was the approximate human baseline performance on the LMentry tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "~50% accuracy",
+            "~75% accuracy",
+            "~100% accuracy with near-zero error rate",
+            "Variable depending on the task"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "lmentry",
+            "human baseline",
+            "benchmark"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states the human baseline performance is '~100% with near-zero error rate', highlighting that these tasks are trivial for humans."
+    },
+    {
+        "id": "suggested_read_069",
+        "question": "In the context of RAGAs, what does a high 'Context Relevancy' score indicate?",
+        "type": "multiple_choice",
+        "options": [
+            "That the answer addresses the question fully.",
+            "That all required information exists in the retrieved text.",
+            "That most of the retrieved context is useful and there is little noise.",
+            "That the answer is factually accurate compared to the context."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "ragas",
+            "metrics",
+            "interpretation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Under 'Interpreting RAGAs Output', a high Context Relevancy score is described as indicating that 'most context is useful' and low scores imply much is noise."
+    },
+    {
+        "id": "suggested_read_070",
+        "question": "What happens when you apply stratified sampling to a hold-out cross-validation split using `train_test_split`?",
+        "type": "multiple_choice",
+        "options": [
+            "The training set becomes larger than the test set.",
+            "The training and test sets maintain the same proportion of the target feature as the original data.",
+            "The data is shuffled randomly without regard for class labels.",
+            "The minority class is upsampled to match the majority class."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "stratified sampling",
+            "train_test_split",
+            "data preparation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explains that using the `stratify` argument ensures the training and test sets 'maintain the same proportion of the target as the original data'."
+    },
+    {
+        "id": "suggested_read_071",
+        "question": "Which component of the TensorRT ecosystem is specifically designed to enable advanced techniques like quantization and sparsity to reduce model complexity?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorRT-LLM",
+            "TensorRT Model Optimizer",
+            "NVIDIA NIM",
+            "NVIDIA Triton Inference Server"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt",
+            "optimization",
+            "quantization",
+            "sparsity"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that the TensorRT Model Optimizer features advanced techniques like quantization and sparsity to reduce model complexity and optimize speed."
+    },
+    {
+        "id": "suggested_read_072",
+        "question": "What is the primary benefit of 'Prompt Learning' as an LLM customization technique compared to full fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "It updates all model weights to maximize accuracy.",
+            "It requires no training data at all.",
+            "It customizes the model by prepending virtual tokens while keeping core parameters frozen, preventing catastrophic forgetting.",
+            "It changes the model architecture by adding new transformer layers."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "llm customization",
+            "prompt learning",
+            "p-tuning",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explains that Prompt Learning efficiently customizes LLMs by prepending virtual tokens (trainable embeddings) and leaving core model parameters frozen, which avoids catastrophic forgetting."
+    },
+    {
+        "id": "suggested_read_073",
+        "question": "Which PEFT method is described as learning task-specific scaling vectors for internal activations, making it very parameter-efficient?",
+        "type": "multiple_choice",
+        "options": [
+            "LoRA (Low-Rank Adaptation)",
+            "Adapter Learning",
+            "IA3",
+            "P-Tuning"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "peft",
+            "ia3",
+            "parameter efficiency",
+            "llm"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text defines IA3 as a PEFT method that learns task-specific scaling vectors for internal activations, noting it is very parameter-efficient."
+    },
+    {
+        "id": "suggested_read_074",
+        "question": "What are the three stages of Reinforcement Learning with Human Feedback (RLHF) as described in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "Pre-training, Validation, Testing",
+            "SFT foundation, Reward model training, RL fine-tuning",
+            "Prompt engineering, System prompting, Chain-of-thought",
+            "Quantization, Pruning, Distillation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rlhf",
+            "fine-tuning",
+            "alignment",
+            "training process"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text outlines the three-stage process for RLHF: (a) SFT model acts as foundation, (b) Train a reward model using human preference rankings, and (c) Fine-tune policy model using reinforcement learning."
+    },
+    {
+        "id": "suggested_read_075",
+        "question": "Which TensorRT-LLM feature helps mitigate the issue of requests finishing at different times by dynamically updating active requests?",
+        "type": "multiple_choice",
+        "options": [
+            "Static batching",
+            "In-flight batching",
+            "Custom attention",
+            "Quantization aware training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt-llm",
+            "batching",
+            "inference",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text mentions 'in-flight batching' as a specific optimization in TensorRT-LLM (and in general inference contexts) that dynamically updates active requests to improve throughput compared to static batching."
+    },
+    {
+        "id": "suggested_read_076",
+        "question": "What is the main difference between Prompt Tuning and P-Tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "Prompt Tuning uses a trainable encoder, while P-Tuning uses a static matrix.",
+            "Prompt Tuning optimizes a unique soft embedding matrix, while P-Tuning uses a trainable prompt encoder (LSTM/MLP).",
+            "Prompt Tuning updates the entire model, while P-Tuning freezes it.",
+            "Prompt Tuning is for images, while P-Tuning is for text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompt learning",
+            "prompt tuning",
+            "p-tuning",
+            "llm"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text distinguishes the two: Prompt Tuning optimizes a unique soft embedding matrix, whereas P-Tuning uses a trainable prompt encoder (like an LSTM or MLP) to generate virtual tokens."
+    },
+    {
+        "id": "suggested_read_077",
+        "question": "Which NVIDIA tool is mentioned as providing optimized inference microservices for scalable AI deployments?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA NeMo",
+            "NVIDIA NIM",
+            "NVIDIA Omniverse",
+            "NVIDIA PhysX"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "nim",
+            "deployment",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that TensorRT is supported by 'NVIDIA NIM (optimized inference microservices)' for scalable AI deployments."
+    },
+    {
+        "id": "suggested_read_078",
+        "question": "In the context of Prompt Engineering, what is the purpose of 'Chain-of-thought reasoning'?",
+        "type": "multiple_choice",
+        "options": [
+            "To provide detailed system-level behavioral instructions.",
+            "To prepend example pairs for few-shot learning.",
+            "To structure prompts to break complex problems into stepwise reasoning tasks.",
+            "To compress the prompt into fewer tokens."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "prompt engineering",
+            "chain-of-thought",
+            "reasoning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Chain-of-thought reasoning is described as a technique to structure prompts to break complex problems into stepwise reasoning tasks, useful for logical/arithmetic problems."
+    },
+    {
+        "id": "suggested_read_079",
+        "question": "Which framework integration allows PyTorch users to leverage TensorRT optimizations?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow-TensorRT",
+            "Torch-TensorRT",
+            "ONNX Runtime",
+            "Keras-TensorRT"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt",
+            "pytorch",
+            "frameworks",
+            "integration"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text lists 'Torch-TensorRT' as the integration for PyTorch users."
+    },
+    {
+        "id": "suggested_read_080",
+        "question": "What technique involves updating the entire set of LLM weights using labeled input-output data to boost performance on new tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "Supervised Fine-Tuning (SFT)",
+            "Prompt Tuning",
+            "LoRA",
+            "System Prompting"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "fine-tuning",
+            "sft",
+            "llm training"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text defines Supervised Fine-Tuning (SFT) as an approach that updates the entire set of LLM weights (Full Fine-Tuning) using labeled input-output data."
+    },
+    {
+        "id": "suggested_read_081",
+        "question": "What is the primary advantage of using INT8 inference over FP32 inference for deep learning models?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows for higher precision calculations.",
+            "It simplifies the model architecture by removing layers.",
+            "It improves speed, power efficiency, and reduces memory requirements.",
+            "It eliminates the need for training data."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "quantization",
+            "inference",
+            "optimization",
+            "int8"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that INT8 inference improves speed, power efficiency, and reduces memory requirements compared to FP32, which can be slow for real-time applications."
+    },
+    {
+        "id": "suggested_read_082",
+        "question": "Which quantization approach involves integrating quantization error into the training process using fake-quantization operations?",
+        "type": "multiple_choice",
+        "options": [
+            "Post-Training Quantization (PTQ)",
+            "Quantization Aware Training (QAT)",
+            "Dynamic Range Calibration",
+            "FP16 Mixed Precision Training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "quantization",
+            "qat",
+            "training",
+            "methods"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization Aware Training (QAT) is described as integrating quantization error into training by using fake-quantization operations to simulate INT8 behavior."
+    },
+    {
+        "id": "suggested_read_083",
+        "question": "What mechanism does Quantization Aware Training (QAT) use for backpropagation through non-differentiable quantization steps?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient clipping",
+            "Straight-through estimator (STE)",
+            "Backpropagation through time (BPTT)",
+            "Stochastic Gradient Descent (SGD)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "qat",
+            "backpropagation",
+            "training dynamics"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text mentions that training in QAT uses the 'straight-through estimator (STE)' for backpropagation to handle the quantization operations."
+    },
+    {
+        "id": "suggested_read_084",
+        "question": "In the context of TensorRT 8.0, how does 'Explicit quantization' differ from standard PTQ mode?",
+        "type": "multiple_choice",
+        "options": [
+            "It automatically calibrates dynamic ranges without any user input.",
+            "It uses random noise to simulate quantization errors.",
+            "It provides full control over arithmetic precision by ingesting models with explicit QuantizeLayer/DequantizeLayer nodes.",
+            "It converts the model to FP16 instead of INT8."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "tensorrt",
+            "explicit quantization",
+            "onnx"
+        ],
+        "difficulty": "medium",
+        "explanation": "Explicit quantization in TensorRT 8.0 ingests ONNX models with QuantizeLayer/DequantizeLayer, providing full control over arithmetic precision ensuring predictability."
+    },
+    {
+        "id": "suggested_read_085",
+        "question": "Which command-line tool is mentioned for building a QAT-enabled TensorRT network?",
+        "type": "multiple_choice",
+        "options": [
+            "nvcc",
+            "trtexec",
+            "nvidia-smi",
+            "nsys"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt",
+            "tools",
+            "cli"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text references the `trtexec -int8` command as the tool used to build QAT-enabled TensorRT networks."
+    },
+    {
+        "id": "suggested_read_086",
+        "question": "Which specific ONNX operators are used to represent quantization and dequantization in the exported model?",
+        "type": "multiple_choice",
+        "options": [
+            "Cast and Reshape",
+            "QuantizeLinear and DequantizeLinear",
+            "Relu and Sigmoid",
+            "Softmax and LogSoftmax"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "onnx",
+            "quantization",
+            "operators"
+        ],
+        "difficulty": "medium",
+        "explanation": "The QAT pipeline section states that the model is exported to ONNX with quantization ops `QuantizeLinear` and `DequantizeLinear` (Q/DQ)."
+    },
+    {
+        "id": "suggested_read_087",
+        "question": "According to the text, which model architecture showed a drastic accuracy gap between PTQ and QAT, favoring QAT?",
+        "type": "multiple_choice",
+        "options": [
+            "ResNet50",
+            "EfficientNet",
+            "BERT",
+            "YOLOv3"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "quantization",
+            "model performance",
+            "efficientnet"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text notes that EfficientNet shows a drastic accuracy gap between PTQ and QAT, with QAT preserving FP32 accuracy much better."
+    },
+    {
+        "id": "suggested_read_088",
+        "question": "What is the recommended starting point for a QAT pipeline according to the provided recipe?",
+        "type": "multiple_choice",
+        "options": [
+            "A randomly initialized model",
+            "A pre-trained model",
+            "A model trained only on synthetic data",
+            "A pruned sparse model"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "qat",
+            "best practices",
+            "workflow"
+        ],
+        "difficulty": "easy",
+        "explanation": "The recipe in the text recommends starting with pre-trained models for the QAT pipeline."
+    },
+    {
+        "id": "suggested_read_089",
+        "question": "Which toolkit is suggested for streamlining PTQ and QAT model preparation in PyTorch?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow Model Optimization Toolkit",
+            "NVIDIA NeMo",
+            "TensorRT Quantization Toolkit for PyTorch",
+            "ONNX Runtime"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "pytorch",
+            "tools",
+            "quantization"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text explicitly names the 'TensorRT Quantization Toolkit for PyTorch' as the tool that streamlines PTQ and QAT model prep."
+    },
+    {
+        "id": "suggested_read_090",
+        "question": "What is the main benefit of using 'fake-quantization' operations during training?",
+        "type": "multiple_choice",
+        "options": [
+            "To speed up the training process by skipping calculations.",
+            "To simulate INT8 precision so the network can adapt weights/activations for robust quantization.",
+            "To reduce the size of the training dataset.",
+            "To encrypt the model weights for security."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "qat",
+            "fake quantization",
+            "training concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "Fake-quantization operations are used to simulate INT8 precision during training, allowing the network to adapt its weights and activations to minimize quantization error."
+    },
+    {
+        "id": "suggested_read_091",
+        "question": "Which communication pattern involves one sender distributing different data to multiple receivers?",
+        "type": "multiple_choice",
+        "options": [
+            "Broadcast",
+            "Scatter",
+            "Gather",
+            "All-to-All"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "collective communication",
+            "scatter"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text defines 'Scatter' as one sender transmitting different data to multiple receivers, distinguishing it from Broadcast where the same data is sent to all."
+    },
+    {
+        "id": "suggested_read_092",
+        "question": "Which collective communication operation combines data from all senders and distributes the result back to all participants?",
+        "type": "multiple_choice",
+        "options": [
+            "Reduce",
+            "All-Gather",
+            "All-Reduce",
+            "Reduce-Scatter"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nccl",
+            "collective communication",
+            "all-reduce"
+        ],
+        "difficulty": "medium",
+        "explanation": "All-Reduce is described as the operation where data from all senders is combined, and the result is delivered to all participants."
+    },
+    {
+        "id": "suggested_read_093",
+        "question": "What is identified as the primary bottleneck for small data transfers in collective communication?",
+        "type": "multiple_choice",
+        "options": [
+            "Bandwidth",
+            "Latency",
+            "Memory capacity",
+            "Power consumption"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "performance",
+            "latency"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that for small transfers, latency is the bottleneck, whereas bandwidth becomes critical for large transfers."
+    },
+    {
+        "id": "suggested_read_094",
+        "question": "Which topology-aware algorithm is cited as often being bandwidth-optimal for many topologies in collective communication?",
+        "type": "multiple_choice",
+        "options": [
+            "Tree-based collectives",
+            "Mesh-based collectives",
+            "Ring-based collectives",
+            "Star-based collectives"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nccl",
+            "algorithms",
+            "ring topology"
+        ],
+        "difficulty": "medium",
+        "explanation": "The notes explicitly state that ring-based collectives are often bandwidth-optimal for many topologies."
+    },
+    {
+        "id": "suggested_read_095",
+        "question": "Which technology does NCCL use for direct access between GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "NVLink only",
+            "GPUDirect P2P",
+            "PCIe switching",
+            "InfiniBand"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "gpudirect",
+            "cuda"
+        ],
+        "difficulty": "hard",
+        "explanation": "Under 'NCCL Implementation', the text lists 'GPUDirect P2P' as the technology used for direct access between GPUs."
+    },
+    {
+        "id": "suggested_read_096",
+        "question": "What are the three primitives used in NCCL implementation?",
+        "type": "multiple_choice",
+        "options": [
+            "Send, Receive, Wait",
+            "Copy, Reduce, ReduceAndCopy",
+            "Load, Store, Fence",
+            "Push, Pop, Peek"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "implementation",
+            "primitives"
+        ],
+        "difficulty": "hard",
+        "explanation": "The notes specify the three primitives used in NCCL implementation are Copy, Reduce, and ReduceAndCopy."
+    },
+    {
+        "id": "suggested_read_097",
+        "question": "Which key application area is NOT listed as depending on collective communications in the text?",
+        "type": "multiple_choice",
+        "options": [
+            "Deep Learning",
+            "Molecular Dynamics",
+            "Web Hosting",
+            "Graph Analytics"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nccl",
+            "applications",
+            "hpc"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text lists Deep Learning, FFT, Molecular Dynamics, and Graph Analytics as key applications depending on collectives. Web Hosting is not mentioned."
+    },
+    {
+        "id": "suggested_read_098",
+        "question": "What is the primary goal of the NCCL library?",
+        "type": "multiple_choice",
+        "options": [
+            "To replace CUDA for all GPU operations.",
+            "To provide accelerated, topology-aware collective communications.",
+            "To optimize CPU-only matrix multiplication.",
+            "To manage power consumption on NVIDIA GPUs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "goals",
+            "overview"
+        ],
+        "difficulty": "easy",
+        "explanation": "NCCL is introduced as a research library for accelerated, topology-aware collectives with goals of easy integration and scalability."
+    },
+    {
+        "id": "suggested_read_099",
+        "question": "In the context of Ring-Based Collectives, what happens to the total time formula for broadcast as the number of message splits 'S' approaches infinity?",
+        "type": "multiple_choice",
+        "options": [
+            "It approaches zero.",
+            "It approaches N/B (bytes divided by bandwidth).",
+            "It approaches infinity.",
+            "It remains constant at (k-1)N/B."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "ring algorithms",
+            "performance modeling"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text shows the formula for splitting into S messages: Total time approaches N/B as S approaches infinity."
+    },
+    {
+        "id": "suggested_read_100",
+        "question": "Which specific interconnect technology is mentioned as providing ~16 GB/s bandwidth in the Topology Examples?",
+        "type": "multiple_choice",
+        "options": [
+            "PCIe Gen3 x16",
+            "NVLink",
+            "Ethernet",
+            "QPI"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "hardware",
+            "nvlink",
+            "bandwidth"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text compares interconnects, stating that NVLink provides ~16 GB/s, while PCIe Gen3 x16 provides ~12 GB/s."
+    },
+    {
+        "id": "suggested_read_101",
+        "question": "In the context of distributed deep learning training, which operation is primarily responsible for aggregating gradients across multiple GPUs to update model parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "AllReduce",
+            "MapReduce",
+            "Scatter-Gather",
+            "Broadcast-Only"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "distributed training",
+            "allreduce",
+            "gradients"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that AllReduce is the key operation for aggregating gradients across GPUs during synchronized data-parallel deep learning."
+    },
+    {
+        "id": "suggested_read_102",
+        "question": "A developer is optimizing a large-scale training job and chooses the Ring-AllReduce algorithm. What is a key scalability characteristic of this algorithm regarding communication cost?",
+        "type": "multiple_choice",
+        "options": [
+            "The communication cost increases exponentially with the number of processes.",
+            "The communication cost is nearly independent of the process count.",
+            "The communication cost doubles with every new node added.",
+            "The communication cost is heavily dependent on the master node's bandwidth."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ring-allreduce",
+            "scalability",
+            "algorithms"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explains that for Ring-AllReduce, communication is balanced and cost is nearly independent of the process count, unlike the master-worker scheme."
+    },
+    {
+        "id": "suggested_read_103",
+        "question": "The Ring-AllReduce algorithm operates in two distinct phases to synchronize data across all processes. What are these two phases?",
+        "type": "multiple_choice",
+        "options": [
+            "Map and Reduce",
+            "Scatter-Reduce and All-Gather (Broadcast/Circulate)",
+            "Compress and Decompress",
+            "Encrypt and Decrypt"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ring-allreduce",
+            "algorithms",
+            "distributed computing"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text describes two phases: first, a reduction phase where chunks are reduced (summed), and a second phase where the reduced chunks are scattered/circulated (All-Gather) so all processes acquire the full result."
+    },
+    {
+        "id": "suggested_read_104",
+        "question": "Which NVIDIA library is explicitly mentioned as delivering fast, efficient AllReduce operations that outperform traditional MPI in distributed deep learning?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA Deep Neural Network (cuDNN)",
+            "NVIDIA Collective Communication Library (NCCL)",
+            "TensorRT",
+            "NVIDIA NeMo"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "nvidia",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text identifies the NVIDIA Collective Communication Library (NCCL) as the library that delivers fast, efficient AllReduce operations."
+    },
+    {
+        "id": "suggested_read_105",
+        "question": "What distinguishes the 'Compound Scaling' method used by EfficientNet from traditional scaling approaches?",
+        "type": "multiple_choice",
+        "options": [
+            "It scales only the network depth to increase accuracy.",
+            "It scales only the input resolution to capture more detail.",
+            "It scales depth, width, and input resolution uniformly.",
+            "It dynamically adjusts the learning rate based on validation loss."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "efficientnet",
+            "model scaling",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "EfficientNet uses compound scaling, which scales depth, width, and input resolution uniformly, rather than scaling just one dimension."
+    },
+    {
+        "id": "suggested_read_106",
+        "question": "When using the SageMaker Distributed Data Parallel (SMDDP) library, how does it optimize resource utilization during the AllReduce operation?",
+        "type": "multiple_choice",
+        "options": [
+            "It runs AllReduce on CPUs instead of GPUs.",
+            "It compresses gradients to 8-bit integers before transmission.",
+            "It uses a dedicated parameter server for all communications.",
+            "It skips the synchronization step for every other batch."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "sagemaker",
+            "smddp",
+            "optimization",
+            "aws"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text notes that SMDDP runs AllReduce on CPUs instead of GPUs for better resource utilization and overlaps communication with computation."
+    },
+    {
+        "id": "suggested_read_107",
+        "question": "According to the provided text, what performance improvement can be expected when switching from Horovod to the SageMaker Distributed Data Parallel (SMDDP) library for EfficientNet training?",
+        "type": "multiple_choice",
+        "options": [
+            "Up to 10%",
+            "Up to 30%",
+            "Up to 50%",
+            "No significant improvement"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sagemaker",
+            "smddp",
+            "benchmarks",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text concludes that SMDDP consistently achieves up to 30% improvement over Horovod in certain scenarios."
+    },
+    {
+        "id": "suggested_read_108",
+        "question": "Which low-level API did PFN use directly to implement their experimental AllReduce library for faster performance on InfiniBand?",
+        "type": "multiple_choice",
+        "options": [
+            "TCP/IP Sockets",
+            "InfiniBand Verbs API",
+            "MPI_Allreduce",
+            "gRPC"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "networking",
+            "infiniband",
+            "optimization",
+            "pfn"
+        ],
+        "difficulty": "hard",
+        "explanation": "For faster performance, PFN used the InfiniBand Verbs API directly, enabling pipelining of memory registration and other steps."
+    },
+    {
+        "id": "suggested_read_109",
+        "question": "When migrating an EfficientNet training script from Horovod to SMDDP, which function call should replace `hvd.rank()`?",
+        "type": "multiple_choice",
+        "options": [
+            "sdp.rank()",
+            "smddp.get_rank()",
+            "dist.rank()",
+            "aws.rank()"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "migration",
+            "coding",
+            "smddp",
+            "horovod"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text instructs to swap all `hvd.rank()` calls to `sdp.rank()` when adapting the script."
+    },
+    {
+        "id": "suggested_read_110",
+        "question": "What is identified as the main bottleneck in large-scale data-parallel training?",
+        "type": "multiple_choice",
+        "options": [
+            "Disk I/O latency",
+            "CPU compute power",
+            "Inter-GPU communication latency (gradient exchange)",
+            "Model parameter count"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "distributed training",
+            "bottlenecks",
+            "infrastructure"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Introduction states that Inter-GPU communication is the main bottleneck in large-scale data-parallel training due to latency in exchanging gradients."
+    },
+    {
+        "id": "suggested_read_101",
+        "question": "In the context of distributed deep learning training, which operation is primarily responsible for aggregating gradients across multiple GPUs to update model parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "AllReduce",
+            "MapReduce",
+            "Scatter-Gather",
+            "Broadcast-Only"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "distributed training",
+            "allreduce",
+            "gradients"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text states that AllReduce is the key operation for aggregating gradients across GPUs during synchronized data-parallel deep learning."
+    },
+    {
+        "id": "suggested_read_102",
+        "question": "A developer is optimizing a large-scale training job and chooses the Ring-AllReduce algorithm. What is a key scalability characteristic of this algorithm regarding communication cost?",
+        "type": "multiple_choice",
+        "options": [
+            "The communication cost increases exponentially with the number of processes.",
+            "The communication cost is nearly independent of the process count.",
+            "The communication cost doubles with every new node added.",
+            "The communication cost is heavily dependent on the master node's bandwidth."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ring-allreduce",
+            "scalability",
+            "algorithms"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text explains that for Ring-AllReduce, communication is balanced and cost is nearly independent of the process count, unlike the master-worker scheme."
+    },
+    {
+        "id": "suggested_read_103",
+        "question": "The Ring-AllReduce algorithm operates in two distinct phases to synchronize data across all processes. What are these two phases?",
+        "type": "multiple_choice",
+        "options": [
+            "Map and Reduce",
+            "Scatter-Reduce and All-Gather (Broadcast/Circulate)",
+            "Compress and Decompress",
+            "Encrypt and Decrypt"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ring-allreduce",
+            "algorithms",
+            "distributed computing"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text describes two phases: first, a reduction phase where chunks are reduced (summed), and a second phase where the reduced chunks are scattered/circulated (All-Gather) so all processes acquire the full result."
+    },
+    {
+        "id": "suggested_read_104",
+        "question": "Which NVIDIA library is explicitly mentioned as delivering fast, efficient AllReduce operations that outperform traditional MPI in distributed deep learning?",
+        "type": "multiple_choice",
+        "options": [
+            "CUDA Deep Neural Network (cuDNN)",
+            "NVIDIA Collective Communication Library (NCCL)",
+            "TensorRT",
+            "NVIDIA NeMo"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "nvidia",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text identifies the NVIDIA Collective Communication Library (NCCL) as the library that delivers fast, efficient AllReduce operations."
+    },
+    {
+        "id": "suggested_read_105",
+        "question": "What distinguishes the 'Compound Scaling' method used by EfficientNet from traditional scaling approaches?",
+        "type": "multiple_choice",
+        "options": [
+            "It scales only the network depth to increase accuracy.",
+            "It scales only the input resolution to capture more detail.",
+            "It scales depth, width, and input resolution uniformly.",
+            "It dynamically adjusts the learning rate based on validation loss."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "efficientnet",
+            "model scaling",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "EfficientNet uses compound scaling, which scales depth, width, and input resolution uniformly, rather than scaling just one dimension."
+    },
+    {
+        "id": "suggested_read_106",
+        "question": "When using the SageMaker Distributed Data Parallel (SMDDP) library, how does it optimize resource utilization during the AllReduce operation?",
+        "type": "multiple_choice",
+        "options": [
+            "It runs AllReduce on CPUs instead of GPUs.",
+            "It compresses gradients to 8-bit integers before transmission.",
+            "It uses a dedicated parameter server for all communications.",
+            "It skips the synchronization step for every other batch."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "sagemaker",
+            "smddp",
+            "optimization",
+            "aws"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text notes that SMDDP runs AllReduce on CPUs instead of GPUs for better resource utilization and overlaps communication with computation."
+    },
+    {
+        "id": "suggested_read_107",
+        "question": "According to the provided text, what performance improvement can be expected when switching from Horovod to the SageMaker Distributed Data Parallel (SMDDP) library for EfficientNet training?",
+        "type": "multiple_choice",
+        "options": [
+            "Up to 10%",
+            "Up to 30%",
+            "Up to 50%",
+            "No significant improvement"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sagemaker",
+            "smddp",
+            "benchmarks",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text concludes that SMDDP consistently achieves up to 30% improvement over Horovod in certain scenarios."
+    },
+    {
+        "id": "suggested_read_108",
+        "question": "Which low-level API did PFN use directly to implement their experimental AllReduce library for faster performance on InfiniBand?",
+        "type": "multiple_choice",
+        "options": [
+            "TCP/IP Sockets",
+            "InfiniBand Verbs API",
+            "MPI_Allreduce",
+            "gRPC"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "networking",
+            "infiniband",
+            "optimization",
+            "pfn"
+        ],
+        "difficulty": "hard",
+        "explanation": "For faster performance, PFN used the InfiniBand Verbs API directly, enabling pipelining of memory registration and other steps."
+    },
+    {
+        "id": "suggested_read_109",
+        "question": "When migrating an EfficientNet training script from Horovod to SMDDP, which function call should replace `hvd.rank()`?",
+        "type": "multiple_choice",
+        "options": [
+            "sdp.rank()",
+            "smddp.get_rank()",
+            "dist.rank()",
+            "aws.rank()"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "migration",
+            "coding",
+            "smddp",
+            "horovod"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text instructs to swap all `hvd.rank()` calls to `sdp.rank()` when adapting the script."
+    },
+    {
+        "id": "suggested_read_110",
+        "question": "What is identified as the main bottleneck in large-scale data-parallel training?",
+        "type": "multiple_choice",
+        "options": [
+            "Disk I/O latency",
+            "CPU compute power",
+            "Inter-GPU communication latency (gradient exchange)",
+            "Model parameter count"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "distributed training",
+            "bottlenecks",
+            "infrastructure"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Introduction states that Inter-GPU communication is the main bottleneck in large-scale data-parallel training due to latency in exchanging gradients."
+    },
+    {
+        "id": "suggested_read_111",
+        "question": "Which mechanism does the Hugging Face Datasets library primarily use to handle large datasets without overwhelming RAM?",
+        "type": "multiple_choice",
+        "options": [
+            "In-memory caching",
+            "Memory-mapped files",
+            "Database sharding",
+            "Pointer swizzling"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hugging face",
+            "datasets",
+            "big data",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text states that the Hugging Face Datasets library handles memory challenges using memory-mapped files to avoid loading everything into RAM."
+    },
+    {
+        "id": "suggested_read_112",
+        "question": "According to the empirical results on Deep Learning scaling, how does the model size typically scale relative to the data size?",
+        "type": "multiple_choice",
+        "options": [
+            "Exponentially",
+            "Linearly",
+            "Sublinearly",
+            "Logarithmically"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "scaling laws",
+            "deep learning",
+            "model capacity"
+        ],
+        "difficulty": "medium",
+        "explanation": "The notes indicate that empirical data shows model size grows sublinearly with data size (e.g., exponent ~0.7 or ~0.57 depending on domain)."
+    },
+    {
+        "id": "suggested_read_113",
+        "question": "In the context of learning curves for deep learning, what effect do changes in model architecture or optimizers typically have?",
+        "type": "multiple_choice",
+        "options": [
+            "They significantly change the power-law exponent (slope).",
+            "They shift the intercept (error level) but do not affect the exponent.",
+            "They eliminate the irreducible error region entirely.",
+            "They reverse the direction of the power-law curve."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "scaling laws",
+            "learning curves",
+            "model architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "The text states that model architecture and optimizer changes mostly shift the intercept (improving error level) but do not affect the power-law exponent (slope)."
+    },
+    {
+        "id": "suggested_read_114",
+        "question": "What does the acronym BERT stand for?",
+        "type": "multiple_choice",
+        "options": [
+            "Binary Encoder Representations from Transformers",
+            "Bidirectional Encoder Representations from Transformers",
+            "Basic Encoder Representations from Transformers",
+            "Bidirectional Embedded Representations from Text"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "nlp",
+            "acronyms"
+        ],
+        "difficulty": "easy",
+        "explanation": "BERT stands for Bidirectional Encoder Representations from Transformers."
+    },
+    {
+        "id": "suggested_read_115",
+        "question": "Which two pre-training tasks are used to train BERT?",
+        "type": "multiple_choice",
+        "options": [
+            "Masked Language Model (MLM) and Next Sentence Prediction (NSP)",
+            "Causal Language Modeling and Translation",
+            "Part-of-Speech Tagging and Named Entity Recognition",
+            "Denoising Autoencoding and Permutation Language Modeling"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "bert",
+            "pre-training",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "BERT uses two pre-training tasks: Masked Language Model (MLM) and Next Sentence Prediction (NSP)."
+    },
+    {
+        "id": "suggested_read_116",
+        "question": "In the Masked Language Model (MLM) task for BERT, what percentage of tokens are selected for masking?",
+        "type": "multiple_choice",
+        "options": [
+            "10%",
+            "15%",
+            "20%",
+            "50%"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "mlm",
+            "hyperparameters"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text specifies that 15% of input tokens are randomly masked during the MLM task."
+    },
+    {
+        "id": "suggested_read_117",
+        "question": "For the tokens chosen to be masked in BERT's MLM task, what happens to them 10% of the time?",
+        "type": "multiple_choice",
+        "options": [
+            "They are replaced with the [MASK] token.",
+            "They are replaced with a random token.",
+            "They are replaced with the [CLS] token.",
+            "They are removed from the sequence."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "mlm",
+            "training details"
+        ],
+        "difficulty": "hard",
+        "explanation": "Of the 15% selected tokens: 80% are replaced with [MASK], 10% are replaced with a random token, and 10% remain unchanged."
+    },
+    {
+        "id": "suggested_read_118",
+        "question": "What is the primary difference between BERT and OpenAI GPT (v1) as described in the comparison section?",
+        "type": "multiple_choice",
+        "options": [
+            "BERT is a left-to-right transformer, while GPT is bidirectional.",
+            "BERT is bidirectional, while GPT is a left-to-right transformer.",
+            "BERT uses LSTMs, while GPT uses Transformers.",
+            "BERT is feature-based, while GPT is fine-tuning based."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "gpt",
+            "model comparison",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "BERT is a bidirectional transformer, whereas OpenAI GPT is described as a left-to-right (unidirectional) transformer."
+    },
+    {
+        "id": "suggested_read_119",
+        "question": "Which special tokens are used in BERT's input representation?",
+        "type": "multiple_choice",
+        "options": [
+            "[START] and [END]",
+            "[CLS] and [SEP]",
+            "[BOS] and [EOS]",
+            "[HEAD] and [TAIL]"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bert",
+            "tokenization",
+            "input representation"
+        ],
+        "difficulty": "easy",
+        "explanation": "BERT uses [CLS] for classification at the start and [SEP] for sentence separation."
+    },
+    {
+        "id": "suggested_read_120",
+        "question": "What are the three distinct phases of a learning curve as described in the Deep Learning Scaling text?",
+        "type": "multiple_choice",
+        "options": [
+            "Warmup region, Linear region, Overfitting region",
+            "Small data region, Power-law region, Irreducible error region",
+            "Training phase, Validation phase, Testing phase",
+            "Underfitting region, Optimal region, Saturation region"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "scaling laws",
+            "learning curves",
+            "phases"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text describes three phases: Small data region (random guessing), Power-law region (predictable decrease), and Irreducible error region (minimum error due to noise/limitations)."
+    },
+    {
+        "id": "suggested_read_001",
+        "question": "According to NVIDIA's principles, what are the primary goals of Trustworthy AI development?",
+        "type": "multiple_choice",
+        "options": [
+            "Speed and computational efficiency",
+            "Safety and transparency",
+            "Cost reduction and scalability",
+            "Open-source availability and unrestricted access"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "trustworthy ai",
+            "principles"
+        ],
+        "difficulty": "easy",
+        "explanation": "Trustworthy AI is defined as an approach that prioritizes safety and transparency for users, ensuring models are tested for security and bias mitigation."
+    },
+    {
+        "id": "suggested_read_002",
+        "question": "Which technique allows models to be trained using data from multiple sources without sharing confidential data externally?",
+        "type": "multiple_choice",
+        "options": [
+            "Confidential Computing",
+            "Retrieval-Augmented Generation",
+            "Federated Learning",
+            "Model Card++"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "privacy",
+            "federated learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Federated Learning trains models across multiple sources (like hospitals or banks) without the data leaving its original location, preserving privacy."
+    },
+    {
+        "id": "suggested_read_003",
+        "question": "Which NVIDIA hardware feature is specifically designed to secure sensitive data while it is in use?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA Omniverse Replicator",
+            "Confidential Computing (H100/H200 GPUs)",
+            "NVIDIA FLARE software",
+            "NVIDIA NeMo Retriever"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "security",
+            "hardware"
+        ],
+        "difficulty": "medium",
+        "explanation": "Confidential Computing on NVIDIA H100/H200 GPUs secures sensitive data while in use by blocking unauthorized data or application access at the hardware level."
+    },
+    {
+        "id": "suggested_read_004",
+        "question": "What is the primary function of Retrieval-Augmented Generation (RAG)?",
+        "type": "multiple_choice",
+        "options": [
+            "To generate synthetic data for training robotics",
+            "To encrypt data during the inference process",
+            "To enhance generative AI with facts from external data sources",
+            "To compress Large Language Models for mobile devices"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rag",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "RAG connects generative AI to external, relevant resources to ground responses in current data and reduce hallucinations."
+    },
+    {
+        "id": "suggested_read_005",
+        "question": "In the context of RAG, what is the role of an embedding model?",
+        "type": "multiple_choice",
+        "options": [
+            "It generates the final text response for the user",
+            "It converts user queries and data into numeric vectors for comparison",
+            "It acts as a firewall against malicious prompts",
+            "It creates synthetic images for training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "technical"
+        ],
+        "difficulty": "medium",
+        "explanation": "The embedding model converts the user's question into a numeric vector, which is then compared against a vector database to find relevant information."
+    },
+    {
+        "id": "suggested_read_006",
+        "question": "Which of the following are the three phases of the NVIDIA Safety Recipe?",
+        "type": "multiple_choice",
+        "options": [
+            "Train, Test, Validate",
+            "Build, Deploy, Run",
+            "Input, Process, Output",
+            "Detect, Mitigate, Report"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "safety recipe",
+            "lifecycle"
+        ],
+        "difficulty": "medium",
+        "explanation": "The NVIDIA Safety Recipe consists of three phases: Build (identify vulnerabilities), Deploy (securely package), and Run (real-time protection)."
+    },
+    {
+        "id": "suggested_read_007",
+        "question": "What is a 'sliding puzzle attack' an example of?",
+        "type": "multiple_choice",
+        "options": [
+            "A standard text-based injection attack",
+            "A Multimodal Cognitive Attack",
+            "A hardware-level side-channel attack",
+            "A denial-of-service attack on RAG systems"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "security",
+            "adversarial ai"
+        ],
+        "difficulty": "hard",
+        "explanation": "A sliding puzzle attack is a Multimodal Cognitive Attack where a malicious payload is fragmented across puzzle pieces, exploiting the AI's reasoning capabilities to reconstruct the command."
+    },
+    {
+        "id": "suggested_read_008",
+        "question": "Which security features are embedded in the NVIDIA NIM lifecycle? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Model signing to verify integrity",
+            "Software Bill of Materials (SBOM) for auditing",
+            "Continuous vulnerability scanning with VEX records",
+            "Automatic generation of synthetic training data"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "nim",
+            "security"
+        ],
+        "difficulty": "hard",
+        "explanation": "NIM security features include model signing, SBOM for dependency auditing, and continuous vulnerability scanning (VEX records). Synthetic data generation is a separate function."
+    },
+    {
+        "id": "suggested_read_009",
+        "question": "What is the purpose of Protected PCIe (PPCIE) mode in Confidential Computing?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the data transfer speed between GPUs",
+            "To secure entire multi-GPU systems within a single Confidential Virtual Machine",
+            "To prevent physical theft of the GPU hardware",
+            "To allow the GPU to function without a cooling system"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hardware",
+            "confidential computing"
+        ],
+        "difficulty": "hard",
+        "explanation": "Protected PCIe (PPCIE) extends the Trusted Execution Environment to secure multi-GPU systems, protecting the full configuration without performance penalty."
+    },
+    {
+        "id": "suggested_read_010",
+        "question": "What are two 'subcard' sections found in NVIDIA's Model Card++?",
+        "type": "multiple_choice",
+        "options": [
+            "Pricing and Availability",
+            "Bias and Explainability",
+            "Latency and Throughput",
+            "Marketing and Sales"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transparency",
+            "documentation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Model Card++ includes subcards like 'Bias' (documenting demographics) and 'Explainability' (clarifying decision logic) to enhance transparency."
+    },
+    {
+        "id": "suggested_read_011",
+        "question": "What is the key difference between Security Red Teaming and Content-Based Red Teaming?",
+        "type": "multiple_choice",
+        "options": [
+            "Security Red Teaming is manual, while Content-Based is automated",
+            "Security Red Teaming targets system vulnerabilities (confidentiality, integrity), while Content-Based targets model output behavior (bias, safety)",
+            "Security Red Teaming is performed by developers, while Content-Based is performed by users",
+            "There is no difference; they are synonymous"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "red teaming",
+            "security"
+        ],
+        "difficulty": "hard",
+        "explanation": "Security Red Teaming focuses on traditional system security (CIA triad), whereas Content-Based Red Teaming focuses on the actual output of the model (e.g., toxic language, bias)."
+    },
+    {
+        "id": "suggested_read_012",
+        "question": "How does Cleanlab Trustworthy Language Model (TLM) assist NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "It encrypts the data before it enters the model",
+            "It assigns a real-time trustworthiness score to the LLM's output to trigger actions",
+            "It creates a vector index for RAG retrieval",
+            "It speeds up the inference process by compressing the model"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "guardrails",
+            "tools"
+        ],
+        "difficulty": "medium",
+        "explanation": "Cleanlab TLM provides a trustworthiness score. If this score falls below a threshold, NeMo Guardrails can abort the response or escalate it."
+    },
+    {
+        "id": "suggested_read_013",
+        "question": "Which of the following are types of programmable 'rails' in NVIDIA NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "Input Rails, Output Rails, and Topic Control Rails",
+            "Hardware Rails, Software Rails, and Firmware Rails",
+            "Encryption Rails, Decryption Rails, and Storage Rails",
+            "Training Rails, Validation Rails, and Testing Rails"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "guardrails",
+            "nemo"
+        ],
+        "difficulty": "medium",
+        "explanation": "The three programmable rails are Input Rails (user prompts), Output Rails (LLM responses), and Topic Control Rails (steering conversation flow)."
+    },
+    {
+        "id": "suggested_read_014",
+        "question": "How does NVIDIA suggest minimizing algorithmic bias in AI models?",
+        "type": "multiple_choice",
+        "options": [
+            "By strictly limiting the amount of data used for training",
+            "By using synthetic datasets to improve diversity and analyzing statistical imbalances",
+            "By relying solely on government regulations",
+            "By removing all human oversight from the training process"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bias",
+            "mitigation"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA uses tools like Omniverse Replicator to generate synthetic data to fill gaps and improve diversity, alongside statistical analysis to find imbalances."
+    },
+    {
+        "id": "suggested_read_015",
+        "question": "Which tool is mentioned as a predecessor to modern RAG systems?",
+        "type": "multiple_choice",
+        "options": [
+            "ChatGPT",
+            "IBM Watson on Jeopardy",
+            "AlphaGo",
+            "DALL-E"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "history",
+            "rag"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text traces RAG's roots back to predecessors like Ask Jeeves and IBM Watson's Jeopardy system."
+    }
+]

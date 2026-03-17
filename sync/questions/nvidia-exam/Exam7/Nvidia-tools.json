@@ -1,0 +1,5310 @@
+[
+    {
+        "id": "trt_llm_001",
+        "question": "What are the two primary bottlenecks identified in LLM inference?",
+        "type": "multiple_choice",
+        "options": [
+            "Network latency and Disk I/O",
+            "Memory bandwidth and computational complexity",
+            "CPU clock speed and RAM size",
+            "Model architecture and Training data quality"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "inference",
+            "bottlenecks",
+            "hardware"
+        ],
+        "difficulty": "easy",
+        "explanation": "The two main bottlenecks in LLM inference are memory bandwidth (moving data) and computational complexity (processing the math)."
+    },
+    {
+        "id": "trt_llm_002",
+        "question": "Which component of the TensorRT ecosystem is responsible for pre-deployment model compression?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorRT-LLM Runtime",
+            "Triton Inference Server",
+            "TensorRT Model Optimizer",
+            "NVIDIA Nsight Systems"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "model optimizer",
+            "compression",
+            "ecosystem"
+        ],
+        "difficulty": "medium",
+        "explanation": "The TensorRT Model Optimizer performs pre-deployment compression techniques like quantization, sparsity, pruning, and distillation."
+    },
+    {
+        "id": "trt_llm_003",
+        "question": "What specific problem does 'In-flight Batching' solve in LLM inference?",
+        "type": "multiple_choice",
+        "options": [
+            "It partitions the KV cache to prevent fragmentation.",
+            "It reduces the precision of weights to INT8.",
+            "It reduces GPU idle time by dynamically adding/removing requests during processing.",
+            "It combines multiple GPU kernels into a single operation."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "batching",
+            "optimization",
+            "throughput"
+        ],
+        "difficulty": "medium",
+        "explanation": "In-flight batching allows the server to manage requests dynamically, increasing throughput and minimizing GPU idle time under variable loads."
+    },
+    {
+        "id": "trt_llm_004",
+        "question": "What is the primary function of 'Paged Attention'?",
+        "type": "multiple_choice",
+        "options": [
+            "To perform quantization-aware training.",
+            "To manage memory by partitioning the KV cache into fixed-size blocks.",
+            "To prune unimportant attention heads.",
+            "To stream weights from host memory to GPU."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "memory management",
+            "paged attention",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Paged Attention partitions the KV cache into small fixed-size blocks (pages) to prevent memory fragmentation and improve utilization."
+    },
+    {
+        "id": "trt_llm_005",
+        "question": "Which quantization technique involves simulating quantization effects during the training process to preserve accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "PTQ (Post-Training Quantization)",
+            "QAT (Quantization-Aware Training)",
+            "Weight Stripping",
+            "Kernel Fusion"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "quantization",
+            "qat",
+            "training"
+        ],
+        "difficulty": "medium",
+        "explanation": "Quantization-Aware Training (QAT) simulates quantization errors during training, allowing the model to adapt and maintain higher accuracy at lower precision."
+    },
+    {
+        "id": "trt_llm_006",
+        "question": "What does AWQ stand for and what is its goal?",
+        "type": "multiple_choice",
+        "options": [
+            "Automatic Weight Quality; to automatically select the best model weights.",
+            "Activation-Aware Weight Quantization; to protect critical weights from quantization error.",
+            "Adaptive Weight Query; to speed up database queries for weights.",
+            "Advanced Weight Quantization; to use 2-bit quantization universally."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "awq",
+            "quantization",
+            "accuracy"
+        ],
+        "difficulty": "hard",
+        "explanation": "AWQ stands for Activation-Aware Weight Quantization. It identifies and protects salient (critical) weights to minimize accuracy loss during quantization."
+    },
+    {
+        "id": "trt_llm_007",
+        "question": "What is 'Structured 2:4 Sparsity'?",
+        "type": "multiple_choice",
+        "options": [
+            "A pattern where 2 out of every 4 weights are zero.",
+            "A pruning method that removes 2 out of 4 layers.",
+            "A quantization format using 2 to 4 bits.",
+            "A distillation technique using 2 teachers and 4 students."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "sparsity",
+            "optimization",
+            "ampere"
+        ],
+        "difficulty": "medium",
+        "explanation": "Structured 2:4 sparsity is a pattern where 2 out of every 4 consecutive weights are zero, allowing for theoretical 2x speedups on NVIDIA Ampere GPUs."
+    },
+    {
+        "id": "trt_llm_008",
+        "question": "Which Triton Inference Server directory is responsible for defining data flow between preprocessing, model execution, and postprocessing?",
+        "type": "multiple_choice",
+        "options": [
+            "/preprocessing",
+            "/tensorrt_llm",
+            "/ensemble",
+            "/postprocessing"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "triton",
+            "deployment",
+            "architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "The /ensemble directory in a Triton repository defines the pipeline and data flow that connects preprocessing, the main model execution, and postprocessing."
+    },
+    {
+        "id": "trt_llm_009",
+        "question": "When benchmarking with 'trtllm-bench', what does the metric TTFT represent?",
+        "type": "multiple_choice",
+        "options": [
+            "Time-per-Output-Token",
+            "Total-Throughput-For-Task",
+            "Time-to-First-Token",
+            "Total-Token-Flow-Time"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "benchmarking",
+            "metrics",
+            "ttft"
+        ],
+        "difficulty": "easy",
+        "explanation": "TTFT stands for Time-to-First-Token, which measures the user-perceived latency before the first character of the response appears."
+    },
+    {
+        "id": "trt_llm_010",
+        "question": "What is the main trade-off introduced by 'Weight Streaming'?",
+        "type": "multiple_choice",
+        "options": [
+            "Higher accuracy but larger file size.",
+            "Running larger models at the cost of increased inference latency.",
+            "Faster inference but lower model accuracy.",
+            "Reduced memory usage but requires internet connectivity."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "weight streaming",
+            "trade-off",
+            "memory"
+        ],
+        "difficulty": "hard",
+        "explanation": "Weight Streaming loads weights dynamically from host memory, allowing models larger than GPU memory to run, but this adds latency due to the data transfer."
+    },
+    {
+        "id": "trt_llm_011",
+        "question": "What is the distinction between Depth Pruning and Width Pruning?",
+        "type": "multiple_choice",
+        "options": [
+            "Depth pruning reduces numerical precision; Width pruning reduces file size.",
+            "Depth pruning removes layers (reasoning); Width pruning reduces hidden dimensions (capacity).",
+            "Depth pruning removes attention heads; Width pruning removes layers.",
+            "Depth pruning is for training; Width pruning is for inference."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pruning",
+            "model architecture",
+            "optimization"
+        ],
+        "difficulty": "hard",
+        "explanation": "Depth pruning removes entire layers (affecting reasoning capabilities), while width pruning reduces the size of hidden states or FFNs (affecting representation capacity)."
+    },
+    {
+        "id": "trt_llm_012",
+        "question": "Which quantization format is specifically highlighted as NVIDIA's 4-bit floating-point format for Blackwell GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "INT4",
+            "NF4",
+            "NVFP4",
+            "FP4-E2M1"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "quantization",
+            "nvfp4",
+            "blackwell"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVFP4 is NVIDIA's custom 4-bit floating-point format designed to balance compression and accuracy, particularly for future Blackwell architecture."
+    },
+    {
+        "id": "trt_llm_013",
+        "question": "What is the purpose of 'Weight-Stripped Engines' introduced in TensorRT 10.0?",
+        "type": "multiple_choice",
+        "options": [
+            "To run models without any weights for testing structure.",
+            "To separate weights from the graph, reducing deployment package size.",
+            "To automatically prune 50% of weights.",
+            "To convert all weights to INT4 format."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt 10.0",
+            "deployment",
+            "features"
+        ],
+        "difficulty": "medium",
+        "explanation": "Weight-stripped engines separate the weights from the execution graph, resulting in significantly smaller engine files that are easier to distribute and update."
+    },
+    {
+        "id": "trt_llm_014",
+        "question": "What does the 'Debug Tensors API' allow a developer to do?",
+        "type": "multiple_choice",
+        "options": [
+            "Access intermediate tensor values at runtime for debugging.",
+            "Automatically fix syntax errors in Python code.",
+            "Visualize the GPU hardware topology.",
+            "Debug network latency issues in Triton."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "debugging",
+            "api",
+            "development"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Debug Tensors API provides runtime access to intermediate tensor values within the execution graph to help developers diagnose numerical issues."
+    },
+    {
+        "id": "trt_llm_015",
+        "question": "Which benchmarking metric is considered most critical for batch summarization tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "Time-to-First-Token (TTFT)",
+            "Total Output Throughput (tokens/sec)",
+            "Inter-token latency",
+            "Kernel launch time"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "metrics",
+            "benchmarking",
+            "use-cases"
+        ],
+        "difficulty": "medium",
+        "explanation": "For batch tasks like summarization where the user is not waiting for a stream, Total Output Throughput (system efficiency) is more critical than initial latency."
+    },
+    {
+        "id": "nvidia_tool_001",
+        "question": "What is the primary purpose of evaluation in generative AI systems?",
+        "type": "multiple_choice",
+        "options": [
+            "To optimize model training speed",
+            "To systematically measure, understand, and mitigate failure modes inherent in generative AI",
+            "To reduce computational costs",
+            "To increase model size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation",
+            "generative-ai",
+            "safety"
+        ],
+        "difficulty": "medium",
+        "explanation": "Evaluation ensures reliability, safety, and user trust by systematically measuring and mitigating failure modes in generative AI systems."
+    },
+    {
+        "id": "nvidia_tool_002",
+        "question": "What major issue does Retrieval-Augmented Generation (RAG) help address in LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "Model size reduction",
+            "Training time optimization",
+            "Hallucination and factual inconsistency",
+            "GPU memory limitations"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rag",
+            "llm",
+            "hallucination"
+        ],
+        "difficulty": "easy",
+        "explanation": "RAG mitigates hallucination and factual inconsistency by grounding responses in retrieved documents from external knowledge sources."
+    },
+    {
+        "id": "nvidia_tool_003",
+        "question": "What phenomenon describes the loss of general abilities during fine-tuning in LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "Model drift",
+            "Catastrophic forgetting",
+            "Overfitting",
+            "Gradient explosion"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fine-tuning",
+            "llm",
+            "catastrophic-forgetting"
+        ],
+        "difficulty": "medium",
+        "explanation": "Catastrophic forgetting occurs when task-specific fine-tuning degrades the model's prior general capabilities."
+    },
+    {
+        "id": "nvidia_tool_004",
+        "question": "Which NeMo Evaluator benchmarks test for bias and toxicity?",
+        "type": "multiple_choice",
+        "options": [
+            "MMLU and GSM8K",
+            "Toxicity benchmark and Safety Harness",
+            "BIG-bench and HellaSwag",
+            "BLEU and ROUGE"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-evaluator",
+            "bias",
+            "toxicity",
+            "safety"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Toxicity benchmark and Safety Harness assess a model's tendency to produce harmful or biased content."
+    },
+    {
+        "id": "nvidia_tool_005",
+        "question": "What is 'LLM-as-a-Judge' evaluation?",
+        "type": "multiple_choice",
+        "options": [
+            "Using human judges to evaluate models",
+            "An evaluation approach where a strong LLM assesses another model's output using a rubric",
+            "A statistical method for model comparison",
+            "Automated testing without human input"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation",
+            "llm-as-a-judge",
+            "nemo-evaluator"
+        ],
+        "difficulty": "medium",
+        "explanation": "LLM-as-a-Judge uses a capable LLM to evaluate another model's output, combining automation with qualitative judgment based on a rubric."
+    },
+    {
+        "id": "nvidia_tool_006",
+        "question": "Which metric measures n-gram precision overlap with a reference?",
+        "type": "multiple_choice",
+        "options": [
+            "ROUGE",
+            "METEOR",
+            "BLEU",
+            "F1 Score"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "metrics",
+            "bleu",
+            "evaluation"
+        ],
+        "difficulty": "easy",
+        "explanation": "BLEU measures n-gram precision and applies a brevity penalty. Higher scores indicate better similarity to reference text."
+    },
+    {
+        "id": "nvidia_tool_007",
+        "question": "Which metric is primarily recall-based and used for summarization?",
+        "type": "multiple_choice",
+        "options": [
+            "BLEU",
+            "ROUGE",
+            "METEOR",
+            "Perplexity"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "metrics",
+            "rouge",
+            "summarization"
+        ],
+        "difficulty": "easy",
+        "explanation": "ROUGE measures recall of n-grams from reference text and is commonly used for evaluating summarization tasks."
+    },
+    {
+        "id": "nvidia_tool_008",
+        "question": "What is NVIDIA NeMo Evaluator?",
+        "type": "multiple_choice",
+        "options": [
+            "A training framework for LLMs",
+            "A cloud-native microservice for automated LLM evaluation",
+            "A dataset curation tool",
+            "A model deployment service"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-evaluator",
+            "evaluation",
+            "microservice"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Evaluator is a cloud-native microservice supporting automated evaluation with benchmarks, custom datasets, and modular RAG/Agent analysis."
+    },
+    {
+        "id": "nvidia_tool_009",
+        "question": "Which academic benchmarks are supported by NeMo Evaluator?",
+        "type": "multiple_choice",
+        "options": [
+            "ImageNet and COCO",
+            "BIG-bench, Multilingual, Toxicity, MMLU, HellaSwag, GSM8K",
+            "GLUE and SuperGLUE only",
+            "SQuAD and RACE"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-evaluator",
+            "benchmarks",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Evaluator supports preconfigured evaluation on BIG-bench, Multilingual, Toxicity, MMLU, HellaSwag, and GSM8K benchmarks."
+    },
+    {
+        "id": "nvidia_tool_010",
+        "question": "What is the primary purpose of NVIDIA NeMo Retriever?",
+        "type": "multiple_choice",
+        "options": [
+            "To train large language models",
+            "To bridge LLMs and enterprise data, enabling high-accuracy RAG pipelines",
+            "To deploy models in production",
+            "To curate datasets"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-retriever",
+            "rag",
+            "enterprise"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Retriever bridges LLMs and enterprise data, enabling high-accuracy RAG pipelines for real-time insights from proprietary knowledge bases."
+    },
+    {
+        "id": "nvidia_tool_011",
+        "question": "What are the two main stages of the NeMo Retriever ingestion pipeline?",
+        "type": "multiple_choice",
+        "options": [
+            "Training and Inference",
+            "Extraction and Embedding",
+            "Parsing and Generation",
+            "Curation and Deployment"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-retriever",
+            "ingestion",
+            "pipeline"
+        ],
+        "difficulty": "easy",
+        "explanation": "The ingestion pipeline consists of Extraction (extracting text, tables, charts) and Embedding (converting data into semantic vectors)."
+    },
+    {
+        "id": "nvidia_tool_012",
+        "question": "What library accelerates vector search in NeMo Retriever?",
+        "type": "multiple_choice",
+        "options": [
+            "FAISS",
+            "NVIDIA cuVS",
+            "Milvus",
+            "Elasticsearch"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-retriever",
+            "cuvs",
+            "vector-search"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA cuVS (CUDA-accelerated Vector Search) accelerates indexing and search operations in NeMo Retriever."
+    },
+    {
+        "id": "nvidia_tool_013",
+        "question": "Describe the two stages of retrieval in NeMo Retriever.",
+        "type": "multiple_choice",
+        "options": [
+            "Search and Filter",
+            "Initial Retrieval (fast ANN search) and Refined Retrieval (reranking)",
+            "Indexing and Querying",
+            "Embedding and Classification"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-retriever",
+            "retrieval",
+            "reranking"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Retriever uses Initial Retrieval with Approximate Nearest Neighbor search, followed by Refined Retrieval with reranking for precision."
+    },
+    {
+        "id": "nvidia_tool_014",
+        "question": "What is NeMo Retriever Parse?",
+        "type": "multiple_choice",
+        "options": [
+            "A data cleaning tool",
+            "A Vision Language Model (VLM) for structured document understanding",
+            "A text extraction algorithm",
+            "A search optimization framework"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-retriever",
+            "parse",
+            "vlm",
+            "document-understanding"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Retriever Parse is an optimized Vision Language Model designed for deep document understanding including layout and visual elements."
+    },
+    {
+        "id": "nvidia_tool_015",
+        "question": "What defines Recall@K?",
+        "type": "multiple_choice",
+        "options": [
+            "Precision of top K results",
+            "Percentage of relevant documents retrieved within top K results",
+            "Average ranking position",
+            "Number of false positives"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "metrics",
+            "recall",
+            "evaluation"
+        ],
+        "difficulty": "easy",
+        "explanation": "Recall@K measures the percentage of relevant documents retrieved within the top K results from all correct answers."
+    },
+    {
+        "id": "nvidia_tool_016",
+        "question": "What defines NDCG?",
+        "type": "multiple_choice",
+        "options": [
+            "A precision-based metric",
+            "A rank-aware metric rewarding relevant items higher in the results list",
+            "A recall-only metric",
+            "A binary classification metric"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "metrics",
+            "ndcg",
+            "ranking"
+        ],
+        "difficulty": "medium",
+        "explanation": "NDCG (Normalized Discounted Cumulative Gain) evaluates both relevance and position, rewarding higher-ranked relevant results."
+    },
+    {
+        "id": "nvidia_tool_017",
+        "question": "What is the primary purpose of NVIDIA NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "To train models faster",
+            "To define, orchestrate, and enforce safety, security, and compliance policies across the LLM lifecycle",
+            "To optimize inference speed",
+            "To reduce model size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-guardrails",
+            "safety",
+            "security",
+            "compliance"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Guardrails provides a unified framework to define, orchestrate, and enforce safety, security, and compliance policies throughout the LLM lifecycle."
+    },
+    {
+        "id": "nvidia_tool_018",
+        "question": "What scripting language is used for defining dialogue flows in NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "Python",
+            "YAML",
+            "Colang",
+            "JavaScript"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nemo-guardrails",
+            "colang",
+            "dialogue-flows"
+        ],
+        "difficulty": "easy",
+        "explanation": "Colang is the scripting language used in NeMo Guardrails for defining dialogue flows and safety rules."
+    },
+    {
+        "id": "nvidia_tool_019",
+        "question": "What are TTFT and ITL in streaming integration?",
+        "type": "multiple_choice",
+        "options": [
+            "Training metrics",
+            "TTFT (Time to First Token) measures initial response latency; ITL (Inter-Token Latency) measures generation throughput",
+            "Deployment protocols",
+            "Security parameters"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "performance",
+            "ttft",
+            "itl",
+            "metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "TTFT measures initial responsiveness while ITL measures the throughput between tokens during generation."
+    },
+    {
+        "id": "nvidia_tool_020",
+        "question": "What is the main purpose of NVIDIA NeMo Customizer?",
+        "type": "multiple_choice",
+        "options": [
+            "To deploy models in production",
+            "To enable high-performance, secure fine-tuning and customization of foundation LLMs",
+            "To evaluate model performance",
+            "To curate training data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-customizer",
+            "fine-tuning",
+            "customization"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Customizer enables rapid, flexible, and secure customization of foundation LLMs for specific domains and enterprise needs."
+    },
+    {
+        "id": "nvidia_tool_021",
+        "question": "What does LoRA stand for, and how does it work?",
+        "type": "multiple_choice",
+        "options": [
+            "Low-Rate Adaptation - reduces learning rate",
+            "Low-Rank Adaptation - introduces small trainable adapters while keeping base weights frozen",
+            "Local Resource Allocation - manages GPU memory",
+            "Layer-wise Random Assignment - randomizes weight initialization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "peft",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA (Low-Rank Adaptation) injects small trainable matrices into frozen base model layers, enabling efficient fine-tuning."
+    },
+    {
+        "id": "nvidia_tool_022",
+        "question": "What is P-tuning used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Model pruning",
+            "Adds virtual tokens via learned prompt encoders for task adaptation",
+            "Parameter quantization",
+            "Pipeline parallelism"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "p-tuning",
+            "peft",
+            "prompt-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "P-tuning introduces trainable embeddings (virtual tokens) through learned prompt encoders for efficient task adaptation."
+    },
+    {
+        "id": "nvidia_tool_023",
+        "question": "What tool prepares data for model fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "NeMo Evaluator",
+            "NeMo Curator",
+            "NeMo Guardrails",
+            "NeMo Retriever"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-curator",
+            "data-preparation",
+            "curation"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Curator is the tool for dataset curation, cleaning, filtering, and preparation for model fine-tuning."
+    },
+    {
+        "id": "nvidia_tool_024",
+        "question": "What are the key preprocessing features of NeMo Curator?",
+        "type": "multiple_choice",
+        "options": [
+            "Model training and evaluation",
+            "Cleaning, PII filtering, deduplication, domain classification, and toxicity filtering",
+            "Inference optimization and deployment",
+            "GPU memory management"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-curator",
+            "preprocessing",
+            "data-quality"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Curator provides text cleaning, privacy filtering, deduplication, domain classification, and toxicity filtering for high-quality datasets."
+    },
+    {
+        "id": "nvidia_tool_025",
+        "question": "Which frameworks power NeMo Curator's scalability?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow and PyTorch",
+            "Dask and GPU acceleration",
+            "Spark and Hadoop",
+            "Ray and Horovod"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-curator",
+            "dask",
+            "gpu-acceleration"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Curator leverages Dask and GPU acceleration through RAPIDS libraries for scalable, high-performance data processing."
+    },
+    {
+        "id": "nvidia_tool_026",
+        "question": "What deployment tool serves customized models as microservices?",
+        "type": "multiple_choice",
+        "options": [
+            "Docker",
+            "NVIDIA NIM",
+            "Kubernetes",
+            "TensorFlow Serving"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nim",
+            "deployment",
+            "microservices"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NIM deploys fine-tuned and customized models as scalable, production-ready microservices."
+    },
+    {
+        "id": "nvidia_tool_027",
+        "question": "What key feature allows multiple LoRA adapters to run on one base model?",
+        "type": "multiple_choice",
+        "options": [
+            "Model parallelism",
+            "Dynamic LoRA adapter loading",
+            "Quantization",
+            "Knowledge distillation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "nim",
+            "multi-adapter"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dynamic LoRA adapter loading enables multiple domain-specific models to run on a single base model efficiently."
+    },
+    {
+        "id": "nvidia_tool_028",
+        "question": "What is the primary role of NVIDIA NeMo Curator?",
+        "type": "multiple_choice",
+        "options": [
+            "Model deployment",
+            "Large-scale, GPU-accelerated data curation for preparing datasets",
+            "Model evaluation",
+            "Inference optimization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-curator",
+            "data-curation",
+            "gpu-acceleration"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Curator performs large-scale, GPU-accelerated data curation including downloading, cleaning, filtering, and preparing datasets for AI models."
+    },
+    {
+        "id": "nvidia_tool_029",
+        "question": "What does the RAPIDS cuDF library do?",
+        "type": "multiple_choice",
+        "options": [
+            "Trains machine learning models",
+            "Provides a GPU DataFrame API similar to pandas for fast data operations",
+            "Deploys models in production",
+            "Manages distributed training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rapids",
+            "cudf",
+            "dataframe",
+            "gpu"
+        ],
+        "difficulty": "easy",
+        "explanation": "RAPIDS cuDF provides a GPU-accelerated DataFrame API compatible with pandas for fast loading, joining, and filtering of data."
+    },
+    {
+        "id": "nvidia_tool_030",
+        "question": "What are Ray and Dask used for in NeMo Curator?",
+        "type": "multiple_choice",
+        "options": [
+            "Model training",
+            "Ray handles distributed workloads; Dask provides flexible, parallel data pipelines",
+            "Inference serving",
+            "Security scanning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ray",
+            "dask",
+            "distributed-computing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Ray handles distributed, streaming, and stateful workloads while Dask provides flexible parallel data pipelines for text and image processing."
+    },
+    {
+        "id": "nvidia_tool_031",
+        "question": "What is Synthetic Data Generation (SDG)?",
+        "type": "multiple_choice",
+        "options": [
+            "Copying existing datasets",
+            "An LLM-powered process to rewrite or augment datasets to improve quality and diversity",
+            "Random data generation",
+            "Data compression technique"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sdg",
+            "synthetic-data",
+            "data-augmentation"
+        ],
+        "difficulty": "medium",
+        "explanation": "SDG uses LLMs to create new data or enhance existing data, improving quality and diversity rather than just filtering."
+    },
+    {
+        "id": "nvidia_tool_032",
+        "question": "What is NVIDIA NIM?",
+        "type": "multiple_choice",
+        "options": [
+            "A training framework",
+            "A collection of pre-built, GPU-optimized inference microservices",
+            "A data curation tool",
+            "A monitoring system"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nim",
+            "inference",
+            "microservices"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NIM packages AI models as deployable containers with OpenAPI-compatible endpoints for optimized inference."
+    },
+    {
+        "id": "nvidia_tool_033",
+        "question": "What inference backends does NIM use?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow and PyTorch",
+            "TensorRT-LLM, vLLM, and SGLang",
+            "ONNX and OpenVINO",
+            "Triton only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nim",
+            "inference-backends",
+            "tensorrt-llm",
+            "vllm"
+        ],
+        "difficulty": "medium",
+        "explanation": "NIM uses TensorRT-LLM for maximum performance, vLLM for PagedAttention efficiency, and SGLang as a flexible alternative backend."
+    },
+    {
+        "id": "nvidia_tool_034",
+        "question": "What is the role of TensorRT-LLM in NIM?",
+        "type": "multiple_choice",
+        "options": [
+            "Data preprocessing",
+            "Delivers maximum inference performance and supports FP8 quantization",
+            "Model training",
+            "Dataset curation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt-llm",
+            "inference",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "TensorRT-LLM delivers maximum inference performance with FP8 quantization support on NVIDIA GPUs."
+    },
+    {
+        "id": "nvidia_tool_035",
+        "question": "What is vLLM best known for?",
+        "type": "multiple_choice",
+        "options": [
+            "Model training",
+            "PagedAttention algorithm for high-throughput, memory-efficient serving",
+            "Data curation",
+            "Security scanning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "vllm",
+            "paged-attention",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "vLLM is known for its PagedAttention algorithm that enables high-throughput, memory-efficient model serving."
+    },
+    {
+        "id": "nvidia_tool_036",
+        "question": "What is the NIM Operator?",
+        "type": "multiple_choice",
+        "options": [
+            "A training scheduler",
+            "A Kubernetes-native deployment system for managing NIM via CRDs",
+            "A monitoring tool",
+            "A data pipeline manager"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nim-operator",
+            "kubernetes",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "The NIM Operator is a Kubernetes-native system introducing custom resources (CRDs) to manage NIM deployments declaratively."
+    },
+    {
+        "id": "nvidia_tool_037",
+        "question": "What are the key NIM Operator CRDs?",
+        "type": "multiple_choice",
+        "options": [
+            "Pod, Service, Deployment",
+            "NIMService, NIMPipeline, and NIMCache",
+            "ConfigMap, Secret, Volume",
+            "Job, CronJob, DaemonSet"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nim-operator",
+            "crds",
+            "kubernetes"
+        ],
+        "difficulty": "easy",
+        "explanation": "The key CRDs are NIMService (single NIM), NIMPipeline (multiple NIMs), and NIMCache (pre-caching model assets)."
+    },
+    {
+        "id": "nvidia_tool_038",
+        "question": "What is NVIDIA TensorRT?",
+        "type": "multiple_choice",
+        "options": [
+            "A training framework",
+            "An inference optimizer and runtime for high-performance AI applications",
+            "A data curation tool",
+            "A monitoring system"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt",
+            "inference",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "TensorRT is an inference optimizer and runtime designed for high-performance, low-latency AI applications."
+    },
+    {
+        "id": "nvidia_tool_039",
+        "question": "What are the two pillars of the TensorRT ecosystem?",
+        "type": "multiple_choice",
+        "options": [
+            "Training and Inference",
+            "NVIDIA TensorRT Model Optimizer and NVIDIA TensorRT-LLM",
+            "CPU and GPU",
+            "Cloud and Edge"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt",
+            "model-optimizer",
+            "tensorrt-llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "The ecosystem consists of TensorRT Model Optimizer (compression) and TensorRT-LLM (optimized execution)."
+    },
+    {
+        "id": "nvidia_tool_040",
+        "question": "What is in-flight batching?",
+        "type": "multiple_choice",
+        "options": [
+            "Static batch processing",
+            "A continuous batching technique that dynamically adds/removes requests during processing",
+            "Sequential request handling",
+            "Pre-scheduled batching"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "in-flight-batching",
+            "inference",
+            "optimization"
+        ],
+        "difficulty": "hard",
+        "explanation": "In-flight batching continuously adds and removes requests during processing to maximize GPU utilization and reduce idle time."
+    },
+    {
+        "id": "nvidia_tool_041",
+        "question": "What is Paged Attention?",
+        "type": "multiple_choice",
+        "options": [
+            "A training optimization",
+            "A memory management technique that partitions KV cache into fixed-size blocks",
+            "A data loading method",
+            "A model architecture"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "paged-attention",
+            "kv-cache",
+            "memory-management"
+        ],
+        "difficulty": "hard",
+        "explanation": "Paged Attention partitions KV cache into small fixed-size pages to prevent fragmentation and improve memory utilization."
+    },
+    {
+        "id": "nvidia_tool_042",
+        "question": "What is quantization?",
+        "type": "multiple_choice",
+        "options": [
+            "Increasing model precision",
+            "Reducing numerical precision of weights/activations to make models smaller and faster",
+            "Adding more parameters",
+            "Duplicating model layers"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "quantization",
+            "optimization",
+            "compression"
+        ],
+        "difficulty": "easy",
+        "explanation": "Quantization reduces the numerical precision of weights and activations to decrease model size and improve inference speed."
+    },
+    {
+        "id": "nvidia_tool_043",
+        "question": "What is PTQ?",
+        "type": "multiple_choice",
+        "options": [
+            "Pre-Training Quantization",
+            "Post-Training Quantization - converts a trained model to lower precision without retraining",
+            "Parallel Training Queue",
+            "Parameter Transfer Query"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ptq",
+            "quantization",
+            "post-training"
+        ],
+        "difficulty": "medium",
+        "explanation": "PTQ (Post-Training Quantization) converts trained models to lower precision without additional training for faster deployment."
+    },
+    {
+        "id": "nvidia_tool_044",
+        "question": "What is QAT?",
+        "type": "multiple_choice",
+        "options": [
+            "Quick Attention Transformer",
+            "Quantization-Aware Training - simulates quantization during training",
+            "Quality Assessment Tool",
+            "Query Analysis Technique"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "qat",
+            "quantization",
+            "training"
+        ],
+        "difficulty": "medium",
+        "explanation": "QAT (Quantization-Aware Training) simulates quantization effects during training to preserve accuracy at low precision."
+    },
+    {
+        "id": "nvidia_tool_045",
+        "question": "What is the NVIDIA NeMo Framework primarily designed for?",
+        "type": "multiple_choice",
+        "options": [
+            "Web development",
+            "Developing, customizing, and deploying large-scale generative AI models",
+            "Database management",
+            "Network security"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-framework",
+            "generative-ai",
+            "llm"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Framework is designed for developing, customizing, and deploying large-scale generative AI models including LLMs and multimodal systems."
+    },
+    {
+        "id": "nvidia_tool_046",
+        "question": "What is NeMo built upon?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow",
+            "PyTorch with PyTorch Lightning and Megatron Core",
+            "JAX",
+            "Keras"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo",
+            "pytorch",
+            "megatron-core"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo is a Python-based, open-source framework built on PyTorch, PyTorch Lightning, and Megatron Core for scalable AI development."
+    },
+    {
+        "id": "nvidia_tool_047",
+        "question": "What is Tensor Parallelism?",
+        "type": "multiple_choice",
+        "options": [
+            "Training multiple models simultaneously",
+            "Partitioning individual model layers across multiple GPUs",
+            "Sequential layer processing",
+            "Data splitting across GPUs"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensor-parallelism",
+            "distributed-training",
+            "parallelism"
+        ],
+        "difficulty": "medium",
+        "explanation": "Tensor Parallelism partitions individual model layers across multiple GPUs to train models too large for single GPU memory."
+    },
+    {
+        "id": "nvidia_tool_048",
+        "question": "What is Pipeline Parallelism?",
+        "type": "multiple_choice",
+        "options": [
+            "Data batching",
+            "Sequentially partitioning layers across GPUs so data flows like a pipeline",
+            "Parallel data loading",
+            "Concurrent inference"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pipeline-parallelism",
+            "distributed-training",
+            "parallelism"
+        ],
+        "difficulty": "medium",
+        "explanation": "Pipeline Parallelism sequentially partitions model layers across GPUs, allowing data to flow through each GPU in pipeline fashion."
+    },
+    {
+        "id": "nvidia_tool_049",
+        "question": "What does NeMo Run do?",
+        "type": "multiple_choice",
+        "options": [
+            "Evaluates models",
+            "Acts as a launcher for experiments, managing configurations and jobs",
+            "Curates datasets",
+            "Deploys models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-run",
+            "launching",
+            "experiments"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Run is a launcher for experiments, managing configurations and jobs."
+    },
+    {
+        "id": "nvidia_tool_051",
+        "question": "What is the standard dataset format for NeMo fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "CSV",
+            "JSONL (JSON Lines) format",
+            "Parquet",
+            "XML"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo",
+            "dataset-format",
+            "jsonl"
+        ],
+        "difficulty": "easy",
+        "explanation": "JSONL (JSON Lines) is the standard format for NeMo fine-tuning, allowing efficient line-by-line processing without loading entire datasets into memory."
+    },
+    {
+        "id": "nvidia_tool_052",
+        "question": "What is PEFT and why is it used?",
+        "type": "multiple_choice",
+        "options": [
+            "Full model retraining",
+            "Parameter-Efficient Fine-Tuning that freezes most weights and trains only small adapters",
+            "Parallel Execution Framework Tool",
+            "Performance Enhancement for Training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "peft",
+            "fine-tuning",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "PEFT (Parameter-Efficient Fine-Tuning) freezes most model weights and trains only small adapters, reducing computation and memory costs."
+    },
+    {
+        "id": "nvidia_tool_053",
+        "question": "What are the main LoRA hyperparameters?",
+        "type": "multiple_choice",
+        "options": [
+            "Learning rate and batch size",
+            "Rank (dim) and Alpha (scaling factor)",
+            "Epochs and warmup steps",
+            "Dropout and weight decay"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "hyperparameters",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "The main LoRA hyperparameters are Rank (dimensionality of adapter matrices) and Alpha (scaling factor for adaptation strength)."
+    },
+    {
+        "id": "nvidia_tool_054",
+        "question": "What is the output artifact of NeMo LoRA fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "Full model checkpoint",
+            "A compact .nemo file containing only adapter weights and configuration",
+            "ONNX format",
+            "TensorFlow SavedModel"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "nemo",
+            "adapter-weights"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo LoRA fine-tuning produces a compact .nemo file containing only the adapter weights and configuration, not the full model."
+    },
+    {
+        "id": "nvidia_tool_055",
+        "question": "What is Triton Inference Server?",
+        "type": "multiple_choice",
+        "options": [
+            "A training framework",
+            "A scalable, production-grade server for managing multiple AI models with request batching",
+            "A data preprocessing tool",
+            "A monitoring dashboard"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "triton",
+            "inference-server",
+            "deployment"
+        ],
+        "difficulty": "easy",
+        "explanation": "Triton Inference Server is a scalable, production-grade server for managing multiple AI models, batching requests, and maximizing GPU utilization."
+    },
+    {
+        "id": "nvidia_tool_056",
+        "question": "What is multi-LoRA inference?",
+        "type": "multiple_choice",
+        "options": [
+            "Training multiple models simultaneously",
+            "Deploying one base model with multiple LoRA adapters dynamically applied at inference time",
+            "Running inference on multiple GPUs",
+            "Batching multiple requests"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multi-lora",
+            "inference",
+            "adapters"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multi-LoRA inference deploys one base model with multiple LoRA adapters that can be dynamically applied for different tasks at inference time."
+    },
+    {
+        "id": "nvidia_tool_057",
+        "question": "What does NeMo RLHF do?",
+        "type": "multiple_choice",
+        "options": [
+            "Reduces model size",
+            "Uses human preference data to align model responses with human values and safety standards",
+            "Accelerates training",
+            "Compresses datasets"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rlhf",
+            "alignment",
+            "safety"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo RLHF uses human preference data to align model responses with human values and safety standards through reinforcement learning."
+    },
+    {
+        "id": "nvidia_tool_058",
+        "question": "What does pruning do in model optimization?",
+        "type": "multiple_choice",
+        "options": [
+            "Adds more layers",
+            "Removes unimportant weights to reduce model size and improve efficiency",
+            "Increases precision",
+            "Duplicates parameters"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pruning",
+            "optimization",
+            "compression"
+        ],
+        "difficulty": "easy",
+        "explanation": "Pruning removes unimportant weights or neurons to reduce model size and improve inference efficiency with minimal accuracy loss."
+    },
+    {
+        "id": "nvidia_tool_059",
+        "question": "What does distillation achieve?",
+        "type": "multiple_choice",
+        "options": [
+            "Increases model size",
+            "Trains a smaller student model to mimic a large model, preserving accuracy with lower resource cost",
+            "Removes all bias",
+            "Eliminates all errors"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "distillation",
+            "knowledge-distillation",
+            "compression"
+        ],
+        "difficulty": "medium",
+        "explanation": "Knowledge distillation trains a smaller student model to mimic a larger teacher model, preserving accuracy while reducing resource requirements."
+    },
+    {
+        "id": "nvidia_tool_060",
+        "question": "What are the three main types of parallelism in NeMo?",
+        "type": "multiple_choice",
+        "options": [
+            "Sequential, Concurrent, Distributed",
+            "Data Parallelism, Tensor Parallelism, and Pipeline Parallelism",
+            "Horizontal, Vertical, Diagonal",
+            "Local, Remote, Hybrid"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "parallelism",
+            "distributed-training",
+            "scalability"
+        ],
+        "difficulty": "medium",
+        "explanation": "The three main types are Data Parallelism (data splitting), Tensor Parallelism (layer splitting), and Pipeline Parallelism (sequential layer distribution)."
+    },
+    {
+        "id": "nvidia_tool_061",
+        "question": "What is the NVIDIA NeMo Agent Toolkit?",
+        "type": "multiple_choice",
+        "options": [
+            "A data curation tool",
+            "A framework-agnostic library for orchestrating multi-agent AI workflows",
+            "A model training framework",
+            "An inference optimizer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "agent-toolkit",
+            "multi-agent",
+            "orchestration"
+        ],
+        "difficulty": "medium",
+        "explanation": "The NeMo Agent Toolkit is an open-source, framework-agnostic library for orchestrating multi-agent AI workflows across frameworks like LangChain and LlamaIndex."
+    },
+    {
+        "id": "nvidia_tool_062",
+        "question": "What frameworks are compatible with the NeMo Agent Toolkit?",
+        "type": "multiple_choice",
+        "options": [
+            "Only LangChain",
+            "LangChain, LlamaIndex, CrewAI, Semantic Kernel, and custom Python agents",
+            "Only proprietary NVIDIA frameworks",
+            "TensorFlow and PyTorch only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "agent-toolkit",
+            "frameworks",
+            "compatibility"
+        ],
+        "difficulty": "easy",
+        "explanation": "The toolkit supports LangChain, LlamaIndex, CrewAI, Semantic Kernel, and custom Python agents through universal composability."
+    },
+    {
+        "id": "nvidia_tool_063",
+        "question": "What is MCP (Model Context Protocol) support used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Model compression",
+            "Connecting and sharing tools between remote and local MCP servers for distributed agent ecosystems",
+            "Memory caching protocol",
+            "Multi-core processing"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "mcp",
+            "distributed-agents",
+            "interoperability"
+        ],
+        "difficulty": "hard",
+        "explanation": "MCP enables agents to discover and consume remote tools or publish their own via MCP servers for distributed, interoperable agent ecosystems."
+    },
+    {
+        "id": "nvidia_tool_064",
+        "question": "What are the main deployment options for the NeMo Agent Toolkit?",
+        "type": "multiple_choice",
+        "options": [
+            "Cloud only",
+            "Direct execution (aiq run), FastAPI microservices (aiq serve), and MCP services (aiq mcp)",
+            "Docker containers only",
+            "Kubernetes exclusively"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deployment",
+            "agent-toolkit",
+            "microservices"
+        ],
+        "difficulty": "medium",
+        "explanation": "Deployment options include direct execution, FastAPI microservices, and MCP services for flexible agent deployment strategies."
+    },
+    {
+        "id": "nvidia_tool_065",
+        "question": "What is Test-Time Compute Scaling (TTCS)?",
+        "type": "multiple_choice",
+        "options": [
+            "Reducing inference cost",
+            "Scaling reasoning at inference time by exploring multiple reasoning paths",
+            "Increasing training speed",
+            "Optimizing memory usage"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ttcs",
+            "reasoning",
+            "inference"
+        ],
+        "difficulty": "hard",
+        "explanation": "TTCS scales reasoning at inference time by exploring multiple reasoning paths and performing iterative refinement for better outputs."
+    },
+    {
+        "id": "nvidia_tool_066",
+        "question": "What is NVIDIA Riva?",
+        "type": "multiple_choice",
+        "options": [
+            "A training framework",
+            "A GPU-accelerated SDK for building real-time speech AI applications including ASR and TTS",
+            "A data storage system",
+            "A monitoring tool"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "riva",
+            "speech-ai",
+            "asr",
+            "tts"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA Riva is a GPU-accelerated SDK for building and deploying real-time speech AI applications including ASR (speech recognition) and TTS (text-to-speech)."
+    },
+    {
+        "id": "nvidia_tool_067",
+        "question": "What key performance metric defines Riva's excellence?",
+        "type": "multiple_choice",
+        "options": [
+            "High accuracy only",
+            "Sub-300ms latency for real-time interactions with up to 50x faster performance",
+            "Low memory usage",
+            "Small model size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "riva",
+            "performance",
+            "latency"
+        ],
+        "difficulty": "medium",
+        "explanation": "Riva achieves sub-300ms latency for real-time human-like interactions with performance up to 50x faster than alternatives."
+    },
+    {
+        "id": "nvidia_tool_068",
+        "question": "What is the role of the Feature Extractor in Riva?",
+        "type": "multiple_choice",
+        "options": [
+            "Generates audio",
+            "Converts raw temporal audio signals into frequency-domain spectrograms",
+            "Transcribes text",
+            "Manages API requests"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "riva",
+            "feature-extraction",
+            "audio-processing"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Feature Extractor converts raw temporal audio signals into frequency-domain spectrograms for ASR model processing."
+    },
+    {
+        "id": "nvidia_tool_069",
+        "question": "What is Inverse Text Normalization (ITN)?",
+        "type": "multiple_choice",
+        "options": [
+            "Converting text to speech",
+            "Transforming spoken text into written format (e.g., 'ten o'clock' → '10:00')",
+            "Removing punctuation",
+            "Translating languages"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "itn",
+            "text-normalization",
+            "riva"
+        ],
+        "difficulty": "medium",
+        "explanation": "ITN transforms spoken text into written format using WFST-based rules, converting phrases like 'ten o'clock' to '10:00'."
+    },
+    {
+        "id": "nvidia_tool_070",
+        "question": "What is the Parakeet TDT 0.6B v2 model known for?",
+        "type": "multiple_choice",
+        "options": [
+            "Fastest processing speed",
+            "Best-performing Riva ASR model with 6.05% WER on Hugging Face",
+            "Smallest model size",
+            "Multilingual support only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "parakeet",
+            "asr",
+            "wer",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "Parakeet TDT 0.6B v2 is the best-performing Riva ASR model on Hugging Face with a 6.05% Word Error Rate."
+    },
+    {
+        "id": "nvidia_tool_071",
+        "question": "What is Streaming Sortformer used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Text generation",
+            "Real-time multi-speaker diarization with frame-level tagging",
+            "Audio compression",
+            "Speech synthesis"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sortformer",
+            "diarization",
+            "speaker-identification"
+        ],
+        "difficulty": "hard",
+        "explanation": "Streaming Sortformer enables real-time multi-speaker diarization with frame-level tagging and minimal latency."
+    },
+    {
+        "id": "nvidia_tool_072",
+        "question": "What is zero-shot voice adaptation in Riva?",
+        "type": "multiple_choice",
+        "options": [
+            "Training without data",
+            "Voice cloning using minimal audio samples (3-5 seconds) with high similarity",
+            "Removing background noise",
+            "Language translation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "zero-shot",
+            "voice-cloning",
+            "tts"
+        ],
+        "difficulty": "medium",
+        "explanation": "Zero-shot voice adaptation enables voice cloning using minimal audio samples (3-5 seconds) while maintaining high similarity and accuracy."
+    },
+    {
+        "id": "nvidia_tool_073",
+        "question": "What metric is used for autoscaling in Riva Kubernetes deployments?",
+        "type": "multiple_choice",
+        "options": [
+            "CPU usage",
+            "Average queue time per inference request (avg_time_queue_ms)",
+            "Memory consumption",
+            "Network bandwidth"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "autoscaling",
+            "kubernetes",
+            "metrics"
+        ],
+        "difficulty": "hard",
+        "explanation": "Riva uses average queue time per inference request (avg_time_queue_ms) as the metric for intelligent autoscaling decisions in Kubernetes."
+    },
+    {
+        "id": "nvidia_tool_074",
+        "question": "What are the GPU hardware requirements for Riva?",
+        "type": "multiple_choice",
+        "options": [
+            "Any GPU",
+            "NVIDIA Volta or later GPUs with at least 16GB VRAM",
+            "CPU only",
+            "NVIDIA Maxwell or later"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "riva",
+            "hardware-requirements",
+            "gpu"
+        ],
+        "difficulty": "easy",
+        "explanation": "Riva requires NVIDIA Volta or later GPUs with at least 16GB VRAM for optimal performance."
+    },
+    {
+        "id": "nvidia_tool_075",
+        "question": "What is RAPIDS cuML?",
+        "type": "multiple_choice",
+        "options": [
+            "A data visualization library",
+            "A GPU-accelerated machine learning library with scikit-learn-compatible API",
+            "A web framework",
+            "A database system"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rapids",
+            "cuml",
+            "machine-learning",
+            "gpu"
+        ],
+        "difficulty": "easy",
+        "explanation": "RAPIDS cuML is a GPU-accelerated machine learning library providing a scikit-learn-compatible API with zero-code-change acceleration."
+    },
+    {
+        "id": "nvidia_tool_076",
+        "question": "What is the Forest Inference Library (FIL)?",
+        "type": "multiple_choice",
+        "options": [
+            "A training framework",
+            "A library providing 4x faster inference for tree-based models with optimization capabilities",
+            "A data preprocessing tool",
+            "A visualization toolkit"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fil",
+            "inference",
+            "tree-models",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "FIL provides 4x faster inference for tree-based models, supporting per-tree predictions and .optimize() for performance tuning."
+    },
+    {
+        "id": "nvidia_tool_077",
+        "question": "What is cuGraph?",
+        "type": "multiple_choice",
+        "options": [
+            "A plotting library",
+            "A GPU-accelerated graph analytics library interoperable with NetworkX",
+            "A neural network framework",
+            "A data storage system"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cugraph",
+            "graph-analytics",
+            "gpu",
+            "networkx"
+        ],
+        "difficulty": "easy",
+        "explanation": "cuGraph is a GPU-accelerated graph analytics library that provides interoperability with NetworkX through the nx-cugraph backend."
+    },
+    {
+        "id": "nvidia_tool_078",
+        "question": "What is the nx-cugraph Backend?",
+        "type": "multiple_choice",
+        "options": [
+            "A database connector",
+            "A zero-code-change GPU backend for NetworkX",
+            "A web API",
+            "A monitoring tool"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nx-cugraph",
+            "networkx",
+            "gpu-acceleration"
+        ],
+        "difficulty": "medium",
+        "explanation": "nx-cugraph provides zero-code-change GPU acceleration for NetworkX, enabled with environment configuration."
+    },
+    {
+        "id": "nvidia_tool_079",
+        "question": "What performance improvement does cuGraph Leiden algorithm provide?",
+        "type": "multiple_choice",
+        "options": [
+            "2x faster",
+            "47x faster than graspologic for large graphs",
+            "10x faster",
+            "100x faster"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "leiden",
+            "cugraph",
+            "community-detection",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "GPU Leiden runs 8.8x faster than igraph and 47x faster than graspologic for community detection in large graphs."
+    },
+    {
+        "id": "nvidia_tool_080",
+        "question": "What is Unified Virtual Memory (UVM)?",
+        "type": "multiple_choice",
+        "options": [
+            "A storage system",
+            "Automatic GPU-CPU paging with prefetching for processing larger-than-VRAM datasets",
+            "A network protocol",
+            "A security feature"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "uvm",
+            "memory-management",
+            "gpu"
+        ],
+        "difficulty": "hard",
+        "explanation": "UVM provides automatic GPU-CPU paging with prefetching, enabling seamless processing of datasets larger than GPU memory."
+    },
+    {
+        "id": "nvidia_tool_081",
+        "question": "How much faster is NeMo Curator compared to CPU-based approaches?",
+        "type": "multiple_choice",
+        "options": [
+            "2x faster",
+            "Up to 17x faster using NVIDIA RAPIDS libraries",
+            "5x faster",
+            "50x faster"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-curator",
+            "performance",
+            "rapids"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Curator achieves up to 17x faster processing compared to CPU-based approaches using NVIDIA RAPIDS GPU acceleration."
+    },
+    {
+        "id": "nvidia_tool_082",
+        "question": "What quality improvements do organizations report using NeMo Curator?",
+        "type": "multiple_choice",
+        "options": [
+            "5% accuracy improvement",
+            "10% accuracy improvement, 60% dataset size reduction, 3x faster training time",
+            "20% accuracy improvement only",
+            "2x faster training only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-curator",
+            "quality-improvements",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "Organizations report 10% accuracy improvement, 60% dataset size reduction, and 3x faster training time using NeMo Curator."
+    },
+    {
+        "id": "nvidia_tool_083",
+        "question": "What is the RedPajama deduplication benchmark result?",
+        "type": "multiple_choice",
+        "options": [
+            "No improvement",
+            "Reduced from 37 hours on 20 CPU nodes to 3 hours on 4 DGX A100 nodes",
+            "Doubled the processing time",
+            "Minimal improvement"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-curator",
+            "benchmark",
+            "deduplication",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "The RedPajama deduplication was reduced from 37 hours on 20 CPU nodes to just 3 hours on 4 DGX A100 nodes using NeMo Curator."
+    },
+    {
+        "id": "nvidia_tool_084",
+        "question": "What are the six core components of NeMo Curator?",
+        "type": "multiple_choice",
+        "options": [
+            "Training, Testing, Deployment, Monitoring, Logging, Debugging",
+            "Data acquisition, text processing, quality filtering, deduplication, PII redaction, and classification",
+            "Reading, Writing, Parsing, Validating, Converting, Storing",
+            "Ingestion, Embedding, Retrieval, Generation, Evaluation, Deployment"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-curator",
+            "components",
+            "data-pipeline"
+        ],
+        "difficulty": "hard",
+        "explanation": "The six core components are: data acquisition, text processing, quality filtering, deduplication, PII redaction, and classification."
+    },
+    {
+        "id": "nvidia_tool_085",
+        "question": "What does the PiiModifier serve in NeMo Curator?",
+        "type": "multiple_choice",
+        "options": [
+            "Adds metadata",
+            "Detects and redacts PII entities like names, emails, addresses, and phone numbers",
+            "Compresses data",
+            "Encrypts files"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pii",
+            "privacy",
+            "nemo-curator"
+        ],
+        "difficulty": "easy",
+        "explanation": "PiiModifier detects and redacts Personally Identifiable Information including names, emails, addresses, and phone numbers for privacy protection."
+    },
+    {
+        "id": "nvidia_tool_086",
+        "question": "What algorithm is used for fuzzy deduplication?",
+        "type": "multiple_choice",
+        "options": [
+            "SHA256 hashing",
+            "MinHash and Locality-Sensitive Hashing (LSH)",
+            "MD5 checksum",
+            "CRC32"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deduplication",
+            "minhash",
+            "lsh"
+        ],
+        "difficulty": "medium",
+        "explanation": "MinHash and Locality-Sensitive Hashing (LSH) are used to identify fuzzy (near-duplicate) documents by comparing n-gram signatures."
+    },
+    {
+        "id": "nvidia_tool_087",
+        "question": "What performance gain does GPU deduplication provide?",
+        "type": "multiple_choice",
+        "options": [
+            "2x faster",
+            "20x faster deduplication and 5x cost reduction vs CPU implementations",
+            "10x faster only",
+            "No significant improvement"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deduplication",
+            "gpu-acceleration",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "GPU deduplication provides 20x faster processing and 5x cost reduction compared to CPU implementations."
+    },
+    {
+        "id": "nvidia_tool_088",
+        "question": "What is the Multilingual Domain Classifier used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Translation only",
+            "Categorizing text into 26 domains across 52 languages",
+            "Sentiment analysis",
+            "Named entity recognition"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "classification",
+            "multilingual",
+            "domain-classifier"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Multilingual Domain Classifier categorizes text into 26 domains across 52 languages for domain-based filtering or tagging."
+    },
+    {
+        "id": "nvidia_tool_089",
+        "question": "What is the Instruction Data Guard used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Data encryption",
+            "Detecting and scoring potential LLM poisoning attacks in instruction-tuning datasets",
+            "Access control",
+            "Data compression"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "security",
+            "data-guard",
+            "poisoning-detection"
+        ],
+        "difficulty": "hard",
+        "explanation": "Instruction Data Guard detects and scores potential LLM poisoning attacks in instruction-tuning datasets to ensure training data safety."
+    },
+    {
+        "id": "nvidia_tool_090",
+        "question": "What does GenAI-Perf measure?",
+        "type": "multiple_choice",
+        "options": [
+            "Training accuracy",
+            "TTFT, ITL, TPS, and RPS performance metrics for LLM inference",
+            "Dataset quality",
+            "Model size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "genai-perf",
+            "benchmarking",
+            "performance-metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "GenAI-Perf measures Time-to-First-Token (TTFT), Inter-Token Latency (ITL), Tokens Per Second (TPS), and Requests Per Second (RPS) for LLM inference."
+    },
+    {
+        "id": "nvidia_tool_091",
+        "question": "What does TTFT measure?",
+        "type": "multiple_choice",
+        "options": [
+            "Total training time",
+            "Time-to-First-Token, measuring responsiveness and user experience",
+            "Token processing throughput",
+            "Total tokens generated"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ttft",
+            "latency",
+            "performance"
+        ],
+        "difficulty": "easy",
+        "explanation": "TTFT (Time-to-First-Token) measures the latency until the first token is generated, determining responsiveness in interactive AI applications."
+    },
+    {
+        "id": "nvidia_tool_092",
+        "question": "What is TPS in inference metrics?",
+        "type": "multiple_choice",
+        "options": [
+            "Total Processing Speed",
+            "Tokens Per Second, measuring throughput and efficiency",
+            "Training Per Step",
+            "Time Per Sample"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tps",
+            "throughput",
+            "performance"
+        ],
+        "difficulty": "easy",
+        "explanation": "TPS (Tokens Per Second) measures the throughput and efficiency of token generation during inference."
+    },
+    {
+        "id": "nvidia_tool_093",
+        "question": "Which metric is most important for chatbots?",
+        "type": "multiple_choice",
+        "options": [
+            "TPS",
+            "TTFT (Time to First Token)",
+            "RPS",
+            "Model size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ttft",
+            "chatbots",
+            "user-experience"
+        ],
+        "difficulty": "easy",
+        "explanation": "TTFT is most important for chatbots as it determines how quickly users receive the first response, directly impacting user experience."
+    },
+    {
+        "id": "nvidia_tool_094",
+        "question": "What is an SBOM in NIM security?",
+        "type": "multiple_choice",
+        "options": [
+            "Security Backup Object Model",
+            "Software Bill of Materials providing a machine-readable inventory of software dependencies",
+            "System Boot Order Manager",
+            "Secure Binary Object Manifest"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sbom",
+            "security",
+            "compliance"
+        ],
+        "difficulty": "medium",
+        "explanation": "SBOM (Software Bill of Materials) provides a machine-readable inventory of all software components and dependencies for security auditing and compliance."
+    },
+    {
+        "id": "nvidia_tool_095",
+        "question": "What is VEX in security context?",
+        "type": "multiple_choice",
+        "options": [
+            "Virtual Execution eXtension",
+            "Vulnerability Exploitability eXchange indicating whether vulnerabilities are actually exploitable",
+            "Version Export XML",
+            "Validation and Error eXception"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "vex",
+            "security",
+            "vulnerability"
+        ],
+        "difficulty": "hard",
+        "explanation": "VEX (Vulnerability Exploitability eXchange) indicates whether vulnerabilities listed in the SBOM are actually exploitable in the deployment context."
+    },
+    {
+        "id": "nvidia_tool_096",
+        "question": "What does model signing ensure?",
+        "type": "multiple_choice",
+        "options": [
+            "Faster inference",
+            "Model integrity verification to prevent tampering or unauthorized modification",
+            "Smaller model size",
+            "Better accuracy"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "model-signing",
+            "security",
+            "integrity"
+        ],
+        "difficulty": "medium",
+        "explanation": "Model signing uses cryptographic methods to verify model integrity and prevent tampering or unauthorized modifications."
+    },
+    {
+        "id": "nvidia_tool_097",
+        "question": "What does trtllm-build do?",
+        "type": "multiple_choice",
+        "options": [
+            "Trains models",
+            "Compiles a model and weights into an optimized TensorRT engine",
+            "Evaluates models",
+            "Deploys models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt",
+            "compilation",
+            "engine-building"
+        ],
+        "difficulty": "easy",
+        "explanation": "trtllm-build compiles a model and its weights into an optimized TensorRT engine file (.engine) for high-performance inference."
+    },
+    {
+        "id": "nvidia_tool_098",
+        "question": "What is Weight-Stripped Engine?",
+        "type": "multiple_choice",
+        "options": [
+            "A compressed model format",
+            "A TensorRT engine with weights separated from the graph to reduce file size",
+            "A pruned model",
+            "A quantized model"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt",
+            "weight-stripped",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Weight-Stripped Engine is a TensorRT engine with weights separated from the graph to reduce file size."
+    },
+    {
+        "id": "nvidia_tool_101",
+        "question": "Which quantization format is native to NVIDIA Hopper GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "INT8",
+            "FP8 (E4M3, E5M2)",
+            "INT4",
+            "FP16"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fp8",
+            "hopper",
+            "quantization",
+            "gpu"
+        ],
+        "difficulty": "medium",
+        "explanation": "FP8 (E4M3 and E5M2 formats) is native to NVIDIA Hopper GPUs, providing efficient 8-bit floating-point computation for inference and training."
+    },
+    {
+        "id": "nvidia_tool_102",
+        "question": "What is NVFP4?",
+        "type": "multiple_choice",
+        "options": [
+            "A GPU architecture",
+            "NVIDIA's 4-bit floating-point format for Blackwell GPUs",
+            "A network protocol",
+            "A storage format"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvfp4",
+            "quantization",
+            "blackwell"
+        ],
+        "difficulty": "hard",
+        "explanation": "NVFP4 is NVIDIA's 4-bit floating-point format designed for future Blackwell GPUs, balancing compression and accuracy with 23x throughput improvement."
+    },
+    {
+        "id": "nvidia_tool_103",
+        "question": "What does AWQ stand for?",
+        "type": "multiple_choice",
+        "options": [
+            "Automatic Weight Quantization",
+            "Activation-Aware Weight Quantization",
+            "Adaptive Weight Query",
+            "Advanced Weight Quality"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "awq",
+            "quantization",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "AWQ (Activation-Aware Weight Quantization) protects critical weights from quantization error based on activation patterns to maintain model accuracy."
+    },
+    {
+        "id": "nvidia_tool_104",
+        "question": "What does SmoothQuant solve?",
+        "type": "multiple_choice",
+        "options": [
+            "Training instability",
+            "Reduces activation outlier effects to stabilize quantization",
+            "Memory fragmentation",
+            "Network latency"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "smoothquant",
+            "quantization",
+            "activation-outliers"
+        ],
+        "difficulty": "medium",
+        "explanation": "SmoothQuant reduces the impact of activation outliers to stabilize quantization, enabling more accurate low-precision inference."
+    },
+    {
+        "id": "nvidia_tool_105",
+        "question": "What is structured 2:4 sparsity?",
+        "type": "multiple_choice",
+        "options": [
+            "Random weight removal",
+            "A sparsity pattern where 2 out of every 4 weights are zero, allowing 2x theoretical speedup",
+            "Layer pruning technique",
+            "Batch size optimization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sparsity",
+            "optimization",
+            "ampere"
+        ],
+        "difficulty": "hard",
+        "explanation": "Structured 2:4 sparsity ensures 2 out of every 4 weights are zero in a structured pattern, enabling 2x theoretical speedup on Ampere and later GPUs."
+    },
+    {
+        "id": "nvidia_tool_106",
+        "question": "What is the function of Triton Inference Server in TensorRT-LLM?",
+        "type": "multiple_choice",
+        "options": [
+            "Model training",
+            "Manages model serving, request batching, and scaling for deployments",
+            "Data preprocessing",
+            "Model evaluation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "triton",
+            "inference-server",
+            "deployment"
+        ],
+        "difficulty": "easy",
+        "explanation": "Triton Inference Server manages model serving, request batching, dynamic batching, and scaling for TensorRT-LLM deployments in production."
+    },
+    {
+        "id": "nvidia_tool_107",
+        "question": "What does max_tokens_in_paged_kv_cache control?",
+        "type": "multiple_choice",
+        "options": [
+            "Training batch size",
+            "GPU memory allocated for KV cache during inference",
+            "Model parameter count",
+            "Dataset size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "kv-cache",
+            "memory-management",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "max_tokens_in_paged_kv_cache controls the amount of GPU memory allocated for the KV cache during inference, affecting throughput and batch size."
+    },
+    {
+        "id": "nvidia_tool_108",
+        "question": "What is TPOT?",
+        "type": "multiple_choice",
+        "options": [
+            "Total Processing Optimization Time",
+            "Time-per-Output-Token, measuring steady-state generation speed",
+            "Training Performance Optimization Tool",
+            "Token Processing Output Throughput"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tpot",
+            "performance",
+            "metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "TPOT (Time-per-Output-Token) measures the steady-state generation speed, indicating how quickly tokens are produced after the first token."
+    },
+    {
+        "id": "nvidia_tool_109",
+        "question": "What is knowledge distillation?",
+        "type": "multiple_choice",
+        "options": [
+            "Data compression",
+            "A process where a smaller student model learns from a larger teacher model",
+            "Model pruning",
+            "Weight quantization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "knowledge-distillation",
+            "compression",
+            "student-teacher"
+        ],
+        "difficulty": "medium",
+        "explanation": "Knowledge distillation trains a smaller student model to mimic a larger teacher model by learning from its outputs or hidden activations, preserving performance."
+    },
+    {
+        "id": "nvidia_tool_110",
+        "question": "What are the two main types of knowledge distillation?",
+        "type": "multiple_choice",
+        "options": [
+            "Fast and Slow",
+            "Response-based KD and feature-based KD",
+            "Online and Offline",
+            "Supervised and Unsupervised"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "knowledge-distillation",
+            "response-based",
+            "feature-based"
+        ],
+        "difficulty": "hard",
+        "explanation": "Response-based KD matches outputs using KL-divergence while feature-based KD aligns intermediate layer activations between teacher and student."
+    },
+    {
+        "id": "nvidia_tool_111",
+        "question": "What improvement did pruned+distilled Qwen3 achieve?",
+        "type": "multiple_choice",
+        "options": [
+            "10% higher throughput",
+            "30% higher throughput and better MMLU scores than a 4B model",
+            "50% memory reduction",
+            "2x faster training"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pruning",
+            "distillation",
+            "performance",
+            "qwen"
+        ],
+        "difficulty": "medium",
+        "explanation": "The pruned and distilled Qwen3 model achieved 30% higher throughput and better MMLU benchmark scores compared to a standard 4B parameter model."
+    },
+    {
+        "id": "nvidia_tool_112",
+        "question": "What is the benefit of pruning before distillation?",
+        "type": "multiple_choice",
+        "options": [
+            "Faster training only",
+            "Creates a smaller student model that is easier to train and faster to deploy",
+            "Better accuracy only",
+            "Lower memory usage only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pruning",
+            "distillation",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Pruning before distillation creates a smaller, more efficient student model architecture that is easier to train and faster to deploy while maintaining quality."
+    },
+    {
+        "id": "nvidia_tool_113",
+        "question": "What are the two main types of pruning?",
+        "type": "multiple_choice",
+        "options": [
+            "Random and Systematic",
+            "Depth pruning (reduces layers) and width pruning (reduces hidden dimensions)",
+            "Horizontal and Vertical",
+            "Static and Dynamic"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pruning",
+            "depth-pruning",
+            "width-pruning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Depth pruning removes entire layers affecting reasoning capability, while width pruning reduces hidden or FFN dimensions affecting representation capacity."
+    },
+    {
+        "id": "nvidia_tool_114",
+        "question": "What does the NIM_FT_MODEL variable do?",
+        "type": "multiple_choice",
+        "options": [
+            "Sets model format",
+            "Triggers automatic TensorRT-LLM engine build for custom fine-tuned models",
+            "Enables FP8 precision",
+            "Controls batch size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nim",
+            "fine-tuning",
+            "tensorrt-llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "NIM_FT_MODEL triggers automatic TensorRT-LLM engine compilation and optimization for custom fine-tuned models when deploying with NIM."
+    },
+    {
+        "id": "nvidia_tool_115",
+        "question": "What is NIM_TENSOR_PARALLEL_SIZE used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Setting batch size",
+            "Enables tensor parallelism to distribute large models across multiple GPUs",
+            "Controlling cache size",
+            "Managing memory allocation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensor-parallelism",
+            "multi-gpu",
+            "nim"
+        ],
+        "difficulty": "medium",
+        "explanation": "NIM_TENSOR_PARALLEL_SIZE specifies the number of GPUs to use for tensor parallelism, distributing model layers across multiple GPUs for large models."
+    },
+    {
+        "id": "nvidia_tool_116",
+        "question": "Why is NIM_CACHE_PATH important?",
+        "type": "multiple_choice",
+        "options": [
+            "For logging purposes",
+            "Caches downloaded models and built engines, preventing re-downloads during restarts",
+            "For backup storage",
+            "For temporary files"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "caching",
+            "nim",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "NIM_CACHE_PATH caches downloaded models and pre-built TensorRT engines, avoiding redundant downloads and compilations across container restarts."
+    },
+    {
+        "id": "nvidia_tool_117",
+        "question": "What is NIMService used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Data processing",
+            "Defines and manages a single NIM deployment in Kubernetes",
+            "Model training",
+            "Dataset curation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nimservice",
+            "kubernetes",
+            "crd"
+        ],
+        "difficulty": "easy",
+        "explanation": "NIMService is a Kubernetes Custom Resource Definition (CRD) that defines and manages a single NIM deployment with declarative configuration."
+    },
+    {
+        "id": "nvidia_tool_118",
+        "question": "What is NIMPipeline used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Data pipelines",
+            "Manages multiple related NIMs as one logical application",
+            "Training pipelines",
+            "Evaluation workflows"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nimpipeline",
+            "kubernetes",
+            "multi-service"
+        ],
+        "difficulty": "medium",
+        "explanation": "NIMPipeline manages multiple related NIMs as one logical application, such as a complete RAG system with embedding, retrieval, and generation services."
+    },
+    {
+        "id": "nvidia_tool_119",
+        "question": "What is NIMCache used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Database caching",
+            "Pre-caches model assets into persistent storage for faster startup",
+            "Query caching",
+            "Session caching"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nimcache",
+            "kubernetes",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "NIMCache pre-caches model assets into persistent storage volumes, enabling faster pod startup and efficient scaling in Kubernetes deployments."
+    },
+    {
+        "id": "nvidia_tool_120",
+        "question": "What is a typical RAG pipeline?",
+        "type": "multiple_choice",
+        "options": [
+            "Train, Test, Deploy",
+            "Embedding → Retrieval → Reranking → Generation",
+            "Input, Process, Output",
+            "Query, Search, Return"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "pipeline",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "A typical RAG pipeline consists of Embedding (converting queries to vectors), Retrieval (finding relevant documents), Reranking (improving precision), and Generation (LLM response)."
+    },
+    {
+        "id": "nvidia_tool_121",
+        "question": "How does the Reranking NIM improve RAG results?",
+        "type": "multiple_choice",
+        "options": [
+            "Increases speed",
+            "Reorders candidate chunks by semantic relevance, improving LLM accuracy and reducing hallucinations",
+            "Reduces memory usage",
+            "Compresses data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "reranking",
+            "rag",
+            "accuracy"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Reranking NIM reorders retrieved candidate chunks by semantic relevance, significantly improving LLM response accuracy and reducing hallucinations."
+    },
+    {
+        "id": "nvidia_tool_122",
+        "question": "What does NeMo Guardrails provide?",
+        "type": "multiple_choice",
+        "options": [
+            "Model training tools",
+            "A safety layer enforcing rules for model input/output to prevent unsafe responses",
+            "Data curation capabilities",
+            "Inference optimization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "guardrails",
+            "safety",
+            "compliance"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Guardrails provides a safety layer that enforces programmable rules for model inputs and outputs to prevent unsafe, biased, or non-compliant responses."
+    },
+    {
+        "id": "nvidia_tool_123",
+        "question": "What does NeMo Guardrails orchestrate?",
+        "type": "multiple_choice",
+        "options": [
+            "Training jobs",
+            "Multiple rails such as content safety, topic control, PII detection, and jailbreak prevention",
+            "Data pipelines",
+            "Model deployments"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "guardrails",
+            "rails",
+            "safety-controls"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Guardrails orchestrates multiple rails including content safety, topic control, PII detection, hallucination mitigation, and jailbreak prevention."
+    },
+    {
+        "id": "nvidia_tool_124",
+        "question": "What parameters balance speed and safety in streaming guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "batch_size and learning_rate",
+            "chunk_size and context_size",
+            "token_limit and window_size",
+            "buffer_size and timeout"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "streaming",
+            "guardrails",
+            "performance"
+        ],
+        "difficulty": "hard",
+        "explanation": "chunk_size and context_size parameters balance speed and safety by controlling how much text is validated per chunk in streaming guardrail scenarios."
+    },
+    {
+        "id": "nvidia_tool_125",
+        "question": "What improvement did NVIDIA's safety recipe achieve?",
+        "type": "multiple_choice",
+        "options": [
+            "2% improvement",
+            "6% content safety and 7% security resilience improvement",
+            "10% accuracy improvement",
+            "15% speed improvement"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "safety",
+            "security",
+            "improvement"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA's AI safety recipe achieved 6% improvement in content safety and 7% improvement in security resilience without accuracy loss."
+    },
+    {
+        "id": "nvidia_tool_126",
+        "question": "What is Policy Compliance Rate?",
+        "type": "multiple_choice",
+        "options": [
+            "Model accuracy percentage",
+            "The percentage of interactions passing all guardrail checks",
+            "Training success rate",
+            "Inference speed metric"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "compliance",
+            "guardrails",
+            "metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Policy Compliance Rate measures the percentage of interactions that successfully pass all configured guardrail checks, analogous to accuracy in safety."
+    },
+    {
+        "id": "nvidia_tool_127",
+        "question": "What is the latency impact of adding guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "No impact",
+            "~0.5s increase in latency while improving compliance to 99%",
+            "2s increase",
+            "Reduces latency"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "guardrails",
+            "latency",
+            "trade-offs"
+        ],
+        "difficulty": "medium",
+        "explanation": "Adding guardrails typically increases latency by approximately 0.5 seconds but significantly improves policy compliance from 75% to 99%."
+    },
+    {
+        "id": "nvidia_tool_128",
+        "question": "Which CLI command runs guardrail evaluations?",
+        "type": "multiple_choice",
+        "options": [
+            "nemoguardrails test",
+            "nemoguardrails eval run",
+            "nemoguardrails execute",
+            "nemoguardrails validate"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cli",
+            "guardrails",
+            "evaluation"
+        ],
+        "difficulty": "easy",
+        "explanation": "The command 'nemoguardrails eval run' executes guardrail evaluation workflows to assess policy compliance and performance."
+    },
+    {
+        "id": "nvidia_tool_129",
+        "question": "How does Cleanlab TLM mitigate hallucinations?",
+        "type": "multiple_choice",
+        "options": [
+            "By retraining models",
+            "By scoring response trustworthiness in real-time and routing low scores to fallback actions",
+            "By filtering training data",
+            "By increasing model size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cleanlab",
+            "hallucination",
+            "trustworthiness"
+        ],
+        "difficulty": "hard",
+        "explanation": "Cleanlab TLM scores response trustworthiness in real-time, and responses below threshold are routed to fallback responses or human agents."
+    },
+    {
+        "id": "nvidia_tool_130",
+        "question": "What does red-teaming explore in LLM safety?",
+        "type": "multiple_choice",
+        "options": [
+            "Performance optimization",
+            "Novel LLM failure modes beyond standard benchmarks",
+            "Training efficiency",
+            "Deployment strategies"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "red-teaming",
+            "safety",
+            "testing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Red-teaming is a manual, creative process that explores novel LLM failure modes and vulnerabilities beyond what standard benchmarks can detect."
+    },
+    {
+        "id": "nvidia_tool_131",
+        "question": "What are key configuration files for NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "train.py, test.py, deploy.py",
+            "config.yml, flows.co, and prompts.yml",
+            "settings.json, rules.xml, policies.yaml",
+            "main.py, utils.py, models.py"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "guardrails",
+            "configuration",
+            "files"
+        ],
+        "difficulty": "easy",
+        "explanation": "The key configuration files are config.yml (models and rails), flows.co (Colang dialogue flows), and prompts.yml (prompt templates)."
+    },
+    {
+        "id": "nvidia_tool_132",
+        "question": "What distinguishes security vs. content red-teaming?",
+        "type": "multiple_choice",
+        "options": [
+            "No difference",
+            "Security targets exploit prevention; content focuses on harmful or off-topic text",
+            "Security is automated, content is manual",
+            "Content is faster than security"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "red-teaming",
+            "security",
+            "content-safety"
+        ],
+        "difficulty": "hard",
+        "explanation": "Security red-teaming targets exploitation and jailbreaking prevention, while content red-teaming focuses on harmful, biased, or off-topic outputs."
+    },
+    {
+        "id": "nvidia_tool_133",
+        "question": "What file format does NeMo Customizer use for model packaging?",
+        "type": "multiple_choice",
+        "options": [
+            "ONNX",
+            ".nemo format",
+            "PyTorch .pt",
+            "TensorFlow SavedModel"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-customizer",
+            "model-format",
+            "packaging"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Customizer uses the .nemo format for model packaging, which is NVIDIA's standardized format for NeMo Framework models and adapters."
+    },
+    {
+        "id": "nvidia_tool_134",
+        "question": "What scheduler is used for multi-node fine-tuning in NeMo Customizer?",
+        "type": "multiple_choice",
+        "options": [
+            "Slurm",
+            "Volcano scheduler",
+            "Kubernetes default scheduler",
+            "SGE"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "volcano",
+            "scheduler",
+            "distributed-training"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Customizer integrates with the Volcano scheduler for high-performance batch scheduling of multi-node training jobs in Kubernetes."
+    },
+    {
+        "id": "nvidia_tool_135",
+        "question": "What infrastructure principle does NeMo Customizer follow?",
+        "type": "multiple_choice",
+        "options": [
+            "Cloud-only deployment",
+            "'Customize Anywhere' - deployable on-prem, cloud, or hybrid",
+            "Edge computing only",
+            "Centralized processing"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deployment",
+            "flexibility",
+            "infrastructure"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Customizer follows the 'Customize Anywhere' principle, enabling deployment on-premises, in cloud, or hybrid environments for flexibility."
+    },
+    {
+        "id": "nvidia_tool_136",
+        "question": "Which parallelism methods improve NeMo Customizer's performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Only data parallelism",
+            "Data, tensor, and pipeline parallelism",
+            "Only model parallelism",
+            "Sequential processing"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "parallelism",
+            "performance",
+            "distributed-training"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Customizer leverages data parallelism, tensor parallelism, and pipeline parallelism for efficient distributed training at scale."
+    },
+    {
+        "id": "nvidia_tool_137",
+        "question": "What are the three key benefits of adopting NeMo Customizer?",
+        "type": "multiple_choice",
+        "options": [
+            "Cost, size, complexity",
+            "Performance, speed, and efficiency",
+            "Accuracy, recall, precision",
+            "Security, privacy, compliance"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-customizer",
+            "benefits",
+            "enterprise"
+        ],
+        "difficulty": "easy",
+        "explanation": "The three key benefits of NeMo Customizer align with enterprise objectives: performance (quality), speed (time-to-market), and efficiency (resource optimization)."
+    },
+    {
+        "id": "nvidia_tool_138",
+        "question": "What is Direct Preference Optimization (DPO)?",
+        "type": "multiple_choice",
+        "options": [
+            "Data preprocessing method",
+            "A fine-tuning method aligning models with human preferences using preference pairs",
+            "Hardware optimization",
+            "Memory management technique"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dpo",
+            "alignment",
+            "preference-learning"
+        ],
+        "difficulty": "hard",
+        "explanation": "DPO directly optimizes models using pairs of preferred and rejected responses to align with human preferences without requiring reward models."
+    },
+    {
+        "id": "nvidia_tool_139",
+        "question": "Which NeMo component prepares and cleans datasets?",
+        "type": "multiple_choice",
+        "options": [
+            "NeMo Evaluator",
+            "NeMo Curator",
+            "NeMo Customizer",
+            "NeMo Retriever"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-curator",
+            "data-preparation",
+            "preprocessing"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Curator is the component responsible for preparing, cleaning, filtering, and curating datasets for model training and fine-tuning."
+    },
+    {
+        "id": "nvidia_tool_140",
+        "question": "Which component validates customized model performance?",
+        "type": "multiple_choice",
+        "options": [
+            "NeMo Curator",
+            "NeMo Evaluator",
+            "NeMo Customizer",
+            "NeMo Guardrails"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo-evaluator",
+            "validation",
+            "performance"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Evaluator validates customized model performance through automated benchmarking and quality assessment before deployment."
+    },
+    {
+        "id": "nvidia_tool_141",
+        "question": "What is the purpose of the AI Flywheel?",
+        "type": "multiple_choice",
+        "options": [
+            "Hardware optimization",
+            "Continuous improvement of AI models via feedback and automation",
+            "Cost reduction",
+            "Data storage"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ai-flywheel",
+            "continuous-improvement",
+            "automation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The AI Flywheel is a self-reinforcing, automated loop for continuous improvement of AI models through iterative curation, training, evaluation, and deployment."
+    },
+    {
+        "id": "nvidia_tool_142",
+        "question": "What are the four stages of the AI Flywheel?",
+        "type": "multiple_choice",
+        "options": [
+            "Plan, Build, Test, Release",
+            "Curate (Curator), Customize (Customizer), Evaluate (Evaluator), Deploy (NIM + Guardrails)",
+            "Design, Develop, Debug, Deploy",
+            "Research, Train, Validate, Serve"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ai-flywheel",
+            "stages",
+            "workflow"
+        ],
+        "difficulty": "medium",
+        "explanation": "The AI Flywheel consists of four stages: Curate with Curator, Customize with Customizer, Evaluate with Evaluator, and Deploy with NIM and Guardrails."
+    },
+    {
+        "id": "nvidia_tool_143",
+        "question": "Which microservice provides safety during inference?",
+        "type": "multiple_choice",
+        "options": [
+            "NeMo Evaluator",
+            "NeMo Guardrails",
+            "NeMo Curator",
+            "NeMo Customizer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "guardrails",
+            "safety",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Guardrails acts as a safety layer during inference, enforcing rules and policies to prevent unsafe or non-compliant outputs."
+    },
+    {
+        "id": "nvidia_tool_144",
+        "question": "Which API endpoint launches customization jobs?",
+        "type": "multiple_choice",
+        "options": [
+            "GET /v1/models",
+            "POST /v1/customization/jobs",
+            "PUT /v1/training/start",
+            "POST /v1/finetune"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "api",
+            "customization",
+            "endpoint"
+        ],
+        "difficulty": "medium",
+        "explanation": "POST /v1/customization/jobs is the API endpoint used to submit and launch customization training jobs in NeMo Customizer."
+    },
+    {
+        "id": "nvidia_tool_145",
+        "question": "How is job status monitored in NeMo Customizer?",
+        "type": "multiple_choice",
+        "options": [
+            "Via logs only",
+            "Via GET /v1/customization/jobs/{job_id}",
+            "Via dashboard only",
+            "Via email notifications"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "monitoring",
+            "api",
+            "job-status"
+        ],
+        "difficulty": "easy",
+        "explanation": "Job status is monitored by making GET requests to the /v1/customization/jobs/{job_id} endpoint to retrieve current status and progress."
+    },
+    {
+        "id": "nvidia_tool_146",
+        "question": "What is the role of adapter_dim in LoRA training?",
+        "type": "multiple_choice",
+        "options": [
+            "Sets batch size",
+            "Defines the dimensionality of trainable adapter matrices",
+            "Controls learning rate",
+            "Manages memory allocation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "adapter-dim",
+            "hyperparameter"
+        ],
+        "difficulty": "medium",
+        "explanation": "adapter_dim defines the rank or dimensionality of the trainable adapter matrices in LoRA, directly affecting model capacity and training efficiency."
+    },
+    {
+        "id": "nvidia_tool_147",
+        "question": "What monitoring tools can be integrated with NeMo Customizer?",
+        "type": "multiple_choice",
+        "options": [
+            "Only TensorBoard",
+            "MLFlow and Weights & Biases",
+            "Only Prometheus",
+            "Only custom logging"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "monitoring",
+            "mlflow",
+            "wandb"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Customizer can be configured to log training metrics to MLFlow or Weights & Biases for experiment tracking and visualization."
+    },
+    {
+        "id": "nvidia_tool_148",
+        "question": "What format must datasets be in for fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "CSV format",
+            "JSONL format with 'input' and 'output' keys",
+            "XML format",
+            "Parquet format"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dataset-format",
+            "jsonl",
+            "fine-tuning"
+        ],
+        "difficulty": "easy",
+        "explanation": "Datasets must be formatted in JSONL (JSON Lines) format with each object containing 'input' and 'output' keys for fine-tuning."
+    },
+    {
+        "id": "nvidia_tool_149",
+        "question": "What is a LoRA adapter file?",
+        "type": "multiple_choice",
+        "options": [
+            "A full model checkpoint",
+            "A small add-on module that modifies a base model without retraining it fully",
+            "A configuration file",
+            "A dataset file"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "adapter",
+            "peft"
+        ],
+        "difficulty": "easy",
+        "explanation": "A LoRA adapter file is a small add-on module containing low-rank matrices that modify a frozen base model's behavior for specific tasks."
+    },
+    {
+        "id": "nvidia_tool_150",
+        "question": "What is the correct NeMo microservice order in LLMOps?",
+        "type": "multiple_choice",
+        "options": [
+            "Evaluator → Curator → Customizer → NIM",
+            "Curator → Customizer → Evaluator → NIM",
+            "Customizer → Curator → NIM → Evaluator",
+            "NIM → Curator → Evaluator → Customizer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llmops",
+            "workflow",
+            "microservices"
+        ],
+        "difficulty": "medium",
+        "explanation": "The correct LLMOps workflow order is: Curator (data preparation) → Customizer (training) → Evaluator (validation) → NIM (deployment)."
+    },
+    {
+        "id": "nvidia_tool_151",
+        "question": "What is the primary purpose of evaluation in generative AI systems?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the parameter count of the model",
+            "To systematically measure, understand, and mitigate failure modes",
+            "To reduce the latency of model inference",
+            "To automatically generate synthetic training data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation",
+            "generative ai",
+            "reliability"
+        ],
+        "difficulty": "medium",
+        "explanation": "The core purpose of evaluation is to systematically measure, understand, and mitigate failure modes inherent in generative AI to ensure reliability, safety, and user trust."
+    },
+    {
+        "id": "nvidia_tool_152",
+        "question": "Which major issue in Large Language Models (LLMs) does Retrieval-Augmented Generation (RAG) primarily help address?",
+        "type": "multiple_choice",
+        "options": [
+            "High inference latency",
+            "Catastrophic forgetting",
+            "Hallucinations and factual inconsistency",
+            "Overfitting on training data"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rag",
+            "hallucination",
+            "llm"
+        ],
+        "difficulty": "medium",
+        "explanation": "RAG mitigates hallucination and factual inconsistency by grounding model responses in retrieved external documents."
+    },
+    {
+        "id": "nvidia_tool_153",
+        "question": "What phenomenon describes the loss of general abilities in an LLM after it undergoes task-specific fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient vanishing",
+            "Catastrophic forgetting",
+            "Model collapse",
+            "Over-parametrization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fine-tuning",
+            "catastrophic forgetting",
+            "llm"
+        ],
+        "difficulty": "easy",
+        "explanation": "Catastrophic forgetting occurs when fine-tuning on a specific task degrades the model's prior general capabilities."
+    },
+    {
+        "id": "nvidia_tool_154",
+        "question": "Which specific benchmarks within NeMo Evaluator are designed to test for bias and toxic content?",
+        "type": "multiple_choice",
+        "options": [
+            "MMLU and GSM8K",
+            "BIG-bench and HellaSwag",
+            "Toxicity benchmark and Safety Harness",
+            "ROUGE and BLEU"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bias",
+            "toxicity",
+            "nemo evaluator"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Toxicity benchmark and Safety Harness are specialized benchmarks in NeMo Evaluator used to assess a model's tendency to produce harmful or biased content."
+    },
+    {
+        "id": "nvidia_tool_155",
+        "question": "What is the 'LLM-as-a-Judge' evaluation approach?",
+        "type": "multiple_choice",
+        "options": [
+            "Using human judges to score LLM outputs manually",
+            "Using a strong LLM to assess another model's output using a rubric",
+            "A competitive mode where two LLMs debate a topic",
+            "A method for training legal-specific LLMs"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm-as-a-judge",
+            "evaluation",
+            "automation"
+        ],
+        "difficulty": "medium",
+        "explanation": "LLM-as-a-Judge uses a capable LLM to evaluate the output of another model based on a defined rubric, combining automation with qualitative judgment."
+    },
+    {
+        "id": "nvidia_tool_156",
+        "question": "Which metric primarily measures n-gram precision overlap with a reference text and applies a brevity penalty?",
+        "type": "multiple_choice",
+        "options": [
+            "ROUGE",
+            "METEOR",
+            "BLEU",
+            "Perplexity"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "metrics",
+            "bleu",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "BLEU (Bilingual Evaluation Understudy) measures n-gram precision overlap and applies a penalty for overly short translations (brevity penalty)."
+    },
+    {
+        "id": "nvidia_tool_157",
+        "question": "Which evaluation metric is primarily recall-based and commonly used for summarization tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "BLEU",
+            "ROUGE",
+            "Perplexity",
+            "Accuracy"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "metrics",
+            "rouge",
+            "summarization"
+        ],
+        "difficulty": "easy",
+        "explanation": "ROUGE focuses on recall, measuring how many n-grams from the reference summary are captured in the generated output."
+    },
+    {
+        "id": "nvidia_tool_158",
+        "question": "How does the METEOR metric improve upon BLEU?",
+        "type": "multiple_choice",
+        "options": [
+            "It only measures exact word matches",
+            "It focuses solely on recall without precision",
+            "It matches stems and synonyms to better align with human judgment",
+            "It requires no reference text"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "metrics",
+            "meteor",
+            "nlp"
+        ],
+        "difficulty": "hard",
+        "explanation": "METEOR improves on BLEU by matching stems and synonyms and balancing precision and recall, which aligns it more closely with human judgment."
+    },
+    {
+        "id": "nvidia_tool_159",
+        "question": "What does 'perplexity' measure in the context of LLM evaluation?",
+        "type": "multiple_choice",
+        "options": [
+            "The factual accuracy of the model",
+            "The speed of token generation",
+            "How well the model predicts text sequences (fluency)",
+            "The toxicity level of the output"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "metrics",
+            "perplexity",
+            "fluency"
+        ],
+        "difficulty": "medium",
+        "explanation": "Perplexity measures how well a probability distribution predicts a sample of text; lower perplexity indicates better fluency and prediction capability."
+    },
+    {
+        "id": "nvidia_tool_160",
+        "question": "Which of the following describes NVIDIA NeMo Evaluator?",
+        "type": "multiple_choice",
+        "options": [
+            "A hardware component for GPU acceleration",
+            "A cloud-native microservice for automated LLM evaluation",
+            "A dataset curation tool for removing PII",
+            "A framework specifically for training vision models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo evaluator",
+            "microservice",
+            "cloud-native"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Evaluator is a cloud-native microservice designed to automate the evaluation of LLMs using benchmarks, custom datasets, and RAG analysis."
+    },
+    {
+        "id": "nvidia_tool_161",
+        "question": "Which set of academic benchmarks is supported by NeMo Evaluator?",
+        "type": "multiple_choice",
+        "options": [
+            "ImageNet, COCO, CIFAR-10",
+            "BIG-bench, Toxicity, MMLU, GSM8K, HellaSwag",
+            "GLUE, SuperGLUE, SQuAD only",
+            "ResNet, VGG, Inception"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "benchmarks",
+            "nemo evaluator",
+            "mmlu"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Evaluator supports preconfigured evaluation on benchmarks like BIG-bench, Multilingual, Toxicity, MMLU, HellaSwag, and GSM8K."
+    },
+    {
+        "id": "nvidia_tool_162",
+        "question": "Which specific endpoints does NeMo Evaluator provide for different evaluation types?",
+        "type": "multiple_choice",
+        "options": [
+            "/v1/train, /v1/test, /v1/deploy",
+            "/v1/evaluate/llm, /v1/evaluate/rag, /v1/evaluate/agent",
+            "/v1/curate, /v1/customize, /v1/evaluate",
+            "/api/text, /api/image, /api/audio"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "api",
+            "endpoints",
+            "nemo evaluator"
+        ],
+        "difficulty": "hard",
+        "explanation": "NeMo Evaluator exposes specific endpoints for different tasks: /v1/evaluate/llm for standard LLMs, /v1/evaluate/rag for RAG systems, and /v1/evaluate/agent for agents."
+    },
+    {
+        "id": "nvidia_tool_163",
+        "question": "What is the primary function of the NVIDIA NeMo Customizer microservice?",
+        "type": "multiple_choice",
+        "options": [
+            "To provide low-latency inference for end-users",
+            "To clean and deduce duplicate data in large datasets",
+            "To enable efficient fine-tuning and alignment of foundation LLMs",
+            "To act as a firewall for AI safety"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nemo customizer",
+            "fine-tuning",
+            "alignment"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Customizer is designed to enable high-performance, secure fine-tuning and customization of foundation LLMs for specific domains and enterprise needs."
+    },
+    {
+        "id": "nvidia_tool_164",
+        "question": "How does LoRA (Low-Rank Adaptation) achieve efficiency in model customization?",
+        "type": "multiple_choice",
+        "options": [
+            "By removing half of the model's layers",
+            "By freezing base weights and injecting small trainable matrices",
+            "By increasing the precision of weights to 64-bit float",
+            "By using only CPU processing to save GPU power"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "peft",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA works by freezing the pre-trained model weights and injecting small, trainable rank-decomposition matrices, which significantly reduces the number of trainable parameters."
+    },
+    {
+        "id": "nvidia_tool_165",
+        "question": "What is P-tuning used for in the context of NeMo Customizer?",
+        "type": "multiple_choice",
+        "options": [
+            "Reducing the model size by quantization",
+            "Adding virtual tokens via learned prompt encoders for task adaptation",
+            "Filtering out profanity from training data",
+            "Optimizing the network bandwidth"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "p-tuning",
+            "peft",
+            "prompt engineering"
+        ],
+        "difficulty": "hard",
+        "explanation": "P-tuning introduces trainable embeddings (virtual tokens) via a prompt encoder to adapt the model to specific tasks without modifying the base weights."
+    },
+    {
+        "id": "nvidia_tool_166",
+        "question": "Which full alignment techniques are supported by NeMo Customizer?",
+        "type": "multiple_choice",
+        "options": [
+            "SFT, RLHF, and DPO",
+            "CNN, RNN, and LSTM",
+            "K-Means, SVM, and Random Forest",
+            "BLEU, ROUGE, and METEOR"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "alignment",
+            "rlhf",
+            "dpo",
+            "sft"
+        ],
+        "difficulty": "hard",
+        "explanation": "NeMo Customizer supports Supervised Fine-Tuning (SFT), Reinforcement Learning from Human Feedback (RLHF), and Direct Preference Optimization (DPO)."
+    },
+    {
+        "id": "nvidia_tool_167",
+        "question": "What is the primary role of NVIDIA NeMo Curator?",
+        "type": "multiple_choice",
+        "options": [
+            "To deploy models as microservices",
+            "To evaluate model performance against benchmarks",
+            "To perform large-scale data curation and preparation",
+            "To manage Kubernetes clusters"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nemo curator",
+            "data processing",
+            "preparation"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Curator is a framework for large-scale, GPU-accelerated data curation, including downloading, cleaning, filtering, deduplicating, and preparing datasets."
+    },
+    {
+        "id": "nvidia_tool_168",
+        "question": "Which libraries power the GPU acceleration in NeMo Curator?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow and Keras",
+            "NumPy and Pandas",
+            "NVIDIA RAPIDS (cuDF, cuML, cuGraph)",
+            "Scikit-learn and Matplotlib"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rapids",
+            "gpu acceleration",
+            "nemo curator"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Curator leverages NVIDIA RAPIDS libraries like cuDF (dataframes), cuML (machine learning), and cuGraph (graph analytics) for acceleration."
+    },
+    {
+        "id": "nvidia_tool_169",
+        "question": "What is Synthetic Data Generation (SDG) in the context of NeMo Curator?",
+        "type": "multiple_choice",
+        "options": [
+            "Creating random noise to test robustness",
+            "Using LLMs to generate new data to augment datasets",
+            "Manually typing out new data entries",
+            "Scraping data from the dark web"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sdg",
+            "synthetic data",
+            "nemo curator"
+        ],
+        "difficulty": "medium",
+        "explanation": "SDG involves using an LLM to rewrite or augment datasets (e.g., Q&A generation, text rewriting), improving quality and diversity without relying solely on existing data."
+    },
+    {
+        "id": "nvidia_tool_170",
+        "question": "What file format does NeMo Curator standardize datasets to for efficient processing?",
+        "type": "multiple_choice",
+        "options": [
+            "CSV",
+            "XML",
+            "JSONL (JSON Lines)",
+            "Parquet"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "jsonl",
+            "data format",
+            "nemo curator"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Curator standardizes datasets into JSONL format, which is efficient for distributed reading and writing in large-scale data pipelines."
+    },
+    {
+        "id": "nvidia_tool_171",
+        "question": "What technique does NeMo Curator use to identify fuzzy (near-duplicate) documents?",
+        "type": "multiple_choice",
+        "options": [
+            "Exact string matching",
+            "MinHash and Locality-Sensitive Hashing (LSH)",
+            "Manual review",
+            "Random sampling"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deduplication",
+            "minhash",
+            "lsh"
+        ],
+        "difficulty": "hard",
+        "explanation": "Fuzzy deduplication is achieved using MinHash to create signatures of documents and Locality-Sensitive Hashing (LSH) to find similar signatures."
+    },
+    {
+        "id": "nvidia_tool_172",
+        "question": "Which component of the NeMo framework is used to detect and redact Personally Identifiable Information (PII)?",
+        "type": "multiple_choice",
+        "options": [
+            "UnicodeReformatter",
+            "PiiModifier",
+            "QualityClassifier",
+            "InstructionDataGuard"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pii",
+            "security",
+            "nemo curator"
+        ],
+        "difficulty": "easy",
+        "explanation": "The PiiModifier module in NeMo Curator is specifically designed to detect and redact PII entities like names, emails, and addresses."
+    },
+    {
+        "id": "nvidia_tool_173",
+        "question": "What is the typical sequence of stages in a NeMo Curator workflow?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy -> Train -> Evaluate",
+            "Download -> Extract -> Train",
+            "Acquisition -> Cleaning -> Deduplication -> Filtering -> Redaction -> Export",
+            "Tokenization -> Inference -> Decoding"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "workflow",
+            "pipeline",
+            "nemo curator"
+        ],
+        "difficulty": "medium",
+        "explanation": "A standard curation workflow involves data acquisition, formatting/cleaning, deduplication, quality filtering, PII redaction, classification, and finally exporting."
+    },
+    {
+        "id": "nvidia_tool_174",
+        "question": "What is the key advantage of using LoRA over full fine-tuning for enterprises?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows the model to learn completely new languages from scratch",
+            "It provides higher accuracy than full fine-tuning in all cases",
+            "It is faster, cheaper, and scalable due to reduced parameter updates",
+            "It does not require a base model"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "lora",
+            "enterprise",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA is preferred in enterprise contexts because it drastically reduces the number of trainable parameters, making the process faster, cheaper, and more scalable."
+    },
+    {
+        "id": "nvidia_tool_175",
+        "question": "Which tool in the NVIDIA AI Flywheel is responsible for deploying the final model as a microservice?",
+        "type": "multiple_choice",
+        "options": [
+            "NeMo Curator",
+            "NeMo Customizer",
+            "NeMo Evaluator",
+            "NVIDIA NIM"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "deployment",
+            "nim",
+            "ai flywheel"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NIM (NVIDIA Inference Microservices) is the tool used to package and deploy the customized or fine-tuned model for low-latency inference."
+    },
+    {
+        "id": "nvidia_tool_176",
+        "question": "What does Direct Preference Optimization (DPO) use to align models?",
+        "type": "multiple_choice",
+        "options": [
+            "A reward model trained on human feedback",
+            "Preference pairs of 'preferred' and 'rejected' responses",
+            "Large-scale unsupervised datasets",
+            "Rule-based grammar checking"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dpo",
+            "alignment",
+            "fine-tuning"
+        ],
+        "difficulty": "hard",
+        "explanation": "DPO directly optimizes the model to align with human preferences using dataset pairs consisting of a preferred response and a rejected response."
+    },
+    {
+        "id": "nvidia_tool_177",
+        "question": "What is the function of the 'Instruction Data Guard' in NeMo Curator?",
+        "type": "multiple_choice",
+        "options": [
+            "To remove HTML tags from web data",
+            "To detect and score potential LLM poisoning attacks in instruction datasets",
+            "To encrypt data at rest",
+            "To compress images in the dataset"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "security",
+            "instruction tuning",
+            "nemo curator"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Instruction Data Guard is a classifier used to detect and score potential poisoning attacks or malicious content within instruction-tuning datasets."
+    },
+    {
+        "id": "nvidia_tool_178",
+        "question": "In the context of RAG evaluation, what does the metric 'Faithfulness' measure?",
+        "type": "multiple_choice",
+        "options": [
+            "How relevant the retrieved documents are to the query",
+            "How well the generated answer is grounded in the retrieved documents",
+            "The grammatical correctness of the answer",
+            "The speed of the retrieval process"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "faithfulness",
+            "metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Faithfulness measures the factual consistency of the generated answer against the retrieved context, ensuring the model isn't hallucinating info not present in the source."
+    },
+    {
+        "id": "nvidia_tool_179",
+        "question": "Which file format is used to package NeMo adapters after fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            ".pt",
+            ".ckpt",
+            ".nemo",
+            ".bin"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "file format",
+            "adapters",
+            "nemo"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Customizer and related tools output LoRA adapters and model configurations in the specific `.nemo` format."
+    },
+    {
+        "id": "nvidia_tool_180",
+        "question": "What is the purpose of 'Knowledge Distillation' in model training?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the size of the model for better accuracy",
+            "To train a smaller 'student' model using outputs from a larger 'teacher' model",
+            "To clean the dataset of duplicates",
+            "To visualize the neural network layers"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "knowledge distillation",
+            "model compression",
+            "training"
+        ],
+        "difficulty": "medium",
+        "explanation": "Knowledge Distillation is a technique where a smaller, more efficient 'student' model is trained to mimic the behavior and outputs of a larger 'teacher' model."
+    },
+    {
+        "id": "nvidia_tool_181",
+        "question": "How does NeMo Curator handle scalability for large datasets?",
+        "type": "multiple_choice",
+        "options": [
+            "By using a single high-memory CPU",
+            "By using distributed frameworks like Dask and Ray along with GPU acceleration",
+            "By breaking datasets into CSV files manually",
+            "It does not support datasets larger than 10GB"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "scalability",
+            "dask",
+            "ray"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Curator scales by using distributed processing frameworks like Dask (for text/images) and Ray (for video/streaming), combined with RAPIDS for GPU acceleration."
+    },
+    {
+        "id": "nvidia_tool_182",
+        "question": "Which scheduler is used by NeMo Customizer for orchestrating large-scale batch jobs?",
+        "type": "multiple_choice",
+        "options": [
+            "Cron",
+            "Volcano",
+            "Airflow",
+            "Jenkins"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "scheduler",
+            "volcano",
+            "kubernetes"
+        ],
+        "difficulty": "hard",
+        "explanation": "NeMo Customizer integrates with the Volcano scheduler, which is a system designed for high-performance batch scheduling on Kubernetes."
+    },
+    {
+        "id": "nvidia_tool_183",
+        "question": "What is the difference between 'MMLU' and 'GSM8K' benchmarks?",
+        "type": "multiple_choice",
+        "options": [
+            "MMLU tests coding; GSM8K tests history",
+            "MMLU tests general knowledge; GSM8K tests mathematical reasoning",
+            "MMLU is for vision; GSM8K is for audio",
+            "They are identical benchmarks with different names"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "benchmarks",
+            "mmlu",
+            "gsm8k"
+        ],
+        "difficulty": "medium",
+        "explanation": "MMLU (Massive Multitask Language Understanding) covers broad general knowledge across many subjects, while GSM8K specifically tests multi-step mathematical reasoning."
+    },
+    {
+        "id": "nvidia_tool_184",
+        "question": "What is the 'Customize Anywhere' principle of NeMo Customizer?",
+        "type": "multiple_choice",
+        "options": [
+            "You can customize the UI themes anywhere",
+            "It supports deployment on-premises, in the cloud, or in hybrid environments",
+            "It allows customization of the Python code only",
+            "It works on mobile devices"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "deployment",
+            "hybrid cloud",
+            "strategy"
+        ],
+        "difficulty": "easy",
+        "explanation": "The 'Customize Anywhere' principle refers to the flexibility of deploying NeMo Customizer in various environments—on-premises, cloud, or hybrid—to suit data security and infrastructure needs."
+    },
+    {
+        "id": "nvidia_tool_185",
+        "question": "What is the role of the 'Curator' in the correct NeMo microservice workflow order?",
+        "type": "multiple_choice",
+        "options": [
+            "It comes last to clean up logs",
+            "It comes second, after training",
+            "It comes first, to prepare and clean data",
+            "It runs parallel to inference"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "workflow",
+            "nemo curator",
+            "llmops"
+        ],
+        "difficulty": "easy",
+        "explanation": "In the standard LLMOps workflow, NeMo Curator is the first step (Stage 1), responsible for data acquisition and preparation before any customization or evaluation occurs."
+    },
+    {
+        "id": "nvidia_tool_186",
+        "question": "What is the primary purpose of NVIDIA NeMo Retriever?",
+        "type": "multiple_choice",
+        "options": [
+            "To provide a graphical user interface for model training",
+            "To bridge LLMs and enterprise data, enabling high-accuracy RAG pipelines",
+            "To manage Kubernetes clusters for AI workloads",
+            "To generate synthetic images for computer vision"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo retriever",
+            "rag",
+            "enterprise data"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Retriever's main goal is to bridge the gap between Large Language Models (LLMs) and enterprise data sources to enable high-accuracy Retrieval-Augmented Generation (RAG) pipelines."
+    },
+    {
+        "id": "nvidia_tool_187",
+        "question": "Which specific NVIDIA initiatives rely on NeMo Retriever as a core component?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA Omniverse and Isaac Sim",
+            "NVIDIA GeForce Experience and Broadcast",
+            "NVIDIA RAG Blueprint and NVIDIA AI-Q",
+            "NVIDIA Drive and Jetson"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nemo retriever",
+            "nvidia ai-q",
+            "rag blueprint"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Retriever serves as a foundational technology for the NVIDIA RAG Blueprint and NVIDIA AI-Q."
+    },
+    {
+        "id": "nvidia_tool_188",
+        "question": "How is the architecture of NeMo Retriever designed?",
+        "type": "multiple_choice",
+        "options": [
+            "As a monolithic binary executable",
+            "As a set of GPU-accelerated, containerized NVIDIA Inference Microservices (NIMs)",
+            "As a collection of Python scripts run on CPU",
+            "As a browser-based extension"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture",
+            "microservices",
+            "nim"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Retriever is architected as a modular collection of containerized, GPU-accelerated NVIDIA Inference Microservices (NIMs)."
+    },
+    {
+        "id": "nvidia_tool_189",
+        "question": "What are the two main stages of the NeMo Retriever ingestion pipeline?",
+        "type": "multiple_choice",
+        "options": [
+            "Training and Validation",
+            "Extraction and Embedding",
+            "Compression and Encryption",
+            "Quantization and Pruning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ingestion",
+            "extraction",
+            "embedding"
+        ],
+        "difficulty": "easy",
+        "explanation": "The ingestion process in NeMo Retriever involves two critical stages: extracting content (text/visuals) and converting it into embeddings."
+    },
+    {
+        "id": "nvidia_tool_190",
+        "question": "Which NVIDIA library accelerates vector search operations in NeMo Retriever?",
+        "type": "multiple_choice",
+        "options": [
+            "cuBLAS",
+            "cuDNN",
+            "cuVS",
+            "cuFFT"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cuvs",
+            "vector search",
+            "acceleration"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Retriever leverages NVIDIA cuVS (CUDA-accelerated Vector Search) to accelerate indexing and search operations."
+    },
+    {
+        "id": "nvidia_tool_191",
+        "question": "What are the two stages of the retrieval process in NeMo Retriever?",
+        "type": "multiple_choice",
+        "options": [
+            "Input and Output",
+            "Encoding and Decoding",
+            "Initial Retrieval (ANN) and Refined Retrieval (Reranking)",
+            "Prompting and Generation"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "retrieval",
+            "ann",
+            "reranking"
+        ],
+        "difficulty": "medium",
+        "explanation": "The retrieval process follows a two-stage funnel: a fast Initial Retrieval using Approximate Nearest Neighbor (ANN) search, followed by a Refined Retrieval stage using a reranker model."
+    },
+    {
+        "id": "nvidia_tool_192",
+        "question": "What is NeMo Retriever Parse primarily used for?",
+        "type": "multiple_choice",
+        "options": [
+            "Generating photorealistic images",
+            "Structured document understanding using a Vision Language Model (VLM)",
+            "Converting speech to text",
+            "Optimizing network traffic"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo retriever parse",
+            "vlm",
+            "document understanding"
+        ],
+        "difficulty": "medium",
+        "explanation": "NeMo Retriever Parse is an optimized Vision Language Model (VLM) designed for deep document understanding, extracting structure, layout, and text."
+    },
+    {
+        "id": "nvidia_tool_193",
+        "question": "What performance metrics did the Llama 3.2 NeMo Retriever model achieve on the DigitalCorpora dataset?",
+        "type": "multiple_choice",
+        "options": [
+            "99% Accuracy",
+            "84.5% Recall@5 overall; 88.1% for charts",
+            "50% Precision",
+            "100% F1 Score"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "performance",
+            "metrics",
+            "llama 3.2"
+        ],
+        "difficulty": "hard",
+        "explanation": "The Llama 3.2 NeMo Retriever model achieved a Recall@5 of 84.5% overall and 88.1% specifically for chart retrieval on the DigitalCorpora dataset."
+    },
+    {
+        "id": "nvidia_tool_194",
+        "question": "Which combination of NIMs is recommended for high-volume, high-velocity data strategies?",
+        "type": "multiple_choice",
+        "options": [
+            "Llama 3.2 for both ingestion and retrieval",
+            "NV-EmbedQA-E5-v5 for ingestion and NV-RerankQA-Mistral4B-v3 for retrieval",
+            "ResNet-50 for ingestion and BERT for retrieval",
+            "Snowflake-Arctic-Embed-L only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "strategy",
+            "nim",
+            "optimization"
+        ],
+        "difficulty": "hard",
+        "explanation": "The optimal hybrid strategy for such scenarios uses the lightweight NV-EmbedQA-E5-v5 for efficient ingestion and the powerful NV-RerankQA-Mistral4B-v3 for high-precision retrieval."
+    },
+    {
+        "id": "nvidia_tool_195",
+        "question": "When should the NDCG (Normalized Discounted Cumulative Gain) metric be prioritized over Recall@K?",
+        "type": "multiple_choice",
+        "options": [
+            "When the system is offline",
+            "When only a single document is retrieved",
+            "When the order of results matters, such as in legal research",
+            "When the context window is extremely small"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "metrics",
+            "ndcg",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "NDCG is a rank-aware metric and should be prioritized when the position of relevant items in the result list is critical, such as in legal research or citation-heavy tasks."
+    },
+    {
+        "id": "nvidia_tool_196",
+        "question": "What is the key business value proposition of NeMo Retriever?",
+        "type": "multiple_choice",
+        "options": [
+            "It replaces all human analysts",
+            "It allows users to 'talk to their data' by automating knowledge discovery",
+            "It provides free cloud storage",
+            "It creates 3D models from 2D images"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "business value",
+            "knowledge discovery",
+            "conversational ai"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Retriever's fundamental value is enabling conversational access to enterprise data, effectively allowing users to 'talk to their data' to discover insights."
+    },
+    {
+        "id": "nvidia_tool_197",
+        "question": "Which component allows NeMo Retriever Parse to represent both layout and semantics?",
+        "type": "multiple_choice",
+        "options": [
+            "Standard UTF-8 encoding",
+            "Unified tokenization combining text, spatial coordinates, and semantic classes",
+            "Separate image and text files",
+            "HTML parsing only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tokenization",
+            "nemo retriever parse",
+            "multimodal"
+        ],
+        "difficulty": "hard",
+        "explanation": "NeMo Retriever Parse uses a unified tokenization scheme that augments the tokenizer with special tokens for spatial coordinates and semantic classes to capture layout structure."
+    },
+    {
+        "id": "nvidia_tool_198",
+        "question": "What are the four core microservices that make up the NeMo Retriever architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "Frontend, Backend, Database, Cache",
+            "Ingestion, Embedding, Reranking, and Generation",
+            "Training, Testing, Validation, Deployment",
+            "Network, Storage, Compute, Security"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture",
+            "microservices",
+            "nemo retriever"
+        ],
+        "difficulty": "medium",
+        "explanation": "The architecture comprises four key microservices: Ingestion (data processing), Embedding (vectorization), Reranking (precision sorting), and Generation (LLM response)."
+    },
+    {
+        "id": "nvidia_tool_199",
+        "question": "Which model is capable of generating direct multimodal embeddings from raw page images?",
+        "type": "multiple_choice",
+        "options": [
+            "NV-EmbedQA-E5-v5",
+            "NV-RerankQA-Mistral4B-v3",
+            "Llama 3.2 NeMo Retriever Multimodal Embedding Model",
+            "ResNet-50"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multimodal",
+            "embeddings",
+            "llama 3.2"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Llama 3.2 NeMo Retriever Multimodal Embedding Model is specifically designed to embed raw page images directly into a semantic vector space."
+    },
+    {
+        "id": "nvidia_tool_200",
+        "question": "Which evaluation benchmarks are commonly used to assess retrieval quality in NeMo Retriever contexts?",
+        "type": "multiple_choice",
+        "options": [
+            "ImageNet and COCO",
+            "BEIR and MTEB",
+            "GLUE and SuperGLUE",
+            "MNIST and CIFAR"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "benchmarks",
+            "beir",
+            "mteb"
+        ],
+        "difficulty": "medium",
+        "explanation": "BEIR (Benchmarking IR) and MTEB (Massive Text Embedding Benchmark) are the standard benchmarks used to evaluate QA retrieval and embedding quality across domains."
+    },
+    {
+        "id": "nvidia_tool_201",
+        "question": "What is the recommended tool for visual testing of the NeMo Retriever workflow?",
+        "type": "multiple_choice",
+        "options": [
+            "Command Line Interface",
+            "Streamlit client",
+            "Jupyter Notebook",
+            "Postman"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "testing",
+            "streamlit",
+            "visualization"
+        ],
+        "difficulty": "easy",
+        "explanation": "A Streamlit client is recommended for visually testing the pipeline, allowing users to interact with the retrieval system via a web interface."
+    },
+    {
+        "id": "nvidia_tool_202",
+        "question": "Which NIM provides lightweight, high-throughput QA embeddings suitable for ingestion?",
+        "type": "multiple_choice",
+        "options": [
+            "NV-EmbedQA-Mistral7B-v2",
+            "NV-RerankQA-Mistral4B-v3",
+            "NV-EmbedQA-E5-v5",
+            "Llama-3.2-NeMoRetriever-1B"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nim",
+            "embedding",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "NV-EmbedQA-E5-v5 is described as providing lightweight, high-throughput QA embeddings, making it ideal for the ingestion stage where speed is crucial."
+    },
+    {
+        "id": "nvidia_tool_203",
+        "question": "What is the dimensionality of vectors generated by the Llama-3.2-NeMoRetriever-1B-VLM-Embed model?",
+        "type": "multiple_choice",
+        "options": [
+            "512 dimensions",
+            "1024 dimensions",
+            "2048 dimensions",
+            "4096 dimensions"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "dimensionality",
+            "vectors",
+            "llama 3.2"
+        ],
+        "difficulty": "hard",
+        "explanation": "The Llama-3.2-NeMoRetriever-1B-VLM-Embed model generates high-dimensional vectors with 2048 dimensions."
+    },
+    {
+        "id": "nvidia_tool_204",
+        "question": "What is the primary function of the 'Reranking' stage in a RAG pipeline?",
+        "type": "multiple_choice",
+        "options": [
+            "To convert text to vectors",
+            "To fetch data from the internet",
+            "To score and reorder top retrieved chunks for higher precision",
+            "To generate the final answer"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "reranking",
+            "rag",
+            "precision"
+        ],
+        "difficulty": "easy",
+        "explanation": "The reranker scores the relevance of the initially retrieved chunks with much higher fidelity and reorders them to ensure the most relevant context is passed to the LLM."
+    },
+    {
+        "id": "nvidia_tool_205",
+        "question": "Which LangChain utility is used to attach the NVIDIA Rerank NIM in a retrieval chain?",
+        "type": "multiple_choice",
+        "options": [
+            "VectorStoreRetriever",
+            "ContextualCompressionRetriever",
+            "MultiQueryRetriever",
+            "SelfQueryRetriever"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "langchain",
+            "reranking",
+            "integration"
+        ],
+        "difficulty": "hard",
+        "explanation": "The ContextualCompressionRetriever in LangChain is the utility used to attach the NVIDIA Rerank NIM, enabling the reranking of retrieved documents before generation."
+    },
+    {
+        "id": "nvidia_tool_206",
+        "question": "What is the primary function of the RAPIDS ecosystem in the context of data science?",
+        "type": "multiple_choice",
+        "options": [
+            "To provide a GUI for managing cloud infrastructure",
+            "To accelerate data science pipelines (ETL, ML, Graph) using GPUs",
+            "To replace Python with C++ for data analysis",
+            "To create synthetic data for computer vision"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rapids",
+            "gpu",
+            "data science"
+        ],
+        "difficulty": "easy",
+        "explanation": "RAPIDS is a suite of open-source software libraries and APIs (cuDF, cuML, cuGraph) used to execute end-to-end data science and analytics pipelines entirely on GPUs."
+    },
+    {
+        "id": "nvidia_tool_207",
+        "question": "Which command is used to enable zero-code-change GPU acceleration for pandas workflows in a notebook environment?",
+        "type": "multiple_choice",
+        "options": [
+            "import cudf as pd",
+            "%load_ext cudf.pandas",
+            "%env ACCELERATE_PANDAS=True",
+            "pandas.enable_gpu()"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cudf",
+            "pandas",
+            "zero-code"
+        ],
+        "difficulty": "medium",
+        "explanation": "The `%load_ext cudf.pandas` magic command enables the `cudf.pandas` accelerator, allowing standard pandas workflows to run on the GPU by intercepting API calls."
+    },
+    {
+        "id": "nvidia_tool_208",
+        "question": "How does RAPIDS handle datasets that exceed the available GPU VRAM?",
+        "type": "multiple_choice",
+        "options": [
+            "It crashes and returns an OutOfMemory error",
+            "It automatically downsamples the data",
+            "It uses Unified Virtual Memory (UVM) to automatically page data between CPU and GPU",
+            "It switches entirely to CPU processing for the whole pipeline"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "uvm",
+            "memory management",
+            "rapids"
+        ],
+        "difficulty": "hard",
+        "explanation": "RAPIDS utilizes Unified Virtual Memory (UVM) with automatic paging and prefetching to seamlessly process datasets that are larger than the GPU's physical memory."
+    },
+    {
+        "id": "nvidia_tool_209",
+        "question": "Which component of RAPIDS is designed to accelerate graph analytics and is interoperable with NetworkX?",
+        "type": "multiple_choice",
+        "options": [
+            "cuML",
+            "cuDF",
+            "cuGraph",
+            "cuSpatial"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cugraph",
+            "networkx",
+            "graph analytics"
+        ],
+        "difficulty": "easy",
+        "explanation": "cuGraph is the RAPIDS library for GPU-accelerated graph analytics. It provides a backend for NetworkX (`nx-cugraph`) to accelerate standard graph algorithms."
+    },
+    {
+        "id": "nvidia_tool_210",
+        "question": "What is the primary benefit of the Forest Inference Library (FIL) within RAPIDS?",
+        "type": "multiple_choice",
+        "options": [
+            "It visualizes decision trees",
+            "It accelerates inference for tree-based models (like XGBoost/RandomForest) on GPUs",
+            "It automatically tunes hyperparameters for neural networks",
+            "It converts decision trees into SQL queries"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fil",
+            "inference",
+            "cuml"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Forest Inference Library (FIL) provides high-performance, GPU-accelerated inference for tree-based models, offering significantly faster prediction speeds compared to CPU execution."
+    },
+    {
+        "id": "nvidia_tool_211",
+        "question": "Which environment variable is used to route NetworkX operations to the cuGraph backend?",
+        "type": "multiple_choice",
+        "options": [
+            "NX_USE_GPU=1",
+            "NX_CUGRAPH_AUTOCONFIG=True",
+            "RAPIDS_GRAPH_ENABLE=True",
+            "CUGRAPH_BACKEND=1"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "networkx",
+            "configuration",
+            "cugraph"
+        ],
+        "difficulty": "hard",
+        "explanation": "Setting `%env NX_CUGRAPH_AUTOCONFIG=True` automatically routes supported NetworkX API calls to the GPU-accelerated cuGraph backend without changing the code."
+    },
+    {
+        "id": "nvidia_tool_212",
+        "question": "What is the primary purpose of NVIDIA NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "To optimize the training speed of LLMs",
+            "To define, orchestrate, and enforce safety and compliance policies for LLMs",
+            "To act as a load balancer for inference requests",
+            "To generate automatic documentation for Python code"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo guardrails",
+            "safety",
+            "llmops"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Guardrails is a framework designed to define, orchestrate, and enforce safety, security, and compliance policies (like topic control and jailbreak prevention) across the LLM lifecycle."
+    },
+    {
+        "id": "nvidia_tool_213",
+        "question": "Which scripting language does NeMo Guardrails use to define dialogue flows and guardrail logic?",
+        "type": "multiple_choice",
+        "options": [
+            "YAML",
+            "JSON",
+            "Colang",
+            "Lua"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "colang",
+            "configuration",
+            "nemo guardrails"
+        ],
+        "difficulty": "medium",
+        "explanation": "Colang is the modeling language used in NeMo Guardrails to define dialogue flows, user intents, and bot responses in `.co` files."
+    },
+    {
+        "id": "nvidia_tool_214",
+        "question": "What is the approximate latency impact and policy compliance improvement observed when adding NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "~2.0s latency for 50% compliance",
+            "~0.1s latency for 10% compliance",
+            "~0.5s latency for ~99% compliance",
+            "Zero latency impact"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "performance",
+            "latency",
+            "compliance"
+        ],
+        "difficulty": "hard",
+        "explanation": "Adding guardrails typically increases latency by approximately 0.5 seconds (due to additional checks) but significantly improves policy compliance to around 99%."
+    },
+    {
+        "id": "nvidia_tool_215",
+        "question": "In the context of LLM safety, what does 'red-teaming' refer to?",
+        "type": "multiple_choice",
+        "options": [
+            "Optimizing the model for red-colored visual data",
+            "A manual, creative process to explore novel model failure modes and vulnerabilities",
+            "Automated unit testing of the codebase",
+            "The process of deploying the model to production"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "red-teaming",
+            "safety",
+            "security"
+        ],
+        "difficulty": "medium",
+        "explanation": "Red-teaming involves manual or automated adversarial testing to discover vulnerabilities, biases, and failure modes in the model that standard benchmarks might miss."
+    },
+    {
+        "id": "nvidia_tool_216",
+        "question": "What are the three main configuration files required to set up NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "docker-compose.yml, requirements.txt, main.py",
+            "config.yml, flows.co, prompts.yml",
+            "model.json, weights.bin, config.ini",
+            "app.py, routes.py, database.py"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "configuration",
+            "files",
+            "nemo guardrails"
+        ],
+        "difficulty": "medium",
+        "explanation": "A standard NeMo Guardrails setup involves `config.yml` (general config), `flows.co` (dialogue logic in Colang), and `prompts.yml` (LLM prompt templates)."
+    },
+    {
+        "id": "nvidia_tool_217",
+        "question": "Which tool in the NeMo Guardrails ecosystem provides a graphical interface for reviewing evaluation results?",
+        "type": "multiple_choice",
+        "options": [
+            "nemoguardrails eval ui",
+            "nvidia-smi",
+            "tensorboard",
+            "kubectl get pods"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cli",
+            "visualization",
+            "evaluation"
+        ],
+        "difficulty": "easy",
+        "explanation": "The command `nemoguardrails eval ui` launches an interactive web interface to inspect and review the results of guardrail evaluations."
+    },
+    {
+        "id": "nvidia_tool_218",
+        "question": "What is NVIDIA NIM?",
+        "type": "multiple_choice",
+        "options": [
+            "A new programming language for GPUs",
+            "A collection of pre-built, GPU-optimized inference microservices",
+            "A hardware component in the H100 GPU",
+            "A database for storing vector embeddings"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nim",
+            "microservices",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NIM (NVIDIA Inference Microservices) provides containerized, production-ready AI models that are optimized for deployment on NVIDIA infrastructure."
+    },
+    {
+        "id": "nvidia_tool_219",
+        "question": "Which inference backend does NIM prefer for maximum performance with FP8 quantized models?",
+        "type": "multiple_choice",
+        "options": [
+            "vLLM",
+            "SGLang",
+            "TensorRT-LLM",
+            "PyTorch Eager Mode"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "backend",
+            "tensorrt-llm",
+            "optimization"
+        ],
+        "difficulty": "hard",
+        "explanation": "TensorRT-LLM is the preferred backend in NIM for delivering maximum inference performance, especially when using FP8 quantization."
+    },
+    {
+        "id": "nvidia_tool_220",
+        "question": "What is the purpose of the `NIM_FT_MODEL` environment variable?",
+        "type": "multiple_choice",
+        "options": [
+            "To specify the font type for the UI",
+            "To trigger an automatic TensorRT-LLM engine build for a fine-tuned model",
+            "To disable the GPU and run on CPU",
+            "To set the model's temperature parameter"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "configuration",
+            "fine-tuning",
+            "nim"
+        ],
+        "difficulty": "medium",
+        "explanation": "Setting `NIM_FT_MODEL` to the path of fine-tuned weights triggers NIM to automatically build an optimized TensorRT-LLM engine for that specific model."
+    },
+    {
+        "id": "nvidia_tool_221",
+        "question": "Which Kubernetes Custom Resource Definition (CRD) provided by the NIM Operator is used to manage a single NIM deployment?",
+        "type": "multiple_choice",
+        "options": [
+            "Deployment",
+            "Pod",
+            "NIMService",
+            "StatefulSet"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "kubernetes",
+            "nim operator",
+            "crd"
+        ],
+        "difficulty": "medium",
+        "explanation": "The `NIMService` CRD is used to define and manage the lifecycle of a single NIM microservice deployment within Kubernetes."
+    },
+    {
+        "id": "nvidia_tool_222",
+        "question": "What is the difference between an SBOM and VEX in the context of NIM security?",
+        "type": "multiple_choice",
+        "options": [
+            "SBOM lists components; VEX indicates if vulnerabilities are actually exploitable",
+            "SBOM is for code; VEX is for weights",
+            "They are identical concepts",
+            "VEX lists components; SBOM patches them"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "security",
+            "sbom",
+            "vex"
+        ],
+        "difficulty": "hard",
+        "explanation": "An SBOM (Software Bill of Materials) lists all dependencies, while VEX (Vulnerability Exploitability eXchange) provides context on whether specific vulnerabilities in that list are actually exploitable in the current configuration."
+    },
+    {
+        "id": "nvidia_tool_223",
+        "question": "Which benchmarking tool does NVIDIA provide to measure metrics like TTFT (Time To First Token) and TPS (Tokens Per Second) for NIM?",
+        "type": "multiple_choice",
+        "options": [
+            "Apache JMeter",
+            "GenAI-Perf",
+            "Locust",
+            "PyTest"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "benchmarking",
+            "genai-perf",
+            "metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "GenAI-Perf is NVIDIA's specialized tool for evaluating the performance of Generative AI inference, measuring key metrics like TTFT, ITL, TPS, and RPS."
+    },
+    {
+        "id": "nvidia_tool_224",
+        "question": "What network requirement is critical for multi-node NIM deployments to prevent pod restarts?",
+        "type": "multiple_choice",
+        "options": [
+            "Public internet access",
+            "High latency/Low bandwidth",
+            "Low latency (InfiniBand/RoCE) for GPU communication",
+            "Legacy 10Mbps Ethernet"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multi-node",
+            "networking",
+            "infrastructure"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multi-node deployments require low-latency, high-bandwidth interconnects (like InfiniBand or RoCE) for model sharding communication; high latency can cause liveness probe failures and pod restarts."
+    },
+    {
+        "id": "nvidia_tool_225",
+        "question": "Which open-source project does NIM integrate with to provide serverless autoscaling and canary deployments?",
+        "type": "multiple_choice",
+        "options": [
+            "Jenkins",
+            "Terraform",
+            "KServe",
+            "Ansible"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "kserve",
+            "autoscaling",
+            "integration"
+        ],
+        "difficulty": "medium",
+        "explanation": "NIM integrates with KServe to enable advanced deployment features like serverless autoscaling (scale-to-zero), canary rollouts, and intelligent traffic routing."
+    },
+    {
+        "id": "nvidia_tool_226",
+        "question": "What is the primary definition of 'Trustworthy AI' as described in the study materials?",
+        "type": "multiple_choice",
+        "options": [
+            "AI that generates the most creative content regardless of accuracy",
+            "AI that is fair, transparent, accountable, robust, and privacy-respecting",
+            "AI that operates without any human supervision",
+            "AI that is free to use for everyone"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "trustworthy ai",
+            "definition",
+            "ethics"
+        ],
+        "difficulty": "easy",
+        "explanation": "Trustworthy AI is defined as AI that adheres to the principles of being fair, transparent, accountable, robust, and privacy-respecting[cite: 350]."
+    },
+    {
+        "id": "nvidia_tool_227",
+        "question": "Which of the following lists correctly identifies the 5 Pillars of Trustworthy AI?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy, Speed, Cost, Scalability, Efficiency",
+            "Fairness, Transparency, Accountability, Robustness, Privacy",
+            "Training, Learning, Generation, Deployment, Maintenance",
+            "Vision, Language, Audio, Robotics, Healthcare"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pillars",
+            "trustworthy ai",
+            "principles"
+        ],
+        "difficulty": "medium",
+        "explanation": "The five pillars are explicitly listed as Fairness, Transparency, Accountability, Robustness, and Privacy[cite: 351, 367]."
+    },
+    {
+        "id": "nvidia_tool_228",
+        "question": "What is 'Algorithmic Bias' in the context of AI?",
+        "type": "multiple_choice",
+        "options": [
+            "Random errors that occur during model training",
+            "Systematic model errors that result in unfair outcomes for certain groups",
+            "The preference of a model for text over images",
+            "The speed difference between two algorithms"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bias",
+            "algorithmic bias",
+            "fairness"
+        ],
+        "difficulty": "medium",
+        "explanation": "Algorithmic bias refers to systematic errors in a model that lead to unfair outcomes for specific groups of people[cite: 368]."
+    },
+    {
+        "id": "nvidia_tool_229",
+        "question": "Which technique involves training models across multiple systems without sharing sensitive user data?",
+        "type": "multiple_choice",
+        "options": [
+            "Confidential Computing",
+            "Federated Learning",
+            "Differential Privacy",
+            "Reinforcement Learning"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "federated learning",
+            "privacy",
+            "distributed training"
+        ],
+        "difficulty": "medium",
+        "explanation": "Federated Learning allows models to be trained across decentralized systems without sharing the actual sensitive user data[cite: 379]."
+    },
+    {
+        "id": "nvidia_tool_230",
+        "question": "What is the primary function of NVIDIA NeMo Guardrails?",
+        "type": "multiple_choice",
+        "options": [
+            "To optimize GPU hardware performance",
+            "To generate synthetic 3D datasets",
+            "To ensure LLMs generate safe, factual, and policy-aligned responses",
+            "To compress large language models"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nemo guardrails",
+            "safety",
+            "llm"
+        ],
+        "difficulty": "easy",
+        "explanation": "NeMo Guardrails is a framework designed to ensure that Large Language Models (LLMs) produce responses that are safe, factual, and aligned with defined policies[cite: 382]."
+    },
+    {
+        "id": "nvidia_tool_231",
+        "question": "What does 'Confidential Computing' protect against?",
+        "type": "multiple_choice",
+        "options": [
+            "Model overfitting",
+            "Data-in-use exposure to the OS, admins, or cloud providers",
+            "Slow inference speeds",
+            "Biased training data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "confidential computing",
+            "security",
+            "tee"
+        ],
+        "difficulty": "hard",
+        "explanation": "Confidential Computing uses hardware-level protection (TEE) to secure data while it is being processed (data-in-use), protecting it from the OS, administrators, and cloud providers[cite: 432]."
+    },
+    {
+        "id": "nvidia_tool_232",
+        "question": "What is 'Prompt Injection'?",
+        "type": "multiple_choice",
+        "options": [
+            "Injecting new data into the training set",
+            "A security attack where malicious prompts alter an LLM’s intended behavior",
+            "Speeding up the prompt processing time",
+            "Automatically translating prompts into other languages"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompt injection",
+            "security",
+            "attack"
+        ],
+        "difficulty": "medium",
+        "explanation": "Prompt injection is a specific type of attack where malicious inputs (prompts) are used to override or alter the intended instructions and behavior of an LLM[cite: 386]."
+    },
+    {
+        "id": "nvidia_tool_233",
+        "question": "Which tool is used for generating synthetic, diverse 3D datasets to reduce bias?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA Jarvis",
+            "NVIDIA Triton Inference Server",
+            "Omniverse Replicator",
+            "NeMo Guardrails"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "omniverse replicator",
+            "synthetic data",
+            "bias mitigation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Omniverse Replicator is the tool specifically designed to generate synthetic, diverse 3D datasets, which helps in reducing bias in AI models[cite: 383]."
+    },
+    {
+        "id": "nvidia_tool_234",
+        "question": "What is the purpose of a 'Model Card++'?",
+        "type": "multiple_choice",
+        "options": [
+            "To serve as a hardware specification sheet for GPUs",
+            "To enhance transparency by documenting bias, explainability, privacy, and safety",
+            "To store the model weights in a compressed format",
+            "To act as a license key for the software"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "model card++",
+            "transparency",
+            "documentation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Model Card++ is an enhanced documentation standard that includes subcards for bias, explainability, privacy, safety, and security to increase transparency[cite: 406, 434]."
+    },
+    {
+        "id": "nvidia_tool_235",
+        "question": "What does the 'Run' phase of the NVIDIA Safety Recipe involve?",
+        "type": "multiple_choice",
+        "options": [
+            "Building the model architecture",
+            "Deploying the model as a NIM",
+            "Inference runtime protection with guardrails",
+            "Fine-tuning with RLHF"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "safety recipe",
+            "run phase",
+            "guardrails"
+        ],
+        "difficulty": "medium",
+        "explanation": "The 'Run' phase of the Safety Recipe focuses on inference runtime protection, specifically utilizing NeMo Guardrails to enforce safety policies during operation[cite: 405, 424]."
+    },
+    {
+        "id": "nvidia_tool_236",
+        "question": "What is a 'Multimodal Cognitive Attack'?",
+        "type": "multiple_choice",
+        "options": [
+            "An attack using only text prompts",
+            "A DDoS attack on the model server",
+            "An attack embedding malicious instructions within a reasoning task (e.g., inside an image puzzle)",
+            "Stealing the physical GPU"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multimodal attack",
+            "security",
+            "cognitive reasoning"
+        ],
+        "difficulty": "hard",
+        "explanation": "A multimodal cognitive attack embeds malicious instructions within a reasoning task, such as a puzzle image, which materializes during inference to bypass input filters[cite: 411]."
+    },
+    {
+        "id": "nvidia_tool_237",
+        "question": "What is the function of the 'JailbreakDetect NIM'?",
+        "type": "multiple_choice",
+        "options": [
+            "To help users jailbreak their phones",
+            "A specialized model to block adversarial prompts before they reach the main LLM",
+            "To detect if the model is running in a container",
+            "To monitor GPU temperature"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "jailbreakdetect",
+            "nim",
+            "security"
+        ],
+        "difficulty": "medium",
+        "explanation": "JailbreakDetect NIM is a specialized model trained on jailbreak patterns to identify and block adversarial prompts before they can affect the main LLM[cite: 421]."
+    },
+    {
+        "id": "nvidia_tool_238",
+        "question": "What does VEX stand for in the context of software security?",
+        "type": "multiple_choice",
+        "options": [
+            "Virtual Execution Environment",
+            "Vulnerability Exploitability eXchange",
+            "Video Encoding Xtension",
+            "Verified Encryption Xchange"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "vex",
+            "security",
+            "vulnerabilities"
+        ],
+        "difficulty": "hard",
+        "explanation": "VEX stands for Vulnerability Exploitability eXchange, which provides contextual guidance on whether a discovered CVE is actually exploitable in a specific product configuration[cite: 418]."
+    },
+    {
+        "id": "nvidia_tool_239",
+        "question": "How does 'Cleanlab TLM' help in preventing hallucinations?",
+        "type": "multiple_choice",
+        "options": [
+            "By removing all adjectives from the response",
+            "By scoring the trustworthiness of responses and triggering fallbacks for low scores",
+            "By increasing the model's temperature parameter",
+            "By forcing the model to only answer 'yes' or 'no'"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cleanlab tlm",
+            "hallucination",
+            "trustworthiness"
+        ],
+        "difficulty": "medium",
+        "explanation": "Cleanlab TLM integrates with NeMo Guardrails to score the trustworthiness of a response; if the score is low, it triggers a fallback or human escalation[cite: 419]."
+    },
+    {
+        "id": "nvidia_tool_240",
+        "question": "What is the 'Build' phase of the NVIDIA Safety Recipe primarily concerned with?",
+        "type": "multiple_choice",
+        "options": [
+            "Runtime monitoring",
+            "Evaluation and alignment (SFT, RLHF)",
+            "Containerization",
+            "Hardware installation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "safety recipe",
+            "build phase",
+            "alignment"
+        ],
+        "difficulty": "medium",
+        "explanation": "The 'Build' phase involves evaluating and aligning the model using techniques like Supervised Fine-Tuning (SFT) and Reinforcement Learning (RL)[cite: 405, 426]."
+    }
+]

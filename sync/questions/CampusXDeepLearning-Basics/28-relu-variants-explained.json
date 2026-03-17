@@ -1,0 +1,108 @@
+[
+    {
+        "id": "Relu Variants Explained_001",
+        "question": "A data scientist trains a deep neural network using the standard ReLU activation function for all hidden layers. After training, they analyze the network and discover that 40% of the neurons in the hidden layers always output exactly zero, regardless of the input data fed into the model. What is this phenomenon mathematically called, and what is its primary consequence on the network's performance?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 'Vanishing Gradients'; it causes the model to achieve 100% accuracy on the training data but fail on test data.",
+            "B) 'Dying ReLU Problem'; it permanently disables these neurons, effectively reducing the active capacity of the network and hindering its ability to learn complex, non-linear representations from the data.",
+            "C) 'Exploding Gradients'; it forces the network to automatically add more hidden layers to compensate for the dead neurons.",
+            "D) 'Saturated Neurons'; it optimizes the network by removing redundant features, acting as an automatic regularization technique."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dying_relu",
+            "activation_functions",
+            "network_capacity"
+        ],
+        "difficulty": "easy",
+        "explanation": "The 'Dying ReLU' problem occurs when the weighted sum ($Z$) entering a ReLU neuron becomes negative. Because ReLU outputs strictly 0 for negative inputs ($f(x) = \\max(0, x)$), and the derivative of 0 is 0, no gradients flow back through this neuron during backpropagation. Because the gradients are zero, the weights never update. The neuron is permanently stuck outputting zero for all future inputs. If 40% of neurons die, the model effectively loses 40% of its learning capacity, making it struggle to capture complex data patterns. Option A is a different problem (vanishing gradients usually apply to Sigmoid/Tanh). Options C and D are fabricated descriptions."
+    },
+    {
+        "id": "Relu Variants Explained_002",
+        "question": "During the mathematical derivation of the Dying ReLU problem, the instructor highlights two primary hyperparameters or initialization states that can cause a neuron's weighted sum ($Z$) to become so negative that the neuron 'dies'. What are these two primary culprits?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A high Learning Rate and highly Negative Biases.",
+            "B) A low Learning Rate and highly Positive Biases.",
+            "C) An excessive number of training Epochs and a small Batch Size.",
+            "D) The use of L2 Regularization and a large Dropout rate."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "dying_relu_causes",
+            "learning_rate",
+            "biases",
+            "hyperparameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "The equation for the weighted sum is $Z = WX + b$. If $Z$ becomes negative, ReLU dies. \n1. **Highly Negative Biases:** If the bias term ($b$) is initialized or updated to a massive negative number, it will drag the entire $Z$ equation into the negative domain, killing the neuron instantly. \n2. **High Learning Rate:** If the learning rate is set too high, a single gradient descent update step can be so massive that it violently swings the weights ($W$) from positive to deeply negative. In the next epoch, these deeply negative weights produce a negative $Z$, killing the neuron. \nOptions B, C, and D list hyperparameters that do not mathematically force the $Z$ calculation into the negative domain."
+    },
+    {
+        "id": "Relu Variants Explained_003",
+        "question": "To solve the Dying ReLU problem, researchers developed 'Leaky ReLU'. How does Leaky ReLU mathematically alter the standard ReLU formula ($f(x) = \\max(0, x)$) to prevent neurons from permanently dying?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It applies the Sigmoid function to all negative inputs, ensuring they are squashed between 0 and 1.",
+            "B) It completely ignores negative inputs and randomly drops them using a probability matrix.",
+            "C) Instead of outputting exactly $0$ for negative inputs, it outputs a very small linear fraction of the input (e.g., $0.01 \\cdot x$), ensuring the gradient is never perfectly zero and allowing the weights to slowly recover.",
+            "D) It converts all negative inputs into positive inputs using an absolute value function ($f(x) = |x|$)."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "leaky_relu",
+            "activation_functions",
+            "dying_relu_solution"
+        ],
+        "difficulty": "easy",
+        "explanation": "Standard ReLU has a hard cut-off: if $x < 0$, output $0$. The derivative of a flat $0$ line is $0$, which stops backpropagation. Leaky ReLU changes the formula for negative inputs to $f(x) = \\alpha \\cdot x$, where $\\alpha$ is a tiny constant like $0.01$.  Because it is now a slightly angled line instead of a flat zero line, the derivative is $0.01$ instead of $0$. This tiny gradient 'leaks' through during backpropagation, allowing the weights to still update very slowly, giving the 'dead' neuron a mathematical chance to eventually recover and become positive again. Options A, B, and D describe completely different, non-standard mathematical transformations."
+    },
+    {
+        "id": "Relu Variants Explained_004",
+        "question": "The instructor discusses 'Parametric ReLU' (PReLU) as an advancement over Leaky ReLU. What is the fundamental operational difference between Leaky ReLU and Parametric ReLU?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Leaky ReLU uses a fixed, hardcoded constant (e.g., $0.01$) for the negative slope, whereas Parametric ReLU treats that slope multiplier as a trainable parameter, allowing the neural network to mathematically learn the optimal slope for the negative inputs during gradient descent.",
+            "B) Leaky ReLU is used for regression tasks, while Parametric ReLU is strictly reserved for the final output layer of classification tasks.",
+            "C) Parametric ReLU automatically adjusts the number of hidden layers based on the severity of the negative inputs, while Leaky ReLU relies on a static architecture.",
+            "D) Parametric ReLU uses an exponential curve ($e^x$) for negative values, while Leaky ReLU uses a straight linear line."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "parametric_relu",
+            "leaky_relu",
+            "trainable_parameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "In Leaky ReLU, the slope for the negative domain ($\\alpha$) is a fixed hyperparameter set by the engineer before training begins (usually $0.01$). If $0.01$ isn't the optimal slope for the specific dataset, the model suffers. Parametric ReLU (PReLU) takes this $\\alpha$ value and turns it into a *trainable parameter* (just like a weight or a bias). During backpropagation, the neural network calculates the gradient with respect to $\\alpha$ and updates it, allowing the model to autonomously *learn* the perfect negative slope for that specific layer and dataset. Option B is factually incorrect. Option C describes architectural search, not an activation function. Option D describes ELU (Exponential Linear Unit), not Parametric ReLU."
+    },
+    {
+        "id": "Relu Variants Explained_005",
+        "question": "The Exponential Linear Unit (ELU) is introduced as a non-linear variant of ReLU. While ELU often yields better generalization and faster convergence than standard ReLU, what is its primary computational disadvantage?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ELU is completely non-differentiable across its entire domain, requiring complex workarounds during backpropagation.",
+            "B) ELU strictly bounds all positive outputs between 0 and 1, causing the Vanishing Gradient Problem.",
+            "C) ELU calculates an exponential function ($e^x$) for negative inputs, which is mathematically more expensive and slower for the CPU/GPU to compute compared to the simple linear multiplication used in ReLU or Leaky ReLU.",
+            "D) ELU forces the neural network to drop 50% of its nodes randomly to maintain mathematical stability."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "elu",
+            "computational_cost",
+            "activation_functions"
+        ],
+        "difficulty": "medium",
+        "explanation": "For positive inputs, ELU acts exactly like ReLU ($f(x) = x$). However, for negative inputs, the formula is $\\alpha(e^x - 1)$.  Calculating an exponential ($e^x$) is a significantly more complex and resource-intensive operation at the silicon level (CPU/GPU arithmetic logic units) than simply multiplying two numbers together (which is what Leaky ReLU does, e.g., $0.01 \\cdot x$). When a deep network performs this exponential calculation millions of times per epoch, it inherently slows down the raw computational speed of the forward and backward passes. Option A is false; ELU is continuously differentiable. Option B is false; ELU does not bound positive outputs. Option D describes Dropout regularization, not an activation function."
+    }
+]

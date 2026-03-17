@@ -1,0 +1,86 @@
+[
+    {
+        "id": "MLP Notation_001",
+        "question": "A data scientist is designing a Multi-Layer Perceptron (MLP). The network has an input layer with 4 features, a single hidden layer with 3 nodes, and an output layer with 2 nodes. How many total trainable parameters (weights and biases combined) does this specific neural network architecture contain?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 24 parameters",
+            "B) 17 parameters",
+            "C) 23 parameters",
+            "D) 9 parameters"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "mlp_architecture",
+            "trainable_parameters",
+            "parameter_calculation"
+        ],
+        "difficulty": "medium",
+        "explanation": "To calculate the total trainable parameters, we must count the weights (connections between nodes) and the biases (one for every node in a hidden or output layer). \n1. **Input to Hidden Layer:** There are 4 input nodes connecting to 3 hidden nodes. This results in $4 \\times 3 = 12$ weights. The hidden layer has 3 nodes, so it has 3 biases. Total for this section: $12 + 3 = 15$ parameters.\n2. **Hidden to Output Layer:** There are 3 hidden nodes connecting to 2 output nodes. This results in $3 \\times 2 = 6$ weights. The output layer has 2 nodes, so it has 2 biases. Total for this section: $6 + 2 = 8$ parameters.\n3. **Total Parameters:** $15 + 8 = 23$ trainable parameters."
+    },
+    {
+        "id": "MLP Notation_002",
+        "question": "In the standard mathematical notation for a Multi-Layer Perceptron discussed in the tutorial, a bias term is denoted as $b_{ij}$. What do the indices $i$ and $j$ strictly represent in this specific notation format?",
+        "type": "multiple_choice",
+        "options": [
+            "A) '$i$' is the number of inputs coming into the node, and '$j$' is the number of outputs leaving the node.",
+            "B) '$i$' represents the specific layer number where the node resides, and '$j$' represents the specific index (position) of that node within that layer.",
+            "C) '$i$' indicates the training epoch number, and '$j$' indicates the batch size index.",
+            "D) '$i$' is the node index in the preceding layer, and '$j$' is the node index in the current layer."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "mlp_notation",
+            "bias_notation",
+            "indexing"
+        ],
+        "difficulty": "easy",
+        "explanation": "According to the standard notation taught in the video, a bias term is denoted as $b_{ij}$. \nThe first subscript, $i$, strictly represents the layer number (e.g., Layer 1, Layer 2). \nThe second subscript, $j$, strictly represents the index or position of the node within that specific layer (e.g., the 1st node, the 2nd node). \nFor example, $b_{21}$ would represent the bias of the first node located in the second layer. Option D describes the indexing used for weights ($w_{ij}$), not biases. Options A and C are entirely fabricated interpretations."
+    },
+    {
+        "id": "MLP Notation_003",
+        "question": "You are reading a research paper outlining a custom backpropagation algorithm. You see a weight variable denoted as $w^{(2)}_{31}$ (using the notation format $w^{(k)}_{ij}$). Based on the instructor's breakdown of weight notation, which exact structural connection does this parameter define?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The connection entering Layer 2, originating from the 3rd node in the previous layer, and terminating at the 1st node in Layer 2.",
+            "B) The connection entering Layer 3, originating from the 2nd node in the previous layer, and terminating at the 1st node in Layer 3.",
+            "C) The connection leaving the 2nd node in Layer 1, entering the 3rd node in Layer 2, and eventually passing to the 1st node in Layer 3.",
+            "D) The connection entering Layer 2, originating from the 1st node in the previous layer, and terminating at the 3rd node in Layer 2."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "mlp_notation",
+            "weight_notation",
+            "network_topology"
+        ],
+        "difficulty": "hard",
+        "explanation": "The standard notation for weights is often written as $w^{(k)}_{ij}$ (or similar variants where $k$ is the superscript). \nThe superscript $(k)$ indicates the target layer that the weight is *entering*. \nThe subscript $i$ indicates the index of the node in the *previous* layer that the connection originates from. \nThe subscript $j$ indicates the index of the node in the *current* target layer that the connection is entering. \nTherefore, $w^{(2)}_{31}$ represents the weight of the connection entering Layer 2 ($k=2$), coming from the 3rd node in the previous layer ($i=3$), and going into the 1st node of Layer 2 ($j=1$). Option D reverses the $i$ and $j$ roles."
+    },
+    {
+        "id": "MLP Notation_004",
+        "question": "According to the tutorial, why is it absolutely critical for a machine learning engineer to master the formal mathematical notation of weights ($w$), biases ($b$), and outputs ($O$) before attempting to study the Backpropagation algorithm?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because modern Deep Learning frameworks like TensorFlow will throw syntax errors if the variables are not named using this exact mathematical format in the Python code.",
+            "B) Because the Backpropagation algorithm relies heavily on the chain rule of calculus across hundreds of interconnected parameters; without strict notation, it becomes impossible to track which specific weight's gradient is being calculated.",
+            "C) Because the notation format mathematically guarantees that the network will not suffer from the vanishing gradient problem.",
+            "D) Because the notation acts as a regularization technique, preventing the model from overfitting on small datasets."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "mlp_notation",
+            "backpropagation_prerequisite",
+            "calculus_chain_rule"
+        ],
+        "difficulty": "medium",
+        "explanation": "The instructor explicitly states that the biggest mistake beginners make is jumping straight into the Backpropagation algorithm without understanding notation. Backpropagation relies on complex multivariate calculus (specifically, deep applications of the chain rule) to calculate the gradient of the loss function with respect to every single weight in the network. In an MLP with even a few layers, there are dozens or hundreds of weights. If you cannot look at a notation like $\\frac{\\partial L}{\\partial w^{(2)}_{13}}$ and instantly know exactly which physical connection in the network architecture it refers to, the entire algorithm becomes an incomprehensible blur of variables. Option A is false; code variable names are arbitrary. Options C and D are false; notation is just a naming convention and has no mathematical impact on network performance or training dynamics."
+    }
+]

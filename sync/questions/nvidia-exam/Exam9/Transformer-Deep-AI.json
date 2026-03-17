@@ -1,0 +1,543 @@
+[
+    {
+        "id": "transformer-history-001",
+        "question": "What is the original purpose of the Transformer architecture as introduced in the 2017 paper 'Attention is All You Need'?",
+        "type": "multiple_choice",
+        "options": [
+            "Image classification",
+            "Machine translation (English to German)",
+            "Audio synthesis",
+            "Stock market prediction"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "history",
+            "introduction"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Transformer was introduced in 2017 by Ashish Vaswani et al. for the specific purpose of machine translation, notably English to German."
+    },
+    {
+        "id": "encoder-decoder-diff-002",
+        "question": "Which statement best describes the difference between the Encoder and Decoder in the original Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "The Encoder generates text, while the Decoder processes input context",
+            "The Encoder processes input text to extract context, while the Decoder generates output text",
+            "The Encoder is used for GPT models, while the Decoder is used for BERT",
+            "Both components perform identical tasks but on different datasets"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture",
+            "encoder-decoder"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Encoder preprocesses input text to create context-sensitive representations (like BERT), while the Decoder uses that context to generate output text (like GPT)."
+    },
+    {
+        "id": "llm-magic-003",
+        "question": "According to the course, what are the two critical components that constitute the 'magic' of Large Language Models?",
+        "type": "multiple_choice",
+        "options": [
+            "High-speed internet and Python",
+            "The Transformer Architecture and massive Training Data",
+            "Quantum computing and simple algorithms",
+            "Manual coding rules and small datasets"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "concepts",
+            "introduction"
+        ],
+        "difficulty": "easy",
+        "explanation": "The success of LLMs is attributed to the combination of a learnable, well-designed Transformer Architecture and incredibly rich Training Data."
+    },
+    {
+        "id": "modern-llm-comp-004",
+        "question": "Modern generative LLMs like GPT-4 and Claude are primarily based on which component of the Transformer?",
+        "type": "multiple_choice",
+        "options": [
+            "The Encoder only",
+            "The Decoder only",
+            "A Recurrent Neural Network",
+            "The Bag-of-Words model"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture",
+            "generative models"
+        ],
+        "difficulty": "easy",
+        "explanation": "Modern generative models are typically Decoder-only architectures designed for text generation tasks."
+    },
+    {
+        "id": "bow-limitation-005",
+        "question": "What is a major limitation of the 'Bag-of-Words' language representation model?",
+        "type": "multiple_choice",
+        "options": [
+            "It requires too much GPU memory",
+            "It ignores semantic meaning and word relationships",
+            "It cannot handle numbers",
+            "It is too slow to compute"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp history",
+            "bag-of-words"
+        ],
+        "difficulty": "easy",
+        "explanation": "Bag-of-Words represents text as sparse vectors based on word counts, failing to capture the semantic relationships or context between words."
+    },
+    {
+        "id": "word2vec-innovation-006",
+        "question": "What was the key innovation of Word2Vec (2013) compared to previous models?",
+        "type": "multiple_choice",
+        "options": [
+            "It introduced the Attention Mechanism",
+            "It created semantic representations where similar words have mathematically similar embeddings",
+            "It allowed for generating entire paragraphs of text",
+            "It used a 175 billion parameter architecture"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp history",
+            "embeddings"
+        ],
+        "difficulty": "medium",
+        "explanation": "Word2Vec introduced dense vector embeddings that capture semantic meaning by analyzing word co-occurrence, grouping similar words together."
+    },
+    {
+        "id": "embedding-dims-007",
+        "question": "In a vector embedding, what do the individual dimensions represent?",
+        "type": "multiple_choice",
+        "options": [
+            "Explicit human-labeled categories like 'noun' or 'verb'",
+            "Random noise added for security",
+            "Learned properties (e.g., 'animal-ness', 'plurality') derived from mathematical calculations",
+            "The position of the word in the sentence"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "embeddings",
+            "concepts"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dimensions in an embedding vector represent abstract properties learned by the model, such as plurality or gender, though they aren't explicitly labeled."
+    },
+    {
+        "id": "sentence-embed-008",
+        "question": "How are sentence embeddings typically derived from individual token embeddings?",
+        "type": "multiple_choice",
+        "options": [
+            "By selecting only the first word's embedding",
+            "By aggregating (e.g., averaging) the embeddings of all tokens in the sentence",
+            "By multiplying all vectors together",
+            "By using a separate dictionary for sentences"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "embeddings",
+            "sentence embeddings"
+        ],
+        "difficulty": "easy",
+        "explanation": "Sentence embeddings are usually created by aggregating the individual embeddings of the words within the sentence."
+    },
+    {
+        "id": "rnn-bottleneck-009",
+        "question": "What is the 'Bottleneck Problem' associated with RNN-based Encoder-Decoder models?",
+        "type": "multiple_choice",
+        "options": [
+            "The model runs out of electricity",
+            "Compressing the entire input sequence into a single context vector causes information loss for long sequences",
+            "The vocabulary size is too small",
+            "The decoder generates text too quickly"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rnns",
+            "bottleneck"
+        ],
+        "difficulty": "medium",
+        "explanation": "The bottleneck problem refers to the information loss that occurs when a long or complex input sequence is forced into a single fixed-size context vector."
+    },
+    {
+        "id": "attention-solution-010",
+        "question": "How does the Attention Mechanism address the RNN bottleneck problem?",
+        "type": "multiple_choice",
+        "options": [
+            "By compressing the input into an even smaller vector",
+            "By passing the hidden states of ALL input words to the decoder, allowing selective focus",
+            "By deleting unimportant words from the input",
+            "By replacing the Encoder with a second Decoder"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention mechanism",
+            "rnns"
+        ],
+        "difficulty": "medium",
+        "explanation": "Attention allows the decoder to access the hidden states of all input tokens and selectively focus (attend) on the relevant ones for each step."
+    },
+    {
+        "id": "rnn-vs-transformer-011",
+        "question": "Why were RNNs eventually replaced by Transformers despite the addition of attention?",
+        "type": "multiple_choice",
+        "options": [
+            "RNNs were too accurate and caused overfitting",
+            "RNNs process data sequentially, preventing parallelization and slowing down training",
+            "Transformers require less data to train",
+            "RNNs could not process English text"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture comparison",
+            "parallelization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The primary limitation of RNNs was their sequential nature, which precluded parallelization. Transformers allow for parallel processing, significantly speeding up training."
+    },
+    {
+        "id": "transformer-comps-012",
+        "question": "Which of the following is NOT one of the three major components of a Transformer LLM pipeline?",
+        "type": "multiple_choice",
+        "options": [
+            "Tokenizer",
+            "Stack of Transformer Blocks",
+            "Language Modeling Head",
+            "Recurrent Neural Network Layer"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "architecture",
+            "components"
+        ],
+        "difficulty": "easy",
+        "explanation": "The three main components are the Tokenizer, Transformer Blocks, and LM Head. RNN layers are not part of the Transformer architecture."
+    },
+    {
+        "id": "ffn-function-013",
+        "question": "What is the primary function of the Feed-Forward Neural Network (FFN) inside a Transformer block?",
+        "type": "multiple_choice",
+        "options": [
+            "To tokenize the input text",
+            "To act as the model's memory, storing learned statistics and relationships",
+            "To calculate attention scores between words",
+            "To convert the final vector into a word"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "components",
+            "ffn"
+        ],
+        "difficulty": "medium",
+        "explanation": "The FFN serves as the model's memory, storing information and statistical relationships learned from the training data."
+    },
+    {
+        "id": "self-attention-calc-014",
+        "question": "In Self-Attention, the relevance score is calculated by multiplying which two matrices?",
+        "type": "multiple_choice",
+        "options": [
+            "Query (Q) and Value (V)",
+            "Key (K) and Value (V)",
+            "Query (Q) and Key (K)",
+            "Input Embedding and Output Embedding"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "self-attention",
+            "mechanism"
+        ],
+        "difficulty": "hard",
+        "explanation": "The relevance score is derived from the dot product of the Query (Q) and Key (K) matrices."
+    },
+    {
+        "id": "masked-attention-015",
+        "question": "What is the purpose of 'Masked' Self-Attention in decoder models?",
+        "type": "multiple_choice",
+        "options": [
+            "To hide the identity of the user",
+            "To prevent the model from 'peeking' at future tokens that haven't been generated yet",
+            "To randomise the input data for better generalization",
+            "To focus only on the first word of the sentence"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention mechanism",
+            "decoder"
+        ],
+        "difficulty": "medium",
+        "explanation": "Masking ensures the model can only attend to previous positions in the sequence, preserving the autoregressive property required for generation."
+    },
+    {
+        "id": "attention-viz-016",
+        "question": "In an attention visualization, what does a high relevance score between the words 'I' and 'Ik' (in an English-to-Dutch task) indicate?",
+        "type": "multiple_choice",
+        "options": [
+            "The words are unrelated",
+            "The model is confused",
+            "A strong semantic relationship, such as being translations/synonyms",
+            "The model is ignoring the word 'I'"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "visualization",
+            "concepts"
+        ],
+        "difficulty": "easy",
+        "explanation": "High attention scores indicate a strong relationship or relevance between tokens, such as 'I' and its Dutch translation 'Ik'."
+    },
+    {
+        "id": "tokenization-level-017",
+        "question": "Which level of tokenization is most commonly used in modern LLMs to balance vocabulary size and flexibility?",
+        "type": "multiple_choice",
+        "options": [
+            "Character-level",
+            "Word-level",
+            "Subword-level",
+            "Sentence-level"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "tokenization",
+            "best practices"
+        ],
+        "difficulty": "medium",
+        "explanation": "Subword-level tokenization is the standard as it handles common words as whole tokens and rare words as fragments, balancing efficiency and vocabulary size."
+    },
+    {
+        "id": "gpt4-tokenizer-018",
+        "question": "Why does GPT-4's tokenizer typically produce fewer tokens than BERT's for the same text?",
+        "type": "multiple_choice",
+        "options": [
+            "It ignores half the words",
+            "It has a much larger vocabulary (~100k), allowing it to represent more words as single tokens",
+            "It uses character-level tokenization",
+            "It converts all text to binary"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tokenization",
+            "gpt-4"
+        ],
+        "difficulty": "medium",
+        "explanation": "A larger vocabulary allows the tokenizer to recognize more complex words as single tokens rather than breaking them into multiple sub-tokens."
+    },
+    {
+        "id": "decoding-strat-019",
+        "question": "Which decoding strategy always selects the token with the highest probability (Temperature = 0)?",
+        "type": "multiple_choice",
+        "options": [
+            "Top-P Sampling",
+            "Nucleus Sampling",
+            "Greedy Decoding",
+            "Random Sampling"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "decoding",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "explanation": "Greedy decoding is deterministic and always chooses the single most probable next token."
+    },
+    {
+        "id": "rope-020",
+        "question": "What problem do Rotary Positional Embeddings (RoPE) address?",
+        "type": "multiple_choice",
+        "options": [
+            "The vanishing gradient problem",
+            "Encoding token order in efficient training data packing",
+            "The limited vocabulary size of tokenizers",
+            "The high cost of electricity"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "advanced architectures",
+            "rope"
+        ],
+        "difficulty": "hard",
+        "explanation": "RoPE injects positional information directly into the self-attention mechanism to handle token order effectively, especially when packing multiple documents."
+    },
+    {
+        "id": "gqa-021",
+        "question": "What is the primary benefit of Grouped Query Attention (GQA)?",
+        "type": "multiple_choice",
+        "options": [
+            "It increases the number of parameters to improve accuracy",
+            "It reduces computational cost by sharing Key and Value matrices across multiple attention heads",
+            "It removes the need for an encoder",
+            "It allows the model to read images"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "advanced architectures",
+            "optimization"
+        ],
+        "difficulty": "hard",
+        "explanation": "GQA optimizes the model by grouping attention heads to share Key and Value matrices, reducing memory usage and computational cost."
+    },
+    {
+        "id": "moe-def-022",
+        "question": "How does a Mixture of Experts (MoE) model differ from a dense model?",
+        "type": "multiple_choice",
+        "options": [
+            "It uses only one massive expert for all tasks",
+            "It replaces the single dense FFN with multiple specialized expert networks and a router",
+            "It removes the self-attention mechanism entirely",
+            "It runs on CPUs instead of GPUs"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "mixture of experts",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "MoE replaces the dense Feed-Forward Network with multiple specialized 'expert' networks, using a router to select only a few for each token."
+    },
+    {
+        "id": "mixtral-active-params-023",
+        "question": "In the Mixtral 8x7B model, approximately how many experts are activated per token during inference?",
+        "type": "multiple_choice",
+        "options": [
+            "All 8 experts",
+            "Only 2 experts",
+            "4 experts",
+            "1 expert"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "mixture of experts",
+            "mixtral"
+        ],
+        "difficulty": "medium",
+        "explanation": "Although the model has 8 experts, typically only 2 experts are activated per token, making inference efficient."
+    },
+    {
+        "id": "ring-attention-024",
+        "question": "What is the primary goal of 'Ring Attention'?",
+        "type": "multiple_choice",
+        "options": [
+            "To create circular diagrams",
+            "To scale context windows to massive sizes (e.g., 1 million tokens) by distributing calculation across devices",
+            "To replace the Tokenizer",
+            "To improve audio generation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "advanced architectures",
+            "scaling"
+        ],
+        "difficulty": "medium",
+        "explanation": "Ring Attention is a technique to handle massive context windows by distributing the attention calculation in a ring topology across multiple GPUs/TPUs."
+    },
+    {
+        "id": "bert-gpt-comparison-025",
+        "question": "Which of the following correctly pairs the model with its architecture type?",
+        "type": "multiple_choice",
+        "options": [
+            "BERT: Decoder-only; GPT: Encoder-only",
+            "BERT: Encoder-only; GPT: Decoder-only",
+            "BERT: Encoder-Decoder; GPT: Encoder-Decoder",
+            "BERT: RNN; GPT: Transformer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "model comparison",
+            "bert",
+            "gpt"
+        ],
+        "difficulty": "easy",
+        "explanation": "BERT is an Encoder-only model used for representation, while GPT is a Decoder-only model used for generation."
+    },
+    {
+        "id": "rmsnorm-026",
+        "question": "In modern architectures like Llama 3, where is normalization (RMSNorm) typically applied?",
+        "type": "multiple_choice",
+        "options": [
+            "After the self-attention and FFN layers (Post-Norm)",
+            "Before the self-attention and FFN layers (Pre-Norm)",
+            "Only at the very end of the model",
+            "It is not used in modern models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture evolution",
+            "normalization"
+        ],
+        "difficulty": "hard",
+        "explanation": "Modern architectures use 'Pre-Norm', applying normalization before the attention and feed-forward layers for better stability."
+    },
+    {
+        "id": "kv-caching-027",
+        "question": "How does KV Caching improve text generation speed?",
+        "type": "multiple_choice",
+        "options": [
+            "By predicting the entire sentence at once",
+            "By storing Key and Value vectors for previously generated tokens to avoid re-computation",
+            "By reducing the size of the vocabulary",
+            "By using a faster tokenizer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimization",
+            "inference"
+        ],
+        "difficulty": "medium",
+        "explanation": "KV Caching stores previous Key and Value vectors so the model doesn't have to re-compute them for every new token, significantly speeding up the generation loop."
+    }
+]

@@ -1,0 +1,90 @@
+[
+    {
+        "id": "Momentum Optimization_001",
+        "question": "When training a deep neural network, the loss landscape is often highly complex and 'non-convex'. According to the instructor, which of the following is a primary feature of a non-convex loss landscape that makes standard Gradient Descent struggle to find the optimal solution?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The presence of a single, perfectly smooth 'bowl' shape ensuring immediate convergence.",
+            "B) The existence of 'Local Minima'—sub-optimal shallow valleys where the gradient is zero, which can permanently trap the optimizer before it reaches the true 'Global Minimum'.",
+            "C) The loss function automatically scales its values to be strictly positive, preventing the calculation of negative gradients.",
+            "D) The learning rate dynamically resets to zero at the start of every epoch."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "non_convex",
+            "local_minima",
+            "loss_landscape",
+            "gradient_descent_limitations"
+        ],
+        "difficulty": "medium",
+        "explanation": "A non-convex optimization problem is characterized by a bumpy, complex surface with multiple 'valleys' (minima). A 'Local Minimum' is a shallow valley that is lower than its immediate surroundings, but it is not the lowest point on the entire surface (the 'Global Minimum'). Because standard Gradient Descent only looks at the immediate slope, once it reaches the bottom of a local minimum, the slope becomes zero.  Believing it has finished its job, the algorithm stops updating the weights, leaving the model stuck in a sub-optimal state. Option A describes a convex landscape (like simple Linear Regression). Options C and D are fabricated technical issues."
+    },
+    {
+        "id": "Momentum Optimization_002",
+        "question": "How does the 'Momentum' optimization algorithm conceptually and mathematically address the problem of getting stuck in a Local Minimum?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It mathematically flattens the entire loss landscape into a convex shape before training begins.",
+            "B) It tracks a moving average of past gradients (historical velocity). If it encounters a shallow local minimum, the accumulated historical 'momentum' forces the optimizer to roll up and out of the small dip, continuing its search for the global minimum.",
+            "C) It temporarily reverses the sign of the learning rate whenever the gradient reaches exactly zero.",
+            "D) It randomly teleports the weights to a new location on the loss surface every 10 epochs to ensure thorough exploration."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "momentum",
+            "local_minima",
+            "ewma",
+            "optimization_intuition"
+        ],
+        "difficulty": "easy",
+        "explanation": "Momentum uses the concept of Exponentially Weighted Moving Average (EWMA) to calculate a 'velocity' vector based on past gradients. Just like a heavy ball rolling down a hill gathers physical momentum, the algorithm gathers mathematical momentum if the gradients consistently point in the same direction. If this 'heavy ball' hits a small, shallow dip (a local minimum), it doesn't just stop instantly like standard Gradient Descent.  Its accumulated historical velocity carries it up the other side and out of the trap, allowing it to continue rolling down toward the deeper Global Minimum. Options A, C, and D describe impossible or fundamentally different algorithms."
+    },
+    {
+        "id": "Momentum Optimization_003",
+        "question": "The instructor explains that Momentum utilizes an Exponentially Weighted Moving Average (EWMA) of past gradients. In the Momentum update formula, what is the role of the hyperparameter $\\beta$ (beta)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It acts as a 'friction' or 'decay' factor (typically set around 0.9), controlling exactly how much historical velocity is retained versus how much is allowed to decay, preventing the momentum from growing infinitely.",
+            "B) It replaces the learning rate ($\\alpha$), dictating the absolute step size of the weight update.",
+            "C) It counts the exact number of epochs remaining before the training loop automatically terminates.",
+            "D) It dynamically shifts the activation function of the hidden layers based on the magnitude of the loss."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "momentum",
+            "beta_hyperparameter",
+            "ewma",
+            "friction"
+        ],
+        "difficulty": "medium",
+        "explanation": "The formula for the velocity term in Momentum is $V_t = \\beta V_{t-1} + \\text{learning\\_rate} \\cdot \\text{gradient}$. The hyperparameter $\\beta$ (usually set to 0.9) dictates how much of the *past* velocity ($V_{t-1}$) is carried forward to the current step. Mathematically, it acts as a 'decay' or 'friction' factor. If $\\beta$ were exactly 1.0, the algorithm would retain 100% of all past gradients perfectly, building infinite velocity and never settling down (acting like a frictionless surface). By setting it to 0.9, the velocity decays over time, allowing the algorithm to eventually slow down and settle into the minimum. Option B is false; $\\beta$ works alongside the learning rate, not replacing it. Options C and D are completely unrelated to the math of Momentum."
+    },
+    {
+        "id": "Momentum Optimization_004",
+        "question": "While Momentum is generally much faster than standard Gradient Descent, the instructor points out a specific visual/geometric drawback to the algorithm as it approaches the final global minimum. What is this drawback?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The algorithm is guaranteed to crash Python if the loss reaches exactly 0.0 due to a missing boundary check.",
+            "B) Because of its accumulated velocity, the optimizer will frequently 'overshoot' the exact bottom of the minimum, oscillating back and forth across the valley multiple times before the friction factor ($\\beta$) finally slows it down enough to stop.",
+            "C) The optimizer gets confused by flat surfaces and will randomly walk backward up the hill.",
+            "D) Momentum mathematically requires the input data to be strictly positive, failing if there are any negative feature values."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "momentum_drawbacks",
+            "overshooting",
+            "oscillations",
+            "optimization_dynamics"
+        ],
+        "difficulty": "easy",
+        "explanation": "The very thing that makes Momentum great (accumulating speed) is also its primary drawback. Imagine a heavy ball rolling rapidly down into a steep valley. Because it is moving so fast, it cannot stop exactly at the very bottom. It will roll past the minimum, travel partway up the opposite slope, stop, roll back down, overshoot again, and oscillate back and forth . The 'friction' ($\\beta$) eventually dampens these oscillations, but this overshooting behavior wastes epochs and computation time at the very end of training. Advanced optimizers like Nesterov Accelerated Gradient (NAG) were specifically designed to fix this overshooting issue. Options A, C, and D are factually incorrect."
+    }
+]

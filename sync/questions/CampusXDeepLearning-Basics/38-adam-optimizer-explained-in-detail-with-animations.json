@@ -1,0 +1,108 @@
+[
+    {
+        "id": "dl_optimizers_adam_001",
+        "question": "What two distinct optimization mechanisms does the Adam optimizer explicitly combine to update parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Nesterov lookahead gradients and L2 weight decay.",
+            "B) Exponential moving average of past gradients (Momentum) and an exponentially decaying average of past squared gradients (RMSProp).",
+            "C) Dynamic batch sizing and standard Stochastic Gradient Descent.",
+            "D) Global learning rate annealing and AdaGrad's strict sum of squared gradients."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adam",
+            "momentum",
+            "rmsprop",
+            "mechanism"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Adam (Adaptive Moment Estimation) optimizer fundamentally achieves its state-of-the-art performance by merging two highly successful mechanisms from prior algorithms. It takes the concept of tracking an exponential moving average of past gradients from Momentum, which helps the optimizer build velocity in consistent directions. Simultaneously, it adopts the mechanism of tracking an exponentially decaying average of past squared gradients from RMSProp, which adaptively scales the learning rate down for frequently updated parameters and up for sparse ones. Option B perfectly encapsulates this dual mechanism. Option A is incorrect because Nesterov lookahead and L2 regularization (weight decay) are distinct techniques not inherent to Adam's core formulation. Option C is wrong; dynamic batch sizing is a data-loading strategy, not an optimizer mechanism. Option D fails because Adam uses the moving average approach from RMSProp, not the strict, monotonically increasing sum of squared gradients used in AdaGrad (which causes premature training halts)."
+    },
+    {
+        "id": "dl_optimizers_adam_002",
+        "question": "In the mathematical formulation of Adam, the terms $m_t$ and $v_t$ are calculated. What do these two terms represent respectively?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $m_t$ is the maximum gradient observed so far, and $v_t$ is the variance of the current batch.",
+            "B) $m_t$ is the exponentially weighted average of past gradients, and $v_t$ is the exponentially weighted average of past squared gradients.",
+            "C) $m_t$ represents the momentum from the previous epoch, while $v_t$ represents the Nesterov lookahead step.",
+            "D) $m_t$ is the learning rate decay factor, and $v_t$ is the velocity vector for the current update."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adam",
+            "mathematics",
+            "equations"
+        ],
+        "difficulty": "hard",
+        "explanation": "In Adam's mathematical formulation, the optimizer maintains two separate moving averages to calculate the final parameter update. The term $m_t$ represents the \"first moment\" (mean) estimate; it is the exponentially weighted average of the actual gradients, functioning identically to standard Momentum. The term $v_t$ represents the \"second moment\" (uncentered variance) estimate; it is the exponentially weighted average of the squared gradients, functioning exactly like the scaling factor in RMSProp. Option B correctly identifies both terms. Option A is completely fabricated; Adam does not track the absolute maximum gradient or the statistical variance of a batch. Option C mixes concepts; while $m_t$ represents momentum, $v_t$ has nothing to do with Nesterov's lookahead step, which evaluates gradients at a future projected position. Option D incorrectly maps the variables; $v_t$ is used to adjust the learning rate, but it is not the decay factor itself, and $m_t$ is the velocity equivalent, not $v_t$."
+    },
+    {
+        "id": "dl_optimizers_adam_003",
+        "question": "During the initial steps of training with Adam, a mathematical step known as \"bias correction\" is applied to calculate $\\hat{m}_t$ and $\\hat{v}_t$. What specific problem does this step solve?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It prevents the learning rate from vanishing entirely by ensuring $\\hat{v}_t$ never exceeds a value of 1.",
+            "B) It offsets the artificial bias towards zero caused by initializing the moving average vectors ($m_0$ and $v_0$) to zero, which otherwise makes early updates too small.",
+            "C) It corrects the inherent bias in the dataset by normalizing the sparse features before calculating the gradient.",
+            "D) It clips exploding gradients to prevent the model parameters from diverging to infinity during the first few epochs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adam",
+            "bias_correction",
+            "initialization"
+        ],
+        "difficulty": "medium",
+        "explanation": "When training initializes, the moving average vectors for the first and second moments ($m_0$ and $v_0$) are initialized as vectors of zeros. During the earliest epochs, calculating the exponential moving averages using formulas like $m_t = \\beta_1 m_{t-1} + (1 - \\beta_1) \\nabla L$ results in values heavily biased toward zero, especially since $\\beta_1$ and $\\beta_2$ are close to 1. This causes the initial update steps to be artificially tiny. Bias correction mathematically divides these terms by $(1 - \\beta^t)$ to scale them up during the first few steps, nullifying this zero-initialization bias. Option B accurately describes this mechanism. Option A is conceptually false; bias correction does not cap the variance term at 1. Option C misunderstands the term \"bias\"; it refers to the mathematical offset of the initialized vectors, not statistical bias within the training dataset or sparse features. Option D is incorrect; bias correction actually increases the magnitude of early updates to counter the zero-bias, whereas gradient clipping is what prevents exploding gradients."
+    },
+    {
+        "id": "dl_optimizers_adam_004",
+        "question": "The Adam optimizer utilizes two decay hyperparameters, $\\beta_1$ (for the first moment) and $\\beta_2$ (for the second moment). According to standard practice mentioned by the instructor, what are their typical default values?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $\\beta_1 = 0.5$, $\\beta_2 = 0.5$",
+            "B) $\\beta_1 = 0.999$, $\\beta_2 = 0.9$",
+            "C) $\\beta_1 = 0.9$, $\\beta_2 = 0.999$",
+            "D) $\\beta_1 = 0.1$, $\\beta_2 = 0.01$"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "adam",
+            "hyperparameters",
+            "decay_rates"
+        ],
+        "difficulty": "easy",
+        "explanation": "Adam relies on two decay rates to govern its moving averages: $\\beta_1$ controls the decay of the first moment (momentum of gradients), and $\\beta_2$ controls the decay of the second moment (RMSProp's squared gradients). As highlighted by the instructor and standard deep learning literature, the widely accepted default hyperparameter values are $\\beta_1 = 0.9$ and $\\beta_2 = 0.999$. This configuration retains a long, stable memory for the adaptive learning rate component ($\\beta_2$) while allowing the momentum component ($\\beta_1$) to be slightly more responsive to recent gradients. Option C provides the correct standard configuration. Option A lists completely arbitrary values that would heavily destabilize the moving averages by discarding history too rapidly. Option B incorrectly swaps the standard values, which would make the momentum overly rigid and the variance tracking too sensitive. Option D proposes values that are far too low, effectively stripping Adam of its historical memory and reducing it to a noisy approximation of standard SGD."
+    },
+    {
+        "id": "dl_optimizers_adam_005",
+        "question": "Based on the instructor's final recommendations, which optimization strategy should a Senior ML Engineer generally adopt when starting a new complex neural network project?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Start strictly with Batch Gradient Descent to establish a baseline, then switch to Adam only if the model completely fails to converge.",
+            "B) Start with Adam as the default choice; if convergence is sub-optimal or specific challenges arise, experiment with RMSProp or Momentum.",
+            "C) Always use AdaGrad for NLP tasks and Adam for Computer Vision tasks, as they are domain-specific.",
+            "D) Manually tune the learning rate of standard SGD using grid search, as Adam's adaptive nature is fundamentally unstable for non-convex problems."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "adam",
+            "best_practices",
+            "engineering_strategy"
+        ],
+        "difficulty": "easy",
+        "explanation": "For modern deep learning engineering, particularly when dealing with complex, non-convex optimization landscapes (like deep CNNs or RNNs), Adam is widely considered the most robust and performant default optimizer. The instructor recommends starting a new project by applying Adam to establish a strong baseline. If the model struggles to converge optimally or exhibits specific convergence artifacts, engineers can then pivot to tuning other optimizers like RMSProp or standard Momentum. Option B reflects this industry-standard heuristic. Option A is an inefficient approach; starting with Batch Gradient Descent is painfully slow and often fails on non-convex deep networks. Option C incorrectly categorizes optimizers by domain; while certain architectures might favor specific optimizers, Adam and AdaGrad are not strictly locked to Vision or NLP tasks. Option D is terrible engineering advice; manually grid-searching standard SGD learning rates is intensely time-consuming, and Adam's adaptive nature actually makes it *more* stable for non-convex problems, not less."
+    }
+]

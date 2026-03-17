@@ -1,0 +1,482 @@
+[
+    {
+        "id": "token-class-def-001",
+        "question": "What is the primary function of Token Classification in Natural Language Processing (NLP)?",
+        "type": "multiple_choice",
+        "options": [
+            "To summarize long paragraphs into short sentences",
+            "To label individual tokens (words or sub-words) in text",
+            "To translate text from one language to another",
+            "To generate new text based on a prompt"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "token classification",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "explanation": "Token classification is defined as an NLP task that labels individual tokens (words or sub-words) in text."
+    },
+    {
+        "id": "ner-app-002",
+        "question": "Named Entity Recognition (NER) is used to identify which of the following in text?",
+        "type": "multiple_choice",
+        "options": [
+            "Grammatical errors",
+            "Sentiment scores",
+            "Specific entities like States, People, and Organizations",
+            "The language of the text"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "ner",
+            "applications"
+        ],
+        "difficulty": "easy",
+        "explanation": "NER is a specific type of token classification used to identify entities such as states, individuals, places, and organizations."
+    },
+    {
+        "id": "tech-arch-003",
+        "question": "In the technical architecture described, what serves as the Base Model for token classification?",
+        "type": "multiple_choice",
+        "options": [
+            "RNN",
+            "LSTM",
+            "BERT",
+            "GPT"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "architecture",
+            "bert"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text specifies that BERT (Bidirectional Encoder Representations from Transformers) is used as the base model component."
+    },
+    {
+        "id": "nemo-features-004",
+        "question": "Which backend is the NeMo Framework built upon?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow",
+            "PyTorch Lightning",
+            "Keras",
+            "JAX"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo framework",
+            "infrastructure"
+        ],
+        "difficulty": "medium",
+        "explanation": "The NeMo Framework is explicitly stated to be built on the PyTorch Lightning backend."
+    },
+    {
+        "id": "dev-approach-005",
+        "question": "Which development approach is the primary focus of this course?",
+        "type": "multiple_choice",
+        "options": [
+            "Using Out-of-the-Box Models",
+            "Fine-tuning Pre-trained Models",
+            "Training Custom Models from Scratch",
+            "Using Rule-Based Systems"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "development approaches",
+            "fine-tuning"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text notes that 'Fine-tuning Pre-trained Models' is the specific focus of this course."
+    },
+    {
+        "id": "nemo-ops-006",
+        "question": "Which of the following preprocessing operations does the NeMo framework handle automatically?",
+        "type": "multiple_choice",
+        "options": [
+            "Data labeling",
+            "Translation",
+            "Tokenization and Padding",
+            "Sentiment Analysis"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nemo framework",
+            "preprocessing"
+        ],
+        "difficulty": "medium",
+        "explanation": "The framework handles essential preprocessing operations including Tokenization, Position embedding, Padding, and Attention masking."
+    },
+    {
+        "id": "decision-factors-007",
+        "question": "Which of the following is NOT listed as a decision factor when choosing a development approach?",
+        "type": "multiple_choice",
+        "options": [
+            "Cost of acquiring and labeling data",
+            "Training time and compute resources",
+            "Required accuracy and customization level",
+            "The programming language of the base model"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "development approaches",
+            "decision factors"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text lists data costs, training time/compute, and accuracy/customization as factors, but does not mention the programming language as a decision factor."
+    },
+    {
+        "id": "text-class-def-001",
+        "question": "What is the primary function of Text Classification in NLP?",
+        "type": "multiple_choice",
+        "options": [
+            "To generate new text based on a prompt",
+            "To translate text into different languages",
+            "To enable automated categorization and organization of text data",
+            "To convert speech into text"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "text classification",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "explanation": "Text classification is defined as enabling the automated categorization and organization of text data."
+    },
+    {
+        "id": "app-sentiment-002",
+        "question": "Which real-world application of text classification involves determining emotions expressed in text?",
+        "type": "multiple_choice",
+        "options": [
+            "Automated Tagging",
+            "Enhanced Search",
+            "Sentiment Analysis",
+            "Ticket Prioritization"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "applications",
+            "sentiment analysis"
+        ],
+        "difficulty": "easy",
+        "explanation": "Sentiment Analysis is specifically used to determine emotions expressed in text and understand public opinion."
+    },
+    {
+        "id": "llm-advantage-003",
+        "question": "What is a key advantage of using Large Language Models (LLMs) for text classification compared to traditional approaches?",
+        "type": "multiple_choice",
+        "options": [
+            "They require significantly more labeled data",
+            "They enable Few-Shot Learning, generalizing with minimal labeled data",
+            "They are slower to achieve good results",
+            "They remove the need for any training data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llms",
+            "advantages"
+        ],
+        "difficulty": "medium",
+        "explanation": "LLMs reduce training data requirements and enable Few-Shot Learning, allowing models to generalize to new examples with minimal data."
+    },
+    {
+        "id": "intent-class-004",
+        "question": "In the context of Intent Classification for virtual assistants, what is the primary challenge mentioned?",
+        "type": "multiple_choice",
+        "options": [
+            "Virtual assistants cannot speak clearly",
+            "Users never change their phrasing",
+            "Multiple utterances (phrases) can express the same intent",
+            "Intents are impossible to define"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "intent classification",
+            "challenges"
+        ],
+        "difficulty": "medium",
+        "explanation": "The challenge in Intent Classification is that users may use multiple different utterances or phrases to express the exact same intent (e.g., 'Book a table' vs. 'Make a reservation')."
+    },
+    {
+        "id": "nemo-backend-005",
+        "question": "The NVIDIA NeMo Framework is built on which backend?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow",
+            "PyTorch Lightning",
+            "Keras",
+            "Scikit-learn"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo framework",
+            "technical specs"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text explicitly states that the NeMo Framework is built on the PyTorch Lightning backend."
+    },
+    {
+        "id": "model-arch-006",
+        "question": "Which model serves as the base for the text classification architecture described?",
+        "type": "multiple_choice",
+        "options": [
+            "LSTM",
+            "RNN",
+            "BERT",
+            "GPT-3"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "architecture",
+            "bert"
+        ],
+        "difficulty": "easy",
+        "explanation": "The core components of the model architecture include BERT (Bidirectional Encoder Representations from Transformers) as the base model."
+    },
+    {
+        "id": "customer-support-007",
+        "question": "How does text classification assist in Customer Support?",
+        "type": "multiple_choice",
+        "options": [
+            "By replacing all human support agents",
+            "By facilitating ticket prioritization and routing queries automatically",
+            "By generating random responses to customers",
+            "By deleting old support tickets"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "applications",
+            "customer support"
+        ],
+        "difficulty": "easy",
+        "explanation": "Text classification facilitates ticket prioritization and automatically routes queries to the correct teams for efficient handling."
+    },
+    {
+        "id": "qa-types-001",
+        "question": "What is the fundamental difference between Extractive and Generative Question Answering?",
+        "type": "multiple_choice",
+        "options": [
+            "Extractive QA generates new sentences, while Generative QA selects text spans",
+            "Extractive QA identifies a text span within the context, while Generative QA creates new text based on the input",
+            "Extractive QA uses a Decoder, while Generative QA uses only an Encoder",
+            "There is no difference; they are synonyms"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "concepts",
+            "qa types"
+        ],
+        "difficulty": "easy",
+        "explanation": "Extractive QA selects an exact substring (span) from the provided text, whereas Generative QA uses Seq2Seq models to generate completely new answers."
+    },
+    {
+        "id": "qa-arch-002",
+        "question": "In a Sequence-to-Sequence (Seq2Seq) architecture for Generative QA, what is the role of the Decoder?",
+        "type": "multiple_choice",
+        "options": [
+            "To convert input text into vectors",
+            "To identify the start and end positions of an answer span",
+            "To iteratively generate the next token using encoder output and previous tokens",
+            "To manage memory garbage collection"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "architecture",
+            "generative qa"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Decoder receives the encoder's output and auto-regressively generates the answer token by token until a stop token is produced."
+    },
+    {
+        "id": "code-gc-003",
+        "question": "In the provided notebook code, why is `gc.disable()` called?",
+        "type": "multiple_choice",
+        "options": [
+            "To enable GPU acceleration",
+            "To disable automatic garbage collection for performance optimization",
+            "To download the SQuAD dataset",
+            "To initialize the BERT model"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "coding",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "`gc.disable()` is used to disable the Python garbage collector, which can improve performance during intensive training tasks."
+    },
+    {
+        "id": "code-omegaconf-004",
+        "question": "What is the purpose of `OmegaConf.load(config_path)` in the code?",
+        "type": "multiple_choice",
+        "options": [
+            "To download the configuration file from GitHub",
+            "To save the current configuration to a YAML file",
+            "To load a YAML configuration file into a structured object",
+            "To print the configuration to the console"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "coding",
+            "configuration"
+        ],
+        "difficulty": "medium",
+        "explanation": "`OmegaConf.load` reads a YAML file and parses it into a configuration object that can be accessed programmatically."
+    },
+    {
+        "id": "squad-v2-005",
+        "question": "What does the configuration setting `config.model.dataset.version_2_with_negative = True` indicate about the dataset?",
+        "type": "multiple_choice",
+        "options": [
+            "The dataset only contains positive examples",
+            "The dataset is version 1.1",
+            "The dataset contains unanswerable questions (negative examples)",
+            "The dataset is for image classification"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "dataset",
+            "squad"
+        ],
+        "difficulty": "medium",
+        "explanation": "This setting flags that the dataset (like SQuAD 2.0) includes questions that cannot be answered from the context, requiring the model to handle them."
+    },
+    {
+        "id": "training-precision-006",
+        "question": "What does setting `config.trainer.precision = 16` achieve?",
+        "type": "multiple_choice",
+        "options": [
+            "It limits the training to 16 epochs",
+            "It sets the batch size to 16",
+            "It enables 16-bit mixed precision training for faster performance",
+            "It uses 16 GPUs for training"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "training",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Precision 16 enables mixed precision training, which uses 16-bit floating point numbers to speed up training and reduce memory usage."
+    },
+    {
+        "id": "nemo-backend-007",
+        "question": "Which deep learning framework serves as the backend for NVIDIA NeMo's training loop?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorFlow",
+            "PyTorch Lightning",
+            "Keras",
+            "MXNet"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nemo framework",
+            "backend"
+        ],
+        "difficulty": "easy",
+        "explanation": "The NeMo framework utilizes PyTorch Lightning as its backend for handling training loops, multi-GPU support, and logging."
+    },
+    {
+        "id": "bert-qa-init-008",
+        "question": "When `BERTQAModel` is initialized in the code, what specific components are added to the base BERT model?",
+        "type": "multiple_choice",
+        "options": [
+            "A decoder for text generation",
+            "Two span prediction heads (one for start position, one for end position)",
+            "A classification layer for sentiment analysis",
+            "An extra encoder layer"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture",
+            "bert"
+        ],
+        "difficulty": "hard",
+        "explanation": "For Extractive QA, the BERT model is augmented with two specific heads (linear layers) to predict the start and end tokens of the answer span."
+    },
+    {
+        "id": "file-format-009",
+        "question": "What information is contained in a `.nemo` file saved by `model.save_to()`?",
+        "type": "multiple_choice",
+        "options": [
+            "Only the model weights",
+            "Only the configuration YAML",
+            "The dataset and logs only",
+            "The model architecture, weights, and configuration in a self-contained format"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nemo framework",
+            "file formats"
+        ],
+        "difficulty": "easy",
+        "explanation": "A `.nemo` file is a self-contained archive that includes the model's architecture definition, trained weights, and configuration parameters."
+    },
+    {
+        "id": "trainer-fit-010",
+        "question": "What is the specific function of `trainer.fit(model)` in the PyTorch Lightning workflow?",
+        "type": "multiple_choice",
+        "options": [
+            "It evaluates the model on the test dataset",
+            "It loads the model from a checkpoint",
+            "It begins the training process (forward/backward passes, weight updates)",
+            "It downloads the configuration file"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "coding",
+            "training"
+        ],
+        "difficulty": "easy",
+        "explanation": "`trainer.fit(model)` triggers the main training loop, where the model iterates through the training data to learn and update its weights."
+    }
+]

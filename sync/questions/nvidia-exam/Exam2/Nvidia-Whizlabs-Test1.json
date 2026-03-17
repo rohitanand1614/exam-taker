@@ -1,0 +1,1041 @@
+[
+    {
+        "id": "nvidia_whizlabs_222",
+        "question": "You've developed a machine-learning model aimed at identifying spam emails. You have decided to use the F1 Score to evaluate the model. Which of the following is true about the F1 Score? (Select Two)",
+        "type": "multiple_choice",
+        "options": [
+            "A measure exclusively focusing on the model's accuracy",
+            "A tool for assessing a model's performance with imbalanced datasets",
+            "The harmonic mean of precision and recall",
+            "A measure giving more weight to minimizing false positives over false negatives"
+        ],
+        "correct_indices": [
+            1,
+            2
+        ],
+        "tags": [
+            "f1 score",
+            "evaluation metrics",
+            "imbalanced datasets"
+        ],
+        "difficulty": "medium",
+        "explanation": "The F1 score is the harmonic mean of precision and recall (C), making it indispensable for evaluating models on imbalanced datasets (B) where accuracy can be misleading."
+    },
+    {
+        "id": "nvidia_whizlabs_223",
+        "question": "What is the main objective of pruning in decision trees?",
+        "type": "multiple_choice",
+        "options": [
+            "Increase the tree's depth to enhance accuracy.",
+            "Decrease the tree's size and complexity to mitigate overfitting.",
+            "Improve the interpretability of the tree.",
+            "Expedite the training process of the decision tree."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "decision trees",
+            "pruning",
+            "overfitting"
+        ],
+        "difficulty": "medium",
+        "explanation": "Pruning reduces the size and complexity of a decision tree by removing sections that provide little power to classify instances, thereby preventing the model from learning noise (overfitting)."
+    },
+    {
+        "id": "nvidia_whizlabs_224",
+        "question": "What is a possible difficulty encountered when employing SGD (Stochastic Gradient Descent)?",
+        "type": "multiple_choice",
+        "options": [
+            "The convergence may not occur for larger datasets.",
+            "The algorithm's performance is notably influenced by the initial selection of model weights.",
+            "Model accuracy might fluctuate due to the introduction of noisy updates.",
+            "It is not suitable for managing categorical data."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "sgd",
+            "optimization",
+            "machine learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "SGD updates parameters based on a single sample or small batch, introducing noise into the gradient estimation. This randomness causes fluctuations in the objective function during training."
+    },
+    {
+        "id": "nvidia_whizlabs_225",
+        "question": "What is Prompt Engineering?",
+        "type": "multiple_choice",
+        "options": [
+            "A Technique of Crafting and fine-tuning the input instructions for AI models to enhance their performance and accuracy",
+            "Adjusting and tailoring the training procedures of AI models to meet specific domain requirements",
+            "Designing intuitive and user-friendly interfaces to facilitate seamless interactions with AI systems",
+            "Evaluation of AI models"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "prompt engineering",
+            "generative ai",
+            "definitions"
+        ],
+        "difficulty": "easy",
+        "explanation": "Prompt engineering is the practice of designing and refining inputs (prompts) to guide AI models, especially LLMs, to produce specific, accurate, and relevant outputs."
+    },
+    {
+        "id": "nvidia_whizlabs_226",
+        "question": "What makes prompt refinement so vital in practical AI applications?",
+        "type": "multiple_choice",
+        "options": [
+            "It ensures heightened precision in AI model predictions.",
+            "It expedites the progression of AI development tasks.",
+            "It diminishes inaccuracies and optimizes cost-effectiveness.",
+            "It fosters intricate and sophisticated interactions with AI systems."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "prompt refinement",
+            "ai efficiency",
+            "cost optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Refining prompts reduces the likelihood of incorrect or irrelevant responses (inaccuracies), which saves computational resources and time, thereby optimizing cost-effectiveness."
+    },
+    {
+        "id": "nvidia_whizlabs_227",
+        "question": "What methods can you employ to guide AI models towards a particular type of output?",
+        "type": "multiple_choice",
+        "options": [
+            "Provide precise instructions and pertinent examples in the prompt.",
+            "Adjust the temperature setting of the AI model.",
+            "Increase the size of the training dataset.",
+            "Ensure the prompt is as concise as possible."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "prompt engineering",
+            "few-shot learning",
+            "ai guidance"
+        ],
+        "difficulty": "easy",
+        "explanation": "Explicit instructions and examples (few-shot prompting) provide the context and pattern the model needs to generate the specific type or format of output desired."
+    },
+    {
+        "id": "nvidia_whizlabs_228",
+        "question": "What are word vectors in the field of Natural Language Processing (NLP)?",
+        "type": "multiple_choice",
+        "options": [
+            "Textual characters are used to form words",
+            "Linguistic patterns identified by computational models",
+            "Mathematical sequences encoding the meaning of words",
+            "A visual diagram showing how the word relates to other words"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nlp",
+            "word embeddings",
+            "word vectors"
+        ],
+        "difficulty": "medium",
+        "explanation": "Word vectors (embeddings) are numerical representations (mathematical sequences) of words in a high-dimensional space where semantic meaning is encoded."
+    },
+    {
+        "id": "nvidia_whizlabs_229",
+        "question": "What is the use of tokenization with Large Language Models [LLMs]?",
+        "type": "multiple_choice",
+        "options": [
+            "To check how often different words appear in the text",
+            "To divide the text into meaningful units that make sense to the LLM",
+            "To translate the text into other languages",
+            "To figure out the grammar of sentences"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tokenization",
+            "llm preprocessing",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "Tokenization breaks raw text down into smaller units (tokens)—which can be words, subwords, or characters—that the LLM can process and embed numerically."
+    },
+    {
+        "id": "nvidia_whizlabs_230",
+        "question": "How can we preprocess the Large Language Model [LLM] for the task of sentiment analysis, distinguishing between positive and negative sentiments?",
+        "type": "multiple_choice",
+        "options": [
+            "TF-IDF Technique",
+            "Calculate Average Sentence Length.",
+            "Create a Sentiment dictionary – which is a collection of positive/negative words.",
+            "All of the above"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "sentiment analysis",
+            "preprocessing",
+            "nlp techniques"
+        ],
+        "difficulty": "medium",
+        "explanation": "Sentiment analysis benefits from various features: TF-IDF highlights important words, sentence length can indicate emotional intensity, and sentiment dictionaries provide direct emotional context."
+    },
+    {
+        "id": "nvidia_whizlabs_231",
+        "question": "What is the main function of the transformer architecture in Natural Language Processing (NLP)?",
+        "type": "multiple_choice",
+        "options": [
+            "Convert the sentences into lists of numbers/vectors for computers to understand.",
+            "Analyze the structure of the sentence.",
+            "Understand the relationship between tokens/words in a sentence.",
+            "Generate word Embeddings."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "transformer",
+            "nlp architecture",
+            "attention mechanism"
+        ],
+        "difficulty": "medium",
+        "explanation": "The core innovation of Transformers (via self-attention) is their ability to model relationships and dependencies between all tokens in a sequence simultaneously, capturing context effectively."
+    },
+    {
+        "id": "nvidia_whizlabs_232",
+        "question": "BLEU (Bilingual Evaluation Understudy) is a tool used with machine translation. How do we use it with LLMs (Large Language Models)?",
+        "type": "multiple_choice",
+        "options": [
+            "To judge the quality of text the LLM writes",
+            "To help train LLMs to be better at translation",
+            "To see how many languages the LLM knows",
+            "To see how well the LLM can do math"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "bleu score",
+            "evaluation metrics",
+            "text generation"
+        ],
+        "difficulty": "easy",
+        "explanation": "BLEU is used to evaluate the quality of text generated by LLMs by comparing it against reference texts (human-written samples) to measure n-gram overlap."
+    },
+    {
+        "id": "nvidia_whizlabs_233",
+        "question": "How do we measure how well the chatbot or dialogue system is working?",
+        "type": "multiple_choice",
+        "options": [
+            "Word Error Rate (WER)",
+            "ROUGE (Recall-Oriented Understudy for Gisting Evaluation)",
+            "Perplexity",
+            "All of the above"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "evaluation metrics",
+            "chatbots",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "Different metrics capture different aspects: WER measures accuracy (transcription), ROUGE measures recall (summarization/content coverage), and Perplexity measures how well the model predicts language patterns."
+    },
+    {
+        "id": "nvidia_whizlabs_234",
+        "question": "What is the importance of alignment in the context of Large Language Models (LLMs)?",
+        "type": "multiple_choice",
+        "options": [
+            "Ensure the output generated by LLM is aligned with human goals and values.",
+            "Removing all unfairness (mitigating the bias) from the dataset on which the LLM is trained.",
+            "Assessing the degree to which the LLM's writing resembles the human author.",
+            "Enhancing the LLM's capability to provide accurate responses to factual inquiries."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "ai alignment",
+            "safety",
+            "human values"
+        ],
+        "difficulty": "medium",
+        "explanation": "Alignment refers to the process of ensuring AI systems behave in ways that are helpful, honest, and harmless, consistent with human intentions and values."
+    },
+    {
+        "id": "nvidia_whizlabs_235",
+        "question": "Which technique can be used to improve Large Language Model [LLM] alignment?",
+        "type": "multiple_choice",
+        "options": [
+            "Reinforcement Learning with Human Feedback (RLHF)",
+            "Make the LLM smaller by using fewer parameters (the internal parts of the model)",
+            "Only train the LLM on facts, not creative text, or opinions",
+            "Train the LLM on many different tasks at the same time"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "rlhf",
+            "alignment techniques",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "RLHF is the standard technique for alignment, using a reward model trained on human preferences to guide the LLM's outputs toward safer and more helpful responses."
+    },
+    {
+        "id": "nvidia_whizlabs_236",
+        "question": "We are working on a use case. A large Language Model[LLM] has been trained on the forum posts, and as part of preprocessing, we have cleaned the explicit content. Do we still face alignment risks when generating the output from LLM?",
+        "type": "multiple_choice",
+        "options": [
+            "It could pick up biases hidden in everyday speech patterns.",
+            "It might have trouble separating objective facts from personal opinions.",
+            "It might prioritize sounding like popular posts, even if those aren't high-quality.",
+            "All of these are risks because of the type of data it learns from."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "alignment risks",
+            "data bias",
+            "social media data"
+        ],
+        "difficulty": "medium",
+        "explanation": "Even with explicit content removed, forum data contains inherent risks like implicit bias, confusion between fact/opinion, and popularity bias, which the model can learn."
+    },
+    {
+        "id": "nvidia_whizlabs_237",
+        "question": "You are visualizing the word embeddings of a Large Language Model [LLM]. Which of the following techniques is most suitable for reducing the dimensionality of these embeddings to 2 or 3 dimensions for plotting?",
+        "type": "multiple_choice",
+        "options": [
+            "Principal Component Analysis (PCA)",
+            "t-Distributed Stochastic Neighbor Embedding (t-SNE)",
+            "Linear Discriminant Analysis (LDA)",
+            "Apriori Algorithm"
+        ],
+        "correct_indices": [
+            0,
+            1
+        ],
+        "tags": [
+            "dimensionality reduction",
+            "visualization",
+            "embeddings"
+        ],
+        "difficulty": "medium",
+        "explanation": "Both PCA (linear) and t-SNE (non-linear) are standard techniques for projecting high-dimensional embeddings into 2D or 3D space for visualization."
+    },
+    {
+        "id": "nvidia_whizlabs_238",
+        "question": "Which type of visualization would be most appropriate for understanding the attention mechanism of a Large Language Model [LLM] during text generation?",
+        "type": "multiple_choice",
+        "options": [
+            "Scatterplot",
+            "Line graph",
+            "Bar chart",
+            "Heatmap"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "visualization",
+            "attention mechanism",
+            "heatmaps"
+        ],
+        "difficulty": "medium",
+        "explanation": "Heatmaps are particularly well-suited for visualizing matrices of data, such as attention weights, effectively displaying the intensity of focus the LLM assigns to different parts of the input text."
+    },
+    {
+        "id": "nvidia_whizlabs_239",
+        "question": "What can multimodal LLMs recognize and generate in the context of Large Language Models (LLMs)?",
+        "type": "multiple_choice",
+        "options": [
+            "Only Text",
+            "Text and Images Only",
+            "Images, audio, videos, and other content forms",
+            "Only audio and video data only"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multimodal llm",
+            "content generation",
+            "media types"
+        ],
+        "difficulty": "easy",
+        "explanation": "Multimodal LLMs are designed to recognize and generate a wide variety of content forms, including images, audio, videos, and other types of data, allowing for diverse applications."
+    },
+    {
+        "id": "nvidia_whizlabs_240",
+        "question": "What is a Mixture of Experts (MoE) in neural network architectures?",
+        "type": "multiple_choice",
+        "options": [
+            "A model using a single subnetwork for computations",
+            "A Model that splits computation into multiple subnetworks called experts",
+            "A type of reinforcement learning algorithm",
+            "A single Large Neural Networks with no subnetworks"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "mixture of experts",
+            "moe",
+            "neural architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "In MoE architectures, computation is divided among multiple subnetworks (experts), where a gating network determines which experts are activated for each specific input."
+    },
+    {
+        "id": "nvidia_whizlabs_241",
+        "question": "What is the primary focus of GenAIOps?",
+        "type": "multiple_choice",
+        "options": [
+            "Extending MLOps to develop and operationalize generative AI solutions",
+            "Focusing on reinforcement learning algorithms",
+            "Developing small-scale AI models",
+            "Manage GPU of LLMs"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "genaiops",
+            "mlops",
+            "operations"
+        ],
+        "difficulty": "medium",
+        "explanation": "GenAIOps focuses on extending MLOps principles to the domain of generative AI, facilitating the systematic, scalable, and efficient development, deployment, and management of generative models."
+    },
+    {
+        "id": "nvidia_whizlabs_242",
+        "question": "What is the primary purpose of counterfactual analysis in LLM experiments?",
+        "type": "multiple_choice",
+        "options": [
+            "Generating synthetic data in addition to the training set",
+            "Identifying potential biases in the LLM",
+            "Assessing the impact of hypothetical changes to the input data or model parameters on the Model's output",
+            "Evaluating the model's accuracy on out-of-distribution data"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "counterfactual analysis",
+            "model evaluation",
+            "experimentation"
+        ],
+        "difficulty": "hard",
+        "explanation": "Counterfactual analysis aims to determine how changing input data or model settings hypothetically affects results, providing insights into the model's behavior and decision-making logic."
+    },
+    {
+        "id": "nvidia_whizlabs_243",
+        "question": "How can LLMs be used to improve software documentation?",
+        "type": "multiple_choice",
+        "options": [
+            "Automatically generating documentation based on code comments and structure",
+            "Translating documentation into multiple languages",
+            "Summarizing complex technical documents for easier understanding",
+            "All of the above"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "software documentation",
+            "code generation",
+            "translation"
+        ],
+        "difficulty": "easy",
+        "explanation": "LLMs offer a versatile solution for software documentation by automating generation from code, translating existing docs, and summarizing technical complexity."
+    },
+    {
+        "id": "nvidia_whizlabs_244",
+        "question": "What does the term deepfake refer to in the context of LLM-generated content?",
+        "type": "multiple_choice",
+        "options": [
+            "It is a type of LLM architecture.",
+            "A method for fine-tuning LLMs on specific tasks",
+            "Manipulated media, often videos or audio, where a person's likeness is replaced with someone else's",
+            "A technique for generating creative text"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "deepfake",
+            "generative media",
+            "ethics"
+        ],
+        "difficulty": "easy",
+        "explanation": "Deepfakes are AI-fabricated media, typically video or audio, where a person's likeness is convincingly replaced with another's."
+    },
+    {
+        "id": "nvidia_whizlabs_245",
+        "question": "When using LLMs (Large Language Models) to make important decisions, such as in Loan Approval systems or healthcare applications, what are the ethical considerations regarding the use of LLM?",
+        "type": "multiple_choice",
+        "options": [
+            "Making sure the model doesn't discriminate against people based on things like race or gender (Fairness)",
+            "Being able to explain how the model arrives at its decisions (Transparency)",
+            "Addressing any biases in the data used to train the model that could lead to unfair results (Bias)",
+            "All of the above"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "ethics",
+            "fairness",
+            "transparency",
+            "bias"
+        ],
+        "difficulty": "easy",
+        "explanation": "Ethical deployment of LLMs requires addressing fairness (no discrimination), transparency (explainability), and bias (data integrity) to ensure safe and equitable outcomes."
+    },
+    {
+        "id": "nvidia_whizlabs_246",
+        "question": "Which NVIDIA Python library is specifically designed to accelerate deep learning model training and inference on GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "cuDNN",
+            "NCCL",
+            "TensorRT",
+            "RAPIDS"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cudnn",
+            "deep learning",
+            "gpu acceleration"
+        ],
+        "difficulty": "medium",
+        "explanation": "cuDNN (CUDA Deep Neural Network library) provides highly efficient, GPU-accelerated implementations of core deep learning primitives like convolutions, RNNs, and pooling."
+    },
+    {
+        "id": "nvidia_whizlabs_247",
+        "question": "What is the primary function of the NVIDIA Triton Inference Server in the context of LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "Distributing training workloads across multiple GPUs",
+            "Optimizing LLM model architectures for maximum performance",
+            "Deploying and managing multiple LLM models for efficient inference",
+            "Fine-tuning pre-trained LLMs on specific tasks"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "triton inference server",
+            "deployment",
+            "inference management"
+        ],
+        "difficulty": "medium",
+        "explanation": "Triton Inference Server is designed to simplify the deployment of AI models at scale in production, handling tasks like model versioning, concurrent serving, and load balancing."
+    },
+    {
+        "id": "nvidia_whizlabs_248",
+        "question": "Which NVIDIA library provides high-performance primitives for collective communication in multi-GPU and multi-node deep learning training setups?",
+        "type": "multiple_choice",
+        "options": [
+            "cuDNN",
+            "NCCL",
+            "TensorRT",
+            "RAPIDS"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nccl",
+            "distributed training",
+            "communication primitives"
+        ],
+        "difficulty": "medium",
+        "explanation": "NCCL (NVIDIA Collective Communications Library) implements optimized multi-GPU and multi-node communication primitives (like all-reduce) essential for efficient distributed training."
+    },
+    {
+        "id": "nvidia_whizlabs_249",
+        "question": "What NVIDIA library is optimized for deploying large language models on edge devices, providing the tools and optimizations needed to run them efficiently on resource-constrained hardware?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA TensorRT",
+            "NVIDIA cuDNN",
+            "NVIDIA Triton",
+            "NVIDIA Jarvis"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "tensorrt",
+            "edge computing",
+            "inference optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "TensorRT is an inference optimizer and runtime that applies techniques like quantization and layer fusion to maximize performance on specific NVIDIA hardware, including edge devices."
+    },
+    {
+        "id": "nvidia_whizlabs_250",
+        "question": "In the context of LLMs (Large Language Models), what strategy should be used to break down the LLM model into smaller, independent components that can be distributed across multiple servers for improved scalability and efficiency?",
+        "type": "multiple_choice",
+        "options": [
+            "Model parallelism",
+            "Pipeline parallelism",
+            "Tensor parallelism",
+            "Data parallelism"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pipeline parallelism",
+            "distributed inference",
+            "scalability"
+        ],
+        "difficulty": "hard",
+        "explanation": "Pipeline parallelism splits the model into stages (layers) that are placed on different devices, processing micro-batches in a pipeline fashion to improve throughput and efficiency."
+    },
+    {
+        "id": "nvidia_whizlabs_251",
+        "question": "Which NVIDIA tool empowers developers to create personalized Docker containers to deploy and manage Large Language Model (LLM) applications, guaranteeing their portability and reproducibility across diverse environments?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA Docker",
+            "NVIDIA NGC",
+            "NVIDIA Container Toolkit",
+            "NVIDIA Fleet Command"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "container toolkit",
+            "docker",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "The NVIDIA Container Toolkit allows users to build and run GPU-accelerated Docker containers, ensuring that AI applications are portable and reproducible across different environments."
+    },
+    {
+        "id": "nvidia_whizlabs_252",
+        "question": "What is the main purpose of hidden units in a neural network?",
+        "type": "multiple_choice",
+        "options": [
+            "To provide the output classes or predictions",
+            "To compress the input data into a compact form",
+            "To understand the complex/non-linear patterns in the input data",
+            "To impart the randomness and enhance the generalization ability of the model"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "hidden layers",
+            "neural networks",
+            "feature extraction"
+        ],
+        "difficulty": "easy",
+        "explanation": "Hidden units (and layers) allow the neural network to learn intermediate representations and extract complex, non-linear features from the input data."
+    },
+    {
+        "id": "nvidia_whizlabs_253",
+        "question": "How does increasing the number of hidden units in a deep learning neural network will have an impact?",
+        "type": "multiple_choice",
+        "options": [
+            "It is going to boost the model's accuracy on the test data",
+            "No impact on the model's performance",
+            "Speeds up the training process & efficiency",
+            "It can enhance the model's capacity to learn complex patterns in a given dataset but also raises the risk of overfitting"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "model capacity",
+            "overfitting",
+            "hyperparameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "More hidden units increase model capacity (ability to learn complex functions), but excessive capacity relative to data volume increases the risk of memorizing noise (overfitting)."
+    },
+    {
+        "id": "nvidia_whizlabs_254",
+        "question": "When engaging in prompt engineering, what is the role of specifying the format?",
+        "type": "multiple_choice",
+        "options": [
+            "It determines the type of data utilized for training the AI model.",
+            "It influences how the AI model generates its output.",
+            "It impacts the selection of algorithms for AI training.",
+            "It regulates the overall complexity of the AI model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompt engineering",
+            "formatting",
+            "output control"
+        ],
+        "difficulty": "easy",
+        "explanation": "Specifying the format allows users to control the structure and style of the AI's generated content, guiding the response generation process."
+    },
+    {
+        "id": "nvidia_whizlabs_255",
+        "question": "Which of the following is the main reason for using code to evaluate prompts automatically?",
+        "type": "multiple_choice",
+        "options": [
+            "To make AI model training cheaper",
+            "To make things faster for users",
+            "To check if human-given labels are correct",
+            "To test and monitor on a larger scale"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "prompt evaluation",
+            "automation",
+            "monitoring"
+        ],
+        "difficulty": "medium",
+        "explanation": "Automated evaluation via code enables broad testing and monitoring of the LLM on a large scale, which is difficult to achieve with manual review alone."
+    },
+    {
+        "id": "nvidia_whizlabs_256",
+        "question": "Why is it important to handle out-of-vocabulary (OOV) words during the Text data preparation for LLM?",
+        "type": "multiple_choice",
+        "options": [
+            "OOV words can introduce errors and make it difficult for the LLM's learning process.",
+            "OOV words represent low-quality data and can be discarded.",
+            "OOV words can increase the vocabulary of the LLM. Hence, it can improve its efficiency.",
+            "OOV words will be of concern only during Machine translation tasks. For other tasks, it will be of minimal impact."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "text preprocessing",
+            "oov",
+            "data preparation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Handling OOV words is crucial because they can introduce errors and hinder the model's ability to learn and understand text accurately."
+    },
+    {
+        "id": "nvidia_whizlabs_257",
+        "question": "While working with text data samples that have significant variations in length, what feature engineering step is preferred? [Select Three]",
+        "type": "multiple_choice",
+        "options": [
+            "Setting all samples to a consistent maximum length",
+            "Adding additional tokens to shorter samples for uniformity",
+            "Generating text embeddings to depict samples as vectors with fixed lengths",
+            "Removing the samples with variations in length"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2
+        ],
+        "tags": [
+            "feature engineering",
+            "padding",
+            "embeddings",
+            "truncation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Standard practices for handling variable text lengths include truncating to a maximum length, padding shorter samples (adding tokens), and generating fixed-length vector embeddings."
+    },
+    {
+        "id": "nvidia_whizlabs_258",
+        "question": "How does the transformer architecture process words within a sentence?",
+        "type": "multiple_choice",
+        "options": [
+            "By breaking down each word and examining it independently",
+            "By disregarding the connections between words",
+            "By comprehending the grammatical structure and meaning of words",
+            "By changing words into letters of the alphabet"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "transformer",
+            "nlp architecture",
+            "self-attention"
+        ],
+        "difficulty": "medium",
+        "explanation": "Transformers process words by comprehending both their grammatical structure and semantic meaning through self-attention mechanisms, rather than treating them in isolation."
+    },
+    {
+        "id": "nvidia_whizlabs_259",
+        "question": "Consider the following sentence: 'The hungry fox jumped over the lazy dog'. Which of the following demonstrates the word tokenization?",
+        "type": "multiple_choice",
+        "options": [
+            "['The', 'hungry', 'fox', 'jumped', 'over', 'the', 'lazy', 'dog']",
+            "['The hungry', 'fox jumped', 'over the lazy', 'dog']",
+            "['hungry', 'fox']",
+            "['T', 'h', 'e', 'h', 'u', 'n', 'g', 'r', 'y', 'f', 'o', 'x']"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "tokenization",
+            "nlp basics",
+            "text processing"
+        ],
+        "difficulty": "easy",
+        "explanation": "Word tokenization splits a sentence into its constituent words, resulting in a list where each element represents a separate word."
+    },
+    {
+        "id": "nvidia_whizlabs_260",
+        "question": "Which of these isn't usually part of a full review plan for Trustworthy AI Models?",
+        "type": "multiple_choice",
+        "options": [
+            "Checking the fairness of the LLM model",
+            "Checking the Explainability Aspect of the LLM Model",
+            "Checking the Robustness aspect of the LLM Model",
+            "Checking the Profitability aspect of the LLM Model"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "trustworthy ai",
+            "ethics",
+            "model evaluation"
+        ],
+        "difficulty": "easy",
+        "explanation": "Trustworthy AI frameworks prioritize fairness, explainability, robustness, and accountability. Profitability is a business metric, not a core component of AI trust and ethics."
+    },
+    {
+        "id": "nvidia_whizlabs_261",
+        "question": "Challenges of implementing RLHF include: (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Creating a Reward Model that can truly capture what people like and dislike (Human preferences)",
+            "Ensuring human feedback is unbiased and diverse to avoid introducing new problems",
+            "Ensuring the RLHF algorithm can accurately interpret human emotions and intentions in feedback",
+            "Cost and Time to gather large amounts of human feedback"
+        ],
+        "correct_indices": [
+            0,
+            1,
+            3
+        ],
+        "tags": [
+            "rlhf",
+            "challenges",
+            "human feedback"
+        ],
+        "difficulty": "medium",
+        "explanation": "RLHF implementation is difficult due to the complexity of modeling human preferences, the potential for biased feedback, and the significant resources required to collect high-quality data."
+    },
+    {
+        "id": "nvidia_whizlabs_262",
+        "question": "In the context of LLMs (Large Language Models) alignment, what is the primary goal of Supervised Fine-Tuning (SFT)?",
+        "type": "multiple_choice",
+        "options": [
+            "To create new LLM models from scratch",
+            "To fine-tune an LLM model's parameters on supervised data of inputs and outputs",
+            "To replace the need for LLM model pre-training",
+            "To eliminate the need for human feedback"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sft",
+            "fine-tuning",
+            "alignment"
+        ],
+        "difficulty": "medium",
+        "explanation": "SFT adapts a pre-trained model to specific tasks or behaviors by training it on a curated dataset of high-quality input-output pairs."
+    },
+    {
+        "id": "nvidia_whizlabs_263",
+        "question": "How do you analyze the bias present in a large language model [LLM] Text Generation? (Select all that apply)",
+        "type": "multiple_choice",
+        "options": [
+            "Analyze the model's output for stereotypes and unfair representations.",
+            "Analyze the model's output with the perplexity metric.",
+            "Compare the model's performance on different demographic groups.",
+            "Examine the training data for potential bias."
+        ],
+        "correct_indices": [
+            0,
+            2,
+            3
+        ],
+        "tags": [
+            "bias analysis",
+            "ethics",
+            "model evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Analyzing bias involves a multi-faceted approach: inspecting outputs for harmful stereotypes, checking for performance disparities across demographics, and auditing the training data source."
+    },
+    {
+        "id": "nvidia_whizlabs_264",
+        "question": "Which of the following is not a Post-hoc explainability technique (A technique to explain the trained machine learning model)?",
+        "type": "multiple_choice",
+        "options": [
+            "SHAP (Shapley Additive exPlanations)",
+            "LIME (Local Interpretable Model-agnostic Explanations)",
+            "Partial Dependence Plots",
+            "PCA (Principal Component Analysis)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "explainability",
+            "post-hoc analysis",
+            "pca"
+        ],
+        "difficulty": "medium",
+        "explanation": "PCA is a dimensionality reduction technique used for data preprocessing or visualization, not for explaining the decision-making logic of a trained model like SHAP or LIME."
+    },
+    {
+        "id": "nvidia_whizlabs_265",
+        "question": "Which of the following is a common ethical concern in LLM experiments that involve generating text about sensitive topics (e.g., politics, religion)?",
+        "type": "multiple_choice",
+        "options": [
+            "Ensuring the generated text does not perpetuate harmful stereotypes or misinformation.",
+            "Safeguarding the privacy of individuals mentioned in the generated text.",
+            "Securing the informed consent from participants who is engaged with the generated text.",
+            "All of the above"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "ethics",
+            "sensitive topics",
+            "safety"
+        ],
+        "difficulty": "easy",
+        "explanation": "Ethical experimentation requires a comprehensive approach covering harm reduction (stereotypes/misinformation), privacy protection, and proper consent protocols."
+    },
+    {
+        "id": "nvidia_whizlabs_266",
+        "question": "How does prompt injection affect LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "It enhances the accuracy of LLM outputs.",
+            "It enables attackers to control the output of the LLM.",
+            "It decreases the computational resources required by the LLM.",
+            "It improves the interpretability of LLM-generated text."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "security",
+            "prompt injection",
+            "adversarial attacks"
+        ],
+        "difficulty": "medium",
+        "explanation": "Prompt injection is an adversarial attack where malicious inputs override the model's original instructions, allowing an attacker to manipulate the output or bypass safety guardrails."
+    },
+    {
+        "id": "nvidia_whizlabs_267",
+        "question": "Which of the following is an example of an information leak in an LLM-enabled application?",
+        "type": "multiple_choice",
+        "options": [
+            "Accessing public datasets",
+            "Extracting private data used to train the LLM",
+            "Optimizing model performance",
+            "Enhancing natural language understanding"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "security",
+            "data privacy",
+            "information leakage"
+        ],
+        "difficulty": "medium",
+        "explanation": "Information leakage occurs when a model inadvertently reveals sensitive or private data present in its training set, posing a significant privacy risk."
+    },
+    {
+        "id": "nvidia_whizlabs_268",
+        "question": "What is the primary purpose of NVIDIA's Project Mellon?",
+        "type": "multiple_choice",
+        "options": [
+            "To enhance graphics rendering in gaming applications",
+            "To simplify user interfaces in extended reality (XR) applications",
+            "To develop natural language processing models",
+            "To provide automatic speech recognition for text-to-speech conversion"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "project mellon",
+            "xr"
+        ],
+        "difficulty": "hard",
+        "explanation": "NVIDIA's Project Mellon aims to simplify interactions in Extended Reality (XR) environments by enabling natural language commands to control applications, removing the need for complex menus."
+    },
+    {
+        "id": "nvidia_whizlabs_269",
+        "question": "What is the main benefit of using TensorRT-LLM for LLM inference?",
+        "type": "multiple_choice",
+        "options": [
+            "It provides complete containers for generative AI deployments.",
+            "It includes pre- and post-processing steps for LLM execution.",
+            "It offers support for native Windows environments.",
+            "It accelerates and optimizes inference performance while incorporating various optimization techniques."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "tensorrt-llm",
+            "inference optimization",
+            "performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "TensorRT-LLM is an open-source library that dramatically increases LLM inference performance through optimizations like in-flight batching, kernel fusion, and quantization."
+    },
+    {
+        "id": "nvidia_whizlabs_270",
+        "question": "What kind of models does NVIDIA NIM for LLMs include?",
+        "type": "multiple_choice",
+        "options": [
+            "Basic language models with limited capabilities",
+            "GPU Optimized and pre-generated engines for a variety of popular models",
+            "Only translation task models",
+            "Non-GPU optimized models"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia nim",
+            "model catalog",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA NIM (NVIDIA Inference Microservices) provides containerized, GPU-optimized inference engines for popular foundation models, streamlining deployment and maximizing performance."
+    }
+]

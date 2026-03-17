@@ -1,0 +1,1746 @@
+[
+    {
+        "id": "nvidia_AI_320",
+        "question": "Which of the following best describes the primary purpose of an activation function in a neural network?",
+        "type": "multiple_choice",
+        "options": [
+            "To normalize the input data before it enters the network.",
+            "To introduce non-linearity, allowing the model to learn complex relationships.",
+            "To calculate the loss between the predicted output and the true label.",
+            "To update the weights of the network during backpropagation."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "neural networks",
+            "activation function",
+            "non-linearity"
+        ],
+        "difficulty": "easy",
+        "explanation": "Activation functions like ReLU and Sigmoid introduce non-linearity into the network, which is essential for enabling the model to capture complex, non-linear relationships in the data[cite: 60, 62, 63]."
+    },
+    {
+        "id": "nvidia_AI_321",
+        "question": "A data scientist is training an LLM on a massive, unlabeled text corpus by masking certain words and tasking the model with predicting them based on the surrounding context. Which learning paradigm is being used?",
+        "type": "multiple_choice",
+        "options": [
+            "Supervised learning",
+            "Reinforcement learning",
+            "Self-supervised learning",
+            "Unsupervised clustering"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "learning paradigm",
+            "self-supervised learning",
+            "pre-training"
+        ],
+        "difficulty": "medium",
+        "explanation": "Self-supervised learning allows the model to generate its own labels (like predicting masked words) from unlabeled data, which is the hallmark of LLM pre-training[cite: 66]."
+    },
+    {
+        "id": "nvidia_AI_322",
+        "question": "In the self-attention mechanism of a Transformer model, how is the weight assigned to each value vector calculated?",
+        "type": "multiple_choice",
+        "options": [
+            "By applying a softmax function to the dot product of the query and key vectors.",
+            "By directly using the output of the position-wise feed-forward network.",
+            "By calculating the cosine similarity between the query and value vectors.",
+            "By using a fixed weight determined by the positional encoding."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "transformer",
+            "self-attention",
+            "attention weights"
+        ],
+        "difficulty": "hard",
+        "explanation": "Attention scores are calculated by the dot product of query and key vectors, and these scores are normalized using the softmax function to derive the weights applied to the value vectors[cite: 68, 72, 73]."
+    },
+    {
+        "id": "nvidia_AI_323",
+        "question": "During the decoding process of a Transformer-based text generation model, it is crucial that the model only uses information from previous tokens to predict the next token. Which component is specifically designed to enforce this property?",
+        "type": "multiple_choice",
+        "options": [
+            "Positional Encoding",
+            "Encoder-Decoder Attention",
+            "Multi-Head Attention in the encoder",
+            "Masked Multi-Head Attention in the decoder"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "transformer",
+            "decoding",
+            "autoregressive"
+        ],
+        "difficulty": "hard",
+        "explanation": "Masked Multi-Head Attention in the decoder prevents the model from attending to future tokens, enforcing the autoregressive property necessary for sequential text generation[cite: 77]."
+    },
+    {
+        "id": "nvidia_AI_324",
+        "question": "What is the primary distinction between a foundation model and a traditional machine learning model?",
+        "type": "multiple_choice",
+        "options": [
+            "Foundation models are exclusively used for generative tasks, while traditional models are used for classification.",
+            "Foundation models are trained on small, labeled datasets, whereas traditional models use large, unlabeled datasets.",
+            "Foundation models are designed as general-purpose, adaptable bases for many tasks, while traditional models are typically built for a single, specific task.",
+            "Foundation models use convolutional neural networks, while traditional models use transformer architectures."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "foundation models",
+            "llms",
+            "generalization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Foundation models are pre-trained on broad, diverse datasets to be general-purpose and adaptable, whereas traditional models are typically built and trained for singular, specific tasks[cite: 81, 83, 84]."
+    },
+    {
+        "id": "nvidia_AI_325",
+        "question": "In a diffusion model used for image generation, what is the role of the reverse diffusion process?",
+        "type": "multiple_choice",
+        "options": [
+            "To gradually add Gaussian noise to a training image until it is unrecognizable.",
+            "To learn the inverse of the noising process, effectively reconstructing an image by starting from pure noise.",
+            "To classify whether a given image is real or generated by the model.",
+            "To embed the image into a lower-dimensional latent space for faster processing."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "diffusion models",
+            "image generation",
+            "reverse diffusion"
+        ],
+        "difficulty": "medium",
+        "explanation": "The reverse diffusion process learns the inverse of the forward noising process, starting from random noise and gradually denoising it step by step to reconstruct a new, realistic image."
+    },
+    {
+        "id": "nvidia_AI_326",
+        "question": "During the input processing stage for a large language model, which of the following correctly defines tokenization?",
+        "type": "multiple_choice",
+        "options": [
+            "Converting a sequence of words into a single numerical vector that captures its semantic meaning.",
+            "Breaking down a piece of text into smaller units, such as words or subwords.",
+            "Assigning a positional value to each word in a sentence to maintain sequence order.",
+            "Filtering out common words (stop words) and reducing words to their root form."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tokenization",
+            "preprocessing",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "Tokenization is the process of segmenting a text into smaller units, called tokens (words, subwords, or characters), in preparation for numerical embedding[cite: 94, 97, 98]."
+    },
+    {
+        "id": "nvidia_AI_327",
+        "question": "Which statement accurately describes a key advantage of dense embeddings (e.g., from BERT) over sparse embeddings (e.g., one-hot encoding)?",
+        "type": "multiple_choice",
+        "options": [
+            "Dense embeddings have a dimension equal to the vocabulary size, making them more comprehensive.",
+            "Dense embeddings are context-free, which allows for faster computation.",
+            "Dense embeddings capture the semantic meaning of words, placing similar words closer together in the vector space.",
+            "Dense embeddings consist mostly of zeros, making them more memory-efficient."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "embeddings",
+            "semantic similarity",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dense embeddings encode the semantic relationships between words, which means that words with similar meanings will be positioned closer together in the vector space[cite: 101, 103, 104]."
+    },
+    {
+        "id": "nvidia_AI_328",
+        "question": "An organization wants to adapt a 70-billion parameter LLM for a specialized legal document analysis task. They have limited GPU memory and want to avoid the high computational cost of retraining the entire model. Which technique is most suitable for this scenario?",
+        "type": "multiple_choice",
+        "options": [
+            "Full fine-tuning on the entire legal corpus.",
+            "Training a new model from scratch using only legal documents.",
+            "Low-Rank Adaptation (LoRA).",
+            "Zero-shot prompting with detailed instructions."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "peft",
+            "lora",
+            "fine-tuning"
+        ],
+        "difficulty": "hard",
+        "explanation": "Low-Rank Adaptation (LoRA) is a Parameter-Efficient Fine-Tuning (PEFT) method that achieves task adaptation by training only small, low-rank adapter matrices while keeping the massive base model parameters frozen, saving compute and memory[cite: 109]."
+    },
+    {
+        "id": "nvidia_AI_329",
+        "question": "A user provides the following prompt to an LLM: Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now? A: Roger started with 5 balls. 2 cans of 3 balls is 6 balls. 5 + 6 = 11. The answer is 11. Q: The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have? A: This is an example of which prompt engineering technique?",
+        "type": "multiple_choice",
+        "options": [
+            "Zero-shot prompting",
+            "Chain-of-Thought prompting",
+            "P-tuning",
+            "Self-consistency"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompt engineering",
+            "chain-of-thought",
+            "reasoning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Chain-of-Thought prompting explicitly guides the model to show its step-by-step reasoning process within the prompt's examples, which significantly improves its ability to handle multi-step logical and arithmetic problems[cite: 115]."
+    },
+    {
+        "id": "nvidia_AI_330",
+        "question": "What is the primary advantage of using a Retrieval-Augmented Generation (RAG) architecture compared to a standard pre-trained LLM?",
+        "type": "multiple_choice",
+        "options": [
+            "It significantly reduces the model's inference latency.",
+            "It allows the model to generate responses based on external, up-to-date, or proprietary knowledge sources.",
+            "It eliminates the need for prompt engineering.",
+            "It increases the number of parameters in the LLM, making it more powerful."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "hallucinations",
+            "knowledge source"
+        ],
+        "difficulty": "easy",
+        "explanation": "RAG connects the LLM to external knowledge bases, enabling it to generate responses grounded in current, factual, or private data, which improves reliability and reduces hallucinations[cite: 6, 117, 118]."
+    },
+    {
+        "id": "nvidia_AI_331",
+        "question": "When implementing a RAG system for an enterprise that uses sensitive, proprietary documents as its knowledge base, which of the following is the most critical consideration beyond retrieval accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Fine-tuning the LLM on the proprietary documents.",
+            "Implementing strict access control and security measures for the vector database.",
+            "Choosing the largest possible chunk size for document splitting.",
+            "Using a model with the highest possible temperature setting for more creative answers."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "security",
+            "enterprise"
+        ],
+        "difficulty": "hard",
+        "explanation": "In an enterprise RAG system dealing with sensitive data, protecting the proprietary knowledge base is vital; strict access control and security measures ensure confidentiality and regulatory compliance."
+    },
+    {
+        "id": "nvidia_AI_332",
+        "question": "In a typical data science workflow for preparing data for a machine learning model, what is the primary role of the Pandas library?",
+        "type": "multiple_choice",
+        "options": [
+            "To perform complex mathematical and linear algebra operations on multi-dimensional arrays.",
+            "To build, train, and evaluate machine learning models using a consistent API.",
+            "To create static and interactive data visualizations like histograms and scatter plots.",
+            "To load, clean, transform, and manipulate structured data, often in the form of DataFrames."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "pandas",
+            "data manipulation",
+            "data preprocessing"
+        ],
+        "difficulty": "easy",
+        "explanation": "Pandas is the core Python library used to load, clean, transform, and manipulate structured data in the form of DataFrames before it is passed to a machine learning model[cite: 129, 130, 124]."
+    },
+    {
+        "id": "nvidia_AI_333",
+        "question": "A developer needs to quickly download a pre-trained BERT model and use it for a text classification task. Which Python library is most widely used for accessing a repository of pre-trained Transformer models?",
+        "type": "multiple_choice",
+        "options": [
+            "Scikit-learn",
+            "Hugging Face Transformers",
+            "Keras",
+            "NumPy"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformers",
+            "hugging face",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Hugging Face Transformers library provides the most widely used repository and tools for accessing, downloading, and fine-tuning thousands of pre-trained Transformer models like BERT."
+    },
+    {
+        "id": "nvidia_AI_334",
+        "question": "An organization has developed a custom LLM using the NVIDIA NeMo framework. To prepare for deployment on a fleet of A100 GPUs using Triton Inference Server, what intermediate step is crucial for maximizing inference throughput and minimizing latency?",
+        "type": "multiple_choice",
+        "options": [
+            "Re-training the model with a larger dataset.",
+            "Optimizing the model with NVIDIA TensorRT-LLM.",
+            "Migrating the data processing pipeline to NVIDIA RAPIDS.",
+            "Developing a custom user interface with NVIDIA Riva."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt-llm",
+            "triton",
+            "inference optimization"
+        ],
+        "difficulty": "hard",
+        "explanation": "NVIDIA TensorRT-LLM is designed to compile and optimize NeMo-trained models for highly efficient GPU inference, which is a crucial step for reducing latency before deployment on Triton Inference Server[cite: 136, 138, 135]."
+    },
+    {
+        "id": "nvidia_AI_335",
+        "question": "A deployment team is facing high-volume, concurrent inference requests for a variety of models built in different frameworks (PyTorch, TensorFlow, and ONNX). They need a solution that can serve all these models simultaneously and optimize GPU utilization by batching incoming requests. Which NVIDIA technology is designed for this purpose?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA NeMo",
+            "NVIDIA Riva",
+            "NVIDIA Triton Inference Server",
+            "NVIDIA RAPIDS"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "triton",
+            "concurrent serving",
+            "multi-framework"
+        ],
+        "difficulty": "medium",
+        "explanation": "The NVIDIA Triton Inference Server standardizes deployment, supports concurrent serving of models from different frameworks, and maximizes GPU efficiency using dynamic batching."
+    },
+    {
+        "id": "nvidia_AI_336",
+        "question": "A company is deploying an LLM-powered application and expects traffic to fluctuate significantly. They need a solution that can automatically increase the number of running model instances during peak hours and decrease them during off-peak hours to manage costs. Which technology is best suited for this auto-scaling requirement?",
+        "type": "multiple_choice",
+        "options": [
+            "Docker",
+            "Kubernetes",
+            "NVIDIA NeMo",
+            "Git"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "kubernetes",
+            "auto-scaling",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Kubernetes is a container orchestration system that automatically manages the scaling (up or down) of containerized model instances based on traffic demand, optimizing resource utilization and cost."
+    },
+    {
+        "id": "nvidia_AI_337",
+        "question": "A team is trying to deploy an LLM on edge devices with limited memory and computational power. Which inference optimization technique would be most effective in reducing the model's memory footprint?",
+        "type": "multiple_choice",
+        "options": [
+            "Increasing the batch size",
+            "Quantization",
+            "Using a larger foundation model",
+            "Pipeline parallelism"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "quantization",
+            "edge ai",
+            "memory optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "Quantization reduces the precision of the model's weights and activations (e.g., from FP32 to INT8), which directly cuts memory usage and improves inference speed, making it essential for resource-constrained edge devices[cite: 147]."
+    },
+    {
+        "id": "nvidia_AI_338",
+        "question": "Which of the following is NOT a common application of large language models in aiding the software development process?",
+        "type": "multiple_choice",
+        "options": [
+            "Generating code snippets from a natural language prompt.",
+            "Compiling source code into machine-executable binaries.",
+            "Creating documentation for existing functions and classes.",
+            "Suggesting scenarios for unit testing a new feature."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm applications",
+            "software development",
+            "code generation"
+        ],
+        "difficulty": "easy",
+        "explanation": "LLMs are generative and analytical tools (code generation, documentation, testing), but they do not perform the deterministic, machine-level task of compiling source code into executables."
+    },
+    {
+        "id": "nvidia_AI_339",
+        "question": "A data scientist has a small dataset and is concerned that a single train-test split will not provide a reliable estimate of the model's performance on unseen data. Which technique should be used to get a more robust performance evaluation?",
+        "type": "multiple_choice",
+        "options": [
+            "A/B testing",
+            "K-fold cross-validation",
+            "Zero-shot learning",
+            "Data augmentation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation",
+            "cross-validation",
+            "experiment design"
+        ],
+        "difficulty": "easy",
+        "explanation": "K-fold cross-validation repeatedly partitions the data into training and test sets, providing multiple performance scores whose average gives a more stable and reliable estimate of the model's generalization ability[cite: 152]."
+    },
+    {
+        "id": "nvidia_AI_340",
+        "question": "A company wants to compare its current production chatbot (Model A) with a newly fine-tuned version (Model B) to see which one leads to higher user satisfaction in a live environment. What is the most appropriate experimental method for this comparison?",
+        "type": "multiple_choice",
+        "options": [
+            "Cross-validation",
+            "A/B testing",
+            "Backtesting",
+            "Unit testing"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "a/b testing",
+            "production",
+            "evaluation"
+        ],
+        "difficulty": "easy",
+        "explanation": "A/B testing compares the performance of two different model versions (Model A and Model B) in a live production environment by directing users randomly to each version and measuring real-world metrics like user satisfaction."
+    },
+    {
+        "id": "nvidia_AI_341",
+        "question": "What is the primary difference between stemming and lemmatization in text preprocessing?",
+        "type": "multiple_choice",
+        "options": [
+            "Stemming converts words to lowercase, while lemmatization handles punctuation.",
+            "Stemming is a rule-based process of chopping off suffixes, while lemmatization uses a dictionary to find the root form of a word.",
+            "Stemming is used for numerical data, while lemmatization is used for text data.",
+            "Stemming removes common stop words, while lemmatization combines synonyms."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "preprocessing",
+            "nlp",
+            "stemming",
+            "lemmatization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Stemming is a crude, heuristic process that chops suffixes, often resulting in non-words. Lemmatization uses morphological analysis and a dictionary to return the linguistically valid base or root form of a word."
+    },
+    {
+        "id": "nvidia_AI_342",
+        "question": "A developer is using an LLM to generate marketing copy and wants the output to be highly creative and varied, even if it is occasionally less predictable. How should the 'temperature' hyperparameter be adjusted?",
+        "type": "multiple_choice",
+        "options": [
+            "Set it to 0.",
+            "Set it to a low value (e.g., 0.2).",
+            "Set it to a high value (e.g., 0.9).",
+            "The temperature setting does not affect creativity."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "temperature",
+            "text generation",
+            "hyperparameter"
+        ],
+        "difficulty": "easy",
+        "explanation": "A high temperature (e.g., 0.9) increases the randomness in token selection, leading to more diverse, creative, and unpredictable outputs. A low temperature makes the output more deterministic[cite: 162, 190, 232]."
+    },
+    {
+        "id": "nvidia_AI_343",
+        "question": "You are developing an LLM-based application to automatically generate concise summaries of news articles. Which of the following metrics is most suitable for evaluating the quality of the generated summaries?",
+        "type": "multiple_choice",
+        "options": [
+            "BLEU",
+            "ROUGE",
+            "Mean Squared Error (MSE)",
+            "Perplexity"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation metrics",
+            "rouge",
+            "summarization"
+        ],
+        "difficulty": "easy",
+        "explanation": "ROUGE (Recall-Oriented Understudy for Gisting Evaluation) measures the overlap of n-grams between the generated summary and a reference summary, making it the most suitable metric for summarization tasks[cite: 164, 165, 266]."
+    },
+    {
+        "id": "nvidia_AI_344",
+        "question": "A regression model is being trained on a dataset that contains several significant outliers. The developer wants to minimize the influence of these outliers on the model's training. Which loss function should be preferred?",
+        "type": "multiple_choice",
+        "options": [
+            "Mean Squared Error (L2 Loss)",
+            "Mean Absolute Error (L1 Loss)",
+            "Cross-Entropy Loss",
+            "Hinge Loss"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "loss functions",
+            "outliers",
+            "mae"
+        ],
+        "difficulty": "medium",
+        "explanation": "Mean Absolute Error (L1 Loss) penalizes errors linearly, making it more robust to outliers than Mean Squared Error (L2 Loss), which squares errors and exaggerates the influence of large deviations[cite: 166]."
+    },
+    {
+        "id": "nvidia_AI_345",
+        "question": "A data analyst wants to quickly create a visually appealing heatmap to show the correlation between multiple variables in a Pandas DataFrame. Which Python library and function would be the most direct way to achieve this?",
+        "type": "multiple_choice",
+        "options": [
+            "Matplotlib, using plt.plot()",
+            "Seaborn, using sns.heatmap()",
+            "Matplotlib, using plt.hist()",
+            "Seaborn, using sns.scatterplot()"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "visualization",
+            "seaborn",
+            "heatmap"
+        ],
+        "difficulty": "easy",
+        "explanation": "Seaborn is a high-level data visualization library that provides the dedicated sns.heatmap() function, offering an efficient and visually appealing way to plot matrix data like a correlation matrix."
+    },
+    {
+        "id": "nvidia_AI_346",
+        "question": "A retail company analyzes its transaction data to discover that customers who purchase product A and product B together are highly likely to also purchase product C. This is an example of which data mining technique?",
+        "type": "multiple_choice",
+        "options": [
+            "Classification",
+            "Regression",
+            "Clustering",
+            "Association Rule Mining"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "data mining",
+            "association rule mining",
+            "market basket analysis"
+        ],
+        "difficulty": "easy",
+        "explanation": "Association Rule Mining is used to uncover patterns of co-occurrence, identifying items that are frequently bought together, such as in market basket analysis[cite: 171]."
+    },
+    {
+        "id": "nvidia_AI_347",
+        "question": "A machine learning model for credit risk is giving unexpected predictions for certain applicants. To understand how the model behaves for a single, specific applicant and which features contributed most to their individual prediction, which technique would be most appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "Partial Dependence Plot (PDP)",
+            "K-fold Cross-Validation",
+            "Local Interpretable Model-agnostic Explanations (LIME)",
+            "A/B Testing"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "explainable ai",
+            "lime",
+            "interpretability"
+        ],
+        "difficulty": "medium",
+        "explanation": "LIME provides local, post-hoc explanations by approximating the model's behavior around a single data point with a simple interpretable model, revealing individual feature contributions."
+    },
+    {
+        "id": "nvidia_AI_348",
+        "question": "Which of the following is NOT one of the seven key requirements for Trustworthy AI as defined by the EU's High-Level Expert Group on AI?",
+        "type": "multiple_choice",
+        "options": [
+            "Human agency and oversight",
+            "Maximization of model accuracy at all costs",
+            "Privacy and data governance",
+            "Transparency"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "trustworthy ai",
+            "ethics",
+            "eu guidelines"
+        ],
+        "difficulty": "medium",
+        "explanation": "While performance is important, Trustworthy AI frameworks prioritize ethical requirements like fairness, transparency, and human oversight over the singular goal of maximizing accuracy at all costs[cite: 176]."
+    },
+    {
+        "id": "nvidia_AI_349",
+        "question": "An AI model for hiring decisions is found to favor candidates from a certain demographic. To correct this, the development team adjusts the model's prediction thresholds for different demographic groups after the model has already made its initial predictions. This is an example of which type of bias mitigation technique?",
+        "type": "multiple_choice",
+        "options": [
+            "Pre-processing",
+            "In-processing",
+            "Post-processing",
+            "Data augmentation"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "bias mitigation",
+            "post-processing",
+            "fairness"
+        ],
+        "difficulty": "medium",
+        "explanation": "Post-processing techniques modify the model's final outputs (predictions) by adjusting thresholds or scores to ensure fairness across different demographic groups after the model has already run[cite: 177]."
+    },
+    {
+        "id": "nvidia_AI_350",
+        "question": "A company develops an AI application using customer data collected for billing purposes. They now want to use this same data to train a new marketing prediction model. According to the GDPR's 'purpose limitation' principle, what must the company do?",
+        "type": "multiple_choice",
+        "options": [
+            "They can freely use the data as it was collected legally.",
+            "They must anonymize the data before using it for the new purpose.",
+            "They must obtain new, specific consent from the customers to use their data for marketing purposes.",
+            "They only need to inform customers via an updated privacy policy."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "gdpr",
+            "purpose limitation",
+            "data privacy"
+        ],
+        "difficulty": "hard",
+        "explanation": "The GDPR's purpose limitation principle dictates that personal data collected for one purpose cannot be reused for a new, incompatible purpose without obtaining new, specific consent from the data subjects."
+    },
+    {
+        "id": "nvidia_AI_351",
+        "question": "A financial services company is deploying a customer support chatbot powered by an LLM. To comply with regulations, they must ensure the chatbot never provides financial advice. Which NVIDIA technology is specifically designed to enforce such topical boundaries on an LLM application?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA Triton Inference Server",
+            "NVIDIA TensorRT-LLM",
+            "NVIDIA NeMo Guardrails",
+            "NVIDIA RAPIDS"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nemo guardrails",
+            "compliance",
+            "safety"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA NeMo Guardrails is designed to enforce configurable safety and topic boundaries, ensuring the LLM application's responses stay within regulatory and ethical constraints by preventing certain outputs[cite: 184]."
+    },
+    {
+        "id": "nvidia_AI_352",
+        "question": "In transformer-based LLMs, what is the primary purpose of the attention mechanism?",
+        "type": "multiple_choice",
+        "options": [
+            "To measure the importance of words in the output sequence",
+            "To determine the order in which words are generated",
+            "To capture the order of words in the input sequence",
+            "To assign weights to each word in the input sequence based on relevance"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "attention mechanism",
+            "transformer",
+            "context"
+        ],
+        "difficulty": "easy",
+        "explanation": "The attention mechanism computes a weighted sum of input tokens, assigning higher weights to words that are contextually most relevant to the current token being processed[cite: 185]."
+    },
+    {
+        "id": "nvidia_AI_353",
+        "question": "Which of the following best describes the purpose of positional encoding in transformer architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "To remove redundant information from the input sequence",
+            "To encode the semantic meaning of each token in the input sequence",
+            "To add information about the order of each token in the input sequence",
+            "To encode the importance of each token in the input sequence"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "positional encoding",
+            "transformer",
+            "sequence order"
+        ],
+        "difficulty": "easy",
+        "explanation": "Since transformers process inputs in parallel without recurrence, positional encoding injects information about the position and sequence order of tokens into the embeddings."
+    },
+    {
+        "id": "nvidia_AI_354",
+        "question": "In multi-head attention, why are multiple attention heads used instead of a single head?",
+        "type": "multiple_choice",
+        "options": [
+            "To reduce memory footprint by sharing weights across heads",
+            "To allow the model to focus on multiple aspects of the input sequence simultaneously",
+            "To eliminate the need for positional encodings",
+            "To simplify the training process by reducing parameters"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multi-head attention",
+            "transformer",
+            "context capture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multiple heads allow the model to capture diverse types of relationships (e.g., syntactic, semantic) simultaneously by attending to different parts of the sequence in different representation subspaces."
+    },
+    {
+        "id": "nvidia_AI_355",
+        "question": "What does an autoregressive language model predict?",
+        "type": "multiple_choice",
+        "options": [
+            "The probability of the next token given the previous tokens",
+            "The probability of the next token using Monte Carlo sampling",
+            "The next token solely using recurrent network cells",
+            "The probability of the next token by looking at previous and future tokens"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "autoregressive",
+            "language model",
+            "generation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Autoregressive models generate output sequentially, predicting the probability distribution of the next token based exclusively on the sequence of tokens that precedes it."
+    },
+    {
+        "id": "nvidia_AI_356",
+        "question": "In the scaled dot-product attention formula, why is the dot product divided by the square root of the key dimension ($\\sqrt{d_k}$)?",
+        "type": "multiple_choice",
+        "options": [
+            "To normalize the output values to be between 0 and 1",
+            "To prevent the softmax function from saturating in regions with small gradients",
+            "To reduce computational complexity",
+            "To ensure the attention weights sum to 1"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "attention mechanism",
+            "scaling",
+            "transformer"
+        ],
+        "difficulty": "hard",
+        "explanation": "The scaling factor ($\\sqrt{d_k}$) prevents the dot product from growing too large in high-dimensional spaces, which keeps the variance stable and prevents the softmax function from entering saturation regions, thus maintaining stable gradients during training."
+    },
+    {
+        "id": "nvidia_AI_357",
+        "question": "Which technique is commonly used to reduce memory usage during LLM training without significantly affecting model accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient accumulation",
+            "Mixed precision training",
+            "Data augmentation",
+            "Batch normalization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "memory optimization",
+            "mixed precision",
+            "llm training"
+        ],
+        "difficulty": "easy",
+        "explanation": "Mixed precision training uses lower precision formats (like FP16) for intermediate computations, which cuts memory usage and increases throughput with minimal impact on model accuracy."
+    },
+    {
+        "id": "nvidia_AI_358",
+        "question": "What is the primary advantage of using LoRA (Low-Rank Adaptation) for fine-tuning LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "It increases model accuracy significantly",
+            "It reduces the number of trainable parameters while maintaining performance",
+            "It eliminates the need for pre-training",
+            "It allows for zero-shot learning capabilities"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lora",
+            "peft",
+            "fine-tuning"
+        ],
+        "difficulty": "medium",
+        "explanation": "LoRA is a Parameter-Efficient Fine-Tuning (PEFT) method that achieves high performance by only training small, low-rank adapter matrices, significantly reducing the number of trainable parameters compared to full fine-tuning."
+    },
+    {
+        "id": "nvidia_AI_359",
+        "question": "In the context of language models, what does 'temperature' control in text generation?",
+        "type": "multiple_choice",
+        "options": [
+            "The model's training speed",
+            "The randomness of the generated text",
+            "The length of generated sequences",
+            "The computational resources used"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "temperature",
+            "text generation",
+            "sampling"
+        ],
+        "difficulty": "easy",
+        "explanation": "Temperature is a hyperparameter that controls the randomness of the model's output distribution; higher temperature increases creativity and diversity, while lower temperature makes the output more deterministic."
+    },
+    {
+        "id": "nvidia_AI_360",
+        "question": "Which of the following best describes Word2Vec?",
+        "type": "multiple_choice",
+        "options": [
+            "A programming language for building AI models",
+            "A statistical technique for analyzing word frequency",
+            "A deep learning algorithm for generating word embeddings",
+            "A database management system for word data"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "word2vec",
+            "word embeddings",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "Word2Vec is an algorithm that uses neural networks to learn dense vector representations (embeddings) of words, capturing semantic meaning and context."
+    },
+    {
+        "id": "nvidia_AI_361",
+        "question": "What is the primary purpose of the feedforward layers in transformer architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "To compute attention weights",
+            "To apply non-linear transformations to embeddings",
+            "To normalize layer outputs",
+            "To handle positional information"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transformer",
+            "feedforward network",
+            "non-linearity"
+        ],
+        "difficulty": "medium",
+        "explanation": "The position-wise feedforward network (FFN) applies non-linear transformations (typically two linear layers separated by a ReLU activation) to the output of the attention sublayer."
+    },
+    {
+        "id": "nvidia_AI_362",
+        "question": "Which prompt engineering technique involves providing examples within the prompt to guide the model's output?",
+        "type": "multiple_choice",
+        "options": [
+            "Zero-shot prompting",
+            "Few-shot prompting",
+            "Chain-of-thought prompting",
+            "Meta prompting"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompt engineering",
+            "few-shot prompting",
+            "in-context learning"
+        ],
+        "difficulty": "easy",
+        "explanation": "Few-shot prompting provides example input-output pairs within the prompt to guide the model's behavior without requiring any parameter updates."
+    },
+    {
+        "id": "nvidia_AI_363",
+        "question": "What is the main advantage of chain-of-thought prompting?",
+        "type": "multiple_choice",
+        "options": [
+            "It reduces computational requirements",
+            "It helps models generate more coherent and logically consistent responses",
+            "It eliminates the need for training data",
+            "It increases model inference speed"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "chain-of-thought",
+            "reasoning",
+            "prompt engineering"
+        ],
+        "difficulty": "medium",
+        "explanation": "Chain-of-Thought prompting encourages the model to break down complex problems into intermediate steps, which significantly improves the coherence and logical consistency of its final response."
+    },
+    {
+        "id": "nvidia_AI_364",
+        "question": "When selecting models for text embeddings, which factor is most important for semantic similarity tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "Model size in parameters",
+            "Training speed",
+            "Cosine similarity preservation in the embedding space",
+            "GPU memory usage"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "embeddings",
+            "semantic similarity",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "For semantic tasks, the model's ability to encode meaning (semantic similarity) is key. Preserving cosine similarity ensures that semantically similar words or phrases are correctly represented by vectors close to each other."
+    },
+    {
+        "id": "nvidia_AI_365",
+        "question": "Which Python package is commonly used for implementing traditional machine learning analyses alongside LLMs?",
+        "type": "multiple_choice",
+        "options": [
+            "spaCy only",
+            "NumPy only",
+            "Both spaCy and NumPy",
+            "Keras only"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "python packages",
+            "nlp",
+            "data science"
+        ],
+        "difficulty": "easy",
+        "explanation": "Both spaCy (for NLP tasks like tokenization/parsing) and NumPy (for numerical and array operations) are essential components often used alongside LLMs for data preparation and traditional ML analysis."
+    },
+    {
+        "id": "nvidia_AI_366",
+        "question": "What is the primary benefit of using transfer learning in deep learning models?",
+        "type": "multiple_choice",
+        "options": [
+            "It eliminates the need for any training data",
+            "It achieves efficient results with less data and computation",
+            "It guarantees 100% accuracy",
+            "It reduces model complexity"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transfer learning",
+            "deep learning",
+            "efficiency"
+        ],
+        "difficulty": "easy",
+        "explanation": "Transfer learning leverages knowledge learned from a large source task (pre-training) to achieve efficient and strong results on a new, target task with limited data and computation (fine-tuning)."
+    },
+    {
+        "id": "nvidia_AI_367",
+        "question": "What is the primary purpose of NVIDIA TensorRT in the AI development stack?",
+        "type": "multiple_choice",
+        "options": [
+            "Model training acceleration",
+            "High-performance deep learning inference optimization",
+            "Data preprocessing",
+            "Model architecture design"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "tensorrt",
+            "inference optimization",
+            "nvidia"
+        ],
+        "difficulty": "easy",
+        "explanation": "TensorRT is an SDK designed to compile and optimize trained neural networks for maximum performance during the inference (deployment) phase, reducing latency and increasing throughput."
+    },
+    {
+        "id": "nvidia_AI_368",
+        "question": "Which NVIDIA tool is specifically designed for conversational AI development?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorRT",
+            "RAPIDS",
+            "NeMo",
+            "Triton"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia nemo",
+            "conversational ai",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "NVIDIA NeMo is a modular framework providing tools, models, and scripts for building, customizing, and deploying generative AI models, including LLMs, ASR, and TTS systems[cite: 44, 45, 193, 240]."
+    },
+    {
+        "id": "nvidia_AI_369",
+        "question": "What is the main advantage of using NVIDIA Triton Inference Server?",
+        "type": "multiple_choice",
+        "options": [
+            "It only supports TensorFlow models",
+            "It can serve multiple models concurrently from different frameworks",
+            "It reduces model training time",
+            "It automatically improves model accuracy"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "triton",
+            "multi-framework",
+            "deployment"
+        ],
+        "difficulty": "easy",
+        "explanation": "Triton standardizes deployment, allowing a single server to efficiently serve multiple models concurrently, even if they were built using different frameworks (PyTorch, TensorFlow, ONNX)[cite: 142, 193, 241]."
+    },
+    {
+        "id": "nvidia_AI_370",
+        "question": "In NVIDIA DGX systems, what does MIG (Multi-Instance GPU) enable?",
+        "type": "multiple_choice",
+        "options": [
+            "Faster model training only",
+            "Multiple users to share a single GPU with isolation",
+            "Automatic model optimization",
+            "Reduced power consumption"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "mig",
+            "dgx",
+            "gpu resource management"
+        ],
+        "difficulty": "medium",
+        "explanation": "MIG partitions a single NVIDIA GPU into up to seven isolated hardware instances, enabling multiple users or workloads to share the GPU securely and efficiently."
+    },
+    {
+        "id": "nvidia_AI_371",
+        "question": "Which NVIDIA framework is best suited for building and deploying RAG applications?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorRT only",
+            "NeMo with additional tools",
+            "RAPIDS only",
+            "Triton only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "nemo",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA NeMo provides the foundational LLM and customization tools, which, when integrated with vector databases and retrieval components, form a complete RAG architecture."
+    },
+    {
+        "id": "nvidia_AI_372",
+        "question": "When building LLM applications, which Python package is essential for vector database operations?",
+        "type": "multiple_choice",
+        "options": [
+            "pandas",
+            "numpy",
+            "A vector database client library (e.g., pinecone-client, weaviate-client)",
+            "matplotlib"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "vector database",
+            "rag",
+            "python packages"
+        ],
+        "difficulty": "easy",
+        "explanation": "Vector databases are essential for RAG. A specific client library (like pinecone-client) is necessary to perform storage and query operations on the vector embeddings[cite: 195]."
+    },
+    {
+        "id": "nvidia_AI_373",
+        "question": "What is the recommended approach for monitoring LLM applications in production?",
+        "type": "multiple_choice",
+        "options": [
+            "Manual log checking only",
+            "Implementing comprehensive logging, metrics, and health checks",
+            "Running inference tests manually",
+            "Checking GPU utilization only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llmops",
+            "monitoring",
+            "production"
+        ],
+        "difficulty": "medium",
+        "explanation": "Comprehensive logging, metrics, and health checks are essential for continuous monitoring to ensure system reliability, detect performance drift, and maintain the integrity of LLM applications[cite: 195]."
+    },
+    {
+        "id": "nvidia_AI_374",
+        "question": "Which design pattern is most appropriate for building scalable LLM chatbot applications?",
+        "type": "multiple_choice",
+        "options": [
+            "Monolithic architecture only",
+            "Microservices with proper separation of concerns",
+            "Single-threaded processing only",
+            "Synchronous processing for all operations"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture",
+            "microservices",
+            "scalability"
+        ],
+        "difficulty": "medium",
+        "explanation": "Microservices enable independent deployment, scalability, and maintainability, which are critical for handling the complexity and fluctuating demands of LLM chatbot applications[cite: 196]."
+    },
+    {
+        "id": "nvidia_AI_375",
+        "question": "When integrating LLMs into existing systems, what is the most critical consideration for system reliability?",
+        "type": "multiple_choice",
+        "options": [
+            "Model accuracy only",
+            "Proper error handling, fallback mechanisms, and monitoring",
+            "Using the largest available model",
+            "Minimizing response time at all costs"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "system reliability",
+            "error handling",
+            "llm integration"
+        ],
+        "difficulty": "medium",
+        "explanation": "Reliability hinges on ensuring system resilience; proper error handling and fallback mechanisms prevent total system failure when the LLM service or other components fail[cite: 197]."
+    },
+    {
+        "id": "nvidia_AI_376",
+        "question": "What is the most important aspect of writing maintainable LLM application code?",
+        "type": "multiple_choice",
+        "options": [
+            "Using complex algorithms",
+            "Clear documentation, modular design, and comprehensive testing",
+            "Optimizing for speed only",
+            "Using the latest Python version"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "software engineering",
+            "maintainability",
+            "best practices"
+        ],
+        "difficulty": "easy",
+        "explanation": "Maintainability is maximized by following software engineering best practices: clear documentation, modular design for readability and collaboration, and comprehensive testing[cite: 198]."
+    },
+    {
+        "id": "nvidia_AI_377",
+        "question": "Which testing strategy is most appropriate for LLM applications?",
+        "type": "multiple_choice",
+        "options": [
+            "Unit tests only",
+            "Integration tests only",
+            "A combination of unit, integration, and end-to-end tests",
+            "Manual testing only"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "testing",
+            "software development",
+            "llmops"
+        ],
+        "difficulty": "easy",
+        "explanation": "A complete testing strategy for LLM pipelines requires multiple layers: unit tests for individual functions, integration tests for component interaction, and end-to-end tests for the full user flow[cite: 199]."
+    },
+    {
+        "id": "nvidia_AI_378",
+        "question": "When deploying LLM models, what is the recommended approach for version control?",
+        "type": "multiple_choice",
+        "options": [
+            "No version control needed",
+            "Track model versions, dependencies, and configuration changes",
+            "Only track code changes",
+            "Manual documentation only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "version control",
+            "llmops",
+            "reproducibility"
+        ],
+        "difficulty": "medium",
+        "explanation": "For LLMs, version control must extend beyond code to track the model artifact, its specific dependencies, and the training configuration to ensure reproducibility and reliable rollback capabilities[cite: 200]."
+    },
+    {
+        "id": "nvidia_AI_379",
+        "question": "Which statistical test is most appropriate for comparing the performance of two LLMs on a question-answering task, assuming normal distribution?",
+        "type": "multiple_choice",
+        "options": [
+            "Chi-squared test",
+            "Paired t-test",
+            "One-way ANOVA",
+            "Mann-Whitney U test"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "statistical testing",
+            "paired t-test",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "A paired t-test is appropriate for comparing the means of two related groups, such as the performance scores of two different models tested on the same dataset."
+    },
+    {
+        "id": "nvidia_AI_380",
+        "question": "When evaluating LLM performance, which metric is most commonly used for text generation quality?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy only",
+            "BLEU score for translation tasks or custom metrics for specific applications",
+            "Training loss only",
+            "Model size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation metrics",
+            "bleu score",
+            "text generation"
+        ],
+        "difficulty": "easy",
+        "explanation": "The BLEU score measures the n-gram overlap between generated text and a reference text, making it a common metric for evaluating the quality of text generated in tasks like translation and summarization."
+    },
+    {
+        "id": "nvidia_AI_381",
+        "question": "What is the primary purpose of A/B testing in LLM applications?",
+        "type": "multiple_choice",
+        "options": [
+            "To reduce computational costs",
+            "To compare different model versions or prompting strategies with real users",
+            "To speed up training",
+            "To eliminate the need for validation data"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "a/b testing",
+            "production",
+            "evaluation"
+        ],
+        "difficulty": "easy",
+        "explanation": "A/B testing is a critical MLOps practice used in production to compare the real-world impact and user experience of different model configurations or prompting strategies."
+    },
+    {
+        "id": "nvidia_AI_382",
+        "question": "Which approach is most effective for evaluating RAG system performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Measuring retrieval accuracy only",
+            "Measuring generation quality only",
+            "Evaluating both retrieval relevance and generation quality",
+            "Checking response time only"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rag",
+            "evaluation",
+            "retrieval metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "A complete RAG evaluation must include both retrieval metrics (relevance of retrieved documents) and generation metrics (quality, coherence, and accuracy of the final response)."
+    },
+    {
+        "id": "nvidia_AI_383",
+        "question": "When designing experiments to evaluate prompt engineering techniques, what is the most important consideration?",
+        "type": "multiple_choice",
+        "options": [
+            "Using the largest possible dataset",
+            "Controlling for variables and ensuring reproducible results",
+            "Testing on a single model only",
+            "Focusing on speed optimization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "experiment design",
+            "prompt engineering",
+            "reproducibility"
+        ],
+        "difficulty": "medium",
+        "explanation": "Experimental rigor requires controlling variables (like temperature and example selection) and documenting all parameters to ensure the results of prompt strategies are reproducible and reliable[cite: 205]."
+    },
+    {
+        "id": "nvidia_AI_384",
+        "question": "What is the recommended approach for handling dataset splits in LLM evaluation experiments?",
+        "type": "multiple_choice",
+        "options": [
+            "Random 50-50 split",
+            "Stratified splits that maintain data distribution and prevent data leakage",
+            "Using all data for both training and testing",
+            "Time-based splits only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data splits",
+            "evaluation",
+            "stratified sampling"
+        ],
+        "difficulty": "medium",
+        "explanation": "Stratified splits ensure that the proportion of classes or important features is maintained across the training and testing sets, providing a more representative and reliable evaluation[cite: 206]."
+    },
+    {
+        "id": "nvidia_AI_385",
+        "question": "Which technique is most important for ensuring reproducible LLM experiments?",
+        "type": "multiple_choice",
+        "options": [
+            "Using random seeds and documenting all experimental parameters",
+            "Running experiments only once",
+            "Using the same hardware always",
+            "Avoiding any randomization"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "reproducibility",
+            "experiment design",
+            "random seeds"
+        ],
+        "difficulty": "easy",
+        "explanation": "Reproducibility relies on setting random seeds (to ensure the same initial state) and meticulously documenting all configurations and parameters used in the experiment[cite: 207]."
+    },
+    {
+        "id": "nvidia_AI_386",
+        "question": "When evaluating few-shot prompting effectiveness, what is the key experimental consideration?",
+        "type": "multiple_choice",
+        "options": [
+            "Using the same examples for all tests",
+            "Systematically varying the number and selection of examples",
+            "Testing on training data only",
+            "Ignoring example quality"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "few-shot prompting",
+            "experiment design",
+            "in-context learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "To isolate the true effect of few-shot prompting, researchers must systematically vary the number and specific selection of examples provided in the prompt[cite: 208]."
+    },
+    {
+        "id": "nvidia_AI_387",
+        "question": "For evaluating LLM hallucination, which evaluation approach is most comprehensive?",
+        "type": "multiple_choice",
+        "options": [
+            "Automated metrics only",
+            "Human evaluation only",
+            "Combination of automated fact-checking and human evaluation",
+            "Measuring confidence scores only"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "hallucination",
+            "evaluation",
+            "human-in-the-loop"
+        ],
+        "difficulty": "medium",
+        "explanation": "A combination of automated fact-checking (for factual correctness) and human evaluation (for logical reasoning and contextual quality) provides the most comprehensive assessment of hallucination."
+    },
+    {
+        "id": "nvidia_AI_388",
+        "question": "What is the most appropriate metric for evaluating retrieval performance in RAG systems?",
+        "type": "multiple_choice",
+        "options": [
+            "Response time only",
+            "Recall@k and precision@k",
+            "Model size",
+            "GPU utilization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rag",
+            "retrieval metrics",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Recall@k measures the proportion of relevant documents retrieved, and precision@k measures the relevance of the retrieved documents, making them ideal for quantifying retrieval effectiveness."
+    },
+    {
+        "id": "nvidia_AI_389",
+        "question": "When comparing multiple LLM fine-tuning approaches, which evaluation strategy provides the most reliable results?",
+        "type": "multiple_choice",
+        "options": [
+            "Single metric evaluation",
+            "Multiple metrics with cross-validation and statistical significance testing",
+            "Training loss comparison only",
+            "Subjective assessment only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation strategy",
+            "cross-validation",
+            "reliability"
+        ],
+        "difficulty": "medium",
+        "explanation": "A reliable evaluation requires robustness checks; using multiple metrics, cross-validation, and statistical tests ensures results are not due to chance and generalize well[cite: 211]."
+    },
+    {
+        "id": "nvidia_AI_390",
+        "question": "Which NVIDIA library is specifically designed for GPU-accelerated data processing similar to pandas?",
+        "type": "multiple_choice",
+        "options": [
+            "cuML",
+            "cuDF",
+            "cuGraph",
+            "TensorRT"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia rapids",
+            "cudf",
+            "data processing"
+        ],
+        "difficulty": "easy",
+        "explanation": "cuDF is NVIDIA’s GPU DataFrame library, part of RAPIDS, which provides a familiar pandas-like API for performing accelerated data manipulation[cite: 19, 20, 212, 249]."
+    },
+    {
+        "id": "nvidia_AI_391",
+        "question": "When analyzing large datasets for LLM training, which approach is most efficient using NVIDIA RAPIDS?",
+        "type": "multiple_choice",
+        "options": [
+            "Processing data sequentially on CPU",
+            "Using cuDF for DataFrame operations with GPU acceleration",
+            "Manual data processing without libraries",
+            "Using only standard pandas operations"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rapids",
+            "efficiency",
+            "data preprocessing"
+        ],
+        "difficulty": "easy",
+        "explanation": "RAPIDS, through cuDF, leverages the parallel processing power of the GPU to perform DataFrame operations, enabling massive speedups in data preprocessing for large LLM training sets."
+    },
+    {
+        "id": "nvidia_AI_392",
+        "question": "For visualizing LLM training metrics, which combination of tools is most effective?",
+        "type": "multiple_choice",
+        "options": [
+            "Excel charts only",
+            "Matplotlib/Seaborn with pandas for comprehensive analysis",
+            "Text-based logs only",
+            "Manual plotting"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "visualization",
+            "matplotlib",
+            "seaborn"
+        ],
+        "difficulty": "easy",
+        "explanation": "Matplotlib and Seaborn offer flexible and powerful visualization tools that, when used with data processed by pandas, enable comprehensive analysis of training trends and metrics[cite: 214]."
+    },
+    {
+        "id": "nvidia_AI_393",
+        "question": "When analyzing text data for LLM applications, which preprocessing steps are most critical?",
+        "type": "multiple_choice",
+        "options": [
+            "Tokenization, normalization, and encoding",
+            "Translation only",
+            "Removing all punctuation",
+            "Converting to uppercase only"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "preprocessing",
+            "tokenization",
+            "nlp"
+        ],
+        "difficulty": "easy",
+        "explanation": "Tokenization breaks text down, normalization standardizes it, and encoding converts it to numerical input, making these the fundamental steps for preparing text for LLM input[cite: 215]."
+    },
+    {
+        "id": "nvidia_AI_394",
+        "question": "Which statistical measure is most appropriate for comparing loss functions across different LLM training runs?",
+        "type": "multiple_choice",
+        "options": [
+            "Mean only",
+            "Mean, standard deviation, and confidence intervals",
+            "Maximum value only",
+            "Minimum value only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "statistical analysis",
+            "training metrics",
+            "confidence intervals"
+        ],
+        "difficulty": "medium",
+        "explanation": "Mean, standard deviation, and confidence intervals summarize the central tendency, variability, and reliability of the loss function, allowing for a robust statistical comparison across runs[cite: 216]."
+    },
+    {
+        "id": "nvidia_AI_395",
+        "question": "When analyzing model performance trends during training, which visualization technique is most informative?",
+        "type": "multiple_choice",
+        "options": [
+            "Static bar charts only",
+            "Time series plots with multiple metrics and trend lines",
+            "Pie charts",
+            "Simple tables only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "visualization",
+            "training trends",
+            "time series"
+        ],
+        "difficulty": "medium",
+        "explanation": "Time series plots effectively visualize how metrics (like loss and accuracy) evolve over epochs, revealing convergence behavior, stability, and training plateaus[cite: 217]."
+    },
+    {
+        "id": "nvidia_AI_396",
+        "question": "For analyzing the relationship between model size and performance, which statistical approach is most appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "Simple correlation only",
+            "Regression analysis with confidence intervals",
+            "Counting observations only",
+            "Qualitative assessment only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "statistical analysis",
+            "regression",
+            "model scaling"
+        ],
+        "difficulty": "medium",
+        "explanation": "Regression analysis quantifies the relationship between variables (e.g., size vs. performance), and confidence intervals express the reliability of that measured relationship[cite: 218]."
+    },
+    {
+        "id": "nvidia_AI_397",
+        "question": "According to NVIDIA's trustworthy AI principles, which approach is most effective for minimizing bias in AI systems?",
+        "type": "multiple_choice",
+        "options": [
+            "Ignoring bias during development",
+            "Using diverse, representative datasets and regular bias testing",
+            "Using larger models only",
+            "Focusing on accuracy metrics only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "trustworthy ai",
+            "bias mitigation",
+            "fairness"
+        ],
+        "difficulty": "easy",
+        "explanation": "Minimizing bias requires a proactive strategy of ensuring diverse data and continuously evaluating and testing the model for biases in its output[cite: 46, 219, 252]."
+    },
+    {
+        "id": "nvidia_AI_398",
+        "question": "What is the primary goal of NVIDIA's trustworthy AI framework?",
+        "type": "multiple_choice",
+        "options": [
+            "Maximizing model performance only",
+            "Ensuring AI systems are safe, transparent, fair, and verifiable",
+            "Reducing computational costs only",
+            "Speeding up development processes"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "trustworthy ai",
+            "ethics",
+            "safety"
+        ],
+        "difficulty": "easy",
+        "explanation": "The primary goal is to ensure AI systems are developed responsibly and ethically, emphasizing safety, transparency, fairness, and verifiability."
+    },
+    {
+        "id": "nvidia_AI_399",
+        "question": "Which technique is most effective for improving AI fairness across different demographic groups?",
+        "type": "multiple_choice",
+        "options": [
+            "Using synthetic datasets to augment underrepresented groups",
+            "Ignoring demographic differences",
+            "Training separate models for each group",
+            "Using only majority group data"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "fairness",
+            "bias mitigation",
+            "data augmentation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Bias often stems from underrepresentation; augmenting datasets using synthetic data is an effective method to balance representation and improve fairness across groups[cite: 221]."
+    },
+    {
+        "id": "nvidia_AI_400",
+        "question": "In the context of LLM development, what is the most important consideration for data privacy compliance?",
+        "type": "multiple_choice",
+        "options": [
+            "Using all available data regardless of source",
+            "Ensuring appropriate consent and following data protection regulations",
+            "Maximizing dataset size only",
+            "Minimizing training time"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data privacy",
+            "compliance",
+            "gdpr"
+        ],
+        "difficulty": "easy",
+        "explanation": "Data privacy is defined by legal and ethical adherence; the most important consideration is ensuring appropriate consent and following regulations like GDPR[cite: 50, 222, 51]."
+    },
+    {
+        "id": "nvidia_AI_401",
+        "question": "Which NVIDIA technology enables federated learning to maintain data privacy while training AI models?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorRT only",
+            "NVIDIA FLARE (Federated Learning Application Runtime Environment)",
+            "cuDF only",
+            "NeMo only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "federated learning",
+            "privacy",
+            "nvidia flare"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA FLARE is the framework that facilitates federated learning, enabling decentralized model training where data remains localized, thus preserving privacy."
+    },
+    {
+        "id": "nvidia_AI_402",
+        "question": "Which NVIDIA technology enables federated learning to maintain data privacy while training AI models?",
+        "type": "multiple_choice",
+        "options": [
+            "TensorRT only",
+            "NVIDIA FLARE (Federated Learning Application Runtime Environment)",
+            "cuDF only",
+            "NeMo only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "federated learning",
+            "privacy",
+            "nvidia flare"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA FLARE is the framework that facilitates federated learning, enabling decentralized model training where data remains localized, thus preserving privacy."
+    }
+]

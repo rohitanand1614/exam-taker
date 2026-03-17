@@ -1,0 +1,828 @@
+[
+    {
+        "id": "q21",
+        "question": "In the context of data preprocessing using scikit-learn, what is the primary purpose of `ColumnTransformer`?",
+        "type": "multiple_choice",
+        "options": [
+            "To apply the same transformation to all columns in a dataset.",
+            "To apply different transformers to different columns of a DataFrame and concatenate the results.",
+            "To convert a pandas DataFrame into a NumPy array.",
+            "To automatically select the best features for the model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data preprocessing",
+            "scikit-learn"
+        ],
+        "difficulty": "medium",
+        "explanation": "The text defines `ColumnTransformer` as a utility that applies different transformers to different columns (e.g., OneHotEncoder for categorical, StandardScaler for numeric) and concatenates the results."
+    },
+    {
+        "id": "q22",
+        "question": "Which of the following statements accurately describes `StandardScaler`?",
+        "type": "multiple_choice",
+        "options": [
+            "It scales features to a fixed range, typically [0, 1].",
+            "It standardizes features by removing the mean and scaling to unit variance.",
+            "It converts categorical features into binary indicator columns.",
+            "It handles missing values by replacing them with the mean."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data preprocessing",
+            "scaling"
+        ],
+        "difficulty": "easy",
+        "explanation": "`StandardScaler` is explicitly defined as a transformer that standardizes features to have a mean of 0 and a variance of 1."
+    },
+    {
+        "id": "q23",
+        "question": "In a confusion matrix, what is a 'Type I error'?",
+        "type": "multiple_choice",
+        "options": [
+            "False Negative (FN)",
+            "True Negative (TN)",
+            "False Positive (FP)",
+            "True Positive (TP)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "evaluation metrics",
+            "confusion matrix",
+            "terminology"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text explicitly states that a False Positive (FP) is also called a 'Type I error' in statistics."
+    },
+    {
+        "id": "q24",
+        "question": "Which evaluation metric is defined as the harmonic mean of Precision and Recall?",
+        "type": "multiple_choice",
+        "options": [
+            "Accuracy",
+            "F1 Score",
+            "R-squared",
+            "Mean Squared Error"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation metrics",
+            "classification"
+        ],
+        "difficulty": "easy",
+        "explanation": " The F1 score is defined as the harmonic mean of precision and recall, balancing both metrics."
+    },
+    {
+        "id": "q25",
+        "question": "In regression evaluation, why might Root Mean Squared Error (RMSE) be preferred over Mean Squared Error (MSE)?",
+        "type": "multiple_choice",
+        "options": [
+            "RMSE is less sensitive to outliers than MSE.",
+            "RMSE brings the error measure back to the same unit as the target variable.",
+            "RMSE does not penalize large errors.",
+            "RMSE is always a value between 0 and 1."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation metrics",
+            "regression"
+        ],
+        "difficulty": "medium",
+        "explanation": "By taking the square root of MSE, RMSE expresses the error in the same units as the target variable, aiding interpretability while still penalizing large errors."
+    },
+    {
+        "id": "q26",
+        "question": "Which clustering algorithm requires the number of clusters (k) to be specified beforehand?",
+        "type": "multiple_choice",
+        "options": [
+            "DBSCAN",
+            "Agglomerative Hierarchical Clustering",
+            "K-Means",
+            "Divisive Hierarchical Clustering"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "clustering",
+            "algorithms"
+        ],
+        "difficulty": "easy",
+        "explanation": "The text lists a requirement for K-Means: the number of clusters 'k' must be specified beforehand."
+    },
+    {
+        "id": "q27",
+        "question": "What does the 'Elbow Method' help determine in K-Means clustering?",
+        "type": "multiple_choice",
+        "options": [
+            "The best distance metric to use.",
+            "The optimal number of clusters (k) by analyzing inertia.",
+            "The maximum number of iterations required for convergence.",
+            "The density threshold for outliers."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "clustering",
+            "k-means",
+            "hyperparameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Elbow method plots inertia vs. k to find the point of diminishing returns, helping to select the optimal number of clusters."
+    },
+    {
+        "id": "q28",
+        "question": "Which of the following is a key advantage of DBSCAN over K-Means?",
+        "type": "multiple_choice",
+        "options": [
+            "It is faster and more scalable.",
+            "It works best with spherical clusters.",
+            "It can discover clusters of arbitrary shape and explicitly handles outliers.",
+            "It does not require any hyperparameters."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "clustering",
+            "dbscan",
+            "comparison"
+        ],
+        "difficulty": "medium",
+        "explanation": "DBSCAN is highlighted for its ability to find arbitrarily shaped clusters and identify outliers (noise), whereas K-Means assumes spherical clusters."
+    },
+    {
+        "id": "q29",
+        "question": "In Association Rule Mining, what does 'Lift' measure?",
+        "type": "multiple_choice",
+        "options": [
+            "The percentage of transactions containing a specific itemset.",
+            "The probability that a transaction containing X also contains Y.",
+            "How much more likely Y is purchased when X is purchased, compared to chance.",
+            "The total revenue generated by an itemset."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "association rule mining",
+            "metrics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Lift measures the strength of association by comparing the conditional probability of Y given X to the baseline probability of Y."
+    },
+    {
+        "id": "q30",
+        "question": "What is the specific role of `cuDF` in the NVIDIA RAPIDS ecosystem?",
+        "type": "multiple_choice",
+        "options": [
+            "It provides GPU-accelerated machine learning algorithms like XGBoost.",
+            "It is a GPU DataFrame library for data manipulation, similar to pandas.",
+            "It handles GPU-accelerated graph analytics.",
+            "It is used for deploying models to edge devices."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia tools",
+            "rapids",
+            "cudf"
+        ],
+        "difficulty": "easy",
+        "explanation": "`cuDF` is described as a GPU DataFrame library with an API similar to pandas, enabling fast data manipulation on GPUs."
+    },
+    {
+        "id": "q31",
+        "question": "Which of the following is a disadvantage of `GridSearchCV` compared to `RandomizedSearchCV`?",
+        "type": "multiple_choice",
+        "options": [
+            "It cannot guarantee finding the optimal combination within the grid.",
+            "It has a high computational cost because it performs an exhaustive search.",
+            "It requires more complex code to implement.",
+            "It is less interpretable than random search."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hyperparameter tuning",
+            "optimization",
+            "trade-offs"
+        ],
+        "difficulty": "medium",
+        "explanation": "GridSearchCV tries every combination, leading to high computational cost, whereas RandomizedSearchCV samples a subset, making it faster for large search spaces."
+    },
+    {
+        "id": "q32",
+        "question": "In an ARIMA(p,d,q) model, what does the parameter 'd' represent?",
+        "type": "multiple_choice",
+        "options": [
+            "The order of the autoregressive (AR) component.",
+            "The order of the moving average (MA) component.",
+            "The order of differencing required to make the series stationary.",
+            "The number of seasonal periods."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "time series",
+            "arima",
+            "parameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "In ARIMA(p,d,q), 'd' stands for the Integrated component, which is the order of differencing used to achieve stationarity."
+    },
+    {
+        "id": "q33",
+        "question": "What is a 'Stationary Time Series'?",
+        "type": "multiple_choice",
+        "options": [
+            "A series that constantly increases over time.",
+            "A series with constant mean and variance over time.",
+            "A series that has no missing values.",
+            "A series where the future values are exactly the same as past values."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "time series",
+            "theory"
+        ],
+        "difficulty": "easy",
+        "explanation": "A stationary series is defined as having a constant mean, constant variance, and autocorrelation that does not depend on absolute time."
+    },
+    {
+        "id": "q34",
+        "question": "Which cross-validation search strategy guarantees finding the best hyperparameter combination within the specified search space?",
+        "type": "multiple_choice",
+        "options": [
+            "RandomizedSearchCV",
+            "GridSearchCV",
+            "Manual Tuning",
+            "Early Stopping"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "hyperparameter tuning",
+            "optimization"
+        ],
+        "difficulty": "easy",
+        "explanation": "GridSearchCV performs an exhaustive search, guaranteeing that it finds the best combination specifically *within the defined grid*."
+    },
+    {
+        "id": "q35",
+        "question": "Which of the following scenarios would best be addressed by 'Regression'?",
+        "type": "multiple_choice",
+        "options": [
+            "Predicting whether an email is spam or not.",
+            "Predicting the future price of a stock.",
+            "Grouping customers into segments based on purchasing behavior.",
+            "Detecting fraudulent transactions."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "regression",
+            "use cases"
+        ],
+        "difficulty": "easy",
+        "explanation": "Regression is used for predicting continuous numerical values, such as stock prices. Spam detection and fraud detection are classification tasks; segmentation is clustering."
+    },
+    {
+        "id": "q36",
+        "question": "What does 'Silhouette Analysis' measure in the context of clustering?",
+        "type": "multiple_choice",
+        "options": [
+            "The total distance between all points and the origin.",
+            "How well each data point fits within its assigned cluster compared to neighboring clusters.",
+            "The computational time required to fit the model.",
+            "The hierarchy level in a dendrogram."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "clustering",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Silhouette analysis measures cluster quality by assessing how similar a point is to its own cluster (cohesion) versus other clusters (separation)."
+    },
+    {
+        "id": "q37",
+        "question": "In the Apriori algorithm, what is the first step used to filter itemsets?",
+        "type": "multiple_choice",
+        "options": [
+            "Calculate Lift for all rules.",
+            "Filter by Minimum Confidence.",
+            "Generate frequent itemsets based on Minimum Support.",
+            "Sort items alphabetically."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "association rule mining",
+            "apriori"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Apriori workflow starts by generating frequent itemsets that meet a defined minimum support threshold."
+    },
+    {
+        "id": "q38",
+        "question": "Which NVIDIA RAPIDS library is dedicated to GPU-accelerated machine learning algorithms like XGBoost and K-Means?",
+        "type": "multiple_choice",
+        "options": [
+            "cuDF",
+            "cuGraph",
+            "cuSpatial",
+            "cuML"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "nvidia tools",
+            "rapids",
+            "cuml"
+        ],
+        "difficulty": "easy",
+        "explanation": "cuML is explicitly identified as the GPU-accelerated machine learning library in RAPIDS."
+    },
+    {
+        "id": "q39",
+        "question": "When interpreting R-squared (R2) in regression, what does a value of 1 indicate?",
+        "type": "multiple_choice",
+        "options": [
+            "The model explains none of the variance in the target.",
+            "The model perfectly explains the variance in the target.",
+            "The model is overfitting significantly.",
+            "The average error is 1 unit."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "evaluation metrics",
+            "regression"
+        ],
+        "difficulty": "easy",
+        "explanation": "An R2 of 1 indicates a perfect fit, where the model explains 100% of the variance in the target variable."
+    },
+    {
+        "id": "q40",
+        "question": "Which component of a time series represents random fluctuations not explained by trend, seasonality, or cycles?",
+        "type": "multiple_choice",
+        "options": [
+            "Trend",
+            "Seasonality",
+            "Residual / Noise",
+            "Integrated"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "time series",
+            "terminology"
+        ],
+        "difficulty": "easy",
+        "explanation": "Residuals (or noise) are defined as the random fluctuations remaining after modeling the structured components like trend and seasonality."
+    },
+    {
+        "id": "q41",
+        "question": "What is the primary function of the 'Hidden Layers' in a deep learning neural network?",
+        "type": "multiple_choice",
+        "options": [
+            "To receive the raw input data from the dataset.",
+            "To transform and combine inputs to learn increasingly complex representations.",
+            "To produce the final probability distribution directly from raw pixels.",
+            "To manually assign weights to features before training begins."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "neural network architecture",
+            "hidden layer",
+            "deep learning"
+        ],
+        "difficulty": "easy",
+        "explanation": "Hidden layers contain neurons that transform and combine inputs from previous layers to learn specific features or patterns, such as edges or shapes, creating complex representations."
+    },
+    {
+        "id": "q42",
+        "question": "Which neural network architecture is best suited for processing sequential data where order and context matter, such as time-series or text?",
+        "type": "multiple_choice",
+        "options": [
+            "Convolutional Neural Networks (CNNs)",
+            "Multilayer Perceptrons (MLPs)",
+            "Recurrent Neural Networks (RNNs)",
+            "Generative Adversarial Networks (GANs)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "model selection",
+            "rnn",
+            "sequential data"
+        ],
+        "difficulty": "easy",
+        "explanation": "Recurrent Neural Networks (RNNs) are designed for sequential data because they maintain a hidden state that carries information from previous time steps."
+    },
+    {
+        "id": "q43",
+        "question": "Calculate the output of a neuron using the ReLU activation function given the following inputs: Input X1=0.5, Weight W1=0.3; Input X2=0.8, Weight W2=0.6; Bias b=-0.1.",
+        "type": "multiple_choice",
+        "options": [
+            "0.63",
+            "0.53",
+            "0.0",
+            "-0.1"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "neuron calculation",
+            "math",
+            "relu"
+        ],
+        "difficulty": "medium",
+        "explanation": "Weighted sum z = (0.5 * 0.3) + (0.8 * 0.6) + (-0.1) = 0.15 + 0.48 - 0.1 = 0.53. Applying ReLU(z) = max(0, 0.53) results in 0.53."
+    },
+    {
+        "id": "q44",
+        "question": "What is the specific role of 'Backpropagation' in the deep learning training workflow?",
+        "type": "multiple_choice",
+        "options": [
+            "To send data from the input layer to the output layer to get a prediction.",
+            "To compute the loss value by comparing predictions to ground truth.",
+            "To update model parameters (weights and biases) by computing gradients of the loss.",
+            "To randomly initialize the weights of the network."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "training workflow",
+            "backpropagation",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Backpropagation is the process of computing gradients of the loss function with respect to each parameter and updating them to reduce the error."
+    },
+    {
+        "id": "q45",
+        "question": "Which of the following describes the 'Vanishing Gradient' problem often associated with Sigmoid and Tanh activation functions?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradients become extremely large, causing the model to diverge.",
+            "Gradients become extremely small, slowing down or stalling learning in deep networks.",
+            "The model outputs become negative, causing neurons to die.",
+            "The activation function outputs values greater than 1, causing instability."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "activation functions",
+            "vanishing gradient",
+            "challenges"
+        ],
+        "difficulty": "medium",
+        "explanation": "The vanishing gradient problem occurs when gradients become very small during backpropagation (common with Sigmoid/Tanh), preventing weights in earlier layers from updating effectively."
+    },
+    {
+        "id": "q46",
+        "question": "Why is Stochastic Gradient Descent (SGD) generally faster per iteration than Batch Gradient Descent?",
+        "type": "multiple_choice",
+        "options": [
+            "It calculates gradients using the entire dataset at once.",
+            "It uses a single randomly chosen training example to update parameters.",
+            "It guarantees finding the global minimum in one step.",
+            "It does not require calculating derivatives."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gradient descent",
+            "optimization",
+            "sgd"
+        ],
+        "difficulty": "easy",
+        "explanation": "SGD is computationally efficient per update because it uses only one sample to compute gradients, whereas Batch Gradient Descent processes the entire dataset for a single update."
+    },
+    {
+        "id": "q47",
+        "question": "Which NVIDIA software library is specifically designed to optimize deep learning inference for deployment?",
+        "type": "multiple_choice",
+        "options": [
+            "NVIDIA RAPIDS",
+            "NVIDIA cuDNN",
+            "NVIDIA TensorRT",
+            "NVIDIA CUDA"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia tools",
+            "inference",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "NVIDIA TensorRT is a platform explicitly for high-performance deep learning inference, optimizing trained models for deployment."
+    },
+    {
+        "id": "q48",
+        "question": "What is the primary advantage of using ReLU (Rectified Linear Unit) in hidden layers compared to Sigmoid?",
+        "type": "multiple_choice",
+        "options": [
+            "ReLU outputs probabilities between 0 and 1.",
+            "ReLU is computationally efficient and helps mitigate vanishing gradients.",
+            "ReLU can capture negative patterns better than Tanh.",
+            "ReLU is a linear function, making the whole network linear."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "activation functions",
+            "relu",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "ReLU is preferred in hidden layers because it is simple to compute and helps maintain healthier gradients for positive inputs, mitigating the vanishing gradient problem."
+    },
+    {
+        "id": "q49",
+        "question": "In the context of Gradient Descent, what happens if the 'Learning Rate' is set too high?",
+        "type": "multiple_choice",
+        "options": [
+            "The training will take a very long time to converge.",
+            "The algorithm may overshoot the minimum and diverge.",
+            "The model will get stuck in a local minimum immediately.",
+            "The gradients will vanish."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gradient descent",
+            "hyperparameters",
+            "learning rate"
+        ],
+        "difficulty": "medium",
+        "explanation": "A learning rate that is too high causes large parameter updates, which can lead the algorithm to overshoot the optimal values and potentially diverge."
+    },
+    {
+        "id": "q50",
+        "question": "Which activation function is most appropriate for the output layer of a multi-class classification model?",
+        "type": "multiple_choice",
+        "options": [
+            "Sigmoid",
+            "ReLU",
+            "Softmax",
+            "Tanh"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "activation functions",
+            "output layer",
+            "classification"
+        ],
+        "difficulty": "easy",
+        "explanation": "Softmax is used for multi-class classification because it converts raw outputs (logits) into a probability distribution over multiple classes, summing to 1."
+    },
+    {
+        "id": "q51",
+        "question": "In the Keras multiclass classifier tutorial for MNIST, why is the input shape for the first dense layer set to (784,)?",
+        "type": "multiple_choice",
+        "options": [
+            "Because the batch size is 784.",
+            "Because the 28x28 pixel images are flattened into a 784-dimensional vector.",
+            "Because there are 784 classes in the dataset.",
+            "Because the learning rate is 0.000784."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "keras",
+            "mnist",
+            "model architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "The notes state that the input shape is 784 because the 28x28 image is flattened to a 784-dimensional vector."
+    },
+    {
+        "id": "q52",
+        "question": "Which loss function is recommended in the tutorial for a multiclass classification problem with one-hot encoded labels?",
+        "type": "multiple_choice",
+        "options": [
+            "binary_crossentropy",
+            "mean_squared_error",
+            "categorical_crossentropy",
+            "sparse_categorical_crossentropy"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "keras",
+            "loss function",
+            "classification"
+        ],
+        "difficulty": "medium",
+        "explanation": "The notes explicitly specify `categorical_crossentropy` as the loss function for multiclass classification with one-hot labels."
+    },
+    {
+        "id": "q53",
+        "question": "What is the primary purpose of a Convolutional Layer in a CNN?",
+        "type": "multiple_choice",
+        "options": [
+            "To flatten the input into a 1D vector.",
+            "To reduce the spatial dimensions of the input.",
+            "To extract features from the input using filters that slide over the data.",
+            "To classify the final output probabilities."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cnn",
+            "convolutional layer",
+            "feature extraction"
+        ],
+        "difficulty": "easy",
+        "explanation": "Convolutional layers use filters (kernels) to slide over the input and extract features like edges, corners, and textures."
+    },
+    {
+        "id": "q54",
+        "question": "In a CNN, what is the role of a Pooling Layer?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the number of parameters in the network.",
+            "To reduce spatial dimensions and summarize features, providing translational invariance.",
+            "To apply non-linear activation functions like ReLU.",
+            "To perform the final classification."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cnn",
+            "pooling layer",
+            "dimensionality reduction"
+        ],
+        "difficulty": "medium",
+        "explanation": "Pooling layers downsample the input to reduce spatial dimensions, summarize features, and help achieve translational invariance."
+    },
+    {
+        "id": "q55",
+        "question": "What is 'Transfer Learning'?",
+        "type": "multiple_choice",
+        "options": [
+            "Training a model from scratch on a very large dataset.",
+            "The process of reusing knowledge learned by a pre-trained model on a new, often smaller, target task.",
+            "Moving data from a CPU to a GPU for faster processing.",
+            "Converting a regression model into a classification model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transfer learning",
+            "definition"
+        ],
+        "difficulty": "easy",
+        "explanation": "Transfer learning is defined as reusing knowledge from a pre-trained model to solve a new task, improving efficiency and performance."
+    },
+    {
+        "id": "q56",
+        "question": "Which Transfer Learning approach involves keeping the pre-trained layers 'frozen' and only training a new classifier head?",
+        "type": "multiple_choice",
+        "options": [
+            "Fine-tuning",
+            "Feature Extraction",
+            "Data Augmentation",
+            "Random Initialization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transfer learning",
+            "feature extraction",
+            "methodology"
+        ],
+        "difficulty": "medium",
+        "explanation": "Feature extraction uses the pre-trained model as a fixed extractor where weights are frozen, training only the new classifier layers on top."
+    },
+    {
+        "id": "q57",
+        "question": "In the context of CNNs, what does 'Translational Invariance' mean?",
+        "type": "multiple_choice",
+        "options": [
+            "The model can only recognize objects if they are in the exact center of the image.",
+            "The model's performance does not degrade when translating text from one language to another.",
+            "The ability of the model to recognize objects even when they are shifted or slightly moved within the image.",
+            "The model requires input images to be of a fixed size."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cnn",
+            "concepts",
+            "invariance"
+        ],
+        "difficulty": "medium",
+        "explanation": "Translational invariance refers to the ability to recognize features or objects regardless of their specific position (shift) in the image."
+    },
+    {
+        "id": "q58",
+        "question": "When monitoring training, what trend typically indicates 'Overfitting'?",
+        "type": "multiple_choice",
+        "options": [
+            "Training loss increases while Validation loss decreases.",
+            "Both Training loss and Validation loss decrease consistently.",
+            "Training loss keeps decreasing while Validation loss starts increasing.",
+            "Both Training loss and Validation loss increase."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "training",
+            "overfitting",
+            "evaluation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The notes identify the overfitting signal as the point where training loss continues to decrease but validation loss starts to increase."
+    },
+    {
+        "id": "q59",
+        "question": "What is 'Fine-tuning' in Transfer Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "Freezing all layers of a pre-trained model and only training the output layer.",
+            "Unfreezing some or all layers of a pre-trained model and retraining them on the new dataset.",
+            "Adjusting the learning rate during training.",
+            "Selecting the best hyperparameters for a model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transfer learning",
+            "fine-tuning",
+            "methodology"
+        ],
+        "difficulty": "medium",
+        "explanation": "Fine-tuning involves unfreezing some pre-trained layers to allow them to update and adapt more deeply to the new task."
+    },
+    {
+        "id": "q60",
+        "question": "Why do CNNs benefit from 'Parameter Sharing'?",
+        "type": "multiple_choice",
+        "options": [
+            "It allows different filters to be used for different parts of the image.",
+            "It ensures that the model never overfits.",
+            "It allows the same filter weights to be used across all spatial locations, greatly reducing the number of parameters.",
+            "It eliminates the need for a loss function."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cnn",
+            "concepts",
+            "efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "Parameter sharing means the same filter slides across the whole image, so one set of weights is used everywhere, drastically reducing the total parameter count."
+    }
+]

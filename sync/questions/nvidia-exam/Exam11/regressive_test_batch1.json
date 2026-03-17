@@ -1,0 +1,634 @@
+[
+    {
+        "id": "Batch_1_revision_001_013",
+        "question": "While deploying a large language model (LLM) using NVIDIA hardware, you observe that the inference throughput is significantly lower than expected. Which of the following is the most likely cause of this issue?",
+        "type": "multiple_choice",
+        "options": [
+            "Insufficient GPU memory capacity.",
+            "Inefficient batching during inference.",
+            "Incorrect CUDA driver version installed.",
+            "Insufficient CPU cores allocated for the workload."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "deployment",
+            "inference",
+            "throughput",
+            "nvidia",
+            "batching"
+        ],
+        "difficulty": "medium",
+        "explanation": "The most common cause of reduced throughput in deploying LLMs on NVIDIA hardware is inefficient batching, as it fails to fully leverage the parallel processing power of the GPUs. Correcting the batching strategy often leads to improved performance."
+    },
+    {
+        "id": "Batch_1_revision_001_014",
+        "question": "In the context of deploying Generative AI Models, which of the following actions best addresses potential ethical concerns related to bias in AI-generated content?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing adversarial training techniques to improve model robustness.",
+            "Ensuring transparency by documenting the dataset sources and model decision-making process.",
+            "Scaling the model size to improve performance on diverse datasets.",
+            "Deploying the model in a controlled environment before wide-scale use."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "ethics",
+            "bias",
+            "transparency",
+            "deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "To address potential ethical concerns related to bias in AI-generated content, ensuring transparency by documenting dataset sources and the model's decision-making process is crucial. This approach allows for greater scrutiny and the opportunity to address any identified biases effectively."
+    },
+    {
+        "id": "Batch_1_revision_001_016",
+        "question": "In the context of preparing data for training a Generative AI Language Model, which of the following steps is vital for ensuring the model can generalize well to unseen data?",
+        "type": "multiple_choice",
+        "options": [
+            "Uniformly distributing all classes in the dataset.",
+            "Augmenting the data with synthetic samples.",
+            "Ensuring that the training set contains only high-frequency words.",
+            "Performing a hyperparameter search to optimize model performance."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "data preparation",
+            "generalization",
+            "data augmentation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Data augmentation is a crucial step in data preparation when training generative AI models, as it increases the diversity of the training set and thus improves the model's ability to generalize to unseen data."
+    },
+    {
+        "id": "Batch_1_revision_001_019",
+        "question": "In implementing a use case for generative AI with NVIDIA's technology stack, you encounter a bottleneck in model inference speed. Which advanced optimization technique should you leverage to significantly enhance performance without compromising model accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Use Tensor Cores for mixed precision training and inference.",
+            "Implement horizontal scaling by adding more GPUs to the system.",
+            "Apply quantization to reduce the bit width of weights and activations.",
+            "Increase the batch size during inference to better utilize GPU resources."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "generative ai",
+            "nvidia",
+            "inference",
+            "optimization",
+            "tensor cores",
+            "mixed precision"
+        ],
+        "difficulty": "medium",
+        "explanation": "Using Tensor Cores for mixed precision operations is a recommended approach with NVIDIA GPUs to enhance performance significantly while maintaining accuracy. They enable faster computations and are part of NVIDIA’s suite of optimizations for accelerating AI workloads."
+    },
+    {
+        "id": "Batch_1_revision_001_020",
+        "question": "Which of the following techniques is most effective in reducing inference latency for large language models without significantly sacrificing the accuracy of the model?",
+        "type": "multiple_choice",
+        "options": [
+            "Model quantization.",
+            "Model distillation.",
+            "Using larger batch sizes during inference.",
+            "Applying dropout during inference."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "llm",
+            "inference",
+            "latency",
+            "optimization",
+            "quantization"
+        ],
+        "difficulty": "easy",
+        "explanation": "Model quantization is an effective technique for improving inference latency in large language models by reducing the precision of operations, which can lead to faster computations and lower memory usage, provided the quantization is performed correctly to minimize accuracy loss."
+    },
+    {
+        "id": "Batch_1_revision_001_021",
+        "question": "When deploying a large language model (LLM) for inference, which approach best balances scalability and efficiency while minimizing latency in a high-demand environment?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploying the LLM on a single high-performance GPU with concurrent execution.",
+            "Distributed deployment with model sharding across multiple GPUs and nodes.",
+            "Using an optimized compiled version of the model on a CPU cluster.",
+            "Deploying the model with half-precision floating-point operations on limited hardware resources."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "deployment",
+            "scalability",
+            "efficiency",
+            "latency",
+            "model sharding"
+        ],
+        "difficulty": "medium",
+        "explanation": "Distributed deployment with model sharding across multiple GPUs and nodes is generally the best approach to scale LLMs efficiently in a high-demand environment, as it balances computational load and minimizes latency issues."
+    },
+    {
+        "id": "Batch_1_revision_001_023",
+        "question": "When evaluating the performance of a state-of-the-art LLM on a specialized knowledge task, which technique would best identify whether the model's architectural design could be enhanced to improve its understanding and reasoning capabilities?",
+        "type": "multiple_choice",
+        "options": [
+            "Conducting in-depth analysis of attention weights across different layers during task-specific tuning",
+            "Increasing the token size during model training to capture more contextual information per input",
+            "Applying post-hoc explanation methods to interpret model decisions after the task completion",
+            "Utilizing transfer learning from a model trained on generalized tasks to improve task-specific performance"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "llm",
+            "performance evaluation",
+            "architecture",
+            "attention weights",
+            "reasoning"
+        ],
+        "difficulty": "hard",
+        "explanation": "Conducting an in-depth analysis of attention weights helps in understanding the internal workings of an LLM on specific tasks. By examining how attention is distributed, you can assess whether the model architecture is optimally designed for understanding and reasoning, leading to potential design improvements."
+    },
+    {
+        "id": "Batch_1_revision_001_025",
+        "question": "While troubleshooting a large language model (LLM) deployment, you notice that the model's inference latency has suddenly increased on one of the GPU nodes compared to others. Which of the following is the most likely cause of this issue?",
+        "type": "multiple_choice",
+        "options": [
+            "The GPU driver on that node is outdated.",
+            "The CPU workload on that node is maxed out.",
+            "The model's weights were incorrectly modified on that node.",
+            "There is a network bandwidth limitation affecting the data transmission to that node."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "deployment",
+            "latency",
+            "troubleshooting",
+            "cpu workload"
+        ],
+        "difficulty": "medium",
+        "explanation": "Inference latency can be impacted by various factors, but in this case, a maxed-out CPU workload is the most plausible cause for a sudden increase in latency on one node since it would directly affect data transfer and processing speed, reducing performance."
+    },
+    {
+        "id": "Batch_1_revision_001_027",
+        "question": "When deploying a large language model with NVIDIA's Triton Inference Server, which of the following strategies is best suited for optimizing latency and throughput for handling variable workload patterns?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploying a single model instance with dynamic batch sizing enabled.",
+            "Utilizing multiple model replicas and load balancing across them.",
+            "Deploying models in isolated containers without resource sharing.",
+            "Utilizing a model ensemble approach in a single inference pipeline."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "deployment",
+            "triton",
+            "inference server",
+            "latency",
+            "throughput",
+            "dynamic batching"
+        ],
+        "difficulty": "medium",
+        "explanation": "Dynamic batch sizing in Triton Inference Server is specifically designed to handle variable workload patterns by dynamically grouping incoming requests into optimal batch sizes, maximizing GPU utilization, and improving both latency and throughput compared to a fixed batch size or multiple replicas without dynamic batching."
+    },
+    {
+        "id": "Batch_1_revision_001_028",
+        "question": "When training a large language model (LLM) on a distributed GPU cluster, which of the following methods is most effective in minimizing the impact of network communication overhead?",
+        "type": "multiple_choice",
+        "options": [
+            "Using synchronous data parallelism with a large batch size.",
+            "Implementing model parallelism to split the model across multiple GPUs.",
+            "Utilizing mixed precision training to reduce the amount of data transferred.",
+            "Employing asynchronous gradient updates with gradient compression techniques."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "llm",
+            "training",
+            "distributed computing",
+            "network overhead",
+            "gradient compression",
+            "asynchronous updates"
+        ],
+        "difficulty": "hard",
+        "explanation": "Asynchronous gradient updates (workers don't wait for all others) reduce idle time, and gradient compression reduces the size of updates sent over the network. Combined, they are highly effective in minimizing network communication overhead and improving training throughput in distributed LLM training."
+    },
+    {
+        "id": "Batch_1_revision_001_030",
+        "question": "You are tasked with implementing a generative AI use case in a highly regulated industry that requires strict auditing and compliance. Which of the following NVIDIA tools and strategies would be most crucial to ensure both efficiency and regulatory compliance when deploying your generative AI model?",
+        "type": "multiple_choice",
+        "options": [
+            "Utilize NVIDIA TensorRT to optimize inference while implementing robust logging and monitoring systems to ensure compliance.",
+            "Employ NVIDIA Triton Inference Server for scalable deployment and leverage NVIDIA FLARE for federated learning to meet privacy requirements.",
+            "Use NVIDIA NeMo for model tuning and leverage pre-trained secure models while implementing an end-to-end encryption and audit trail system.",
+            "Deploy NVIDIA Morpheus for cybersecurity monitoring and integrate NVIDIA Gauge for ensuring precise model explainability and detailed logging."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "generative ai",
+            "regulatory compliance",
+            "auditing",
+            "nvidia",
+            "morpheus",
+            "explainability"
+        ],
+        "difficulty": "hard",
+        "explanation": "Morpheus provides continuous monitoring for security risks, which is critical in regulated environments. Gauge ensures model predictions are explainable, and logging mechanisms provide audit-ready records. This combination satisfies both efficiency (monitoring at scale) and regulatory compliance (auditing, explainability, logging)."
+    },
+    {
+        "id": "Batch_1_revision_001_032",
+        "question": "Your team is assigned to develop a neural network model with Keras aimed at predicting customer churn using historical data. For effective data preprocessing, which approach is most suitable for training the model?",
+        "type": "multiple_choice",
+        "options": [
+            "Utilizing NumPy to convert categorical variables into integers and feeding them directly into the network",
+            "Using NumPy to create polynomial features from the input data before feeding them into the model",
+            "Using NumPy to randomly shuffle the data before splitting it into training and test sets",
+            "Normalizing the input data using NumPy before feeding it into the neural network"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "neural networks",
+            "data preprocessing",
+            "normalization",
+            "keras",
+            "customer churn"
+        ],
+        "difficulty": "easy",
+        "explanation": "To ensure effective training of a neural network, it is essential to normalize the input data. This process helps in standardizing the range of continuous input features, which can lead to improved performance and faster convergence during training."
+    },
+    {
+        "id": "Batch_1_revision_001_035",
+        "question": "You are tasked with deploying a generative AI model for a virtual assistant that must interact with users in real-time. This assistant should efficiently manage a variety of user queries, including follow-up questions, while retaining context over multiple interactions. What approach would best optimize response times and ensure accurate context retention?",
+        "type": "multiple_choice",
+        "options": [
+            "Use a monolithic model architecture with embedded memory that retains all interactions indefinitely.",
+            "Implement a sliding window mechanism that tracks the last few interactions to provide context for the model.",
+            "Deploy a large-scale transformer model without any context-tracking mechanism.",
+            "Use a rule-based system to handle context, supported by a small transformer model for generating responses."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generative ai",
+            "virtual assistant",
+            "context retention",
+            "real-time",
+            "sliding window"
+        ],
+        "difficulty": "medium",
+        "explanation": "The sliding window method is the most effective approach as it allows for quick access to relevant context from recent interactions without overwhelming the model with extensive historical data, thereby optimizing response times while maintaining accuracy."
+    },
+    {
+        "id": "Batch_1_revision_001_037",
+        "question": "In the context of real-time translation for multilingual meetings, a research paper suggests enhancing translation accuracy and speed by integrating a large language model (LLM) with a specific emerging technology. Which technology is likely recommended for this purpose?",
+        "type": "multiple_choice",
+        "options": [
+            "A. Blockchain for secure data storage",
+            "B. Reinforcement learning for better model training",
+            "C. Federated learning for distributed data processing",
+            "D. Edge computing for reduced latency"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "llm",
+            "real-time translation",
+            "latency",
+            "edge computing"
+        ],
+        "difficulty": "medium",
+        "explanation": "In real-time translation for multilingual meetings, reducing latency is crucial for effective communication. Edge computing enhances the speed and efficiency of data processing required by large language models, thereby significantly improving translation responses in time-sensitive scenarios."
+    },
+    {
+        "id": "Batch_1_revision_001_038",
+        "question": "In generative AI, diffusion-based models generate high-quality images by applying a specific iterative process. Which statement accurately describes this process?",
+        "type": "multiple_choice",
+        "options": [
+            "The model starts with a noisy image and progressively denoises it to improve quality",
+            "The model uses a predefined template and fills in missing details",
+            "The model generates images directly from noise in a single pass",
+            "The model uses a GAN (Generative Adversarial Network) to create images from scratch"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "generative ai",
+            "diffusion models",
+            "image generation",
+            "denoising"
+        ],
+        "difficulty": "easy",
+        "explanation": "Diffusion-based models are a distinct approach in generative AI that start with a noisy image and gradually improve it through a series of controlled denoising steps. This iterative process allows for the generation of high-quality images."
+    },
+    {
+        "id": "Batch_1_revision_001_039",
+        "question": "Your team is working on a chatbot application that utilizes a Large Language Model (LLM) aimed at providing customer support. This model must effectively respond to a variety of customer inquiries in multiple languages while ensuring quick response times of just a few seconds. Which of the following configurations would be the most appropriate choice to achieve these objectives?",
+        "type": "multiple_choice",
+        "options": [
+            "A. Utilize a pre-trained LLM model without any fine-tuning for your specific application",
+            "B. Use a cloud-based LLM with GPU acceleration and enable support for multiple languages",
+            "C. Deploy the LLM on mobile devices for on-device processing",
+            "D. Deploy the LLM on a local server with limited CPU resources"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm",
+            "chatbot",
+            "deployment",
+            "multilingual",
+            "latency",
+            "gpu acceleration"
+        ],
+        "difficulty": "medium",
+        "explanation": "To effectively develop a chatbot capable of managing diverse inquiries across multiple languages and ensuring quick response times, leveraging a cloud-based LLM equipped with GPU acceleration and multilingual support is the optimal choice. This configuration enhances processing power and can handle the complexity of various customer inquiries efficiently."
+    },
+    {
+        "id": "Batch_1_revision_001_040",
+        "question": "Your team is integrating a generative large language model (LLM) into a financial analytics platform that must comply with strict regulatory standards, including data privacy and accuracy in financial forecasts. During your analysis, you discover the LLM sometimes processes customer data in ways that may not align fully with data privacy regulations. What action should you prioritize to ensure adherence to required data privacy specifications?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement data anonymization techniques before feeding data into the LLM",
+            "Consult with the legal team after deployment to address any compliance issues that arise",
+            "Rely on the LLM's internal mechanisms to handle data privacy",
+            "Reduce the amount of customer data used by the LLM to minimize risks"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "llm",
+            "financial analytics",
+            "data privacy",
+            "compliance",
+            "anonymization"
+        ],
+        "difficulty": "medium",
+        "explanation": "To ensure the integration of the generative LLM aligns with rigorous data privacy regulations, it is vital to implement data anonymization techniques. This action safeguards individual identities and adheres to legal standards, thus addressing privacy concerns effectively."
+    },
+    {
+        "id": "Batch_1_revision_001_043",
+        "question": "You are tasked with evaluating the performance metrics of a newly trained Language Learning Model (LLM) designed for sentiment analysis. The model shows strong performance in identifying positive and negative sentiments but exhibits difficulties in accurately classifying neutral sentiments, leading to an unbalanced overall performance. A senior team member has asked you to identify the root cause of this issue and propose a suitable solution. What should be your next step to effectively address this performance imbalance? Select all that apply.",
+        "type": "multiple_choice",
+        "options": [
+            "Use a different evaluation metric that gives less importance to neutral sentiments",
+            "Increase the size of the training dataset by adding more neutral examples",
+            "Increase the weight of the neutral category in the loss function",
+            "Apply oversampling to the positive and negative sentiment categories"
+        ],
+        "correct_indices": [
+            1,
+            2
+        ],
+        "tags": [
+            "llm",
+            "sentiment analysis",
+            "class imbalance",
+            "data augmentation",
+            "loss function"
+        ],
+        "difficulty": "hard",
+        "explanation": "To address the performance imbalance in the model’s sentiment classification, increasing the size of the training dataset with more neutral examples (data-centric) and increasing the weight of the neutral category in the loss function (model-centric) are both effective strategies. They directly target the model's weaknesses in handling the underperforming class."
+    },
+    {
+        "id": "Batch_1_revision_001_045",
+        "question": "You are tasked with analyzing a large dataset derived from an online retail platform, aiming to predict which customers are likely to stop using the service. The dataset comprises numerous features, some of which may be irrelevant or redundant. What technique should you utilize to effectively select the most pertinent features that can enhance both the accuracy and interpretability of your predictive model?",
+        "type": "multiple_choice",
+        "options": [
+            "A. Utilize Recursive Feature Elimination (RFE) with cross-validation",
+            "B. Implement PCA (Principal Component Analysis) to minimize dimensionality",
+            "C. Select features based solely on their correlation with the target variable",
+            "D. Include all features to ensure no potentially useful information is lost"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "machine learning",
+            "feature selection",
+            "rfe",
+            "predictive model",
+            "interpretability"
+        ],
+        "difficulty": "medium",
+        "explanation": "The most effective technique to refine feature selection for a predictive model in this scenario is to use Recursive Feature Elimination (RFE) with cross-validation. This ensures that only the most relevant features are selected, improving both the model’s accuracy and the interpretability of the results by systematically identifying and retaining important features while discarding those that do not enhance performance."
+    },
+    {
+        "id": "Batch_1_revision_001_046",
+        "question": "What is the primary advantage of utilizing a heatmap to visualize attention weights in the output of a generative AI model?",
+        "type": "multiple_choice",
+        "options": [
+            "Identifies patterns in the distribution of attention across tokens",
+            "Provides exact numerical values of attention weights",
+            "Optimizes hyperparameters automatically",
+            "Shows the model’s overall accuracy"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "generative ai",
+            "attention mechanism",
+            "visualization",
+            "interpretability",
+            "heatmap"
+        ],
+        "difficulty": "easy",
+        "explanation": "Using a heatmap to represent attention weights offers significant insight into how a generative AI model prioritizes specific tokens in its output. By identifying patterns in attention distribution, practitioners can better understand the model’s decision-making process and the influence of different inputs."
+    },
+    {
+        "id": "Batch_1_revision_001_048",
+        "question": "You are tasked with selecting a language model that performs well across a range of languages, with a specific focus on low-resource languages. The model must be deployed on cloud infrastructure where costs are associated with the number of parameters and inference time. What is the best approach to balance multilingual support and cost efficiency?",
+        "type": "multiple_choice",
+        "options": [
+            "Select T5-Multilingual and fine-tune on a few selected languages",
+            "Use a separate smaller model for each language",
+            "Use GPT-3 with fine-tuning on each specific language",
+            "Choose mBERT (Multilingual BERT) and perform task-specific fine-tuning"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "language models",
+            "multilingual",
+            "cost efficiency",
+            "low-resource languages",
+            "mBERT"
+        ],
+        "difficulty": "medium",
+        "explanation": "Considering the need for a model to handle multiple languages effectively while also being cost-efficient, mBERT stands out as the best option. It provides robust multilingual capabilities and can be fine-tuned for specific tasks without incurring the high costs associated with larger models like GPT-3."
+    },
+    {
+        "id": "Batch_1_revision_001_051",
+        "question": "A generative AI model has been implemented in a real-time application but is facing issues with latency, which is leading to delays in its response time. What would be the most effective way to resolve this performance issue?",
+        "type": "multiple_choice",
+        "options": [
+            "Optimize the model’s inference process by reducing the number of layers",
+            "Upgrade the model to a more complex version",
+            "Adjust the learning rate used during model training",
+            "Increase the batch size used during inference"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "generative ai",
+            "real-time",
+            "latency",
+            "optimization",
+            "model layers"
+        ],
+        "difficulty": "medium",
+        "explanation": "To effectively tackle latency issues in a generative AI model during real-time application, optimizing the inference process by reducing the number of layers (model compression/distillation techniques) is recommended. This action can help decrease the computational resources needed for predictions and improve response times significantly."
+    },
+    {
+        "id": "Batch_1_revision_001_052",
+        "question": "As part of a generative AI project focused on personalizing health and fitness recommendations, you are tasked with preprocessing complex lifestyle data that includes factors like diet, exercise routines, sleep patterns, and stress levels. Under the guidance of a senior team member, which steps should you take to prepare the data effectively before training the model? Select two steps.",
+        "type": "multiple_choice",
+        "options": [
+            "Normalize all numeric features to have a mean of 0 and a standard deviation of 1",
+            "Impute missing values with random numbers to maintain dataset size",
+            "Aggregate the data to reduce its size by taking the mean of all features",
+            "Encode categorical features using one-hot encoding or similar techniques",
+            "Drop all categorical features from the dataset as they are not needed"
+        ],
+        "correct_indices": [
+            0,
+            3
+        ],
+        "tags": [
+            "generative ai",
+            "data preprocessing",
+            "health data",
+            "normalization",
+            "encoding"
+        ],
+        "difficulty": "medium",
+        "explanation": "For effective data preprocessing in a generative AI project for health and fitness recommendations, it is essential to normalize numeric features to standardize their scale, which aids in model training. Additionally, encoding categorical features ensures that all relevant data types are represented in the model, enabling better learning and prediction accuracy."
+    },
+    {
+        "id": "Batch_1_revision_001_053",
+        "question": "In the context of developing a named entity recognition (NER) system using spaCy, what measures can be taken to improve the accuracy and performance of the system on a large corpus of unstructured text? Consider strategies that involve training data and model customization. Select all that apply.",
+        "type": "multiple_choice",
+        "options": [
+            "Manually annotate a small subset of the data for training",
+            "Use NumPy to perform vectorized operations on large datasets",
+            "Fine-tune the spaCy model on a domain-specific dataset",
+            "Deploy the spaCy model on a single-threaded CPU environment",
+            "Disable spaCy's built-in tokenizer"
+        ],
+        "correct_indices": [
+            0,
+            2
+        ],
+        "tags": [
+            "nlp",
+            "ner",
+            "spacy",
+            "model tuning",
+            "data annotation"
+        ],
+        "difficulty": "medium",
+        "explanation": "To enhance the performance and accuracy of a named entity recognition system using spaCy, it is important to focus on quality training data and model tailoring. Annotating a subset of the data ensures that the training examples are relevant, while fine-tuning on a domain-specific dataset helps the model understand the relevant contextual nuances of the text."
+    },
+    {
+        "id": "Batch_1_revision_001_054",
+        "question": "You are assigned the task of deploying a large language model (LLM) for generating real-time investment advice tailored to clients. During the testing phase, it has been observed that the model often delivers excessively optimistic predictions, particularly in unpredictable market environments. A senior team member has recommended the integration of a mechanism that ensures the model's predictions adequately reflect market uncertainty. What is the most effective approach to enhance the model's ability to manage volatile market conditions?",
+        "type": "multiple_choice",
+        "options": [
+            "Utilize reinforcement learning to incentivize the model for accurate predictions during stable market conditions.",
+            "Expand the training dataset with data primarily from stable market conditions.",
+            "Add a probabilistic layer to the model to measure and express uncertainty in its predictions.",
+            "Reduce the model's learning rate to minimize sudden shifts in prediction outputs."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "llm",
+            "financial modeling",
+            "uncertainty",
+            "probabilistic layer",
+            "deployment"
+        ],
+        "difficulty": "hard",
+        "explanation": "To enhance the model’s performance during volatile market conditions, integrating a probabilistic layer is the most effective method. This adjustment enables the model to quantify the uncertainty inherent in its predictions, leading to more reliable and realistic advice for clients in fluctuating markets."
+    },
+    {
+        "id": "Batch_1_revision_001_055",
+        "question": "You are required to develop a text classification model that categorizes customer feedback into specific categories, such as 'Product Issue', 'Shipping Problem', and 'General Inquiry'. Considering the dataset comprises short text snippets, what is the most effective preprocessing approach using Python packages before employing a traditional machine learning algorithm like Logistic Regression?",
+        "type": "multiple_choice",
+        "options": [
+            "A. Utilize Keras to construct a neural network model directly from the raw text.",
+            "B. Use scikit-learn’s OneHotEncoder to encode the text data before applying a machine learning model.",
+            "C. Apply NumPy to manually create word vectors for each word in the text.",
+            "D. Employ spaCy for tokenization, remove stop words, lemmatize words, and use scikit-learn’s TF-IDF vectorizer to transform text into numerical features."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "text classification",
+            "data preprocessing",
+            "nlp",
+            "logistic regression",
+            "tfidf",
+            "spacy"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option D is optimal as it leverages spaCy's powerful NLP capabilities for tokenization and normalization (lemmatization and stop word removal), while TF-IDF representation provides a strong numerical basis for applying traditional machine learning algorithms like Logistic Regression."
+    },
+    {
+        "id": "Batch_1_revision_001_059",
+        "question": "What is the most critical factor that a healthcare organization should consider when utilizing a generative AI model to create personalized treatment plans for patients to ensure both accuracy and ethical soundness?",
+        "type": "multiple_choice",
+        "options": [
+            "Focusing on the model's ability to generate treatment plans quickly",
+            "Deploying the model on a high-performance computing system to reduce latency",
+            "Allowing the model to continuously learn from patient feedback in real-time",
+            "Training the model on a diverse dataset that includes various patient demographics and medical histories"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "generative ai",
+            "healthcare",
+            "ethics",
+            "dataset diversity",
+            "bias"
+        ],
+        "difficulty": "medium",
+        "explanation": "Training the generative AI model on a diverse dataset is crucial as it enables the model to produce treatment plans that are more representative and tailored to the varied needs of the patient population. Without such a dataset, the AI may perpetuate biases and inaccuracies, compromising both the quality of care and ethical standards."
+    }
+]

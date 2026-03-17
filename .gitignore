@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.env
+venv/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Large or sensitive files — kept local only, synced via sync_to_github.py
+exam-taker/logs/
+exam-taker/bookmarks/
+exam-taker/archives/
+
+# OS
+.DS_Store
+Thumbs.db

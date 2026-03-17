@@ -1,0 +1,170 @@
+[
+    {
+        "id": "dl_optimizers_nag_001",
+        "question": "How does standard Momentum primarily accelerate convergence compared to standard Batch Gradient Descent in regions with consistent gradient directions?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It calculates second-order derivatives to dynamically adjust the learning rate for each parameter.",
+            "B) It accumulates an exponentially decaying moving average of past gradients to build velocity across flat regions.",
+            "C) It evaluates the gradient at a lookahead position to prevent overshooting the global minimum.",
+            "D) It completely replaces the current batch's gradient with the previous epoch's gradient to maintain a steady trajectory."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "optimizers",
+            "momentum",
+            "gradient_descent"
+        ],
+        "difficulty": "easy",
+        "explanation": "Standard Momentum accelerates convergence by accumulating past gradients into a velocity term, which is governed by a decay factor ($\\beta$). This mechanism acts like a ball rolling down a hill, gaining speed in flat regions where standard Batch Gradient Descent would take many epochs to traverse. Option B is correct because this accumulated velocity pushes the optimizer faster along consistent directions. Option A is incorrect; Momentum is a first-order optimization method, not a second-order method like Newton's method. Option C describes Nesterov Accelerated Gradient (NAG), not standard Momentum. Option D is incorrect because Momentum blends the past velocity with the current gradient; it does not replace the current gradient entirely."
+    },
+    {
+        "id": "dl_optimizers_nag_002",
+        "question": "When training a model with standard Momentum, you observe that the loss heavily oscillates around the minima before finally converging. According to the instructor's demonstration, how can you adjust the decay factor ($\\beta$) to reduce these oscillations, and what is the resulting trade-off?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Increase $\\beta$ (e.g., from 0.8 to 0.99); this dampens oscillations but slows down the initial traversal of flat regions.",
+            "B) Decrease $\\beta$ (e.g., from 0.9 to 0.8); this dampens oscillations but increases the time it takes to traverse the initial flat regions.",
+            "C) Decrease $\\beta$; this increases oscillations but allows the model to escape local minima significantly faster.",
+            "D) Increase $\\beta$; this stops the velocity buildup completely and converts the optimizer back to standard SGD."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "momentum",
+            "hyperparameter_tuning",
+            "oscillations"
+        ],
+        "difficulty": "medium",
+        "explanation": "The decay factor $\\beta$ controls how much of the past velocity is retained. A high $\\beta$ (like 0.9) retains a lot of velocity, causing the optimizer to rapidly cross flat regions but heavily overshoot and oscillate around the minima. Decreasing $\\beta$ (e.g., to 0.8) gives less weight to past velocity. As shown in the video's contour plots, this successfully dampens the oscillations around the minima. However, the trade-off is that it takes more epochs to traverse the initial flat regions because less velocity is built up. Option A is backwards; increasing $\\beta$ increases oscillations. Option C is factually incorrect regarding the effect on oscillations. Option D is wrong because setting $\\beta=0$ (not increasing it) reverts Momentum to standard SGD."
+    },
+    {
+        "id": "dl_optimizers_nag_003",
+        "question": "What is the primary optimization challenge inherent to standard Momentum that Nesterov Accelerated Gradient (NAG) is specifically designed to solve?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The vanishing gradient problem in deep networks with sigmoid activations.",
+            "B) Severe oscillations and overshooting around the minima due to high accumulated velocity.",
+            "C) The strict inability to escape saddle points in non-convex error surfaces.",
+            "D) High memory overhead caused by storing the historical gradients of all previous epochs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nag",
+            "momentum",
+            "optimization_challenges"
+        ],
+        "difficulty": "easy",
+        "explanation": "The primary problem with standard Momentum is that the accumulated velocity often causes the optimizer to overshoot the minima, resulting in heavy oscillations before converging. These oscillations waste computational time (epochs). Nesterov Accelerated Gradient (NAG) was designed to act as an upgrade to Momentum by dampening these oscillations, allowing for a more direct and faster convergence to the minima. Option A is incorrect; vanishing gradients are solved by architectural changes (like ReLU or ResNets), not Momentum/NAG. Option C is incorrect; standard Momentum is actually quite good at escaping saddle points compared to standard SGD. Option D is incorrect; Momentum only stores a single moving average of past gradients, resulting in minimal memory overhead."
+    },
+    {
+        "id": "dl_optimizers_nag_004",
+        "question": "Mathematically, how does the update sequence in Nesterov Accelerated Gradient (NAG) fundamentally differ from standard Momentum?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Momentum computes velocity and gradient sequentially, whereas NAG computes them simultaneously at the current position.",
+            "B) Momentum computes the gradient first and uses it to update velocity, whereas NAG computes velocity first and ignores the current gradient.",
+            "C) Momentum evaluates the gradient and adds the momentum term simultaneously at the current position. NAG takes a step using momentum first, then evaluates the gradient at that new 'lookahead' position.",
+            "D) Momentum relies on an exponentially weighted average of past gradients, while NAG only relies on the derivative of the current batch without any past history."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nag",
+            "mathematics",
+            "mechanism"
+        ],
+        "difficulty": "medium",
+        "explanation": "The core mechanical difference between the two optimizers lies in *where* the gradient is calculated. In standard Momentum, you stand at your current position $w_t$, calculate the gradient there, and add it to your accumulated momentum simultaneously to make a jump. In NAG, you first apply your accumulated momentum to jump to a 'lookahead' position. Once at this lookahead point, you calculate the gradient, and then use that gradient to make a final correction. Option C perfectly describes this mechanism. Option A has the logic inverted. Option B is incorrect because NAG does not ignore the gradient; it just calculates it at a different position. Option D is wrong because both Momentum and NAG rely on a history of past gradients."
+    },
+    {
+        "id": "dl_optimizers_nag_005",
+        "question": "Let $w_t$ be the current weights, $v_{t-1}$ the previous velocity, and $\\beta$ the momentum decay factor. Assuming the velocity term is subtracted during the update, at which exact position does Nesterov Accelerated Gradient (NAG) evaluate the gradient of the loss function?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $w_t$",
+            "B) $w_t - \\alpha \\nabla L(w_t)$",
+            "C) $w_t - \\beta v_{t-1}$",
+            "D) $w_{t-1} - \\beta v_{t-2}$"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nag",
+            "equations",
+            "lookahead"
+        ],
+        "difficulty": "hard",
+        "explanation": "NAG's defining feature is the calculation of the gradient at the 'lookahead' point rather than the current point. The lookahead point is defined entirely by the accumulated momentum from the previous step. Mathematically, this position is $w_{lookahead} = w_t - \\beta v_{t-1}$. Once the optimizer mathematically 'moves' to this lookahead position, it evaluates $\\nabla L(w_t - \\beta v_{t-1})$ to determine the final update. Option C correctly identifies this lookahead position. Option A is where standard Momentum evaluates the gradient. Option B evaluates the gradient after taking a standard SGD step, which is incorrect. Option D references parameters from two timesteps ago, which is not how the current lookahead step is formulated."
+    },
+    {
+        "id": "dl_optimizers_nag_006",
+        "question": "Geometrically, how does NAG's lookahead step actively act to dampen oscillations when approaching a narrow minima?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By artificially decreasing the learning rate ($\\alpha$) proportionally to the velocity magnitude to force smaller steps.",
+            "B) By evaluating the gradient at the lookahead point; if the momentum step overshoots the minimum, the gradient points backwards and immediately corrects the step.",
+            "C) By clipping the gradient values if they exceed a dynamically calculated threshold during the lookahead step.",
+            "D) By automatically resetting the accumulated velocity to zero whenever the gradient sign changes."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nag",
+            "geometry",
+            "intuition"
+        ],
+        "difficulty": "hard",
+        "explanation": "The geometric intuition behind NAG's oscillation dampening relies on its predictive nature. When the accumulated momentum causes the lookahead step to overshoot the minima and land on the opposite slope, the gradient calculated at that new lookahead position will point in the opposite (backward) direction. This backward-pointing gradient is immediately added to the update, effectively 'pulling back' the overshoot before the actual step is finalized. This results in a smaller, tighter U-turn, reducing overall oscillations. Option B accurately describes this mechanism. Option A refers to learning rate decay, a separate technique. Option C refers to gradient clipping, which handles exploding gradients, not momentum oscillations. Option D is an entirely different heuristic not used in standard NAG."
+    },
+    {
+        "id": "dl_optimizers_nag_007",
+        "question": "Despite its superior oscillation dampening, what is a major potential disadvantage of NAG compared to standard Momentum on a highly non-convex error surface?",
+        "type": "multiple_choice",
+        "options": [
+            "A) NAG is significantly more computationally expensive per epoch because it requires computing the Hessian matrix.",
+            "B) Because NAG dampens accumulated momentum, it may lack the energy to push out of a local minimum, getting trapped where standard Momentum might have overshot and escaped.",
+            "C) NAG requires a highly precise manual schedule for the decay factor $\\beta$, strictly failing to converge if $\\beta$ is kept static.",
+            "D) The lookahead step inherently causes the optimizer to diverge to infinity if the batch size is smaller than 32."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nag",
+            "disadvantages",
+            "non_convex_optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "While NAG's dampening effect is excellent for settling into a minima quickly, it can be a disadvantage in complex, non-convex loss landscapes. Standard Momentum's tendency to overshoot can actually be beneficial if it overshoots a local minimum, allowing the optimizer to escape and continue searching for the global minimum. NAG's lookahead gradient corrects this overshooting behavior, meaning it might 'pump the brakes' too early and settle into a suboptimal local minimum. Option B correctly identifies this trade-off. Option A is incorrect; NAG remains a first-order method and is computationally equivalent to Momentum. Option C is false; a static $\\beta$ is commonly used. Option D is a fabricated constraint regarding batch sizes."
+    },
+    {
+        "id": "dl_optimizers_nag_008",
+        "question": "You are tasked with implementing Nesterov Accelerated Gradient for a deep learning model using the standard `SGD` optimizer class in Keras. Which hyperparameter configuration is strictly required?",
+        "type": "multiple_choice",
+        "options": [
+            "A) `momentum=0.0`, `nesterov=True`",
+            "B) `momentum=0.9`, `nesterov=True`",
+            "C) `momentum=0.9`, `nesterov=False`",
+            "D) `decay_factor=0.9`, `nag=True`"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "keras",
+            "implementation",
+            "hyperparameters"
+        ],
+        "difficulty": "easy",
+        "explanation": "In Keras, the `SGD` class is highly versatile and can implement standard SGD, Momentum, or NAG depending on the arguments. To implement NAG, you must enable the Nesterov logic (`nesterov=True`) AND provide a non-zero momentum value (e.g., `momentum=0.9`). NAG is fundamentally an upgrade built *on top* of momentum; without a momentum value, the lookahead calculation has no velocity to utilize. Option B provides the correct combination. Option A is invalid because `nesterov=True` requires a non-zero momentum. Option C implements standard Momentum, not NAG. Option D uses incorrect parameter names that do not exist in the Keras `SGD` class."
+    }
+]

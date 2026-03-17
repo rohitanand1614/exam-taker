@@ -1,0 +1,212 @@
+[
+    {
+        "id": "cnn_layers_016",
+        "question": "Which of the following are the three main types of layers found in a Convolutional Neural Network (CNN)?",
+        "type": "multiple_choice",
+        "options": [
+            "Convolution (Conv), Pooling (Pool), Fully Connected (FC)",
+            "Recurrent (RNN), LSTM, GRU",
+            "Input, Hidden, Output",
+            "Encoder, Decoder, Attention"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cnn",
+            "layers",
+            "architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "CNNs mainly consist of Convolution (Conv), Pooling (Pool), and Fully Connected (FC) layers."
+    },
+    {
+        "id": "pooling_017",
+        "question": "What are the primary reasons for using Pooling layers in a CNN?",
+        "type": "multiple_choice",
+        "options": [
+            "To increase the number of parameters and model complexity.",
+            "To reduce input size, speed up computation, and make features more robust.",
+            "To change the activation function to ReLU.",
+            "To perform backpropagation more accurately."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pooling",
+            "cnn",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Pooling layers are used to reduce the size of inputs, speed up computation, and make detected features more robust."
+    },
+    {
+        "id": "lenet_018",
+        "question": "In the classic LeNet-5 architecture (1998), which activation functions were primarily used?",
+        "type": "multiple_choice",
+        "options": [
+            "ReLU and Leaky ReLU",
+            "Sigmoid and Tanh",
+            "Softmax only",
+            "Swish and GELU"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lenet-5",
+            "activation functions",
+            "history"
+        ],
+        "difficulty": "medium",
+        "explanation": "The LeNet-5 paper used Sigmoid and Tanh activation functions, unlike modern networks which typically use ReLU."
+    },
+    {
+        "id": "alexnet_019",
+        "question": "Which significant architectural change did AlexNet introduce compared to LeNet-5?",
+        "type": "multiple_choice",
+        "options": [
+            "It used fewer parameters (60k vs 60M).",
+            "It replaced Convolution layers with Recurrent layers.",
+            "It used ReLU activation functions and GPU training.",
+            "It removed all Fully Connected layers."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "alexnet",
+            "relu",
+            "gpu"
+        ],
+        "difficulty": "medium",
+        "explanation": "AlexNet used ReLU activation functions and Multiple GPUs, and it had significantly more parameters (60M) compared to LeNet-5."
+    },
+    {
+        "id": "vgg_param_020",
+        "question": "What is a defining characteristic of the VGG-16 architecture's convolutional layers?",
+        "type": "multiple_choice",
+        "options": [
+            "It uses large filters (11x11) with large strides.",
+            "It uses only 1x1 convolutions to save memory.",
+            "It consistently uses 3x3 filters with a stride of 1 and same padding.",
+            "It uses Inception modules with varied filter sizes."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "vgg-16",
+            "architecture",
+            "filters"
+        ],
+        "difficulty": "medium",
+        "explanation": "VGG-16 focuses on simple blocks using only 3x3 filters with s=1 and same padding, along with 2x2 max pooling."
+    },
+    {
+        "id": "resnet_problem_021",
+        "question": "What major problem do Residual Networks (ResNets) solve, enabling the training of very deep networks?",
+        "type": "multiple_choice",
+        "options": [
+            "Overfitting on small datasets.",
+            "Vanishing and exploding gradients.",
+            "High computational cost of 3x3 convolutions.",
+            "Lack of labeled training data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "resnet",
+            "vanishing gradient",
+            "deep learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "ResNets solve the vanishing and exploding gradient problems that make very deep NNs difficult to train."
+    },
+    {
+        "id": "resnet_block_022",
+        "question": "In a Residual Block, what is the mathematical operation performed by the 'skip connection' assuming dimensions match?",
+        "type": "multiple_choice",
+        "options": [
+            "a[l+2] = g( z[l+2] * a[l] )",
+            "a[l+2] = g( z[l+2] + a[l] )",
+            "a[l+2] = g( z[l+2] - a[l] )",
+            "a[l+2] = softmax( z[l+2] )"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "resnet",
+            "skip connection",
+            "math"
+        ],
+        "difficulty": "hard",
+        "explanation": "The skip connection adds the activation from the previous layer directly: a[l+2] = g( z[l+2] + a[l] )."
+    },
+    {
+        "id": "cnn_advantages_023",
+        "question": "What are the two main advantages of Convolutional layers over Fully Connected layers for image tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "Higher parameter count and dense connections.",
+            "Parameter sharing and Sparsity of connections.",
+            "Faster training on CPUs and no need for backpropagation.",
+            "Ability to handle text and audio simultaneously."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cnn",
+            "theory",
+            "parameter sharing"
+        ],
+        "difficulty": "medium",
+        "explanation": "The two main advantages are Parameter sharing (features useful in one part are useful elsewhere) and Sparsity of connections (output depends on few inputs)."
+    },
+    {
+        "id": "vgg_memory_024",
+        "question": "In the VGG-16 network, where are most of the parameters located?",
+        "type": "multiple_choice",
+        "options": [
+            "In the convolutional layers.",
+            "In the pooling layers.",
+            "In the Fully Connected (FC) layers.",
+            "Distributed evenly across all layers."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "vgg-16",
+            "parameters",
+            "memory"
+        ],
+        "difficulty": "medium",
+        "explanation": "Most of the parameters in VGG-16 are in the fully connected layers, while most memory is used in earlier layers."
+    },
+    {
+        "id": "resnet_identity_025",
+        "question": "Why is the 'identity function' important in ResNets?",
+        "type": "multiple_choice",
+        "options": [
+            "It is the only activation function used.",
+            "It allows the network to easily learn that extra layers should not hurt performance if they just pass data through.",
+            "It forces the weights to always be zero.",
+            "It replaces the Softmax layer for classification."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "resnet",
+            "identity mapping",
+            "theory"
+        ],
+        "difficulty": "hard",
+        "explanation": "Skip connections make it easy for a block to learn the identity function (a[l+2] = a[l]), ensuring deeper layers don't hurt performance."
+    }
+]

@@ -1,0 +1,259 @@
+[
+    {
+        "id": "Types-Of-NN_001",
+        "question": "A team is building a fraud detection system using structured financial records containing features like transaction amounts, merchant IDs, and time of day. Which neural network architecture is most appropriate as a baseline, and why?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Multilayer Perceptron (MLP), because it efficiently captures complex non-linear relationships across distinct tabular features.",
+            "B) Convolutional Neural Network (CNN), because transaction histories inherently exhibit spatial locality.",
+            "C) Recurrent Neural Network (RNN), because financial amounts require continuous long-term state tracking.",
+            "D) Autoencoder, because it perfectly generates missing fraudulent records to balance the dataset."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "neural_network_types",
+            "mlp",
+            "tabular_data"
+        ],
+        "difficulty": "easy",
+        "explanation": "For structured, tabular data (like database records), Multilayer Perceptrons (MLPs) or standard Artificial Neural Networks (ANNs) are the foundational choice. They establish complex non-linear decision boundaries by connecting all input features through dense hidden layers. CNNs are designed for spatial data where local pixel proximity matters, which doesn't apply to independent tabular columns. RNNs are optimized for sequential dependencies; while they could apply to a sequence of transactions, the prompt implies classifying isolated structured records. Autoencoders are unsupervised architectures used for compression or generation, not directly for supervised baseline classification tasks like fraud detection."
+    },
+    {
+        "id": "Types-Of-NN_002",
+        "question": "When processing high-resolution medical X-ray scans for tumor detection, why is a Convolutional Neural Network (CNN) preferred over a standard Multilayer Perceptron (MLP)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) CNNs flatten the image immediately upon input, preserving the global pixel context better than MLPs.",
+            "B) CNNs utilize parameter sharing and local receptive fields to detect spatial hierarchies, avoiding the parameter explosion of MLPs.",
+            "C) CNNs bypass the need for activation functions, allowing faster backpropagation through dense medical images.",
+            "D) CNNs inherently generate bounding boxes without requiring region-proposal architectural modifications."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "cnn",
+            "computer_vision",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "CNNs  rely on convolution operations that use small filters (kernels) spanning local regions known as receptive fields. Because the exact same filter is swiped across the entire image (parameter sharing), CNNs drastically reduce the number of learnable parameters compared to MLPs. An MLP requires a unique weight for every single pixel-to-node interaction, causing massive parameter explosion and memory exhaustion on high-resolution X-rays. Option A is false; MLPs flatten data immediately, destroying spatial structure, not CNNs. Option C is false; CNNs rely heavily on non-linear activations like ReLU to learn complex features. Option D is false; standard CNNs output probabilities; detecting bounding boxes requires specialized sub-architectures like YOLO or Faster R-CNN."
+    },
+    {
+        "id": "Types-Of-NN_003",
+        "question": "You are designing an NLP model to translate live spoken dialogue. The meaning of a specific word often depends heavily on a contextual subject mentioned three sentences prior. What fundamental architectural component is required to handle this?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Max-pooling layers to extract only the most statistically important words from the speech.",
+            "B) Generative adversarial networks to constantly discriminate and enforce correct grammatical structure.",
+            "C) Recurrent feedback loops to maintain a hidden state that represents past sequential context.",
+            "D) Dense feed-forward layers utilizing a customized cosine-similarity loss function."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rnn",
+            "lstm",
+            "nlp",
+            "sequential_data"
+        ],
+        "difficulty": "easy",
+        "explanation": "Recurrent Neural Networks (RNNs) and their advanced variants like Long Short-Term Memory (LSTM) networks  are uniquely designed for sequential data like text or speech. They process inputs step-by-step, maintaining a \"hidden state\" or internal memory that passes information from previous time steps to the current computation. This allows them to capture temporal dependencies, such as a pronoun referencing a past noun. Max-pooling (Option A) inherently destroys sequence order. GANs (Option B) are for generative training, not sequential state tracking. Standard feed-forward layers (Option D) process inputs completely independently and possess no memory of prior inputs."
+    },
+    {
+        "id": "Types-Of-NN_004",
+        "question": "An engineering team wants to reduce the massive storage footprint of industrial sensor logs while retaining the core variance of the signal. How can an Autoencoder neural network achieve this data compression mathematically?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By training an encoder to map inputs to a lower-dimensional latent space and a decoder to reconstruct the original input, allowing the team to store only the compressed latent vectors.",
+            "B) By using an adversarial discriminator network that permanently deletes logs it classifies as statistically redundant.",
+            "C) By applying recurrent memory layers that predict the next log accurately, allowing the database to store only the prediction errors.",
+            "D) By freezing the network's internal weights after one epoch and using the loss function's gradients as the compressed representations."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "autoencoders",
+            "unsupervised_learning",
+            "dimensionality_reduction"
+        ],
+        "difficulty": "medium",
+        "explanation": "Autoencoders are unsupervised learning architectures consisting of two distinct parts: an encoder that compresses input data into a dense, lower-dimensional representation (the \"bottleneck\" or latent space), and a decoder that attempts to reconstruct the original data from this bottleneck vector. By saving just the low-dimensional latent vectors and discarding the original data, the storage footprint is drastically reduced, while the trained decoder can be used later to recover the approximate logs. Option B describes a destructive classification setup, not data compression. Option C describes predictive coding, a different concept entirely. Option D is mathematically nonsensical, as gradients are ephemeral vectors used for updating weights during training, not a stable storage format for inputs."
+    },
+    {
+        "id": "Types-Of-NN_005",
+        "question": "In a Generative Adversarial Network (GAN) designed to synthesize photorealistic human faces, what is the exact operational objective of the Generator network during training?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To minimize the Mean Squared Error (MSE) directly between its generated image and a specific target image from the dataset.",
+            "B) To maximize the probability that the Discriminator network falsely classifies its generated output as a real image.",
+            "C) To accurately classify whether the input feature vector it receives originates from a real photograph or random noise.",
+            "D) To encode real face photographs into a condensed latent space vector that perfectly reconstructs the face."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "gans",
+            "generative_ai",
+            "adversarial_training"
+        ],
+        "difficulty": "medium",
+        "explanation": "A GAN consists of two neural networks locked in a zero-sum game: a Generator and a Discriminator. The Generator's sole objective is to map random noise to a data distribution so realistic that it fools the Discriminator into classifying its outputs as \"real\". Mathematically, it attempts to maximize the Discriminator's error rate on fake samples. Option A is incorrect; GANs typically do not use direct pixel-wise loss (like MSE) against specific images, which is exactly why they produce sharp, novel images rather than blurry averages. Option C describes the classification job of the Discriminator. Option D describes the encoding function of an Autoencoder, whereas GAN generators map from noise space to data space."
+    },
+    {
+        "id": "Types-Of-NN_006",
+        "question": "In 1969, Marvin Minsky and Seymour Papert published a critique that severely stalled neural network research, triggering the first 'AI Winter'. What critical mathematical limitation of the single-layer Perceptron did they highlight?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Single-layer perceptrons suffer exponentially from vanishing gradients during backpropagation.",
+            "B) Single-layer perceptrons can only converge if the learning rate optimizer is strictly decoupled from the loss function.",
+            "C) Single-layer perceptrons are strictly limited to linearly separable functions and completely fail on non-linear logic problems like XOR.",
+            "D) Single-layer perceptrons require parallel matrix multiplication hardware which was theoretically impossible to build at the time."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "history",
+            "perceptron",
+            "xor_problem",
+            "ai_winter"
+        ],
+        "difficulty": "hard",
+        "explanation": "The single-layer Perceptron calculates a weighted sum of inputs and applies a step function, effectively drawing a single straight line (hyperplane) to separate binary data classes. Minsky and Papert mathematically proved that it cannot solve problems where the classes are not linearly separable. They famously used the XOR (Exclusive OR) logical function as the prime example , as no single straight line can separate the true and false outputs of an XOR gate. Option A is historically inaccurate; backpropagation wasn't utilized for these networks yet, and vanishing gradients affect deep networks. Option B is a fabricated constraint. Option D is historically anachronistic; hardware was a general limitation, but the specific mathematical proof regarding linear separability is what officially killed funding and enthusiasm."
+    },
+    {
+        "id": "Types-Of-NN_007",
+        "question": "The popularization of the Backpropagation algorithm in the mid-1980s revitalized neural network research. How did this algorithm explicitly overcome the limitation that caused the first AI Winter?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It allowed a single-layer perceptron to dynamically bend its linear decision boundary into complex curved shapes.",
+            "B) It provided a systematic way to calculate gradients and update weights in hidden layers, finally making Multi-Layer Perceptrons (MLPs) viable for learning non-linear functions.",
+            "C) It completely bypassed the need for non-linear activation functions, allowing infinite neural layers to be stacked computationally efficiently.",
+            "D) It replaced the flawed gradient descent optimization approach with a faster, stochastic randomized grid search."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "history",
+            "backpropagation",
+            "mlp",
+            "universal_approximation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Backpropagation (backward propagation of errors) applies the chain rule of calculus to compute the gradient of the loss function with respect to every weight in the network. Prior to this, researchers did not have a mathematically sound way to assign 'blame' for errors to the weights in the *hidden* layers of a network. By enabling the training of Multi-Layer Perceptrons (MLPs), backpropagation allowed neural networks to combine multiple linear boundaries via non-linear activations to approximate any continuous function (Universal Approximation Theorem). Option A is false; single perceptrons remain strictly linear. Option C is entirely false; without non-linear activation functions, stacking layers just results in another linear model. Option D is false; backpropagation *enables* gradient descent by computing the necessary gradients."
+    },
+    {
+        "id": "Types-Of-NN_008",
+        "question": "The 2012 ImageNet competition victory by AlexNet is widely considered the catalyst for the modern Deep Learning boom. Which specific convergence of factors was responsible for this breakthrough in computer vision performance?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The invention of the single-layer Perceptron, recurrent feedback loops, and distributed CPU clustering.",
+            "B) The availability of massive labeled datasets, the parallel processing power of GPUs, and algorithmic improvements like the ReLU activation function.",
+            "C) The shift from supervised image classification to purely unsupervised Reinforcement Learning simulated on standard CPUs.",
+            "D) The architectural replacement of convolutional layers with massive dense tabular layers for faster spatial feature extraction."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "history",
+            "alexnet",
+            "imagenet",
+            "hardware_compute"
+        ],
+        "difficulty": "easy",
+        "explanation": "The AlexNet breakthrough was driven by a \"perfect storm\" of Data, Hardware, and Algorithmic innovation. They utilized the massive ImageNet dataset (millions of categorized images), leveraged GPUs  to handle the heavy parallel matrix multiplications required by deep architectures, and used the ReLU activation function, which solved the vanishing gradient problem that plagued older networks using Sigmoid or Tanh. Option A cites outdated and unrelated technology (single perceptrons). Option C is incorrect; AlexNet was a supervised classification model, not reinforcement learning. Option D is factually backwards; they proved the superiority of Convolutional layers (CNNs) for images over dense tabular networks."
+    },
+    {
+        "id": "Types-Of-NN_009",
+        "question": "In 2016, DeepMind's AlphaGo system famously defeated world champion Lee Sedol. Why was the game of Go uniquely resistant to traditional AI algorithms (like Minimax used in Chess), thereby necessitating Deep Reinforcement Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The core rules of Go change dynamically based on player score, requiring an RNN to memorize sequence state changes.",
+            "B) The game board representation is a strict 1D vector, rendering traditional 2D spatial search algorithms incompatible.",
+            "C) The branching factor and state space are astronomically larger than chess, making exhaustive search trees impossible without deep neural networks estimating the 'value' of board states.",
+            "D) The game involves hidden information and bluffing, requiring advanced Natural Language Processing to deduce the opponent's strategy."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "applications",
+            "alphago",
+            "reinforcement_learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Go is played on a massive 19x19 board, resulting in an estimated $10^{170}$ possible legal positions—vastly exceeding the number of atoms in the observable universe. Traditional AI relied on algorithms like Minimax with alpha-beta pruning, which exhaustively search future move branches. This brute-force approach completely fails against Go's astronomical branching factor. AlphaGo succeeded by using Deep Neural Networks to intuitively evaluate the \"value\" of board states and the \"policy\" of next moves, combined with Reinforcement Learning where the system improved by playing millions of games against itself. Options A, B, and D are factually incorrect regarding the fundamental mechanics of the game of Go."
+    },
+    {
+        "id": "Types-Of-NN_010",
+        "question": "In the architecture of an autonomous vehicle, Deep Learning models are primarily deployed within the 'Perception' stack. What is the explicit engineering function of this stack?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Optimizing the engine's fuel injection timing based on historical driving speeds and weather conditions.",
+            "B) Fusing raw sensor telemetry to dynamically identify, segment, and track environmental objects like pedestrians, lane markings, and other vehicles.",
+            "C) Querying a static relational database via SQL to compute the shortest GPS route to a given destination.",
+            "D) Generating synthetic high-frequency audio signals to negotiate right-of-way with other autonomous vehicles."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "applications",
+            "autonomous_vehicles",
+            "perception",
+            "computer_vision"
+        ],
+        "difficulty": "medium",
+        "explanation": "The \"Perception\" module of an autonomous vehicle acts as its digital eyes and brain. It ingests continuous, real-time multi-modal data from hardware sensors like cameras, LiDAR, and Radar. Deep Learning models (specifically advanced CNNs like YOLO or segmentation networks) are used to process this raw data to detect bounding boxes, segment drivable road space, and track moving objects dynamically . Option A describes low-level engine control units, not deep learning perception. Option C describes a standard graph-search pathfinding algorithm (like A* or Dijkstra's), which falls under routing/planning, not perception. Option D describes V2V (Vehicle-to-Vehicle) communication protocols."
+    },
+    {
+        "id": "Types-Of-NN_011",
+        "question": "You are tasked with building a tool that takes heavily degraded, black-and-white historical photographs and automatically restores missing pixels while injecting historically accurate colors. Which branch of Deep Learning is explicitly designed to synthesize this net-new visual information?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Time-Series Forecasting Models.",
+            "B) Binary Image Classification Networks.",
+            "C) Generative AI (e.g., GANs or Diffusion Models).",
+            "D) K-Means Unsupervised Clustering."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "applications",
+            "generative_ai",
+            "image_restoration"
+        ],
+        "difficulty": "easy",
+        "explanation": "Restoring degraded pixels and colorizing images requires the model to probabilistically hallucinate or \"generate\" missing information that logically fits the semantic context of the photograph. This task falls squarely under Generative AI . Models like GANs (Generative Adversarial Networks) or modern Diffusion models excel at mapping a degraded or lower-dimensional input to a highly realistic, high-fidelity output distribution. Option A is for sequential numeric data over time. Option B simply categorizes existing data into two buckets (e.g., classifying if an image is damaged or not). Option D is a basic machine learning algorithm used to group similar statistical data points, entirely incapable of generating visual pixels."
+    },
+    {
+        "id": "Types-Of-NN_012",
+        "question": "The tutorial highlights that the recent success of Deep Learning relies on a trinity of massive Data, advanced Algorithms, and specialized Hardware. If an engineering team attempts to train a massive deep neural network exclusively on a cluster of standard CPUs, what specific mathematical bottleneck will cripple their training time?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Standard CPUs possess an architecture that physically prevents the execution of non-linear activation functions.",
+            "B) The calculus underlying the backpropagation algorithm is fundamentally incompatible with x86 instruction sets.",
+            "C) The massive matrix multiplications required for forward and backward passes cannot be efficiently parallelized, throttling throughput.",
+            "D) CPUs inherently drop floating-point precision during tensor operations, causing gradient descent optimization to diverge instantly."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "hardware",
+            "training_bottleneck",
+            "cpu_vs_gpu"
+        ],
+        "difficulty": "hard",
+        "explanation": "Deep Learning models represent data and weights as massive multi-dimensional arrays (tensors). Training requires calculating millions of dot products and matrix multiplications per batch during both forward propagation and backpropagation. CPUs are designed with a few powerful cores optimized for rapid sequential task switching and complex branching logic. GPUs, however, contain thousands of smaller cores perfectly architected for SIMD (Single Instruction, Multiple Data) parallel matrix arithmetic. Attempting to train deep networks on CPUs bottlenecks entirely at the matrix multiplication level, turning a process that takes days on a GPU into years on a CPU. Options A, B, and D are entirely false; CPUs are fully capable of executing the exact same math, logic, and precision as GPUs, they just lack the massive parallel throughput required for deep learning workloads."
+    }
+]

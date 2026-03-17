@@ -1,0 +1,87 @@
+[
+    {
+        "id": "Backpropagation in Deep Learning | Part 1 | The What?*001",
+        "question": "A student describes Backpropagation as the specific algorithm used by a neural network to multiply inputs by weights and output a final prediction. Based on the instructor's breakdown, why is this definition technically incorrect?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because Backpropagation is strictly an unsupervised learning algorithm that clusters data without generating predictions.",
+            "B) Because generating the final prediction is the job of 'Forward Propagation'. Backpropagation is the optimization algorithm used afterward to update the weights and biases to minimize the prediction error.",
+            "C) Because Backpropagation is only used to initialize the random weights at the very beginning of training, not to calculate the final output.",
+            "D) Because Backpropagation relies exclusively on the SVM kernel trick, which bypasses weight multiplication entirely."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "backpropagation",
+            "forward_propagation",
+            "definitions"
+        ],
+        "difficulty": "easy",
+        "explanation": "The instructor clearly separates the two processes. Forward Propagation is the process where data moves from the input layer through the weights to generate a prediction (e.g., predicting an 18 LPA salary). Backpropagation is the optimization algorithm that runs *after* the prediction is made and the error (loss) is calculated. It calculates the gradients and moves backward through the network to update the weights and biases  so the network makes a better prediction next time. Option A is false; it is used in supervised learning. Options C and D are factually incorrect."
+    },
+    {
+        "id": "Backpropagation in Deep Learning | Part 1 | The What?*002",
+        "question": "During the derivation of the Backpropagation math, the instructor calculates $\\frac{\\partial L}{\\partial w*{11}^{(1)}}$ (the derivative of the Loss with respect to a weight in the very first hidden layer). Why must the instructor use the 'Chain Rule' of calculus to find this specific value?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because the Loss function (MSE) mathematically requires all inputs to be chained together via addition before differentiation.",
+"B) Because the learning rate ($\\alpha$) dynamically changes, forcing a chained re-calculation of the gradient at every epoch.",
+"C) Because the Loss $L$ depends directly on the final prediction $\\hat{y}$, which depends on the hidden node output $O_1$, which finally depends on the weight $w*{11}^{(1)}$. The Chain Rule links these indirect, nested mathematical dependencies.",
+            "D) Because the Step activation function is non-differentiable, requiring the Chain Rule to bypass it mathematically."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "chain_rule",
+            "calculus",
+            "backpropagation_math",
+            "nested_functions"
+        ],
+        "difficulty": "medium",
+        "explanation": "The core of Backpropagation is the Chain Rule of calculus. The Loss function only explicitly contains $\\hat{y}$ (the final prediction) and $y$ (the true value). It does not explicitly contain the weight $w_{11}^{(1)}$ from the first layer. To find out how a tiny tweak to $w_{11}^{(1)}$ affects the final Loss, you must track the mathematical chain reaction: changing the weight changes the hidden node's output, which changes the final prediction, which finally changes the Loss. The Chain Rule  allows you to multiply the derivatives of each of these individual steps together to find the total effect. Options A and B are mathematically fabricated. Option D is irrelevant here, as the instructor specifically noted they were using Linear activations (which are differentiable) for this regression example, not Step functions."
+    },
+    {
+        "id": "Backpropagation in Deep Learning | Part 1 | The What?_003",
+        "question": "When computing the gradient for updating the bias term $b_1$ attached to a hidden node, the derived formula is almost identical to the gradient formula for a weight connected to that same node. However, one specific multiplier term drops out of the bias equation. Why?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because the bias term is never updated during Gradient Descent; it remains static.",
+            "B) Because the bias is mathematically multiplied by a constant $1$ during forward propagation, meaning its partial derivative is simply $1$, causing the input feature ($x_i$) term to drop out of the final chain rule product.",
+            "C) Because the bias is added *after* the activation function, rendering it immune to the chain rule.",
+            "D) Because the MSE loss function automatically squares the bias, eliminating its linear derivative."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bias_gradient",
+            "calculus",
+            "partial_derivatives"
+        ],
+        "difficulty": "hard",
+        "explanation": "The output of a node before activation is calculated as $z = (w_1x_1 + w_2x_2) + b$. \nWhen calculating the partial derivative with respect to a weight ($w_1$), the derivative $\\frac{\\partial z}{\\partial w_1}$ is $x_1$ (the input feature). Therefore, $x_1$ becomes part of the final gradient chain. \nHowever, the bias $b$ is effectively multiplied by $1$ ($b \\times 1$). When taking the partial derivative with respect to the bias, $\\frac{\\partial z}{\\partial b}$ is simply $1$. \nTherefore, when assembling the chain rule for the bias, the specific input feature ($x_1$ or $x_2$) does not appear in the final multiplied formula. Option A is false; biases absolutely update during training. Option C is false; bias is added *before* activation ($f(WX+b)$). Option D is mathematically nonsensical."
+    },
+    {
+        "id": "Backpropagation in Deep Learning | Part 1 | The What?_004",
+        "question": "At the end of the video, the instructor outlines the complete training loop. What is the fundamental difference between processing a single 'Student' (a row of data) versus completing a full 'Epoch'?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Processing a student only updates the hidden layers, while an Epoch updates the output layer.",
+            "B) Processing a student executes Forward Propagation, while an Epoch executes Backpropagation.",
+            "C) Processing a student involves calculating the loss and updating the weights based on that single data point. An Epoch is completed only when this update process has been repeated for every single student (row) in the entire training dataset.",
+            "D) Processing a student calculates the Mean Absolute Error, while an Epoch calculates the Mean Squared Error."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "training_loop",
+            "epochs",
+            "stochastic_gradient_descent"
+        ],
+        "difficulty": "easy",
+        "explanation": "The instructor describes an outer loop and an inner loop . The inner loop processes one student at a time: it runs forward propagation, calculates the loss, calculates the gradients, and updates the weights based on that one student. An Epoch (the outer loop) is defined as one complete pass through the *entire* training dataset. If there are 1,000 students, the weights will be updated 1,000 times before one single Epoch is considered finished. Training typically requires hundreds or thousands of Epochs to converge. Options A, B, and D describe fabricated, incorrect mechanics regarding how training loops function."
+    }
+]

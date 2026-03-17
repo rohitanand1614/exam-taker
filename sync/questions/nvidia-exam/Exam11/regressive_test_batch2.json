@@ -1,0 +1,693 @@
+[
+    {
+        "id": "Batch_2_revision_3",
+        "question": "In the context of deploying large language models (LLMs), which strategy is most effective for reducing latency while maintaining high availability?",
+        "type": "multiple_choice",
+        "options": [
+            "Using model quantization to decrease model size before deployment.",
+            "Implementing a distributed inference system with multiple replicas across geographically diverse data centers.",
+            "Leveraging serverless computing for dynamic scalability based on request load.",
+            "Employing edge computing to process inference requests at the data source."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm-deployment",
+            "latency",
+            "high-availability",
+            "distributed-systems"
+        ],
+        "difficulty": "medium",
+        "explanation": "A distributed inference system minimizes latency by serving from the nearest data center and ensures high availability through redundancy."
+    },
+    {
+        "id": "Batch_2_revision_4",
+        "question": "In the context of deploying Large Language Models (LLMs) for enterprise use cases, which factor is most critical when considering the integration of generative AI tools within a data-sensitive financial ecosystem?",
+        "type": "multiple_choice",
+        "options": [
+            "Ensuring low latency in model inference to support real-time decision making.",
+            "Maximizing model performance and accuracy to improve business outcomes.",
+            "Implementing robust data governance frameworks to ensure data quality and compliance.",
+            "Enhancing user experience through intuitive and accessible AI interfaces."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "llm-deployment",
+            "data-governance",
+            "financial-ai",
+            "compliance"
+        ],
+        "difficulty": "medium",
+        "explanation": "In data-sensitive financial ecosystems, robust data governance is essential for ensuring data quality, privacy, and regulatory compliance."
+    },
+    {
+        "id": "Batch_2_revision_5",
+        "question": "Which of the following challenges is most critical when scaling up Large Language Models (LLMs) beyond billions of parameters?",
+        "type": "multiple_choice",
+        "options": [
+            "Increased latency in response due to large model size.",
+            "Difficulty in ensuring data privacy and compliance.",
+            "The exponential increase in computational power and costs required for training.",
+            "Lack of sufficient training datasets for effective learning."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "llm-scaling",
+            "computational-cost",
+            "training-resources"
+        ],
+        "difficulty": "medium",
+        "explanation": "Scaling LLMs leads to exponentially higher computational costs and hardware demands, which becomes the primary bottleneck."
+    },
+    {
+        "id": "Batch_2_revision_8",
+        "question": "When deploying a large language model (LLM) for real-time processing in a cloud-based environment, which of the following strategies best ensures both scalability and low latency?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy the LLM on a single high-performance GPU instance with auto-scaling enabled.",
+            "Utilize model parallelism across multiple smaller GPU instances with a load balancer.",
+            "Implement a hybrid solution of batch and real-time processing with sharded model instances distributed geographically.",
+            "Cache frequent outputs and pre-compute predictions with a serverless architecture."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "llm-deployment",
+            "cloud",
+            "scalability",
+            "latency",
+            "geographical-distribution"
+        ],
+        "difficulty": "hard",
+        "explanation": "A hybrid, geographically distributed approach balances real-time and batch workloads while scaling efficiently and reducing latency."
+    },
+    {
+        "id": "Batch_2_revision_9",
+        "question": "During the fine-tuning of a large language model, you notice a significant drop in model performance on the validation set after a certain number of epochs. Which of the following is the most likely cause of this issue and the best initial step to troubleshoot it?",
+        "type": "multiple_choice",
+        "options": [
+            "The model is underfitting; consider increasing the model‘s complexity.",
+            "The model is overfitting; try reducing the learning rate.",
+            "The model is overfitting; implement early stopping to monitor and halt training.",
+            "The training data is insufficient; consider augmenting it with more examples."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "fine-tuning",
+            "overfitting",
+            "early-stopping",
+            "validation-performance"
+        ],
+        "difficulty": "medium",
+        "explanation": "A drop in validation performance after initial improvement typically indicates overfitting; early stopping helps prevent it."
+    },
+    {
+        "id": "Batch_2_revision_10",
+        "question": "While training an LLM, you notice a sudden spike in the training loss after a few epochs, even though the loss was steadily decreasing up till that point. What is the most likely cause of this issue?",
+        "type": "multiple_choice",
+        "options": [
+            "The learning rate is set too high, causing instability in the optimization process.",
+            "There is a data processing error that introduced corrupted data into the training set.",
+            "The model architecture is too complex, leading to overfitting.",
+            "The gradient accumulation step was not reset between mini-batches."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "training-loss",
+            "learning-rate",
+            "optimization",
+            "llm-training"
+        ],
+        "difficulty": "medium",
+        "explanation": "A high learning rate can cause parameter updates to overshoot, resulting in sudden spikes in training loss."
+    },
+    {
+        "id": "Batch_2_revision_11",
+        "question": "In the context of deploying large language models (LLMs) on NVIDIA hardware, which of the following strategies can most effectively address the challenge of reducing latency in real-time applications?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing model distillation techniques.",
+            "Utilizing NVIDIA‘s TensorRT to optimize the computational graph.",
+            "Deploying the model across multiple GPUs to parallelize computations.",
+            "Implementing asynchronous model loading during runtime."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "tensorrt",
+            "llm-deployment",
+            "latency",
+            "hardware-optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "TensorRT optimizes the computational graph for NVIDIA hardware, significantly reducing inference latency."
+    },
+    {
+        "id": "Batch_2_revision_14",
+        "question": "In deploying a large language model (LLM) in a production environment, which of the following strategies is likely to optimize both performance and cost efficiency in the context of unpredictable traffic patterns and scaling needs?",
+        "type": "multiple_choice",
+        "options": [
+            "Utilizing on-premises high-performance computing resources dedicated solely to the LLM at full capacity.",
+            "Implementing a hybrid cloud strategy where part of the LLM workload is processed on-premises and burst traffic is handled by scalable cloud services.",
+            "Relying entirely on cloud services with fixed allocation to handle peak traffic loads at all times.",
+            "Decreasing model size through pruning techniques to reduce computational demands across all deployment scenarios."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm-deployment",
+            "hybrid-cloud",
+            "cost-efficiency",
+            "scalability"
+        ],
+        "difficulty": "medium",
+        "explanation": "A hybrid cloud strategy enables efficient handling of variable traffic by using on-prem resources and scalable cloud burst capacity."
+    },
+    {
+        "id": "Batch_2_revision_17",
+        "question": "In evaluating the effectiveness of a language model, which metric is most appropriate for assessing its ability to generate coherent and contextually appropriate responses in dialogue systems?",
+        "type": "multiple_choice",
+        "options": [
+            "BLEU Score",
+            "Perplexity",
+            "ROUGE Score",
+            "BERTScore"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "evaluation-metrics",
+            "dialogue-systems",
+            "bertscore",
+            "semantic-coherence"
+        ],
+        "difficulty": "medium",
+        "explanation": "BERTScore uses contextual embeddings to better evaluate semantic coherence and relevance in dialogue responses."
+    },
+    {
+        "id": "Batch_2_revision_18",
+        "question": "Which advanced evaluation metric is most suitable for comparing the performance of different Generative AI models in a zero-shot learning context?",
+        "type": "multiple_choice",
+        "options": [
+            "Perplexity",
+            "Bleu score",
+            "F1 score",
+            "NDCG (Normalized Discounted Cumulative Gain)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "evaluation-metrics",
+            "zero-shot-learning",
+            "ndcg",
+            "ranking"
+        ],
+        "difficulty": "hard",
+        "explanation": "NDCG evaluates ranking quality and is well-suited for zero-shot scenarios where relevance of generated outputs must be ranked."
+    },
+    {
+        "id": "Batch_2_revision_21",
+        "question": "While optimizing an LLM, you encounter a problem where the model diverges and produces nonsensical outputs after several epochs of training. What is the most likely step you should take to troubleshoot this issue?",
+        "type": "multiple_choice",
+        "options": [
+            "Increase the learning rate to hasten convergence.",
+            "Check for exploding gradients and apply gradient clipping.",
+            "Add more layers to the model for better complexity management.",
+            "Decrease weight regularization to avoid underfitting."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "training-stability",
+            "exploding-gradients",
+            "gradient-clipping",
+            "llm-optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Divergence often results from exploding gradients; gradient clipping stabilizes training by limiting gradient magnitudes."
+    },
+    {
+        "id": "Batch_2_revision_25",
+        "question": "Which of the following is a key challenge in developing high-performance Large Language Models (LLMs) that can effectively interpret and generate human-like text?",
+        "type": "multiple_choice",
+        "options": [
+            "Ensuring high computational efficiency without sacrificing accuracy.",
+            "Designing LLMs that do not rely on natural language processing (NLP) techniques.",
+            "Avoiding the usage of transformer architectures for scalability.",
+            "Integrating explicit rule-based programming for language generation tasks."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "llm-development",
+            "computational-efficiency",
+            "accuracy",
+            "transformer-models"
+        ],
+        "difficulty": "easy",
+        "explanation": "Balancing computational efficiency with accuracy is a core challenge in high-performance LLM design."
+    },
+    {
+        "id": "Batch_2_revision_26",
+        "question": "When evaluating a Large Language Model (LLM) using perplexity, which of the following is true regarding the relationship between model complexity and underfitting or overfitting?",
+        "type": "multiple_choice",
+        "options": [
+            "A lower perplexity always indicates that a model is more accurate and does not overfit or underfit the data.",
+            "A higher perplexity suggests the model is underfitting the data, while too low a perplexity might suggest overfitting.",
+            "An optimal perplexity ensures a model neither overfits not underfits, regardless of model complexity.",
+            "Balancing model complexity and dataset diversity guarantees an optimal perplexity regardless of training time."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "perplexity",
+            "model-evaluation",
+            "overfitting",
+            "underfitting"
+        ],
+        "difficulty": "medium",
+        "explanation": "High perplexity often indicates underfitting; very low perplexity may signal overfitting due to memorization of training data."
+    },
+    {
+        "id": "Batch_2_revision_28",
+        "question": "In deploying a generative AI model for large-scale real-time applications, which strategy is most effective to optimize performance while managing resource utilization?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing model distillation to create a smaller, faster model with similar performance.",
+            "Deploying the model on an edge device to minimize latency.",
+            "Utilizing GPU-based cloud services to dynamically scale resources based on demand.",
+            "Reducing the batch size to improve the inference time per request."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cloud-deployment",
+            "gpu-scaling",
+            "real-time-ai",
+            "resource-utilization"
+        ],
+        "difficulty": "medium",
+        "explanation": "GPU-based cloud services offer hardware acceleration and dynamic scaling, ideal for large-scale real-time generative AI."
+    },
+    {
+        "id": "Batch_2_revision_30",
+        "question": "In the context of deploying large language models on NVIDIA infrastructure, which method is most effective for reducing latency while maintaining model accuracy at scale?",
+        "type": "multiple_choice",
+        "options": [
+            "Utilizing model pruning techniques.",
+            "Leveraging multi-instance GPU technology.",
+            "Implementing model quantization to use lower precision.",
+            "Offloading computation to cloud-based TPUs."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nvidia",
+            "mig",
+            "latency",
+            "gpu-inference",
+            "llm-deployment"
+        ],
+        "difficulty": "hard",
+        "explanation": "Multi-Instance GPU (MIG) splits a GPU into isolated instances, reducing latency for concurrent requests without altering model accuracy."
+    },
+    {
+        "id": "Batch_2_revision_31",
+        "question": "In the context of advanced model understanding for LLMs, which approach is most effective in addressing the challenge of catastrophic forgetting during model fine-tuning?",
+        "type": "multiple_choice",
+        "options": [
+            "Linear probing",
+            "Knowledge distillation",
+            "Elastic weight consolidation",
+            "Data augmentation"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "catastrophic-forgetting",
+            "elastic-weight-consolidation",
+            "fine-tuning",
+            "llm-memory"
+        ],
+        "difficulty": "hard",
+        "explanation": "Elastic Weight Consolidation (EWC) adds a regularization term to preserve important parameters from prior tasks during fine-tuning."
+    },
+    {
+        "id": "Batch_2_revision_32",
+        "question": "When evaluating the performance of a generative AI model trained on NVIDIA hardware, which of the following metrics would best assess the model‘s computational efficiency without compromising accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "FLOPs per second",
+            "Inference latency",
+            "Throughput with accuracy consistency",
+            "GPU utilization rate"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "performance-evaluation",
+            "throughput",
+            "accuracy-consistency",
+            "computational-efficiency"
+        ],
+        "difficulty": "medium",
+        "explanation": "Throughput with accuracy consistency measures inference speed while ensuring output quality remains high."
+    },
+    {
+        "id": "Batch_2_revision_33",
+        "question": "In implementing a healthcare diagnosis system using Generative AI LLMs, which strategy would be most effective in improving the models interpretability while maintaining high accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Incorporating a rule-based system alongside the LLM to provide transparent decision paths.",
+            "Using feature attribution techniques such as SHAP or LIME to explain LLM predictions.",
+            "Restricting the model‘s training data to only the most relevant features with clear interpretability.",
+            "Employing attention mechanisms within the LLM to highlight relevant aspects of input data during predictions."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "interpretability",
+            "healthcare-ai",
+            "attention-mechanisms",
+            "llm-explainability"
+        ],
+        "difficulty": "hard",
+        "explanation": "Attention mechanisms highlight input tokens influencing predictions, enhancing interpretability without sacrificing accuracy."
+    },
+    {
+        "id": "Batch_2_revision_35",
+        "question": "In the context of implementing a generative AI use case for financial forecasting, which of the following approaches would best enhance the model‘s predictive accuracy on non-stationary time series data?",
+        "type": "multiple_choice",
+        "options": [
+            "Using fixed sliding windows to segment the time series data and training a standard Transformer model.",
+            "Incorporating dynamic masking mechanisms to capture temporal dependencies in conjunction with a Transformer model.",
+            "Applying a standard recurrent neural network (RNN) model without additional modifications.",
+            "Utilizing simple exponential smoothing techniques to preprocess the data before feeding it to an LLM-based model."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "financial-forecasting",
+            "time-series",
+            "transformer",
+            "dynamic-masking",
+            "non-stationary-data"
+        ],
+        "difficulty": "hard",
+        "explanation": "Dynamic masking allows Transformers to adaptively focus on relevant historical segments, improving forecasts on non-stationary data."
+    },
+    {
+        "id": "Batch_2_revision_36",
+        "question": "During the fine-tuning phase of a Large Language Model (LLM) using a distributed training approach, which of the following techniques is most effective in managing the communication overhead and ensuring scalability?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient checkpointing",
+            "Data parallelism with synchronous updates",
+            "Model parallelism",
+            "Mixed precision training with asynchronous gradient updates"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "distributed-training",
+            "mixed-precision",
+            "asynchronous-updates",
+            "communication-overhead"
+        ],
+        "difficulty": "hard",
+        "explanation": "Mixed precision with asynchronous updates reduces communication bottlenecks and improves scalability in distributed fine-tuning."
+    },
+    {
+        "id": "Batch_2_revision_38",
+        "question": "In the context of implementing a generative AI solution for automated content generation, which of the following strategies best addresses the challenge of avoiding AI-generated content plagiarism, while maintaining creative originality?",
+        "type": "multiple_choice",
+        "options": [
+            "Fine-tuning a pre-trained model with a diverse set of training data and applying plagiarism detection algorithms to the generated outputs.",
+            "Constructing a custom large-scale language model from scratch specifically designed to recognize and avoid creating content similar to existing works.",
+            "Integrating prompt engineering techniques to steer AI output generation towards novel content while routinely checking outputs with human review and revision.",
+            "Using transfer learning on domain-specific corpora to finetune a model‘s style and expression, ensuring it is unlikely to duplicate known material."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "content-generation",
+            "plagiarism",
+            "fine-tuning",
+            "originality",
+            "ai-ethics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Combining diverse fine-tuning data with plagiarism detection effectively balances originality and plagiarism avoidance."
+    },
+    {
+        "id": "Batch_2_revision_40",
+        "question": "In the context of preparing data for training a generative AI language model, which of the following strategies is most effective for minimizing data bias while maintaining performance across diverse linguistic scenarios?",
+        "type": "multiple_choice",
+        "options": [
+            "Aggregate datasets from multiple domains and rely on the model to adjust through fine-tuning.",
+            "Utilize adversarial training to explicitly mitigate biases during the model training process.",
+            "Favor large datasets from a single domain or language as this ensures consistency.",
+            "Randomly sample data points from a mixed domain dataset to increase dataset size."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data-bias",
+            "adversarial-training",
+            "fairness",
+            "llm-training"
+        ],
+        "difficulty": "hard",
+        "explanation": "Adversarial training actively identifies and suppresses bias during training, promoting fairness across diverse linguistic contexts."
+    },
+    {
+        "id": "Batch_2_revision_41",
+        "question": "You are tasked with evaluating the latency-performance trade-off of a generative AI model designed for real-time applications. Which metric is most crucial to prioritize for ensuring low-latency performance without significantly compromising model accuracy?",
+        "type": "multiple_choice",
+        "options": [
+            "Throughput",
+            "Inference latency",
+            "Model accuracy",
+            "Energy efficiency"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "real-time-ai",
+            "latency",
+            "performance-evaluation",
+            "inference"
+        ],
+        "difficulty": "easy",
+        "explanation": "Inference latency directly determines response speed in real-time applications and must be prioritized to meet timing constraints."
+    },
+    {
+        "id": "Batch_2_revision_42",
+        "question": "When deploying a large-scale LLM, which strategy would most effectively minimize latency while optimizing compute resource utilization?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy the model across multiple GPUs using tensor parallelism.",
+            "Utilize pipeline parallelism combined with data parallelism to balance load across nodes.",
+            "Leverage model slicing with CPU offloading to distribute computational workload.",
+            "Use a single large GPU with maximum batch sizes to take advantage of GPU acceleration."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "llm-deployment",
+            "pipeline-parallelism",
+            "data-parallelism",
+            "resource-utilization",
+            "latency"
+        ],
+        "difficulty": "hard",
+        "explanation": "Combining pipeline and data parallelism balances model execution across nodes, reducing latency and improving resource use."
+    },
+    {
+        "id": "Batch_2_revision_48",
+        "question": "You are tasked with troubleshooting a generative AI model that frequently produces outputs with nonsensical or repetitive text. What approach should you primarily focus on to mitigate this issue?",
+        "type": "multiple_choice",
+        "options": [
+            "Increase the size of the training dataset to include more diverse examples.",
+            "Fine-tune the model with a penalization mechanism for repetitive sequences.",
+            "Decrease the learning rate during backpropagation to improve convergence.",
+            "Implement dropout layers in the neural network to improve generalization."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "repetition",
+            "nonsensical-output",
+            "fine-tuning",
+            "sequence-penalization",
+            "text-generation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Penalizing repetitive sequences during fine-tuning directly addresses the root cause of degenerate text generation."
+    },
+    {
+        "id": "Batch_2_revision_52",
+        "question": "When training a large language model (LLM) using a distributed architecture, which optimization strategy is most beneficial for efficiently handling memory constraints while ensuring gradient updates are coordinated across multiple GPUs?",
+        "type": "multiple_choice",
+        "options": [
+            "Gradient Accumulation",
+            "Model Parallelism",
+            "Data Parallelism with ZeRO Optimization",
+            "Asynchronous Stochastic Gradient Descent"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "distributed-training",
+            "zero",
+            "memory-optimization",
+            "gradient-synchronization",
+            "llm-training"
+        ],
+        "difficulty": "hard",
+        "explanation": "ZeRO-enabled data parallelism shards optimizer states and gradients, reducing memory usage while maintaining coordination."
+    },
+    {
+        "id": "Batch_2_revision_53",
+        "question": "What is the primary challenge in scaling up Large Language Models (LLMs) to improve their performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Increasing the vocabulary size",
+            "Enhancing the model‘s interpretability",
+            "Managing the computational resources and efficiency",
+            "Improving the model‘s ability to generate diverse outputs"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "llm-scaling",
+            "computational-resources",
+            "efficiency",
+            "performance"
+        ],
+        "difficulty": "easy",
+        "explanation": "As LLMs grow, managing computational resources—memory, compute, and data throughput—becomes the main scaling bottleneck."
+    },
+    {
+        "id": "Batch_2_revision_56",
+        "question": "What is a significant challenge in scaling the architecture of Large Language Models (LLMs) related to computational resource management?",
+        "type": "multiple_choice",
+        "options": [
+            "Parallelizing training across multiple GPUs without memory bottlenecks",
+            "Reducing the number of parameters while improving model accuracy",
+            "Implementing regularization techniques to prevent overfitting",
+            "Improving language model‘s understanding of semantic context"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "llm-architecture",
+            "gpu-parallelization",
+            "memory-bottlenecks",
+            "scaling"
+        ],
+        "difficulty": "medium",
+        "explanation": "Efficient GPU parallelization without memory bottlenecks is critical when scaling LLM architectures."
+    },
+    {
+        "id": "Batch_2_revision_58",
+        "question": "In the context of deploying large language models, which of the following practices is the most effective in preventing data leakage and ensuring user privacy?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing differential privacy techniques during model training.",
+            "Utilizing a gated access mechanism for the model outputs.",
+            "Conducting regular audits of data logs and usage metrics.",
+            "Limiting the size of the training dataset to only essential data."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "privacy",
+            "differential-privacy",
+            "data-leakage",
+            "llm-deployment"
+        ],
+        "difficulty": "medium",
+        "explanation": "Differential privacy mathematically bounds the influence of individual training examples, preventing data leakage."
+    },
+    {
+        "id": "Batch_2_revision_59",
+        "question": "When troubleshooting performance bottlenecks in large language model (LLM) training using NVIDIA hardware, which of the following steps is crucial for identifying GPU memory fragmentation issues?",
+        "type": "multiple_choice",
+        "options": [
+            "Utilizing NVIDIA NSight Compute to analyze memory allocation patterns and identify fragmentation.",
+            "Using NVIDIA System Management Interface (nvidia-smi) to monitor GPU memory usage and identify spikes in memory consumption.",
+            "Implementing NVIDIA‘s Memory Profiler tools to track memory allocation and deallocation sequences, spotting fragmentation.",
+            "Conducting manual code reviews to ensure optimal memory allocation strategies within the LLM training scripts."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "nvidia",
+            "gpu-memory",
+            "memory-fragmentation",
+            "performance-bottleneck",
+            "profiling"
+        ],
+        "difficulty": "hard",
+        "explanation": "NVIDIA's Memory Profiler tools provide detailed allocation/deallocation traces needed to detect and resolve memory fragmentation."
+    },
+    {
+        "id": "Batch_2_revision_60",
+        "question": "Which of the following advanced techniques is crucial for optimizing the fine-tuning of a generative AI model to effectively reduce catastrophic forgetting while maintaining model performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Data Augmentation",
+            "Elastic Weight Consolidation (EWC)",
+            "Learning Rate Scheduling",
+            "Batch Normalization"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "catastrophic-forgetting",
+            "ewc",
+            "fine-tuning",
+            "generative-ai",
+            "continual-learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "Elastic Weight Consolidation (EWC) preserves knowledge from prior tasks by regularizing important weights during fine-tuning."
+    }
+]

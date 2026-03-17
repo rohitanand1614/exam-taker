@@ -1,0 +1,109 @@
+[
+    {
+        "id": "dl_optimizers_rmsprop_001",
+        "question": "What fundamental flaw in the AdaGrad optimization algorithm is RMSProp specifically designed to solve?",
+        "type": "multiple_choice",
+        "options": [
+            "A) AdaGrad requires tuning a learning rate for every single parameter manually, making it impractical for deep neural networks with millions of parameters.",
+            "B) AdaGrad continually accumulates the sum of all past squared gradients from the very first epoch, causing the effective learning rate to aggressively shrink to near-zero and prematurely halt training.",
+            "C) AdaGrad cannot handle sparse datasets effectively because the gradient updates for infrequent features are too large, leading to divergence.",
+            "D) AdaGrad calculates second-order derivatives (Hessian matrix), which is computationally impossible for modern deep learning architectures."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rmsprop",
+            "adagrad",
+            "optimization_challenges",
+            "learning_rate"
+        ],
+        "difficulty": "medium",
+        "explanation": "AdaGrad adapts learning rates by dividing the global learning rate by the square root of the sum of all past squared gradients ($v_t$). Because squared gradients are always positive, this sum strictly increases from epoch 1. In deep neural networks requiring many epochs, this denominator becomes massively large, forcing the effective learning rate to shrink to almost zero. As the instructor notes, this causes the updates to become vanishingly small, and the model stops learning (prematurely halts) before reaching the minimum. RMSProp solves this by changing how the historical gradients are accumulated. Option A is false; AdaGrad adapts rates automatically. Option C is the opposite of reality; AdaGrad is actually good for sparse data. Option D is incorrect; AdaGrad is a first-order method."
+    },
+    {
+        "id": "dl_optimizers_rmsprop_002",
+        "question": "How does RMSProp mathematically modify the AdaGrad update rule to prevent the effective learning rate from vanishing?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It completely removes the denominator and instead subtracts a fixed momentum term from the learning rate at each step.",
+            "B) It introduces a lookahead step to evaluate the gradient before dividing it by the sum of squared gradients.",
+            "C) It replaces the strict sum of all past squared gradients with an exponentially decaying weighted average of past squared gradients.",
+            "D) It periodically resets the accumulated sum of squared gradients to zero every 10 epochs."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rmsprop",
+            "mathematics",
+            "exponential_moving_average"
+        ],
+        "difficulty": "medium",
+        "explanation": "Instead of keeping a running sum of all past squared gradients from the beginning of time (which strictly grows to infinity), RMSProp calculates an exponentially decaying weighted average (or exponential moving average) of the squared gradients. The formula is $v_t = \\beta v_{t-1} + (1 - \\beta)(\\nabla L)^2$. This mechanism heavily weights recent gradients and \"forgets\" older gradients. Because older gradients decay out of the calculation, $v_t$ does not grow indefinitely, preventing the denominator from blowing up and keeping the effective learning rate stable. Option C correctly identifies this mechanism. Option A describes a broken form of standard Momentum. Option B describes Nesterov Momentum. Option D is a manual heuristic, not the algorithmic mechanism of RMSProp."
+    },
+    {
+        "id": "dl_optimizers_rmsprop_003",
+        "question": "In the RMSProp formula $v_t = \\beta v_{t-1} + (1 - \\beta)g_t^2$ (where $g_t$ is the current gradient), what is the practical effect of the hyperparameter $\\beta$ (decay rate) typically being set close to 1 (e.g., 0.95)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It ensures that the current batch's gradient ($g_t$) dominates the calculation, making the optimizer highly sensitive to sudden local noise.",
+            "B) It heavily discounts the history of past gradients, causing the optimizer to behave almost identically to standard Stochastic Gradient Descent.",
+            "C) It retains a long, stable memory of past squared gradients, meaning the current batch's gradient only slightly adjusts the moving average.",
+            "D) It forces the algorithm to take massive, volatile steps early in training, slowing down significantly only during the final epochs."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rmsprop",
+            "hyperparameters",
+            "decay_rate"
+        ],
+        "difficulty": "medium",
+        "explanation": "The parameter $\\beta$ controls the decay rate in the exponential moving average. If $\\beta = 0.95$, then $v_t = 0.95 \\cdot v_{t-1} + 0.05 \\cdot g_t^2$. This means 95% of the new $v_t$ value comes from the historical average ($v_{t-1}$), and only 5% comes from the current gradient squared. This creates a highly stable, long-memory moving average that smooths out updates rather than reacting violently to the noise of a single batch. Option C accurately describes this effect. Option A is the opposite; a low $\\beta$ (e.g., 0.1) would make it sensitive to the current gradient. Option B is incorrect; discounting history heavily requires a low $\\beta$. Option D does not describe the steadying effect of a high $\\beta$."
+    },
+    {
+        "id": "dl_optimizers_rmsprop_004",
+        "question": "According to the instructor, why might visual animations of AdaGrad and RMSProp look practically identical when applied to a simple Linear Regression problem?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Linear Regression has a strictly convex error surface, which is shallow enough that AdaGrad converges before its learning rate decays to a halt.",
+            "B) The gradient of Mean Squared Error in Linear Regression is always constant, completely neutralizing the adaptive mechanisms of both algorithms.",
+            "C) RMSProp automatically degrades into AdaGrad when it detects that the dataset only has continuous features and lacks sparse features.",
+            "D) Animations inherently lack the precision to show the subtle mathematical differences between first-order and second-order optimization techniques."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "rmsprop",
+            "adagrad",
+            "convex_optimization",
+            "linear_regression"
+        ],
+        "difficulty": "easy",
+        "explanation": "The instructor explicitly points out that AdaGrad's fatal flaw (premature halting) primarily manifests in deep, complex neural networks with non-convex error surfaces that require many epochs to traverse. Linear Regression, however, presents a simple convex optimization problem (a smooth bowl). Because the path to the minimum is direct and requires fewer epochs, AdaGrad manages to reach the global minimum before its $v_t$ term grows large enough to stall training. Therefore, on simple problems, both trajectories look similar. Option A correctly captures this nuance. Option B is mathematically false; gradients change in MSE. Option C is a fabricated mechanism. Option D is incorrect as neither are second-order methods."
+    },
+    {
+        "id": "dl_optimizers_rmsprop_005",
+        "question": "In modern Deep Learning practice, what is the most accurate statement regarding the usage and relevancy of RMSProp?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It is completely obsolete and has been entirely replaced by Adam in all modern Deep Learning frameworks.",
+            "B) It is strictly reserved for Natural Language Processing tasks due to its inability to process image data.",
+            "C) While often superseded by Adam as the default choice, RMSProp remains a highly powerful, empirically proven optimizer that is frequently used as a strong alternative when Adam fails to yield the best results.",
+            "D) It is only used theoretically in academic settings because calculating the moving average is too computationally expensive for production deployments."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rmsprop",
+            "adam",
+            "practical_usage"
+        ],
+        "difficulty": "easy",
+        "explanation": "As the instructor states near the end of the video, RMSProp does not have major structural disadvantages. It is considered one of the best optimization techniques. While the Adam optimizer (which incorporates RMSProp's mechanisms) is generally the popular default today, RMSProp is still highly relevant. It actively competes with Adam and is frequently used by practitioners if a specific model or dataset does not respond well to Adam. Option C correctly summarizes its current status. Option A is too absolute; it is not obsolete. Option B is false; it is used across all domains, including CV. Option D is false; the computational overhead of the moving average is trivial."
+    }
+]
