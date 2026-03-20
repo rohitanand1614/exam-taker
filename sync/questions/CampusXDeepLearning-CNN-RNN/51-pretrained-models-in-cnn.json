@@ -1,3 +1,128 @@
-{
-    
-}
+[
+    {
+        "id": "dl_pretrained_001",
+        "question": "What is the primary rationale for utilizing a pre-trained CNN model instead of building and training a custom architecture from scratch?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Pre-trained models automatically write the necessary deployment code for production environments.",
+            "B) Deep learning models are extremely \"data hungry\" and computationally expensive to train; pre-trained models bypass the need for massive labeled datasets and extensive training time.",
+            "C) Custom CNN architectures are deprecated in modern deep learning frameworks like Keras and PyTorch.",
+            "D) Pre-trained models inherently compress image data, requiring less RAM during the inference phase."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "pretrained_models",
+            "deep_learning_fundamentals",
+            "computational_cost"
+        ],
+        "difficulty": "easy",
+        "explanation": "The core motivation for using pre-trained models is resource efficiency. Training a deep Convolutional Neural Network (CNN) from scratch requires millions of accurately labeled images (which are expensive and tedious to gather) and immense computational power (GPUs running for days or weeks). Pre-trained models, having already learned robust feature representations (like edges, shapes, and textures) from massive datasets like ImageNet, allow developers to leverage these learned weights immediately, saving both time and data acquisition costs."
+    },
+    {
+        "id": "dl_pretrained_002",
+        "question": "The instructor discusses the ImageNet dataset as a foundational milestone in Deep Learning. Which of the following accurately describes the scale and structure of the original ImageNet database?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It is a collection of 100,000 highly curated medical images used strictly for cancer detection.",
+            "B) It contains roughly 1.4 million images categorized into exactly 1,000 distinct classes.",
+            "C) It is a massive database of approximately 14 million (1.4 crore) images spanning around 20,000 everyday categories, complete with bounding box annotations for localization.",
+            "D) It is an algorithm that automatically generates synthetic images to augment small datasets."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "imagenet",
+            "dataset_scale",
+            "computer_vision"
+        ],
+        "difficulty": "medium",
+        "explanation": "The original ImageNet database, spearheaded by researchers like Fei-Fei Li, is a monumental visual database containing over 14 million images (1.4 crore) mapped to approximately 20,000 distinct categories (synsets) based on the WordNet hierarchy. Crucially, it didn't just provide class labels; over a million of these images also included bounding box annotations to facilitate object localization tasks. *Note: While the ILSVRC competition used a subset of 1.2 million images and 1,000 classes, the original database is much larger.*"
+    },
+    {
+        "id": "dl_pretrained_003",
+        "question": "In the context of the ILSVRC (ImageNet Large Scale Visual Recognition Challenge), what architectural shift occurred in 2012 that caused the error rate to plummet to 16% and revolutionized the field of Computer Vision?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The introduction of Support Vector Machines (SVMs) with highly optimized manual feature extraction techniques.",
+            "B) The debut of AlexNet, a deep Convolutional Neural Network (CNN) that utilized ReLU activations and dropout, marking the transition from traditional Machine Learning to Deep Learning.",
+            "C) The implementation of Transformer architectures for image patch sequence processing.",
+            "D) The shift from supervised learning to purely unsupervised clustering algorithms."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "alexnet",
+            "ilsvrc",
+            "cnn_history"
+        ],
+        "difficulty": "medium",
+        "explanation": "Before 2012, traditional machine learning models relying on hand-crafted feature extraction dominated the ILSVRC, plateauing at around a 25% error rate. In 2012, AlexNet—a deep Convolutional Neural Network—entered the competition. By leveraging GPU acceleration, ReLU activation functions (which mitigated the vanishing gradient problem), and deep layers, AlexNet drastically reduced the error rate to 16.4%. This landmark victory proved the superiority of deep learning over traditional manual feature engineering for image tasks, sparking the modern AI boom."
+    },
+    {
+        "id": "dl_pretrained_004",
+        "question": "When reviewing the progression of ILSVRC winning models (from AlexNet to ResNet), what was the defining structural trend that directly correlated with decreasing error rates?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A steady decrease in the number of layers to prevent overfitting.",
+            "B) A transition away from convolutions toward purely Fully Connected (Dense) networks.",
+            "C) A significant increase in the depth (number of layers) and overall complexity of the CNN architectures.",
+            "D) The complete removal of pooling layers to preserve maximum spatial resolution."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "model_architecture",
+            "network_depth",
+            "ilsvrc_trends"
+        ],
+        "difficulty": "easy",
+        "explanation": "As the instructor notes while reviewing the chart of winning models, the primary architectural trend from 2012 to 2015 was the continuous increase in network depth. AlexNet (2012) had 8 layers, VGG (2014) pushed it to 19 layers, and ResNet (2015) exploded the depth to 152 layers. This increasing complexity and depth allowed the networks to learn highly intricate hierarchical feature representations, which directly drove the error rates down from 16% to an astonishing 3.5% (surpassing human performance on the dataset)."
+    },
+    {
+        "id": "dl_pretrained_005",
+        "question": "When loading a pre-trained model like ResNet50 in Keras using `tf.keras.applications.ResNet50(weights='imagenet')`, what exactly does the `weights='imagenet'` argument dictate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It instructs the model to immediately begin downloading the entire 1.4 million image dataset onto the local machine.",
+            "B) It initializes the architecture's parameters (filters and biases) with the exact optimal values learned by the original model after being trained on the ImageNet dataset.",
+            "C) It forces the model to reshape all incoming input images to the default ImageNet size of 224x224.",
+            "D) It tells Keras to apply ImageNet-specific data augmentation techniques during the inference phase."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "keras_api",
+            "model_weights",
+            "transfer_learning"
+        ],
+        "difficulty": "medium",
+        "explanation": "An untrained neural network architecture is just a mathematical template; its \"knowledge\" lives in its weights (the numerical values of its filters and biases). By specifying `weights='imagenet'`, you are instructing Keras to download and load the pre-calculated, optimized parameter values that the original ResNet50 model achieved after weeks of training on the massive ImageNet dataset. This is the essence of using a pre-trained model—you are inheriting its learned ability to detect visual features."
+    },
+    {
+        "id": "dl_pretrained_006",
+        "question": "In the Keras Applications documentation, models are listed with metrics like 'Top-1 Accuracy' and 'Top-5 Accuracy'. What does 'Top-5 Accuracy' specifically measure?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model's accuracy when evaluated only on the 5 most difficult image classes in the dataset.",
+            "B) The percentage of times the model's absolute highest probability prediction is precisely correct.",
+            "C) The percentage of times the true, correct label is present within the model's top 5 highest probability predictions.",
+            "D) The model's accuracy after completing exactly 5 training epochs."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "evaluation_metrics",
+            "top5_accuracy",
+            "classification"
+        ],
+        "difficulty": "easy",
+        "explanation": "Image classification models output a probability distribution across all possible classes (e.g., 1,000 classes for ImageNet). 'Top-1 Accuracy' checks if the single class with the highest predicted probability is the correct answer. Because images can be ambiguous or contain multiple valid objects (e.g., a dog sitting in a car), 'Top-5 Accuracy' is a more forgiving metric. It measures the percentage of test images where the true, correct label is found *anywhere* within the model's top 5 highest-scoring predictions."
+    }
+]

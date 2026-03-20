@@ -1,3 +1,212 @@
-{
-    
-}
+[
+    {
+        "id": "cnn_backprop_001",
+        "question": "In the CNN architecture described (Conv -> ReLU -> MaxPool -> Flatten -> Dense), you are calculating the gradient of the loss with respect to the convolution layer's weights ($w_1$). According to the backpropagation chain rule sequence, which intermediate gradient must be computed immediately *before* you can calculate the gradient with respect to the output of the Flatten layer ($F$)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The gradient with respect to the Dense layer's weights ($w_2$)",
+            "B) The gradient with respect to the MaxPool output ($P_1$)",
+            "C) The gradient with respect to the Dense layer's pre-activation ($Z_2$)",
+            "D) The gradient with respect to the ReLU activation output ($A_1$)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "chain_rule",
+            "backpropagation",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Backpropagation computes gradients from the output layer moving backward. To find the gradient with respect to the Flatten layer's output ($F$), we must first compute the gradient with respect to the layer immediately succeeding it. In this architecture, $F$ feeds into the Dense layer to compute the pre-activation $Z_2$ ($Z_2 = w_2 \\cdot F + b_2$). Therefore, the gradient $\\frac{\\partial L}{\\partial Z_2}$ must be computed right before $\\frac{\\partial L}{\\partial F}$."
+    },
+    {
+        "id": "cnn_backprop_002",
+        "question": "The instructor notes that the combined derivative of the Loss with respect to the output layer's pre-activation ($Z_2$), assuming a Sigmoid activation and Binary Cross-Entropy loss, simplifies elegantly. What is this final simplified expression for $\\frac{\\partial L}{\\partial Z_2}$?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $A_2 \\cdot (1 - A_2)$",
+            "B) $A_2 - Y$ (Predicted output minus True label)",
+            "C) $-Y \\log(A_2) - (1-Y) \\log(1-A_2)$",
+            "D) $Y - A_2$ multiplied by the learning rate"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "loss_function",
+            "sigmoid",
+            "binary_crossentropy"
+        ],
+        "difficulty": "easy",
+        "explanation": "When you multiply the derivative of the Binary Cross-Entropy loss with respect to the activation ($\\frac{\\partial L}{\\partial A_2}$) by the derivative of the Sigmoid activation with respect to its input ($\\frac{\\partial A_2}{\\partial Z_2}$), the complex terms algebraically cancel out. The resulting upstream gradient simplifies beautifully to $A_2 - Y$, mathematically representing the raw error of the prediction."
+    },
+    {
+        "id": "cnn_backprop_003",
+        "question": "Let $F$ be the output of the Flatten layer, and $Z_2 = w_2 \\cdot F + b_2$ be the pre-activation of the subsequent Dense layer. What does the mathematical derivative $\\frac{\\partial Z_2}{\\partial F}$ evaluate to during the backward pass?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The transposed bias vector $b_2^T$",
+            "B) The input feature map $X$",
+            "C) The Dense layer's weight matrix $w_2$",
+            "D) A matrix of ones with the same shape as $F$"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "dense_layer",
+            "matrix_calculus",
+            "gradients"
+        ],
+        "difficulty": "easy",
+        "explanation": "Because the relationship between $Z_2$ and $F$ is a straightforward linear transformation ($Z_2 = w_2 \\cdot F + b_2$), taking the partial derivative of $Z_2$ with respect to the vector $F$ simply isolates the linear coefficient, which is the weight matrix $w_2$. Therefore, calculating the incoming gradient $\\frac{\\partial L}{\\partial F}$ relies entirely on scaling by $w_2$."
+    },
+    {
+        "id": "cnn_backprop_004",
+        "question": "How is the gradient of the loss mathematically propagated backward through a Flatten layer during backpropagation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By taking the dot product of the 1D gradient array and the previous layer's feature map.",
+            "B) By simply reshaping the 1D incoming gradient array back to the original multidimensional shape of the preceding pooling layer.",
+            "C) By applying an inverse pooling algorithm to expand the dimensions dynamically.",
+            "D) By calculating the derivative of the flatten function, yielding a matrix of ones."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "flatten_layer",
+            "backpropagation",
+            "tensor_reshape"
+        ],
+        "difficulty": "medium",
+        "explanation": "A Flatten layer contains no trainable parameters and performs no complex mathematical transformations; it only alters the programmatic shape of the tensor. Consequently, backpropagating through a Flatten layer does not involve calculating standard derivatives. The backward pass simply reverses the physical operation—reshaping the 1D gradient vector back into the 2D or 3D shape of the preceding tensor."
+    },
+    {
+        "id": "cnn_backprop_005",
+        "question": "A Max Pooling layer with a $2 \\times 2$ window receives a $4 \\times 4$ feature map during the forward pass. During backpropagation, how is the incoming $2 \\times 2$ error gradient matrix routed back to the original $4 \\times 4$ shape?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Each gradient value is divided by 4 and distributed equally across its corresponding $2 \\times 2$ window.",
+            "B) The gradients are placed exactly at the indices where the maximum values were located during the forward pass, and all other indices receive a gradient of 0.",
+            "C) The $2 \\times 2$ gradient matrix is duplicated across the $4 \\times 4$ matrix to ensure uniform gradient flow.",
+            "D) The gradients are routed to the maximum indices, while remaining indices receive a small epsilon value to prevent dead neurons."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "max_pooling",
+            "gradient_routing",
+            "backpropagation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Max Pooling acts as a strict informational router. During the forward pass, only the maximum value in each spatial window is passed forward, meaning only that specific value influenced the final prediction. To respect the chain rule during the backward pass, the incoming gradient is routed exclusively to the 'winning' index. All other indices in that specific window are assigned a gradient of 0."
+    },
+    {
+        "id": "cnn_backprop_006",
+        "question": "From a strictly mathematical perspective, why must the non-maximum elements in a Max Pooling window receive a gradient of exactly zero during backpropagation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To act as a form of regularization (similar to Dropout) that prevents the model from overfitting on local spatial features.",
+            "B) Because the derivative of the max operation is mathematically undefined for continuous functions.",
+            "C) Because those elements were completely discarded during the forward pass, meaning a tiny change in their values would have strictly no impact on the final loss.",
+            "D) To save computational memory during the backward pass by creating sparse gradient matrices."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "max_pooling",
+            "chain_rule",
+            "gradient_flow"
+        ],
+        "difficulty": "easy",
+        "explanation": "The gradient of the loss with respect to a specific activation quantifies how much a minor change in that activation alters the final loss. Because non-maximum values in a pooling window are blocked from advancing in the forward pass, tweaking their underlying values cannot mathematically alter the final prediction. Hence, their partial derivative with respect to the final loss evaluates to precisely 0."
+    },
+    {
+        "id": "cnn_backprop_007",
+        "question": "Let $Z_1$ be the output of a Convolution layer, and $A_1 = \\text{ReLU}(Z_1)$. You receive the upstream error gradient matrix $\\frac{\\partial L}{\\partial A_1}$. How do you practically compute $\\frac{\\partial L}{\\partial Z_1}$?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Apply the standard ReLU function directly to the gradient matrix $\\frac{\\partial L}{\\partial A_1}$.",
+            "B) Multiply $\\frac{\\partial L}{\\partial A_1}$ by 1 at indices where $Z_1 > 0$, and set the gradient to 0 at indices where $Z_1 \\le 0$.",
+            "C) Subtract the mean of the gradients for all elements where $Z_1 \\le 0$ to maintain gradient balance.",
+            "D) Multiply $\\frac{\\partial L}{\\partial A_1}$ by $Z_1$ where $Z_1 > 0$, and by $-1$ otherwise."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "relu",
+            "activation_functions",
+            "backpropagation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The derivative of the ReLU function $f(x) = \\max(0, x)$ is $1$ for $x > 0$ and $0$ for $x \\le 0$. By the chain rule, $\\frac{\\partial L}{\\partial Z_1} = \\frac{\\partial L}{\\partial A_1} \\cdot f'(Z_1)$. Therefore, backpropagating through a ReLU layer essentially acts as a binary mask: it lets the upstream gradient pass unchanged where the pre-activation $Z_1$ was positive, and zeroes it out where $Z_1$ was zero or negative."
+    },
+    {
+        "id": "cnn_backprop_008",
+        "question": "In the Convolution layer, a single scalar bias $b_1$ is added to every spatial element of the resulting feature map $Z_1$. When calculating the gradient of the loss with respect to this single bias parameter ($\\frac{\\partial L}{\\partial b_1}$), what operation is applied to the upstream gradient matrix $\\frac{\\partial L}{\\partial Z_1}$?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Calculating the average of all elements in $\\frac{\\partial L}{\\partial Z_1}$.",
+            "B) Finding the maximum value in the $\\frac{\\partial L}{\\partial Z_1}$ matrix.",
+            "C) Multiplying the upstream gradient by the inverse of the filter weights.",
+            "D) Summing all the individual elements in the $\\frac{\\partial L}{\\partial Z_1}$ matrix."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "bias_gradient",
+            "convolution",
+            "summation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Because the exact same bias parameter $b_1$ is broadcast and added to every single spatial position in the feature map $Z_1$ during the forward pass, a theoretical shift in $b_1$ influences the loss through every single element of $Z_1$. According to the multivariate chain rule, to find the total gradient contribution, you must aggregate these paths by summing up every element inside the $\\frac{\\partial L}{\\partial Z_1}$ error matrix."
+    },
+    {
+        "id": "cnn_backprop_009",
+        "question": "When computing the gradient of the loss with respect to the convolution filter weights ($\\frac{\\partial L}{\\partial w_1}$), the instructor expands the partial derivatives step-by-step. By matching the resultant summations, what elegant operation naturally emerges?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The cross-correlation of the transposed filter weights $w_1^T$ with the input matrix $X$.",
+            "B) The convolution of the original input matrix $X$ with the upstream gradient matrix $\\frac{\\partial L}{\\partial Z_1}$.",
+            "C) The element-wise multiplication (Hadamard product) of the input matrix $X$ and $\\frac{\\partial L}{\\partial Z_1}$.",
+            "D) The standard matrix multiplication of the flattened input $X$ and the flattened upstream gradient."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "filter_weights",
+            "convolution_operation",
+            "chain_rule"
+        ],
+        "difficulty": "hard",
+        "explanation": "A beautiful property of backpropagation in Convolutional Neural Networks is that the gradient calculation itself mimics a convolution. By meticulously expanding the chain rule $\\frac{\\partial L}{\\partial Z_1} \\cdot \\frac{\\partial Z_1}{\\partial w_1}$, the resulting scalar summations mathematically form a valid convolution. Specifically, the weight gradient $\\frac{\\partial L}{\\partial w_1}$ is obtained by convolving the forward input activations $X$ directly with the backward-flowing error gradients $\\frac{\\partial L}{\\partial Z_1}$."
+    },
+    {
+        "id": "cnn_backprop_010",
+        "question": "When computing $\\frac{\\partial L}{\\partial w_1}$ via the convolution of the input $X$ and the upstream gradient $\\frac{\\partial L}{\\partial Z_1}$, how do the matrix dimensions align mathematically if the original input $X$ is $3 \\times 3$ and the upstream gradient $\\frac{\\partial L}{\\partial Z_1}$ is $2 \\times 2$?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The $3 \\times 3$ input is downsampled to $2 \\times 2$ before performing an element-wise multiplication.",
+            "B) The $2 \\times 2$ gradient acts as the sliding 'filter' over the $3 \\times 3$ input matrix, cleanly producing a $2 \\times 2$ weight gradient matrix.",
+            "C) The $3 \\times 3$ input matrix is zero-padded to $4 \\times 4$ so the convolution yields a $3 \\times 3$ output.",
+            "D) The $2 \\times 2$ gradient matrix is upsampled using nearest-neighbor interpolation before convolving."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dimensionality",
+            "matrix_operations",
+            "convolution"
+        ],
+        "difficulty": "hard",
+        "explanation": "Dimensionality acts as a crucial sanity check in tensor calculus. Since the original filter $w_1$ was $2 \\times 2$, its gradient $\\frac{\\partial L}{\\partial w_1}$ must also be exactly $2 \\times 2$ to allow parameter updates. By using the upstream gradient $\\frac{\\partial L}{\\partial Z_1}$ (which is $2 \\times 2$) as the sliding window over the $3 \\times 3$ input $X$, a valid 2D convolution without padding naturally outputs a $2 \\times 2$ matrix, perfectly aligning dimensions for the gradient."
+    }
+]

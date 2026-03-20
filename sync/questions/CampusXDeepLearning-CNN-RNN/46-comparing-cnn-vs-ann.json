@@ -1,3 +1,90 @@
-{
-    
-}
+[
+    {
+        "id": "dl_cnn_vs_ann_001",
+        "question": "The instructor draws a direct mathematical parallel between standard Artificial Neural Networks (ANNs) and Convolutional Neural Networks (CNNs). In this analogy, what specific component of a CNN functions analogously to a single hidden 'node' (or neuron) in an ANN?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A single pixel within the input image.",
+            "B) A single Convolutional Filter (Kernel).",
+            "C) The entire Pooling Layer.",
+            "D) A single scalar value within the output feature map."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "ann_vs_cnn",
+            "analogy",
+            "filters",
+            "nodes"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. The instructor explicitly maps an ANN node to a CNN filter. In an ANN, a node takes inputs, multiplies them by learned weights, adds a learned bias, and passes the result through an activation function (like ReLU). In a CNN, a single filter does exactly the same thing: it takes a spatial patch of inputs, multiplies them element-wise by its learned weights, adds a single learned bias for that filter, and passes the output through ReLU. Adding a new filter to a CNN layer is conceptually identical to adding a new node to an ANN hidden layer. Option A is the data itself. Option C is a downsampling operation with no weights. Option D is the *output* of the operation, not the structural equivalent of the processing unit."
+    },
+    {
+        "id": "dl_cnn_vs_ann_002",
+        "question": "You are calculating the total number of trainable parameters in a single convolutional layer. The layer receives an RGB input image ($28 \\times 28 \\times 3$) and applies fifty $3 \\times 3$ convolutional filters. Which of the following formulas correctly calculates the total number of trainable weights and biases for this specific layer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $(3 \\times 3 \\times 50) + 50$",
+            "B) $(3 \\times 3 \\times 3 \\times 50) + 50$",
+            "C) $(28 \\times 28 \\times 3 \\times 50) + 50$",
+            "D) $(3 \\times 3 \\times 3 \\times 50) + 1$"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "parameter_calculation",
+            "mathematics",
+            "filters",
+            "biases"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. To calculate the parameters of a convolutional layer, you must account for the spatial dimensions of the filter ($3 \\times 3$), the depth of the filter which must match the input depth ($3$ channels for RGB), and the total number of filters ($50$). This gives the total number of weights: $3 \\times 3 \\times 3 \\times 50$. Additionally, *each* of the $50$ filters has exactly one scalar bias value associated with it, adding $+ 50$ to the total. Therefore, the formula is $(3 \\times 3 \\times 3 \\times 50) + 50$. Option A forgets that the filter must match the 3-channel depth of the input. Option C incorrectly incorporates the spatial dimensions of the input image ($28 \\times 28$), which do not affect parameter count in CNNs. Option D incorrectly assumes there is only one shared bias for all 50 filters."
+    },
+    {
+        "id": "dl_cnn_vs_ann_003",
+        "question": "A massive architectural advantage of CNNs over ANNs is 'Parameter Independence' from the input size. If you train a CNN on $28 \\times 28$ images and then suddenly deploy it on $1080 \\times 1080$ high-definition images, how does this change in input resolution affect the number of trainable parameters in the convolutional layers?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The number of parameters increases exponentially because the feature maps become significantly larger.",
+            "B) The number of parameters scales linearly with the increase in total pixel count.",
+            "C) The number of parameters in the convolutional layers remains exactly the same; the filters simply slide over more spatial locations.",
+            "D) The CNN will crash immediately because convolution mathematically requires the input size to be hardcoded during initialization."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "parameter_independence",
+            "scalability",
+            "computational_cost",
+            "ann_vs_cnn"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option C is correct. As the instructor demonstrates, the number of trainable parameters in a convolutional layer depends *exclusively* on the size of the filter (e.g., $3 \\times 3$) and the number of filters used. It is completely decoupled from the spatial dimensions ($H \\times W$) of the input image. If you feed a $1080 \\times 1080$ image into a CNN expecting $28 \\times 28$, the $3 \\times 3$ filters just perform the convolution operation many more times (resulting in a much larger output feature map), but the actual number of learned weights inside the filters does not change at all. This is weight sharing. Options A and B describe the fatal flaw of standard ANNs, not CNNs. Option D is false; while fully connected layers at the end require fixed sizes, the convolutional base is spatially agnostic."
+    },
+    {
+        "id": "dl_cnn_vs_ann_004",
+        "question": "Why does the 'Weight Sharing' property of CNNs drastically reduce the risk of overfitting when compared to a traditional dense ANN processing the exact same image?",
+        "type": "multiple_choice",
+        "options": [
+            "A) CNN filters apply dropout inherently during the sliding window operation.",
+            "B) CNNs discard all color information, reducing the statistical variance of the dataset.",
+            "C) ANNs assign unique, isolated weights to every single pixel coordinate, allowing the network to memorize noise at specific locations. CNNs use the exact same small set of weights (the filter) across the entire image, forcing it to learn generalized, location-independent patterns.",
+            "D) Weight sharing reduces the learning rate of the network, preventing it from memorizing the data too quickly."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "overfitting",
+            "weight_sharing",
+            "generalization",
+            "ann_vs_cnn"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option C is correct. In an ANN, a pixel at coordinate $(0,0)$ has a completely different dedicated weight connecting it to a hidden neuron than a pixel at $(0,1)$. This massive, localized parameter space allows the ANN to easily memorize the specific training images (overfitting). In a CNN, a single filter (e.g., 9 weights) is 'shared' as it slides across every single location in the image. Because the exact same weights must be useful everywhere, the network is mathematically forced to learn generalized spatial patterns (like \"what does a generic edge look like\") rather than memorizing specific pixels at specific coordinates. Option A is false; convolution does not inherently apply dropout. Option B is false; CNNs process full RGB. Option D is mathematically incorrect regarding learning rates."
+    }
+]

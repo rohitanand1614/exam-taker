@@ -1,3 +1,170 @@
-{
-    
-}
+[
+    {
+        "id": "cat_dog_cnn_001",
+        "question": "When training the CNN model, why does the instructor use Keras generators (`image_dataset_from_directory`) instead of loading the entire image dataset into memory at once?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Generators automatically normalize images to a 0-1 scale, eliminating the need for custom preprocessing code.",
+            "B) Loading massive datasets into RAM simultaneously causes Out-Of-Memory (OOM) errors; generators mitigate this by loading and yielding data in small batches.",
+            "C) Using a generator bypasses the need for a GPU, allowing the model to train rapidly on a CPU.",
+            "D) The generator automatically optimizes the binary cross-entropy loss function for cat and dog classes."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "keras_generators",
+            "memory_management",
+            "data_pipeline"
+        ],
+        "difficulty": "medium",
+        "explanation": "Image datasets in deep learning are often too large to fit entirely into system RAM. Attempting to load thousands of images simultaneously will crash the process with an Out-Of-Memory (OOM) error. Keras generators solve this by loading data in chunks (e.g., batches of 32 images). During training, only one batch resides in RAM at a time; once processed, it is discarded to make room for the next. Generators manage memory, not GPU acceleration or loss function definitions."
+    },
+    {
+        "id": "cat_dog_cnn_002",
+        "question": "After loading the dataset, a custom `map` function is used to divide every pixel of the training and validation images by 255. What is the mathematical and architectural purpose of this operation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To compress the image resolution from 256x256 down to 1x1, drastically reducing the model's parameter count.",
+            "B) To convert multi-channel RGB images into single-channel grayscale arrays.",
+            "C) To normalize the pixel intensity values to a [0, 1] range, ensuring stable and faster convergence during gradient descent.",
+            "D) To completely filter out background noise and bounding box outliers from the training images."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data_normalization",
+            "preprocessing",
+            "pixel_scaling"
+        ],
+        "difficulty": "easy",
+        "explanation": "Raw image pixels have intensity values ranging from 0 to 255. Feeding such large, unscaled values into a neural network can cause weight updates to become erratic, making the gradient descent algorithm unstable and slow to converge. By dividing every pixel by 255, the values are mathematically scaled (normalized) strictly between 0 and 1. This standardized scale allows the activation functions to operate in their optimal ranges, ensuring smoother and faster training."
+    },
+    {
+        "id": "cat_dog_cnn_003",
+        "question": "For the Dog vs. Cat classification task (a standard binary classification problem), what must be the activation function of the final Dense layer and the corresponding loss function in the `compile` step?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Activation: 'softmax', Loss: 'categorical_crossentropy'",
+            "B) Activation: 'relu', Loss: 'mean_squared_error'",
+            "C) Activation: 'sigmoid', Loss: 'binary_crossentropy'",
+            "D) Activation: 'tanh', Loss: 'sparse_categorical_crossentropy'"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "binary_classification",
+            "activation_functions",
+            "loss_functions"
+        ],
+        "difficulty": "easy",
+        "explanation": "Cat vs. Dog is a binary classification problem (the output is either 0 or 1). Architecturally, this requires exactly one neuron in the final output layer paired with a 'sigmoid' activation function, which squeezes the raw logit output into a probability score between 0 and 1. To accurately calculate the error of this single probability output against binary labels, 'binary_crossentropy' is the mathematically correct loss function. Softmax and categorical cross-entropy are reserved for multi-class problems."
+    },
+    {
+        "id": "cat_dog_cnn_004",
+        "question": "After training for 10 epochs, the instructor analyzes the learning curves and concludes the model is suffering from overfitting. What specific visual pattern in the graphs indicates this?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Both training accuracy and validation accuracy are simultaneously plunging while the loss spikes.",
+            "B) Training loss steadily decreases and training accuracy approaches 100%, but validation accuracy stagnates early on, creating a widening gap between the two curves.",
+            "C) Validation loss decreases significantly faster than the training loss, indicating severe data leakage.",
+            "D) The inference time per epoch increases exponentially until the system RAM crashes."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "overfitting",
+            "model_evaluation",
+            "learning_curves"
+        ],
+        "difficulty": "medium",
+        "explanation": "Overfitting occurs when a neural network begins to memorize the specific noise and exact patterns of the training data rather than learning generalized features. In learning curve graphs, this manifests as a widening divergence: the training accuracy continues to climb (and training loss drops) because the model is perfecting its performance on the training set, while the validation accuracy flatlines (or validation loss starts increasing) because those memorized patterns fail to apply to unseen data."
+    },
+    {
+        "id": "cat_dog_cnn_005",
+        "question": "To combat the observed overfitting in the CNN architecture, which two specific layers does the instructor explicitly add to the model?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Max Pooling 2D and Flatten layers",
+            "B) Additional Dense layers with Linear activations instead of ReLU",
+            "C) Batch Normalization and Dropout layers",
+            "D) L1 Regularizer and Softmax layers"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "regularization",
+            "dropout",
+            "batch_normalization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The instructor mitigates overfitting by injecting `BatchNormalization` and `Dropout` layers into the existing Convolutional architecture. A Dropout layer acts as a strong regularizer by randomly deactivating a percentage of neurons during each training step, forcing the network to distribute learning and preventing co-adaptation on specific pixel patterns. Batch Normalization normalizes the activations of each mini-batch, combating internal covariate shift, stabilizing the learning process, and providing a slight regularizing effect."
+    },
+    {
+        "id": "cat_dog_cnn_006",
+        "question": "During inference on a completely new, unseen image, why must the single dog image read by OpenCV be explicitly reshaped to `(1, 256, 256, 3)` before calling `model.predict()`?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because OpenCV can only render images to the screen if they are strictly formatted as 4-dimensional arrays.",
+            "B) Keras models are structurally designed to process data in batches; the first dimension (1) represents a batch size containing exactly one image.",
+            "C) The first dimension is strictly required to append the expected binary label (1 for dog, 0 for cat) directly to the tensor.",
+            "D) Keras requires an extra dimension to execute the internal conversion from OpenCV's native BGR color space to RGB."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "inference",
+            "tensor_reshaping",
+            "keras_api"
+        ],
+        "difficulty": "hard",
+        "explanation": "Deep learning models in Keras and TensorFlow are inherently engineered to process tensors in batches to maximize parallelization. The standard expected input tensor shape is mathematically defined as `(batch_size, height, width, channels)`. Even when predicting on a single image (whose raw shape is merely `(256, 256, 3)`), you must expand its dimensions to mimic a batch. Reshaping to `(1, 256, 256, 3)` explicitly tells the model it is receiving a batch containing exactly 1 image. Without this, the model throws a shape mismatch error."
+    },
+    {
+        "id": "cat_dog_cnn_007",
+        "question": "When plotting the dog test image imported via OpenCV (`cv2.imread`) in the Jupyter Notebook, the instructor notes \"weird coloring.\" What is the technical engineering reason for this visual artifact?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Dividing the pixel intensity values by 255 permanently darkened the image representation in memory.",
+            "B) OpenCV inherently reads images into memory in BGR (Blue-Green-Red) format, while Matplotlib expects and renders arrays in RGB format.",
+            "C) Resizing the image to exactly 256x256 severely damaged the aspect ratio and structurally corrupted the color channels.",
+            "D) Background noise in the original image triggered the CNN's filters to aggressively invert the color palette during inference."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "opencv",
+            "color_channels",
+            "matplotlib"
+        ],
+        "difficulty": "medium",
+        "explanation": "This is a classic gotcha in computer vision pipelines. Most standard image processing and plotting libraries (like PIL or Matplotlib) assume image arrays are structured in RGB (Red-Green-Blue) channel order. However, due to historical hardware reasons, OpenCV's `imread` function loads images into memory in BGR (Blue-Green-Red) order. When you pass a BGR array directly into Matplotlib's `plt.imshow()`, the Red and Blue channels are swapped on the screen, causing the colors to look inverted or \"weird\"."
+    },
+    {
+        "id": "cat_dog_cnn_008",
+        "question": "When constructing the custom CNN model using the Keras `Sequential` API, what is the correct architectural flow of layers from feature extraction to final classification?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Dense -> Flatten -> Conv2D -> MaxPooling2D -> Output",
+            "B) Flatten -> Conv2D -> Dense -> MaxPooling2D -> Output",
+            "C) Conv2D -> MaxPooling2D -> Flatten -> Dense -> Output",
+            "D) MaxPooling2D -> Conv2D -> Dense -> Flatten -> Output"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cnn_architecture",
+            "sequential_api",
+            "layer_order"
+        ],
+        "difficulty": "easy",
+        "explanation": "A standard Convolutional Neural Network adheres to a strict architectural pipeline. First, `Conv2D` layers extract spatial features (edges, textures) from the input image. These are immediately followed by `MaxPooling2D` layers to downsample the spatial dimensions, reducing computational load. Once the spatial features are extracted, the multidimensional feature maps must be unrolled into a 1D vector using a `Flatten` layer. Finally, this 1D vector is fed into fully connected `Dense` layers, which act as the classifier to map the learned features to the final probability output."
+    }
+]

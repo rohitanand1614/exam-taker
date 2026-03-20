@@ -1,3 +1,127 @@
-{
-    
-}
+[
+    {
+        "id": "data_aug_cnn_001",
+        "question": "What are the two primary problems that Data Augmentation aims to solve in Deep Learning?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Increasing the model's training speed and reducing RAM utilization.",
+            "B) Generating more training samples for limited datasets and preventing the model from overfitting.",
+            "C) Upscaling image resolution and making image colors more vibrant.",
+            "D) Driving the training loss exactly to zero and locking the test accuracy to 100%."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "data_augmentation",
+            "overfitting",
+            "limited_data"
+        ],
+        "difficulty": "easy",
+        "explanation": "When working with a limited dataset, deep learning models frequently overfit—memorizing the exact training samples but failing to generalize to unseen data. Data augmentation solves this by generating new, varied training samples via random transformations (like rotation or zooming) on the existing images. This forces the model to learn robust, generalized features. Option A is incorrect because augmentation actually increases computational overhead, not speed. Option C is wrong because augmentation manipulates existing pixels but cannot create higher resolution or artificially enhance vibrancy beyond the source. Option D is incorrect as the goal is better generalization, not artificially locking metrics to perfect scores."
+    },
+    {
+        "id": "data_aug_cnn_002",
+        "question": "During the Cat vs. Dog classification project, why did the instructor explicitly avoid using the `vertical_flip` transformation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because vertical flipping alters the pixel dimensions, causing a shape mismatch in the CNN's input layer.",
+            "B) Because Keras's `ImageDataGenerator` does not mathematically support vertical flipping for RGB images.",
+            "C) Because flipping vertically would result in upside-down cats and dogs, which does not represent sensible, real-world data.",
+            "D) Because a vertical flip alters the color channels of the image from RGB to BGR."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "vertical_flip",
+            "image_transformations",
+            "real_world_context"
+        ],
+        "difficulty": "easy",
+        "explanation": "When applying data augmentation, the generated images must remain logically consistent with the real-world scenarios the model will encounter in production. Cats and dogs do not naturally walk upside down. If the model is trained on vertically flipped images, it might learn irrelevant or incorrect spatial features. Option A is incorrect because flipping an image vertically does not change its matrix dimensions (e.g., 256x256 remains 256x256). Option B is wrong because Keras fully supports `vertical_flip` mathematically; it is simply a logical choice to omit it here. Option D is incorrect as flipping alters pixel spatial arrangement, not the RGB color channels."
+    },
+    {
+        "id": "data_aug_cnn_003",
+        "question": "When an image is rotated or shifted, empty pixel spaces are created at the edges. Which parameter in the Keras `ImageDataGenerator` dictates how these empty spaces are handled?",
+        "type": "multiple_choice",
+        "options": [
+            "A) `fill_mode` (e.g., 'nearest', 'reflect', 'constant')",
+            "B) `padding_style` (e.g., 'zero', 'valid', 'same')",
+            "C) `border_handling` (e.g., 'crop', 'wrap', 'stretch')",
+            "D) `margin_fill` (e.g., 'black', 'white', 'transparent')"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "imagedatagenerator",
+            "fill_mode",
+            "keras_parameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "The `fill_mode` parameter determines the exact mathematical strategy used to fill in newly created empty pixels that appear after a geometric transformation (like shifting or rotating) moves the original image data away from the borders. For instance, 'nearest' fills the empty space with the nearest edge pixel value, 'reflect' mirrors the image at the boundary, and 'constant' fills the space with a solid color. Option B is incorrect as 'valid' and 'same' refer to convolution padding, not augmentation. Option C and D are fabricated parameter names that do not exist in the Keras `ImageDataGenerator` API."
+    },
+    {
+        "id": "data_aug_cnn_004",
+        "question": "Which of the following statements is technically true regarding how Keras's `ImageDataGenerator` handles augmented images during training?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model sees both the original images and the augmented images simultaneously in every batch.",
+            "B) The generator permanently saves all augmented images to your hard drive before training begins.",
+            "C) The generator applies random transformations on-the-fly in memory, and the model only trains on these transformed batches, not the original untouched images.",
+            "D) The generator creates the entire augmented dataset first, pauses training, and loads everything into RAM at once."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "on_the_fly_augmentation",
+            "imagedatagenerator_mechanism"
+        ],
+        "difficulty": "hard",
+        "explanation": "`ImageDataGenerator` operates batch-by-batch using an on-the-fly (in-memory) mechanism. When a batch is requested, it reads original images from disk, applies random augmentations in RAM, and feeds this transformed batch directly to the model. The model trains strictly on these randomly altered versions, never seeing the exact untouched originals if transformations are active. Option A is incorrect because the original images are replaced by their augmented versions in the batch. Option B is wrong as Keras does not save these to the hard drive to save I/O overhead (unless explicitly configured). Option D is incorrect because generating the entire dataset first would defeat the memory-saving purpose of a generator."
+    },
+    {
+        "id": "data_aug_cnn_005",
+        "question": "Why did the instructor only apply `rescale=1./255` to the Validation/Test `ImageDataGenerator`, deliberately omitting transformations like rotation, zoom, or shifting?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because rotating test images degrades their resolution, leading to artificially low evaluation metrics.",
+            "B) Because augmentation is strictly for forcing the model to generalize during training; testing must be done on pure, unaltered data to gauge real-world performance.",
+            "C) Because applying geometric transformations to validation data causes the `flow_from_directory` function to throw a shape error.",
+            "D) Because adding transformations to the test set exponentially increases inference time during production."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "test_data_augmentation",
+            "evaluation_integrity",
+            "rescale"
+        ],
+        "difficulty": "medium",
+        "explanation": "The sole purpose of a validation or test set is to accurately evaluate how the model will perform on actual, real-world data in production. If we apply random distortions to the test data, we evaluate the model against an artificial scenario, rendering the accuracy metrics unreliable. Therefore, geometric augmentation is strictly reserved for the training phase to build robustness. However, rescaling pixel values to a [0, 1] range remains mandatory for both sets because the network's weights are calibrated to that specific numerical scale. Option A is incorrect as rotation doesn't ruin resolution natively. Option C is wrong as `flow_from_directory` handles any generator config. Option D is incorrect; while it adds slight compute, the primary reason is evaluation integrity, not inference speed."
+    },
+    {
+        "id": "data_aug_cnn_006",
+        "question": "When your dataset is structured in directories (e.g., separate 'cats' and 'dogs' folders inside a 'train' directory), which specific Keras function seamlessly loads the data into batches using the folder names as labels?",
+        "type": "multiple_choice",
+        "options": [
+            "A) `flow_from_dataframe()`",
+            "B) `load_images_from_path()`",
+            "C) `flow_from_directory()`",
+            "D) `read_folders_as_batches()`"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "flow_from_directory",
+            "data_loading",
+            "keras_functions"
+        ],
+        "difficulty": "easy",
+        "explanation": "In Keras, when images are organized into subdirectories where each subdirectory inherently represents a distinct class (e.g., a 'train' folder containing separate 'cats' and 'dogs' folders), `flow_from_directory()` is the standard optimal method. This function automatically infers the class labels directly from the folder names, eliminating the need for manual label arrays, and yields batches of images on-the-fly. Option A is incorrect because `flow_from_dataframe()` is used when labels are stored in a CSV or Pandas DataFrame, not inferred directly from folder structures. Options B and D are fabricated function names that do not exist in the standard Keras API."
+    }
+]

@@ -64,7 +64,7 @@
     },
     {
         "id": "Perceptron-Loss Function_004",
-        "question": "The instructor demonstrates that the basic Perceptron architecture (Inputs $\rightarrow$ Summation $\rightarrow$ Activation $\rightarrow$ Loss Calculation) is incredibly flexible. If you swap the Perceptron's 'Step Function' for a 'Sigmoid Function', and swap the 'Hinge Loss' for 'Binary Cross-Entropy', what well-known Machine Learning algorithm have you perfectly recreated?",
+        "question": "The instructor demonstrates that the basic Perceptron architecture (Inputs $\\rightarrow$ Summation $\\rightarrow$ Activation $\\rightarrow$ Loss Calculation) is incredibly flexible. If you swap the Perceptron's 'Step Function' for a 'Sigmoid Function', and swap the 'Hinge Loss' for 'Binary Cross-Entropy', what well-known Machine Learning algorithm have you perfectly recreated?",
         "type": "multiple_choice",
         "options": [
             "A) K-Nearest Neighbors (KNN)",

@@ -1,3 +1,128 @@
-{
-    
-}
+[
+    {
+        "id": "cnn_biological_connection_001",
+        "question": "The development of Convolutional Neural Networks (CNNs) was fundamentally inspired by the biological processes of the mammalian brain. Which specific anatomical region of the brain served as the direct architectural template for CNNs?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Prefrontal Cortex",
+            "B) The Visual Cortex",
+            "C) The Hippocampus",
+            "D) The Thalamus"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "biology",
+            "inspiration",
+            "history"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option B is correct. The Visual Cortex (specifically the primary visual cortex, V1) is the area of the brain responsible for processing visual information, and its hierarchical structure directly inspired CNN architecture. Option A is incorrect; the prefrontal cortex handles cognitive behavior and decision-making. Option C is incorrect; the hippocampus is primarily involved in memory formation. Option D is incorrect; while the thalamus (specifically the lateral geniculate nucleus) acts as a relay station for visual signals, the actual feature extraction and processing analogous to CNNs occurs in the Visual Cortex."
+    },
+    {
+        "id": "cnn_biological_connection_002",
+        "question": "In the human visual pathway, visual stimuli are captured by the retina and transmitted to the brain. What is the immediate next step in the biological processing pipeline before the signals reach the Primary Visual Cortex (V1)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Signals are compressed into lower-dimensional tensors within the optic nerve.",
+            "B) Signals undergo preliminary preprocessing in the Lateral Geniculate Nucleus (LGN) within the thalamus.",
+            "C) Signals are immediately cross-correlated with existing memories in the hippocampus.",
+            "D) Signals are converted back from electrochemical impulses into raw light energy."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "biology",
+            "visual_pathway"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. As the instructor explains, the electrochemical signals travel via the optic nerve and first arrive at a relay station in the thalamus known as the Lateral Geniculate Nucleus (LGN), where initial preprocessing occurs before projecting to V1. Option A is incorrect; the optic nerve transmits signals but doesn't mathematically 'compress' them like a pooling layer. Option C is incorrect; the visual pathway routes to the visual cortex for feature extraction, not directly to the hippocampus for memory matching. Option D is biologically impossible; the brain processes electrochemical signals, not physical light."
+    },
+    {
+        "id": "cnn_biological_connection_003",
+        "question": "Hubel and Wiesel's landmark 1950s experiments involved placing electrodes in the visual cortex of anesthetized cats. What was the critical, paradigm-shifting observation they made regarding how individual neurons responded to visual stimuli?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Every neuron fired uniformly regardless of the shape or orientation of the visual stimulus.",
+            "B) Neurons only fired when the cat was exposed to complex, semantic objects like faces or other animals.",
+            "C) Specific neurons fired *only* when exposed to lines or edges at highly specific orientations (e.g., strictly vertical or strictly horizontal).",
+            "D) The neurons' firing rates were solely dependent on the intensity (brightness) of the light, ignoring shape entirely."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "biology",
+            "hubel_wiesel",
+            "feature_detection"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option C is correct. The core finding of the Hubel and Wiesel experiment was that individual 'simple cells' in the visual cortex are highly specialized; a specific neuron might fire maximally when shown a vertical edge but remain completely dormant when shown a horizontal edge. Option A is the exact opposite of their findings; firing was highly selective. Option B is incorrect; early visual cortex neurons respond to primitive features (lines/edges), not complex semantics. Option D is incorrect; while brightness matters, the groundbreaking discovery was the selective response to *orientation* and shape."
+    },
+    {
+        "id": "cnn_biological_connection_004",
+        "question": "Based on the biological findings of the visual cortex, early CNN architectures were designed to mimic two distinct types of biological cells. Which of the following accurately describes the relationship between 'Simple Cells' and 'Complex Cells' in biological vision, a concept later adapted into CNNs?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Simple cells process colors, while complex cells process shapes.",
+            "B) Simple cells detect basic, primitive features (like specific edges), and pass this information to complex cells which aggregate them to detect higher-level patterns.",
+            "C) Simple cells have a massive receptive field to process the whole image, while complex cells focus on tiny, pixel-level details.",
+            "D) Simple cells use linear activation functions, whereas complex cells introduce non-linearity."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "biology",
+            "simple_cells",
+            "complex_cells",
+            "hierarchical_processing"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. The biological hierarchy operates by having Simple Cells act as primitive feature detectors (e.g., finding a specific edge). They then feed forward to Complex Cells, which have larger receptive fields and combine those basic features to recognize more complex shapes (e.g., combining edges into a polygon). Option A is incorrect; the simple/complex distinction is primarily about structural hierarchy and shape detection, not just a color/shape split. Option C is reversed; simple cells have smaller receptive fields, while complex cells have larger ones to aggregate data. Option D is an artificial neural network concept improperly applied to biology."
+    },
+    {
+        "id": "cnn_biological_connection_005",
+        "question": "In the context of the visual cortex and its influence on CNNs, what does the biological principle of 'Preferred Stimuli' (observed in Simple Cells) translate to in the architecture of a Convolutional Neural Network?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The use of softmax activation in the final layer to output class probabilities.",
+            "B) The requirement that all input images must be normalized to a standard resolution before processing.",
+            "C) The concept that an individual convolutional filter (kernel) learns to activate strongly only for a specific visual pattern, like a diagonal edge.",
+            "D) The structural decision to fully connect the final layers of the network."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cnn_architecture",
+            "filters",
+            "biological_mapping"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option C is correct. In biology, 'preferred stimuli' means a simple cell only fires when it sees its specific target (e.g., a vertical line). In a CNN, this directly maps to a convolutional filter (kernel) that has learned weights optimized to produce a high activation map *only* when it slides over its 'preferred' spatial pattern (like a vertical edge). Option A relates to classification probability, not feature extraction. Option B is a data preprocessing step unrelated to cell behavior. Option D refers to the dense layers at the end of the network, which do not mimic the localized, feature-specific behavior of simple cells."
+    },
+    {
+        "id": "cnn_biological_connection_006",
+        "question": "The historical progression from biological inspiration to practical computer vision models involved several milestones. Which architectural milestone, pioneered by Yann LeCun in the 1990s, successfully combined convolutional layers, pooling layers, and backpropagation for practical tasks like reading bank checks?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Neocognitron",
+            "B) AlexNet",
+            "C) ResNet",
+            "D) LeNet (implicitly described as the architecture combining these elements)"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "history",
+            "lecun",
+            "architectures"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option D is correct. While the instructor doesn't explicitly name 'LeNet' at that exact timestamp, he describes Yann LeCun's 1990s architecture that used backpropagation, convolutional layers, and pooling layers to scan checks—this is the famous LeNet-5 architecture. Option A (Neocognitron) was an earlier Japanese model that inspired CNNs but didn't use modern backpropagation effectively. Option B (AlexNet) came much later in 2012 and won the ImageNet competition. Option C (ResNet) is a much later, deeper architecture."
+    }
+]

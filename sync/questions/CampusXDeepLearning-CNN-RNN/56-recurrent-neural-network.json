@@ -1,3 +1,128 @@
-{
-    
-}
+[
+    {
+        "id": "rnn_arch_001",
+        "question": "In the context of the RNN data input format described, if you are processing a batch of 32 movie reviews, where each review is padded to 20 words and each word is represented by a 50-dimensional GloVe vector, what is the required input shape for the Keras SimpleRNN layer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) (32, 50, 20)",
+            "B) (32, 20, 50)",
+            "C) (20, 32, 50)",
+            "D) (50, 20, 32)"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "input_shape",
+            "tensor_dimensions",
+            "keras_simplernn"
+        ],
+        "difficulty": "medium",
+        "explanation": "Keras RNN layers expect a 3D tensor with the shape (batch_size, timesteps, input_features). In this scenario, the batch_size is 32, the number of timesteps (words per review) is 20, and the input_features (vector size per word) is 50. Therefore, the shape is (32, 20, 50). Option A swaps features and timesteps, which would lead to the model treating dimensions as time. Options C and D are biologically/computationally incorrect for standard Keras API calls."
+    },
+    {
+        "id": "rnn_arch_002",
+        "question": "What is the primary architectural difference between a standard Feed-Forward ANN and a Recurrent Neural Network (RNN) regarding how data is processed over time?",
+        "type": "multiple_choice",
+        "options": [
+            "A) RNNs use larger weight matrices to process all words in a sentence simultaneously.",
+            "B) ANNs have a feedback loop that allows the output of a hidden layer to be fed back into itself, whereas RNNs only move forward.",
+            "C) RNNs process input tokens one-by-one across discrete time steps, using a feedback connection to pass information from the previous state to the current state.",
+            "D) RNNs do not use activation functions like ReLU or Tanh, relying purely on linear weight updates."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "rnn_vs_ann",
+            "feedback_loops",
+            "temporal_processing"
+        ],
+        "difficulty": "easy",
+        "explanation": "Unlike ANNs, which process the entire input vector in a single forward pass, RNNs process data sequentially. At each time step $t$, the RNN takes the current input $x_t$ and the hidden state from the previous step $h_{t-1}$. This 'feedback' or 'recurrent' connection allows the network to maintain a 'memory' of what has occurred in the past. Option A describes a 'Bag of Words' ANN approach. Option B swaps the definitions of the two. Option D is incorrect as RNNs typically use Tanh or ReLU for hidden states."
+    },
+    {
+        "id": "rnn_arch_003",
+        "question": "During the 'Unrolling through Time' process, if a sentence has 10 words, the RNN is visualized as having 10 repeated cells. How many unique sets of weight matrices ($W_i$ for input and $W_h$ for hidden state) are being trained in this specific layer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 10 unique sets (one for each word in the sequence).",
+            "B) 1 unique set (shared across all time steps).",
+            "C) 20 unique sets (two per time step).",
+            "D) It depends on the number of neurons in the hidden layer."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "weight_sharing",
+            "unrolling",
+            "parameters"
+        ],
+        "difficulty": "medium",
+        "explanation": "One of the most powerful features of an RNN is 'weight sharing.' Regardless of the length of the input sequence, the RNN uses the exact same weight matrices ($W_i$, $W_h$, and $W_o$) at every single time step. This allows the model to process sequences of any length and significantly reduces the number of parameters compared to a massive Dense layer. Unrolling is merely a visualization technique to show the flow of data; it does not imply that the weights are different at each step."
+    },
+    {
+        "id": "rnn_arch_004",
+        "question": "At the very first time step ($t=1$), there is no 'previous hidden state' available. How is this mathematically handled in a standard RNN implementation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The first word is processed using only the input weight matrix $W_i$, skipping the hidden weights $W_h$.",
+            "B) The network waits until $t=2$ to begin calculating the hidden state.",
+            "C) A vector of zeros (typically the same size as the hidden layer) is used as the initial hidden state $h_0$.",
+            "D) The network uses the weights of the final output layer $W_o$ as the starting hidden state."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "initial_state",
+            "hidden_state",
+            "computation"
+        ],
+        "difficulty": "medium",
+        "explanation": "To maintain mathematical consistency in the formula $h_t = \\phi(W_i \\cdot x_t + W_h \\cdot h_{t-1} + b)$, the network requires a value for $h_{t-1}$ even at the first step ($t=1$). Most frameworks initialize $h_0$ as a vector of zeros. This represents a state of 'no prior knowledge' before the first token is seen. Option A is incorrect because the matrix multiplication $W_h \\cdot h_{t-1}$ must still occur."
+    },
+    {
+        "id": "rnn_arch_005",
+        "question": "In a SimpleRNN, the hidden state $h_t$ is calculated using an activation function. What is the Keras default activation for a SimpleRNN, and why is it used?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ReLU; to prevent the vanishing gradient problem in long sequences.",
+            "B) Sigmoid; to ensure the output is always between 0 and 1 for classification.",
+            "C) Tanh; because it maps values between -1 and 1, helping to regulate the values flowing through the recurrent connections over many time steps.",
+            "D) Softmax; to ensure each hidden state represents a probability distribution."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "activation_functions",
+            "tanh",
+            "simplernn"
+        ],
+        "difficulty": "hard",
+        "explanation": "The default activation for the hidden state in a Keras `SimpleRNN` is the hyperbolic tangent (`tanh`). Tanh is preferred over ReLU in basic RNNs because its output is bounded between -1 and 1. This helps prevent the numerical values of the hidden state from exploding (growing to infinity) as they are repeatedly multiplied by the same weight matrix $W_h$ over many time steps. While Sigmoid is used for the output layer (Option B), it is not the default for hidden states because it can lead to faster gradient vanishing."
+    },
+    {
+        "id": "rnn_arch_006",
+        "question": "You define a Keras model: `SimpleRNN(units=3, input_shape=(4, 5))`. How many trainable parameters (weights + biases) are present in this single RNN layer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 15",
+            "B) 27",
+            "C) 30",
+            "D) 31"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "parameter_calculation",
+            "weights_and_biases",
+            "simplernn"
+        ],
+        "difficulty": "hard",
+        "explanation": "The formula for parameters in a SimpleRNN layer is: $Parameters = (units \\\\times input\\\\_features) + (units \\\\times units) + units$. \n1. Input weights ($W_i$): $3 \\\\times 5 = 15$. \n2. Recurrent weights ($W_h$): $3 \\\\times 3 = 9$. \n3. Biases ($b$): $3$. \nTotal = $15 + 9 + 3 = 27$. \nNote: The '4' in the input_shape represents timesteps, which does *not* affect the parameter count due to weight sharing. Option D (31) would be the result if an output layer was included, but the question asks only for the RNN layer."
+    }
+]

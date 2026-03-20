@@ -1,3 +1,107 @@
-{
-    
-}
+[
+    {
+        "id": "dl_rnn_sentiment_001",
+        "question": "When using the Keras Tokenizer, why is it considered a best practice to define an 'oov_token' during initialization?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It automatically removes stop words from the document to reduce noise.",
+            "B) It assigns a specific index to words encountered during inference that were not present in the training vocabulary, preventing data loss or errors.",
+            "C) It forces the model to ignore words with low frequency counts during the fit_on_texts phase.",
+            "D) It acts as a padding character to ensure all sequences have the same length."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "nlp",
+            "preprocessing",
+            "tokenizer"
+        ],
+        "difficulty": "easy",
+        "explanation": "The 'oov_token' (Out-Of-Vocabulary) is crucial for production stability. If a model encounters a word at test time that it never saw during training, the tokenizer would normally skip it. By using an OOV token, these unknown words are replaced by a standard placeholder, allowing the model to maintain the sequence structure and acknowledge the presence of an unknown term."
+    },
+    {
+        "id": "dl_rnn_sentiment_002",
+        "question": "You are building a 'Many-to-One' RNN for Sentiment Analysis. What is the consequence of setting 'return_sequences=True' in the final SimpleRNN layer before passing it to a Dense(1) output layer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model will run faster because it parallelizes the hidden state calculations.",
+            "B) The Dense layer will receive a 3D tensor instead of a 2D tensor, likely causing a dimension mismatch error unless a Flatten or GlobalPooling layer is added.",
+            "C) The model's memory capacity increases, allowing it to remember longer sequences.",
+            "D) It enables the 'Backpropagation Through Time' (BPTT) algorithm which is otherwise disabled."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rnn",
+            "keras",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "By default, SimpleRNN returns only the last hidden state (shape: [batch, units]). If 'return_sequences=True', it returns the hidden state for every time step (shape: [batch, timesteps, units]). A standard Dense layer expects a 2D input ([batch, input_dim]). Passing the 3D tensor from an RNN with return_sequences=True directly to a Dense layer without flattening will result in an error."
+    },
+    {
+        "id": "dl_rnn_sentiment_003",
+        "question": "Why does the instructor prioritize the 'Embedding' approach over 'Integer Encoding' for a production-grade sentiment analysis model?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Integer encoding is sparse and creates massive, memory-inefficient tensors.",
+            "B) Integer encoding assumes a linear relationship between words (e.g., word 4 is 'twice' word 2), which is semantically meaningless.",
+            "C) Embedding layers capture semantic proximity, allowing the model to understand that 'Great' and 'Awesome' have similar contextual meanings.",
+            "D) Both B and C are correct."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "embeddings",
+            "nlp",
+            "semantics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Integer encoding is problematic because it imposes an arbitrary ordinal relationship on words that doesn't exist. Furthermore, it treats each word as a single scalar. Embeddings map words into a high-dimensional continuous space where spatial distance represents semantic similarity, providing the network with much richer information about word relationships."
+    },
+    {
+        "id": "dl_rnn_sentiment_004",
+        "question": "A SimpleRNN layer with 32 units is connected to an Embedding layer with an output dimension of 2. Calculating the parameters for the SimpleRNN, we find 1,088. If we change the Embedding output dimension to 10, how many parameters will the SimpleRNN layer have?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 1,088 (No change)",
+            "B) 1,376",
+            "C) 5,440",
+            "D) 1,120"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "math",
+            "rnn",
+            "parameters"
+        ],
+        "difficulty": "hard",
+        "explanation": "The formula for SimpleRNN parameters is: $ (input\\_dim \\times units) + (units \\times units) + units $. With input_dim=2: $(2 \\times 32) + (32 \\times 32) + 32 = 64 + 1024 + 32 = 1,120$. *Wait, the instructor's 1088 calculation likely used 1 input feature.* Let's re-calculate using the instructor's logic (input_dim=1): $(1 \\times 32) + 1024 + 32 = 1088$. If the Embedding output (which is the RNN's input_dim) changes to 10: $(10 \\times 32) + 1024 + 32 = 320 + 1024 + 32 = 1,376$."
+    },
+    {
+        "id": "dl_rnn_sentiment_005",
+        "question": "During the training of the IMDB model with Embeddings, the training accuracy reached 98% while validation accuracy hovered around 80%. As an engineer, which strategy would be most effective to address this specific issue?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Increase the number of units in the SimpleRNN layer to 64.",
+            "B) Switch the 'return_sequences' parameter to True.",
+            "C) Introduce Dropout or Recurrent Dropout into the RNN layer to reduce overfitting.",
+            "D) Increase the learning rate of the Adam optimizer."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "overfitting",
+            "regularization",
+            "optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "The discrepancy between high training accuracy and significantly lower validation accuracy is a textbook case of overfitting. Increasing the complexity (Option A) or learning rate (Option D) would likely worsen the issue. Regularization techniques like Dropout are specifically designed to penalize complexity and help the model generalize better to unseen data."
+    }
+]

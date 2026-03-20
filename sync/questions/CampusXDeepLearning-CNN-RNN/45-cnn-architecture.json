@@ -1,3 +1,131 @@
-{
-    
-}
+[
+    {
+        "id": "dl_architecture_001",
+        "question": "When constructing a standard Convolutional Neural Network (CNN) from scratch, which specific sequence of layer operations forms the fundamental, repeating building block (the feature extraction pipeline) before transitioning to classification?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Fully Connected Layer $\\rightarrow$ Pooling Layer $\\rightarrow$ Activation Function",
+            "B) Convolutional Layer $\\rightarrow$ Non-linear Activation (e.g., ReLU) $\\rightarrow$ Pooling Layer",
+            "C) Pooling Layer $\\rightarrow$ Convolutional Layer $\\rightarrow$ Flatten Layer",
+            "D) Flatten Layer $\\rightarrow$ Convolutional Layer $\\rightarrow$ Non-linear Activation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture_basics",
+            "layer_sequence",
+            "feature_extraction"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option B is correct. As the instructor illustrates in the generic CNN architecture diagram, the standard repeating pattern involves applying a Convolutional layer to extract feature maps, immediately passing those maps through a non-linear activation function (like ReLU) to introduce non-linearity, and then applying a Pooling layer (like Max Pooling) to downsample the spatial dimensions. This block can be repeated multiple times. Option A places dense layers at the start, which is incorrect. Option C reverses the logical order of convolution and pooling. Option D puts the flatten layer at the beginning, which destroys the 2D spatial structure immediately."
+    },
+    {
+        "id": "dl_architecture_002",
+        "question": "In a complete CNN architecture, what is the strict architectural purpose of the `Flatten` operation, and where must it be positioned?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It is positioned between convolutional layers to ensure the number of input channels matches the number of filters.",
+            "B) It is positioned immediately after the input image to prepare the pixels for 2D convolution.",
+            "C) It acts as the bridge between the convolutional base (feature extraction) and the dense layers (classification) by converting the final 3D tensor into a 1D vector.",
+            "D) It is the final output layer of the network, replacing Softmax to output continuous probability values."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "flatten_layer",
+            "architecture_design",
+            "tensor_manipulation"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option C is correct. The `Flatten` layer serves a very specific bridging function. The convolutional base operates on 3D tensors (Height $\\times$ Width $\\times$ Channels) to extract spatial features. However, traditional Fully Connected (Dense) layers, which act as the final classifier, can only accept 1D vectors. Therefore, the final 3D feature map must be 'flattened' into a single long 1D array before it can be fed into the dense layers. Option A is incorrect; convolution requires 3D/2D inputs. Option B would destroy the spatial geometry before convolution can occur. Option D is false; Flatten reshapes data, it doesn't calculate probabilities."
+    },
+    {
+        "id": "dl_architecture_003",
+        "question": "LeNet-5, developed by Yann LeCun in 1998, is considered a foundational CNN architecture. While modern architectures like ResNet or VGG rely heavily on Max Pooling and ReLU activations, what specific hyperparameter choices in LeNet-5 contrast sharply with modern conventions?",
+        "type": "multiple_choice",
+        "options": [
+            "A) LeNet-5 utilized Average Pooling instead of Max Pooling, and the Tanh activation function instead of ReLU.",
+            "B) LeNet-5 omitted pooling layers entirely, relying solely on highly strided convolutions.",
+            "C) LeNet-5 placed the Fully Connected layers before the Convolutional layers to preprocess the digit inputs.",
+            "D) LeNet-5 utilized $1 \\times 1$ convolutions extensively to reduce channel depth before applying $5 \\times 5$ filters."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "lenet5",
+            "history",
+            "hyperparameters",
+            "activations"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option A is correct. As explicitly noted by the instructor when analyzing the LeNet-5 code, the architecture from 1998 used `AveragePooling2D` rather than the `MaxPooling2D` that dominates today. Furthermore, because ReLU had not yet become the standard, LeNet-5 utilized the `tanh` (Hyperbolic Tangent) activation function. Option B is factually incorrect; LeNet-5 explicitly used pooling. Option C breaks the fundamental laws of CNN architecture. Option D describes the 'Inception' module architecture (GoogLeNet/Inception), which came much later."
+    },
+    {
+        "id": "dl_architecture_004",
+        "question": "You are analyzing the first computational block of LeNet-5. The input is a $32 \\times 32 \\times 1$ grayscale image. It passes through a Convolutional layer with six $5 \\times 5$ filters (stride 1, no padding). It then passes through an Average Pooling layer with a $2 \\times 2$ pool size and a stride of 2. What is the exact mathematical shape of the output tensor produced by this block?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $14 \\times 14 \\times 6$",
+            "B) $28 \\times 28 \\times 1$",
+            "C) $14 \\times 14 \\times 1$",
+            "D) $16 \\times 16 \\times 6$"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "lenet5",
+            "tensor_shapes",
+            "mathematics",
+            "architecture_calculation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option A is correct. This requires two sequential calculations. First, the convolution: Input $N=32$, Filter $F=5$, Padding $P=0$, Stride $S=1$. Output size $= (32 - 5)/1 + 1 = 28$. Because there are 6 filters, the tensor becomes $28 \\times 28 \\times 6$. Second, the pooling layer: Input $N=28$, Pool size $F=2$, Stride $S=2$. Output size $= (28 - 2)/2 + 1 = 14$ (or simply $28/2=14$). Pooling does not alter the depth, so the final tensor shape is $14 \\times 14 \\times 6$. Options B, C, and D represent mathematical errors in either the spatial reduction formula or the channel depth logic."
+    },
+    {
+        "id": "dl_architecture_005",
+        "question": "In the LeNet-5 architecture, after the second Average Pooling layer, the feature map tensor has the shape $5 \\times 5 \\times 16$. This tensor is then passed to a `Flatten` layer, which feeds into the first Fully Connected (Dense) layer containing 120 neurons. How many individual connection *weights* (ignoring biases) exist between the Flatten layer and this first Dense layer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $1,920$",
+            "B) $400$",
+            "C) $48,000$",
+            "D) $60,000$"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "flatten_layer",
+            "dense_layers",
+            "parameter_calculation",
+            "lenet5"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option C is correct. First, calculate the output size of the Flatten layer. A $5 \\times 5 \\times 16$ tensor contains $5 \\times 5 \\times 16 = 400$ distinct scalar values. The Flatten layer outputs a 1D vector of length 400. This vector is fed into a Dense layer with 120 neurons. Because it is a *fully connected* layer, every single one of the 400 input values must have a unique weight connecting it to *each* of the 120 neurons. Therefore, the total number of weights is $400 \\times 120 = 48,000$. Option A multiplies $16 \\times 120$, ignoring spatial dimensions. Option B is just the size of the flattened vector. Option D incorrectly assumes a larger feature map."
+    },
+    {
+        "id": "dl_architecture_006",
+        "question": "As you trace the architecture of LeNet-5 (and standard CNNs in general) from the input layer toward the output layer, which general structural trend concerning tensor dimensions do you typically observe?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The spatial dimensions (height/width) steadily increase, while the channel depth (number of filters) steadily decreases.",
+            "B) The spatial dimensions (height/width) steadily decrease, while the channel depth (number of filters) steadily increases.",
+            "C) Both the spatial dimensions and the channel depth remain constant until the flattening layer.",
+            "D) The spatial dimensions remain constant, but the channel depth decreases logarithmically."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "architecture_trends",
+            "feature_maps",
+            "cnn_design"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. As demonstrated in LeNet-5 (and most deep architectures), the network progressively shrinks the spatial dimensions of the image (e.g., $32 \\times 32 \\rightarrow 28 \\times 28 \\rightarrow 14 \\times 14 \\rightarrow 5 \\times 5$) using unpadded convolutions and pooling. Simultaneously, it increases the depth, or number of channels/filters (e.g., $1 \\rightarrow 6 \\rightarrow 16$). Conceptually, the network trades spatial resolution for semantic depth, extracting more numerous, complex, abstract features while caring less about their exact pixel coordinates. Option A is the exact reverse of standard architecture. Options C and D are false as both dimensions actively change throughout the forward pass."
+    }
+]

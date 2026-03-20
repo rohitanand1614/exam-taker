@@ -1,3 +1,148 @@
-{
-    
-}
+[
+    {
+        "id": "transfer_learning_001",
+        "question": "According to the instructor, what are the two primary bottlenecks in training a deep Convolutional Neural Network entirely from scratch that Transfer Learning explicitly aims to bypass?",
+        "type": "multiple_choice",
+        "options": [
+            "A) High RAM consumption and extremely slow inference times during production deployment.",
+            "B) The need for massive amounts of manually labeled data and the extensive computational time required for training.",
+            "C) The vanishing gradient problem and the tendency of deep networks to underfit small datasets.",
+            "D) The lack of GPU availability and the deprecation of custom model architectures in modern Keras."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "transfer_learning_purpose",
+            "data_requirements",
+            "training_time"
+        ],
+        "difficulty": "easy",
+        "explanation": "Deep learning models are notoriously 'data-hungry.' Training a model from scratch requires gathering tens of thousands of images and manually labeling them, which is a highly tedious, expensive, and time-consuming process. Furthermore, training a deep network on such a massive dataset can take days or weeks of heavy GPU computation. Transfer learning circumvents both bottlenecks by reusing a pre-trained model (which has already spent the compute time learning from a massive dataset like ImageNet), allowing you to achieve high accuracy with a fraction of the data and training time. Options A, C, and D describe unrelated technical issues that transfer learning does not inherently solve."
+    },
+    {
+        "id": "transfer_learning_002",
+        "question": "How does the instructor conceptually explain the mechanism of Transfer Learning using a real-world human analogy?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Memorizing a textbook perfectly to pass an exam without actually understanding the underlying concepts.",
+            "B) Using the balancing skills learned from riding a bicycle to make learning how to ride a motorcycle significantly easier.",
+            "C) Building a house completely from scratch by gathering raw materials like cement, wood, and bricks.",
+            "D) Translating a paragraph from English to Hindi word-for-word using a physical dictionary."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "conceptual_analogy",
+            "transfer_learning_mechanism"
+        ],
+        "difficulty": "easy",
+        "explanation": "Transfer learning is fundamentally about taking knowledge acquired while solving one problem and applying it to a different but logically related problem. The instructor uses the analogy of learning to ride a motorcycle. Because riding a bicycle already teaches the brain the complex physics of balancing on two wheels, that 'pre-trained' knowledge is transferred when you switch to a motorcycle, making the new task much easier. Option A describes overfitting. Option C describes training a model entirely from scratch. Option D describes a rigid, rule-based mapping system, not the transfer of learned generalized features."
+    },
+    {
+        "id": "transfer_learning_003",
+        "question": "When applying Transfer Learning using a pre-trained model like VGG16, why do we retain the 'Convolutional Base' but deliberately discard its original 'Fully Connected (Dense) Layers'?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because the Convolutional Base extracts universal spatial features (like edges and shapes), whereas the Dense layers are hardcoded mathematically for the specific 1000 ImageNet classes.",
+            "B) Because the Dense layers require too much RAM and physically cannot be loaded into a custom Keras Sequential model alongside the Convolutional Base.",
+            "C) Because the Convolutional Base actually performs the final binary classification natively, making the Dense layers mathematically redundant.",
+            "D) Because Keras API security restrictions prevent developers from importing the pre-trained weights of the top Dense layers."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cnn_architecture",
+            "convolutional_base",
+            "dense_layers"
+        ],
+        "difficulty": "medium",
+        "explanation": "A CNN is split into two logical halves: the Convolutional Base (which acts as a feature extractor) and the Fully Connected (FC/Dense) layers (which act as the classifier). The Conv Base learns a hierarchy of visual features—early layers learn universal primitive edges, and later layers learn complex shapes. These spatial features are highly reusable across almost any visual task. However, the original Dense layers are mapped strictly to the 1000 specific probability outputs of the original ImageNet dataset. To classify a new dataset (like Cats vs. Dogs), we must discard those ImageNet-specific Dense layers and attach our own custom Dense layers tailored to our specific classes. Options B, C, and D are factually and architecturally incorrect."
+    },
+    {
+        "id": "transfer_learning_004",
+        "question": "When instantiating the pre-trained VGG16 model in Keras, the instructor passes the argument `include_top=False`. What is the exact architectural effect of this specific parameter?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It removes the very first input layer, allowing the network to dynamically accept images of any custom resolution.",
+            "B) It systematically disables all Max Pooling layers in the network, preserving high-resolution feature maps for small objects.",
+            "C) It strips away the final Fully Connected (Dense) network responsible for the original ImageNet classification, yielding only the feature-extracting Convolutional Base.",
+            "D) It unfreezes the 'top' (deepest) layers of the network so their weights can be immediately updated during the first training epoch."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "keras_api",
+            "include_top",
+            "model_instantiation"
+        ],
+        "difficulty": "medium",
+        "explanation": "In the Keras Applications API, the 'top' of the model refers to the Fully Connected (Dense) layers at the very end of the network that output the final class probabilities. By setting `include_top=False`, you explicitly tell Keras not to download or attach these final classification layers. Instead, the model terminates at the last convolutional/pooling block. This allows you to seamlessly append your own Flatten and Dense layers to adapt the robust Convolutional Base to your specific classification problem. Option A describes the `input_shape` parameter. Option D relates to the `trainable` attribute. Option B is functionally incorrect."
+    },
+    {
+        "id": "transfer_learning_005",
+        "question": "In the 'Feature Extraction' approach to Transfer Learning, what does it mathematically mean to 'freeze' the Convolutional Base by setting `conv_base.trainable = False`?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The weights and biases of the Convolutional Base are completely locked and will not be updated by the backpropagation algorithm during training.",
+            "B) The 2D feature maps generated by the Convolutional Base are compressed and permanently cached in RAM to radically speed up data loading.",
+            "C) All non-linear activation functions (like ReLU) in the Convolutional Base are temporarily converted to linear functions to prevent vanishing gradients.",
+            "D) The input images are strictly frozen to a specific resolution (e.g., 150x150) and bypass any data augmentation pipelines."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "feature_extraction",
+            "model_freezing",
+            "backpropagation"
+        ],
+        "difficulty": "medium",
+        "explanation": "When you freeze a layer or an entire base model in Keras (`trainable = False`), you are modifying the internal mechanics of the backpropagation algorithm. Specifically, it prevents the optimizer from updating the layer's parameters (weights and biases) during the training phase. The frozen layers will still perform forward propagation—processing the image and extracting features—but they will not learn or change. This preserves the valuable pre-trained knowledge imported from ImageNet while forcing only the newly added, randomly initialized Dense layers to update and learn how to interpret those features. Options B, C, and D describe completely fabricated mechanics."
+    },
+    {
+        "id": "transfer_learning_006",
+        "question": "Suppose you are building a CNN to classify highly specialized medical X-rays (a domain vastly different from the everyday objects in ImageNet). According to Transfer Learning heuristics, which strategy should you adopt and why?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Feature Extraction, because medical images consist entirely of primitive edges which the early layers already recognize perfectly.",
+            "B) Fine-Tuning, where you unfreeze the deeper convolutional layers, because the model needs to learn highly specialized, domain-specific high-level features that do not exist in the original ImageNet dataset.",
+            "C) Train from scratch, because pre-trained RGB models physically cannot process single-channel grayscale medical images under any circumstances.",
+            "D) Feature Extraction, because Fine-Tuning is only mathematically stable for simple binary classification tasks like Cat vs. Dog."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "fine_tuning",
+            "feature_extraction",
+            "domain_adaptation"
+        ],
+        "difficulty": "hard",
+        "explanation": "The choice between Feature Extraction and Fine-Tuning heavily depends on the similarity between the source dataset (ImageNet) and your target dataset (X-rays). Early CNN layers learn universal features (edges, curves), which are useful for any image. However, deep layers learn highly specific semantic features (dog eyes, car wheels). Since medical X-rays look nothing like ImageNet categories, the high-level features learned by the deep layers of VGG16 will be unhelpful. Therefore, you must use Fine-Tuning: unfreezing the deeper convolutional blocks and retraining them so they can adapt their weights to recognize specialized medical anomalies. Option A is incorrect because high-level features are also needed. Option C is wrong because grayscale images can be duplicated across 3 channels to fit the model. Option D is entirely fabricated."
+    },
+    {
+        "id": "transfer_learning_007",
+        "question": "When transitioning to the Fine-Tuning approach (unfreezing the deeper convolutional blocks), the instructor specifically changes the optimizer and drastically lowers the learning rate. What is the precise engineering rationale behind using a very low learning rate here?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To ensure the training process takes long enough to fully utilize the allocated GPU hardware.",
+            "B) To deliberately force the model to overfit slightly on the training data, compensating for the lack of dense data augmentation.",
+            "C) Because unfrozen convolutional layers mathematically require smaller numerical precision to prevent out-of-memory (OOM) tensor errors.",
+            "D) To prevent aggressive, large weight updates from violently overwriting and destroying the valuable, pre-trained representations those layers already possess."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "fine_tuning",
+            "learning_rate",
+            "optimizers"
+        ],
+        "difficulty": "hard",
+        "explanation": "When Fine-Tuning, you are delicately adjusting a model that is already highly optimized. The unfrozen deeper layers already contain complex, valuable feature representations learned from millions of images. If you use a standard or high learning rate, the backpropagated error gradients from the randomly initialized top layers will cause massive, aggressive weight updates. This phenomenon, known as 'catastrophic forgetting,' will violently overwrite and destroy the pre-trained weights. By using a very low learning rate (e.g., with RMSprop or Adam), you ensure that the weights shift slightly and smoothly, adapting to the new dataset while preserving the underlying foundational knowledge. Options A, B, and C describe nonsensical or technically flawed rationales."
+    }
+]

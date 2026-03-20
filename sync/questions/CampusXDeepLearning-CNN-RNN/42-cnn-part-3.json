@@ -1,3 +1,172 @@
-{
-    
-}
+[
+    {
+        "id": "cnn_convolution_001",
+        "question": "When designing a data pipeline for a computer vision model, how does the underlying mathematical tensor representation fundamentally differ between a standard grayscale image and an RGB color image?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A grayscale image is represented as a 2D tensor containing intensity scalars, whereas an RGB image is a 3D tensor with a depth of 3 representing color channels.",
+            "B) A grayscale image uses discrete integer values, while an RGB image inherently requires continuous floating-point tensors to represent color gradients.",
+            "C) A grayscale image is flattened into a 1D vector upon loading, whereas an RGB image maintains its 2D grid structure to preserve color spatiality.",
+            "D) A grayscale image contains only one color channel, whereas an RGB image contains four channels (Red, Green, Blue, and Alpha for opacity)."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "data_representation",
+            "tensors",
+            "channels"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option A is correct. In computer memory, a grayscale image is stored as a 2D array (matrix) of dimensions $Height \\times Width$, where each cell holds an intensity value (typically $0-255$). An RGB image requires a 3D tensor of shape $Height \\times Width \\times 3$, functioning essentially as three stacked 2D arrays (one for each primary color). Option B is incorrect; both formats typically start as integers before explicit normalization during preprocessing. Option C is incorrect; neither image type is flattened until reaching the fully connected layers. Option D is incorrect; standard RGB has exactly 3 channels, while RGBA contains 4."
+    },
+    {
+        "id": "cnn_convolution_002",
+        "question": "The foundational layers of a CNN act as feature extractors, primarily identifying \"edges\" in an image. From a strict numerical perspective within the image tensor, what constitutes an edge?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Any contiguous region of pixels where the absolute intensity values exceed a threshold of 128.",
+            "B) A sharp mathematical gradient or transition in pixel intensity values between adjacent spatial regions.",
+            "C) The boundary where the network's activation function outputs a negative value.",
+            "D) A localized grouping of pixels that all share the exact same scalar value."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "feature_extraction",
+            "edges",
+            "gradients"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option B is correct. An edge in computer vision is defined by a significant change (gradient) in pixel intensities. For example, transitioning from a cluster of $0$ values (black) to a cluster of $255$ values (white) creates a numerical boundary that a filter detects as an edge. Option A is incorrect because high intensity alone just means the image is bright, not that an edge exists. Option C is incorrect; activation functions like ReLU zero out negative values, which is a post-convolution step. Option D defines a flat, textureless region (the exact opposite of an edge)."
+    },
+    {
+        "id": "cnn_convolution_003",
+        "question": "During the forward pass of a convolutional layer, a $3 \\times 3$ filter is placed over a corresponding $3 \\times 3$ patch of the input image. What is the precise mathematical operation performed to compute the single scalar output for that receptive field?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A standard matrix multiplication between the filter tensor and the input patch.",
+            "B) Calculating the cosine similarity between the flattened filter vector and the input patch vector.",
+            "C) An element-wise multiplication between the filter weights and the image patch pixels, followed by a sum of all resulting values.",
+            "D) Subtracting the filter matrix from the input patch matrix and calculating the determinant of the result."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "convolution_operation",
+            "mathematics",
+            "linear_algebra"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option C is correct. The convolution operation (technically cross-correlation in most deep learning frameworks) involves taking the element-wise product of the filter's grid and the underlying image patch, and then summing those products to yield a single scalar value. This value represents the activation strength for that specific spatial location. Option A is a common misconception; standard matrix multiplication (dot product of rows and columns) is used in dense layers, not convolutional windows. Option B is incorrect; while convolution shares geometric similarities with dot products, it is not normalized as cosine similarity. Option D is mathematically nonsensical for this context."
+    },
+    {
+        "id": "cnn_convolution_004",
+        "question": "Historically, computer vision engineers relied on handcrafted matrices (like Sobel or Prewitt operators) to extract specific features such as vertical lines. How does a modern Convolutional Neural Network determine the numerical values inside its convolutional filters?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The values are statically assigned based on the chosen CNN architecture (e.g., ResNet uses Sobel filters).",
+            "B) The values are extracted from the input images using Principal Component Analysis (PCA) prior to training.",
+            "C) The values are initialized randomly and iteratively optimized via backpropagation and gradient descent during training.",
+            "D) The values are calculated dynamically during the forward pass by computing the inverse of the input tensor."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "backpropagation",
+            "filters",
+            "optimization",
+            "weights"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option C is correct. The true power of CNNs lies in representation learning. Filter matrices act exactly like the weights in a standard Neural Network. They are initialized randomly, and the optimal values are learned via backpropagation to minimize the loss function for the specific dataset. Option A is false; modern architectures do not use static, handcrafted filters. Option B is false; PCA is a dimensionality reduction technique, not a mechanism for initializing convolutional kernels. Option D is mathematically incorrect; filters are trainable parameters, not dynamically inverted input states."
+    },
+    {
+        "id": "cnn_convolution_005",
+        "question": "After convolving a feature map with a filter designed to detect \"left edges\", the resulting output contains both high positive values (indicating left edges) and high negative values (indicating right edges). What standard engineering mechanism is applied immediately after the convolution to isolate the targeted feature?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A ReLU activation function is applied to zero out the negative activations, discarding the opposite edge patterns.",
+            "B) An absolute value function is applied to convert the negative values into positive ones, merging the two edge types.",
+            "C) A Max Pooling layer is applied to extract only the highest positive and lowest negative values simultaneously.",
+            "D) A Softmax function is applied to convert the feature map into a probability distribution of edges."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "activation_functions",
+            "relu",
+            "feature_maps"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option A is correct. Applying a non-linear activation function like ReLU ($max(0, x)$) immediately after the convolution ensures that the network only activates for the specific pattern the filter was attempting to detect. By zeroing out negative values, the network effectively \"forgets\" the inverse patterns (e.g., right edges when looking for left edges). Option B is counterproductive because it destroys the directional orientation of the feature. Option C is incorrect; Max Pooling reduces spatial dimensions, it does not act as a thresholding activation. Option D is incorrect; Softmax is used in final classification layers, not intermediate feature maps."
+    },
+    {
+        "id": "cnn_convolution_006",
+        "question": "You are designing the architecture of a CNN without padding. If you pass an input tensor with spatial dimensions of $N \\times N$ through a convolutional layer utilizing a single filter of spatial size $M \\times M$ (with a stride of 1), what will be the spatial dimensions of the resulting feature map?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $N \\times M$",
+            "B) $(N - M) \\times (N - M)$",
+            "C) $(N - M + 1) \\times (N - M + 1)$",
+            "D) $(N + M - 1) \\times (N + M - 1)$"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "spatial_dimensions",
+            "mathematics",
+            "architecture_design"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option C is correct. When a filter of size $M$ slides across an input of size $N$ with a stride of $1$ and no padding (valid convolution), it can fit into $N - M + 1$ unique spatial locations along each axis. Thus, the output feature map shrinks to $(N - M + 1) \\times (N - M + 1)$. Option A is mathematically unrelated to convolution. Option B is missing the $+ 1$, which accounts for the initial placement of the filter at the first position. Option D represents the formula for full convolution (with maximal padding), not standard unpadded convolution."
+    },
+    {
+        "id": "cnn_convolution_007",
+        "question": "You input an RGB image tensor of shape $32 \\times 32 \\times 3$ into a convolutional layer. You apply a single convolutional filter defined with a spatial dimension of $3 \\times 3$. In a standard deep learning framework, what is the actual tensor shape of this filter, and what is the shape of the resulting output feature map?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Filter shape: $3 \\times 3 \\times 3$; Output shape: $30 \\times 30 \\times 1$",
+            "B) Filter shape: $3 \\times 3 \\times 1$; Output shape: $30 \\times 30 \\times 3$",
+            "C) Filter shape: $3 \\times 3 \\times 3$; Output shape: $32 \\times 32 \\times 1$",
+            "D) Filter shape: $3 \\times 3 \\times 1$; Output shape: $32 \\times 32 \\times 3$"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "3d_convolution",
+            "tensors",
+            "channels",
+            "depth"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option A is correct. A fundamental rule of standard 2D convolution over multi-channel inputs is that the filter depth *must* match the input depth. Therefore, the spatial $3 \\times 3$ filter automatically expands to $3 \\times 3 \\times 3$. During the operation, the element-wise multiplication and summation occur across *all* spatial elements and *all* channels simultaneously. This \"collapses\" the depth, resulting in a single scalar per spatial location. Using the formula $(32 - 3 + 1)$, the spatial dimensions become $30 \\times 30$. Because there is only 1 filter, the output depth is 1, resulting in a $30 \\times 30 \\times 1$ tensor. Options B and D fail to recognize that filter depth must match input depth. Option C incorrectly assumes spatial dimensions are preserved without padding."
+    },
+    {
+        "id": "cnn_convolution_008",
+        "question": "In a deep CNN pipeline, a hidden layer receives an input feature map of shape $64 \\times 64 \\times 16$. To increase the network's capacity to extract different patterns, you apply 32 distinct convolutional filters, each with a spatial dimension of $5 \\times 5$ (stride 1, no padding). What will be the final shape of the output tensor produced by this layer?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $60 \\times 60 \\times 16$",
+            "B) $64 \\times 64 \\times 32$",
+            "C) $60 \\times 60 \\times 32$",
+            "D) $60 \\times 60 \\times 512$"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multiple_filters",
+            "tensor_shapes",
+            "architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option C is correct. First, calculate the spatial reduction: $(N - M + 1)$ -> $(64 - 5 + 1) = 60$. So, the output spatial dimensions will be $60 \\times 60$. Second, understand channel creation: each of the 32 filters acts on the full $16$-channel depth of the input, collapsing it into a single 2D slice ($60 \\times 60 \\times 1$). Because you applied 32 independent filters, you stack these slices together, resulting in an output depth of 32. Thus, the final shape is $60 \\times 60 \\times 32$. Option A incorrectly retains the input channel depth. Option B fails to reduce the spatial dimensions. Option D incorrectly multiplies the input channels by the number of filters ($16 \\times 32$), violating the depth-collapse property of standard convolution."
+    }
+]

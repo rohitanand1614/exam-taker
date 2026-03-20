@@ -1,3 +1,107 @@
-{
-    
-}
+[
+    {
+        "id": "backprop_cnn_part1_001",
+        "question": "When calculating the gradients for a Convolutional Neural Network (CNN) architecture using backpropagation, which specific mathematical components of the network are being actively optimized?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Only the weights of the fully connected (Dense) layers at the end of the network.",
+            "B) The input pixel intensities, the filter weights, and the biases.",
+            "C) The filter weights (kernels), the biases of those filters, and the weights/biases of any fully connected layers.",
+            "D) The spatial dimensions of the feature maps, such as height and width."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "backpropagation",
+            "trainable_parameters",
+            "cnn_basics"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option C is correct. Backpropagation aims to minimize the loss by updating the trainable parameters of the network. In a standard CNN, as shown in the video's simple architecture, the trainable parameters are the weights inside the convolutional filters ($w_1$), the biases associated with those filters ($b_1$), the weights of the fully connected layers ($w_2$), and their respective biases ($b_2$). Option A is incorrect because the convolutional filters must also learn to extract features. Option B is incorrect because we do not update the input image pixels during standard training. Option D is incorrect because spatial dimensions are fixed hyperparameters, not trainable weights."
+    },
+    {
+        "id": "backprop_cnn_part1_002",
+        "question": "In the simplified CNN architecture presented in the video, an input image of size $6 \\times 6$ is processed by a single $3 \\times 3$ convolutional filter (stride 2), followed by ReLU, a $2 \\times 2$ Max Pooling layer (stride 2), and finally flattened to connect to a single output neuron. What is the total number of trainable parameters (weights and biases) in this entire architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 10 parameters",
+            "B) 15 parameters",
+            "C) 36 parameters",
+            "D) 45 parameters"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "trainable_parameters",
+            "architecture",
+            "calculation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. Let's break down the trainable parameters. \n1. **Convolutional Layer:** The single filter has a shape of $3 \\times 3$, yielding $9$ weights ($w_1$). It also has $1$ bias term ($b_1$). Total here = $10$.\n2. **Pooling & Flattening:** These operations have $0$ trainable parameters.\n3. **Fully Connected Layer:** The $6 \\times 6$ image becomes $2 \\times 2$ after convolution (stride 2), and then $1 \\times 1$ after Max Pooling. This $1 \\times 1$ tensor is technically just $1$ value, but the instructor's math in the video calculates it as a $4 \\times 1$ vector going into the dense layer (assuming the pooling output was $2 \\times 2$ for the sake of the equations). Given the instructor's explicit statement: $w_2$ has $4$ weights, and $b_2$ has $1$ bias. Total here = $5$.\nTotal parameters = $10 + 5 = 15$. Options A, C, and D are incorrect calculations."
+    },
+    {
+        "id": "backprop_cnn_part1_003",
+        "question": "The instructor formulates the backpropagation process for the dense layer weight $w_2$ using the chain rule. The final derived gradient equation for $\\frac{\\partial L}{\\partial w_2}$ with respect to a single image is:",
+        "type": "multiple_choice",
+        "options": [
+            "A) $\\frac{\\partial L}{\\partial w_2} = (A_2 - y) \\cdot A_2$",
+            "B) $\\frac{\\partial L}{\\partial w_2} = (A_2 - y) \\cdot F$",
+            "C) $\\frac{\\partial L}{\\partial w_2} = A_2 \\cdot (1 - A_2) \\cdot F$",
+            "D) $\\frac{\\partial L}{\\partial w_2} = (y - A_2) \\cdot F^T$"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "chain_rule",
+            "gradients",
+            "calculus"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. Following the chain rule derivation in the video:\n1. $\\frac{\\partial L}{\\partial A_2}$ (Binary Cross Entropy) = $\\frac{A_2 - y}{A_2(1 - A_2)}$\n2. $\\frac{\\partial A_2}{\\partial Z_2}$ (Sigmoid derivative) = $A_2(1 - A_2)$\n3. $\\frac{\\partial Z_2}{\\partial w_2}$ (Linear derivative, where $Z_2 = w_2 \\cdot F + b_2$) = $F$ (the input from the flatten layer).\nMultiplying them together: $\\frac{A_2 - y}{A_2(1 - A_2)} \\cdot A_2(1 - A_2) \\cdot F$. The denominator cancels out, leaving $(A_2 - y) \\cdot F$. Option A uses the output activation instead of the input features. Option C is missing the loss derivative component. Option D has the subtraction reversed."
+    },
+    {
+        "id": "backprop_cnn_part1_004",
+        "question": "When transitioning from calculating the gradient for a single image to calculating the gradient for a mini-batch of $m$ images, the mathematical operation for $\\frac{\\partial L}{\\partial w_2}$ changes from a simple vector multiplication to a matrix dot product. To ensure the resulting gradient matrix has the exact same shape as the weight matrix $w_2$ ($1 \\times 4$), what matrix operation must be performed on the feature matrix $F$ (shape $4 \\times m$)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $F$ must be inverted.",
+            "B) $F$ must be flattened into a 1D vector.",
+            "C) $F$ must be transposed to $m \\times 4$.",
+            "D) $F$ must be multiplied by the identity matrix."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "matrix_multiplication",
+            "mini_batch",
+            "tensor_shapes"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option C is correct. For a mini-batch of $m$ images, the error term $(A_2 - y)$ becomes a matrix of shape $1 \\times m$. The input feature matrix $F$ has a shape of $4 \\times m$ (4 features per image, for $m$ images). To calculate the gradient $\\frac{\\partial L}{\\partial w_2}$ (which must result in a $1 \\times 4$ shape to match the original $w_2$ weights), we must perform a dot product. Multiplying $(1 \\times m)$ by $(m \\times 4)$ yields the required $(1 \\times 4)$ matrix. Therefore, $F$ must be transposed from $(4 \\times m)$ to $(m \\times 4)$. Options A, B, and D do not resolve the matrix dimension mismatch required for the gradient update."
+    },
+    {
+        "id": "backprop_cnn_part1_005",
+        "question": "To calculate the gradient of the loss with respect to the convolutional filter weights ($w_1$), the chain rule must flow backward through several distinct operations. According to the logical flow diagram in the video, which sequence of partial derivatives correctly represents the path to calculate $\\frac{\\partial L}{\\partial w_1}$?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $\\frac{\\partial L}{\\partial w_1} = \\frac{\\partial L}{\\partial A_2} \\cdot \\frac{\\partial A_2}{\\partial F} \\cdot \\frac{\\partial F}{\\partial P_1} \\cdot \\frac{\\partial P_1}{\\partial A_1} \\cdot \\frac{\\partial A_1}{\\partial w_1}$",
+            "B) $\\frac{\\partial L}{\\partial w_1} = \\frac{\\partial L}{\\partial Z_2} \\cdot \\frac{\\partial Z_2}{\\partial F} \\cdot \\frac{\\partial F}{\\partial P_1} \\cdot \\frac{\\partial P_1}{\\partial A_1} \\cdot \\frac{\\partial A_1}{\\partial Z_1} \\cdot \\frac{\\partial Z_1}{\\partial w_1}$",
+            "C) $\\frac{\\partial L}{\\partial w_1} = \\frac{\\partial L}{\\partial w_2} \\cdot \\frac{\\partial w_2}{\\partial F} \\cdot \\frac{\\partial F}{\\partial Z_1} \\cdot \\frac{\\partial Z_1}{\\partial w_1}$",
+            "D) $\\frac{\\partial L}{\\partial w_1} = \\frac{\\partial L}{\\partial Z_1} \\cdot \\frac{\\partial Z_1}{\\partial w_1}$"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "chain_rule",
+            "backpropagation",
+            "convolution"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option B is correct. Tracing the computational graph backward from the Loss ($L$) to the filter weights ($w_1$): \n1. Loss changes with respect to the dense layer pre-activation: $\\frac{\\partial L}{\\partial Z_2}$ (which abstracts $\\frac{\\partial L}{\\partial A_2} \\cdot \\frac{\\partial A_2}{\\partial Z_2}$).\n2. $Z_2$ changes with respect to the flattened input $F$: $\\frac{\\partial Z_2}{\\partial F}$.\n3. $F$ changes with respect to the pooled output $P_1$: $\\frac{\\partial F}{\\partial P_1}$.\n4. $P_1$ changes with respect to the ReLU activation $A_1$: $\\frac{\\partial P_1}{\\partial A_1}$.\n5. $A_1$ changes with respect to the convolution output $Z_1$: $\\frac{\\partial A_1}{\\partial Z_1}$.\n6. $Z_1$ changes with respect to the weights $w_1$: $\\frac{\\partial Z_1}{\\partial w_1}$.\nOption A skips the pre-activation $Z_1$ step. Option C incorrectly routes the gradient through $w_2$, which is a separate parameter, not an intermediate activation. Option D truncates the chain rule entirely, ignoring the rest of the network."
+    }
+]

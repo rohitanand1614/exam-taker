@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exported_at": "2026-03-17T12:41:42+00:00",
+  "exported_at": "2026-03-20T04:37:52+00:00",
   "decks": [
     {
       "id": "2026-llm-job-week1-3blue1brown-attention",
@@ -187,6 +187,120 @@
       "name": "CampusXDeepLearning-Basics / 38 Adam Optimizer Explained In Detail With Animations",
       "path": "questions/CampusXDeepLearning-Basics/38-adam-optimizer-explained-in-detail-with-animations.json",
       "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-40-what-is-convolutional-neural-network-cnn",
+      "name": "CampusXDeepLearning-CNN-RNN / 40 What Is Convolutional Neural Network Cnn",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/40-what-is-convolutional-neural-network-cnn.json",
+      "question_count": 9
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-41-cnn-vs-visual-cortex",
+      "name": "CampusXDeepLearning-CNN-RNN / 41 Cnn Vs Visual Cortex",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/41-cnn-vs-visual-cortex.json",
+      "question_count": 6
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-42-cnn-part-3",
+      "name": "CampusXDeepLearning-CNN-RNN / 42 Cnn Part 3",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/42-cnn-part-3.json",
+      "question_count": 8
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-43-padding-strides-in-cnn",
+      "name": "CampusXDeepLearning-CNN-RNN / 43 Padding Strides In Cnn",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/43-padding-strides-in-cnn.json",
+      "question_count": 8
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-44-pooling-layer-in-cnn",
+      "name": "CampusXDeepLearning-CNN-RNN / 44 Pooling Layer In Cnn",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/44-pooling-layer-in-cnn.json",
+      "question_count": 7
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-45-cnn-architecture",
+      "name": "CampusXDeepLearning-CNN-RNN / 45 Cnn Architecture",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/45-cnn-architecture.json",
+      "question_count": 6
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-46-comparing-cnn-vs-ann",
+      "name": "CampusXDeepLearning-CNN-RNN / 46 Comparing Cnn Vs Ann",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/46-comparing-cnn-vs-ann.json",
+      "question_count": 4
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-47-backpropagation-in-cnn",
+      "name": "CampusXDeepLearning-CNN-RNN / 47 Backpropagation In Cnn",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/47-backpropagation-in-cnn.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-48-cnn-backpropagation-part-2",
+      "name": "CampusXDeepLearning-CNN-RNN / 48 Cnn Backpropagation Part 2",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/48-cnn-backpropagation-part-2.json",
+      "question_count": 10
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-49-cat-vs-dog-image-classification-project",
+      "name": "CampusXDeepLearning-CNN-RNN / 49 Cat Vs Dog Image Classification Project",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/49-cat-vs-dog-image-classification-project.json",
+      "question_count": 8
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-50-data-augmentation-in-deep-learning",
+      "name": "CampusXDeepLearning-CNN-RNN / 50 Data Augmentation In Deep Learning",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/50-data-augmentation-in-deep-learning.json",
+      "question_count": 6
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-51-pretrained-models-in-cnn",
+      "name": "CampusXDeepLearning-CNN-RNN / 51 Pretrained Models In Cnn",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/51-pretrained-models-in-cnn.json",
+      "question_count": 6
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-52-what-does-a-cnn-see",
+      "name": "CampusXDeepLearning-CNN-RNN / 52 What Does A Cnn See",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/52-what-does-a-cnn-see.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-53-what-is-transfer-learning-transfer-learning-in-keras",
+      "name": "CampusXDeepLearning-CNN-RNN / 53 What Is Transfer Learning Transfer Learning In Keras",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/53-what-is-transfer-learning-transfer-learning-in-keras.json",
+      "question_count": 7
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-54-keras-functional-model",
+      "name": "CampusXDeepLearning-CNN-RNN / 54 Keras Functional Model",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/54-keras-functional-model.json",
+      "question_count": 6
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-56-recurrent-neural-network",
+      "name": "CampusXDeepLearning-CNN-RNN / 56 Recurrent Neural Network",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/56-recurrent-neural-network.json",
+      "question_count": 6
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-57-rnn-sentiment-analysis",
+      "name": "CampusXDeepLearning-CNN-RNN / 57 Rnn Sentiment Analysis",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/57-rnn-sentiment-analysis.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-58-types-of-rnn",
+      "name": "CampusXDeepLearning-CNN-RNN / 58 Types Of Rnn",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/58-types-of-rnn.json",
+      "question_count": 5
+    },
+    {
+      "id": "campusxdeeplearning-cnn-rnn-59-how-backpropagation-works-in-rnn",
+      "name": "CampusXDeepLearning-CNN-RNN / 59 How Backpropagation Works In Rnn",
+      "path": "questions/CampusXDeepLearning-CNN-RNN/59-how-backpropagation-works-in-rnn.json",
+      "question_count": 10
     },
     {
       "id": "genai-llm-books-hands-on-large-language-models-chapter1",

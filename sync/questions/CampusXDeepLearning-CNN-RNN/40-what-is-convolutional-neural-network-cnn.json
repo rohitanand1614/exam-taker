@@ -1,3 +1,190 @@
-{
-    
-}
+[
+    {
+        "id": "What-is-CNN_001",
+        "question": "CNNs are heavily preferred over standard ANNs for specific types of data, such as images or time-series. What fundamental mathematical property of these data types makes them inherently suitable for convolutional architectures?",
+        "type": "multiple_choice",
+        "options": [
+            "A) They possess a known grid-like topology where local spatial or temporal relationships contain semantic meaning.",
+            "B) They contain non-linear patterns that require specialized activation functions not present in standard ANNs.",
+            "C) They inherently possess lower dimensionality, which speeds up the matrix multiplication operation.",
+            "D) They require fully connected dense graphs to map complex decision boundaries effectively."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cnn_basics",
+            "data_topology",
+            "architecture_selection"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option A is correct because CNNs use filters that exploit the local spatial coherence of grid-like data (pixels in 2D, time-steps in 1D). Option B is wrong because both ANNs and CNNs handle non-linear patterns using similar activation functions like ReLU. Option C is mathematically incorrect; images typically have very high dimensionality, which is exactly why ANNs struggle with them. Option D is backwards; CNNs rely on sparse, localized connections (weight sharing), whereas ANNs use fully connected dense graphs which fail to scale on grid data."
+    },
+    {
+        "id": "What-is-CNN_002",
+        "question": "While standard Artificial Neural Networks (ANNs) rely on a specific mathematical operation for forward propagation in their hidden layers, CNNs introduce a structural shift in their feature extraction layers. What is this core operational difference?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ANNs use element-wise matrix addition; CNNs use cross-correlation projection.",
+            "B) ANNs rely entirely on standard matrix multiplication; CNNs rely on the convolution operation.",
+            "C) ANNs utilize gradient descent for parameter updates; CNNs utilize backpropagation through time (BPTT).",
+            "D) ANNs perform scalar projections; CNNs perform vector dot products."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "mathematics",
+            "convolution",
+            "ann_vs_cnn"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option B is correct. In a standard ANN, inputs are multiplied by a weight matrix in a fully connected manner (Matrix Multiplication). CNNs replace this in their early layers with the Convolution operation, where a smaller filter matrix slides over the input. Option A is incorrect because ANNs use multiplication, not just addition. Option C is wrong because both architectures can use gradient descent, and BPTT is specific to RNNs, not CNNs. Option D is fundamentally incorrect as both network types utilize vector and matrix math, not just scalar projections."
+    },
+    {
+        "id": "What-is-CNN_003",
+        "question": "According to standard CNN architectural design, which three fundamental layer types are sequentially combined to process spatial data and output a final classification?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Recurrent Layers, Attention Layers, and Dense Layers.",
+            "B) Embedding Layers, Convolutional Layers, and Normalization Layers.",
+            "C) Convolutional Layers, Pooling Layers, and Fully Connected Layers.",
+            "D) Convolutional Layers, Dropout Layers, and Softmax Layers."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cnn_architecture",
+            "layers"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option C is correct. The core building blocks of a traditional CNN are Convolutional layers (for spatial feature extraction), Pooling layers (for spatial downsampling and translational invariance), and Fully Connected layers (acting as a traditional ANN classifier at the end of the network). Option A describes NLP/Sequence architectures. Option B lists embedding layers, which are primarily used for text/categorical data. Option D lists dropout and softmax, which are regularization and activation techniques respectively, not the foundational macroscopic structural layers defining a CNN."
+    },
+    {
+        "id": "What-is-CNN_004",
+        "question": "You are tasked with processing 1000x1000 pixel images using a standard multi-layer perceptron (ANN). If the first hidden layer contains 1,000 neurons, what is the primary architectural bottleneck that makes this approach mathematically infeasible?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model will suffer from vanishing gradients immediately due to the high input dimensionality.",
+            "B) Flattening the image will prevent the model from using ReLU activations, slowing down convergence.",
+            "C) The input layer will require 2-dimensional tensors, which dense layers cannot process without crashing.",
+            "D) The first hidden layer alone will require 1 billion weight parameters, leading to extreme computational cost."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "computational_complexity",
+            "ann_limitations",
+            "weight_optimization"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option D is correct. Flattening a 1000x1000 image yields 1,000,000 input features. Because an ANN is fully connected, connecting 1,000,000 inputs to 1,000 neurons requires 1,000,000 * 1,000 = 1,000,000,000 weights in just the first layer. This parameter explosion causes massive computational overhead. Option A is incorrect; vanishing gradients are a function of network depth and activation functions, not strictly input width. Option B is completely false; activations are independent of input shape. Option C is a framework implementation detail, not a fundamental mathematical bottleneck."
+    },
+    {
+        "id": "What-is-CNN_005",
+        "question": "The instructor warns that using ANNs for image processing frequently leads to severe overfitting. From a network architecture perspective, what is the primary mechanism driving this behavior?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The dense, all-to-all connectivity forces the model to capture minute, irrelevant pixel noise across the entire image instead of generalized patterns.",
+            "B) ANNs typically use much deeper architectures than CNNs, inherently causing them to memorize the training data.",
+            "C) ANNs mathematically lack the ability to use dropout layers, making them defenseless against memorizing the training set.",
+            "D) The flattened 1D input array artificially increases the statistical variance of the pixel distribution."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "overfitting",
+            "dense_networks",
+            "model_variance"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option A is correct. In an ANN, every neuron in the hidden layer is connected to every single input pixel. This excessive parameter capacity allows the network to memorize highly specific, noisy, or irrelevant pixel combinations (overfitting) rather than learning generalized, translation-invariant features like a CNN does. Option B is factually incorrect; CNNs are often much deeper than standard ANNs (e.g., ResNet-152). Option C is false; dropout was actually popularized in fully connected networks. Option D is statistically nonsensical; flattening an array changes its shape, not the variance of its values."
+    },
+    {
+        "id": "What-is-CNN_006",
+        "question": "When feeding an image into a standard ANN, the 2D pixel grid must be flattened into a 1D array. Why does this specific preprocessing step severely degrade the model's ability to perform image classification?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It reduces the total number of pixels available for the network to learn from by dropping edge pixels.",
+            "B) It destroys the spatial arrangement and distance relationships between key features, such as the relative position of eyes to a nose.",
+            "C) It forces the network to use linear activation functions instead of non-linear ones to maintain data integrity.",
+            "D) It dynamically alters the underlying pixel intensity values, corrupting the image data."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "spatial_features",
+            "data_preprocessing",
+            "dimensionality"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. The spatial arrangement of pixels (2D topology) holds crucial semantic meaning in images. Flattening stacks rows sequentially, artificially separating pixels that were vertically adjacent. This discards geometric context, making it extremely difficult for the network to understand structural relationships. Option A is false; flattening reshapes the tensor but retains 100% of the data points. Option C is completely unrelated; activation functions are independent of data shape. Option D is false; reshaping an array does not alter the underlying scalar values of the pixels."
+    },
+    {
+        "id": "What-is-CNN_007",
+        "question": "As data flows through the successive convolutional layers of a deep CNN, how does the nature of the extracted features evolve?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Early layers detect complex, class-specific objects, while deeper layers break them down into primitive edges and colors.",
+            "B) All layers extract similar features, but deeper layers process them at a mathematically higher resolution.",
+            "C) Early layers detect primitive features like edges and curves, which are progressively merged by deeper layers into complex, meaningful semantic structures.",
+            "D) Early layers focus purely on spatial locations, while deeper layers discard spatial data entirely to focus on color gradients."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "feature_extraction",
+            "hierarchical_learning",
+            "network_depth"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option C is correct. CNNs build a hierarchy of features. Initial layers use filters to detect primitive patterns like horizontal, vertical, or diagonal edges. Subsequent layers combine these edge activations to detect shapes, and deeper layers combine shapes to recognize complex, semantic objects (like a face or a dog's ear). Option A describes the exact reverse of how a CNN operates. Option B is incorrect because pooling layers usually reduce the mathematical resolution as you go deeper. Option D is incorrect; spatial structure is maintained (though downsampled) throughout the convolutional base."
+    },
+    {
+        "id": "What-is-CNN_008",
+        "question": "What is the mechanical purpose of sliding a filter (kernel) across an input image during the convolution operation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To compress the image size by directly discarding redundant pixel values.",
+            "B) To flatten the 2D spatial dimensions into a 1D array for the fully connected layers.",
+            "C) To normalize the pixel intensities across the entire image, ensuring zero mean and unit variance.",
+            "D) To act as a pattern detector that activates mathematically when it encounters a specific visual feature."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "filters",
+            "kernels",
+            "convolution_mechanics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option D is correct because a filter (or kernel) mathematically performs a dot product over a localized patch, outputting a high activation value when the underlying image patch matches the filter's learned weights (e.g., finding an edge). Option A describes Pooling layers, which reduce spatial dimensions, not the convolution operation itself. Option B describes the Flattening layer, which is structurally separate from filters. Option C describes Batch Normalization, which standardizes activations, whereas filters are strictly designed to extract semantic patterns."
+    },
+    {
+        "id": "What-is-CNN_009",
+        "question": "You are designing an AI system for a self-driving car. The system must not only identify vehicles and pedestrians but also precisely delineate their exact boundaries at the pixel level to understand the drivable road area. Which computer vision application is strictly required for this task?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Image Classification",
+            "B) Object Localization",
+            "C) Image Segmentation",
+            "D) Object Detection"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "computer_vision_applications",
+            "image_segmentation",
+            "autonomous_driving"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option C is correct. Image Segmentation involves dividing an image into distinct regions at the pixel level, creating a precise mask of the object's boundaries, which is crucial for determining exact drivable areas. Option A (Classification) only assigns a single label to the entire image. Option B (Localization) simply draws a single rectangular bounding box around a primary object. Option D (Detection) draws bounding boxes around multiple objects but still relies on coarse rectangles, not precise pixel-level boundary delineation required by the prompt."
+    }
+]

@@ -1,3 +1,107 @@
-{
-    
-}
+[
+    {
+        "id": "cnn_visualize_001",
+        "question": "When inspecting the internal workings of a CNN to understand what it 'sees', what is the fundamental engineering difference between visualizing a 'filter' and visualizing a 'feature map'?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A filter represents the original input image's RGB channels, while a feature map represents the grayscale version used for deeper processing.",
+            "B) A filter is the static, learned mathematical weight matrix, whereas a feature map is the dynamic activation output generated when that filter is applied to a specific input image.",
+            "C) A filter dictates the pooling layer's spatial window size, while a feature map is the 1D probability vector output by the Dense layers.",
+            "D) A filter is a static regularization mask (like Dropout), whereas a feature map dynamically scales the learning rate during forward propagation."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "filters",
+            "feature_maps",
+            "cnn_internals"
+        ],
+        "difficulty": "medium",
+        "explanation": "In a Convolutional Neural Network, a 'filter' (or kernel) consists of the trainable parameters (weights) that the network has learned during training. Visualizing a filter shows you the abstract pattern (like a specific edge or texture) that the network is looking for. A 'feature map', on the other hand, is the resultant tensor produced after convolving this filter across an actual input image. Visualizing the feature map shows you exactly where and how strongly that specific pattern was detected in the given image."
+    },
+    {
+        "id": "cnn_visualize_002",
+        "question": "As you extract and visualize feature maps progressively deeper into a CNN architecture (e.g., moving from Layer 1 to Layer 17 in VGG16), how does the visual nature of the extracted features transition?",
+        "type": "multiple_choice",
+        "options": [
+            "A) From highly specific, complex object parts in the initial layers to simple primitive edges and pixel colors in the deeper layers.",
+            "B) From abstract mathematical tensors in the initial layers to high-resolution photographic reconstructions in the deeper layers.",
+            "C) From localized, primitive spatial features (like simple edges and gradients) in the shallow layers to complex, abstract, and semantic features (like eyes or faces) in the deeper layers.",
+            "D) From purely spatial 2D data in the initial layers to temporal 1D sequence data in the deeper layers."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "feature_hierarchy",
+            "network_depth",
+            "semantic_abstraction"
+        ],
+        "difficulty": "easy",
+        "explanation": "CNNs learn and process information in a strict hierarchical structure. The initial, shallow layers have small receptive fields and act as primitive feature detectors, identifying localized pixel intensity changes like edges, lines, and simple colors. As the data flows deeper into the network, pooling and successive convolutions expand the receptive field. The network linearly combines these lower-level features to detect increasingly complex, abstract, and semantically meaningful patterns, such as specific object parts."
+    },
+    {
+        "id": "cnn_visualize_003",
+        "question": "When passing an image of a specific person (e.g., Virat Kohli) through VGG16, the deeper feature maps progressively lose the person's specific visual identity. Why is this a mathematically desirable property for an ImageNet-trained classification model?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because the network is heavily overfitting to the input image, causing a collapse in the spatial feature space.",
+            "B) Because the ultimate goal of the classifier is category generalization (e.g., detecting a 'Human'); it intentionally strips away instance-specific spatial details to focus on universal semantic triggers.",
+            "C) Because deep layers suffer from the vanishing gradient problem, which inherently blurs high-resolution textures during the forward pass.",
+            "D) Because the Max Pooling layers completely delete all structural spatial information, rendering the network blind to shapes."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "generalization",
+            "classification",
+            "feature_maps"
+        ],
+        "difficulty": "medium",
+        "explanation": "The primary objective of an image classification model trained on a broad dataset like ImageNet is to assign general categories (e.g., identifying if an image contains a 'human' or a 'dog'), not to perform facial recognition of specific individuals. Therefore, as the data flows deeper, the network actively discards instance-specific 'noise' (like a specific person's exact facial structure or background artifacts) and retains only the generalized semantic features (the presence of an eye, a nose, a head shape) necessary to confidently trigger the correct category classification."
+    },
+    {
+        "id": "cnn_visualize_004",
+        "question": "When extracting the raw numerical weights of the filters from the first convolutional layer to visualize them as images, why must the values mathematically be normalized to a range of 0 to 1?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because standard image plotting libraries (like Matplotlib) require pixel intensity arrays to be bounded within specific visual ranges to render grayscale or RGB pixels correctly.",
+            "B) Because normalizing the weights dynamically acts as a dropout mechanism, preventing the visualization script from crashing.",
+            "C) Because the weights of a trained VGG16 model are natively stored as complex numbers, and normalization extracts only the real integer components.",
+            "D) Because scaling the weights to 0-1 actively updates the model's parameters in memory, improving its inference speed for the subsequent feature map generation."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "normalization",
+            "filter_weights",
+            "visualization"
+        ],
+        "difficulty": "easy",
+        "explanation": "Raw filter weights in a trained CNN are essentially arbitrary floating-point numbers that can be negative, positive, infinitesimally small, or large. However, standard image plotting APIs expect pixel matrix data to fall within standard visual bounds (typically 0.0 to 1.0 for floats, or 0 to 255 for integers) where the lowest value represents black and the highest represents white. Normalizing the raw weight arrays into this specific bound merely translates the mathematical parameters into a graphical format that can be rendered visually on a screen."
+    },
+    {
+        "id": "cnn_visualize_005",
+        "question": "To practically extract and visualize the feature map of a specific intermediate layer (e.g., the 5th layer) in Keras, the instructor creates a 'new' model. How is this intermediate visualization model architecturally constructed relative to the original pre-trained VGG16?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By physically deleting the first 4 layers of VGG16 and passing the raw image tensor directly into the 5th layer's input.",
+            "B) By instantiating a new Model object that shares the exact same input tensor as the original VGG16, but explicitly assigns its output to be the activation tensor of the targeted intermediate layer.",
+            "C) By freezing the first 5 layers and appending a completely new Dense output layer to predict the intermediate features.",
+            "D) By training a separate Autoencoder architecture from scratch to reverse-engineer and reconstruct the outputs of the 5th layer."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "keras_api",
+            "intermediate_activations",
+            "model_subclassing"
+        ],
+        "difficulty": "hard",
+        "explanation": "In frameworks like Keras, models are built as directed acyclic graphs of layers. To extract the intermediate activations (feature maps) of a pre-trained model without corrupting the original weights or structure, you instantiate a new `Model` object. You pass it the original model's input tensor as its `inputs` argument, and specify the desired hidden layer's output tensor as its `outputs` argument. This effectively creates a truncated computational sub-graph. When an image is passed to this new model, it processes the forward pass exactly as the original model would, but terminates and returns the data immediately at the targeted intermediate layer."
+    }
+]

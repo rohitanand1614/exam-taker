@@ -1,3 +1,106 @@
-{
-    
-}
+[
+    {
+        "id": "dl_rnn_types_001",
+        "question": "In a 'Many-to-Many' RNN architecture used for Name Entity Recognition (NER), why is the 'Same Length' (Synced) sub-type preferred over the 'Variable Length' (Encoder-Decoder) sub-type?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because NER requires understanding the entire sentence context before assigning any labels.",
+            "B) Because in NER, every input token requires a corresponding classification label at the exact same temporal position.",
+            "C) Because Synced RNNs use fewer parameters than Encoder-Decoder architectures.",
+            "D) Because NER only works on fixed-length sentences of 10 words or less."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "rnn_types",
+            "ner",
+            "nlp"
+        ],
+        "difficulty": "medium",
+        "explanation": "NER is a per-token classification task. For every word (input) in a sentence, the model must output a label (e.g., Person, Location, or Other). Since there is a 1:1 mapping between input tokens and output labels, a Synced Many-to-Many RNN is the natural choice. Variable length (Encoder-Decoder) is reserved for tasks where the input and output lengths differ, such as translation."
+    },
+    {
+        "id": "dl_rnn_types_002",
+        "question": "You are designing an AI system to generate descriptive alt-text for images to assist visually impaired users. Which RNN architecture is most appropriate for this 'Image Captioning' task?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Many-to-One RNN",
+            "B) Many-to-Many (Synced) RNN",
+            "C) One-to-Many RNN",
+            "D) One-to-One (Standard ANN)"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "image_captioning",
+            "rnn_architectures"
+        ],
+        "difficulty": "easy",
+        "explanation": "Image captioning involves taking a single, static input (the image, usually processed first by a CNN) and generating a sequence of words as the output. This 'single-input to sequence-output' flow is the defining characteristic of a One-to-Many RNN."
+    },
+    {
+        "id": "dl_rnn_types_003",
+        "question": "Why is the 'Encoder-Decoder' (Variable Length Many-to-Many) architecture specifically required for Machine Translation between languages like English and Hindi?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because English and Hindi always have the exact same number of words per sentence.",
+            "B) To allow the model to wait and process the entire source sentence's context and grammar before initiating the generation of the target language sequence.",
+            "C) Because it is the only architecture that supports the ReLU activation function.",
+            "D) To prevent the vanishing gradient problem which is unique to translation tasks."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "machine_translation",
+            "seq2seq",
+            "encoder_decoder"
+        ],
+        "difficulty": "medium",
+        "explanation": "Translation is not a word-for-word replacement task; it requires understanding the 'gist' or context of the entire sentence. The Encoder-Decoder architecture allows the model to ingest the full input (Encoder), condense it into a context vector, and then generate the output in the target language (Decoder), which might have a different word count and grammatical structure."
+    },
+    {
+        "id": "dl_rnn_types_004",
+        "question": "In a 'Many-to-One' RNN used for Sentiment Analysis, where does the loss calculation and backpropagation typically originate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) At every time step as soon as a word is ingested.",
+            "B) Only at the first time step to initialize the weights.",
+            "C) Exclusively at the final time step after the entire sequence has been processed.",
+            "D) At the hidden layer, bypassing the output layer entirely."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "backpropagation",
+            "many_to_one",
+            "training"
+        ],
+        "difficulty": "medium",
+        "explanation": "In a Many-to-One setup, we don't care about the intermediate outputs of the network while it is still reading the sentence. The 'prediction' only exists once the full sequence is consumed. Therefore, the loss is calculated by comparing the output of the *final* time step to the ground truth label, and the error is then backpropagated through time from that point."
+    },
+    {
+        "id": "dl_rnn_types_005",
+        "question": "Which of the following is an example of a Many-to-One RNN application that is NOT text-based?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Video Action Recognition (classifying a sequence of video frames as 'jumping').",
+            "B) Music Generation based on a single musical key.",
+            "C) Translating a document from French to German.",
+            "D) Predicting the next word in a sentence for a smartphone keyboard."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "many_to_one",
+            "video_processing",
+            "applications"
+        ],
+        "difficulty": "hard",
+        "explanation": "Video Action Recognition takes a sequence of inputs (multiple frames of a video) and produces a single classification label (the action being performed). This fits the Many-to-One pattern perfectly. Option B is One-to-Many; Option C is Many-to-Many; Option D is a sequence-to-sequence task (Many-to-Many) or technically Many-to-One if only predicting the very next word at the end of a fixed prompt."
+    }
+]

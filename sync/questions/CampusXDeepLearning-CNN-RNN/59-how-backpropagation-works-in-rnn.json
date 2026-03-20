@@ -1,3 +1,210 @@
-{
-    
-}
+[
+    {
+        "id": "dl_rnn_types_001",
+        "question": "In a Many-to-One RNN architecture, such as one used for sentiment analysis, how is the final scalar output typically derived from a sequence of input words?",
+        "type": "multiple_choice",
+        "options": [
+            "A) An output is generated at every time step and then averaged to get the final sentiment.",
+            "B) The network processes the entire sequence and only produces the prediction after the final input time step.",
+            "C) The first word determines the sentiment, and subsequent words only refine the confidence interval.",
+            "D) Each word in the sequence is mapped to a unique independent output layer that doesn't share weights."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "RNN",
+            "Many-to-One",
+            "Architecture"
+        ],
+        "difficulty": "easy",
+        "explanation": "In a Many-to-One configuration, the RNN consumes a sequence of inputs (like words in a sentence) and maintains a hidden state that evolves. The actual prediction (e.g., 1 for positive, 0 for negative) is only extracted at the final time step after the entire context has been processed. Option A is incorrect because while we could average outputs, the standard 'Many-to-One' architecture refers to a single output at the end. Option C is wrong as RNNs are designed for sequential context, not just the first element. Option D describes a non-recurrent structure."
+    },
+    {
+        "id": "dl_rnn_types_002",
+        "question": "Which of the following scenarios best justifies the use of a One-to-Many RNN architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Translating a paragraph from English to French.",
+            "B) Predicting the next day's stock price based on the last 30 days of data.",
+            "C) Generating a descriptive textual caption for a static input image.",
+            "D) Classifying a video clip into categories like 'Sports' or 'Cooking'."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "One-to-Many",
+            "Image Captioning",
+            "Applications"
+        ],
+        "difficulty": "medium",
+        "explanation": "One-to-Many architectures take a single, non-sequential input (like a fixed-size image feature vector) and produce a sequence of outputs (like a string of words). Image captioning is the classic example where an image (one) leads to a sentence (many). Option A is Many-to-Many (Sequence-to-Sequence). Option B is Many-to-One (sequence in, single value out). Option D is typically Many-to-One (sequence of frames in, one category out)."
+    },
+    {
+        "id": "dl_rnn_types_003",
+        "question": "What is the defining characteristic of a 'Same Length' Many-to-Many RNN compared to a 'Variable Length' one?",
+        "type": "multiple_choice",
+        "options": [
+            "A) In Same Length, the number of input time steps $T_x$ must equal the number of output time steps $T_y$.",
+            "B) Same Length models use a larger hidden state vector to compensate for the lack of an encoder.",
+            "C) Variable Length models are only used for numerical data, while Same Length is for text.",
+            "D) Same Length models require the weights to be updated after every single word is processed."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Many-to-Many",
+            "Sequence-to-Sequence"
+        ],
+        "difficulty": "medium",
+        "explanation": "As the instructor explained, 'Same Length' Many-to-Many means that for every input $x_t$, there is a corresponding output $y_t$ at that same time step. This results in $T_x = T_y$. Examples include Part-of-Speech (POS) tagging or Named Entity Recognition (NER), where every word in a sentence needs exactly one label. Variable Length models (like Machine Translation) allow the input and output lengths to differ ($T_x \\neq T_y$)."
+    },
+    {
+        "id": "dl_rnn_types_004",
+        "question": "In the context of Named Entity Recognition (NER), why is a 'Same Length' Many-to-Many RNN preferred over a 'Many-to-One' architecture?",
+        "type": "multiple_choice",
+        "options": [
+            "A) NER requires a single summary of the sentence rather than individual word labels.",
+            "B) Many-to-One cannot handle sentences longer than 10 words.",
+            "C) NER is a token-level classification task where every input token requires a corresponding entity tag.",
+            "D) Many-to-One architectures do not support the use of activation functions like Softmax."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "NER",
+            "Many-to-Many",
+            "Token Classification"
+        ],
+        "difficulty": "medium",
+        "explanation": "NER involves identifying whether each specific word in a sentence is a person, location, or organization. Because you need a prediction for every single word in the input sequence, you must use a Many-to-Many architecture where the output sequence length matches the input sequence length. A Many-to-One model would only give you one label for the entire sentence, which is insufficient for token-level tasks."
+    },
+    {
+        "id": "dl_rnn_types_005",
+        "question": "Why does Machine Translation typically require an 'Encoder-Decoder' (Variable Length Many-to-Many) approach rather than a simple 'Same Length' Many-to-Many approach?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Because simple RNNs cannot compute gradients for different languages.",
+            "B) Because a word-for-word translation at each time step ignores grammatical context and variations in sentence length across languages.",
+            "C) Because the Encoder-Decoder architecture is the only way to utilize the ReLU activation function.",
+            "D) Because translating word-by-word is computationally more expensive than processing the whole sentence first."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Encoder-Decoder",
+            "Machine Translation",
+            "Context"
+        ],
+        "difficulty": "hard",
+        "explanation": "In translation, the structure of the target language often differs from the source. A word-for-word (Same Length) approach fails because the meaning of a word often depends on words that come much later in the sentence. By using an Encoder to read the entire sentence first, the model captures the 'thought' or context, which the Decoder then uses to generate the translation, potentially resulting in a different number of words. This handles the linguistic nuance that 'Same Length' models miss."
+    },
+    {
+        "id": "dl_rnn_types_006",
+        "question": "The instructor mentions that a One-to-One architecture is technically not an RNN. What is the fundamental reasoning behind this statement?",
+        "type": "multiple_choice",
+        "options": [
+            "A) One-to-One architectures cannot use backpropagation.",
+            "B) There is no temporal recurrence or feedback loop from previous time steps to current calculations.",
+            "C) They are limited to only one hidden layer.",
+            "D) They can only process binary data, whereas RNNs process continuous values."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "One-to-One",
+            "ANN",
+            "Fundamentals"
+        ],
+        "difficulty": "easy",
+        "explanation": "The core feature of a Recurrent Neural Network (RNN) is the 'recurrent' connection—the ability to pass information from time step $t-1$ to time step $t$. In a One-to-One architecture, a single input leads to a single output in one pass without any sequence or memory of previous states. This is exactly how standard Artificial Neural Networks (ANN) or Convolutional Neural Networks (CNN) operate, making the 'recurrent' label technically inapplicable."
+    },
+    {
+        "id": "dl_rnn_types_007",
+        "question": "In a Variable Length Many-to-Many RNN (Encoder-Decoder), when does the Decoder typically start producing the output sequence?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Simultaneously as the Encoder receives the first word.",
+            "B) Only after the Encoder has processed the entire input sequence.",
+            "C) After the first two words are processed to establish a 'mini-context'.",
+            "D) It produces dummy outputs during the encoding phase and discards them."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Encoder-Decoder",
+            "Architecture",
+            "Temporal Flow"
+        ],
+        "difficulty": "medium",
+        "explanation": "In the Encoder-Decoder setup, the Encoder consumes the full input sequence to create a context vector (the hidden state at the last input time step). Only once this 'reading' phase is complete does the Decoder begin generating the output sequence. This ensures the Decoder has the benefit of the complete context of the input sentence before it starts translating or generating text."
+    },
+    {
+        "id": "dl_rnn_types_008",
+        "question": "An AI engineer is building a model to predict the 'Star Rating' (1-5) of a Yelp review. Which RNN architecture is the most efficient choice for this task?",
+        "type": "multiple_choice",
+        "options": [
+            "A) One-to-Many",
+            "B) Many-to-Many (Same Length)",
+            "C) Many-to-One",
+            "D) One-to-One"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Regression",
+            "Many-to-One",
+            "Architecture Selection"
+        ],
+        "difficulty": "easy",
+        "explanation": "The input is a sequence of words (the review) and the output is a single categorical or numerical value (the star rating). This fits the Many-to-One architecture perfectly. You process the sequence of words and use the final hidden state to predict the rating. Option B would imply you need a rating for every single word, which is incorrect for this use case."
+    },
+    {
+        "id": "dl_rnn_types_009",
+        "question": "How does the 'feedback' mechanism differ between a Many-to-One and a One-to-Many RNN during inference?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Many-to-One has no feedback; it is strictly feed-forward.",
+            "B) In One-to-Many, the output of the previous time step is often fed as the input for the next time step to maintain sequence continuity.",
+            "C) Many-to-One feeds the output back into the input, while One-to-Many only feeds the hidden state.",
+            "D) There is no difference; both architectures handle feedback identically by ignoring the previous hidden state."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Feedback Loops",
+            "One-to-Many",
+            "Inference"
+        ],
+        "difficulty": "hard",
+        "explanation": "In a One-to-Many architecture (like music generation or image captioning), the model generates an element (like a note or a word) at time step $t$. This generated element is then fed back as the input for time step $t+1$ so the model knows what it just produced and can determine what should come next. In Many-to-One, the 'feedback' is primarily the hidden state $h_{t-1}$ moving to the next cell to carry context, but there is no sequence of *outputs* to feed back until the very end."
+    },
+    {
+        "id": "dl_rnn_types_010",
+        "question": "Which architecture is being described? 'Input: A single vector representing a musical genre. Output: A sequence of MIDI notes forming a melody.'",
+        "type": "multiple_choice",
+        "options": [
+            "A) Many-to-One",
+            "B) Many-to-Many",
+            "C) One-to-Many",
+            "D) One-to-One"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Generative AI",
+            "One-to-Many"
+        ],
+        "difficulty": "easy",
+        "explanation": "The input is a single 'seed' or 'instruction' (the genre vector), which is non-sequential. The output is a sequence (the melody/notes). This is a classic One-to-Many configuration, similar to image captioning, but applied to music generation."
+    }
+]

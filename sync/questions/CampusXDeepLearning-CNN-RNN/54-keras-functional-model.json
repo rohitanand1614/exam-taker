@@ -1,3 +1,128 @@
-{
-    
-}
+[
+    {
+        "id": "keras_functional_001",
+        "question": "In Keras, what strict architectural limitation of the `Sequential` class necessitates the use of the Functional API for complex, real-world deep learning architectures?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It natively executes on CPUs and requires the Functional API to bridge tensor operations to the GPU.",
+            "B) It strictly enforces a linear topology, meaning it can only support exactly one input tensor flowing sequentially layer-by-layer to exactly one output tensor.",
+            "C) It cannot integrate convolutional layers (Conv2D) with recurrent layers (LSTM) in the same script.",
+            "D) It requires developers to write custom forward-pass and backpropagation algorithms from scratch."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sequential_api",
+            "limitations",
+            "model_topology"
+        ],
+        "difficulty": "medium",
+        "explanation": "The `Sequential` API is designed for simple, straightforward architectures where data flows in a straight line from one layer to the next. It fundamentally cannot support non-linear topologies such as models with multiple distinct inputs (e.g., combining text and image data), multiple outputs (e.g., predicting age and emotion simultaneously), or shared/branching layers. To build Directed Acyclic Graphs (DAGs) of layers, engineers must switch to the Keras Functional API. Options A, C, and D describe fabricated technical limitations that do not apply to the Keras framework."
+    },
+    {
+        "id": "keras_functional_002",
+        "question": "When building a model using the Keras Functional API, how do you programmatically specify the topological connection that a new `Dense` layer should receive the output tensor of a preceding layer named `hidden_1`?",
+        "type": "multiple_choice",
+        "options": [
+            "A) `model.add(Dense(64), previous=hidden_1)`",
+            "B) `hidden_1.connect(Dense(64))`",
+            "C) `x = Dense(64)(hidden_1)`",
+            "D) `Dense(64, input_tensor=hidden_1)`"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "functional_api",
+            "syntax",
+            "layer_connections"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Functional API relies on treating Keras layers as callable Python functions. You first instantiate the layer object (e.g., `Dense(64)`), and then you immediately 'call' it by passing the preceding tensor (`hidden_1`) inside a second set of parentheses. This returns a new tensor (`x`), creating a mathematical link in the computational graph. Options A, B, and D feature fabricated syntax; `model.add()` is exclusively a method of the `Sequential` class, not the Functional API."
+    },
+    {
+        "id": "keras_functional_003",
+        "question": "You are building a multi-input e-commerce model where one branch processes product text descriptions and another processes product images. Before passing the data to the final Dense classifier, how do you physically merge the separate feature vectors from these two branches into a unified tensor?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By averaging their weights dynamically using `GlobalAveragePooling1D()`.",
+            "B) By adding them element-wise using the `Add()` layer to sum the visual and textual features.",
+            "C) By using the `Concatenate()` layer to append the tensors along the feature axis, resulting in a single, wider feature vector.",
+            "D) By passing both tensors as a Python list directly into the final `Dense` layer."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "concatenate",
+            "multi_input",
+            "feature_merging"
+        ],
+        "difficulty": "medium",
+        "explanation": "When dealing with distinct modalities of data (like text features from an RNN and image features from a CNN), their learned representations exist in entirely different latent spaces. You cannot simply add or average them (Options A and B), as this would destructively mix incompatible data. Instead, you use `Concatenate()([text_features, image_features])`, which stacks the vectors side-by-side along the feature dimension, allowing the subsequent Dense layers to learn how to weigh the combined textual and visual signals. Option D is programmatically invalid in Keras."
+    },
+    {
+        "id": "keras_functional_004",
+        "question": "After defining the complex web of input tensors, branching hidden layers, and output nodes, what is the exact syntax to instantiate the final, trainable Keras Functional model?",
+        "type": "multiple_choice",
+        "options": [
+            "A) `model = Model(inputs=[input_A, input_B], outputs=[out_1, out_2])`",
+            "B) `model = Sequential(inputs=[input_A, input_B], outputs=[out_1, out_2])`",
+            "C) `model = build_graph(start=[input_A, input_B], end=[out_1, out_2])`",
+            "D) `model.compile(inputs=[input_A, input_B], outputs=[out_1, out_2])`"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "model_instantiation",
+            "keras_model_class",
+            "functional_api"
+        ],
+        "difficulty": "easy",
+        "explanation": "In the Functional API, once you have mapped the flow of tensors from the input nodes to the output nodes, you lock the computational graph into a cohesive model by instantiating the `Model` class (imported via `from keras.models import Model`). You explicitly define the boundary of the graph by passing the specific input and output tensor objects as lists to the `inputs` and `outputs` arguments. Option B is incorrect because `Sequential` cannot handle multiple branches. Option D is incorrect as `compile()` is used later for defining losses and optimizers, not the topology itself."
+    },
+    {
+        "id": "keras_functional_005",
+        "question": "In the UTKFace practical example, the Functional model has two distinct outputs branching from the same base: Age (a continuous integer) and Gender (Binary: Male/Female). When calling `model.compile()`, how must the loss functions be configured to mathematically handle these fundamentally different tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "A) You must pass a single generic loss like 'mse', and Keras dynamically infers the appropriate backpropagation strategy for both branches.",
+            "B) You cannot compile them together; multi-task architectures strictly require creating and compiling two completely isolated `Model` objects.",
+            "C) You provide a custom Python lambda function that averages Mean Squared Error and Binary Cross-Entropy into a unified scalar.",
+            "D) You pass a Python dictionary mapping the specific, named output layers to their required respective loss functions (e.g., `{'age': 'mse', 'gender': 'binary_crossentropy'}`)."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "multi_output",
+            "loss_functions",
+            "model_compilation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Multi-output models often solve fundamentally different mathematical problems simultaneously (e.g., regression for Age, binary classification for Gender). A single loss function cannot evaluate both. The Keras Functional API solves this elegantly by allowing you to pass a dictionary to the `loss` argument in `compile()`. The keys of this dictionary match the string `name` attributes you assigned to your final output Dense layers, mapping each specific branch to the correct mathematical error metric (MSE for regression, BCE for classification)."
+    },
+    {
+        "id": "keras_functional_006",
+        "question": "When compiling the multi-output UTKFace model, the instructor utilizes the `loss_weights` parameter, explicitly passing `loss_weights={'age': 1, 'gender': 99}`. What is the critical engineering rationale behind scaling the losses in this manner during backpropagation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To forcefully prioritize the network's attention on gender classification, as it is 99 times more important for the given business use case.",
+            "B) To normalize the gradients; the raw MSE loss for Age (e.g., an error of 10 years squared = 100) is numerically massive compared to the Binary Cross-Entropy loss for Gender (e.g., 0.69). Without scaling, the Age gradients would completely dominate the shared base layers.",
+            "C) Because the Gender labels are categorical arrays, requiring multiplication by an arbitrary large constant to align memory allocations.",
+            "D) To adjust the learning rate uniquely for the final dense layers without altering the optimizer's global learning rate."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "loss_weights",
+            "gradient_scaling",
+            "backpropagation"
+        ],
+        "difficulty": "hard",
+        "explanation": "In a multi-task network with shared earlier layers, the total loss backpropagated through the shared base is the sum of the individual branch losses. Mean Squared Error (used for Age) produces very large numbers (e.g., missing age by 15 years yields a loss of 225). Binary Cross-Entropy (used for Gender) produces very small numbers (e.g., usually between 0.1 and 1.0). If you simply add them, the Age loss dominates the gradient, and the shared base layers will exclusively optimize for Age, practically ignoring Gender. Passing `loss_weights` mathematically scales the smaller BCE loss up, ensuring both branches exert proportional influence over the shared feature extractor."
+    }
+]

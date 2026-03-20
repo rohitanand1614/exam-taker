@@ -1,3 +1,149 @@
-{
-    
-}
+[
+    {
+        "id": "dl_pooling_layer_001",
+        "question": "In a deep Convolutional Neural Network, what is the primary structural reason a pooling layer is typically inserted immediately following a convolutional block?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To calculate the final classification probabilities of the detected features.",
+            "B) To apply a non-linear activation function to the raw feature map, converting negative values to zero.",
+            "C) To drastically downsample the spatial dimensions of the feature map, reducing memory footprint and computational load.",
+            "D) To flatten the 2D feature maps into a 1D vector before passing them to the next convolutional layer."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "pooling_basics",
+            "architecture",
+            "memory_management"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option C is correct. The primary utility of a pooling layer is downsampling (reducing spatial dimensions like width and height). As the instructor explains, passing large feature maps (e.g., $226 \\times 226 \\times 100$) through multiple layers causes massive RAM consumption. Pooling (e.g., with a $2 \\times 2$ window and stride 2) cuts the spatial dimensions in half, effectively reducing the data volume by $75\\%$. Option A describes the role of the final Dense/Softmax layers. Option B describes the ReLU activation function, which happens *before* pooling. Option D describes the Flatten layer, which is used only at the very end of the convolutional base."
+    },
+    {
+        "id": "dl_pooling_layer_002",
+        "question": "A raw convolutional operation is inherently 'Translation Variant', meaning its output is highly dependent on the exact pixel location of a feature. How does the mathematical operation of Max Pooling induce 'Translation Invariance' in the network?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By ensuring the filter only activates if the feature is perfectly centered in the original image.",
+            "B) By calculating the exact spatial coordinates $(x,y)$ of the highest pixel value and passing them to the next layer.",
+            "C) By extracting only the most dominant activation signal within a local window, ensuring the feature is still detected even if it shifts slightly by a few pixels.",
+            "D) By averaging all pixel values across the entire image to create a single scalar representation."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "translation_invariance",
+            "max_pooling",
+            "feature_extraction"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option C is correct. Max Pooling induces translation invariance because it outputs the maximum value within its spatial window (e.g., $2 \\times 2$). If a detected feature (like an edge) shifts one pixel to the left or right in the original image, that high activation value will likely still fall within the same $2 \\times 2$ pooling window. Therefore, the output of the pooling layer remains identical despite the small spatial shift. Option A is the opposite of invariance. Option B is false; pooling discards coordinate data, it only keeps the activation strength. Option D describes Global Average Pooling, which destroys all spatial structure entirely, rather than providing local invariance."
+    },
+    {
+        "id": "dl_pooling_layer_003",
+        "question": "You pass an activation map of size $4 \\times 4$ into a Max Pooling layer configured with a pool size of $2 \\times 2$ and a stride of $2$. The top-left $2 \\times 2$ patch contains the values `[1, 5; 3, 2]`. What mathematical operation occurs on this specific patch, and what is the output?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The layer calculates the arithmetic mean: $(1+5+3+2)/4 = 2.75$.",
+            "B) The layer identifies and outputs the maximum scalar value: $5$.",
+            "C) The layer applies a gradient descent update to the values, reducing them based on the learning rate.",
+            "D) The layer flattens the patch into a 1D vector: `[1, 5, 3, 2]`."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "max_pooling",
+            "mathematics",
+            "operation_mechanics"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option B is correct. Max Pooling is a deterministic aggregation function. It looks at the values within its defined spatial window (in this case, the $2 \\times 2$ patch containing `1, 5, 3, 2`) and simply extracts the largest single value, which is `5`. Option A describes Average Pooling. Option C is fundamentally incorrect because pooling layers have no trainable weights and do not utilize gradient descent internally. Option D describes the Flatten operation."
+    },
+    {
+        "id": "dl_pooling_layer_004",
+        "question": "Unlike a Convolutional layer, a Pooling layer has $0$ trainable parameters. From a model training perspective, why is this the case?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The parameters of the pooling layer are pre-trained on ImageNet and frozen before the training loop begins.",
+            "B) Pooling layers rely exclusively on the hyperparameters (pool size, stride) and apply a fixed mathematical aggregate function (like max or average) without learning any weights.",
+            "C) Backpropagation cannot flow through a pooling layer, meaning no parameters can be mathematically updated.",
+            "D) The network dynamically offloads the pooling parameters to the dense layers during the compilation step."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "parameters",
+            "training",
+            "aggregation_functions"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. A pooling layer acts strictly as a static mathematical filter based entirely on user-defined hyperparameters (pool size and stride). Because it merely calculates a fixed aggregate (like extracting the maximum value or calculating the mean of a set of numbers), there is no weight matrix or bias vector to optimize via gradient descent. Option A is false; pooling layers do not have weights to pre-train. Option C is false; while Max Pooling has no weights, gradients absolutely *do* flow back through it (routing the gradient to the pixel that had the maximum value). Option D is a nonsensical architectural claim."
+    },
+    {
+        "id": "dl_pooling_layer_005",
+        "question": "You apply a $2 \\times 2$ Max Pooling layer with a stride of $2$ over an input tensor of shape $64 \\times 64 \\times 128$ (Height $\\times$ Width $\\times$ Channels). What will be the precise dimensional shape of the output tensor?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $32 \\times 32 \\times 64$",
+            "B) $64 \\times 64 \\times 32$",
+            "C) $32 \\times 32 \\times 128$",
+            "D) $32 \\times 32 \\times 1$"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "tensor_shapes",
+            "dimensionality",
+            "channels"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option C is correct. A crucial property of standard pooling layers is that they operate *independently* on every single channel (depth slice) of the input tensor. A $2 \\times 2$ pool with stride $2$ cuts the spatial dimensions (height and width) exactly in half ($64 \\rightarrow 32$). However, because the pooling is applied to each of the $128$ feature maps individually, the depth of the tensor remains entirely unchanged. Therefore, the shape goes from $64 \\times 64 \\times 128$ to $32 \\times 32 \\times 128$. Options A, B, and D incorrectly alter the channel depth, which pooling does not do."
+    },
+    {
+        "id": "dl_pooling_layer_006",
+        "question": "While Max Pooling provides translation invariance and memory reduction, the instructor notes it is heavily contraindicated for specific computer vision tasks. For which of the following tasks would aggressive Max Pooling severely degrade model performance, and why?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Image Classification (e.g., Cat vs. Dog), because pooling discards the texture information required to distinguish fur types.",
+            "B) Image Segmentation (e.g., self-driving car road detection), because pooling destroys the precise pixel-level spatial coordinates required to draw accurate boundary masks.",
+            "C) Global Anomaly Detection, because pooling amplifies noise over the actual anomalous features.",
+            "D) Facial Recognition, because pooling removes the color channels necessary to identify skin tone."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "disadvantages",
+            "image_segmentation",
+            "spatial_information"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option B is correct. In tasks like Image Segmentation (pixel-wise classification) or strict Object Localization, the exact geometric coordinate of a feature is critical. Because Max Pooling acts as a severe downsampler (e.g., a $2 \\times 2$ pool throws away $75\\%$ of the spatial data), it fundamentally destroys high-resolution spatial precision. If you need to know *exactly* where a car's bumper ends on a pixel grid, the \"translation invariance\" of pooling works against you. Option A is incorrect; pooling is standard practice for basic classification. Option C is generic and inaccurate; Max Pooling actually tends to keep the strongest signals, not random noise. Option D is false; pooling operates per-channel and does not remove color channels."
+    },
+    {
+        "id": "dl_pooling_layer_007",
+        "question": "Near the end of a CNN architecture, right before the Fully Connected (Dense) layers, an engineer decides to use 'Global Average Pooling' instead of a traditional Flatten layer. If the final convolutional feature map has a shape of $7 \\times 7 \\times 512$, what will be the output shape after applying Global Average Pooling?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A 1D vector of size $25,088$ ($7 \\times 7 \\times 512$).",
+            "B) A 2D tensor of shape $1 \\times 1 \\times 512$.",
+            "C) A 1D vector of size $512$.",
+            "D) A single scalar value representing the average of the entire tensor."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "global_pooling",
+            "architecture_design",
+            "flattening"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option C is correct. Global Average Pooling differs fundamentally from spatial pooling. It takes an entire single feature map (in this case, a $7 \\times 7$ grid) and calculates a single average value for that entire grid. Because there are $512$ independent feature maps (channels), it performs this operation $512$ times. The result is a flat, 1D vector of size $512$, where each element is the global average of one feature map. This drastically reduces parameters and helps prevent overfitting compared to flattening. Option A is the result of a standard Flatten layer, not Global Pooling. Option B is technically a tensor representation but in practice (and framework output), it yields a 1D vector of size $512$. Option D implies averaging across all channels simultaneously, which is incorrect."
+    }
+]

@@ -1,3 +1,169 @@
-{
-    
-}
+[
+    {
+        "id": "dl_padding_strides_001",
+        "question": "When applying standard convolution (without padding) over an image, the spatial dimensions of the resulting feature map are strictly smaller than the input. What is the primary engineering consequence if this operation is repeated across multiple deep layers?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The network will exhaust its memory capacity due to the rapid expansion of feature channels.",
+            "B) The network will experience severe information loss, as the image shrinks to a $1 \\times 1$ pixel grid prematurely, preventing deep feature extraction.",
+            "C) The network will automatically switch to fully connected layers once the spatial dimensions fall below $5 \\times 5$.",
+            "D) The convolution operation will invert the pixel intensities to compensate for the lost spatial volume."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "spatial_dimensions",
+            "information_loss",
+            "convolution_mechanics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. Without padding, every convolution layer shrinks the image's height and width (e.g., $N - F + 1$). In a deep network with dozens of layers, the spatial dimensions will quickly reduce to $0$ or $1$, destroying the spatial structure of the data before the network is deep enough to learn complex hierarchical features. Option A is incorrect because shrinking spatial dimensions actually *reduces* memory footprint per channel, even if channel depth increases. Option C is false; framework architectures do not automatically transition layer types based on spatial size. Option D is mathematically nonsensical."
+    },
+    {
+        "id": "dl_padding_strides_002",
+        "question": "During standard unpadded convolution, a filter slides across the image. Why are the pixels located at the absolute corners and edges of the input image fundamentally disadvantaged compared to the pixels in the center?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Edge pixels usually contain lower intensity values (closer to zero), which are ignored by ReLU activations.",
+            "B) Edge pixels are only mathematically processed by the filter a single time (or very few times), whereas central pixels are included in multiple overlapping filter windows.",
+            "C) The filter weights are initialized to zero near the borders to prevent out-of-bounds matrix errors.",
+            "D) Edge pixels inherently lack color channels in standard RGB formats."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "border_pixels",
+            "convolution_overlap",
+            "information_loss"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option B is correct. When a filter (e.g., $3 \\times 3$) slides over an image, a pixel in the exact center is part of many different $3 \\times 3$ patches as the filter moves around it. Therefore, its value heavily influences the output feature map. However, a pixel in the top-left corner is only ever included in exactly one filter patch (the very first one). Consequently, semantic information located at the borders of the image is under-represented in the final feature map. Option A is false; edge pixels can have any intensity. Option C is false; filter weights are learned, not zeroed at the edges. Option D is factually incorrect regarding image formats."
+    },
+    {
+        "id": "dl_padding_strides_003",
+        "question": "To solve the problems of premature spatial shrinkage and under-representation of border pixels, engineers use 'Padding'. What is the specific mechanical action performed by 'Zero Padding'?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It mathematically forces the weights of the convolutional filter to zero when they pass over the edge of the image.",
+            "B) It appends rows and columns of zeros (representing black pixels) around the exterior perimeter of the input image tensor before convolution.",
+            "C) It replaces all negative activations in the feature map with zeros to maintain spatial size.",
+            "D) It dynamically stretches the original image pixels outward to fill a larger tensor footprint."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "zero_padding",
+            "tensor_manipulation"
+        ],
+        "difficulty": "easy",
+        "explanation": "Option B is correct. 'Zero Padding' literally involves wrapping the original input tensor with an artificial border consisting entirely of zero values. This artificially inflates the spatial dimensions of the input (e.g., turning a $5 \\times 5$ into a $7 \\times 7$) so that when the filter is applied, the *original* edge pixels are now treated as central pixels, and the output feature map retains the desired spatial size. Option A describes a modification to the filter, not the input. Option C describes the ReLU activation function, not padding. Option D describes image scaling/interpolation, which alters the data rather than framing it."
+    },
+    {
+        "id": "dl_padding_strides_004",
+        "question": "You have an input image of size $N \\times N$ and a filter of size $F \\times F$. You want the output feature map to have the exact same spatial dimensions as the input ($N \\times N$). Which padding configuration, commonly referred to as 'Same Padding' in frameworks like Keras, mathematically achieves this?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Padding amount $P = F - 1$",
+            "B) Padding amount $P = \\frac{F - 1}{2}$",
+            "C) Padding amount $P = \\frac{N - F}{2}$",
+            "D) Padding amount $P = N + F - 1$"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "padding_formula",
+            "same_padding",
+            "mathematics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. The general formula for output size is $O = N + 2P - F + 1$. To achieve 'Same Padding', we set $O = N$. \nSubstituting: $N = N + 2P - F + 1$.\nSolving for P: $0 = 2P - F + 1 \\rightarrow 2P = F - 1 \\rightarrow P = \\frac{F - 1}{2}$. \nFor example, with a $3 \\times 3$ filter ($F=3$), you need a padding of $P=1$ (one layer of zeros around the entire image). Option A provides double the required padding. Option C incorrectly incorporates the image size $N$ into the padding calculation. Option D is the formula for full convolution."
+    },
+    {
+        "id": "dl_padding_strides_005",
+        "question": "What happens to the convolution operation when the 'Stride' parameter is set to a value strictly greater than 1 (e.g., Stride = 2)?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The filter skips adjacent spatial locations, effectively jumping over pixels, which drastically reduces the spatial dimensions of the output feature map.",
+            "B) The network applies the filter multiple times to the exact same spatial patch to extract deeper features.",
+            "C) The spatial size of the filter itself dynamically expands by the stride factor to cover more area.",
+            "D) The number of output channels in the feature map is multiplied by the stride value."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "strides",
+            "spatial_reduction",
+            "convolution_mechanics"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option A is correct. The 'Stride' dictates how many pixels the filter shifts horizontally or vertically after each calculation. A default stride of $1$ means the filter moves one pixel at a time. A stride of $2$ means the filter shifts by two pixels, completely skipping the intermediate starting position. Because fewer convolution operations are performed across the image, the resulting feature map is roughly half the size in both dimensions. Option B is false; convolution only happens once per location. Option C describes 'Dilated Convolution', a different concept. Option D is false; output channels are determined by the *number* of filters used, not the stride."
+    },
+    {
+        "id": "dl_padding_strides_006",
+        "question": "You pass an input tensor of size $7 \\times 7$ through a convolutional layer with a $3 \\times 3$ filter, no padding ($P=0$), and a stride of $2$ ($S=2$). According to the formula $O = \\lfloor\\frac{N - F + 2P}{S}\\rfloor + 1$, what are the spatial dimensions of the resulting feature map?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $2 \\times 2$",
+            "B) $3 \\times 3$",
+            "C) $4 \\times 4$",
+            "D) $5 \\times 5$"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "stride_calculation",
+            "mathematics",
+            "tensor_shapes"
+        ],
+        "difficulty": "medium",
+        "explanation": "Option B is correct. Using the provided formula: \n$N = 7$ (input size), $F = 3$ (filter size), $P = 0$ (padding), $S = 2$ (stride).\nCalculation: $\\lfloor\\frac{7 - 3 + 0}{2}\\rfloor + 1$\n= $\\lfloor\\frac{4}{2}\\rfloor + 1$\n= $2 + 1 = 3$.\nThe output feature map will be $3 \\times 3$. Option A, C, and D are mathematical errors based on the standard formula."
+    },
+    {
+        "id": "dl_padding_strides_007",
+        "question": "While designing a CNN, you notice that setting a high stride value (e.g., $S=3$) causes an edge case where the filter mathematically \"hangs off\" the edge of the image during the final steps of a row or column because there aren't enough pixels remaining to fill the filter window. How do standard deep learning frameworks (like Keras/TensorFlow) handle this scenario when 'Valid' (no padding) is used?",
+        "type": "multiple_choice",
+        "options": [
+            "A) They automatically inject zeros into the missing positions just for that specific operation to prevent an error.",
+            "B) They throw a runtime exception and crash the training loop.",
+            "C) They ignore the final incomplete steps entirely, essentially dropping those right-most/bottom-most pixels from the calculation.",
+            "D) They wrap the filter back to the beginning of the row to complete the calculation (circular convolution)."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "edge_cases",
+            "valid_padding",
+            "framework_behavior"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option C is correct. As the instructor demonstrates with the \"floor\" operation in the formula, if a stride causes the filter to require pixels outside the bounds of the input image (and no padding was provided), frameworks simply discard that final step. The pixels that were left over are ignored, leading to a slight loss of information at the extreme edges. This is why the formula uses a mathematical floor function $\\lfloor x \\rfloor$. Option A describes 'Same' padding behavior, not 'Valid'. Option B is incorrect; frameworks are designed to handle this gracefully via the floor operation. Option D describes a signal processing technique rarely used in standard computer vision CNNs."
+    },
+    {
+        "id": "dl_padding_strides_008",
+        "question": "Historically, using a stride $> 1$ was heavily favored over using $1 \\times 1$ strides followed by Max Pooling layers. According to the lecture, what is the primary architectural trade-off when choosing to use strided convolutions instead of standard convolutions?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Strided convolutions strictly capture fine-grained, low-level details (like exact pixel textures) at the expense of high-level semantic shapes.",
+            "B) Strided convolutions increase the computational cost exponentially because they require larger filter matrices.",
+            "C) Strided convolutions intentionally discard fine-grained, low-level details to capture macroscopic, high-level features while simultaneously reducing computational cost.",
+            "D) Strided convolutions prevent the network from utilizing zero-padding, forcing all inputs to be perfectly square."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "architecture_design",
+            "trade-offs",
+            "strides_vs_pooling"
+        ],
+        "difficulty": "hard",
+        "explanation": "Option C is correct. Using a stride $> 1$ means the network skips over pixels, intentionally missing small, fine-grained details (low-level features) in favor of summarizing broader, high-level structural features rapidly. Because it performs fewer total calculations across the spatial grid, it significantly reduces the computational burden and memory footprint. Option A is the exact opposite of reality; strides destroy fine details. Option B is false; stride alters the step size, not the filter matrix size. Option D is false; you can absolutely combine padding and strides (e.g., $O = \\lfloor\\frac{N - F + 2P}{S}\\rfloor + 1$)."
+    }
+]
