@@ -1,1 +1,65 @@
-{}
+[
+    {
+        "id": "dl_lstm_nextword_001",
+        "question": "When framing 'next word prediction' as a supervised learning problem for an LSTM, how is a single training sentence like \"Hi my name is Nitish\" transformed into multiple input-output pairs?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The sentence is split into pairs of adjacent words: (Hi, my), (my, name), (name, is), (is, Nitish).",
+            "B) The sentence generates incrementally growing sequences where the last word is the output: (Hi \u2192 my), (Hi my \u2192 name), (Hi my name \u2192 is), (Hi my name is \u2192 Nitish).",
+            "C) The entire sentence is the input, and the output is a single shifted array: (Hi my name is \u2192 my name is Nitish).",
+            "D) The sentence is randomly masked, and the model predicts the missing word: (Hi [MASK] name \u2192 my)."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Data Preparation",
+            "Supervised Learning",
+            "Next Word Prediction"
+        ],
+        "difficulty": "medium",
+        "explanation": "To train an LSTM for next word prediction, the text generation task is modeled as a supervised learning problem by creating incrementally growing input sequences (often called n-gram sequences) from a single sentence. For a sequence of length $N$, it generates $N-1$ training examples. The input is the sequence of words up to time step $t$, and the output (label) is the word at time step $t+1$. This teaches the model to predict the immediate next word given varying amounts of preceding context. Option A describes bigram modeling, which loses long-term context. Option C describes sequence-to-sequence translation framing, not standard step-by-step autoregressive training. Option D describes Masked Language Modeling (like BERT), not autoregressive next-word prediction."
+    },
+    {
+        "id": "dl_lstm_nextword_002",
+        "question": "Before feeding text data into an LSTM for next word prediction, the Keras `Tokenizer` class is used. What is the precise mathematical and structural output of the `fit_on_texts` method followed by accessing the `word_index` attribute?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A dense embedding matrix where each row represents a dense continuous vector for a specific word.",
+            "B) A dictionary mapping every unique word in the corpus to a unique integer index based on its frequency.",
+            "C) A list of one-hot encoded vectors, where the length of each vector equals the total vocabulary size.",
+            "D) A normalized frequency distribution graph of all the words present in the training corpus."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Keras Tokenizer",
+            "Data Preprocessing",
+            "NLP"
+        ],
+        "difficulty": "easy",
+        "explanation": "In Keras, `Tokenizer.fit_on_texts()` scans the provided text corpus, identifies all unique tokens (words), and builds a vocabulary. When you access the `word_index` attribute, it returns a Python dictionary where the keys are the unique string words and the values are unique integers (indices). These integers are typically assigned starting from 1, based on the frequency of the word in the corpus (most frequent = 1). This is purely a mapping step; it does not generate embeddings (Option A) or one-hot vectors (Option C) on its own. It simply provides the lookup table required to convert text strings into sequences of integers."
+    },
+    {
+        "id": "dl_lstm_nextword_003",
+        "question": "After building the vocabulary using `fit_on_texts`, the instructor uses the `texts_to_sequences` method on a sentence. If the sentence contains a word that was completely absent from the original corpus used in `fit_on_texts`, what is the default behavior of the standard Keras Tokenizer during this step?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It throws a `KeyError` and halts the execution of the script.",
+            "B) It assigns a random integer index to the new word and appends it to the vocabulary.",
+            "C) It completely ignores the unseen word and omits it from the resulting integer sequence.",
+            "D) It replaces the unseen word with a predefined `<UNK>` (Unknown) integer token."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Keras Tokenizer",
+            "Out of Vocabulary",
+            "Gotcha"
+        ],
+        "difficulty": "medium",
+        "explanation": "By default, if the Keras `Tokenizer` encounters a word during `texts_to_sequences` that it did not see during the `fit_on_texts` phase (an Out-Of-Vocabulary or OOV word), it silently ignores it. The resulting integer sequence will simply be shorter, as the unseen word is skipped. To handle this properly in production, an engineer must initialize the `Tokenizer` with the `oov_token` argument (e.g., `Tokenizer(oov_token=\"<OOV>\")`). If configured this way, it would exhibit the behavior in Option D. However, without explicit configuration, Option C is the default behavior, which is a common \"gotcha\" that can corrupt sequence alignment during inference."
+    }
+]

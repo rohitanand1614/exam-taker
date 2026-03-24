@@ -1,1 +1,106 @@
-{}
+[
+    {
+        "id": "dl_rnn_problems_001",
+        "question": "You are training a vanilla RNN for a next-word prediction task on long paragraphs. You notice the model perfectly captures local syntax but completely fails to maintain the subject's gender introduced 50 words earlier. What is the fundamental mathematical reason for this failure?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The hidden state vector completely overwrites its values at every time step, permanently deleting old information.",
+            "B) Repeated multiplication of weights and activation derivatives < 1 during Backpropagation Through Time (BPTT) causes the gradients of distant time steps to approach zero.",
+            "C) The learning rate decays too quickly, preventing the model from updating weights for earlier tokens in the sequence.",
+            "D) The categorical cross-entropy loss function is structurally incapable of propagating errors across more than 10 time steps."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "RNN",
+            "Long-Term Dependency",
+            "Vanishing Gradient"
+        ],
+        "difficulty": "medium",
+        "explanation": "In vanilla RNNs, gradients are computed using Backpropagation Through Time (BPTT). For long sequences, the chain rule dictates that the gradient with respect to a past input requires repeatedly multiplying the hidden state weight matrix ($W_h$) and the derivative of the activation function. Because these terms are typically < 1, the gradient exponentially shrinks (vanishes) for long-term dependencies. Consequently, the weight updates are almost entirely dictated by short-term dependencies (recent words), causing the model to \"forget\" older context. Option A is incorrect because the hidden state integrates, rather than completely overwrites, information. Option C refers to a hyperparameter scheduling issue, not an architectural limitation. Option D is factually incorrect; the loss function itself doesn't limit propagation, the architecture's chain rule mechanics do."
+    },
+    {
+        "id": "dl_rnn_problems_002",
+        "question": "During Backpropagation Through Time (BPTT) in an RNN, the gradient of the loss with respect to the hidden weights relies on a chain of partial derivatives. If the activation function is 'tanh' and the sequence length is T=100, why does the network heavily bias its learning toward short-term dependencies?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The derivative of tanh is bounded between 0 and 1. Multiplying this fractional derivative 100 times exponentially decays the gradient signal from early time steps.",
+            "B) The tanh function squashes hidden states into a [-1, 1] range, causing the network to output near-zero values for early time steps regardless of the weights.",
+            "C) Backpropagation only unrolls the network for a maximum of 10 time steps due to GPU memory constraints, completely ignoring the T=100 terms.",
+            "D) The derivative of tanh is always negative, causing gradient signals to continually oscillate and cancel each other out over 100 time steps."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "BPTT",
+            "Activation Functions",
+            "Math"
+        ],
+        "difficulty": "hard",
+        "explanation": "The core of the Vanishing Gradient problem lies in the chain rule applied during BPTT. The derivative of $\\tanh(x)$ is $1 - \\tanh^2(x)$, which has a maximum value of 1 and is usually much smaller. When unrolling an RNN over 100 time steps, the long-term dependency gradient involves taking the product of 100 such fractional terms. A fraction repeatedly multiplied by a fraction rapidly approaches zero. Therefore, early time steps contribute almost nothing to the final gradient update, forcing the model to optimize only for recent inputs. Option B confuses the forward pass output with the backward pass gradient. Option C is a myth; unrolling depth depends on the implementation (truncated BPTT), not a hard framework limit of 10. Option D is mathematically false; $1 - \\tanh^2(x)$ is always positive."
+    },
+    {
+        "id": "dl_rnn_problems_003",
+        "question": "To mitigate the vanishing gradient problem in a vanilla RNN without changing the fundamental architecture to an LSTM, an engineer decides to change the initialization of the hidden-to-hidden weight matrix (Wh). Which initialization strategy would mathematically best preserve the gradient flow across many time steps?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Initializing Wh with zeros to ensure early gradients are completely stable before updates begin.",
+            "B) Initializing Wh with small random values drawn from a Gaussian distribution with \u03bc=0 and \u03c3=0.01.",
+            "C) Initializing Wh as an Identity Matrix.",
+            "D) Initializing Wh with large positive uniform values (e.g., U(5, 10))."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Weight Initialization",
+            "RNN Architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "Initializing $W_h$ as an Identity Matrix (often referred to as an IRNN) is a documented technique to help gradients flow backward through time without immediately diminishing. During the chain rule of BPTT, the gradient is repeatedly multiplied by $W_h$. Since multiplying a vector by an Identity Matrix yields the exact same vector ($I \\times x = x$), the repeated multiplication doesn't aggressively shrink the gradients. Option A instantly kills all gradient flow because multiplying by zero yields zero. Option B directly causes the vanishing gradient problem because multiplying by tiny fractions shrinks the gradient. Option D would immediately trigger the opposite problem: exploding gradients."
+    },
+    {
+        "id": "dl_rnn_problems_004",
+        "question": "You replace the tanh activation function in your vanilla RNN with a ReLU activation to prevent gradients from vanishing. However, during training, the loss suddenly becomes `NaN` after just a few epochs. What is the most likely mathematical reason for this failure?",
+        "type": "multiple_choice",
+        "options": [
+            "A) ReLU completely zeros out all negative inputs, resulting in a 'dead network' where no gradients can flow forward or backward.",
+            "B) The derivative of ReLU is exactly 1 for positive inputs. If the hidden weights (Wh) are initialized > 1, repeated multiplication during BPTT causes the gradients to exponentially explode.",
+            "C) ReLU is not differentiable at 0, causing the backpropagation algorithm to instantly crash when it encounters an exact zero.",
+            "D) ReLU outputs are unbounded, which conflicts with the categorical cross-entropy loss expectation of raw logits between 0 and 1."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Exploding Gradient",
+            "ReLU",
+            "BPTT"
+        ],
+        "difficulty": "hard",
+        "explanation": "While ReLU helps alleviate vanishing gradients because its derivative in the positive region is exactly 1 (not a fraction < 1), it severely exposes the RNN to Exploding Gradients. During BPTT, the gradient formula involves $\\prod (W_h \\cdot f'(x))$. If $f'(x) = 1$ and the weights in $W_h$ are greater than 1, you are effectively calculating $W_h^N$ for $N$ time steps. This rapid exponential growth leads to infinitely large gradients, making weight updates infinitely large, which the system represents as `NaN` (Not a Number). Option A describes 'dead ReLUs', which halts learning but doesn't produce `NaN` losses. Option C is handled in modern frameworks via subgradients. Option D is incorrect because CCE applies a softmax function internally to convert unbounded logits into a probability distribution."
+    },
+    {
+        "id": "dl_rnn_problems_005",
+        "question": "You are training an RNN and notice the model weights occasionally update to completely chaotic, extreme values, causing the training loss to spike drastically before settling back down. You diagnose this as the Exploding Gradient problem. Which of the following is the standard, most direct practical fix?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Switch the optimizer from Adam to standard Stochastic Gradient Descent (SGD) without momentum.",
+            "B) Implement Gradient Clipping, which caps the maximum value or norm of the gradients during backpropagation.",
+            "C) Change the activation function from tanh to ReLU.",
+            "D) Increase the sequence length (unroll steps) during BPTT to distribute the gradient penalty more evenly."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Exploding Gradient",
+            "Gradient Clipping",
+            "Debugging"
+        ],
+        "difficulty": "easy",
+        "explanation": "Gradient Clipping is the industry-standard defense against Exploding Gradients in RNNs. Before applying the weight update, the algorithm checks if the gradient vector's norm (or value) exceeds a predefined threshold. If it does, the gradient is scaled down proportionally. This prevents single massive weight updates from destroying the model's learned parameters while preserving the direction of the gradient. Option A does not prevent the gradient itself from exploding during BPTT. Option C (ReLU) typically makes exploding gradients worse because its derivative isn't bounded below 1. Option D (longer sequences) directly exacerbates exploding gradients by adding more multiplication terms to the BPTT chain rule."
+    }
+]

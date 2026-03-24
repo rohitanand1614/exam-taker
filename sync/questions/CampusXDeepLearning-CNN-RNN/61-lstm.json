@@ -1,1 +1,103 @@
-{}
+[
+    {
+        "id": "dl_lstm_what_001",
+        "question": "In standard RNNs, a single hidden state vector is responsible for capturing both immediate context and long-term dependencies, leading to the vanishing gradient problem. How does the core LSTM architecture structurally decouple this dual responsibility?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By separating the sequence into chunks and processing them in parallel using independent hidden states.",
+            "B) By introducing a dedicated secondary channel called the 'Cell State' exclusively for long-term memory propagation.",
+            "C) By using an external memory matrix updated via differentiable neural Turing mechanisms.",
+            "D) By replacing BPTT (Backpropagation Through Time) with an attention mechanism across all previous states."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "LSTM Architecture",
+            "Cell State",
+            "RNN vs LSTM"
+        ],
+        "difficulty": "medium",
+        "explanation": "Standard RNNs force a single hidden state ($h_t$) to encode both recent inputs and distant past contexts. Because every time step applies a non-linear transformation to this single vector, early signals are overwritten, and their gradients vanish during Backpropagation Through Time (BPTT). LSTMs solve this structural bottleneck by decoupling the memory. They introduce a dual-state architecture: the Cell State ($C_t$) acts as a 'highway' for long-term memory with minimal linear interactions, allowing gradients to flow uninterrupted over many time steps. Meanwhile, the Hidden State ($h_t$) is freed to focus on the short-term context and immediate outputs. Options A, C, and D describe entirely different architectures (Chunking, Neural Turing Machines, and Transformers, respectively)."
+    },
+    {
+        "id": "dl_lstm_what_002",
+        "question": "Unlike the simple tanh transformation in a vanilla RNN, an LSTM cell contains complex internal gating mechanisms. From an information flow perspective, what is the primary architectural necessity of these gates?",
+        "type": "multiple_choice",
+        "options": [
+            "A) To perform continuous non-linear transformations on the Cell State to prevent it from growing to infinity during long sequences.",
+            "B) To strictly bound the gradients between -1 and 1, completely mathematically eliminating the possibility of Exploding Gradients.",
+            "C) To enable controlled communication and selective updates between the short-term memory, the current input, and the long-term memory.",
+            "D) To dynamically increase the dimensionality of the hidden state matrix as the sequence length increases."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Gating Mechanism",
+            "Information Flow"
+        ],
+        "difficulty": "medium",
+        "explanation": "The core complexity of an LSTM arises from the need to manage its dual-state architecture. The gates (Forget, Input, Output) act as trainable control valves that facilitate communication between the short-term context (represented by the previous hidden state $h_{t-1}$ and current input $x_t$) and the long-term context (the cell state $C_{t-1}$). Without these gates, the network would have no mechanism to selectively read from, write to, or erase the long-term memory highway, rendering the dual states useless. Option A is incorrect because the Cell State explicitly avoids heavy non-linear transformations to preserve gradient flow. Option B is false; LSTMs solve Vanishing Gradients but can still suffer from Exploding Gradients (which require gradient clipping). Option D describes dynamic architecture allocation, which LSTMs do not do (the hidden dimension is fixed)."
+    },
+    {
+        "id": "dl_lstm_what_003",
+        "question": "You are training an LSTM on a narrative text dataset. The model encounters a sentence indicating the protagonist has died. Which LSTM component is specifically responsible for purging the protagonist's active status from the long-term context, and what inputs drive this decision?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Output Gate, driven by the current input x_t and the current cell state C_t.",
+            "B) The Forget Gate, driven by the current input x_t and the previous short-term state h_{t-1}.",
+            "C) The Input Gate, driven by the current input x_t and the previous long-term state C_{t-1}.",
+            "D) The Update Gate, driven exclusively by the element-wise difference between x_t and h_{t-1}."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Forget Gate",
+            "Mechanism"
+        ],
+        "difficulty": "easy",
+        "explanation": "The Forget Gate's explicit purpose is to decide what information is no longer relevant to the long-term context (the cell state). It makes this decision by concatenating and evaluating the current token ($x_t$, e.g., the word 'died') and the immediate short-term context ($h_{t-1}$, representing recent sequence history). It processes these through a sigmoid layer, outputting a vector of values between 0 and 1. This vector is element-wise multiplied by the previous cell state $C_{t-1}$, effectively 'forgetting' (zeroing out) obsolete information. Option A dictates what the LSTM reveals to the next layer. Option C decides what *new* information to add. Option D refers to a GRU concept or a fabricated mechanism."
+    },
+    {
+        "id": "dl_lstm_what_004",
+        "question": "After the Forget gate scales the previous cell state, the LSTM must decide if the current token contains critical new long-term information (e.g., a new character's name) that should be memorized. How does the Input Gate mechanism achieve this?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It uses a sigmoid layer to decide which values to update, and a tanh layer to create a vector of new candidate values. These are multiplied and added to the Cell State.",
+            "B) It directly concatenates the raw input vector x_t onto the existing Cell State, allowing the output gate to filter it later.",
+            "C) It performs a self-attention calculation over all previous inputs x_{0...t} to generate a context vector that overwrites the Cell State.",
+            "D) It inverses the output of the Forget Gate (1 - f_t) to automatically write whatever information it chose not to forget."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Input Gate",
+            "Cell State Update"
+        ],
+        "difficulty": "hard",
+        "explanation": "The Input Gate updates the long-term memory in a two-step process. First, a sigmoid layer (the input gate $i_t$) looks at $h_{t-1}$ and $x_t$ to decide *which* specific values in the state will be updated (yielding values between 0 and 1). Second, a $tanh$ layer creates a vector of new candidate values ($\\tilde{C}_t$) that could potentially be added to the state (yielding values between -1 and 1). These two vectors are multiplied to scale the new information, which is then added to the Cell State. Option B is incorrect; vectors are added element-wise, not concatenated. Option C describes a Transformer's attention mechanism. Option D is incorrect for LSTMs, though it resembles how GRUs couple the forget and update gates."
+    },
+    {
+        "id": "dl_lstm_what_005",
+        "question": "Treat a single standard LSTM cell at time step t as a functional software component. Which of the following accurately describes its required runtime inputs and generated outputs for sequence processing?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Inputs: x_t, C_{t-1}. Outputs: y_t (final prediction), C_t.",
+            "B) Inputs: x_t, h_{t-1}, C_{t-1}. Outputs: h_t (new short-term state) and C_t (new long-term state).",
+            "C) Inputs: x_t, h_{t-1}. Outputs: h_t, C_t.",
+            "D) Inputs: The full sequence X_{0...t}. Outputs: C_t."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "LSTM Interface",
+            "State Management"
+        ],
+        "difficulty": "easy",
+        "explanation": "A standard LSTM block processes sequential data one step at a time. At any given time step $t$, it requires three distinct inputs: the current sequence token ($x_t$), the previous short-term memory (hidden state $h_{t-1}$), and the previous long-term memory (cell state $C_{t-1}$). Internally, it uses gates to update these memories. It then outputs exactly two things: the updated long-term memory $C_t$, and the new short-term memory $h_t$. This $h_t$ is passed to the next time step and is also typically routed upward to a dense layer to produce the actual prediction for that step. Options A and C are missing required state inputs. Option D describes a non-recurrent sequence-to-vector architecture."
+    }
+]

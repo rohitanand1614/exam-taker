@@ -1,1 +1,107 @@
-{}
+[
+    {
+        "id": "dl_gru_arch_001",
+        "question": "A key motivation for the development of the GRU architecture in 2014 was to address a specific practical drawback of LSTMs. Which of the following best describes this structural advantage of GRUs over LSTMs?",
+        "type": "multiple_choice",
+        "options": [
+            "A) GRUs completely eliminate the Vanishing Gradient problem by using entirely linear activation functions, whereas LSTMs rely on non-linear gates.",
+            "B) GRUs reduce training time and computational overhead because they have fewer trainable parameters, achieved by merging the cell state and hidden state and reducing the number of gates.",
+            "C) GRUs are mathematically guaranteed to achieve higher accuracy than LSTMs on all sequential tasks regardless of dataset size.",
+            "D) GRUs introduce a dedicated external memory matrix (Neural Turing Machine) that allows for infinite sequence length processing without parameter growth."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "GRU vs LSTM",
+            "Architecture",
+            "Efficiency"
+        ],
+        "difficulty": "easy",
+        "explanation": "The primary motivation for GRUs was computational efficiency. LSTMs are powerful but complex, maintaining two separate states (Cell State and Hidden State) and using three distinct gates (Forget, Input, Output), which results in a large number of trainable parameters. GRUs simplify this by merging the long-term and short-term contexts into a single Hidden State ($h_t$) and reducing the architecture to just two gates (Reset and Update). This reduction in parameters leads to faster training times and lower computational overhead, making them highly effective, especially on smaller datasets. Option A is false; GRUs still use non-linear activations (sigmoid, tanh). Option C is false; performance depends empirically on the dataset. Option D describes a completely different architecture."
+    },
+    {
+        "id": "dl_gru_arch_002",
+        "question": "In a GRU, the Reset Gate ($r_t$) plays a crucial role in forming the Candidate Hidden State ($\\tilde{h}_t$). If the Reset Gate vector outputs values very close to 0 for specific dimensions, what is the network effectively doing at that time step?",
+        "type": "multiple_choice",
+        "options": [
+            "A) It is forcing the network to bypass the current input ($x_t$) entirely and rely strictly on the past memory.",
+            "B) It is dropping the previous hidden state's influence on those specific dimensions, forcing the Candidate Hidden State to rely almost entirely on the current input ($x_t$).",
+            "C) It is triggering an 'update' mechanism that directly copies the old hidden state ($h_{t-1}$) into the final new hidden state ($h_t$).",
+            "D) It is scaling the gradient during backpropagation to prevent the Exploding Gradient problem."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Reset Gate",
+            "GRU Math",
+            "Candidate State"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Reset Gate ($r_t$) controls how much of the past memory ($h_{t-1}$) is allowed to influence the creation of the *new* Candidate Hidden State ($\\tilde{h}_t$). The equation for the candidate state involves the term $r_t \\odot h_{t-1}$. If $r_t$ is near 0, this element-wise multiplication effectively wipes out the past memory for those specific dimensions. Consequently, the candidate state will be formed almost entirely based on the current input ($x_t$). This mechanism allows the GRU to 'reset' its understanding and drop irrelevant past context when encountering a disruptive new input. Option A is the opposite of reality. Option C describes the role of the Update Gate. Option D relates to gradient clipping, not the forward pass gating mechanism."
+    },
+    {
+        "id": "dl_gru_arch_003",
+        "question": "The Update Gate ($z_t$) in a GRU is responsible for the final calculation of the new hidden state ($h_t$). The equation is $h_t = (1 - z_t) \\odot h_{t-1} + z_t \\odot \\tilde{h}_t$. What specific LSTM components does this single GRU gate effectively replace?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Forget Gate and the Output Gate.",
+            "B) The Forget Gate and the Input Gate.",
+            "C) The Input Gate and the Output Gate.",
+            "D) The Cell State and the Softmax classification layer."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Update Gate",
+            "GRU vs LSTM",
+            "Architecture Comparison"
+        ],
+        "difficulty": "hard",
+        "explanation": "In an LSTM, the Forget Gate decides what to discard from the past, and the Input Gate decides what new information to add. The GRU brilliantly couples these two decisions into a single Update Gate ($z_t$). Looking at the equation $h_t = (1 - z_t) \\odot h_{t-1} + z_t \\odot \\tilde{h}_t$, the term $(1 - z_t)$ acts exactly like a Forget Gate (determining how much of the old state $h_{t-1}$ to keep/forget), while the term $z_t$ acts exactly like an Input Gate (determining how much of the new candidate state $\\tilde{h}_t$ to add). Because it uses $z_t$ and $(1 - z_t)$, the GRU forces a trade-off: you can only write new information by explicitly overwriting old information. Options A, C, and D misidentify the architectural equivalents."
+    },
+    {
+        "id": "dl_gru_arch_004",
+        "question": "Assume you are designing a GRU layer where the input token embedding ($x_t$) has a dimension of 100, and you set the number of hidden units to 256. What will be the dimensions of the Update Gate ($z_t$) vector and the Candidate Hidden State ($\\tilde{h}_t$) vector?",
+        "type": "multiple_choice",
+        "options": [
+            "A) z_t: 100-dimensional, Candidate State: 256-dimensional.",
+            "B) z_t: 356-dimensional, Candidate State: 356-dimensional.",
+            "C) Both z_t and the Candidate State will be 256-dimensional vectors.",
+            "D) Both z_t and the Candidate State will be 100-dimensional vectors."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Dimensionality",
+            "GRU Vectors",
+            "Hyperparameters"
+        ],
+        "difficulty": "easy",
+        "explanation": "In a GRU (and LSTMs), a fundamental structural rule is that all internal gating vectors and state vectors share the exact same dimensionality, which is determined solely by the hyperparameter for the number of hidden units. If you define 256 hidden units, then the previous hidden state ($h_{t-1}$), the current hidden state ($h_t$), the Reset Gate ($r_t$), the Update Gate ($z_t$), and the Candidate Hidden State ($\\tilde{h}_t$) will *all* strictly be vectors of size 256. This uniformity is required because the architecture relies heavily on element-wise operations (addition and multiplication) between these vectors, which requires identical shapes. The input dimension (100) only affects the shape of the initial weight matrices, not the output vectors of the gates."
+    },
+    {
+        "id": "dl_gru_arch_005",
+        "question": "You are training both an LSTM and a GRU on a small, relatively simple sequential dataset. You observe that the GRU converges to a good validation loss much faster than the LSTM, but the LSTM seems to slightly overfit. What is the most mathematically sound explanation for this observation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) GRUs utilize a much higher default learning rate than LSTMs, forcing faster convergence.",
+            "B) LSTMs contain roughly 33% more trainable parameters than GRUs for a given hidden size, making them slower to train and more prone to overfitting on small datasets.",
+            "C) GRUs do not use the tanh activation function, which is known to cause severe gradient vanishing on small datasets compared to sigmoid.",
+            "D) LSTMs process the entire sequence simultaneously in memory, whereas GRUs process the sequence step-by-step."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Empirical Performance",
+            "Parameter Count",
+            "GRU vs LSTM"
+        ],
+        "difficulty": "medium",
+        "explanation": "The formula for the parameter count in an LSTM is $4 \\times (d + h) \\times h + 4h$ (where $d$ is input size, $h$ is hidden size, and 4 represents the 4 internal dense layers/gates). For a GRU, the formula uses a multiplier of 3 because it only has 3 internal dense layers (Reset gate, Update gate, Candidate state). Therefore, an LSTM has approximately 33% more parameters than a similarly sized GRU. On small or simple datasets, a model with higher capacity (more parameters) will take longer to compute per epoch and is significantly more prone to memorizing noise (overfitting). The simpler GRU acts as a form of architectural regularization, generalizing better and faster on limited data. Option A is a false generalization about optimizers. Option C is false; both use tanh. Option D is false; both are recurrent and process step-by-step."
+    }
+]

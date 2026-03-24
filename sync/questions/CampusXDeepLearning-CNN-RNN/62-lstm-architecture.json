@@ -1,1 +1,105 @@
-{}
+[
+    {
+        "id": "dl_lstm_how_001",
+        "question": "In an LSTM cell, the Forget Gate produces a vector $f_t$ which is element-wise multiplied by the previous cell state $C_{t-1}$. If a specific value in the $f_t$ vector is exactly 0, what is the mathematical implication for the sequence processing?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The network has decided that the corresponding feature in the long-term memory is entirely obsolete and completely erases it from $C_t$.",
+            "B) The network has encountered a vanishing gradient, and backpropagation for that specific feature is permanently halted.",
+            "C) The current input $x_t$ is highly relevant, and its entire vector representation will directly replace the zeroed value in $C_t$.",
+            "D) The Forget Gate's sigmoid activation function has failed, as sigmoid outputs are strictly bounded between $(0, 1)$ exclusive, indicating a numerical underflow."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Forget Gate",
+            "LSTM Math",
+            "Element-wise Multiplication"
+        ],
+        "difficulty": "medium",
+        "explanation": "The Forget Gate ($f_t$) acts as a trainable filter. It outputs values between 0 and 1 (via a sigmoid activation) based on the current input ($x_t$) and the previous hidden state ($h_{t-1}$). This output $f_t$ is element-wise multiplied by the previous cell state $C_{t-1}$. In the equation $C_t = f_t \\odot C_{t-1} + ...$, if a scalar value in $f_t$ is exactly 0, multiplying it by the corresponding scalar in $C_{t-1}$ yields 0. This mathematically represents the LSTM explicitly erasing (forgetting) that specific piece of long-term memory because the current context deems it irrelevant. Option B incorrectly links this forward-pass operation to BPTT failure. Option C describes the role of the Input Gate, not the consequence of the Forget Gate. Option D is practically false; while mathematically true for continuous space, in floating-point computation, sigmoid outputs frequently round to exactly 0.0 or 1.0."
+    },
+    {
+        "id": "dl_lstm_how_002",
+        "question": "The Input Gate mechanism involves two parallel operations: calculating the input filter $i_t$ (using a sigmoid activation) and generating the candidate values $\\tilde{C}_t$ (using a tanh activation). Why are two different activation functions necessary for updating the long-term memory?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Sigmoid ensures the values are positive to prevent memory loss, while tanh normalizes the gradients during backpropagation.",
+            "B) Sigmoid acts as a binary-like mask (0 to 1) deciding *which* values to update, while tanh creates bounded candidate values (-1 to 1) deciding *how much* to increase or decrease those values.",
+            "C) Sigmoid is required to process the previous hidden state $h_{t-1}$, while tanh is exclusively responsible for processing the raw current input $x_t$.",
+            "D) Using two different activations breaks the linearity of the cell state, preventing the internal dimensions from collapsing into a single scalar."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Input Gate",
+            "Activation Functions",
+            "LSTM Design"
+        ],
+        "difficulty": "hard",
+        "explanation": "The Input Gate updates the cell state via the term $i_t \\odot \\tilde{C}_t$. The $i_t$ vector (sigmoid) acts as a filter or \"mask,\" outputting values near 0 (ignore) or 1 (allow). It answers the question: *\"Should we update this specific memory slot?\"* The candidate vector $\\tilde{C}_t$ (tanh) generates the actual content to be written, outputting values between -1 (decrease the memory) and 1 (increase the memory). It answers: *\"What exactly should we add or subtract?\"* Option A is incorrect because sigmoid doesn't prevent memory loss (that's the Forget Gate's job). Option C is false; both $i_t$ and $\\tilde{C}_t$ process the concatenated vector $[h_{t-1}, x_t]$. Option D is nonsensical regarding dimension collapse."
+    },
+    {
+        "id": "dl_lstm_how_003",
+        "question": "Assume an LSTM cell is processing a long text document. At a specific time step $t$, the network determines that the current input $x_t$ contains no new useful information, and the existing long-term context is still perfectly valid. What values will the Forget gate ($f_t$) and Input gate ($i_t$) output to achieve this exact behavior?",
+        "type": "multiple_choice",
+        "options": [
+            "A) f_t will be a vector of zeros; i_t will be a vector of ones.",
+            "B) f_t will be a vector of ones; i_t will be a vector of zeros.",
+            "C) Both f_t and i_t will be vectors of ones.",
+            "D) Both f_t and i_t will be vectors of zeros."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "LSTM State Update",
+            "Gate Dynamics"
+        ],
+        "difficulty": "medium",
+        "explanation": "The cell state update equation is $C_t = (f_t \\odot C_{t-1}) + (i_t \\odot \\tilde{C}_t)$. To maintain the exact previous state ($C_t = C_{t-1}$), two things must happen. First, the network must retain 100% of the old memory. Therefore, the Forget Gate $f_t$ must output a vector of ones ($1 \\odot C_{t-1} = C_{t-1}$). Second, the network must block all new candidate information from being added. Therefore, the Input Gate $i_t$ must output a vector of zeros ($0 \\odot \\tilde{C}_t = 0$). Adding these together gives $C_{t-1} + 0 = C_{t-1}$. This exact mechanism is how LSTMs solve the vanishing gradient problem; by allowing information to flow unchanged across many time steps. Option A would erase everything and write only new data. Option C would add new data on top of old. Option D would erase everything entirely."
+    },
+    {
+        "id": "dl_lstm_how_004",
+        "question": "The Output Gate calculates the new hidden state ($h_t$) which is passed to the next time step and used for current predictions. How is this final short-term memory $h_t$ derived from the updated long-term memory $C_t$?",
+        "type": "multiple_choice",
+        "options": [
+            "A) h_t is a direct copy of C_t, ensuring the short-term and long-term memories stay perfectly synchronized.",
+            "B) h_t is calculated by passing the raw concatenation of [h_{t-1}, x_t] through a dense layer, entirely independent of C_t.",
+            "C) The Output Gate vector o_t (calculated via sigmoid) is element-wise multiplied by the tanh-activated cell state C_t.",
+            "D) C_t is added point-wise to the previous hidden state h_{t-1}, and the sum is passed through a ReLU activation."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Output Gate",
+            "Hidden State Calculation"
+        ],
+        "difficulty": "medium",
+        "explanation": "The generation of the new hidden state $h_t$ relies entirely on the newly updated cell state $C_t$. First, $C_t$ is passed through a $tanh$ function to squash its unbounded values back into the $[-1, 1]$ range. Then, the Output Gate $o_t$ (which acts as a sigmoid filter based on $h_{t-1}$ and $x_t$) is element-wise multiplied by this squashed cell state: $h_t = o_t \\odot \\tanh(C_t)$. This ensures that $h_t$ only contains the specific fractions of the long-term memory that are relevant for the *immediate* short-term context. Option A defeats the purpose of having dual states. Option B ignores the cell state entirely, regressing back to a vanilla RNN. Option D is an incorrect formulation combining GRU-like residual connections with the wrong activation."
+    },
+    {
+        "id": "dl_lstm_how_005",
+        "question": "You are implementing an LSTM layer from scratch. You decide your hidden state dimension ($h_t$) will be 128, and your input token embedding dimension ($x_t$) is 300. What is the shape of the weight matrix $W_f$ used in the Forget Gate equation: $f_t = \\sigma(W_f \\cdot [h_{t-1}, x_t] + b_f)$?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 128 x 128",
+            "B) 128 x 428",
+            "C) 428 x 128",
+            "D) 300 x 428"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Matrix Dimensions",
+            "Implementation Details",
+            "LSTM Math"
+        ],
+        "difficulty": "hard",
+        "explanation": "To determine the shape of $W_f$, we must look at the operation $W_f \\cdot [h_{t-1}, x_t]$. The term $[h_{t-1}, x_t]$ represents the concatenation of the previous hidden state and the current input. The hidden state dimension is given as 128, and the input dimension is 300. Therefore, the concatenated vector has a length of $128 + 300 = 428$. The output of the Forget Gate ($f_t$) must element-wise multiply with the cell state ($C_{t-1}$). The cell state always shares the exact same dimensionality as the hidden state, which is 128. Therefore, the weight matrix $W_f$ must project a vector of size 428 down to a vector of size 128. In standard matrix multiplication $(W \\cdot x)$, $W$ must be of shape $(Output\\_Dim, Input\\_Dim)$. Thus, $W_f$ is $128 \\times 428$. Option C is flipped. Options A and D ignore the concatenation step."
+    }
+]
