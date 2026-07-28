@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exported_at": "2026-03-24T15:55:32+00:00",
+  "exported_at": "2026-07-28T08:47:07+00:00",
   "decks": [
     {
       "id": "2026-llm-job-week1-3blue1brown-attention",
@@ -37,6 +37,12 @@
       "name": "2026 LLM Job / Week1 / Lilliang Weng Transformer Multihead",
       "path": "questions/2026 LLM Job/Week1/Lilliang-weng-transformer-multihead.json",
       "question_count": 40
+    },
+    {
+      "id": "2026-interview-prep-deepeval-deepeval-evaluation-mcq",
+      "name": "2026-Interview-prep / DeepEval / Deepeval Evaluation Mcq",
+      "path": "questions/2026-Interview-prep/DeepEval/deepeval-evaluation-mcq.json",
+      "question_count": 142
     },
     {
       "id": "campusxdeeplearning-basics-03-types-of-neural-networks",
@@ -376,31 +382,31 @@
     },
     {
       "id": "nvidia-exam-exam10-nca_genl_questions",
-      "name": "nvidia-exam / Exam10 / Nca Genl Questions",
+      "name": "nvidia-exam / Exam10 / Nca_Genl_Questions",
       "path": "questions/nvidia-exam/Exam10/nca_genl_questions.json",
       "question_count": 109
     },
     {
       "id": "nvidia-exam-exam11-regressive_test_batch1",
-      "name": "nvidia-exam / Exam11 / Regressive Test Batch1",
+      "name": "nvidia-exam / Exam11 / Regressive_Test_Batch1",
       "path": "questions/nvidia-exam/Exam11/regressive_test_batch1.json",
       "question_count": 27
     },
     {
       "id": "nvidia-exam-exam11-regressive_test_batch2",
-      "name": "nvidia-exam / Exam11 / Regressive Test Batch2",
+      "name": "nvidia-exam / Exam11 / Regressive_Test_Batch2",
       "path": "questions/nvidia-exam/Exam11/regressive_test_batch2.json",
       "question_count": 31
     },
     {
       "id": "nvidia-exam-exam11-regressive_test_batch3",
-      "name": "nvidia-exam / Exam11 / Regressive Test Batch3",
+      "name": "nvidia-exam / Exam11 / Regressive_Test_Batch3",
       "path": "questions/nvidia-exam/Exam11/regressive_test_batch3.json",
       "question_count": 30
     },
     {
       "id": "nvidia-exam-exam11-regressive_test_batch4",
-      "name": "nvidia-exam / Exam11 / Regressive Test Batch4",
+      "name": "nvidia-exam / Exam11 / Regressive_Test_Batch4",
       "path": "questions/nvidia-exam/Exam11/regressive_test_batch4.json",
       "question_count": 24
     },
@@ -436,13 +442,13 @@
     },
     {
       "id": "nvidia-exam-exam4-accelerated_tutorial",
-      "name": "nvidia-exam / Exam4 / Accelerated Tutorial",
+      "name": "nvidia-exam / Exam4 / Accelerated_Tutorial",
       "path": "questions/nvidia-exam/Exam4/Accelerated_Tutorial.json",
       "question_count": 34
     },
     {
       "id": "nvidia-exam-exam4-deep_learning_tutorial",
-      "name": "nvidia-exam / Exam4 / Deep Learning Tutorial",
+      "name": "nvidia-exam / Exam4 / Deep_Learning_Tutorial",
       "path": "questions/nvidia-exam/Exam4/Deep_Learning_tutorial.json",
       "question_count": 59
     },
@@ -526,13 +532,13 @@
     },
     {
       "id": "nvidia-exam-exam8-nvidia_latest_research",
-      "name": "nvidia-exam / Exam8 / Nvidia Latest Research",
+      "name": "nvidia-exam / Exam8 / Nvidia_Latest_Research",
       "path": "questions/nvidia-exam/Exam8/nvidia_latest_research.json",
       "question_count": 20
     },
     {
       "id": "nvidia-exam-exam8-nvidia_suggest_read",
-      "name": "nvidia-exam / Exam8 / Nvidia Suggest Read",
+      "name": "nvidia-exam / Exam8 / Nvidia_Suggest_Read",
       "path": "questions/nvidia-exam/Exam8/nvidia_suggest_read.json",
       "question_count": 155
     },
