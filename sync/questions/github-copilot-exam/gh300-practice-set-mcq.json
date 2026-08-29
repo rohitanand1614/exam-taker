@@ -1,0 +1,1609 @@
+[
+    {
+        "id": "GH300_PracticeSet_001",
+        "question": "Contoso Global Engineering (12,000 devs) currently uses GitHub Copilot Business. Enterprise architects want developers to ask questions about internal repositories, receive codebase-aware assistance, and generate documentation using organizational knowledge. Which action should Contoso take?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Assign GitHub Copilot Pro licenses to developers who need organization-specific assistance.",
+            "B) Configure custom agents within GitHub Copilot Business.",
+            "C) Enable Copilot Chat in Visual Studio Code.",
+            "D) Upgrade affected users to GitHub Copilot Enterprise."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "plans-and-tiers",
+            "enterprise",
+            "codebase-aware-chat"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "Codebase-aware chat grounded in internal repositories and organizational documentation is an Enterprise-exclusive capability; Business does not include it. Option A is wrong because Pro is an individual-tier plan with no org knowledge base. Option B is wrong because custom/reusable agents for recurring tasks are also Enterprise-tier, not available on Business. Option C is wrong because Chat is already available on Business and doesn't solve the org-knowledge requirement. Upgrading to Enterprise is the only option that satisfies the stated need."
+    },
+    {
+        "id": "GH300_PracticeSet_002",
+        "question": "A team modernizing a ten-year-old application wants to understand existing behavior, reduce technical debt, and ensure business functionality remains unchanged after refactoring. Which actions represent appropriate uses of GitHub Copilot during this effort? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Use Copilot to translate portions of the application from one programming language to another when required.",
+            "B) Review whether suggested changes preserve business rules and application behavior.",
+            "C) Automatically accept all Copilot refactoring suggestions because refactoring does not change functionality.",
+            "D) Ask Copilot to identify opportunities to simplify repetitive or overly complex code.",
+            "E) Generate tests that can help validate behavior before and after refactoring."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            3,
+            4
+        ],
+        "tags": [
+            "responsible-use",
+            "refactoring",
+            "validation"
+        ],
+        "difficulty": "medium",
+        "category": "application",
+        "explanation": "Copilot is a strong assistant for legacy modernization (language translation, spotting complexity, generating regression tests), but the human must always validate output. Automatically accepting all refactoring suggestions without review (option C) directly contradicts the core responsible-AI principle that AI-generated code must be reviewed before merging, especially for refactors where 'shouldn't change behavior' is precisely the risky assumption that needs verification, not blind trust."
+    },
+    {
+        "id": "GH300_PracticeSet_003",
+        "question": "An AI-assisted customer support prioritization tool consistently gives one customer segment less accurate recommendations and longer resolution times than similar segments. Which Responsible AI principle should be investigated first?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Subscription management",
+            "B) CLI usability",
+            "C) Code completion",
+            "D) Fairness"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "responsible-ai",
+            "fairness"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Consistently worse outcomes for one group compared to similar groups is a textbook description of disparate treatment across populations — exactly what the Fairness principle addresses: ensuring an AI system doesn't systematically disadvantage particular groups. The other options (subscription management, CLI usability, code completion) are unrelated product/feature categories, not Responsible AI principles."
+    },
+    {
+        "id": "GH300_PracticeSet_004",
+        "question": "A developer troubleshooting a NullReferenceException finds Copilot responses too broad because the prompt references the entire workspace instead of the relevant method. What should the developer do first?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Upgrade from Copilot Business to Copilot Enterprise.",
+            "B) Limit the request to the relevant method and include the exception details and required constraints.",
+            "C) Ask Copilot to analyze all repository dependencies to ensure sufficient context.",
+            "D) Create a custom Copilot agent trained on the repository."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompt-engineering",
+            "context-scoping",
+            "debugging"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "The root cause is a scoping/prompting problem, not a licensing or tooling problem — the prompt referenced the entire workspace when only a specific method mattered. The fix is to scope the request narrowly and supply concrete details (exception type, constraints). A plan upgrade, broader analysis, or a custom agent all fail to address the actual cause: an overly broad, under-specified prompt."
+    },
+    {
+        "id": "GH300_PracticeSet_005",
+        "question": "An organization publishes only 'This company uses AI in software development,' with no detail on capabilities, limitations, governance, review, or audit processes, and claims this fully satisfies the Responsible AI principle of transparency. True or False?",
+        "type": "multiple_choice",
+        "options": [
+            "A) True",
+            "B) False"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "responsible-ai",
+            "transparency"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "True transparency requires giving stakeholders meaningful insight into a system's capabilities, limitations, decision-making, and governance/review processes — enough to understand and appropriately trust or scrutinize it. A one-line acknowledgment that AI is used, with zero substantive detail, is superficial disclosure, not transparency, so the claim of 'fully satisfied' is false."
+    },
+    {
+        "id": "GH300_PracticeSet_006",
+        "question": "Which statements accurately describe responsible use of Copilot-generated code? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Developers should treat generated code as an authoritative replacement for developer judgment.",
+            "B) Developers should consider licensing and intellectual-property implications where applicable.",
+            "C) Developers should validate generated code through appropriate testing.",
+            "D) Developers should review generated code for security vulnerabilities.",
+            "E) Developers should remain accountable for the code they incorporate into their projects."
+        ],
+        "correct_indices": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "tags": [
+            "responsible-use",
+            "accountability",
+            "licensing"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Copilot is an assistant, not an authority. Responsible use means staying in the loop: checking IP/licensing risk, testing, reviewing for security issues, and owning accountability for anything merged. Treating AI output as authoritative and bypassing judgment (option A) is the anti-pattern this exam consistently flags as incorrect."
+    },
+    {
+        "id": "GH300_PracticeSet_007",
+        "question": "Two teams using the same programming language see different Copilot suggestion quality: Team A's suggestions closely follow the repository's naming conventions and design patterns, while Team B's appear generic and inconsistent. What is the most likely reason?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Team A fine-tuned a custom AI model.",
+            "B) Team A provides stronger repository context through existing code patterns.",
+            "C) Team B uses a different GitHub subscription.",
+            "D) Team B disabled autocomplete in the IDE."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "context",
+            "code-patterns",
+            "suggestion-quality"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Copilot draws on surrounding context — open files, existing code, naming conventions, and patterns already present in a repo. A repo with consistent, well-established patterns gives Copilot stronger signal to match, explaining Team A's results. Copilot doesn't support end-user fine-tuning (A), the scenario gives no indication of a plan difference (C), and disabled autocomplete would mean no suggestions at all, not generic ones (D)."
+    },
+    {
+        "id": "GH300_PracticeSet_008",
+        "question": "A developer on a legacy project uses GitHub Copilot Chat throughout the day. Which tasks would be appropriate uses of Copilot Chat? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Treating Copilot's suggested fix as verified and production-ready without testing.",
+            "B) Investigating why a selected method throws a NullReferenceException by providing the error message and relevant code.",
+            "C) Asking for an explanation of a complex algorithm implemented in an unfamiliar class.",
+            "D) Requesting implementation ideas for a new feature with clearly defined requirements.",
+            "E) Generating unit tests for an existing service based on provided source code."
+        ],
+        "correct_indices": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "tags": [
+            "copilot-chat",
+            "debugging",
+            "testing",
+            "documentation"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Debugging with context, explaining unfamiliar code, scaffolding new features from clear requirements, and generating tests are all legitimate, well-scoped Copilot Chat use cases. Treating a suggested fix as verified and production-ready without testing (option A) violates the core responsible-use principle: AI output always needs validation before deployment."
+    },
+    {
+        "id": "GH300_PracticeSet_009",
+        "question": "A developer improves a Copilot prompt with exact requirements, expected behavior, relevant code context, and implementation constraints, and the resulting code appears accurate and closely matches the requested functionality. Because the prompt was well-written and the code appears correct, no additional validation is required before deployment. True or False?",
+        "type": "multiple_choice",
+        "options": [
+            "A) True",
+            "B) False"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "prompting",
+            "validation"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "A well-crafted prompt improves suggestion quality but never eliminates the requirement to validate before deployment. Copilot-generated code always needs review for correctness, security, and licensing regardless of prompt quality or how accurate the output appears."
+    },
+    {
+        "id": "GH300_PracticeSet_010",
+        "question": "A prompt 'Create a secure authentication function' produces code that compiles but fails organizational requirements for password validation, token handling, and auditing. Which action is most likely to improve the relevance of future Copilot responses?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Remove security requirements from the prompt so Copilot can choose the best implementation on its own.",
+            "B) Ask Copilot to generate a larger implementation with more code.",
+            "C) Rewrite the prompt to include authentication requirements, constraints, expected inputs, outputs, and organizational security expectations.",
+            "D) Ask Copilot to generate whichever authentication implementation is most commonly used online."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "prompt-engineering",
+            "specificity"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "The original prompt was vague — it didn't specify what 'secure' meant in this org's context. Effective prompt crafting means supplying specific requirements and constraints so output actually matches organizational needs. Removing requirements, requesting more code volume, or asking for the 'most common' implementation online all fail to add the missing specificity."
+    },
+    {
+        "id": "GH300_PracticeSet_011",
+        "question": "An enterprise architecture team is building a custom AI client that needs controlled access to selected GitHub capabilities, using approved tools, avoiding embedding every GitHub operation directly into application logic, and maintaining centralized governance. Which architecture best satisfies these requirements?",
+        "type": "multiple_choice",
+        "options": [
+            "A) GitHub MCP Server",
+            "B) Export repository data to local text files and bypass GitHub integration.",
+            "C) Place repository credentials and instructions directly in prompts.",
+            "D) Grant unrestricted administrator credentials to every AI client."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "mcp",
+            "governance",
+            "architecture"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "The GitHub MCP Server exposes a controlled, standardized set of GitHub tools/capabilities to an AI client, giving centralized, governed access to approved actions without hardcoding GitHub API calls into application logic — matching all three requirements. Exporting data bypasses live integration and stale data; embedding credentials in prompts is a serious leakage risk; and unrestricted admin credentials is the opposite of centralized governance."
+    },
+    {
+        "id": "GH300_PracticeSet_012",
+        "question": "Copilot authentication succeeds, but suggestions and Chat responses intermittently fail or time out. Which factors should be investigated as possible causes of connectivity problems? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Proxy configuration issues that interfere with service connectivity.",
+            "B) Firewall rules that block required endpoints or traffic.",
+            "C) Extension configuration, authentication, or sign-in problems.",
+            "D) The number of comments contained within a source code file.",
+            "E) Network restrictions that prevent communication with required services."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            4
+        ],
+        "tags": [
+            "troubleshooting",
+            "networking",
+            "connectivity"
+        ],
+        "difficulty": "medium",
+        "category": "debugging",
+        "explanation": "Auth succeeding while suggestions/Chat intermittently fail or time out is a classic network-connectivity signature: proxy misconfiguration, firewall rules blocking required domains/ports, or general network restrictions would all produce exactly this pattern. Extension/auth/sign-in issues are ruled out because the scenario states authentication succeeds; comment count in a file has no bearing on network connectivity."
+    },
+    {
+        "id": "GH300_PracticeSet_013",
+        "question": "A developer wants to understand how a complex async/await workflow works, identify potential performance bottlenecks, and discuss possible optimization approaches. Which Copilot interaction method is most appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Use gh copilot suggest because performance analysis is a command-generation task.",
+            "B) Use Copilot Chat to discuss the implementation, ask follow-up questions, and request optimization recommendations.",
+            "C) Use the Multiple Suggestions pane to compare alternate code completions.",
+            "D) Use Inline Suggestions and wait for Copilot to offer optimization advice during code completion."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "copilot-chat",
+            "code-understanding"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Understanding an implementation, identifying bottlenecks, and discussing optimization are conversational, multi-turn, explanatory tasks — exactly what Copilot Chat supports. gh copilot suggest generates shell/git commands, not code analysis; Multiple Suggestions compares alternate completions while writing new code; Inline Suggestions is passive autocomplete, not a discussion tool."
+    },
+    {
+        "id": "GH300_PracticeSet_014",
+        "question": "A platform team configures the ghcs alias so developers can execute approved Copilot-generated commands more efficiently. One developer claims that because commands are generated through Copilot and executed through the configured alias, they no longer need to review commands before running them. Is the developer's statement correct?",
+        "type": "multiple_choice",
+        "options": [
+            "A) True",
+            "B) False"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "copilot-cli",
+            "command-review",
+            "responsible-use"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "A configured alias like ghcs improves execution efficiency — it does not remove the need for human review. Copilot-generated shell commands can still be wrong, destructive, or context-inappropriate, so developers must always review a command before executing it, regardless of how conveniently it can be run."
+    },
+    {
+        "id": "GH300_PracticeSet_015",
+        "question": "A DevOps engineer inherits a deployment script containing 'kubectl get pods --all-namespaces | grep CrashLoopBackOff' and wants to understand exactly what it does before modifying it. The goal is explanation, not generation of a new command. Which capability is most appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) gh copilot suggest",
+            "B) gh copilot explain",
+            "C) gh copilot docs",
+            "D) gh copilot test"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "copilot-cli",
+            "command-explanation"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "'gh copilot explain' takes an existing command and breaks down what each part does — exactly what's needed to understand an unfamiliar command before modifying or reusing it. 'gh copilot suggest' generates a new command instead of explaining one; 'gh copilot docs' and 'gh copilot test' are not real Copilot CLI subcommands."
+    },
+    {
+        "id": "GH300_PracticeSet_016",
+        "question": "A 20-line inline suggestion has correct validation logic in the first few lines, but the remaining lines add unwanted functionality. The developer wants to keep the useful portion while writing the rest manually. What should the developer do?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Use Copilot's partial acceptance capability to accept only the portion of the suggestion that is needed.",
+            "B) Reject the suggestion and ask Copilot to generate a completely different implementation.",
+            "C) Accept the entire suggestion and remove the unwanted code afterward.",
+            "D) Disable Inline Suggestions and switch to Copilot Chat."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "inline-suggestions",
+            "partial-acceptance"
+        ],
+        "difficulty": "medium",
+        "category": "application",
+        "explanation": "Copilot's inline suggestions support partial acceptance (word-by-word or line-by-line), letting a developer keep the correct portion and stop before unwanted functionality. Rejecting the whole suggestion discards useful work; accepting everything then removing code is less efficient than using the built-in feature; disabling Inline Suggestions entirely is an overreaction that removes a useful capability."
+    },
+    {
+        "id": "GH300_PracticeSet_017",
+        "question": "A company plans to deploy Copilot to 4,000 developers, requiring centralized license/access management, security filters, code referencing capabilities, enterprise-grade privacy/security controls, and organizational governance policies — but does NOT currently need repository-aware assistance or organization-specific personalization. Which is the minimum plan that satisfies these requirements?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot Enterprise",
+            "B) Copilot Business",
+            "C) Copilot Pro",
+            "D) Copilot Free"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "plans-and-tiers",
+            "minimum-fit"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "explanation": "All stated requirements are covered by Copilot Business, and the one capability that would require Enterprise (repository-aware/codebase-grounded assistance and org-specific personalization) is explicitly not needed. Since the question asks for the minimum plan satisfying requirements, Business is correct — Enterprise would also work but includes unneeded extra capability; Pro and Free lack centralized governance/security controls for a 4,000-developer org."
+    },
+    {
+        "id": "GH300_PracticeSet_018",
+        "question": "During a PR review, a developer states: 'GitHub Copilot generated this implementation, it compiles successfully, and the generated unit tests pass. Therefore, the code is ready for production.' How should the reviewer respond?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Approve the pull request if the code follows repository naming conventions and formatting standards.",
+            "B) Reject the pull request because AI-generated code should never be used in production.",
+            "C) Require validation of the implementation for correctness, security risks, edge cases, and licensing considerations before approval.",
+            "D) Approve the pull request because successful compilation and passing tests guarantee correctness."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "code-review",
+            "validation"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Compiling successfully and passing generated tests are surface-level signals that don't verify correctness against real requirements, security posture, edge-case handling, or licensing risk. The reviewer must require deeper validation before approval. Formatting compliance is insufficient (A); an absolute ban on AI-generated code in production is too extreme (B); compilation and passing tests do not guarantee correctness (D)."
+    },
+    {
+        "id": "GH300_PracticeSet_019",
+        "question": "A custom Copilot agent can be used to provide specialized behavior for a recurring task, but using an agent does not guarantee that every generated response is correct or suitable for production use. Is this statement correct?",
+        "type": "multiple_choice",
+        "options": [
+            "A) True",
+            "B) False"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "custom-agents",
+            "validation"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "This statement accurately describes the same principle running throughout Copilot's responsible-use guidance: custom agents are useful for repeatable, specialized tasks, but they don't eliminate the need for human validation. Every AI-generated output, agent or not, still needs review for correctness and production-suitability."
+    },
+    {
+        "id": "GH300_PracticeSet_020_1",
+        "question": "[Matching] Which GitHub Copilot capability best fits this scenario: A developer inherits a legacy service and wants to understand how a complex method works.",
+        "type": "multiple_choice",
+        "options": [
+            "A) gh copilot suggest",
+            "B) Copilot Chat",
+            "C) gh copilot explain",
+            "D) Multiple Suggestions",
+            "E) Inline Chat"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "capability-matching",
+            "tool-selection"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Deep understanding/explanation of existing code typically happens through a conversational exchange in the main Chat panel."
+    },
+    {
+        "id": "GH300_PracticeSet_020_2",
+        "question": "[Matching] Which GitHub Copilot capability best fits this scenario: An engineer finds a complex shell command in a deployment script and wants to understand its purpose.",
+        "type": "multiple_choice",
+        "options": [
+            "A) gh copilot suggest",
+            "B) Copilot Chat",
+            "C) gh copilot explain",
+            "D) Multiple Suggestions",
+            "E) Inline Chat"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "capability-matching",
+            "tool-selection"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Explaining an existing CLI command is the defined purpose of 'gh copilot explain'."
+    },
+    {
+        "id": "GH300_PracticeSet_020_3",
+        "question": "[Matching] Which GitHub Copilot capability best fits this scenario: A DevOps engineer needs a command to identify failed pods in a Kubernetes cluster.",
+        "type": "multiple_choice",
+        "options": [
+            "A) gh copilot suggest",
+            "B) Copilot Chat",
+            "C) gh copilot explain",
+            "D) Multiple Suggestions",
+            "E) Inline Chat"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "capability-matching",
+            "tool-selection"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Generating a new command from a natural-language description is exactly what 'gh copilot suggest' does."
+    },
+    {
+        "id": "GH300_PracticeSet_020_4",
+        "question": "[Matching] Which GitHub Copilot capability best fits this scenario: A developer wants to update selected code without leaving the current editing context.",
+        "type": "multiple_choice",
+        "options": [
+            "A) gh copilot suggest",
+            "B) Copilot Chat",
+            "C) gh copilot explain",
+            "D) Multiple Suggestions",
+            "E) Inline Chat"
+        ],
+        "correct_indices": [
+            4
+        ],
+        "tags": [
+            "capability-matching",
+            "tool-selection"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Inline Chat lets you ask Copilot to modify selected code right within the editor without switching to a separate panel — its defining use case."
+    },
+    {
+        "id": "GH300_PracticeSet_020_5",
+        "question": "[Matching] Which GitHub Copilot capability best fits this scenario: A developer wants to compare several possible implementations before choosing one.",
+        "type": "multiple_choice",
+        "options": [
+            "A) gh copilot suggest",
+            "B) Copilot Chat",
+            "C) gh copilot explain",
+            "D) Multiple Suggestions",
+            "E) Inline Chat"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "capability-matching",
+            "tool-selection"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "The Multiple Suggestions pane is specifically for viewing and comparing alternate completions side by side."
+    },
+    {
+        "id": "GH300_PracticeSet_021",
+        "question": "A team has repeatedly used the same detailed instructions for generating unit tests that follow a specific testing approach and wants a reusable specialized interaction model rather than repeatedly reconstructing the same instructions manually. Which capability is most appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) gh copilot explain.",
+            "B) Disabling Inline Suggestions.",
+            "C) The multiple suggestions pane.",
+            "D) A custom Copilot agent."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "custom-agents",
+            "reusability"
+        ],
+        "difficulty": "medium",
+        "category": "application",
+        "explanation": "A custom Copilot agent encapsulates a specific set of instructions/behavior into a reusable capability the team can invoke repeatedly, instead of retyping the same detailed prompt every time — matching 'reusable specialized interaction model' exactly. 'gh copilot explain' explains commands; disabling Inline Suggestions is irrelevant; the Multiple Suggestions pane compares completions, not reusable instructions."
+    },
+    {
+        "id": "GH300_PracticeSet_022",
+        "question": "A team observes that Agent Mode can investigate dependencies, propose coordinated changes, use tools, and refine its work over multiple steps before presenting results. Which characteristics distinguish Agent Mode from ordinary inline code completion? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Ability to use available tools and perform autonomous iterations while working toward a goal.",
+            "B) Restriction to suggesting only the next few tokens of code being typed.",
+            "C) Ability to refine and improve proposed solutions through multiple reasoning cycles.",
+            "D) Ability to coordinate multi-step workflows across related tasks.",
+            "E) Ability to analyze broader project context rather than only the current editing location."
+        ],
+        "correct_indices": [
+            0,
+            2,
+            3,
+            4
+        ],
+        "tags": [
+            "agent-mode",
+            "autonomy"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Agent Mode's defining traits are autonomous iteration, multi-step reasoning/refinement, cross-task coordination, and broader context awareness beyond the cursor position. 'Restriction to suggesting only the next few tokens' describes ordinary inline completion — the opposite of Agent Mode's distinguishing behavior."
+    },
+    {
+        "id": "GH300_PracticeSet_023",
+        "question": "During a PR review, a developer says: 'Copilot generated the code in Java, it compiles successfully, and Java is one of Copilot's supported languages. We can assume it follows best practices and merge it.' How should the reviewer respond?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Approve the change if the generated code compiles without warnings.",
+            "B) Approve the change because supported-language output automatically follows language best practices.",
+            "C) Reject the change because AI-generated code should never be deployed.",
+            "D) Require validation of the implementation for correctness, security, maintainability, and alignment with organizational standards."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "code-review",
+            "validation",
+            "language-support"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Language support and successful compilation say nothing about whether output is correct, secure, maintainable, or consistent with org standards. The reviewer must require actual validation before merging. Compiling cleanly (A) and language support (B) are both surface facts, not quality guarantees; an absolute ban on deploying AI-generated code (C) is too extreme."
+    },
+    {
+        "id": "GH300_PracticeSet_024",
+        "question": "A financial-services organization maintains repositories with proprietary algorithms, regulated customer data, and sensitive business logic. The security team wants to ensure certain repositories and content sources are not used as context in inappropriate Copilot interactions. Which control category should administrators evaluate first?",
+        "type": "multiple_choice",
+        "options": [
+            "A) IDE formatting settings",
+            "B) Copilot CLI Explain",
+            "C) Content exclusions and privacy controls",
+            "D) Multiple Suggestions"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "content-exclusions",
+            "privacy",
+            "security"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "Content Exclusions is the admin-configurable feature that prevents specified files/repos/paths from being sent as context to Copilot, paired with broader privacy controls — directly matching the requirement to keep certain repositories out of AI-assisted context. IDE formatting, CLI Explain, and Multiple Suggestions are unrelated to data-access governance."
+    },
+    {
+        "id": "GH300_PracticeSet_025",
+        "question": "A platform team configures the ghcs alias to allow approved Copilot-generated commands to be executed more efficiently after review. An engineer states that because the command is generated by Copilot and executed through the approved workflow, review is no longer necessary. Is this correct?",
+        "type": "multiple_choice",
+        "options": [
+            "A) True",
+            "B) False"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "copilot-cli",
+            "command-review"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "An approved workflow or configured alias improves execution efficiency — it does not remove the need for human review. Every command generated by Copilot still needs to be reviewed before running, regardless of how convenient or 'approved' the execution pipeline is."
+    },
+    {
+        "id": "GH300_PracticeSet_026",
+        "question": "A developer submits to Copilot Chat: 'Analyze this entire repository and determine why the ValidateCustomer() method throws a NullReferenceException.' The response contains a large amount of unrelated information from other projects and services. What should the developer do first?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Switch from Copilot Chat to Inline Suggestions.",
+            "B) Generate multiple suggestions and select the shortest response.",
+            "C) Ask Copilot to analyze every repository in the organization.",
+            "D) Narrow the request to the relevant file, method, and error context."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "prompt-engineering",
+            "context-scoping"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "The prompt referenced the entire repository when only one method's error was relevant, producing irrelevant results. The fix is to scope the request down to the specific file, method, and error details rather than the whole workspace. Switching tools, picking the shortest response, or broadening scope even further all fail to address the root cause."
+    },
+    {
+        "id": "GH300_PracticeSet_027",
+        "question": "A company currently uses Copilot Business. Architects want developers to ask questions about internal repositories, receive assistance based on private organizational code, navigate large codebases more effectively, and generate/maintain documentation using repository context. Which capabilities would Enterprise provide beyond core Business organizational controls? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Documentation support using repository context.",
+            "B) Deeper GitHub-integrated experiences and organizational personalization.",
+            "C) Codebase-aware assistance and repository understanding.",
+            "D) Guaranteed correctness of generated code and recommendations.",
+            "E) Assistance based on internal and private organizational code."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2,
+            4
+        ],
+        "tags": [
+            "plans-and-tiers",
+            "enterprise",
+            "business-vs-enterprise"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "explanation": "All four correct options describe Enterprise's signature capability: grounding Copilot's responses in the org's own private repositories and codebase, going beyond Business's governance/licensing/admin controls. No Copilot tier ever guarantees correctness of generated code — that option is the recurring 'no guarantee, always validate' trap."
+    },
+    {
+        "id": "GH300_PracticeSet_028",
+        "question": "A developer adds the comment 'Calculate the inventory reorder quantity when stock falls below the reorder threshold. Preserve existing pricing and supplier selection logic.' and wants Copilot to generate an implementation following the repository's existing coding patterns and business rules. What should the developer do next?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Keep the comment and allow Copilot to generate a suggestion using the surrounding code context.",
+            "B) Disable Inline Suggestions and manually search the repository for similar code.",
+            "C) Remove the surrounding code so Copilot relies exclusively on the comment.",
+            "D) Use gh copilot explain to generate the implementation from the comment."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "comments-as-prompts",
+            "inline-suggestions",
+            "context"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Inline Suggestions works best with both a clear comment describing intent AND surrounding code context to draw patterns from. Keeping both gives Copilot everything needed to generate output consistent with existing logic and coding style. Disabling the tool, removing context, or using a CLI explain command (which explains commands, not application code) are all incorrect."
+    },
+    {
+        "id": "GH300_PracticeSet_029",
+        "question": "Auditors reviewing AI-assisted projects need evidence that stakeholders can understand how AI systems are used, how decisions are validated, and how activities can be reviewed during a compliance investigation. Which evidence most directly demonstrates transparency?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Documentation of capabilities and limitations, validation results, activity logs, reporting records, and audit evidence.",
+            "B) Positive developer sentiment and trust in the system.",
+            "C) Fewer reviewers participating in the development process.",
+            "D) A marketing statement that describes the AI solution as innovative and industry-leading."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "responsible-ai",
+            "transparency",
+            "auditing"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Real transparency requires substantive, verifiable insight into how the system works, its limits, how outputs were validated, and how activities can be traced — exactly what documentation, logs, and audit trails provide. Sentiment, reduced oversight, or promotional claims give no substantive insight into capabilities, limitations, or governance."
+    },
+    {
+        "id": "GH300_PracticeSet_030",
+        "question": "A team preparing a public release of a microservices application has little documentation, inconsistent function descriptions, and outdated README files. Which activities could GitHub Copilot reasonably assist with during this process? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Help maintain consistent terminology and formatting across documentation files.",
+            "B) Create initial function and method documentation, including parameter and return-value descriptions.",
+            "C) Validate that all generated documentation is technically accurate and complete without further review.",
+            "D) Propose README sections such as prerequisites, installation steps, and usage examples.",
+            "E) Generate inline comments for complex business logic that developers find difficult to understand."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            3,
+            4
+        ],
+        "tags": [
+            "documentation",
+            "responsible-use"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Copilot accelerates documentation drafting well: consistent terminology, initial docstrings, README scaffolding, and inline comments are legitimate uses. But maintaining documentation quality standards requires human review of accuracy and completeness — Copilot's own generated docs still need to be checked, not trusted blindly (option C)."
+    },
+    {
+        "id": "GH300_PracticeSet_031",
+        "question": "A developer troubleshooting a NullReferenceException wants Copilot to analyze the problematic code and error in context, identify likely causes, and propose fixes. Which workflow is most appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Use gh copilot explain on the exception name.",
+            "B) Highlight the relevant code and use Copilot Inline Chat with the error context.",
+            "C) Open the multiple suggestions pane without supplying any debugging context.",
+            "D) Use only inline autocomplete and wait for the next suggested line."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "inline-chat",
+            "debugging"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "The developer needs the specific problematic code analyzed in context. Highlighting the relevant code and using Inline Chat with error details gives Copilot exactly the targeted context needed to diagnose and propose a fix. gh copilot explain is a CLI tool for shell commands, not application exceptions; Multiple Suggestions without context provides no relevant analysis; passive autocomplete doesn't diagnose exceptions."
+    },
+    {
+        "id": "GH300_PracticeSet_032",
+        "question": "A developer uses Copilot to generate code for a customer-facing authentication service. The organization has already enabled security controls and policy enforcement. Which actions should still be required before merging the code? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Validate any applicable licensing or intellectual property concerns.",
+            "B) Trust the implementation because it was generated from approved repository context.",
+            "C) Review the code for security vulnerabilities.",
+            "D) Assume security controls guarantee that generated code is safe.",
+            "E) Verify that the implementation behaves as intended."
+        ],
+        "correct_indices": [
+            0,
+            2,
+            4
+        ],
+        "tags": [
+            "security",
+            "authentication",
+            "validation"
+        ],
+        "difficulty": "medium",
+        "category": "application",
+        "explanation": "Organizational security controls and policy enforcement reduce risk but never eliminate the need for human validation — especially for a high-stakes, customer-facing authentication service. 'Approved context' and 'enabled security controls' are safeguards, not guarantees; the developer must still validate licensing, review for vulnerabilities, and verify correct behavior before merging."
+    },
+    {
+        "id": "GH300_PracticeSet_033_1",
+        "question": "[Matching] Which GitHub Copilot capability best fits this developer goal: Explain a complex method",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot CLI",
+            "B) Inline suggestions",
+            "C) Copilot Chat",
+            "D) Custom Copilot agent",
+            "E) Multiple suggestions"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "capability-matching",
+            "tool-selection"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Discussing/understanding existing code is a conversational task best suited to Copilot Chat."
+    },
+    {
+        "id": "GH300_PracticeSet_033_2",
+        "question": "[Matching] Which GitHub Copilot capability best fits this developer goal: Generate a terminal command from a natural-language requirement",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot CLI",
+            "B) Inline suggestions",
+            "C) Copilot Chat",
+            "D) Custom Copilot agent",
+            "E) Multiple suggestions"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "capability-matching",
+            "tool-selection"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "This is gh copilot suggest's job, part of the Copilot CLI capability."
+    },
+    {
+        "id": "GH300_PracticeSet_033_3",
+        "question": "[Matching] Which GitHub Copilot capability best fits this developer goal: Reuse a specialized assistant for recurring tasks",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot CLI",
+            "B) Inline suggestions",
+            "C) Copilot Chat",
+            "D) Custom Copilot agent",
+            "E) Multiple suggestions"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "capability-matching",
+            "tool-selection"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Reusable specialized behavior for recurring activities is exactly what custom agents provide."
+    },
+    {
+        "id": "GH300_PracticeSet_033_4",
+        "question": "[Matching] Which GitHub Copilot capability best fits this developer goal: Compare alternate implementations",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot CLI",
+            "B) Inline suggestions",
+            "C) Copilot Chat",
+            "D) Custom Copilot agent",
+            "E) Multiple suggestions"
+        ],
+        "correct_indices": [
+            4
+        ],
+        "tags": [
+            "capability-matching",
+            "tool-selection"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "The Multiple Suggestions pane exists specifically to view and compare alternate completions."
+    },
+    {
+        "id": "GH300_PracticeSet_033_5",
+        "question": "[Matching] Which GitHub Copilot capability best fits this developer goal: Complete code while typing",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot CLI",
+            "B) Inline suggestions",
+            "C) Copilot Chat",
+            "D) Custom Copilot agent",
+            "E) Multiple suggestions"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "capability-matching",
+            "tool-selection"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Real-time autocomplete as you type is the core Inline Suggestions feature."
+    },
+    {
+        "id": "GH300_PracticeSet_034",
+        "question": "A team uses Copilot to generate code for a customer-facing payment-processing service. The implementation compiles successfully and passes several initial unit tests. Which statements about remaining developer responsibilities before production approval are correct? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Treat fluent, professional-looking output as authoritative and inherently trustworthy.",
+            "B) Validate that the code behaves correctly through appropriate testing.",
+            "C) Review the generated implementation for security vulnerabilities and unsafe behavior.",
+            "D) Consider licensing and intellectual-property implications where applicable.",
+            "E) Remain accountable for any generated code that is incorporated into the codebase."
+        ],
+        "correct_indices": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "tags": [
+            "responsibility",
+            "payment-processing",
+            "validation"
+        ],
+        "difficulty": "medium",
+        "category": "application",
+        "explanation": "This is the standard developer-responsibilities checklist before merging: test for correctness, review for security, check licensing, and own accountability. Code that looks fluent or professional (compiles, passes a few initial tests) is not the same as code that is correct or safe — surface polish says nothing about production-readiness for something as high-stakes as payment processing."
+    },
+    {
+        "id": "GH300_PracticeSet_035",
+        "question": "A compliance auditor reviews a repository where several dependency updates were performed by a Cloud Agent and needs to determine what changes were made, how they were introduced, and whether they were reviewed before merging. The development team explains that Cloud Agent activities can be investigated using GitHub artifacts such as commits, pull requests, and related activity history. Is the team's statement correct?",
+        "type": "multiple_choice",
+        "options": [
+            "A) True",
+            "B) False"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cloud-agent",
+            "auditability",
+            "github-artifacts"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "The Cloud/coding agent operates through standard GitHub workflows — commits and pull requests just like a human contributor. This means standard GitHub audit trail artifacts (commit history, PR details, review approvals, activity logs) capture exactly what changed, how it was introduced, and whether it went through review, making the team's statement accurate."
+    },
+    {
+        "id": "GH300_PracticeSet_036",
+        "question": "A governance board wants to ensure AI-assisted changes for security remediation, documentation updates, and dependency management meet reliability and safety requirements before broader adoption. Which practices would support reliability and safety in this environment? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Monitor the behavior and effectiveness of AI-assisted workflows over time.",
+            "B) Assume that repeated generation of similar outputs proves the solution is reliable.",
+            "C) Test AI-generated changes before deployment.",
+            "D) Review generated changes for unintended side effects and downstream impacts.",
+            "E) Evaluate how the solution might behave under unexpected conditions, misuse, or manipulation."
+        ],
+        "correct_indices": [
+            0,
+            2,
+            3,
+            4
+        ],
+        "tags": [
+            "responsible-ai",
+            "reliability-safety"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "This maps to the Reliability and Safety Responsible AI principle: consistent, safe performance including under edge cases, validated through ongoing monitoring rather than assumption. Monitoring, pre-deployment testing, reviewing for side effects, and stress-testing against misuse are all concrete supporting practices. Repeated similar outputs don't prove reliability — a repeated flaw would look identical."
+    },
+    {
+        "id": "GH300_PracticeSet_037",
+        "question": "A software company plans to deploy Copilot for 3,000 developers, requiring centralized license management, organizational governance, security filtering, enterprise-grade privacy/security controls, and code-reference capabilities, but does NOT currently need repository-aware assistance based on internal code or organizational documentation. Which plan best meets the stated requirements?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot Business",
+            "B) Copilot Free",
+            "C) Copilot Pro",
+            "D) Copilot Enterprise"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "plans-and-tiers",
+            "minimum-fit"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "explanation": "All stated requirements are covered by Copilot Business. The organization explicitly doesn't need repository-aware assistance grounded in internal code/documentation, which is the one thing that would require Enterprise, so Business is the correct minimum-fit plan. Free and Pro lack org-wide governance and centralized license management at this scale."
+    },
+    {
+        "id": "GH300_PracticeSet_038",
+        "question": "A governance board evaluating Copilot, Agent Mode, and Cloud Agent rollout raises concerns about differential impacts across user groups, unsafe autonomous outcomes, protecting sensitive data, auditability of AI-assisted changes, and whether the AI system itself should be held accountable for production incidents. Which statements accurately align with Responsible AI principles? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Accountability means the AI system itself becomes responsible for production outcomes once deployed.",
+            "B) Fairness focuses on reducing unjustified differential impacts across users or groups.",
+            "C) Reliability and safety require AI-assisted systems to operate consistently and safely under expected conditions.",
+            "D) Privacy and security include protecting data and enforcing appropriate access controls.",
+            "E) Transparency helps stakeholders understand, review, and audit AI-assisted decisions and actions."
+        ],
+        "correct_indices": [
+            1,
+            2,
+            3,
+            4
+        ],
+        "tags": [
+            "responsible-ai",
+            "principles-overview"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "These four correct statements are accurate, textbook definitions of Fairness, Reliability & Safety, Privacy & Security, and Transparency. Accountability inverts correctly: accountability means humans and the organization remain responsible for outcomes — the AI system is a tool, not an accountable party, and cannot 'own' responsibility for a production incident."
+    },
+    {
+        "id": "GH300_PracticeSet_039",
+        "question": "A team using Copilot Chat to troubleshoot a production order-processing issue finds responses inconsistent and often missing the actual problem, because prompts are vague and include excessive unrelated information. Which actions would most likely improve the relevance of Copilot responses? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Provide the relevant code selection and project context related to the issue.",
+            "B) Include comments that describe the intended business logic or constraints.",
+            "C) Include the specific error message and relevant code involved in the failure.",
+            "D) Provide a clear description of the desired outcome and expected behavior.",
+            "E) Include unrelated repositories and archived projects because more context always improves accuracy."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2,
+            3
+        ],
+        "tags": [
+            "prompt-engineering",
+            "relevance"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Relevant, specific, targeted context — the actual failing code, error message, business logic, and desired outcome — improves accuracy. 'More context always improves accuracy' is false: irrelevant or unrelated information (unrelated repos, archived projects) dilutes relevance and causes exactly the vague, excessive-unrelated-information problem described in the scenario."
+    },
+    {
+        "id": "GH300_PracticeSet_040",
+        "question": "An engineer unfamiliar with 'kubectl get pods --all-namespaces | grep CrashLoopBackOff | awk '{print second column}'' wants to understand what it does before making modifications. Which GitHub Copilot CLI capability is most appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Use Multiple Suggestions",
+            "B) gh copilot explain",
+            "C) Configure ghcs execution aliases",
+            "D) gh copilot suggest"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "copilot-cli",
+            "command-explanation"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "The engineer wants to understand what an existing command does before modifying it — exactly gh copilot explain's purpose. Multiple Suggestions compares code completions, not shell commands; configuring ghcs aliases is about efficient execution, not explanation; gh copilot suggest generates new commands, the opposite of explaining an existing one."
+    },
+    {
+        "id": "GH300_PracticeSet_041",
+        "question": "A platform engineering team adopting Copilot CLI wants developers to build commands using natural language, understand unfamiliar commands, and accelerate complex shell operations. For approved use cases, the org may allow suggested commands to be executed through a configured workflow, but company policy still requires developers to review commands before they run. Which statements accurately describe GitHub Copilot CLI capabilities in this scenario? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) An engineer can ask Copilot to explain an unfamiliar command before using it.",
+            "B) Copilot can assist with composing complex command sequences and shell operations.",
+            "C) Developers can skip command review because Copilot guarantees command safety.",
+            "D) Organizations can configure workflows that allow approved command suggestions to be executed.",
+            "E) Copilot can generate commands from natural-language requirements."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            3,
+            4
+        ],
+        "tags": [
+            "copilot-cli",
+            "capabilities-overview"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "All four correct statements are accurate factual descriptions of Copilot CLI features (explain, compose, configured execution workflows, generate from natural language). No configured workflow or execution alias eliminates the need for human review — the scenario explicitly states company policy still requires review, directly contradicting the 'skip review' option."
+    },
+    {
+        "id": "GH300_PracticeSet_042",
+        "question": "A company plans to use autonomous agents for dependency remediation, documentation updates, and minor feature enhancements, and wants each autonomous task to be easily reviewable, auditable, and controllable before approving production use. Which characteristics would make these autonomous tasks easier to govern? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Clearly bounded scope and defined objectives.",
+            "B) Limited permissions, tools, and resource access based on task requirements.",
+            "C) Explicit acceptance criteria that define successful completion.",
+            "D) Defined validation and review expectations before changes are accepted.",
+            "E) Authority to change any system, repository, or configuration necessary to complete the task."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            2,
+            3
+        ],
+        "tags": [
+            "governance",
+            "least-privilege",
+            "autonomous-agents"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "Governable autonomous tasks have clear boundaries: well-defined scope/goals, minimal necessary access (least privilege), explicit success criteria, and built-in human review before acceptance. Granting unrestricted authority to change any system or configuration is the opposite of controllable/auditable — it's a major governance risk, not a characteristic that eases governance."
+    },
+    {
+        "id": "GH300_PracticeSet_043",
+        "question": "A Cloud Agent assigned to update vulnerable dependencies creates a pull request successfully, but the CI pipeline fails repeatedly during validation. Some team members propose granting additional permissions or bypassing testing to accelerate delivery; others want to merge because the agent identified a known vulnerability. What is the most responsible next step?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Grant broad permissions to the agent without determining the root cause of the failure.",
+            "B) Remove or bypass the failing tests so the pull request can be merged.",
+            "C) Investigate the CI failures, generated changes, dependencies, environment configuration, and test results before making further changes.",
+            "D) Merge the pull request because the changes were generated by a Cloud Agent."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "cloud-agent",
+            "ci-cd",
+            "root-cause-analysis"
+        ],
+        "difficulty": "medium",
+        "category": "debugging",
+        "explanation": "Repeated CI failures signal an actual problem — the generated changes, an incompatible dependency, or an environment/test configuration issue. The responsible next step is root-cause investigation before further action. Expanding permissions doesn't fix a validation failure and adds risk; bypassing tests undermines the safety net; and good intent (fixing a known vulnerability) doesn't excuse skipping validation of a failing pipeline."
+    },
+    {
+        "id": "GH300_PracticeSet_044",
+        "question": "A DevOps engineer needs a command to identify all failed Kubernetes pods in a production namespace. Organization policy states commands may be generated with Copilot, developers must review commands before execution, and approved commands can be executed through a configured workflow after validation. Which workflow best satisfies the requirement?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Use gh copilot explain because explanation commands are designed to generate new commands.",
+            "B) Configure automatic execution so that every generated command runs immediately.",
+            "C) Use gh copilot suggest to generate the command, review the result, and execute it only after validation through the configured workflow.",
+            "D) Use IDE inline completion because Copilot CLI cannot generate commands from natural-language requests."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "copilot-cli",
+            "policy-compliance"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "gh copilot suggest generates a new command from a natural-language need, and this option correctly follows the org's full policy: generate, review before execution, then run only through the approved/validated workflow. gh copilot explain is for understanding existing commands, not generating new ones (its stated reasoning is also factually wrong); automatic execution violates the review requirement; and the claim that Copilot CLI can't generate from natural language is false."
+    },
+    {
+        "id": "GH300_PracticeSet_045",
+        "question": "An organization deploying AI-assisted development capabilities that interact with internal repositories containing customer information, proprietary algorithms, and regulated business data must determine which practices best support the Responsible AI principles of privacy and security. (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Collect only the data necessary to support approved business objectives.",
+            "B) Protect sensitive information through appropriate safeguards and handling procedures.",
+            "C) Collect all available organizational data because broader access always improves AI performance.",
+            "D) Restrict access to sensitive data, AI systems, and related resources based on business need.",
+            "E) Use auditing, monitoring, and review processes to identify inappropriate access or activity."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            3,
+            4
+        ],
+        "tags": [
+            "responsible-ai",
+            "privacy-security",
+            "data-minimization"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Data minimization, safeguarding sensitive info, least-privilege access, and audit/monitoring for oversight all directly support the Privacy and Security principle. 'Broader access always improves AI performance' is a data-maximalism trap — unnecessary collection of sensitive data massively increases exposure and directly violates privacy/security principles regardless of any performance argument."
+    },
+    {
+        "id": "GH300_PracticeSet_046",
+        "question": "A developer implementing a recommendation engine with intentionally flexible requirements wants Copilot to provide multiple alternative solutions so the team can evaluate trade-offs involving performance, maintainability, and complexity. Which feature is most appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot CLI Explain",
+            "B) Content Exclusions",
+            "C) Multiple Suggestions",
+            "D) Diagnostics"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "multiple-suggestions",
+            "implementation-comparison"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "The team wants to compare several alternative implementations before choosing one. The Multiple Suggestions pane exists specifically to show alternate completions side by side, letting the team evaluate different trade-offs before committing to an approach. CLI Explain, Content Exclusions, and Diagnostics are all unrelated to generating or comparing implementation alternatives."
+    },
+    {
+        "id": "GH300_PracticeSet_047_1",
+        "question": "[Matching] Which GitHub Copilot plan best fits this scenario: A student wants to explore Copilot at no cost for personal learning projects",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot Enterprise",
+            "B) Copilot Business",
+            "C) Copilot Pro",
+            "D) Copilot Pro+",
+            "E) Copilot Free"
+        ],
+        "correct_indices": [
+            4
+        ],
+        "tags": [
+            "plans-and-tiers",
+            "plan-matching"
+        ],
+        "difficulty": "easy",
+        "category": "tradeoff",
+        "explanation": "Copilot Free provides no-cost access for personal exploration and learning projects."
+    },
+    {
+        "id": "GH300_PracticeSet_047_2",
+        "question": "[Matching] Which GitHub Copilot plan best fits this scenario: A company wants centralized license management, organizational governance, and enterprise security controls",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot Enterprise",
+            "B) Copilot Business",
+            "C) Copilot Pro",
+            "D) Copilot Pro+",
+            "E) Copilot Free"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "plans-and-tiers",
+            "plan-matching"
+        ],
+        "difficulty": "easy",
+        "category": "tradeoff",
+        "explanation": "Centralized license management, org governance, and enterprise security controls are core Copilot Business features."
+    },
+    {
+        "id": "GH300_PracticeSet_047_3",
+        "question": "[Matching] Which GitHub Copilot plan best fits this scenario: An organization wants Business capabilities plus repository-aware assistance based on internal code and documentation",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot Enterprise",
+            "B) Copilot Business",
+            "C) Copilot Pro",
+            "D) Copilot Pro+",
+            "E) Copilot Free"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "plans-and-tiers",
+            "plan-matching"
+        ],
+        "difficulty": "easy",
+        "category": "tradeoff",
+        "explanation": "Repository-aware, codebase-grounded assistance on top of Business capabilities is Enterprise's distinguishing feature."
+    },
+    {
+        "id": "GH300_PracticeSet_047_4",
+        "question": "[Matching] Which GitHub Copilot plan best fits this scenario: A power user wants the most advanced individual offering, including coding agent capabilities",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot Enterprise",
+            "B) Copilot Business",
+            "C) Copilot Pro",
+            "D) Copilot Pro+",
+            "E) Copilot Free"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "plans-and-tiers",
+            "plan-matching"
+        ],
+        "difficulty": "easy",
+        "category": "tradeoff",
+        "explanation": "Pro+ sits above Pro as the premium individual tier with the most advanced features, including agent capabilities."
+    },
+    {
+        "id": "GH300_PracticeSet_047_5",
+        "question": "[Matching] Which GitHub Copilot plan best fits this scenario: An independent developer wants premium individual Copilot capabilities through a paid subscription",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot Enterprise",
+            "B) Copilot Business",
+            "C) Copilot Pro",
+            "D) Copilot Pro+",
+            "E) Copilot Free"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "plans-and-tiers",
+            "plan-matching"
+        ],
+        "difficulty": "easy",
+        "category": "tradeoff",
+        "explanation": "Copilot Pro is the standard premium individual-tier paid subscription."
+    },
+    {
+        "id": "GH300_PracticeSet_048",
+        "question": "A security architect notes that when a developer submits a prompt, Copilot securely transmits the request, gathers relevant context, and then generates a response or code suggestion. Is the architect's understanding correct?",
+        "type": "multiple_choice",
+        "options": [
+            "A) True",
+            "B) False"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "architecture",
+            "request-lifecycle"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "This is an accurate high-level description of the Copilot request lifecycle: secure transmission, context gathering (surrounding code, open files, etc.), then generation by the underlying model. The statement contains no overreaching claim (e.g., guaranteed correctness or bypassing review), so it's a correct description of the mechanics."
+    },
+    {
+        "id": "GH300_PracticeSet_049",
+        "question": "A global organization deploying an AI-assisted development platform to teams in multiple regions requires support for developers using assistive technologies, usability across languages and cultures, effective operation under inconsistent network connectivity, and equal access regardless of physical ability. Which Responsible AI principle is most directly addressed by these requirements?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Accountability",
+            "B) Transparency",
+            "C) Performance Optimization",
+            "D) Inclusiveness"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "responsible-ai",
+            "inclusiveness",
+            "accessibility"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Every requirement centers on making the platform usable and accessible to everyone regardless of ability, language/culture, connectivity, or physical limitations — the definition of the Inclusiveness principle: designing systems that work for the widest range of people. Accountability and Transparency address different concerns (ownership of outcomes, understandability), and 'Performance Optimization' is not a Responsible AI principle at all."
+    },
+    {
+        "id": "GH300_PracticeSet_050",
+        "question": "A financial-services company plans to use autonomous agents for documentation updates, dependency management, and security remediation. A security review identifies risk that an agent could access information beyond its intended scope or expose sensitive organizational data. Which design decision would most effectively reduce the risk of data exfiltration while still allowing the agent to perform its assigned tasks?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Grant broad repository and organizational access so that tasks never fail because of missing permissions.",
+            "B) Allow the agent to invoke any external tool or service without restriction.",
+            "C) Disable logging and monitoring to reduce operational overhead.",
+            "D) Limit permissions and available tools to the minimum required, secure the operating environment, and continuously monitor agent activity."
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "security",
+            "least-privilege",
+            "autonomous-agents"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "Applying least privilege combined with active monitoring reduces exfiltration risk while still letting the agent do its assigned work: restrict scope to only what's needed, secure the environment, and continuously watch activity. Broad access, unrestricted tool invocation, and disabled logging all directly increase exfiltration risk and remove the ability to detect inappropriate access."
+    },
+    {
+        "id": "GH300_PracticeSet_051",
+        "question": "A developer working on a large application modernization project needs to analyze dependencies across multiple files, identify affected components, make coordinated code changes, use available tools where needed, and iteratively refine the solution before presenting changes for human review. Which GitHub Copilot capability is the best fit?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Static Autocomplete",
+            "B) gh copilot explain",
+            "C) Inline Suggestion",
+            "D) Agent Mode"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "agent-mode",
+            "multi-file-refactoring"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "These requirements describe exactly Agent Mode's defining characteristics: analyzing dependencies across files, identifying affected components, coordinating multi-step changes, using tools, and iterating before presenting for review. Static autocomplete and Inline Suggestion are reactive, single-location completions with no analysis or coordination capability; gh copilot explain is unrelated CLI functionality."
+    },
+    {
+        "id": "GH300_PracticeSet_052",
+        "question": "A developer receives inconsistent Copilot responses while troubleshooting an order-processing service. The original prompt 'Analyze the entire workspace and fix anything that might be causing customer order failures' was used against a workspace containing multiple applications, shared libraries, test projects, deployment scripts, and archived code. Which changes would most likely improve the relevance of the Copilot response? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Limit the request to the affected order-processing method and related files.",
+            "B) Describe the observed error and expected application behavior.",
+            "C) Replace the prompt with 'Make the application better.'",
+            "D) Include additional repositories from other teams to provide broader context.",
+            "E) Specify constraints such as preserving existing interfaces and business rules."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            4
+        ],
+        "tags": [
+            "prompt-engineering",
+            "context-scoping"
+        ],
+        "difficulty": "medium",
+        "category": "application",
+        "explanation": "The original prompt failed because it referenced the 'entire workspace' when only the order-processing method mattered. Fixing it means narrowing scope, adding concrete error/behavior details, and specifying constraints — all making the request specific and actionable. Replacing with a vague prompt or adding even more unrelated repositories both worsen the over-broadening problem already causing the issue."
+    },
+    {
+        "id": "GH300_PracticeSet_053",
+        "question": "A product team requires improving an application's search capability, without specifying whether to prioritize response time, relevance ranking, scalability, or development effort. A developer wants to evaluate multiple approaches before selecting one for implementation. Which GitHub Copilot capability would be most useful?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Security Filtering",
+            "B) Multiple Suggestions",
+            "C) Copilot CLI Explain",
+            "D) Content Exclusions"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "multiple-suggestions",
+            "ambiguous-requirements"
+        ],
+        "difficulty": "medium",
+        "category": "application",
+        "explanation": "An ambiguous, flexible requirement with no single clear direction, where the developer wants to evaluate several possible implementations before choosing one, is exactly what the Multiple Suggestions pane supports — comparing alternate completions side by side to weigh trade-offs. Security Filtering, CLI Explain, and Content Exclusions are unrelated to comparing implementation approaches."
+    },
+    {
+        "id": "GH300_PracticeSet_054",
+        "question": "Several developers report Copilot has stopped responding in Visual Studio Code. Basic troubleshooting (restarting the IDE, confirming valid licenses) is complete and standard logs do not reveal the root cause. Which troubleshooting approach is most appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Collect Copilot diagnostics, review extension logs, inspect developer tools, and investigate network, proxy, or firewall conditions that could affect connectivity.",
+            "B) Grant repository-owner permissions to affected users.",
+            "C) Change all affected projects to a different programming language.",
+            "D) Uninstall the IDE and recreate every development workstation immediately."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "troubleshooting",
+            "diagnostics",
+            "connectivity"
+        ],
+        "difficulty": "medium",
+        "category": "debugging",
+        "explanation": "With basic checks ruled out and standard logs uninformative, the next step is deeper diagnostics: extension-level logs, developer tools inspection, and network/proxy/firewall investigation — conditions that commonly interfere with Copilot's connection to cloud services. Permission changes, changing programming languages, and rebuilding every workstation are all unrelated or excessively disruptive first steps."
+    },
+    {
+        "id": "GH300_PracticeSet_055",
+        "question": "A developer implementing a customer discount calculation adds the comment 'Calculate loyalty discounts for premium customers. Do not modify existing pricing rules or tax calculations.' before writing the method, and notices Copilot's suggestions more closely align with intended behavior. Why did this most likely occur?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot uses the comment together with surrounding code and context to infer the developer's intent.",
+            "B) Comments automatically create a custom Copilot agent for the repository.",
+            "C) Comments prevent Copilot from analyzing the rest of the file.",
+            "D) Copilot ignores source code and relies primarily on comments."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "comments-as-prompts",
+            "context"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Copilot combines the comment (explicit intent and constraints) with surrounding code and context to generate a more targeted, accurate suggestion. A specific comment stating exactly what to do and what not to touch gives Copilot clearer signal, improving alignment with intended behavior. Comments do not create agents, do not block context gathering, and Copilot does not ignore source code in favor of comments alone."
+    },
+    {
+        "id": "GH300_PracticeSet_056",
+        "question": "A legacy application modernization project requires developers to understand unfamiliar code, generate tests, update documentation, and refactor outdated implementations. Which GitHub Copilot capabilities can assist with these tasks? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Explain unfamiliar code.",
+            "B) Generate unit tests.",
+            "C) Replace developer review and testing activities.",
+            "D) Assist with README and documentation creation.",
+            "E) Refactor existing implementations."
+        ],
+        "correct_indices": [
+            0,
+            1,
+            3,
+            4
+        ],
+        "tags": [
+            "modernization",
+            "responsible-use"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "Copilot legitimately assists with explaining unfamiliar code, generating tests, updating documentation, and refactoring. It never replaces developer review and testing activities — human validation of AI-generated code always remains mandatory regardless of how much Copilot assists."
+    },
+    {
+        "id": "GH300_PracticeSet_057",
+        "question": "A developer asks Copilot to update an order-processing API with only the brief prompt 'Add support for expedited shipping.' The generated implementation introduces breaking changes because it does not account for the existing API contract, related validation logic, or downstream service dependencies. What should the developer do first to improve response quality?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Remove the task description entirely and let Copilot infer the requirements.",
+            "B) Open every file in the repository regardless of relevance.",
+            "C) Add the relevant API contract, neighboring code context, expected behavior, and constraints while keeping the request focused.",
+            "D) Upgrade to a different Copilot subscription plan."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "prompt-engineering",
+            "insufficient-context"
+        ],
+        "difficulty": "medium",
+        "category": "application",
+        "explanation": "This is the opposite failure mode from an overly broad prompt — the prompt was too sparse, giving Copilot no information about the existing contract, validation logic, or dependencies. The fix is to add the missing relevant context while keeping the request focused, not to remove the description entirely, indiscriminately broaden scope, or change subscription plans (which doesn't fix a prompting problem)."
+    },
+    {
+        "id": "GH300_PracticeSet_058",
+        "question": "A developer accidentally performs the wrong Git operation on a release branch and knows the desired outcome ('undo the last commit but keep the local file changes') but does not remember which Git command to use. The organization requires developers to review commands before execution, but the immediate need is to generate an appropriate command from a natural-language requirement. Which capability should the developer use?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot Enterprise codebase search",
+            "B) gh copilot suggest",
+            "C) gh copilot explain",
+            "D) Inline Chat only"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "copilot-cli",
+            "command-generation"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "The developer knows the desired outcome but not the specific command — exactly gh copilot suggest's job: generating a new command from a natural-language description of the desired outcome. Codebase search is for exploring an internal codebase, not generating Git commands; gh copilot explain requires an existing command to explain; Inline Chat modifies selected code in an editor, not standalone terminal commands."
+    },
+    {
+        "id": "GH300_PracticeSet_059",
+        "question": "A security team reviewing a new MCP-based AI workflow that allows an AI assistant to interact with GitHub resources and development tools wants to minimize risk while preserving productivity. Which controls should be included in the MCP design? (Select all that apply.)",
+        "type": "multiple_choice",
+        "options": [
+            "A) Review authentication and authorization requirements for every exposed capability.",
+            "B) Expose all available tools by default so the AI assistant has maximum flexibility.",
+            "C) Validate and review tool-driven changes before those changes are accepted.",
+            "D) Expose only the specific tools required for approved tasks.",
+            "E) Evaluate what repositories, files, and data the AI workflow can access."
+        ],
+        "correct_indices": [
+            0,
+            2,
+            3,
+            4
+        ],
+        "tags": [
+            "mcp",
+            "security",
+            "least-privilege"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "explanation": "A secure MCP design follows least-privilege principles: scope access to only what's needed, review auth requirements for each exposed capability, evaluate reachable data/repos, and validate changes before acceptance. Exposing all tools by default for 'maximum flexibility' is the opposite of minimizing risk — it maximizes attack surface and potential for unintended access."
+    },
+    {
+        "id": "GH300_PracticeSet_060",
+        "question": "A DevOps engineer enters the request 'Generate a command that finds all failed Kubernetes pods in the production namespace.' Company policy requires the engineer to inspect the generated command before execution. Which approach best satisfies the requirement?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Use gh copilot suggest, review the returned command, and execute it only after validation.",
+            "B) Use gh copilot explain and execute the explanation.",
+            "C) Generate the command using inline code completion in an IDE because Copilot CLI cannot generate shell commands.",
+            "D) Configure ghcs to automatically run all generated commands without review."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "copilot-cli",
+            "policy-compliance"
+        ],
+        "difficulty": "easy",
+        "category": "application",
+        "explanation": "The engineer needs a new command generated from a natural-language description — gh copilot suggest's purpose — and this option correctly satisfies policy by requiring review before execution. 'Executing an explanation' via gh copilot explain isn't a valid action; the claim that Copilot CLI can't generate shell commands is false; and configuring automatic execution without review directly violates the stated company policy."
+    }
+]

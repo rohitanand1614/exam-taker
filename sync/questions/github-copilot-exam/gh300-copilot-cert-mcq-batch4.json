@@ -1,0 +1,266 @@
+[
+    {
+        "id": "GH300_ExamPrep_114",
+        "question": "A team lead is deciding how to position GitHub Copilot's role on the team. Which statement best reflects its realistic scope as a coding assistant?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot can only produce suggestions for front-end/web code and has no useful capability in other domains like scripting or backend logic",
+            "B) Copilot is limited strictly to fixing bugs in existing code and cannot generate new code",
+            "C) An inline command edits selected code directly -- distinct from comment-to-code and from chat Q&A in every case",
+            "D) Copilot can independently design and implement an entire production application, including architecture decisions, with minimal developer input"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "copilot-fundamentals",
+            "scope-and-limitations",
+            "developer-workflow"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Copilot operates at the level of local context: given the current file, function signature, comments, or open tabs, it predicts plausible next lines or blocks of code. It has no persistent understanding of a whole codebase's architecture, no ability to make cross-cutting design tradeoffs, and no agency to independently decide what to build -- those remain the developer's responsibility. This makes it a strong tactical tool (functions, boilerplate, repetitive patterns, tests, small refactors) rather than a strategic one. Option D overstates its capability -- it cannot autonomously architect or deliver a full application without developer direction. Option B understates it -- Copilot generates new code constantly, not just bug fixes; debugging assistance is only one of many use cases. Option A is a false restriction -- Copilot supports a wide range of languages and domains (backend, scripting, data, infra-as-code, etc.), not just front-end/web work."
+    },
+    {
+        "id": "GH300_ExamPrep_115",
+        "question": "A junior developer accepts most of Copilot's suggestions without much thought, and rarely writes code from scratch anymore. What long-term risk does this workflow pattern illustrate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) None -- since Copilot automates debugging, the developer's ability to spot problems in code becomes irrelevant over time",
+            "B) This pattern mainly risks making the developer less collaborative with teammates, but has no effect on their individual coding ability",
+            "C) The main risk is that Copilot will stop working correctly if a developer doesn't write enough code manually",
+            "D) Copilot may reference a library as if already in scope without checking it was imported -- the developer must add missing imports under the documented behavior"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "copilot-limitations",
+            "skill-development",
+            "responsible-use"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Copilot is a productivity accelerator, not a substitute for foundational understanding. If a developer habitually accepts suggestions without evaluating or writing code independently, they get less practice with core problem-solving, debugging, and design skills -- the same 'use it or lose it' dynamic seen with any assistive tool. This is why responsible adoption guidance encourages using Copilot to speed up known patterns while still deliberately practicing and understanding the underlying logic, especially for less experienced developers. Option A is wrong: Copilot does not automate debugging in a way that removes the need for a developer's own review -- suggestions can be wrong or insecure, so evaluative skill remains essential. Option C is wrong: Copilot's functioning as a tool isn't dependent on how much a given individual codes manually; the risk described is about the developer's skill, not the tool's operation. Option B is wrong: the described risk is specifically about individual skill erosion, not primarily a collaboration/social effect."
+    },
+    {
+        "id": "GH300_ExamPrep_116",
+        "question": "A developer notices that Copilot sometimes suggests an implementation approach they hadn't considered, drawing on patterns different from their team's usual style. What underlying property of Copilot does this illustrate?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot's suggestions can reflect a variety of approaches beyond one team's usual style",
+            "B) Copilot strictly enforces one canonical coding standard across all suggestions, regardless of language or context",
+            "C) Copilot bases its suggestions only on the individual developer's own historical coding choices within that editor session",
+            "D) Copilot generates suggestions using a fixed, predefined template library rather than learned patterns from code"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "copilot-fundamentals",
+            "training-data-diversity",
+            "developer-workflow"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Because Copilot's underlying model was trained on an enormous and varied corpus of publicly available code across many projects, languages, and coding styles, its suggestions aren't limited to one team's conventions or one developer's habits -- they can surface alternative approaches, idioms, or patterns the developer hadn't considered. This 'code diversity' can be a learning benefit (exposure to new techniques) but also means suggestions may not automatically match a team's specific style guide, reinforcing the need for review. Option B is wrong: Copilot does not enforce a single coding standard -- its outputs vary based on context and the diversity of its training data. Option C is wrong: suggestions are not limited to the developer's own past choices in-session; they draw on the broader trained model. Option D is wrong: Copilot does not work from a fixed template library -- it generates suggestions via learned statistical patterns, which is exactly why the outputs can vary and surface novel approaches."
+    },
+    {
+        "id": "GH300_ExamPrep_117",
+        "question": "A team working in a niche, less common programming language is evaluating whether GitHub Copilot will be useful to them. Which statement best describes how language support works?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot's language support is limited exclusively to languages used in web development",
+            "B) Copilot cannot generate suggestions for older or legacy languages under any circumstances",
+            "C) Copilot's suggestions can reflect a variety of approaches beyond one team's usual style, since its training draws on a broad range of public code",
+            "D) Copilot only works with a short fixed list of officially supported languages (e.g., Python, JavaScript) and provides no suggestions for anything outside that list"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "copilot-fundamentals",
+            "language-support",
+            "training-data-quality"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Copilot's ability to suggest code in a given language is a direct function of how much public code in that language existed in its training data. Since it isn't hardcoded to a fixed list, it can attempt suggestions for virtually any language represented in public repositories -- but for niche, low-volume, or legacy languages, the model has seen far fewer examples, so suggestions tend to be less accurate, less idiomatic, or less frequent. This is a training-data-driven quality gradient, not a hard on/off support switch. Option D is wrong: there's no small fixed allow-list restricting Copilot to only a handful of languages. Option A is wrong: Copilot is not limited to web-development languages; it spans general-purpose, scripting, systems, and other domains. Option B is wrong: older/legacy languages aren't categorically excluded -- they simply tend to have less public training data, which affects suggestion quality rather than eliminating support entirely."
+    },
+    {
+        "id": "GH300_ExamPrep_118",
+        "question": "A developer opens their IDE and notices GitHub Copilot has stopped offering any suggestions at all, even for straightforward code. What is the most likely root cause category to check first, before assuming the tool is broken or unsupported for their use case?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Copilot has a hard limit on total suggestions per calendar day, and further requests are silently dropped once that limit is reached",
+            "B) The project's programming language is inherently unsupported, since Copilot only functions for a small set of languages",
+            "C) The developer's machine lacks sufficient hardware to run Copilot locally, since all suggestion generation happens on-device",
+            "D) Generated documentation reflects the code at generation time and isn't auto-updated as code changes later"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "copilot-troubleshooting",
+            "authentication",
+            "debugging"
+        ],
+        "difficulty": "easy",
+        "category": "debugging",
+        "explanation": "Copilot's suggestion engine requires an authenticated, authorized connection between the IDE extension and the developer's GitHub account (with an active Copilot subscription/access). If that session expires, was never established, or completions have been disabled in settings, suggestions stop appearing entirely -- this is the most common and most likely cause to check first when suggestions vanish. Option B is wrong: as established elsewhere, Copilot isn't restricted to a small fixed language list; a lack of suggestions isn't explained by language choice alone. Option C is wrong: Copilot's model inference runs on GitHub/OpenAI's cloud infrastructure, not on the developer's local machine, so local hardware isn't the bottleneck for whether suggestions appear at all. Option A describes a specific, hard-coded quota mechanic that isn't the standard behavior developers should assume as their first troubleshooting hypothesis -- authentication/enablement issues are far more common and should be checked first."
+    },
+    {
+        "id": "GH300_ExamPrep_119",
+        "question": "A developer accepts a Copilot suggestion for a function. The code compiles and runs without errors, but it produces the wrong result for certain input cases because the underlying logic doesn't match the intended business rule. What does this scenario illustrate about a key limitation of large language model-based code generation?",
+        "type": "multiple_choice",
+        "options": [
+            "A) This type of error means the developer's IDE is misconfigured and needs to be reinstalled",
+            "B) The issue only occurs because the developer chose an unsupported programming language for the task",
+            "C) Because the code ran without throwing an error, this specific failure mode is impossible -- runtime errors are the only way incorrect logic can manifest",
+            "D) Copilot can generate suggestions for essentially any language with public code on GitHub, but quality scales with how much training data exists for it"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "copilot-limitations",
+            "syntactic-vs-semantic-correctness",
+            "code-review"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Because Copilot predicts plausible-looking code based on learned patterns rather than reasoning about a specific business requirement, it can produce output that is syntactically valid -- correct grammar, no parse errors, runs without crashing -- while still being semantically wrong, i.e., implementing different logic than what was actually intended. This is a fundamental limitation: passing syntax checks or even executing successfully says nothing about whether the logic is correct for the intended use case, which is exactly why suggestions need functional review (tests, code review, manual verification), not just a 'does it run' check. Option B is wrong: syntactic-vs-semantic mismatches aren't tied to a specific unsupported language; they can occur in any language Copilot generates code for. Option C is wrong: this scenario is a textbook example of exactly that failure mode being possible -- code that runs but computes the wrong answer for some inputs. Option A is wrong: a logic mismatch in generated code is not caused by IDE configuration; it stems from the model's suggestion not matching the actual intended behavior."
+    },
+    {
+        "id": "GH300_ExamPrep_120",
+        "question": "A developer is picking up an unfamiliar framework and wants to ask conceptual questions like \"what's the idiomatic way to manage state in this framework?\" and get an explained example back, rather than just receiving inline autocomplete as they type. Which Copilot interaction mode best fits this need, and why?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Inline autocomplete, because it can also interpret full natural-language questions typed anywhere in a file and respond with explanations",
+            "B) Committing a secret puts it in the tracked history, exposing it if the repo is ever public",
+            "C) There is no functional difference between chat-based interaction and inline completion -- both work identically regardless of how the developer phrases their request",
+            "D) Only inline completions can produce multi-line code examples; chat-based interaction is limited to single-word answers"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "copilot-chat",
+            "interaction-modes",
+            "developer-workflow"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "explanation": "Copilot offers more than one interaction mode. Inline completions are passive and keystroke-driven: as a developer types code, Copilot predicts and offers the likely next tokens or lines in place. A chat-based interface, by contrast, supports an explicit conversational exchange -- the developer can ask a direct question in natural language ('what's the idiomatic way to manage state here?') and receive a explained response, often including example code and reasoning, which is well suited to learning-oriented or exploratory questions rather than just completing code already being written. Option A is wrong: inline completion is not designed as a general question-answering interface; it responds to code context, not open-ended natural-language questions typed as prose. Option C is wrong: the two modes serve different interaction patterns (passive completion vs. active conversational Q&A) and aren't interchangeable in practice. Option D is wrong: chat-based responses can and do include full multi-line code examples with explanation, not just single words."
+    },
+    {
+        "id": "GH300_ExamPrep_121",
+        "question": "A developer wants Copilot's help migrating a large codebase from one framework to another. Why is it generally better to work through the migration incrementally (e.g., one component or file at a time) rather than asking Copilot to transform the entire codebase in one large request?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Working incrementally guarantees zero errors in the resulting code, while working on the whole project at once guarantees at least one error",
+            "B) An auth/enablement issue -- Copilot needs an active session, and suggestions stop if it's invalid or disabled, as a design choice",
+            "C) Copilot has a strict hard limit on the number of characters it can ever process in its entire lifetime, so incremental requests are required to avoid permanently disabling the tool",
+            "D) There is no real benefit to incremental migration -- it is purely a matter of personal preference with no effect on accuracy or verifiability"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "copilot-workflow",
+            "task-decomposition",
+            "code-review"
+        ],
+        "difficulty": "medium",
+        "category": "application",
+        "explanation": "Because Copilot's suggestions can contain subtle logical or structural mistakes (as with any generated code), breaking a large task like a framework migration into smaller, reviewable steps lets the developer verify correctness at each stage before building further on top of it. If something goes wrong in a small, isolated step, it's easy to spot and fix. If a developer instead requests a full-codebase transformation in one shot, any mistakes are distributed across a much larger amount of new code, making them far harder to locate, and errors in early parts of the transformation can compound into later parts. Option C is wrong: this describes a fabricated 'permanent damage' mechanic that doesn't reflect how Copilot works -- there's no such lifetime limit. Option A is wrong: incremental work reduces risk and improves verifiability, but it doesn't guarantee zero errors, just as working on the whole project doesn't guarantee an error will occur. Option D is wrong: incremental decomposition has a concrete, well-understood benefit for verifiability and error isolation, not merely stylistic preference."
+    },
+    {
+        "id": "GH300_ExamPrep_122",
+        "question": "While pairing with Copilot on an integration with a third-party service, a developer notices the accepted suggestion hardcodes the API key directly as a string literal in the source file. Why is this a security concern, especially in a project tracked by version control?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Hardcoded API keys automatically expire after a short time, so the exposure window is too small to matter in practice",
+            "B) Code can be syntactically valid yet semantically wrong; passing a run check proves nothing about correctness",
+            "C) The risk only exists if the project uses a NoSQL database; SQL-based projects are unaffected by hardcoded credentials",
+            "D) Hardcoding a key is purely a style issue that affects code readability but carries no actual security risk"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "secure-coding",
+            "credential-management",
+            "code-review"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Committing a secret like an API key directly into source code means it becomes part of the repository's tracked content -- and often its permanent history, since removing a later commit doesn't erase it from earlier ones. If that repository is or becomes public, gets forked, or is accessed by someone who shouldn't have the credential, the key is exposed and can be used to impersonate the application or access whatever resources it's scoped to. Standard secure-coding practice is to keep secrets out of source entirely, loading them at runtime from environment variables, a secrets manager, or a configuration system excluded from version control. Option D is wrong: this is a genuine security vulnerability, not merely a style preference -- exposed credentials are a leading cause of real-world breaches. Option C is wrong: the risk of exposing a hardcoded secret has nothing to do with the type of database in use. Option A is wrong: there's no general mechanism that causes hardcoded keys to auto-expire quickly; many stay valid indefinitely until manually rotated, so exposure risk persists."
+    },
+    {
+        "id": "GH300_ExamPrep_123",
+        "question": "A developer wants to give Copilot a direct, imperative instruction to modify code that already exists in the file -- e.g., \"rename these variables to camelCase\" -- rather than writing a comment to generate brand-new code or asking an open-ended question in a chat panel. Which interaction pattern fits this need, and how is it conceptually different from comment-to-code generation and chat-based Q&A?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Over-reliance can let a developer's own problem-solving and coding skills atrophy from practicing suggestion evaluation instead of independent implementation",
+            "B) Comment-to-code generation is the correct fit, since writing a comment describing the rename is functionally identical to issuing a direct edit command",
+            "C) There is no meaningful difference between any of Copilot's interaction modes -- inline commands, comment-to-code, and chat all produce the exact same result for any given instruction",
+            "D) Only the chat window can apply an edit directly to existing code; inline commands can only generate brand-new code in an empty file"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "copilot-workflow",
+            "inline-commands",
+            "interaction-modes"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "Copilot supports multiple distinct interaction patterns tailored to different intents. An inline command interface lets a developer type a direct, imperative instruction (e.g., 'rename these variables to camelCase') targeting a specific selection of existing code, and Copilot applies that instruction as an edit in place. This differs from comment-to-code generation, which is about producing new code from a description written as a comment, and from chat-based interaction, which is oriented around open-ended conversational questions and explanations rather than issuing a direct, immediate edit to a specific code selection. Option B is wrong: a comment describing intent is meant to prompt new code generation at that location, not to directly transform a specific block of already-selected existing code the way an inline edit command does. Option C is wrong: these modes are designed for different intents (generate new code vs. explain/discuss vs. directly edit existing code) and can produce different results depending on which one is used. Option D is wrong: inline command-based edits are specifically suited to modifying existing selected code, not just generating code into an empty file."
+    },
+    {
+        "id": "GH300_ExamPrep_124",
+        "question": "A developer accepts a Copilot suggestion that calls a function from a third-party library, but the code throws a NameError/ImportError because that library was never imported in the file. What does this scenario reveal about a limitation in how Copilot generates suggestions?",
+        "type": "multiple_choice",
+        "options": [
+            "A) This error means the library in question is fundamentally incompatible with Copilot and should never be used in Copilot-assisted projects",
+            "B) The error indicates a corrupted installation of the Copilot extension that requires a full reinstall to fix",
+            "C) Copilot predicts code from patterns rather than verifying the library was actually imported in this file",
+            "D) Copilot automatically manages a project's full dependency list, so this kind of error is not actually possible for it to produce"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "copilot-limitations",
+            "context-awareness",
+            "debugging"
+        ],
+        "difficulty": "medium",
+        "category": "debugging",
+        "explanation": "Copilot generates suggestions by predicting likely code given the surrounding context it can see, but it doesn't perform a full static analysis of the project's dependency graph or guarantee that every symbol it references is actually in scope. It can suggest a call to a library function based on common patterns in its training data, even if that library was never imported in the current file -- effectively assuming a piece of setup exists when it doesn't. This is why developers need to verify and, if necessary, manually add missing imports or dependencies after accepting a suggestion, rather than assuming every accepted suggestion is immediately runnable as-is. Option A is wrong: an unimported library causing an error doesn't mean the library is incompatible with Copilot -- it just means the import statement is missing, an easy manual fix. Option D is wrong: Copilot has no built-in dependency-management system that guarantees all referenced libraries are automatically imported or installed. Option B is wrong: a missing-import error is a normal, expected code issue stemming from incomplete context, not a sign of a broken or corrupted tool installation."
+    },
+    {
+        "id": "GH300_ExamPrep_125",
+        "question": "A team used Copilot to generate docstrings for a module six months ago. Since then, several function signatures and behaviors have changed, but the docstrings were never revisited. What does this scenario illustrate about Copilot's role in documentation upkeep over time?",
+        "type": "multiple_choice",
+        "options": [
+            "A) A chat interface supports back-and-forth natural-language questions and explained examples -- a different mode than passive, keystroke-driven autocomplete",
+            "B) Copilot continuously monitors the codebase in the background and silently rewrites any documentation the moment related code changes, so stale docstrings like these should never occur",
+            "C) This situation could only happen if the team disabled a required Copilot documentation-sync setting; by default, all Copilot-generated docs stay perfectly synchronized with code",
+            "D) Docstring drift is not a real risk with Copilot-generated documentation, since Copilot only ever writes documentation for code that never changes afterward"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "copilot-documentation",
+            "maintenance",
+            "developer-workflow"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "explanation": "When Copilot generates a docstring or comment, that output describes the code as it exists at that moment -- it isn't a live, continuously-synced description. If the underlying function later changes (new parameters, different behavior, renamed logic) and nobody updates the associated documentation, the docstring becomes stale and potentially misleading, exactly as with documentation written by a human. Copilot has no built-in mechanism that watches for downstream code changes and automatically revises previously generated docs to match, so keeping documentation accurate over the life of a project remains an ongoing developer responsibility, typically enforced through code review practices or periodic doc audits. Option B is wrong: there is no background monitoring process that automatically rewrites existing documentation whenever related code changes. Option C is wrong: there's no 'documentation-sync setting' that guarantees perpetual synchronization between code and previously generated docs. Option D is wrong: docstring drift is a real and common risk precisely because generated documentation doesn't automatically track subsequent code changes."
+    }
+]

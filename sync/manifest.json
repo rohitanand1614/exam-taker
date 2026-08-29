@@ -1,7 +1,13 @@
 {
   "version": 1,
-  "exported_at": "2026-08-29T12:33:42+00:00",
+  "exported_at": "2026-08-29T14:02:39+00:00",
   "decks": [
+    {
+      "id": "2026-llm-job-2026-interview-test-agentic-ai-engineer-combined-mcq",
+      "name": "2026 LLM Job / 2026-interview-test / Agentic Ai Engineer Combined Mcq",
+      "path": "questions/2026 LLM Job/2026-interview-test/agentic-ai-engineer-combined-mcq.json",
+      "question_count": 65
+    },
     {
       "id": "2026-llm-job-week1-3blue1brown-attention",
       "name": "2026 LLM Job / Week1 / 3Blue1Brown Attention",
