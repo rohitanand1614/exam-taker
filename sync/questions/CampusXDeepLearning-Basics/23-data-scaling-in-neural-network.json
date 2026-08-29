@@ -1,3 +1,88 @@
-{
-    
-}
+[
+  {
+    "id": "Data Scaling in Neural Network | Feature Scaling in ANN | End to End Deep Learning Course_001",
+    "question": "A data scientist trains a neural network to predict customer purchasing behavior using two input features: 'Age' (ranging from 18 to 80) and 'Annual Salary' (ranging from ₹2,00,000 to ₹50,00,000). During training, they notice the validation accuracy oscillates wildly and gets stuck at 60%, never converging. According to the instructor, what is the geometric reason for this failure?",
+    "type": "multiple_choice",
+    "options": [
+      "A) The large magnitude of the salary feature causes the Sigmoid activation function to permanently output a value of 0, killing the gradients entirely.",
+      "B) The extreme difference in the scale of the two features creates a highly elongated, non-symmetrical loss function contour. This causes the Gradient Descent optimizer to oscillate inefficiently back and forth across the ravine instead of moving straight toward the minimum.",
+      "C) The 'Age' feature is too small for the neural network to detect, causing the network to automatically drop the feature during the first epoch of training.",
+      "D) The learning rate was set too low, causing the optimizer to physically get trapped in the absolute center of the symmetric loss function."
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "feature_scaling",
+      "gradient_descent",
+      "loss_landscape",
+      "optimization_geometry"
+    ],
+    "difficulty": "medium",
+    "explanation": "When features have drastically different scales, the parameter space is distorted. The weight associated with the large feature ('Salary') requires tiny updates, while the weight associated with the small feature ('Age') requires large updates. Geometrically, this creates an elongated, elliptical 'bowl' or contour for the loss function . When Gradient Descent tries to navigate this elongated bowl, it bounces erratically back and forth across the steep sides (oscillating) rather than stepping smoothly down the center toward the global minimum. This causes training to be incredibly slow, unstable, and often fail to converge. Option B accurately describes this geometric reality. Options A, C, and D describe fabricated, non-existent behaviors of neural networks."
+  },
+  {
+    "id": "Data Scaling in Neural Network | Feature Scaling in ANN | End to End Deep Learning Course_002",
+    "question": "To fix the training instability caused by unscaled data, the instructor recommends using standard Feature Scaling techniques like Standardization or Normalization (Min-Max Scaling). What is the specific mathematical difference between how these two techniques transform the data?",
+    "type": "multiple_choice",
+    "options": [
+      "A) Standardization forces all data points into a strict range between 0 and 1, while Normalization subtracts the mean and divides by the standard deviation.",
+      "B) Standardization subtracts the mean and divides by the standard deviation (centering data around 0 with a variance of 1), while Normalization (Min-Max) squashes all values into a strictly bounded range, typically 0 to 1.",
+      "C) Standardization only applies to categorical text data, while Normalization only applies to continuous numerical data.",
+      "D) Standardization permanently deletes any outliers in the dataset, while Normalization simply replaces outliers with the median value."
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "feature_scaling",
+      "standardization",
+      "normalization",
+      "min_max_scaling"
+    ],
+    "difficulty": "easy",
+    "explanation": "The instructor defines the two primary methods for scaling data. Standardization (StandardScaler) transforms the data such that the mean becomes 0 and the standard deviation becomes 1 . It centers the data but doesn't strictly bound it (outliers can still be > 1 or < -1). Normalization (specifically Min-Max scaling) uses the minimum and maximum values of the column to mathematically compress every single data point into a strictly bounded box, almost always between 0 and 1. Option A reverses the definitions. Options C and D are entirely factually incorrect."
+  },
+  {
+    "id": "Data Scaling in Neural Network | Feature Scaling in ANN | End to End Deep Learning Course_003",
+    "question": "According to the instructor's general heuristic, under what specific circumstance should a data scientist explicitly choose Normalization (Min-Max scaling) over Standardization?",
+    "type": "multiple_choice",
+    "options": [
+      "A) When the data contains extreme, unpredictable outliers (like a billionaire's salary in a dataset of average workers).",
+      "B) When the input data consists of raw, unstructured text that needs to be fed into an NLP embedding layer.",
+      "C) When the absolute theoretical minimum and maximum boundaries of the feature are known in advance (e.g., CGPA which is strictly bounded between 0.0 and 10.0).",
+      "D) When using the ReLU activation function in the hidden layers, as ReLU fundamentally crashes if it receives standardized negative numbers."
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "normalization_vs_standardization",
+      "min_max_scaling",
+      "heuristics"
+    ],
+    "difficulty": "medium",
+    "explanation": "The instructor provides a rule of thumb: If you know the hard, theoretical boundaries of your data beforehand—such as CGPA (always 0 to 10) or Image Pixels (always 0 to 255)—Normalization (Min-Max Scaling) is highly effective because it neatly maps those known bounds exactly to 0 and 1. If you do *not* know the boundaries and the data could theoretically stretch infinitely (like Salary), Standardization is safer. \nRegarding Option A: Min-Max scaling is actually *terrible* for outliers because a single massive outlier will squash 99% of the normal data into a tiny 0.001 range. Standardization handles outliers slightly better. Option B is irrelevant to numerical scaling. Option D is false; ReLU simply outputs 0 for negative numbers; it does not crash."
+  },
+  {
+    "id": "Data Scaling in Neural Network | Feature Scaling in ANN | End to End Deep Learning Course_004",
+    "question": "After writing the code to apply `StandardScaler` to the dataset, the instructor plots the data on a scatter plot before and after the transformation. What visual change occurs to the fundamental shape and distribution of the data points on the plot?",
+    "type": "multiple_choice",
+    "options": [
+      "A) The shape changes completely from a scattered cloud into a perfectly straight diagonal line.",
+      "B) All the data points that were previously clustered together are now spread evenly across the entire graph.",
+      "C) Absolutely nothing changes about the shape, distribution, or relative distance between the points; only the numerical values on the X and Y axes change to reflect the new standardized scale.",
+      "D) The points representing the positive class ('Purchased') are visually separated from the negative class by an artificial gap created by the scaler."
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "standardization",
+      "data_distribution",
+      "visual_intuition"
+    ],
+    "difficulty": "easy",
+    "explanation": "The instructor explicitly points out that when you view the scatter plots before and after `StandardScaler`, the visual shape and relative distribution of the data points are mathematically identical . Feature scaling is a linear transformation; it does not alter the underlying relationships, correlations, or relative distances between the data points. The only thing that changes is the \"ruler\" used to measure them—the numbers on the X and Y axes shrink down to center around 0. Options A, B, and D suggest the scaler alters the fundamental nature or relationship of the data, which is completely false."
+  }
+]

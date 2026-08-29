@@ -1,3 +1,65 @@
+[
 {
-    
+"id": "Forward Propagation | How a neural network predicts output_001",
+"question": "A data scientist is building an MLP with an input layer of 4 nodes, a first hidden layer of 3 nodes, a second hidden layer of 2 nodes, and an output layer of 1 node. To compute the forward propagation from the input layer to the first hidden layer efficiently, they use matrix multiplication. What are the correct dimensions of the Weight Matrix ($W^{(1)}$) and the Input Vector ($X$) before any transposition occurs?",
+"type": "multiple_choice",
+"options": [
+"A) $W^{(1)}$ is $4 \times 3$, and $X$ is $4 \times 1$.",
+"B) $W^{(1)}$ is $3 \times 4$, and $X$ is $1 \times 4$.",
+"C) $W^{(1)}$ is $4 \times 4$, and $X$ is $3 \times 1$.",
+"D) $W^{(1)}$ is $3 \times 1$, and $X$ is $4 \times 3$."
+],
+"correct_indices": [
+0
+],
+"tags": [
+"forward_propagation",
+"matrix_dimensions",
+"linear_algebra"
+],
+"difficulty": "medium",
+"explanation": "According to the instructor's notation and matrix design , the Weight Matrix ($W^{(1)}$) is constructed such that the rows correspond to the originating input nodes (4 rows) and the columns correspond to the receiving hidden nodes (3 columns). Therefore, the raw Weight Matrix is $4 \times 3$. The input vector $X$ (representing a single row of data) is represented as a column vector of size $4 \times 1$. To perform the dot product mathematically, the weight matrix is transposed to $3 \times 4$, which is then multiplied by the $4 \times 1$ input vector, resulting in a $3 \times 1$ vector that perfectly matches the 3 biases of the hidden layer. Option B reverses the standard row/column notation taught in the video. Options C and D contain mathematically invalid dimensions for this specific architecture."
+},
+{
+"id": "Forward Propagation | How a neural network predicts output_002",
+"question": "During the forward propagation process, the instructor writes a nested mathematical expression combining multiple layers: `Sigmoid(Sigmoid(X * W1 + b1) * W2 + b2)`. What fundamental concept of neural networks does this nested equation explicitly demonstrate?",
+"type": "multiple_choice",
+"options": [
+"A) That neural networks use backpropagation to recursively update weights from the inside out.",
+"B) That the entire, complex architecture of a deep neural network mathematically collapses into a single, massive composite function.",
+"C) That linear algebra completely eliminates the need for activation functions in deep layers.",
+"D) That biases must be multiplied by weights before being added to the activation output."
+],
+"correct_indices": [
+1
+],
+"tags": [
+"forward_propagation",
+"composite_function",
+"mathematical_intuition"
+],
+"difficulty": "medium",
+"explanation": "The nested equation beautifully illustrates that forward propagation is simply the evaluation of a massive composite mathematical function . The output of the first layer (which is a function of inputs, weights, and biases) literally becomes the raw input ($X$) for the function of the second layer. No matter how deep or complex the architecture gets, the entire network is ultimately just one continuous, nested mathematical expression that maps the initial inputs to the final prediction. Option A is incorrect; the equation shows *forward* prediction, not backward weight updating. Option C is false; the `Sigmoid` calls *are* the activation functions, proving they are mathematically essential to prevent the equation from collapsing into a simple linear model. Option D is mathematically incorrect based on the formula $z = WX + b$."
+},
+{
+"id": "Forward Propagation | How a neural network predicts output_003",
+"question": "Why does the instructor emphasize that understanding the linear algebra behind forward propagation is crucial before attempting to study the Backpropagation algorithm?",
+"type": "multiple_choice",
+"options": [
+"A) Because Backpropagation requires calculating the inverse of the input matrix ($X^{-1}$) at every step.",
+"B) Because modern Deep Learning libraries (like Keras) require you to manually code the matrix transpositions during the training phase.",
+"C) Because knowing how the data flows forward through the nested matrices is essential to understanding how the error gradients will flow backward through those exact same mathematical pathways.",
+"D) Because forward propagation dynamically alters the network architecture (adding or removing nodes) during inference."
+],
+"correct_indices": [
+2
+],
+"tags": [
+"forward_propagation",
+"backpropagation_prerequisite",
+"linear_algebra"
+],
+"difficulty": "easy",
+"explanation": "The instructor states that Backpropagation is often considered difficult because people try to learn it without a solid grasp of how the network actually computes predictions. Forward propagation establishes the \"chain\" of mathematical operations (matrix multiplications and activations). Because Backpropagation is fundamentally just the application of the Chain Rule of calculus to these operations, you cannot understand how to compute the backward derivatives if you don't fully understand the forward equations that created the output in the first place. Option A is mathematically false; matrix inversion is not used in standard backpropagation. Option B is false; Keras handles all matrix math behind the scenes. Option D is false; architecture is static during standard forward propagation."
 }
+]

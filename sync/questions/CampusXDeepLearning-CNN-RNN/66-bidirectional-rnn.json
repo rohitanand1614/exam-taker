@@ -1,1 +1,107 @@
-{}
+[
+    {
+        "id": "dl_birnn_001",
+        "question": "You are building a Named Entity Recognition (NER) system. You notice that for the token \"Apple\", a unidirectional LSTM frequently misclassifies it as a Fruit instead of an Organization when the sentence ends with \"... released the new iPhone\". What is the fundamental architectural reason for this, and how does a Bidirectional LSTM resolve it?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Unidirectional LSTMs suffer from vanishing gradients over long sentences; BiLSTMs duplicate the gradient flow to preserve the entity mapping.",
+            "B) Unidirectional LSTMs only have access to left-to-right historical context up to the current token; BiLSTMs concatenate past and future context at each time step.",
+            "C) Unidirectional LSTMs cannot handle capitalized out-of-vocabulary words; BiLSTMs use backward propagation to normalize the text casing.",
+            "D) Unidirectional LSTMs strictly output a single summarized vector; BiLSTMs output a sequence of attention scores over future tokens."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "BiLSTM",
+            "NER",
+            "Context"
+        ],
+        "difficulty": "medium",
+        "explanation": "In sequential processing, ambiguity often cannot be resolved without future context. In the sentence \"Apple released the new iPhone,\" when a unidirectional RNN reaches the word \"Apple\", it has zero context about what comes next, causing it to default to its most common training representation (a fruit). A Bidirectional RNN solves this by running two independent RNNs: one reading left-to-right (past context) and one reading right-to-left (future context). At the time step for \"Apple\", the network concatenates the forward state and the backward state (which has already processed \"released the new iPhone\"), providing complete contextual awareness. Option A is incorrect because BiLSTMs don't solve vanishing gradients natively; the LSTM cell itself does. Option C is a data preprocessing issue, not an architectural one. Option D confuses BiLSTMs with Attention mechanisms."
+    },
+    {
+        "id": "dl_birnn_002",
+        "question": "In a Bidirectional RNN, the final output at time step $t$ requires merging the hidden states from the forward ($\\overrightarrow{h}_t$) and backward ($\\overleftarrow{h}_t$) layers. Mathematically, what does the calculation of the backward hidden state $\\overleftarrow{h}_t$ explicitly depend on during the network's processing phase?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The current input $x_t$ and the forward hidden state $\\overrightarrow{h}_t$.",
+            "B) The current input $x_t$ and the backward hidden state from the previous chronological time step $\\overleftarrow{h}_{t-1}$.",
+            "C) The current input $x_t$ and the backward hidden state from the future chronological time step $\\overleftarrow{h}_{t+1}$.",
+            "D) The entire input sequence $X$ and the final forward hidden state $\\overrightarrow{h}_T$."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Mathematics",
+            "RNN Architecture",
+            "Backward Pass"
+        ],
+        "difficulty": "hard",
+        "explanation": "A Bidirectional RNN utilizes two completely independent recurrent layers. The backward layer processes the sequence from the last token ($T$) down to the first ($1$). Therefore, to calculate the hidden state for the backward RNN at time $t$ ($\\overleftarrow{h}_t$), the layer requires the current token $x_t$ and the hidden state it calculated in its previous computational step, which corresponds to the chronologically *future* token $\\overleftarrow{h}_{t+1}$. The equation is $\\overleftarrow{h}_t = f(W' \\cdot \\overleftarrow{h}_{t+1} + U' \\cdot x_t + b')$. Option A is incorrect because the forward and backward layers do not interact until their outputs are merged. Option B describes the forward RNN's dependency ($\\overrightarrow{h}_{t-1}$). Option D incorrectly implies a sequence-to-vector bottleneck architecture."
+    },
+    {
+        "id": "dl_birnn_003",
+        "question": "You have a Keras model with a single `LSTM(64)` layer that contains exactly $N$ trainable parameters. If you wrap this layer using `Bidirectional(LSTM(64))`, what will be the new approximate parameter count of this layer, and why?",
+        "type": "multiple_choice",
+        "options": [
+            "A) $N$, because it utilizes the exact same weight matrices but simply traverses them in reverse during computation.",
+            "B) $2N$, because the Bidirectional wrapper instantiates two completely independent LSTM layers (one forward, one backward) with their own separate weights.",
+            "C) $N^2$, because the forward and backward hidden states are computed via a cross-product matrix to align the semantic context.",
+            "D) $N + 64$, because it only adds a dense layer at the end to concatenate the forward and backward states."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Keras",
+            "Implementation",
+            "Parameter Count"
+        ],
+        "difficulty": "easy",
+        "explanation": "When you apply a `Bidirectional()` wrapper to an RNN layer in Keras (or PyTorch), the framework literally instantiates two completely separate, independent copies of the base RNN layer. One is strictly dedicated to processing the sequence forward, and the other strictly backward. Because they are independent, they do not share weights. Therefore, a forward LSTM with $N$ parameters and a backward LSTM with $N$ parameters will result in a total of $2N$ trainable parameters. Option A is factually incorrect; weight sharing between forward and backward passes is not standard because the semantic patterns in reverse text are entirely different. Options C and D misrepresent the internal graph construction of a Bidirectional layer."
+    },
+    {
+        "id": "dl_birnn_004",
+        "question": "You are deploying an AI model for a live, real-time closed-captioning system (Speech-to-Text) where words must instantly appear on screen as the user speaks. Why is a Bidirectional GRU (BiGRU) fundamentally a poor architectural choice for this specific deployment?",
+        "type": "multiple_choice",
+        "options": [
+            "A) BiGRUs completely overwrite their short-term memory during the reverse pass, deleting the earliest spoken words from the sequence.",
+            "B) BiGRUs suffer from infinite gradient explosions during real-time streaming due to the unbounded sequence length.",
+            "C) The backward RNN component requires the entire future sequence to be available before it can calculate the state for the current time step, causing unacceptable latency.",
+            "D) The parameter count is too large to fit in edge-device memory, requiring the model to buffer audio to the cloud."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Real-time Systems",
+            "Latency",
+            "Architecture Limitations"
+        ],
+        "difficulty": "medium",
+        "explanation": "Bidirectional RNNs are inherently \"offline\" or \"batch\" processors. Because the final output at time step $t$ requires the concatenation of both the forward state (which knows $1...t$) and the backward state (which knows $t...T$), the model cannot generate *any* output until the absolute final time step ($T$) has been received. In a live streaming scenario, $T$ is the moment the user stops speaking. A BiGRU would force the system to wait in silence until the sentence ends before displaying the first word, resulting in terrible latency. Options A and B are fabricated technical issues. Option D is a hardware constraint that applies to any large model, not a structural algorithmic flaw unique to Bidirectional networks."
+    },
+    {
+        "id": "dl_birnn_005",
+        "question": "In a Bidirectional LSTM layer, the forward LSTM has a hidden state dimension of 128, and the backward LSTM also has a hidden state dimension of 128. By default, what is the dimension of the final unified hidden state output at a single time step $t$?",
+        "type": "multiple_choice",
+        "options": [
+            "A) 128, because the forward and backward states are added element-wise to preserve the original dimensionality.",
+            "B) 256, because the standard behavior is to concatenate the forward and backward hidden vectors along the feature axis.",
+            "C) 128, because only the backward state is passed to the next layer while the forward state acts exclusively as a residual connection.",
+            "D) 512, because both the cell states ($C_t$) and hidden states ($h_t$) from both directions are concatenated together."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Dimensionality",
+            "Concatenation",
+            "BiLSTM"
+        ],
+        "difficulty": "easy",
+        "explanation": "By default, Bidirectional layers unify the forward and backward representations via concatenation. At time step $t$, the forward LSTM outputs a vector of size 128 ($\\overrightarrow{h}_t$), and the backward LSTM outputs a vector of size 128 ($\\overleftarrow{h}_t$). These two vectors are joined end-to-end $[ \\overrightarrow{h}_t, \\overleftarrow{h}_t ]$, resulting in a single output vector of size $128 + 128 = 256$ for that specific time step. While frameworks allow you to change the `merge_mode` to 'sum', 'mul', or 'ave' (which would result in an output of size 128, as described in Option A), concatenation is the standard default behavior to ensure no information from either direction is destructively overwritten. Option C is entirely incorrect. Option D is incorrect because Cell States are kept strictly internal to the LSTM operations."
+    }
+]

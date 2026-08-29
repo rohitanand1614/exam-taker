@@ -1,3 +1,108 @@
+[
 {
-    
+"id": "Multi Layer Perceptron | MLP Intuition_001",
+"question": "The core premise of a Multi-Layer Perceptron (MLP) is to solve the linear limitation of a single Perceptron. According to the instructor's geometrical intuition, how exactly does an MLP construct a complex, non-linear decision boundary?",
+"type": "multiple_choice",
+"options": [
+"A) By relying on the hidden layers to dynamically change the dataset's input features from 2D coordinates into a 1D vector.",
+"B) By combining the individual, straight-line decision boundaries of multiple perceptrons in the hidden layers using a weighted sum, which is then passed through a non-linear activation function.",
+"C) By training multiple perceptrons sequentially, where each new perceptron automatically deletes the misclassified points of the previous one.",
+"D) By using the Step activation function exclusively, which naturally bends straight lines into curves at the output layer."
+],
+"correct_indices": [
+1
+],
+"tags": [
+"mlp_intuition",
+"non_linear_boundaries",
+"linear_combination"
+],
+"difficulty": "medium",
+"explanation": "The instructor explains that an MLP achieves non-linearity by taking multiple individual perceptrons (each of which can only draw a straight line) and combining them. Mathematically, the output node calculates a *linear combination* (a weighted sum) of the outputs from the hidden layer perceptrons. When this combined signal is passed through a non-linear activation function (like Sigmoid or ReLU), it smoothly merges the multiple straight lines into a single, complex, non-linear curve . Option A describes an embedding or flattening process, not boundary creation. Option C describes a boosting ensemble technique (like AdaBoost), not standard MLP architecture. Option D is entirely false; Step functions produce rigid, sharp boundaries, not smooth curves, and are rarely used in MLPs precisely for this reason."
+},
+{
+"id": "Multi Layer Perceptron | MLP Intuition_002",
+"question": "When designing an MLP for a specific dataset, how do you determine the correct number of nodes to place in the **Input Layer**?",
+"type": "multiple_choice",
+"options": [
+"A) It is a hyperparameter that must be tuned through trial and error using grid search.",
+"B) It must always equal the total number of classes you are trying to predict in the target variable.",
+"C) It is strictly determined by the exact number of input features (columns) present in your dataset.",
+"D) It should be calculated as the square root of the total number of rows in the training dataset."
+],
+"correct_indices": [
+2
+],
+"tags": [
+"mlp_architecture",
+"input_layer",
+"network_design"
+],
+"difficulty": "easy",
+"explanation": "The architecture of the Input Layer is rigidly defined by the shape of your data. The number of nodes in the input layer must exactly match the number of input features (columns) in your dataset. For example, if you are predicting placement based on CGPA and IQ, you need exactly 2 input nodes . If you add '12th Grade Marks', you must increase it to 3 input nodes. Option A applies to the *hidden* layers, not the input layer. Option B determines the size of the *output* layer in a classification task. Option D is a fabricated, nonsensical heuristic."
+},
+{
+"id": "Multi Layer Perceptron | MLP Intuition_003",
+"question": "You are building an MLP to classify images of animals into one of three categories: Dog, Cat, or Human. How should you design the **Output Layer** of this network?",
+"type": "multiple_choice",
+"options": [
+"A) Create a single output node that predicts a continuous value between 1 and 3.",
+"B) Create exactly 3 output nodes, where each node outputs the specific probability of the image belonging to its corresponding class.",
+"C) Create 3 hidden layers, each strictly dedicated to learning the features of one specific class.",
+"D) Use a single output node with a Step activation function that rotates its threshold based on the animal."
+],
+"correct_indices": [
+1
+],
+"tags": [
+"mlp_architecture",
+"output_layer",
+"multi_class_classification"
+],
+"difficulty": "easy",
+"explanation": "For Multi-Class Classification tasks (where there are 3 or more mutually exclusive classes), the standard architectural rule is to have one output node for every possible class . Each node calculates the probability of the input belonging to that specific class (typically using a Softmax activation function across the layer). Option A is a bad practice because treating categorical classes as continuous integers implies a false mathematical hierarchy (e.g., that a Cat (2) is 'greater' than a Dog (1)). Option C conflates hidden layer architecture with output predictions. Option D is mathematically nonsensical."
+},
+{
+"id": "Multi Layer Perceptron | MLP Intuition_004",
+"question": "During the TensorFlow Playground demonstration, the instructor attempts to classify a highly complex 'spiral' dataset. What architectural adjustment provides the model with the 'Universal Function Approximator' capability required to capture such extreme non-linearity?",
+"type": "multiple_choice",
+"options": [
+"A) Drastically increasing the learning rate to force the weights to update faster.",
+"B) Removing all hidden layers and connecting the inputs directly to a massive output layer.",
+"C) Changing the loss function from Mean Squared Error to Binary Cross-Entropy.",
+"D) Increasing the network's depth by adding multiple sequential Hidden Layers, allowing it to compose increasingly abstract feature representations."
+],
+"correct_indices": [
+3
+],
+"tags": [
+"universal_approximation",
+"hidden_layers",
+"network_depth",
+"tensorflow_playground"
+],
+"difficulty": "medium",
+"explanation": "The Universal Approximation Theorem states that a neural network can approximate almost any continuous function if it has sufficient depth and width. For highly complex, intertwined data like the spiral dataset , shallow networks (1 hidden layer) often fail. By adding *multiple hidden layers* (deepening the network), the model can learn hierarchical representations. The first layer might learn simple lines, the second layer combines those into curves, and deeper layers combine those curves into the complex spiral boundary. Option A might cause the model to diverge and fail entirely. Option B reverts the model to a simple linear classifier (Logistic Regression), destroying its ability to handle non-linearity. Option C is a standard classification loss but does not inherently grant the capacity to model complex spirals without the requisite architecture."
+},
+{
+"id": "Multi Layer Perceptron | MLP Intuition_005",
+"question": "In the context of the MLP geometric intuition, what role do the specific weight values connecting the hidden layer nodes to the final output node play?",
+"type": "multiple_choice",
+"options": [
+"A) They determine the final activation function that will be applied to the output.",
+"B) They dictate the relative 'importance' or 'dominance' of each hidden perceptron's individual decision boundary when forming the final combined boundary.",
+"C) They act as the raw input data ($X$) for the final prediction calculation.",
+"D) They calculate the error gradient during the forward pass of the network."
+],
+"correct_indices": [
+1
+],
+"tags": [
+"mlp_intuition",
+"weights",
+"linear_combination"
+],
+"difficulty": "medium",
+"explanation": "The final output node in an MLP creates a linear combination of the outputs from the hidden layer. The weights assigned to the connections entering this output node directly control how much influence each hidden node has. For example, if Hidden Node 1 has a weight of 10 and Hidden Node 2 has a weight of 5, the decision boundary generated by Node 1 will be twice as dominant in shaping the final, combined non-linear boundary. This is how the network learns to emphasize certain learned features over others. Option A is false; activation functions are architectural choices, not learned weights. Option C is false; the outputs of the hidden nodes (activations), not the weights themselves, act as the inputs to the final node. Option D is false; error gradients are calculated during the backward pass (backpropagation), not the forward pass."
 }
+]

@@ -1,3 +1,87 @@
-{
-    
-}
+[
+  {
+    "id": "Xavier/Glorot and He Weight Initialization in Deep Learning_001",
+    "question": "A data scientist is training a deep neural network with 10 hidden layers using the Tanh activation function. They are trying to decide how to initialize the weights. According to the instructor, which specific weight initialization technique is mathematically optimized for the Tanh activation function to prevent Vanishing/Exploding Gradients?",
+    "type": "multiple_choice",
+    "options": [
+      "A) He Initialization (He Normal / He Uniform), because it uses a variance of $2 / n_{in}$, which perfectly counters the non-zero-centered nature of Tanh.",
+      "B) Xavier/Glorot Initialization (Glorot Normal / Glorot Uniform), because its variance of $1 / n_{in}$ (or $2 / (n_{in} + n_{out})$) is experimentally proven to keep the signal within the active, non-saturating range of the Tanh curve.",
+      "C) Zero Initialization, because Tanh is a zero-centered function and starting the weights at zero aligns perfectly with its origin.",
+      "D) Random Initialization between 0 and 1, because Tanh only accepts positive inputs."
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "weight_initialization",
+      "xavier_initialization",
+      "glorot_initialization",
+      "tanh"
+    ],
+    "difficulty": "medium",
+    "explanation": "Different activation functions require different mathematical weight initializations to maintain a healthy variance of the signal as it passes through deep layers. Extensive research (specifically by Xavier Glorot) proved that for symmetric, saturating activation functions like Tanh , Xavier (or Glorot) Initialization works best. It scales the random weights based on the number of inputs ($n_{in}$) or both inputs and outputs ($n_{in} + n_{out}$) using a variance of $\\frac{1}{n_{in}}$ or similar formulas. This specific scaling prevents the weighted sum from becoming too large (which would saturate Tanh and cause Vanishing Gradients) or too small. He Initialization (Option A) is optimized specifically for ReLU, not Tanh. Zero initialization (Option C) breaks the network's symmetry and halts learning. Option D is factually incorrect regarding Tanh's input domain."
+  },
+  {
+    "id": "Xavier/Glorot and He Weight Initialization in Deep Learning_002",
+    "question": "Why does the mathematical formula for Xavier (Glorot) Normal Initialization explicitly divide the random weight values by the square root of the number of incoming connections ($n_{in}$)? What is the intuitive purpose of this specific scaling factor?",
+    "type": "multiple_choice",
+    "options": [
+      "A) It ensures that layers with a massive number of incoming connections receive proportionally *smaller* initial weights, preventing the final weighted sum ($Z$) from blowing up and saturating the activation function.",
+      "B) It forces the neural network to automatically add more hidden layers if the input layer is too small.",
+      "C) It converts the non-linear Tanh activation function into a strictly linear function during the first epoch to speed up initial convergence.",
+      "D) It ensures that the biases are mathematically larger than the weights, preventing the Dying ReLU problem."
+    ],
+    "correct_indices": [
+      0
+    ],
+    "tags": [
+      "xavier_initialization",
+      "mathematical_intuition",
+      "variance_scaling"
+    ],
+    "difficulty": "medium",
+    "explanation": "The core intuition behind these advanced initialization techniques is managing the variance of the weighted sum ($Z = w_1x_1 + w_2x_2 + \\dots + w_nx_n$). If a neuron has 1,000 incoming connections ($n_{in} = 1000$), adding up 1,000 random numbers will likely result in a very large magnitude for $Z$. A large $Z$ will push saturating functions (like Tanh or Sigmoid) into their flat tails, causing Vanishing Gradients . To prevent this, the formula divides the random weights by $\\sqrt{n_{in}}$. This scales the weights down: the more inputs a neuron has, the smaller its individual weights become, keeping the final sum ($Z$) in a healthy, active range. Options B, C, and D describe fabricated, nonsensical algorithmic behaviors."
+  },
+  {
+    "id": "Xavier/Glorot and He Weight Initialization in Deep Learning_003",
+    "question": "An engineering team switches their deep neural network's hidden layers from the Tanh activation function to the ReLU activation function. To maintain optimal gradient flow, which weight initialization technique should they switch to?",
+    "type": "multiple_choice",
+    "options": [
+      "A) Xavier (Glorot) Initialization",
+      "B) He Initialization",
+      "C) Constant Initialization (e.g., all weights set to 0.5)",
+      "D) Zero Initialization"
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "weight_initialization",
+      "he_initialization",
+      "relu"
+    ],
+    "difficulty": "easy",
+    "explanation": "Because the ReLU activation function ($f(x) = \\max(0, x)$) behaves fundamentally differently than Tanh (specifically, it kills half the signal by zeroing out negative inputs), Xavier initialization does not maintain the variance perfectly. Researchers (specifically Kaiming He) proved that for networks using ReLU or its variants (like Leaky ReLU), He Initialization is the mathematically optimal choice. It adjusts the scaling factor slightly (using a variance of $\\frac{2}{n_{in}}$ instead of $\\frac{1}{n_{in}}$) to compensate for the signal loss caused by ReLU's zeroing behavior. Options C and D are universally bad initialization strategies that break network symmetry and halt learning."
+  },
+  {
+    "id": "Xavier/Glorot and He Weight Initialization in Deep Learning_004",
+    "question": "In the Keras framework, if a developer creates a Dense layer but explicitly forgets to specify a `kernel_initializer`, what specific weight initialization technique does Keras automatically apply by default?",
+    "type": "multiple_choice",
+    "options": [
+      "A) 'zeros' (Zero Initialization)",
+      "B) 'he_normal' (He Normal Initialization)",
+      "C) 'glorot_uniform' (Xavier/Glorot Uniform Initialization)",
+      "D) 'random_normal' (Standard Normal Distribution without scaling)"
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "keras_implementation",
+      "default_hyperparameters",
+      "glorot_initialization"
+    ],
+    "difficulty": "easy",
+    "explanation": "As the instructor notes after checking the Keras source code documentation, if you do not explicitly pass a `kernel_initializer` argument when creating a layer (like `Dense(64)`), the framework defaults to `'glorot_uniform'` (Xavier Uniform Initialization). This is a safe, generalized default for many standard architectures, though as learned in the video, explicitly changing it to `'he_normal'` or `'he_uniform'` is highly recommended when explicitly using ReLU activations. Option A breaks the network. Option D is the unscaled random approach that leads to vanishing/exploding gradients in deep networks."
+  }
+]

@@ -1,3 +1,65 @@
+[
 {
-    
+"id": "Problem with Perceptron_001",
+"question": "What is the primary limitation of a single Perceptron model that necessitated the development of Multi-Layer Perceptrons (MLPs) in Deep Learning?",
+"type": "multiple_choice",
+"options": [
+"A) It can only process binary data and fails on continuous data.",
+"B) It can only classify linearly separable data and completely fails on non-linear datasets.",
+"C) It takes excessively long to train because it cannot utilize backpropagation.",
+"D) It is strictly designed for image processing, not tabular or text data."
+],
+"correct_indices": [
+1
+],
+"tags": [
+"perceptron",
+"limitations",
+"linear_separability"
+],
+"difficulty": "easy",
+"explanation": "A single Perceptron mathematically acts as a single straight line (or a hyperplane in higher dimensions). Therefore, if a dataset is not linearly separable, a single Perceptron will never be able to classify it correctly. Multi-Layer Perceptrons (MLPs) with hidden layers were developed specifically to capture this non-linearity. Option A is false because perceptrons accept continuous inputs. Option C is false because single perceptron training is computationally cheap and fast. Option D is factually incorrect."
+},
+{
+"id": "Problem with Perceptron_002",
+"question": "The instructor tested the Perceptron using code on AND, OR, and XOR datasets. On which of these datasets did the Perceptron completely fail to separate the classes, and what was the mathematical reason?",
+"type": "multiple_choice",
+"options": [
+"A) The AND dataset, because it only outputs 1 under a single condition, causing severe class imbalance.",
+"B) The OR dataset, because its data points are located too close to the origin of the graph.",
+"C) The XOR dataset, because its points form a diagonal cross pattern in 2D space that cannot be separated by any single straight line.",
+"D) It failed on all three datasets, because a Perceptron is strictly a regression algorithm, not a classifier."
+],
+"correct_indices": [
+2
+],
+"tags": [
+"xor_problem",
+"logic_gates",
+"non_linear_data"
+],
+"difficulty": "medium",
+"explanation": "The XOR (Exclusive OR) gate produces non-linear data. When plotted on a 2D graph, the identical output classes sit diagonally opposite each other . No single straight line can separate the true and false outputs, meaning the Perceptron mathematically cannot find a valid decision boundary. The AND and OR gate datasets are linearly separable, so the Perceptron easily draws a line to classify them. Therefore, Options A, B, and D are entirely incorrect."
+},
+{
+"id": "Problem with Perceptron_003",
+"question": "When the instructor trained a single Perceptron (with no hidden layers) on the XOR dataset in TensorFlow Playground, what was the observed result after running it for countless epochs?",
+"type": "multiple_choice",
+"options": [
+"A) Given enough epochs, the model gradually learned a curved decision boundary and achieved 100% accuracy.",
+"B) The model never managed to correctly classify the data, and the decision boundary failed to converge regardless of the training time provided.",
+"C) The model drastically overfit, drawing tight, circular boundaries around every individual data point.",
+"D) The decision line completely vanished because the learning rate decayed to zero, causing the model to halt predictions."
+],
+"correct_indices": [
+1
+],
+"tags": [
+"tensorflow_playground",
+"convergence",
+"training_epochs"
+],
+"difficulty": "medium",
+"explanation": "The mathematical architecture of a single Perceptron strictly limits it to generating linear functions (straight lines). Because of this hard mathematical constraint, no matter how many training epochs or how much time you give it, it will never converge on a non-linear dataset like XOR. The boundary line will simply shift around aimlessly without ever separating the classes. Option A is false because a single perceptron cannot create curves. Option C is false because generating circular boundaries requires complex non-linear capabilities (like RBF networks or deep MLPs). Option D describes a fabricated scenario that does not occur in standard Perceptron training."
 }
+]

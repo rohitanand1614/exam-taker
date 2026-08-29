@@ -1,3 +1,88 @@
-{
-    
-}
+[
+  {
+    "id": "Regularization in Deep Learning_001",
+    "question": "A deep learning model is built to predict student placement based on academic features. The training accuracy reaches 99%, but the validation accuracy stagnates at 65%. The engineer visualizes the decision boundary and notices it forms an incredibly complex, jagged shape that wraps tightly around every single training data point. What is the fundamental cause of this specific problem?",
+    "type": "multiple_choice",
+    "options": [
+      "A) The neural network architecture is too simple, causing it to underfit and fail to capture the general trend of the data.",
+      "B) The neural network has too many nodes and parameters, giving it excessive capacity. Instead of learning the underlying concepts, it is simply memorizing the noise and minor fluctuations in the training data (overfitting).",
+      "C) The learning rate was set too high, causing the gradient descent algorithm to continually overshoot the optimal decision boundary.",
+      "D) The input features were not standardized properly, causing the model to prioritize CGPA entirely over the other features."
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "overfitting",
+      "model_complexity",
+      "decision_boundary"
+    ],
+    "difficulty": "easy",
+    "explanation": "The scenario describes classic overfitting. When a model (especially a deep neural network with thousands of parameters) is too complex for the given data, it possesses the mathematical flexibility to draw highly irregular, jagged decision boundaries . It essentially memorizes the training dataset—including its noise and outliers—rather than learning the generalized, underlying pattern. Consequently, it fails entirely when presented with unseen validation data. Option A is the opposite (underfitting). Options C and D cause different training issues (divergence or slow convergence), but not this specific symptom of a hyper-complex, memorized decision boundary."
+  },
+  {
+    "id": "Regularization in Deep Learning_002",
+    "question": "To combat overfitting, the instructor introduces L2 Regularization. How exactly does L2 Regularization mathematically alter the standard Loss Function (e.g., Mean Squared Error) of the neural network?",
+    "type": "multiple_choice",
+    "options": [
+      "A) It adds a penalty term that calculates the sum of the absolute values of all weights in the network.",
+      "B) It adds a penalty term consisting of the sum of the squared values of all weights in the network, multiplied by a hyperparameter ($\\lambda$).",
+      "C) It divides the original loss function by the total number of layers in the network to scale the error.",
+      "D) It subtracts the sum of all the bias terms from the final loss output to keep the decision boundary centered."
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "l2_regularization",
+      "loss_function",
+      "penalty_term",
+      "math"
+    ],
+    "difficulty": "medium",
+    "explanation": "L2 Regularization (often called Ridge Regression in linear models) modifies the cost function by adding a specific penalty term. This penalty is mathematically defined as the sum of the *squared* values of all the weights in the network ($w_1^2 + w_2^2 + \\dots + w_n^2$), multiplied by a tuning hyperparameter called lambda ($\\lambda$).  Option A describes L1 Regularization (Lasso), which uses absolute values instead of squares. Option C is a fabricated scaling method. Option D is incorrect; as the instructor notes, biases are explicitly *excluded* from the regularization penalty term."
+  },
+  {
+    "id": "Regularization in Deep Learning_003",
+    "question": "During the mathematical derivation of L2 Regularization, the instructor shows that the weight update rule changes from $W_{new} = W_{old} - \\alpha \\cdot \\text{gradient}$ to $W_{new} = W_{old}(1 - \\alpha \\cdot \\lambda) - \\alpha \\cdot \\text{gradient}$. What is the practical, intuitive effect of this new $(1 - \\alpha \\cdot \\lambda)$ multiplier on the network's weights?",
+    "type": "multiple_choice",
+    "options": [
+      "A) It causes the weights to exponentially increase during every epoch, forcing the model to learn faster.",
+      "B) It guarantees that all weights will eventually reach exactly zero, effectively deleting the hidden layers.",
+      "C) It acts as a 'Weight Decay' factor. Because the multiplier is a positive number slightly less than 1, it artificially shrinks the value of every weight towards zero during every single update step.",
+      "D) It dynamically shifts the activation function from Sigmoid to ReLU whenever the weights get too large."
+    ],
+    "correct_indices": [
+      2
+    ],
+    "tags": [
+      "weight_decay",
+      "l2_regularization",
+      "weight_update_rule"
+    ],
+    "difficulty": "hard",
+    "explanation": "This is the core mechanism of L2 Regularization. The term $(1 - \\text{learning\\_rate} \\cdot \\lambda)$ evaluates to a fraction just slightly less than 1 (e.g., 0.99). Before the standard gradient is even subtracted, the old weight is multiplied by this fraction. This means that at *every single update step*, the weight is artificially shrunk by a tiny percentage. Over hundreds of epochs, this persistent 'Weight Decay' heavily penalizes large weights, pulling the entire distribution of weights very close to zero . Option A is the opposite of what happens. Option B is false; L2 shrinks weights *close* to zero, but rarely exactly zero (unlike L1). Option D is factually incorrect."
+  },
+  {
+    "id": "Regularization in Deep Learning_004",
+    "question": "The instructor mentions that L1 and L2 Regularization affect the final weights differently. If an engineer wants to perform automatic 'feature selection' by forcing the neural network to completely eliminate irrelevant input features, which regularization technique should they use, and why?",
+    "type": "multiple_choice",
+    "options": [
+      "A) L2 Regularization, because it squares the weights, making irrelevant features exponentially larger so they can be easily identified and dropped.",
+      "B) L1 Regularization, because its penalty geometry naturally drives the weights of less important features to exactly 0.0, effectively creating a 'sparse' model.",
+      "C) Early Stopping, because it monitors validation loss and deletes nodes that cause the loss to rise.",
+      "D) Data Augmentation, because adding synthetic data mathematically forces the weights of bad features to zero."
+    ],
+    "correct_indices": [
+      1
+    ],
+    "tags": [
+      "l1_vs_l2",
+      "l1_regularization",
+      "feature_selection",
+      "sparsity"
+    ],
+    "difficulty": "medium",
+    "explanation": "L1 Regularization (Lasso) adds the absolute value of the weights as a penalty. Due to the geometric shape of this penalty function (a diamond), the optimization process naturally tends to drive the optimal weights of less important features to exactly zero. When a weight is exactly zero, that connection is essentially deleted from the network. This results in a 'sparse' model, acting as an automatic feature selection mechanism. L2 Regularization (Ridge) shrinks weights *close* to zero, but they usually remain non-zero (e.g., 0.0001), meaning all features are kept. Option A is factually backward. Options C and D are different techniques that do not explicitly drive specific weights to exactly zero."
+  }
+]

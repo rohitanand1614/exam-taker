@@ -1,3 +1,107 @@
-{
-    
-}
+[
+    {
+        "id": "dl_attention_001",
+        "question": "The instructor highlights a critical flaw in the basic Encoder-Decoder architecture when handling long sentences (e.g., >30 words). Which of the following best describes this bottleneck?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The Decoder's Softmax layer runs out of memory because the vocabulary size grows exponentially with sentence length.",
+            "B) The entire input sentence must be compressed into a single, fixed-size Context Vector, creating an information bottleneck where details are lost.",
+            "C) The Encoder's LSTM uses a linear activation function, preventing it from learning complex grammar rules in long paragraphs.",
+            "D) Backpropagation Through Time (BPTT) is strictly hardcoded to stop at 25 time steps in modern Deep Learning frameworks."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Encoder-Decoder Bottleneck",
+            "Context Vector",
+            "Long Sequences"
+        ],
+        "difficulty": "easy",
+        "explanation": "In a vanilla Encoder-Decoder network, the Encoder processes the entire input sequence and summarizes it into a *single*, fixed-size vector (the Context Vector, derived from the final hidden/cell states). For short sentences, this vector can hold the necessary information. However, for long sentences, forcing all the semantic meaning, grammar, and nuances into one static set of numbers creates a massive information bottleneck, causing the model to \"forget\" early parts of the sentence and drastically degrading translation quality. Option A is false; vocabulary size is fixed before training. Option C is false; LSTMs use non-linear activations (tanh, sigmoid). Option D is a fabricated software limitation."
+    },
+    {
+        "id": "dl_attention_002",
+        "question": "In an Attention-based sequence-to-sequence model, the Decoder at time step $i$ requires a context vector $c_i$. How is this dynamically generated context vector $c_i$ mathematically calculated?",
+        "type": "multiple_choice",
+        "options": [
+            "A) By taking the simple mathematical average of all Encoder hidden states ($h_1, h_2... h_T$).",
+            "B) By taking a weighted sum of all Encoder hidden states, where the weights ($\\alpha_{ij}$) represent the alignment score between the Decoder's current state and each Encoder state.",
+            "C) By concatenating the Encoder's final hidden state ($h_T$) with the Decoder's previous hidden state ($s_{i-1}$).",
+            "D) By passing the target output token ($y_{i-1}$) through an Embedding layer and multiplying it by the Encoder's states."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Attention Mechanism",
+            "Context Vector Calculation",
+            "Math"
+        ],
+        "difficulty": "medium",
+        "explanation": "The core innovation of the Attention mechanism is the *dynamic* Context Vector ($c_i$). Instead of relying on a single static summary, the Decoder computes a unique $c_i$ for every generation step $i$. It does this by taking a weighted sum of *all* the hidden states produced by the Encoder ($h_j$). The formula is $c_i = \\sum (\\alpha_{ij} \\cdot h_j)$. The weights ($\\alpha_{ij}$) act as probabilities summing to 1, indicating how much \"attention\" the Decoder should pay to each specific Encoder state $h_j$ to generate the next word. Option A ignores the dynamic weighting. Option C describes a vanilla Encoder-Decoder setup. Option D mixes up the input token processing with the attention calculation."
+    },
+    {
+        "id": "dl_attention_003",
+        "question": "To calculate the attention weight ($\\alpha_{ij}$) between the Decoder's time step $i$ and the Encoder's time step $j$, the alignment model requires two specific vector inputs. What are these two inputs, and conceptually, what are they comparing?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Inputs: The current input token ($x_j$) and the previous output token ($y_{i-1}$). Concept: Comparing the raw vocabulary words directly.",
+            "B) Inputs: The Encoder's final state ($h_T$) and the Decoder's final state ($s_T$). Concept: Comparing the overall sentence meanings.",
+            "C) Inputs: The Encoder's hidden state ($h_j$) and the Decoder's previous hidden state ($s_{i-1}$). Concept: Asking \"Given what I have translated so far, how relevant is this specific input word?\"",
+            "D) Inputs: The Encoder's hidden state ($h_j$) and the Decoder's current hidden state ($s_i$). Concept: Aligning the grammatical structures in real-time."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Alignment Score",
+            "Attention Inputs",
+            "Architecture"
+        ],
+        "difficulty": "hard",
+        "explanation": "The alignment model (which generates the attention scores $\\alpha_{ij}$) needs to determine relevance. To do this, it looks at the Encoder's hidden state at step $j$ ($h_j$, representing a specific piece of the input sentence) and the Decoder's *previous* hidden state ($s_{i-1}$, representing the context of what has been translated *up to this point*). It cannot use the Decoder's current state ($s_i$) because $s_i$ hasn't been calculated yet; $s_i$ actually *requires* the attention vector $c_i$ to be computed first! Therefore, the network evaluates $f(s_{i-1}, h_j)$ to decide how much focus to place on $h_j$ before taking its next step. Option D represents a chronological paradox in the computation graph."
+    },
+    {
+        "id": "dl_attention_004",
+        "question": "According to the instructor, how did the original researchers (Bahdanau et al.) design the mathematical function $f(s_{i-1}, h_j)$ to compute the raw alignment scores before they are converted into attention weights $\\alpha_{ij}$?",
+        "type": "multiple_choice",
+        "options": [
+            "A) They used a rigid, hand-crafted Cosine Similarity formula to measure the exact angle between the two vectors.",
+            "B) They utilized a pre-trained Word2Vec model to find the semantic distance between the states.",
+            "C) They introduced a small, trainable Feed-Forward Neural Network (a Multi-Layer Perceptron) that learns the alignment function directly from the training data.",
+            "D) They applied a static dot-product operation without any learnable parameters to ensure fast computational speed."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Alignment Model",
+            "Neural Networks",
+            "Bahdanau Attention"
+        ],
+        "difficulty": "medium",
+        "explanation": "Instead of hardcoding a mathematical similarity metric (like cosine similarity or Euclidean distance), the researchers leveraged the Universal Approximation Theorem. They designed the alignment model as a small, separate Feed-Forward Neural Network (often called an MLP or Dense layer). This network takes $s_{i-1}$ and $h_j$ as inputs and outputs a score. Because it is a neural network with its own weights and biases, it is fully differentiable. Consequently, it trains simultaneously with the rest of the Encoder-Decoder architecture via backpropagation, automatically learning the optimal way to align languages based entirely on the provided dataset. Option D describes 'Luong' (Dot-Product) attention, a later simplification, not the original approach discussed here."
+    },
+    {
+        "id": "dl_attention_005",
+        "question": "In the original paper introducing this Attention mechanism for Machine Translation, the authors made a specific architectural choice for the Encoder to provide richer context to the Attention model. What was this choice?",
+        "type": "multiple_choice",
+        "options": [
+            "A) They used a Convolutional Neural Network (CNN) as the Encoder to capture spatial character-level patterns.",
+            "B) They used a Bidirectional LSTM (BiLSTM) for the Encoder, ensuring each hidden state $h_j$ contained context from both the past and future of the input sentence.",
+            "C) They stacked 10 layers of standard SimpleRNNs to maximize the hierarchical depth of the input.",
+            "D) They completely removed the Encoder's recurrent connections, relying entirely on the Attention mechanism to determine word order."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Original Paper",
+            "Encoder Design",
+            "BiLSTM"
+        ],
+        "difficulty": "easy",
+        "explanation": "In the original Bahdanau Attention paper, the researchers utilized a Bidirectional LSTM (BiLSTM) for the Encoder. A standard unidirectional LSTM only has context from the words preceding it (left-to-right). By making it Bidirectional, the hidden state $h_j$ for a specific word contains a concatenation of the forward pass (context from the beginning of the sentence to word $j$) and the backward pass (context from the end of the sentence to word $j$). This means the Attention mechanism is evaluating an $h_j$ that possesses a complete, holistic understanding of the word's surrounding grammatical environment, leading to significantly better alignment and translation. Option D hints at the later 'Transformer' architecture, not the recurrent attention model discussed."
+    }
+]

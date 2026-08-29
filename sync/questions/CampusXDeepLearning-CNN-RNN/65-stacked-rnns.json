@@ -1,1 +1,107 @@
-{}
+[
+    {
+        "id": "dl_deep_rnn_001",
+        "question": "When designing a Stacked (Deep) RNN for sentiment analysis, the instructor emphasizes that initial layers learn different features compared to deeper layers. How does the data representation hierarchically evolve as it passes upward through the stacked hidden layers?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Initial layers process the entire sequence to find the overall sentiment, while deeper layers break it down to identify individual negative words.",
+            "B) Initial layers learn primitive, word-level features (e.g., identifying sentiment-bearing words), while deeper layers synthesize these into higher-level, sentence-or-document-level context.",
+            "C) Initial layers perform dimensionality reduction on the embeddings, while deeper layers are solely responsible for temporal unrolling.",
+            "D) All layers learn the exact same features; stacking them merely averages their predictions to reduce variance (ensemble learning)."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Hierarchical Representation",
+            "Deep RNN",
+            "Feature Learning"
+        ],
+        "difficulty": "easy",
+        "explanation": "The primary motivation for using Deep RNNs is their ability to learn hierarchical representations, similar to how CNNs learn edges before shapes. In the context of NLP (like sentiment analysis), the lower/initial layers operate closer to the raw input and tend to learn primitive syntactic features or isolate specific sentiment-heavy words (e.g., \"love\", \"terrible\"). The deeper layers receive these processed sequences as input and can synthesize them to understand complex phrasing, negations, or overall document sentiment. Option A reverses this hierarchy. Option C is incorrect; dimensionality reduction is done by the Embedding layer, and temporal unrolling happens at all RNN layers. Option D describes ensembling, not deep feature learning."
+    },
+    {
+        "id": "dl_deep_rnn_002",
+        "question": "In Keras, when stacking multiple RNN layers (e.g., `SimpleRNN` or `LSTM`), you must configure the `return_sequences` parameter. If you have a 3-layer Stacked RNN for a many-to-one classification task, how should this parameter be set for each layer, and why?",
+        "type": "multiple_choice",
+        "options": [
+            "A) All three layers must have `return_sequences=True` so that the final Dense layer receives the full temporal context.",
+            "B) The first two layers must have `return_sequences=True` to pass the full sequence of hidden states upward, while the final layer has `return_sequences=False` to pass only the final hidden state to the classifier.",
+            "C) All three layers must have `return_sequences=False` to prevent the vanishing gradient problem from propagating upward.",
+            "D) Only the first layer needs `return_sequences=True`; subsequent layers automatically infer the sequence length from the initial embedding."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Keras Implementation",
+            "return_sequences",
+            "Deep RNN Architecture"
+        ],
+        "difficulty": "medium",
+        "explanation": "In a Stacked RNN, a hidden layer must receive a sequence of inputs (one for each time step) to perform its recurrent calculations over time. Therefore, layer $L$ must output a full sequence of hidden states to serve as the input sequence for layer $L+1$. This is achieved by setting `return_sequences=True` for all intermediate layers. However, for a standard classification task (many-to-one), the final prediction dense layer only needs the ultimate summarized context of the entire sequence. Thus, the final RNN layer is set to `return_sequences=False`, outputting only the hidden state of the very last time step. Setting it to `False` on intermediate layers (Option C, D) would break the temporal input requirement for the subsequent RNN layer. Option A would cause a shape mismatch with a standard Dense classification head."
+    },
+    {
+        "id": "dl_deep_rnn_003",
+        "question": "Consider the mathematical notation for a specific hidden state in a Deep RNN: $h_t^l$. The formula to calculate this state requires inputs from two distinct sources. What are these sources, and what weight matrices are applied to them?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Input 1: The previous time step's state in the same layer ($h_{t-1}^l$) multiplied by recurrent weights $U^l$. Input 2: The current time step's output from the layer below ($h_t^{l-1}$) multiplied by input weights $W^l$.",
+            "B) Input 1: The raw input sequence $x_t$ multiplied by input weights $W^l$. Input 2: The previous time step's state from the layer below ($h_{t-1}^{l-1}$) multiplied by recurrent weights $U^l$.",
+            "C) Input 1: The final hidden state of the previous layer ($h_T^{l-1}$) multiplied by weights $W^l$. Input 2: The current input $x_t$ multiplied by weights $U^l$.",
+            "D) Input 1: The current time step's state from the layer above ($h_t^{l+1}$) multiplied by $W^l$. Input 2: The previous time step's state $h_{t-1}^l$ multiplied by $U^l$."
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Math",
+            "Notation",
+            "Information Flow"
+        ],
+        "difficulty": "hard",
+        "explanation": "In a Deep RNN, the calculation of a hidden state at time $t$ and layer $l$, denoted as $h_t^l$, relies on a 2D grid of information flow. It requires temporal context from the past and hierarchical context from below. Specifically, it receives $h_{t-1}^l$ (the hidden state from the previous time step within the *same* layer $l$), which is multiplied by the layer's recurrent weight matrix $U^l$. Simultaneously, it receives $h_t^{l-1}$ (the hidden state computed at the *same* time step $t$ by the layer immediately *below* it, $l-1$), which acts as the 'input' to layer $l$ and is multiplied by the input weight matrix $W^l$. These are summed, biased, and passed through an activation function (like $\\tanh$). Option B ignores hierarchical flow. Option C ignores continuous temporal flow. Option D implies information flows downward from future layers, which is impossible."
+    },
+    {
+        "id": "dl_deep_rnn_004",
+        "question": "You are transitioning a model from a single-layer vanilla RNN to a 3-layer Stacked Vanilla RNN to improve accuracy on a complex dataset. However, during training, the model's loss plateaus early, and gradients for the first layer become extremely close to zero. What architectural flaw in Stacked Vanilla RNNs is primarily responsible for this?",
+        "type": "multiple_choice",
+        "options": [
+            "A) Stacked architectures restrict the learning rate of lower layers to prevent overfitting.",
+            "B) The Vanishing Gradient problem is compounded because backpropagation must now traverse both horizontally (across time steps) and vertically (down through the stacked layers).",
+            "C) The `return_sequences=True` parameter introduces non-differentiable operations between layers.",
+            "D) Stacking layers forces the network to use a linear activation function, which cannot map complex non-linear patterns."
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Vanishing Gradient",
+            "Deep RNN Limitations",
+            "Backpropagation"
+        ],
+        "difficulty": "medium",
+        "explanation": "Vanilla RNNs famously suffer from the Vanishing Gradient problem over long sequences due to repeated multiplication of weights and activation derivatives < 1. When you stack RNNs vertically, you create a 2D computational grid. Backpropagation must now flow backward through time *and* downward through the depth of the layers to update the weights of the lowest layer. This vertical depth compounds the chain rule multiplications, making deep vanilla RNNs highly susceptible to vanishing gradients, often rendering the lower layers untrainable. This is explicitly why the instructor notes that practical Deep RNNs almost always use LSTMs or GRUs, which have internal gating mechanisms to preserve gradient flow both horizontally and vertically. Option B accurately describes this 2D backpropagation issue."
+    },
+    {
+        "id": "dl_deep_rnn_005",
+        "question": "An engineer trains a Deep LSTM with 4 layers on a relatively small dataset of 5,000 product reviews. The training accuracy reaches 99%, but the validation accuracy stalls at 65%. Based on the instructor's guidelines, what is the most likely cause and the appropriate mitigation strategy?",
+        "type": "multiple_choice",
+        "options": [
+            "A) The model lacks representational power; the engineer should add two more LSTM layers.",
+            "B) The model is suffering from Exploding Gradients; the engineer must remove the LSTM gates and revert to a SimpleRNN.",
+            "C) The high parameter count of the Deep LSTM has caused severe overfitting on the small dataset; the engineer should reduce the layer count, add dropout, or use L2 regularization.",
+            "D) The computational resources are insufficient, causing the validation pass to time out and report artificially low scores."
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Overfitting",
+            "Deep RNN Disadvantages",
+            "Model Tuning"
+        ],
+        "difficulty": "easy",
+        "explanation": "A massive discrepancy between training accuracy (99%) and validation accuracy (65%) is the textbook definition of overfitting. Deep RNNs (especially Deep LSTMs) have a massive number of trainable parameters because each additional layer introduces new weight matrices for inputs, recurrent connections, and multiple gates. When applied to a small dataset (like 5,000 reviews), this high-capacity model easily memorizes the training data noise instead of learning generalizable patterns. The standard mitigation is to reduce the model complexity (fewer layers/units) or apply regularization techniques like Dropout. Option A would worsen the overfitting. Option B is false; SimpleRNNs are worse for gradient issues. Option D is a hardware issue, not a machine learning phenomenon."
+    }
+]
