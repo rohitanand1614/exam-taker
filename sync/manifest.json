@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exported_at": "2026-08-29T14:02:39+00:00",
+  "exported_at": "2026-08-30T16:00:43+00:00",
   "decks": [
     {
       "id": "2026-llm-job-2026-interview-test-agentic-ai-engineer-combined-mcq",
@@ -421,6 +421,30 @@
       "name": "genai-llm-books / Hands-On Large Language Models / Chapter3",
       "path": "questions/genai-llm-books/Hands-On Large Language Models/Chapter3.json",
       "question_count": 15
+    },
+    {
+      "id": "github-copilot-exam-gh300-copilot-cert-mcq-batch4",
+      "name": "github-copilot-exam / Gh300 Copilot Cert Mcq Batch4",
+      "path": "questions/github-copilot-exam/gh300-copilot-cert-mcq-batch4.json",
+      "question_count": 12
+    },
+    {
+      "id": "github-copilot-exam-gh300-practice-set-mcq",
+      "name": "github-copilot-exam / Gh300 Practice Set Mcq",
+      "path": "questions/github-copilot-exam/gh300-practice-set-mcq.json",
+      "question_count": 72
+    },
+    {
+      "id": "github-copilot-exam-ghcert-mcq",
+      "name": "github-copilot-exam / Ghcert Mcq",
+      "path": "questions/github-copilot-exam/ghcert-mcq.json",
+      "question_count": 19
+    },
+    {
+      "id": "github-copilot-exam-ghcopilot-cert-mcq",
+      "name": "github-copilot-exam / Ghcopilot Cert Mcq",
+      "path": "questions/github-copilot-exam/ghcopilot-cert-mcq.json",
+      "question_count": 44
     },
     {
       "id": "nvidia-exam-exam1-nvidia-deploying-questions",
