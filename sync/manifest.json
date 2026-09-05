@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "exported_at": "2026-09-05T08:32:41+00:00",
+  "exported_at": "2026-09-05T08:37:08+00:00",
   "decks": [
     {
       "id": "2026-llm-job-2026-interview-test-agentic-ai-engineer-combined-mcq",
@@ -439,6 +439,12 @@
       "name": "github-copilot-exam / Ghcert Mcq",
       "path": "questions/github-copilot-exam/ghcert-mcq.json",
       "question_count": 19
+    },
+    {
+      "id": "github-copilot-exam-ghcert_skillcertpro_batch01",
+      "name": "github-copilot-exam / Ghcert Skillcertpro Batch01",
+      "path": "questions/github-copilot-exam/GHCert_SkillCertPro_Batch01.json",
+      "question_count": 165
     },
     {
       "id": "github-copilot-exam-ghcopilot-cert-mcq",
