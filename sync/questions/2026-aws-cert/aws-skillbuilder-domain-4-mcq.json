@@ -1,0 +1,672 @@
+[
+    {
+        "id": "D4_SB_001",
+        "group": "Token Efficiency & Cost Optimization Techniques",
+        "question": "A company is implementing an Amazon Bedrock application and wants to reduce costs by optimizing token usage. Which technique would be MOST effective for reducing token consumption while maintaining response quality?",
+        "options": [
+            "Increasing model temperature to generate more diverse responses",
+            "Using context pruning to remove irrelevant information from prompts",
+            "Implementing synchronous API calls for all requests",
+            "Storing all model responses in Amazon S3 without compression"
+        ],
+        "correct_answer": "Using context pruning to remove irrelevant information from prompts",
+        "user_result": "correct",
+        "explanation": "Context pruning removes irrelevant or redundant information from prompts before sending them to foundation models, directly reducing token usage while maintaining quality. Temperature affects diversity not token count; synchronous calls affect architecture not tokens; unstructured S3 storage doesn't address token optimization.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_002",
+        "group": "Token Efficiency & Cost Optimization Techniques",
+        "question": "A developer is implementing token estimation for an Amazon Bedrock application. Which approach is MOST effective for accurately estimating token counts before sending requests to the model?",
+        "options": [
+            "Using model-specific tokenizers",
+            "Counting characters and dividing by 4",
+            "Counting words and multiplying by 1.5",
+            "Using a fixed token count for all requests"
+        ],
+        "correct_answer": "Using model-specific tokenizers",
+        "user_result": "correct",
+        "explanation": "Different foundation models use different tokenization algorithms, so using the model-specific tokenizer gives the most accurate estimate. Character/word-based heuristics don't reliably correlate across models; fixed counts ignore prompt variability.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_003",
+        "group": "Token Efficiency & Cost Optimization Techniques",
+        "question": "A company wants to optimize their Amazon Bedrock costs by implementing response size controls. Which technique should they use?",
+        "options": [
+            "Setting appropriate max_tokens parameters",
+            "Increasing model temperature",
+            "Using synchronous API calls",
+            "Implementing HTTP compression"
+        ],
+        "correct_answer": "Setting appropriate max_tokens parameters",
+        "user_result": "correct",
+        "explanation": "max_tokens limits the maximum tokens generated in a response, directly controlling cost by preventing unnecessarily verbose outputs. Temperature controls randomness not size; synchronous calls are an architecture choice; HTTP compression affects transmission, not tokens generated.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_004",
+        "group": "Token Efficiency & Cost Optimization Techniques",
+        "question": "Which approaches are MOST effective for developing token efficiency systems? (Select TWO.)",
+        "options": [
+            "Using unlimited context windows",
+            "Implementing token estimation and tracking",
+            "Applying context window optimization and prompt compression",
+            "Using the smallest possible response size"
+        ],
+        "correct_answer": [
+            "Implementing token estimation and tracking",
+            "Applying context window optimization and prompt compression"
+        ],
+        "user_result": "correct",
+        "explanation": "Token estimation/tracking enables accurate monitoring and optimization; context window optimization and prompt compression reduce usage while maintaining effectiveness. Unlimited context windows increase cost unnecessarily; always using the smallest response size risks compromising effectiveness.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_005",
+        "group": "Cost-Effective Model Selection Framework",
+        "question": "What is the MOST effective approach for creating a cost-effective model selection framework?",
+        "options": [
+            "Implementing tiered model usage based on query complexity and cost-capability tradeoff evaluation",
+            "Always using the most capable model"
+        ],
+        "correct_answer": "Implementing tiered model usage based on query complexity and cost-capability tradeoff evaluation",
+        "user_result": "correct",
+        "explanation": "Tiered usage balances cost and capability across different query types. Always using the most capable model is cost-inefficient for simpler queries.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_006",
+        "group": "Throughput, Capacity Planning & Concurrency Management",
+        "question": "Which approach is MOST effective for developing high-performance foundation model (FM) systems?",
+        "options": [
+            "Using fixed capacity",
+            "Implementing batching strategies, capacity planning, and auto scaling with throughput optimization",
+            "Maximizing provisioned throughput at all times"
+        ],
+        "correct_answer": "Implementing batching strategies, capacity planning, and auto scaling with throughput optimization",
+        "user_result": "correct",
+        "explanation": "This combination provides comprehensive performance optimization and resource management. Fixed capacity doesn't address varying load; always-max provisioned throughput leads to unnecessary cost during low demand.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_007",
+        "group": "Cost-Effective Model Selection Framework",
+        "question": "What is the MOST effective approach for balancing cost and quality in model selection?",
+        "options": [
+            "Choosing the highest quality model",
+            "Implementing inference cost balancing against response quality and price-to-performance ratio measurement",
+            "Using the cheapest models",
+            "Alternating between high- and low-cost models"
+        ],
+        "correct_answer": "Implementing inference cost balancing against response quality and price-to-performance ratio measurement",
+        "user_result": "correct",
+        "explanation": "This optimizes both cost and quality based on specific query needs. Highest-quality-always overspends on simple queries; cheapest-always compromises quality; alternating lacks strategic, requirement-based selection.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_008",
+        "group": "Pre-computation, Caching & Parallel Orchestration",
+        "question": "A company is implementing pre-computation for common queries in their Amazon Bedrock application. Which AWS service should they use to store and retrieve these pre-computed responses with the LOWEST latency?",
+        "options": [
+            "Amazon DynamoDB with DAX",
+            "Amazon S3",
+            "Amazon RDS",
+            "Amazon Redshift"
+        ],
+        "correct_answer": "Amazon DynamoDB with DAX",
+        "user_result": "correct",
+        "explanation": "DynamoDB provides single-digit millisecond response times; DAX reduces this further to microseconds — ideal for caching pre-computed responses. S3 has higher read latency; RDS/Redshift are optimized for complex queries, not ultra-low-latency key-value lookups.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_009",
+        "group": "Pre-computation, Caching & Parallel Orchestration",
+        "question": "A developer is implementing parallel requests for complex workflows in an Amazon Bedrock application. Which AWS service should they use to orchestrate these parallel operations?",
+        "options": [
+            "AWS Step Functions",
+            "Amazon SQS",
+            "Amazon SNS",
+            "AWS Batch"
+        ],
+        "correct_answer": "AWS Step Functions",
+        "user_result": "incorrect",
+        "user_selected": "AWS Batch",
+        "explanation": "Step Functions coordinates multiple AWS services into serverless workflows with built-in support for parallel execution, providing control flow, error handling, and state management. SQS lacks orchestration; SNS is pub/sub messaging; AWS Batch is for batch computing jobs, not orchestrating parallel API requests.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_010",
+        "group": "Ungrouped",
+        "question": "A company is implementing performance benchmarking for their Amazon Bedrock application. Which metric is MOST important to track for evaluating the latency-cost tradeoff?",
+        "options": [
+            "P95 latency per dollar spent",
+            "Total number of tokens processed",
+            "Number of API calls per second",
+            "Model parameter count"
+        ],
+        "correct_answer": "P95 latency per dollar spent",
+        "user_result": "correct",
+        "explanation": "P95 latency per dollar spent directly measures performance value relative to cost. Total tokens relates to cost but not latency; API calls/sec measures throughput not the latency-cost relationship; parameter count is a model characteristic, not a performance metric.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_011",
+        "group": "Ungrouped",
+        "question": "A developer is optimizing model-specific parameters for an Amazon Bedrock application. Which parameter should they adjust to control the randomness of model outputs?",
+        "options": [
+            "Temperature",
+            "Max tokens",
+            "Top-k",
+            "Stop sequences"
+        ],
+        "correct_answer": "Temperature",
+        "user_result": "correct",
+        "explanation": "Temperature controls randomness: higher values (e.g., 0.8) produce more diverse/creative responses, lower values (e.g., 0.2) produce more focused/deterministic ones. Max tokens limits length; top-k limits vocabulary considered (different mechanism than temperature); stop sequences define where generation halts.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_012",
+        "group": "Throughput, Capacity Planning & Concurrency Management",
+        "question": "A developer is implementing capacity planning for token processing requirements in an Amazon Bedrock application. Which approach would be MOST effective for estimating future capacity needs?",
+        "options": [
+            "Analyzing historical token usage patterns and growth trends",
+            "Using a fixed capacity based on current peak usage",
+            "Randomly varying capacity allocations",
+            "Always provisioning maximum possible capacity"
+        ],
+        "correct_answer": "Analyzing historical token usage patterns and growth trends",
+        "user_result": "correct",
+        "explanation": "Effective capacity planning requires analyzing historical usage patterns, including peak-to-average ratios, growth trends, and seasonal variations. Fixed capacity ignores growth; random allocation is unpredictable; always-max is unnecessarily expensive.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_013",
+        "group": "Vector Store & Retrieval Performance Optimization",
+        "question": "A company is optimizing vector database query performance for their retrieval-augmented generation system with Amazon Bedrock. Which approach would MOST effectively improve query speed?",
+        "options": [
+            "Implementing approximate nearest neighbor (ANN) search algorithms",
+            "Always performing exhaustive searches across all vectors",
+            "Randomly sampling vectors for each query",
+            "Storing vectors as JSON strings"
+        ],
+        "correct_answer": "Implementing approximate nearest neighbor (ANN) search algorithms",
+        "user_result": "correct",
+        "explanation": "ANN algorithms like HNSW or IVF significantly improve vector search speed with minimal accuracy impact via efficient index structures. Exhaustive search is slow at scale; random sampling reduces quality; JSON string storage is inefficient for vector operations.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_014",
+        "group": "A/B Testing, Evaluation Metrics & Prompt Effectiveness",
+        "question": "A company is implementing A/B testing to evaluate performance improvements in their Amazon Bedrock application. Which metric is MOST appropriate for comparing the effectiveness of different prompt engineering approaches?",
+        "options": [
+            "Task completion rate",
+            "Total token count",
+            "API call latency",
+            "Number of API calls"
+        ],
+        "correct_answer": "Task completion rate",
+        "user_result": "correct",
+        "explanation": "Task completion rate measures how often the response successfully accomplishes the intended task, directly reflecting prompt engineering effectiveness. Token count relates to cost; latency measures speed; API call count measures volume — none measure effectiveness.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_015",
+        "group": "Throughput, Capacity Planning & Concurrency Management",
+        "question": "A company is implementing concurrent model invocation management for their Amazon Bedrock application. Which AWS service should they use to control concurrency and prevent overwhelming the service?",
+        "options": [
+            "AWS Lambda concurrency controls",
+            "Amazon EC2 Auto Scaling",
+            "Amazon RDS connection pooling",
+            "Amazon S3 transfer acceleration"
+        ],
+        "correct_answer": "AWS Lambda concurrency controls",
+        "user_result": "correct",
+        "explanation": "Lambda concurrency controls limit simultaneous function executions, managing the rate of Bedrock API calls and preventing throttling. EC2 Auto Scaling manages compute capacity, not API concurrency; RDS connection pooling is for database connections; S3 transfer acceleration improves S3 transfer speed only.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_016",
+        "group": "Vector Store & Retrieval Performance Optimization",
+        "question": "A company is implementing query preprocessing to enhance retrieval performance for their Amazon Bedrock Knowledge Base. Which technique would be MOST effective for improving query relevance?",
+        "options": [
+            "Query expansion with synonyms",
+            "Random word removal from queries",
+            "Converting all queries to uppercase",
+            "Adding random terms to queries"
+        ],
+        "correct_answer": "Query expansion with synonyms",
+        "user_result": "correct",
+        "explanation": "Query expansion includes synonyms and related terms, helping match relevant documents even with different terminology. Random word removal reduces specificity; uppercase conversion doesn't affect semantic matching; adding random terms dilutes query focus.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_017",
+        "group": "Model Invocation Auditing & Forensic Traceability",
+        "question": "A developer is implementing forensic traceability for a regulated financial services application using Amazon Bedrock. Which AWS service should they configure?",
+        "options": [
+            "Amazon Inspector",
+            "AWS CloudTrail",
+            "AWS Config",
+            "Amazon GuardDuty"
+        ],
+        "correct_answer": "AWS CloudTrail",
+        "user_result": "incorrect",
+        "user_selected": "Amazon Inspector",
+        "explanation": "CloudTrail provides a comprehensive history of all API calls to Amazon Bedrock, including caller identity, time, source IP, request parameters, and response elements — essential for forensic analysis and audit in regulated industries. Inspector focuses on vulnerabilities; Config tracks resource configuration; GuardDuty is for threat detection — none provide the comprehensive API audit trail CloudTrail does.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_018",
+        "group": "CloudWatch Monitoring, Anomaly Detection & Business/Quality Dashboards",
+        "question": "A company wants to implement anomaly detection for token burst patterns in their Amazon Bedrock application. Which CloudWatch feature should they use?",
+        "options": [
+            "CloudWatch Anomaly Detection",
+            "CloudWatch Logs Insights",
+            "CloudWatch Synthetics",
+            "CloudWatch Events"
+        ],
+        "correct_answer": "CloudWatch Anomaly Detection",
+        "user_result": "correct",
+        "explanation": "CloudWatch Anomaly Detection uses ML to analyze historical token usage, build a normal baseline, and flag unusual patterns. Logs Insights is for log querying; Synthetics is for canary endpoint monitoring; Events is for reacting to resource state changes — none are built for anomaly detection.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_019",
+        "group": "CloudWatch Monitoring, Anomaly Detection & Business/Quality Dashboards",
+        "question": "A developer needs to create a dashboard to monitor the business impact of their generative AI application. Which metrics should they include?",
+        "options": [
+            "CPU utilization, memory usage, and disk I/O",
+            "User engagement, conversion rate, and customer satisfaction",
+            "Number of API calls, token count, and error rate",
+            "Lambda function duration, cold start frequency, and timeout count"
+        ],
+        "correct_answer": "User engagement, conversion rate, and customer satisfaction",
+        "user_result": "incorrect",
+        "user_selected": "Lambda function duration, cold start frequency, and timeout count",
+        "explanation": "Business impact metrics connect FM performance to actual business outcomes, helping understand GenAI ROI. CPU/memory/disk measure infrastructure; API calls/tokens/error rate measure technical usage; Lambda metrics measure serverless performance — none directly measure business impact.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_020",
+        "group": "Vector Store & Retrieval Performance Optimization",
+        "question": "A company wants to implement comprehensive monitoring for their Amazon Bedrock Knowledge Base implementation. Which combination of metrics would be MOST valuable?",
+        "options": [
+            "Query latency, retrieval relevance score, and knowledge base update frequency",
+            "CPU utilization, memory usage, and disk space",
+            "Number of API calls, error rate, and network throughput",
+            "Lambda execution time, S3 object count, and DynamoDB read capacity"
+        ],
+        "correct_answer": "Query latency, retrieval relevance score, and knowledge base update frequency",
+        "user_result": "correct",
+        "explanation": "Effective KB monitoring requires performance metrics (latency), AI-specific metrics (relevance), and operational metrics (update frequency) together. The other options are generic infra/service metrics that don't cover retrieval-specific quality and freshness.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_021",
+        "group": "A/B Testing, Evaluation Metrics & Prompt Effectiveness",
+        "question": "A company wants to monitor prompt effectiveness in their Amazon Bedrock application. Which approach is MOST effective?",
+        "options": [
+            "Tracking token usage for each prompt",
+            "Measuring user engagement with responses",
+            "Monitoring CPU utilization during prompt processing",
+            "Counting the number of API calls per minute"
+        ],
+        "correct_answer": "Measuring user engagement with responses",
+        "user_result": "correct",
+        "explanation": "User engagement metrics (click-through rate, time spent, explicit feedback) give the clearest signal on whether prompts effectively generate useful responses. Token usage shows efficiency not effectiveness; CPU utilization and API call count give no indication of prompt usefulness.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_022",
+        "group": "GenAI-Specific Troubleshooting & Agent/Tool Observability",
+        "question": "A company is implementing a troubleshooting framework for their Amazon Bedrock application. Which technique is MOST effective for identifying logical errors in model reasoning?",
+        "options": [
+            "Reasoning path tracing",
+            "Monitoring CPU utilization",
+            "Tracking token usage",
+            "Measuring response latency"
+        ],
+        "correct_answer": "Reasoning path tracing",
+        "user_result": "correct",
+        "explanation": "Reasoning path tracing exposes the step-by-step process the model follows, making it possible to identify where logical errors or incorrect assumptions occur. CPU utilization, token usage, and latency provide technical performance insight but not reasoning-quality insight.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_023",
+        "group": "GenAI-Specific Troubleshooting & Agent/Tool Observability",
+        "question": "A developer needs to implement monitoring for tool calling patterns in an Amazon Bedrock agent. Which metric would be MOST valuable to track?",
+        "options": [
+            "Tool success rate",
+            "CPU utilization",
+            "Network bandwidth",
+            "Storage capacity"
+        ],
+        "correct_answer": "Tool success rate",
+        "user_result": "correct",
+        "explanation": "Tool success rate measures how often tool calls complete successfully vs. failing — a critical indicator of agent effectiveness. CPU, network, and storage are generic infra metrics with no insight into tool-calling effectiveness specifically.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_024",
+        "group": "Vector Store & Retrieval Performance Optimization",
+        "question": "A company wants to implement vector store operational management for their retrieval-augmented generation system. Which metric is MOST important to monitor for optimal performance?",
+        "options": [
+            "Vector query latency",
+            "CPU utilization",
+            "Network throughput",
+            "Disk IOPS"
+        ],
+        "correct_answer": "Vector query latency",
+        "user_result": "correct",
+        "explanation": "Vector query latency directly impacts overall RAG system response time, making it the primary performance indicator for vector databases. CPU, network throughput, and disk IOPS are relevant but secondary infra metrics.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_025",
+        "group": "CloudWatch Monitoring, Anomaly Detection & Business/Quality Dashboards",
+        "question": "A developer is creating a dashboard to monitor response quality in an Amazon Bedrock application. Which combination of metrics would provide the MOST comprehensive view?",
+        "options": [
+            "CPU utilization, memory usage, and network throughput",
+            "Hallucination rate, relevance score, and user feedback rating",
+            "Number of API calls, error rate, and latency",
+            "Token count, request size, and response size"
+        ],
+        "correct_answer": "Hallucination rate, relevance score, and user feedback rating",
+        "user_result": "correct",
+        "explanation": "This combination covers factual accuracy (hallucination rate), contextual appropriateness (relevance score), and user perception (feedback rating) — the key dimensions of response quality. The other options measure infrastructure, operational performance, or resource usage, not content quality.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_026",
+        "group": "Pre-computation, Caching & Parallel Orchestration",
+        "question": "A retail company develops a GenAI customer service application using Amazon Bedrock experiencing high costs from repeated FM API calls for similar inquiries. The solution must reduce FM invocations, maintain response times under 200 ms, preserve response relevancy using existing vector embeddings for semantic similarity matching, include category-specific TTL settings, and provide monitoring of cache effectiveness. Which solution will meet these requirements?",
+        "options": [
+            "A. Amazon ElastiCache (Redis OSS) with a custom semantic caching layer using exact string matching key-value pairs, uniform 24-hour TTL, CloudWatch metrics",
+            "B. Amazon OpenSearch Service with a k-NN vector index for embeddings/cached responses, a Lambda function for embedding generation + similarity search + threshold matching, category-specific TTLs, OpenSearch dashboards for monitoring",
+            "C. Amazon Bedrock knowledge base with OpenSearch Serverless vector store indexing queries as embeddings, similarity thresholds, category-specific TTLs, CloudWatch Logs monitoring",
+            "D. Amazon DynamoDB Accelerator (DAX) with custom app layer storing queries/responses, DynamoDB TTL expiring records after 72 hours, CloudWatch tracking"
+        ],
+        "correct_answer": "B. Amazon OpenSearch Service with a k-NN vector index for embeddings/cached responses, a Lambda function for embedding generation + similarity search + threshold matching, category-specific TTLs, OpenSearch dashboards for monitoring",
+        "user_result": "incorrect",
+        "user_selected": "C. Bedrock Knowledge Base + OpenSearch Serverless",
+        "explanation": "OpenSearch Service k-NN supports customizable semantic similarity matching using existing embeddings; the Lambda function adds custom logic for embedding generation, similarity search, and thresholds; category-specific TTLs can be implemented at the field level; OpenSearch dashboards provide built-in monitoring. Option A fails on exact-match (no semantic matching) and uniform TTL. Option C (Knowledge Bases) is architected for RAG retrieval, not as an inference-result cache — it lacks TTL/cache-hit/response-reuse support. Option D (DAX) accelerates DynamoDB reads but has no vector similarity search capability.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_027",
+        "group": "Batch Inference & Model Distillation for Cost Reduction",
+        "question": "A global media company needs to process millions of content summaries using Amazon Bedrock, maximizing throughput cost-effectively, with varying workload patterns across geographic areas, processing batches of 10,000 requests within a 4-hour window. Which solution will meet these requirements in the MOST cost-effective way?",
+        "options": [
+            "A. Create batch inference jobs with an Amazon S3 I/O configuration; implement area-specific inference profiles for workload distribution",
+            "B. Deploy provisioned throughput during peak hours; use batch inference for off-peak with automated job monitoring",
+            "C. Implement synchronous API calls with response streaming; create Lambda functions to manage concurrent invocations",
+            "D. Use on-demand inference with multiple concurrent requests; create CloudWatch metrics to monitor token usage across geographic areas"
+        ],
+        "correct_answer": "A. Create batch inference jobs with an Amazon S3 I/O configuration; implement area-specific inference profiles for workload distribution",
+        "user_result": "correct",
+        "explanation": "Batch inference processes many requests cost-effectively by sending a single request and generating responses to an S3 bucket; area-specific inference profiles provide optimal workload distribution across geographic areas. Option B adds provisioned throughput cost unnecessarily. Option C (synchronous streaming) doesn't provide the needed throughput for large-scale, time-constrained processing. Option D (on-demand) lacks the throughput optimization of batch processing for bulk workloads.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_028",
+        "group": "CloudWatch Monitoring, Anomaly Detection & Business/Quality Dashboards",
+        "question": "A financial services company's chat-based AI app on Amazon Bedrock shows response times increasing from 200 ms to over 1 second under 500 concurrent users, and numerical calculation responses show inconsistencies. Which approach will help identify and troubleshoot these issues?",
+        "options": [
+            "A. Deploy AWS Lambda Insights for function performance metrics; CloudWatch ServiceLens traces for API latency; CloudWatch Synthetics canaries for sample numerical queries",
+            "B. Use AWS X-Ray to trace request latency through the application stack with detailed segments for Bedrock API calls; CloudWatch dashboards for throttling/concurrency",
+            "C. Set up CloudWatch alarms on Bedrock metrics including InputTokenCount, OutputTokenCount, InvocationLatency, and ThrottledRequests; CloudWatch dashboards for throughput/concurrency trends",
+            "D. Configure custom error logging in application code for response times/error patterns; CloudWatch dashboards for error distribution/latency; CloudWatch Logs Insights queries to correlate errors with quality issues"
+        ],
+        "correct_answer": "C. Set up CloudWatch alarms on Bedrock metrics including InputTokenCount, OutputTokenCount, InvocationLatency, and ThrottledRequests; CloudWatch dashboards for throughput/concurrency trends",
+        "user_result": "incorrect",
+        "user_selected": "D. Custom error logging + Logs Insights",
+        "explanation": "Native Bedrock CloudWatch metrics (InputTokenCount, OutputTokenCount, InvocationLatency, ThrottledRequests) give direct insight into model performance bottlenecks and concurrent-usage impacts — the actual cause of numerical inconsistencies and latency growth. Options A and B (Lambda Insights, X-Ray, ServiceLens) focus on infrastructure/application-stack tracing, not Bedrock-specific model behavior. Option D (custom logging) only shows the client-side impact, not model-level visibility.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_029",
+        "group": "Batch Inference & Model Distillation for Cost Reduction",
+        "question": "A company builds a chat app using Amazon Nova Pro on Amazon Bedrock with high test accuracy, and needs to reduce cost via model distillation while maintaining high accuracy, using existing CloudWatch invocation logs as training data, with Bedrock permitted to access the logs and required to use proprietary data synthesis techniques to create diverse, high-quality training data. Which solution will meet these requirements?",
+        "options": [
+            "A. Use Amazon Nova Premier as the student model; specify Bedrock to use only prompts",
+            "B. Use Amazon Nova Premier as the student model; specify Bedrock to use prompt-response pairs from the invocation logs",
+            "C. Use Amazon Nova Lite as the student model; specify Bedrock to use only prompts",
+            "D. Use Amazon Nova Lite as the student model; specify Bedrock to use prompt-response pairs from the invocation logs"
+        ],
+        "correct_answer": "C. Use Amazon Nova Lite as the student model; specify Bedrock to use only prompts",
+        "user_result": "incorrect",
+        "user_selected": "B. Nova Premier + prompt-response pairs",
+        "explanation": "Model distillation transfers knowledge from a larger teacher to a smaller student model for comparable performance at reduced cost — Nova Lite is appropriately smaller than Nova Pro (Nova Premier is not). For Bedrock's proprietary data synthesis techniques to generate diverse, high-quality training data, you must supply only prompts (not prompt-response pairs) from the invocation logs — supplying pairs prevents that synthesis step from being applied.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D4_SB_030",
+        "group": "CloudWatch Monitoring, Anomaly Detection & Business/Quality Dashboards",
+        "question": "A manufacturing company's AI-powered quality control system on Amazon Bedrock processes text-based inspection reports and product images. A developer needs to monitor model performance metrics, response patterns, request data, and response data — including raw images, quality control analysis results, and model usage statistics across different model types. Which combination of monitoring solutions will meet these requirements? (Select TWO)",
+        "options": [
+            "A. Enable Amazon Bedrock Model Invocation Logs with Amazon CloudWatch Logs as destination; create CloudWatch dashboards to analyze response patterns and quality control decisions",
+            "B. Enable AWS CloudTrail data event logging for Bedrock; stream logs to Amazon OpenSearch Service for performance analysis",
+            "C. Create Amazon EventBridge rules to monitor Bedrock events and log request details in CloudWatch Logs",
+            "D. Enable Bedrock Model Invocation Logs with Amazon S3 as destination for image processing models; create Amazon Athena queries to analyze image processing performance metrics",
+            "E. Enable Amazon Bedrock Guardrails logging; use CloudWatch Logs Insights to query and analyze model performance and metrics"
+        ],
+        "correct_answer": [
+            "A. Model Invocation Logs → CloudWatch Logs + dashboards",
+            "D. Model Invocation Logs → S3 + Athena for image models"
+        ],
+        "user_result": "correct",
+        "explanation": "Model Invocation Logs provide detailed request/response data and model performance insight; CloudWatch Logs + dashboards handle text-based response pattern/quality-decision analysis (A), while S3 + Athena is suited to large image data from image-processing models (D). CloudTrail (B) only captures API activity, not model performance/response patterns. EventBridge (C) is for event-driven notification, not comprehensive request/response monitoring. Guardrails logging (E) is for content-safety filtering, not performance monitoring.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 4: Operational Efficiency and Optimization for GenAI Applications"
+        ],
+        "difficulty": "medium"
+    }
+]

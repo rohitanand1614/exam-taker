@@ -1,0 +1,1483 @@
+[
+    {
+        "id": "D2_SB_001",
+        "question": "A developer is building an autonomous agent using Amazon Bedrock Agents that needs to maintain context across multiple user interactions in a customer service application. Which approach would be MOST effective for implementing memory management in this scenario?",
+        "type": "multiple_choice",
+        "options": [
+            "Store all conversation history in Amazon DynamoDB and retrieve it for each new request",
+            "Configure the agent with session-based memory to maintain context within a conversation",
+            "Use Amazon S3 to store conversation transcripts and pass the file path as a parameter",
+            "Implement a custom Lambda function that regenerates context from scratch for each interaction"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bedrock-agents",
+            "memory-management",
+            "session-context"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D2",
+        "explanation": "Amazon Bedrock Agents supports session-based memory that maintains context across multiple turns automatically within the agent framework. DynamoDB could work but needs additional integration; S3 introduces latency/complexity; regenerating context from scratch loses continuity.",
+        "group": "bedrock-agents-core",
+        "comparison_note": "Pairs with D2_SB_003 (tool integration) as core Bedrock Agents mechanics questions. Note: Bedrock Agents is closed to new customers as of July 2026 in favor of AgentCore -- watch for whether newer questions swap terminology.",
+        "see_also": [
+            "D2_SB_003"
+        ]
+    },
+    {
+        "id": "D2_SB_003",
+        "question": "A developer is building an agent that needs to access multiple external tools including a knowledge base, a calculation service, and an email system. Which approach would create the MOST reliable and maintainable tool integration?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement direct API calls from Lambda functions to each external service",
+            "Use Amazon Bedrock Agents with standardized function definitions and Lambda functions for error handling and parameter validation",
+            "Create custom connectors in Amazon AppFlow for each external system",
+            "Implement all tool functionality directly within the agent's prompt engineering"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bedrock-agents",
+            "tool-integration",
+            "function-calling"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "domain": "D2",
+        "explanation": "Bedrock Agents provides a structured framework for tool integration via standardized function definitions; Lambda adds error handling/validation. Direct API calls lack standardization; AppFlow is for data integration not functional tools; prompt-embedded functionality is brittle.",
+        "group": "bedrock-agents-core",
+        "comparison_note": "Contrast with D2_SB_009: this question is about HOW tools are defined/validated (Bedrock Agents native function definitions + Lambda validation); D2_SB_009 is about WHERE tools are hosted (Lambda vs ECS by complexity, MCP server pattern). Different tool-integration decision axes.",
+        "see_also": [
+            "D2_SB_001",
+            "D2_SB_009"
+        ]
+    },
+    {
+        "id": "D2_SB_002",
+        "question": "A financial services company is implementing a foundation model to assist with investment recommendations. Which combination of safeguards would BEST ensure controlled behavior of the foundation model in this regulated environment?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement IAM policies for resource access and Lambda functions with timeout mechanisms",
+            "Use CloudWatch Alarms to monitor model outputs and SNS to notify administrators of issues",
+            "Deploy the model in a VPC with security groups restricting all external access",
+            "Implement Step Functions with stopping conditions, IAM policies for resource boundaries, and circuit breakers for failure mitigation"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "safeguards",
+            "step-functions",
+            "circuit-breaker",
+            "governance"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Step Functions with stopping conditions + IAM resource boundaries + circuit breakers gives the most comprehensive orchestrated safeguard combo. Option A lacks orchestration/circuit breakers; B is monitoring not prevention; C addresses network security not behavioral control.",
+        "group": "safeguarded-workflows",
+        "comparison_note": "This is the canonical exam-guide safeguard combo (Task 2.1). See D2_SB_004 for circuit-breaker implementation mechanics specifically, and D2_SB_005/D2_SB_007/D2_SB_008 for the human-oversight trap pattern.",
+        "see_also": [
+            "D2_SB_004",
+            "D2_SB_005",
+            "D2_SB_007",
+            "D2_SB_008"
+        ]
+    },
+    {
+        "id": "D2_SB_004",
+        "question": "A developer is implementing a safeguarded AI workflow that uses a foundation model to generate product descriptions. To prevent system failures, they need to implement a circuit breaker pattern. Which implementation would MOST effectively protect the system?",
+        "type": "multiple_choice",
+        "options": [
+            "Use Amazon CloudWatch to monitor API call failures and send notifications when thresholds are exceeded",
+            "Implement exponential backoff in all API calls to the foundation model",
+            "Create a Lambda function that tracks error rates and temporarily disables the service when errors exceed a threshold, redirecting traffic to a fallback system",
+            "Use AWS WAF to limit the rate of incoming requests to the foundation model endpoint"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "circuit-breaker",
+            "resilience",
+            "lambda"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Tracking error rate + disabling service + redirecting to fallback is the actual circuit breaker implementation. Monitoring alone doesn't prevent failures; backoff helps transient issues only; WAF rate-limits but doesn't respond dynamically to error conditions.",
+        "group": "safeguarded-workflows",
+        "comparison_note": "D2_SB_002 tests recognizing circuit breakers as PART OF a broader Step Functions safeguard combo; this question drills the actual circuit-breaker implementation mechanics (error-rate tracking + fallback redirect) vs monitoring/backoff/rate-limiting alone.",
+        "see_also": [
+            "D2_SB_002",
+            "D2_SB_029",
+            "D2_SB_032"
+        ]
+    },
+    {
+        "id": "D2_SB_005",
+        "question": "A manufacturing company needs to implement safeguards in their AI system that monitors critical equipment while maintaining operational efficiency. The solution must provide real-time protection without creating unnecessary delays. Which approaches are MOST effective? (Select TWO.)",
+        "type": "multiple_choice",
+        "options": [
+            "Create circuit breaker patterns in AWS Step Functions that automatically disable automated actions when error rates exceed thresholds",
+            "Implement continuous logging of all agent actions to Amazon CloudWatch and review logs weekly for issues",
+            "Configure agents to require human approval for all actions before execution",
+            "Design AWS IAM policies with graduated access levels based on operation criticality and automated risk assessment"
+        ],
+        "correct_indices": [
+            0,
+            3
+        ],
+        "tags": [
+            "circuit-breaker",
+            "iam",
+            "human-in-the-loop-trap",
+            "real-time"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "domain": "D2",
+        "explanation": "Circuit breakers provide automated real-time protection. Graduated IAM access with automated risk assessment scales protection with criticality while maintaining efficiency. Weekly log review is too delayed; requiring human approval for ALL actions creates bottlenecks that defeat automation's purpose.",
+        "group": "safeguarded-workflows",
+        "comparison_note": "Human-in-the-loop trap: 'human approval for all actions' reads like the textbook safeguard (Task 2.1 lists it) but is wrong whenever the scenario stresses REAL-TIME/no-delay protection. See D2_SB_007 (same trap, pharma) and D2_SB_008 (the correct structured version via Amazon A2I).",
+        "see_also": [
+            "D2_SB_002",
+            "D2_SB_004",
+            "D2_SB_007",
+            "D2_SB_008"
+        ]
+    },
+    {
+        "id": "D2_SB_007",
+        "question": "A pharmaceutical company is developing an AI quality control system that needs to analyze manufacturing defects and propose solutions in real time. The system must evaluate multiple solution strategies before implementation. Which components are essential for the AWS Step Functions workflow? (Select TWO.)",
+        "type": "multiple_choice",
+        "options": [
+            "Implement ReAct patterns with validation steps between reasoning and action phases",
+            "Deploy continuous human oversight for all quality decisions",
+            "Design chain-of-thought (CoT) reasoning with multiple solution evaluation steps",
+            "Create direct quality control interventions without intermediate validation",
+            "Use basic if-then logic for defect resolution"
+        ],
+        "correct_indices": [
+            0,
+            2
+        ],
+        "tags": [
+            "react",
+            "chain-of-thought",
+            "human-in-the-loop-trap",
+            "step-functions"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "ReAct with validation steps ensures thorough analysis before implementation; CoT reasoning lets the system evaluate multiple solution strategies -- crucial where decisions affect safety. Continuous human oversight doesn't scale for real-time/high-volume; direct intervention without validation is risky; basic if-then lacks sophistication.",
+        "group": "safeguarded-workflows",
+        "comparison_note": "Same human-oversight trap as D2_SB_005, confirmed across two questions: continuous/all-actions human approval is wrong whenever the scenario stresses real-time or high-volume, even in regulated domains (pharma here, manufacturing in D2_SB_005).",
+        "see_also": [
+            "D2_SB_005",
+            "D2_SB_008"
+        ]
+    },
+    {
+        "id": "D2_SB_008",
+        "question": "A global logistics company needs to implement an AI system that coordinates warehouse operations across multiple time zones. The system must handle both autonomous operations and human intervention efficiently. Which solution BEST ensures effective coordination?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement AWS Step Functions workflows with Amazon Augmented AI (Amazon A2I) integration and real-time Amazon API Gateway endpoints",
+            "Use email notifications for all warehouse coordination",
+            "Require manual approval for all AI-suggested optimizations",
+            "Allow completely autonomous warehouse management"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "amazon-a2i",
+            "human-in-the-loop",
+            "step-functions"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Step Functions + Amazon A2I gives structured human review only when needed, plus API Gateway for real-time response across time zones. Email is too slow; blanket manual approval creates delays; fully autonomous loses needed local oversight.",
+        "group": "safeguarded-workflows",
+        "comparison_note": "This completes the human-oversight trap pattern from D2_SB_005/D2_SB_007: Amazon A2I is the 'right' structured version of human-in-the-loop -- targeted review, not blanket approval-for-everything.",
+        "see_also": [
+            "D2_SB_005",
+            "D2_SB_007"
+        ]
+    },
+    {
+        "id": "D2_SB_029",
+        "question": "Your team has implemented an application using Amazon Bedrock APIs, but occasionally encounters throttling errors during peak usage. Which combination of techniques would create the most resilient system?",
+        "type": "multiple_choice",
+        "options": [
+            "Increase provisioned capacity and implement custom retry logic",
+            "Implement AWS SDK exponential backoff, circuit breakers, and fallback mechanisms",
+            "Switch to a larger foundation model that can handle more requests",
+            "Deploy the application in multiple AWS regions and use Route 53 for failover"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "exponential-backoff",
+            "circuit-breaker",
+            "resilience",
+            "throttling"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Exponential backoff prevents request flooding, circuit breakers stop calls to failing services, fallback mechanisms provide alternatives when the primary model is unavailable. Capacity increase lacks intelligent failure handling; a larger model doesn't fix throttling; multi-region adds unnecessary cost/complexity for a request-management issue.",
+        "group": "safeguarded-workflows",
+        "comparison_note": "Combines backoff (D2_SB_004's rejected 'transient-only' fix) with circuit breakers (D2_SB_004's answer) into one layered combo -- context matters: backoff alone is insufficient for async throughput errors, but backoff as ONE ingredient alongside circuit breakers + fallback is correct.",
+        "see_also": [
+            "D2_SB_004",
+            "D2_SB_025",
+            "D2_SB_032"
+        ]
+    },
+    {
+        "id": "D2_SB_032",
+        "question": "A financial services company needs to implement resilient error handling for its foundation model (FM) system that processes sensitive trading documents. Which approaches provide the MOST robust error management while maintaining system stability? (Select TWO.)",
+        "type": "multiple_choice",
+        "options": [
+            "Implement constant retry intervals with maximum attempts",
+            "Configure exponential backoff with jitter in SDK settings",
+            "Use synchronous retries for immediate recovery",
+            "Implement circuit breakers with fallback mechanisms",
+            "Set up fixed timeouts with linear retry patterns"
+        ],
+        "correct_indices": [
+            1,
+            3
+        ],
+        "tags": [
+            "exponential-backoff",
+            "jitter",
+            "circuit-breaker",
+            "resilience"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Exponential backoff with jitter adapts retry spacing to system stress and prevents synchronized retry storms in distributed systems. Circuit breakers with fallback maintain critical operations during degradation. Constant intervals, synchronous retries, and fixed linear timeouts all risk overwhelming stressed systems.",
+        "group": "safeguarded-workflows",
+        "comparison_note": "Same backoff+circuit-breaker combo as D2_SB_029, now with jitter as an added precision detail (prevents synchronized retry storms). Reinforces constant/fixed/synchronous retry as a confirmed trap across two full questions.",
+        "see_also": [
+            "D2_SB_029",
+            "D2_SB_004"
+        ]
+    },
+    {
+        "id": "D2_SB_025",
+        "question": "When implementing event-driven AI integration, what is the MOST effective approach for handling model inference errors while maintaining system reliability?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement synchronous retries with exponential backoff",
+            "Use dead-letter queues with automated fallback models",
+            "Log errors and continue processing",
+            "Route all errors to human review"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dead-letter-queue",
+            "fallback",
+            "event-driven",
+            "error-handling"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Dead-letter queues capture failed inferences and route them for appropriate handling via automated fallback models. Synchronous retries block processing and hurt throughput; logging without handling risks data loss; routing all errors to humans doesn't scale for high-throughput systems.",
+        "group": "safeguarded-workflows",
+        "comparison_note": "Distinct failure-handling mechanism from D2_SB_004's circuit breaker (general workflow protection) -- DLQ+fallback is specifically for event-driven/async contexts. Also reinforces the recurring trap: synchronous/blocking anything is wrong when the scenario is event-driven/high-throughput.",
+        "see_also": [
+            "D2_SB_004",
+            "D2_SB_022",
+            "D2_SB_046"
+        ]
+    },
+    {
+        "id": "D2_SB_006",
+        "question": "A manufacturing facility is implementing a multi-agent system using AWS Strands for production line optimization. The system needs to coordinate multiple specialized agents while maintaining clear control hierarchies. Which approach provides the MOST robust solution?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement AWS Agent Squad with supervisor-agent pattern and specialized worker agents",
+            "Create a single agent with multiple specialized tools",
+            "Deploy separate independent agents with direct peer-to-peer communication",
+            "Use AWS Lambda functions to handle all agent coordination"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "multi-agent",
+            "agent-squad",
+            "supervisor-pattern",
+            "strands"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "The supervisor-agent pattern provides structured hierarchical coordination, clear control flows, efficient task distribution, and centralized oversight. A single monolithic agent lacks flexibility; peer-to-peer communication becomes exponentially complex; Lambda alone lacks orchestration/state management.",
+        "group": "multi-agent-orchestration",
+        "comparison_note": "Groups with D2_SB_037 (Strands Agents for multi-step reasoning) and D2_SB_048 (Strands SDK + MCP servers for dynamic tool orchestration) -- three angles on the Strands/agent ecosystem.",
+        "see_also": [
+            "D2_SB_037",
+            "D2_SB_048"
+        ]
+    },
+    {
+        "id": "D2_SB_037",
+        "question": "Your team needs to develop an advanced GenAI application that can perform complex tasks requiring multiple steps and reasoning. Which AWS service would be most appropriate for this requirement?",
+        "type": "multiple_choice",
+        "options": [
+            "Amazon Lex",
+            "AWS Lambda with Amazon Bedrock",
+            "AWS Strands Agents",
+            "Amazon SageMaker"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "strands-agents",
+            "multi-step-reasoning",
+            "agent-infrastructure"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D2",
+        "explanation": "Strands Agents is purpose-built for multi-step reasoning and task decomposition, tool/API use, and context maintenance. Lex lacks advanced reasoning; plain Lambda+Bedrock has no agent framework; SageMaker provides ML infra, not agent orchestration.",
+        "group": "multi-agent-orchestration",
+        "see_also": [
+            "D2_SB_006",
+            "D2_SB_048"
+        ]
+    },
+    {
+        "id": "D2_SB_048",
+        "question": "A financial services company builds a customer service AI assistant by using Amazon Bedrock. The assistant invokes an LLM through an AWS Lambda function to answer customer queries. Now, a GenAI developer must enhance the assistant to perform specific actions for customers -- checking account balances, processing transactions, retrieving customer information -- by accessing internal company tools and APIs. The solution must be highly scalable, maintain a decoupled architecture, and provide flexibility to use different tools in dynamic sequences based on customer needs. Which solution will meet these requirements?",
+        "type": "multiple_choice",
+        "options": [
+            "Enhance the existing Lambda function with prompt engineering that uses the ReAct framework, implementing all tool access logic within the same function",
+            "Create an Amazon Bedrock flow with a sequential series of steps, configuring predefined paths for each type of customer request",
+            "Create an agent using the AWS Strands SDK. Create MCP servers for each company tool. Deploy both as Lambda functions. Create an agent client that dynamically invokes tools based on user requests, using the agent's orchestration capabilities to determine tool order",
+            "Develop an AWS Step Functions workflow that orchestrates the interaction between the LLM and company tools via a state machine with conditional logic"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "strands-sdk",
+            "mcp",
+            "dynamic-tool-orchestration",
+            "decoupled-architecture"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Strands SDK agent + independent MCP servers (both as Lambda) gives true agentic behavior: the agent dynamically calls tools in any order based on LLM reasoning, with no predefined workflow, and tools can be added/removed without impacting the core assistant. All three distractors impose a predefined/fixed structure -- single Lambda with embedded logic, fixed Bedrock Flow paths, or a fixed Step Functions state machine -- none provide true dynamic runtime tool selection.",
+        "group": "multi-agent-orchestration",
+        "comparison_note": "Key distinguishing principle: A/B/D all impose fixed/predefined structure; only Strands+MCP gives genuine runtime-dynamic agentic behavior. Also relevant to D2_SB_009's Lambda-vs-ECS MCP hosting split -- this question names the SDK-level pattern (Strands SDK builds the agent, MCP servers are the tools it calls).",
+        "see_also": [
+            "D2_SB_006",
+            "D2_SB_037",
+            "D2_SB_009",
+            "D2_SB_003"
+        ]
+    },
+    {
+        "id": "D2_SB_009",
+        "question": "A semiconductor manufacturer needs to integrate their equipment monitoring tools with their AI system. The solution must handle both basic status checks and complex analysis of manufacturing processes. Which approach provides the MOST efficient integration?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy all monitoring tools as AWS Lambda functions",
+            "Use Amazon ECS for all tool hosting, regardless of complexity",
+            "Implement AWS Lambda for status checks and Amazon ECS for complex monitoring tools",
+            "Run all tools directly on manufacturing equipment"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "mcp",
+            "lambda",
+            "ecs",
+            "tool-hosting"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Hybrid approach matches tool requirements to infrastructure: Lambda for lightweight/stateless status checks, ECS for tools needing persistent connections/significant processing power. All-Lambda can't handle complex/persistent tools; all-ECS is unnecessary overhead for basic tasks; running on equipment directly lacks isolation and complicates maintenance.",
+        "group": "tool-hosting-mcp",
+        "comparison_note": "Directly matches exam guide's MCP-server pattern (Task 2.1): Lambda for lightweight/stateless tools, ECS for complex tools. Distinguishes from D2_SB_003, which is about HOW tools are defined/validated (Bedrock Agents native function definitions), not WHERE they're hosted.",
+        "see_also": [
+            "D2_SB_003",
+            "D2_SB_048"
+        ]
+    },
+    {
+        "id": "D2_SB_010",
+        "question": "A financial services company needs to deploy a solution that uses both proprietary financial models and general-purpose foundation models. The proprietary models require custom preprocessing and postprocessing logic. Which deployment approach would be MOST effective?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy all models on Amazon EKS with custom containers",
+            "Use Amazon Bedrock for all models with custom prompt engineering",
+            "Implement a hybrid solution using SageMaker for proprietary models and Amazon Bedrock for foundation models",
+            "Deploy all models on Lambda functions with environment variables for configuration"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "sagemaker",
+            "bedrock",
+            "hybrid-deployment",
+            "model-ownership"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "SageMaker gives flexibility for custom pre/postprocessing on proprietary models; Bedrock offers optimized managed access to foundation models. EKS is unnecessary overhead for FMs; Bedrock can't host custom proprietary models; Lambda has execution time/memory limits for complex inference.",
+        "group": "deployment-strategy",
+        "comparison_note": "First of a 4-question deployment-strategy cluster (D2_SB_010/011/012/013), each optimizing a DIFFERENT variable: this one = model ownership (proprietary->SageMaker, FM->Bedrock); D2_SB_011 = traffic volume/cost; D2_SB_012 = memory/scale; D2_SB_013 = latency via model loading strategy. Check which variable the scenario is optimizing before answering.",
+        "see_also": [
+            "D2_SB_011",
+            "D2_SB_012",
+            "D2_SB_013"
+        ]
+    },
+    {
+        "id": "D2_SB_011",
+        "question": "A developer is building a chatbot application that needs to access foundation models only when specific user queries require AI-generated responses. The application has low traffic with approximately 100 requests per day. Which deployment strategy would be MOST cost-effective while maintaining good performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy the foundation model on a dedicated EC2 instance",
+            "Use Lambda functions to invoke Amazon Bedrock on-demand",
+            "Implement Amazon Bedrock with provisioned throughput",
+            "Deploy the model on SageMaker with an always-on endpoint"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "lambda",
+            "bedrock-on-demand",
+            "cost-optimization",
+            "low-traffic"
+        ],
+        "difficulty": "easy",
+        "category": "tradeoff",
+        "domain": "D2",
+        "explanation": "On-demand Lambda+Bedrock invocation pays only for actual usage with no idle resources -- ideal for low, unpredictable volume. Dedicated EC2 and always-on SageMaker incur continuous costs; provisioned throughput reserves capacity that would sit mostly unused at this volume.",
+        "group": "deployment-strategy",
+        "comparison_note": "Groups with D2_SB_047 -- same Lambda+Bedrock on-demand pattern, applied there to 'unpredictable surges' rather than steady low volume. Scale-to-zero is the deciding factor whenever cost + unpredictable/idle-heavy traffic is the scenario.",
+        "see_also": [
+            "D2_SB_010",
+            "D2_SB_012",
+            "D2_SB_047"
+        ]
+    },
+    {
+        "id": "D2_SB_012",
+        "question": "A company is deploying a large 65B parameter foundation model for an internal research application. The model requires significant memory resources and will be used for complex text generation tasks. Which deployment approach would be MOST appropriate to address the memory requirements?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy the model on Lambda functions with maximum memory allocation",
+            "Implement a container-based deployment on SageMaker using memory-optimized instance types",
+            "Use Amazon Bedrock API directly without custom deployment",
+            "Deploy multiple smaller versions of the model across several EC2 instances"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "sagemaker",
+            "memory-optimized",
+            "large-model-deployment"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "SageMaker container-based deployment on memory-optimized instances (e.g., ml.g5.24xlarge) handles large model memory needs and allows runtime customization (quantization, efficient loading). Lambda's max memory is 10GB -- insufficient for a 65B model. Bedrock may not support a custom 65B model. Splitting across instances adds architectural complexity.",
+        "group": "deployment-strategy",
+        "comparison_note": "Hard fact worth pinning: Lambda max memory = 10GB. Third in the deployment-strategy cluster -- this one optimizes for memory/scale specifically, distinct from ownership (D2_SB_010) and cost (D2_SB_011).",
+        "see_also": [
+            "D2_SB_010",
+            "D2_SB_011",
+            "D2_SB_013"
+        ]
+    },
+    {
+        "id": "D2_SB_013",
+        "question": "A developer needs to deploy a foundation model that will be used for real-time inference with strict latency requirements. The model is 30GB in size. Which specialized model loading strategy would be MOST effective to reduce initial latency?",
+        "type": "multiple_choice",
+        "options": [
+            "Load the entire model into memory during container initialization",
+            "Implement dynamic model loading that loads only required layers based on the query",
+            "Use model quantization to reduce the model size before deployment",
+            "Implement model sharding across multiple containers with an orchestration layer"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "quantization",
+            "model-loading",
+            "latency-optimization"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "domain": "D2",
+        "explanation": "Quantization (e.g., FP32->INT8) reduces model size/precision, speeding load time and cutting memory use while maintaining acceptable accuracy. Full in-memory loading causes long cold starts; dynamic layer loading is complex/unpredictable; sharding adds inter-container communication complexity/latency.",
+        "group": "deployment-strategy",
+        "comparison_note": "Trap: sharding distributes an already-large model across containers for SCALING, not latency reduction -- quantization reduces size/precision to speed loading, which is the actual latency fix. Groups with D2_SB_014 (dynamic memory allocation) as a broader 'efficient resource management' theme.",
+        "see_also": [
+            "D2_SB_010",
+            "D2_SB_011",
+            "D2_SB_012",
+            "D2_SB_014"
+        ]
+    },
+    {
+        "id": "D2_SB_047",
+        "question": "A company develops a customer service chat-based AI assistant by using an Amazon Nova Micro model. The model experiences unpredictable traffic patterns, including long periods of inactivity and sudden surges of activity. The company wants to reduce costs during low-usage periods while maintaining acceptable response times. Which solution will meet these requirements MOST cost-effectively?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy the model in Amazon Bedrock. Use Provisioned Throughput with a 1-month commitment term",
+            "Deploy the model using Amazon SageMaker AI real-time endpoints. Enable auto scaling",
+            "Deploy the model in Amazon Bedrock. Invoke the model using AWS Lambda on-demand inference API calls",
+            "Deploy the model using Amazon SageMaker Asynchronous Inference with queue-based processing"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "lambda",
+            "bedrock-on-demand",
+            "scale-to-zero",
+            "unpredictable-traffic"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "domain": "D2",
+        "explanation": "Lambda + Bedrock on-demand scales to zero during idle and up during spikes, charging only for compute used during inference -- most cost-effective for unpredictable workloads. Provisioned Throughput charges for reserved capacity regardless of usage. SageMaker real-time endpoints carry baseline costs even with auto scaling. Async Inference isn't suited to real-time chat response times.",
+        "group": "deployment-strategy",
+        "comparison_note": "Same core pattern as D2_SB_011 (Lambda+Bedrock on-demand for cost with variable/low traffic), now applied to unpredictable surges rather than steady low volume.",
+        "see_also": [
+            "D2_SB_011"
+        ]
+    },
+    {
+        "id": "D2_SB_014",
+        "question": "When optimizing container-based deployments for large language models (LLMs), which approach is MOST effective for managing memory usage?",
+        "type": "multiple_choice",
+        "options": [
+            "Always allocate maximum available memory to ensure model performance",
+            "Use dynamic memory allocation based on input size and model complexity",
+            "Implement fixed memory limits for all model containers regardless of size",
+            "Rely solely on Amazon ECS auto scaling to manage memory allocation"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "memory-optimization",
+            "container-deployment",
+            "dynamic-allocation"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "domain": "D2",
+        "explanation": "Dynamic memory allocation based on input size/complexity optimizes resource utilization while maintaining performance. Max allocation wastes resources; fixed limits ignore varying model sizes/complexity; auto scaling alone doesn't address efficient memory usage within containers.",
+        "group": "resource-optimization",
+        "comparison_note": "Groups with D2_SB_013 (model loading/memory theme) -- D2_SB_013 reduces model size via quantization to cut LOAD latency; this optimizes RUNTIME memory sizing dynamically per request. Different lever, same 'efficient resource management' theme.",
+        "see_also": [
+            "D2_SB_013",
+            "D2_SB_017"
+        ]
+    },
+    {
+        "id": "D2_SB_015",
+        "question": "Which strategy BEST balances performance and resource utilization in a model-cascading architecture for an AI-powered customer service system?",
+        "type": "multiple_choice",
+        "options": [
+            "Use the largest, most capable model for all queries to ensure accuracy",
+            "Implement a fixed sequence of increasingly complex models for all queries",
+            "Dynamically route queries based on complexity, using simpler models for routine tasks and more sophisticated models for complex inquiries",
+            "Randomly assign queries to different model sizes to distribute load"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "model-cascading",
+            "dynamic-routing",
+            "cost-optimization"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Dynamic complexity-based routing optimizes resource usage while maintaining quality. Using the largest model for everything wastes resources on basic queries; a fixed sequence may process queries through unnecessary models; random assignment ignores complexity/optimal resource use.",
+        "group": "model-cascading",
+        "comparison_note": "Ties conceptually to D2_SB_011's cost-optimization angle but operates at the model-SELECTION level rather than deployment-infra level. See D2_SB_016 for the companion caching technique.",
+        "see_also": [
+            "D2_SB_016"
+        ]
+    },
+    {
+        "id": "D2_SB_016",
+        "question": "When implementing API-based model cascading for a multi-lingual translation service, which features are MOST crucial for efficient operation? (Select TWO.)",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing a single, large model capable of handling all language pairs",
+            "Using intelligent routing based on language pair complexity and model specialization",
+            "Caching frequent translation patterns to reduce model invocations",
+            "Always routing requests through all available models for maximum accuracy",
+            "Implementing separate API endpoints for each language pair"
+        ],
+        "correct_indices": [
+            1,
+            2
+        ],
+        "tags": [
+            "model-cascading",
+            "caching",
+            "intelligent-routing"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "domain": "D2",
+        "explanation": "Intelligent routing ensures efficient use of specialized models; caching frequent patterns reduces unnecessary invocations. A single large model isn't optimal for all pairs; routing through all models is inefficient; separate endpoints per pair are complex to manage/scale.",
+        "group": "model-cascading",
+        "comparison_note": "Adds caching as a companion technique to intelligent routing -- ties to Task 4.1 caching strategies (semantic caching, result fingerprinting) even though framed under Task 2.2 here. 'Route through everything' trap echoes D2_SB_009's all-ECS trap and D2_SB_003's prompt-embedded-logic trap: doing everything/everywhere is wrong whenever efficiency is the goal.",
+        "see_also": [
+            "D2_SB_015",
+            "D2_SB_038"
+        ]
+    },
+    {
+        "id": "D2_SB_017",
+        "question": "In optimizing GPU utilization for a high-traffic image processing service using foundation models, which approach is MOST effective?",
+        "type": "multiple_choice",
+        "options": [
+            "Allocate one GPU for each model to ensure dedicated resources",
+            "Implement dynamic batching to maximize GPU utilization",
+            "Use CPU-only instances to avoid GPU management complexity",
+            "Manually assign fixed batch sizes for all request types"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "dynamic-batching",
+            "gpu-utilization",
+            "throughput"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Dynamic batching adapts to varying workloads, maximizing GPU efficiency. Dedicated GPUs per model risk underutilization; CPU-only is far less efficient for FM operations; fixed batch sizes don't adapt to varying request patterns/model complexity.",
+        "group": "resource-optimization",
+        "comparison_note": "Same 'dynamic > fixed/manual' principle as D2_SB_014, applied to a different resource axis (GPU batching vs container memory). Ties to Task 4.2 batch inference/concurrent invocation optimization.",
+        "see_also": [
+            "D2_SB_014"
+        ]
+    },
+    {
+        "id": "D2_SB_038",
+        "question": "Your GenAI application is experiencing high latency when making calls to foundation models. Which approach would be most effective for optimizing performance?",
+        "type": "multiple_choice",
+        "options": [
+            "Increase the Lambda function memory allocation",
+            "Implement request batching and response caching",
+            "Switch to a smaller foundation model",
+            "Deploy the application in multiple AWS regions"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "batching",
+            "caching",
+            "latency-optimization"
+        ],
+        "difficulty": "easy",
+        "category": "tradeoff",
+        "domain": "D2",
+        "explanation": "Batching similar requests reduces API call volume; caching responses for common queries eliminates repeat calls for identical input -- directly addresses latency without compromising quality. Lambda memory doesn't affect model API latency; a smaller model trades quality for speed; multi-region adds cost/complexity without addressing the core issue.",
+        "group": "resource-optimization",
+        "comparison_note": "Same batching+caching techniques as D2_SB_016/D2_SB_017 but framed as the LATENCY fix rather than cost (D2_SB_011) or GPU-utilization (D2_SB_017) fix -- exam reuses techniques across differently-framed objectives (cost vs latency vs throughput).",
+        "see_also": [
+            "D2_SB_016",
+            "D2_SB_017",
+            "D2_SB_011"
+        ]
+    },
+    {
+        "id": "D2_SB_018",
+        "question": "A retail company wants to enhance their e-commerce platform with personalized product recommendations using foundation models. The recommendations should be generated whenever a customer views products or adds items to their cart. Which event-driven architecture would be MOST appropriate for this integration?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement Amazon EventBridge rules that trigger Lambda functions to invoke foundation models when specific shopping events occur",
+            "Create a direct API call from the e-commerce application to Amazon Bedrock for each user interaction",
+            "Deploy Amazon Kinesis Data Streams to batch customer interactions and process them hourly with foundation models",
+            "Use AWS Step Functions to orchestrate a workflow that polls the e-commerce database for new customer activities"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "eventbridge",
+            "event-driven",
+            "lambda"
+        ],
+        "difficulty": "easy",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "EventBridge + Lambda enables loose coupling and near-real-time, asynchronous reaction to discrete shopping events. Direct API calls tightly couple the app to the FM; Kinesis hourly batching introduces unnecessary delay; polling with Step Functions is inefficient and could miss events.",
+        "group": "enterprise-integration",
+        "comparison_note": "Canonical EventBridge+Lambda pattern for real-time, loosely-coupled reaction to app EVENTS. Contrast with D2_SB_035, where EventBridge is explicitly downgraded for STATIC routing vs a dynamic content-based routing requirement -- EventBridge is good for reacting to discrete events, weak for dynamic multi-criteria routing logic.",
+        "see_also": [
+            "D2_SB_020",
+            "D2_SB_039",
+            "D2_SB_035"
+        ]
+    },
+    {
+        "id": "D2_SB_019",
+        "question": "A healthcare provider needs to integrate foundation models with their patient record system while ensuring that sensitive patient data is never sent to external AI services. Which data synchronization pattern would BEST meet these requirements?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement a full data replication strategy that copies all patient records to Amazon S3 for foundation model access",
+            "Use a data virtualization layer that provides foundation models with direct SQL access to the patient database",
+            "Create an abstraction layer that extracts non-sensitive features and patterns from patient data for foundation model processing",
+            "Deploy a hybrid architecture where foundation models run on-premises with AWS Outposts and access local data directly"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "data-privacy",
+            "abstraction-layer",
+            "pii-phi"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "domain": "D2",
+        "explanation": "An abstraction layer extracting non-sensitive features/patterns lets the org leverage FM capability while ensuring sensitive PII/PHI never leaves their control. Full replication exposes sensitive data; SQL virtualization gives too much direct access; on-prem Outposts is viable but more complex/costly than necessary if abstraction alone meets the requirement.",
+        "group": "enterprise-integration",
+        "comparison_note": "Pairs directly with D2_SB_021: Outposts is explicitly downgraded here as 'viable but not best' because the requirement is minimizing what data reaches the FM, not literal on-prem hosting. In D2_SB_021, Outposts IS correct because the requirement is literal data residency ('must remain on-premises'). Same service, opposite verdict, based purely on whether residency itself is the stated constraint.",
+        "see_also": [
+            "D2_SB_021"
+        ]
+    },
+    {
+        "id": "D2_SB_020",
+        "question": "A SaaS company wants to integrate their customer support platform with foundation models to provide AI-assisted responses. The platform needs to send conversation data to the AI system and receive suggested responses in real-time. Which implementation would be MOST efficient for handling these webhook interactions?",
+        "type": "multiple_choice",
+        "options": [
+            "Create Amazon EC2 instances running web servers to process webhook requests",
+            "Implement API Gateway with Lambda functions to handle webhook events and invoke foundation models",
+            "Use Amazon SQS to queue all webhook requests for batch processing",
+            "Deploy containers on Amazon ECS that run continuously to process webhook events"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "api-gateway",
+            "lambda",
+            "webhooks",
+            "real-time"
+        ],
+        "difficulty": "easy",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "API Gateway + Lambda is serverless, scalable, and cost-effective for real-time webhook processing. EC2 requires managing infrastructure/scaling; SQS batch processing introduces unnecessary latency for real-time needs; ECS containers are more complex/less cost-effective than serverless for this.",
+        "group": "enterprise-integration",
+        "comparison_note": "Groups with D2_SB_018 (event-driven trigger pattern) and D2_SB_027 (same API Gateway+Lambda sync pattern). Both reject SQS/batch/polling for the same reason: unnecessary latency whenever the scenario says real-time.",
+        "see_also": [
+            "D2_SB_018",
+            "D2_SB_027"
+        ]
+    },
+    {
+        "id": "D2_SB_021",
+        "question": "A government agency needs to use foundation models to analyze sensitive data that must remain on-premises due to regulatory requirements. Which approach would BEST enable foundation model capabilities while maintaining data residency compliance?",
+        "type": "multiple_choice",
+        "options": [
+            "Use AWS Outposts to deploy foundation model inference capabilities on-premises within the agency's data center",
+            "Encrypt all data before sending it to AWS cloud-based foundation models",
+            "Create a VPN connection between the agency network and AWS to securely transfer data",
+            "Implement a hybrid architecture using AWS Direct Connect with data preprocessing on-premises"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "outposts",
+            "data-residency",
+            "on-premises"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "domain": "D2",
+        "explanation": "Outposts extends AWS infrastructure on-premises, letting the agency run FM inference within their own data center -- sensitive data never leaves the premises. Encryption doesn't address residency (data still leaves); VPN still transfers data to AWS cloud; Direct Connect hybrid still involves sending some data to AWS.",
+        "group": "enterprise-integration",
+        "comparison_note": "Direct pair to D2_SB_019's Outposts nuance. Outposts = correct when the requirement is literal data residency/on-prem hosting (explicit 'must remain on-premises' here). See D2_SB_019 for the abstraction-layer alternative when residency itself isn't mandated. See D2_SB_023 for Outposts paired with Wavelength when BOTH residency and edge-latency are required.",
+        "see_also": [
+            "D2_SB_019",
+            "D2_SB_023"
+        ]
+    },
+    {
+        "id": "D2_SB_023",
+        "question": "A global financial services firm needs to deploy foundation models (FMs) for trading analytics while meeting data residency requirements and maintaining sub-millisecond latency. Which combination of deployment approaches is MOST appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "Deploy all models to the cloud and access through VPN connections",
+            "Use AWS Outposts for data residency and AWS Wavelength for low-latency processing",
+            "Replicate all data to the cloud for centralized processing",
+            "Use Lambda@Edge for model inference and caching"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "outposts",
+            "wavelength",
+            "data-residency",
+            "low-latency"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Outposts meets data residency in regulated regions; Wavelength gives ultra-low latency processing near exchanges (5G edge). VPN doesn't address residency; full cloud replication violates residency; Lambda@Edge isn't suited to complex model inference and doesn't address residency.",
+        "group": "enterprise-integration",
+        "comparison_note": "Introduces AWS Wavelength as distinct from Outposts: Outposts = data residency/on-prem, Wavelength = ultra-low-latency at the edge (5G/near-exchange). This question needs BOTH because it has two separate requirements simultaneously -- matches exam guide Task 2.3 exactly ('Outposts for on-prem, Wavelength for edge').",
+        "see_also": [
+            "D2_SB_019",
+            "D2_SB_021"
+        ]
+    },
+    {
+        "id": "D2_SB_024",
+        "question": "A financial services firm needs to implement secure access controls for their AI model APIs while maintaining sub-millisecond latency. Which security implementation is MOST appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "Amazon API Gateway with AWS Lambda authorizers",
+            "AWS IAM roles with resource-based policies and VPC endpoints",
+            "Amazon Cognito User Pools with JWT validation",
+            "Custom authorizers with database lookups"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "iam",
+            "vpc-endpoints",
+            "security",
+            "low-latency"
+        ],
+        "difficulty": "medium",
+        "category": "tradeoff",
+        "domain": "D2",
+        "explanation": "IAM roles + resource-based policies + VPC endpoints provide secure access with minimal latency overhead via direct VPC communication. Lambda authorizers add variable latency; Cognito/JWT validation adds unnecessary overhead for machine-to-machine calls; DB lookups introduce variable latency and bottlenecks.",
+        "group": "enterprise-integration",
+        "comparison_note": "Whenever 'sub-millisecond latency' appears as a constraint (this Q, and D2_SB_023), any option adding a network hop, DB lookup, or token-validation round-trip gets rejected. Lambda authorizers and Cognito/JWT are normally solid auth patterns but wrong under strict latency constraints -- IAM+VPC endpoints wins because it's direct/local.",
+        "see_also": [
+            "D2_SB_023"
+        ]
+    },
+    {
+        "id": "D2_SB_039",
+        "question": "Your company wants to enhance its CRM system by automatically generating personalized follow-up emails based on customer interaction notes. Which implementation approach would be most effective?",
+        "type": "multiple_choice",
+        "options": [
+            "Create a Lambda function that processes CRM events, retrieves customer data, and uses Amazon Bedrock to generate personalized emails",
+            "Deploy an EC2 instance that runs a script to periodically check the CRM database and generate emails",
+            "Implement a SageMaker endpoint that hosts a custom model for email generation",
+            "Use Amazon Pinpoint to send templated emails based on customer segments"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "crm",
+            "lambda",
+            "bedrock",
+            "event-driven"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D2",
+        "explanation": "Lambda triggered by CRM events (EventBridge/webhooks) + Bedrock generates truly personalized content, scales automatically, and only runs when needed. EC2 polling adds unnecessary infra management; SageMaker custom model is overkill when pretrained FMs suffice; Pinpoint only supports templated, not dynamically generated, content.",
+        "group": "enterprise-integration",
+        "comparison_note": "Matches exam guide almost verbatim (Task 2.5: 'Lambda-driven CRM enhancements'). Same event-triggered Lambda+Bedrock family as D2_SB_018. Contrast with D2_SB_042: this is a single discrete task triggered by an event (simple Lambda+Bedrock); D2_SB_042 asks for broader CRM 'AI capabilities' needing orchestration (Step Functions+Lambda+Q Business).",
+        "see_also": [
+            "D2_SB_018",
+            "D2_SB_042"
+        ]
+    },
+    {
+        "id": "D2_SB_042",
+        "question": "When enhancing a customer relationship management (CRM) system with AI capabilities, which service combination would provide the MOST effective solution?",
+        "type": "multiple_choice",
+        "options": [
+            "Use AWS Lambda and Amazon DynamoDB for all CRM processing",
+            "Implement AWS Step Functions with AWS Lambda and Amazon Q Business integration",
+            "Deploy Amazon SageMaker AI endpoints for CRM predictions",
+            "Use AWS Glue for all data transformations"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "step-functions",
+            "lambda",
+            "amazon-q-business",
+            "crm"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Step Functions + Lambda + Amazon Q Business gives workflow orchestration, flexible processing, and intelligent knowledge-base capabilities for a fuller AI-enhanced CRM. Lambda+DynamoDB alone lacks orchestration/knowledge integration; SageMaker is excessive for basic CRM enhancement; Glue alone lacks AI-driven insight/workflow management.",
+        "group": "enterprise-integration",
+        "comparison_note": "Distinguishing detail vs D2_SB_039: single discrete event-triggered task (email generation) needs only simple Lambda+Bedrock; broader 'AI capabilities' enhancement needing orchestration + knowledge base needs Step Functions+Lambda+Amazon Q Business -- same CRM domain, different service combo based on scope.",
+        "see_also": [
+            "D2_SB_039"
+        ]
+    },
+    {
+        "id": "D2_SB_022",
+        "question": "A GenAI developer needs to implement real-time trading signal generation using foundation models (FMs). Which combination of services provides the MOST efficient architecture for this requirement?",
+        "type": "multiple_choice",
+        "options": [
+            "Amazon API Gateway with REST APIs and AWS Lambda functions for synchronous processing",
+            "WebSocket APIs with Amazon EventBridge and Amazon Kinesis Data Streams",
+            "HTTP APIs with AWS Step Functions for orchestration",
+            "Amazon SQS with periodic AWS Lambda polling"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "websocket",
+            "eventbridge",
+            "kinesis",
+            "streaming"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "WebSocket APIs + EventBridge + Kinesis Data Streams enables real-time bidirectional communication, event-driven processing, and high-throughput data streaming essential for trading signals. REST+Lambda sync introduces latency; HTTP+Step Functions suits request-response/orchestration not signal streaming; SQS polling introduces unnecessary latency.",
+        "group": "streaming-architecture",
+        "comparison_note": "Kinesis here is for high-throughput STREAM INGESTION at scale (many trading events/sec), distinct from D2_SB_028's Bedrock streaming API+WebSockets which is for TOKEN-LEVEL response delivery in a single conversation. Both mention WebSockets/streaming but solve different problems -- don't conflate stream ingestion with token-by-token generation delivery.",
+        "see_also": [
+            "D2_SB_028",
+            "D2_SB_031",
+            "D2_SB_033",
+            "D2_SB_040"
+        ]
+    },
+    {
+        "id": "D2_SB_028",
+        "question": "A customer service application needs to display AI-generated responses to agents as they are being generated, rather than waiting for complete responses. Which implementation approach would best support this requirement?",
+        "type": "multiple_choice",
+        "options": [
+            "Use Amazon Bedrock's standard InvokeModel API and poll for results",
+            "Implement Amazon Bedrock streaming APIs with WebSockets to deliver incremental responses",
+            "Configure Amazon SNS to push notifications when responses are ready",
+            "Use Amazon Kinesis Data Streams to capture and display responses"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bedrock-streaming",
+            "websocket",
+            "token-streaming"
+        ],
+        "difficulty": "easy",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Bedrock streaming APIs + WebSockets deliver text tokens incrementally as generated, creating a fluid typing effect via a persistent bidirectional connection. Standard InvokeModel+polling only delivers complete responses; SNS is for async notifications not streaming content; Kinesis is optimized for analytics pipelines, not real-time UI interactions.",
+        "group": "streaming-architecture",
+        "comparison_note": "See D2_SB_022 for the Kinesis-ingestion contrast. See D2_SB_046 for the opposite trap: WebSockets are WRONG for long-running background document processing even when framed as 'avoid blocking users' -- that needs a decoupled async pattern (S3 events+SQS+Lambda), not a persistent connection.",
+        "see_also": [
+            "D2_SB_022",
+            "D2_SB_031",
+            "D2_SB_033",
+            "D2_SB_046"
+        ]
+    },
+    {
+        "id": "D2_SB_031",
+        "question": "You're implementing real-time document analysis for a financial trading system that requires immediate feedback during document review. Which combination of services and configurations provides the MOST efficient architecture for this requirement?",
+        "type": "multiple_choice",
+        "options": [
+            "Amazon API Gateway REST APIs with AWS Lambda polling and Amazon CloudWatch metrics",
+            "Amazon API Gateway WebSocket APIs with Amazon Bedrock streaming and chunked transfer encoding",
+            "HTTP APIs with AWS Step Functions for orchestration and Amazon SQS for queuing",
+            "Amazon SQS with AWS Lambda consumers and periodic status checks"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "websocket",
+            "bedrock-streaming",
+            "chunked-transfer-encoding"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "WebSocket APIs + Bedrock streaming + chunked transfer encoding gives persistent connections and incremental result delivery, minimizing latency for immediate trading feedback. REST+polling adds latency/load; Step Functions+SQS adds unnecessary orchestration/queuing overhead for streaming; SQS+periodic checks fundamentally misaligns with real-time needs.",
+        "group": "streaming-architecture",
+        "comparison_note": "Matches exam guide Task 2.4 exactly ('Bedrock streaming APIs, WebSockets/SSE, chunked transfer encoding via API Gateway'). Third concrete 'real-time' architecture pinned alongside D2_SB_022 (high-throughput ingestion) and D2_SB_028 (token-level UI delivery) -- all reject polling/SQS/HTTP APIs for the same latency reason but solve different traffic shapes.",
+        "see_also": [
+            "D2_SB_022",
+            "D2_SB_028",
+            "D2_SB_033"
+        ]
+    },
+    {
+        "id": "D2_SB_033",
+        "question": "You need to implement real-time content moderation using foundation models (FMs) with immediate feedback. Which approach using AWS SDKs and services provides the MOST efficient streaming implementation?",
+        "type": "multiple_choice",
+        "options": [
+            "Configure Amazon SQS queues with long polling for batch processing",
+            "Implement BedrockRuntimeClient with response streaming and WebSocket integration",
+            "Use standard invoke_model calls with periodic status checks",
+            "Set up async AWS Lambda invocations with Amazon SQS for results"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "bedrockruntimeclient",
+            "streaming",
+            "websocket"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "BedrockRuntimeClient with response streaming + WebSocket enables immediate processing as content arrives, real-time feedback, efficient resource use, and proper stream-interruption error handling. SQS long polling adds latency; standard synchronous calls don't support incremental results; async Lambda+SQS adds unnecessary complexity/latency.",
+        "group": "streaming-architecture",
+        "comparison_note": "Names the actual SDK client (BedrockRuntimeClient) alongside the conceptual streaming+WebSocket pattern already established in D2_SB_022/028/031.",
+        "see_also": [
+            "D2_SB_022",
+            "D2_SB_028",
+            "D2_SB_031"
+        ]
+    },
+    {
+        "id": "D2_SB_040",
+        "question": "A GenAI developer is creating an API interface for a foundation model (FM) that needs to handle streaming responses and manage token limits effectively. Which approach would be MOST appropriate?",
+        "type": "multiple_choice",
+        "options": [
+            "Use REST APIs with custom token tracking in Amazon DynamoDB",
+            "Implement WebSocket APIs with AWS Lambda for token management",
+            "Deploy HTTP APIs with AWS Step Functions for token handling",
+            "Set up AWS AppSync with client-side token management"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "websocket",
+            "lambda",
+            "token-management",
+            "streaming"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "WebSocket APIs + Lambda provide efficient streaming, flexible token management, and proper scaling for FM applications. REST APIs lack native streaming support and DynamoDB tracking adds unnecessary complexity; HTTP APIs don't support long-lived streaming connections; client-side token management is less secure/reliable.",
+        "group": "streaming-architecture",
+        "comparison_note": "Same WebSocket+Lambda streaming pattern as the rest of this cluster, now specifically tied to token-LIMIT management rather than just latency/UI delivery.",
+        "see_also": [
+            "D2_SB_022",
+            "D2_SB_028",
+            "D2_SB_031",
+            "D2_SB_033"
+        ]
+    },
+    {
+        "id": "D2_SB_046",
+        "question": "A GenAI developer is building a document processing system. The system uses Amazon Bedrock FMs for entity extraction and summarization. Users upload documents through a web interface. Each document takes 1-2 minutes to process. The solution must provide document storage, process without blocking user interactions, make results available in a database for later viewing, and handle high volumes during business hours. Which solution will meet these requirements with the LEAST implementation effort?",
+        "type": "multiple_choice",
+        "options": [
+            "Store documents in Amazon S3 with versioning enabled. Deploy API Gateway with Lambda functions that make synchronous InvokeModel calls to Bedrock. Store results in DynamoDB with TTL enabled",
+            "Store documents in S3 with versioning enabled. Set up API Gateway to use InvokeModelWithResponseStream to stream responses. Create WebSocket APIs to maintain connections. Store results in DynamoDB with document metadata",
+            "Use S3 pre-signed URLs to upload documents to S3 buckets with versioning enabled. Configure S3 Event Notifications to trigger SQS messages. Create Lambda functions that process messages and store results in DynamoDB with document references",
+            "Implement WebSocket APIs through API Gateway to maintain client connections. Use a Lambda function to process documents and push status updates to connected clients. Store documents in S3 with lifecycle policies, and store results in DynamoDB with GSIs"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "s3-events",
+            "sqs",
+            "lambda",
+            "decoupled-architecture",
+            "async-processing"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "S3 Event Notifications -> SQS -> Lambda decouples upload from processing, lets SQS absorb high-volume peaks, and processes asynchronously with results stored in DynamoDB -- least implementation effort. Synchronous InvokeModel calls risk exceeding API Gateway's 29-second and Lambda's 15-minute timeouts and block user interactions. WebSocket options are resource-intensive/complex to maintain for 1-2 minute processing when users don't need real-time updates during that wait.",
+        "group": "streaming-architecture",
+        "comparison_note": "Key trap confirmed: WebSockets are correct for LIVE, interactive feedback (token streaming, chat -- see D2_SB_022/028/031/033/040) but WRONG for long-running BACKGROUND processing even when phrased as 'avoid blocking users.' That needs a decoupled async pattern (S3 events+SQS+Lambda), not a persistent connection. Also pins hard numbers: API Gateway timeout = 29 seconds, Lambda timeout = 15 minutes.",
+        "see_also": [
+            "D2_SB_028",
+            "D2_SB_045"
+        ]
+    },
+    {
+        "id": "D2_SB_026",
+        "question": "A GenAI developer needs to implement real-time model monitoring across distributed environments. Which combination of services provides the MOST comprehensive solution?",
+        "type": "multiple_choice",
+        "options": [
+            "Amazon CloudWatch with custom metrics and Amazon EventBridge rules",
+            "Prometheus with Grafana dashboards",
+            "Custom logging with Amazon OpenSearch Service",
+            "Amazon SageMaker Model Monitor"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cloudwatch",
+            "eventbridge",
+            "monitoring",
+            "observability"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "CloudWatch custom metrics + EventBridge rules enables real-time monitoring with automated response to monitoring events, natively integrated across AWS services. Prometheus/Grafana lacks native AWS integration and adds maintenance; custom logging+OpenSearch requires significant custom development; SageMaker Model Monitor covers model drift specifically but not comprehensive infrastructure/operational monitoring.",
+        "group": "observability",
+        "comparison_note": "SageMaker Model Monitor is downgraded here -- correct for model-quality DRIFT specifically, not comprehensive infra+operational monitoring (CloudWatch+EventBridge wins). Contrast with D2_SB_034: this question is about infrastructure/operational monitoring; D2_SB_034 is about distributed request-level TRACING (X-Ray wins there, plain CloudWatch metrics explicitly insufficient). Match the tool to whether the ask is 'monitor system health/events' vs 'trace a request across distributed services.'",
+        "see_also": [
+            "D2_SB_034",
+            "D2_SB_035",
+            "D2_SB_036",
+            "D2_SB_044"
+        ]
+    },
+    {
+        "id": "D2_SB_034",
+        "question": "Which service configurations provide the MOST comprehensive observability for a distributed foundation model (FM) system? (Select TWO.)",
+        "type": "multiple_choice",
+        "options": [
+            "Amazon CloudWatch metrics with default logging",
+            "AWS X-Ray tracing with custom subsegments and annotations",
+            "Simple console logging in AWS Lambda functions",
+            "Distributed tracing with custom span attributes and service maps",
+            "Standard Amazon API Gateway access logs"
+        ],
+        "correct_indices": [
+            1,
+            3
+        ],
+        "tags": [
+            "x-ray",
+            "distributed-tracing",
+            "observability"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "X-Ray tracing with custom subsegments gives detailed visibility into model operations, cross-service tracking, bottleneck identification, and error-propagation patterns. Distributed tracing with custom span attributes adds end-to-end visualization, service dependency mapping, and sophisticated error tracking. Default CloudWatch metrics lack cross-service trace context; console logging lacks structure; standard API Gateway access logs lack sufficient context/detail.",
+        "group": "observability",
+        "comparison_note": "Distinct from D2_SB_026's infrastructure/operational monitoring focus -- this is about distributed request-level TRACING, where X-Ray + custom span tracing wins and plain CloudWatch metrics are explicitly insufficient.",
+        "see_also": [
+            "D2_SB_026",
+            "D2_SB_035",
+            "D2_SB_036",
+            "D2_SB_044"
+        ]
+    },
+    {
+        "id": "D2_SB_035",
+        "question": "You are implementing a dynamic routing system for multiple foundation models (FMs) that handles different document types. Which combination of services provides the MOST efficient routing architecture while maintaining observability?",
+        "type": "multiple_choice",
+        "options": [
+            "Amazon API Gateway with direct AWS Lambda integrations for each model",
+            "AWS Step Functions with dynamic Choice states and AWS X-Ray tracing",
+            "Amazon SQS queues with different message groups for each model",
+            "Amazon EventBridge rules with static routing patterns"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "step-functions",
+            "x-ray",
+            "dynamic-routing"
+        ],
+        "difficulty": "medium",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "Step Functions Choice states can evaluate document content/complexity dynamically, with visual workflow monitoring, detailed decision tracing via X-Ray, comprehensive observability, and built-in error handling. Direct Lambda integrations lack sophisticated routing; SQS message groups lack orchestration/complex routing logic; EventBridge static rules lack flexibility for content-based dynamic decisions.",
+        "group": "observability",
+        "comparison_note": "EventBridge is explicitly downgraded here for STATIC routing vs the dynamic content-based requirement -- contrasts with D2_SB_018 where EventBridge was correct for event-TRIGGERING. Reinforces: EventBridge is good for reacting to discrete events, weak for dynamic multi-criteria routing logic (that's Step Functions' job). Also groups with D2_SB_034's X-Ray theme.",
+        "see_also": [
+            "D2_SB_018",
+            "D2_SB_034",
+            "D2_SB_036"
+        ]
+    },
+    {
+        "id": "D2_SB_036",
+        "question": "Your GenAI application involves multiple services that process user requests before calling foundation models. Users are reporting intermittent timeouts, but you're unable to determine where the delays are occurring. Which AWS service would help identify the source of these delays?",
+        "type": "multiple_choice",
+        "options": [
+            "Amazon CloudWatch Alarms",
+            "AWS X-Ray",
+            "AWS CloudTrail",
+            "Amazon Inspector"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "x-ray",
+            "distributed-tracing",
+            "troubleshooting",
+            "latency"
+        ],
+        "difficulty": "easy",
+        "category": "troubleshooting",
+        "domain": "D2",
+        "explanation": "X-Ray provides end-to-end request tracing across services, visually mapping components and tracking time spent in each -- pinpoints where delays occur. CloudWatch Alarms alerts but doesn't trace; CloudTrail audits API calls, not performance; Inspector is for security assessment, not performance monitoring.",
+        "group": "observability",
+        "comparison_note": "Reinforces X-Ray as the go-to for pinpointing WHERE latency occurs across a multi-service pipeline, distinct from CloudWatch Alarms (threshold alerting), CloudTrail (audit trail), and Inspector (security scanning). Third in the X-Ray cluster with D2_SB_034/D2_SB_035.",
+        "see_also": [
+            "D2_SB_034",
+            "D2_SB_035",
+            "D2_SB_044"
+        ]
+    },
+    {
+        "id": "D2_SB_044",
+        "question": "For troubleshooting a large-scale foundation model (FM) application with multiple microservices and complex data flows, which monitoring approaches would provide the MOST comprehensive and actionable insights? (Select TWO.)",
+        "type": "multiple_choice",
+        "options": [
+            "Implement distributed tracing with AWS X-Ray and custom subsegments",
+            "Use Amazon CloudWatch Logs Insights with custom metric extractions",
+            "Deploy a third-party application performance monitoring (APM) tool for all monitoring needs",
+            "Integrate Amazon Q Developer for AI-specific error pattern recognition",
+            "Rely solely on application-level logging with custom parsers"
+        ],
+        "correct_indices": [
+            0,
+            3
+        ],
+        "tags": [
+            "x-ray",
+            "amazon-q-developer",
+            "error-pattern-recognition",
+            "troubleshooting"
+        ],
+        "difficulty": "hard",
+        "category": "troubleshooting",
+        "domain": "D2",
+        "explanation": "X-Ray with custom subsegments gives detailed cross-microservice tracing capturing AI-specific interactions/latencies. Amazon Q Developer's AI-specific error pattern recognition can identify subtle patterns in FM behavior traditional monitoring misses. CloudWatch Logs Insights alone might miss critical inter-service dependencies; third-party APM tools integrate less seamlessly with AWS and lack AI-specific insight; application-level logging alone lacks depth/correlation for complex distributed AI systems.",
+        "group": "observability",
+        "comparison_note": "Bridges the X-Ray cluster (D2_SB_034/035/036) with the Amazon Q Developer cluster (D2_SB_043/049) -- new detail: Q Developer's role extends beyond code generation into error-pattern recognition for TROUBLESHOOTING (matches exam guide Task 2.5). CloudWatch Logs Insights again 'useful but insufficient alone,' consistent with the earlier pattern.",
+        "see_also": [
+            "D2_SB_034",
+            "D2_SB_035",
+            "D2_SB_036",
+            "D2_SB_043",
+            "D2_SB_049"
+        ]
+    },
+    {
+        "id": "D2_SB_027",
+        "question": "A development team is building an application that needs to process customer inquiries using Amazon Bedrock foundation models. The application needs to handle varying loads throughout the day with peak traffic of 100 requests per minute. Which implementation approach provides the most scalable solution for managing these synchronous requests?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement direct calls to Amazon Bedrock APIs from the frontend application",
+            "Create an Amazon API Gateway with Lambda integration that forwards requests to Amazon Bedrock",
+            "Use Amazon SQS to queue all requests and process them with a single Lambda function",
+            "Deploy Amazon EC2 instances to handle the requests and directly call Amazon Bedrock"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "api-gateway",
+            "lambda",
+            "synchronous-scaling"
+        ],
+        "difficulty": "easy",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "API Gateway + Lambda gives request validation, throttling, and authentication, and both scale automatically with demand. Direct frontend calls lack validation/management layers; SQS queuing adds unnecessary latency for synchronous requests; EC2 requires manual scaling, less efficient than serverless.",
+        "group": "api-gateway-features",
+        "comparison_note": "Same core architecture as D2_SB_020, reinforced. Same SQS-adds-latency trap as D2_SB_020/022/025 for synchronous/real-time requirements.",
+        "see_also": [
+            "D2_SB_020",
+            "D2_SB_030"
+        ]
+    },
+    {
+        "id": "D2_SB_030",
+        "question": "A developer is designing an API for a chatbot application that needs to validate requests before sending them to Amazon Bedrock. Which API Gateway feature should be used to ensure requests contain all required fields and adhere to size limitations?",
+        "type": "multiple_choice",
+        "options": [
+            "API Gateway Caching",
+            "Request Mapping Templates",
+            "Request Validators with JSON Schema",
+            "API Gateway Usage Plans"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "api-gateway",
+            "request-validators",
+            "json-schema"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "domain": "D2",
+        "explanation": "Request Validators with JSON Schema validate incoming requests against a defined schema before they reach backend services, preventing unnecessary processing of invalid requests. Caching improves performance but doesn't validate; Mapping Templates transform but don't validate data; Usage Plans control throttling/quotas, not content validation.",
+        "group": "api-gateway-features",
+        "comparison_note": "Granular 'know your API Gateway feature names precisely' question -- distinct from broader architecture-pattern questions. Exam likely tests API Gateway sub-features individually (Request Validators, Usage Plans, Mapping Templates, Caching) as separate correct answers depending on the specific problem (validation vs throttling vs transformation vs performance).",
+        "see_also": [
+            "D2_SB_027"
+        ]
+    },
+    {
+        "id": "D2_SB_041",
+        "question": "A team needs to implement accessible AI interfaces for their foundation model (FM) application. Which approaches provide the BEST balance of accessibility and maintainability? (Select TWO.)",
+        "type": "multiple_choice",
+        "options": [
+            "Build custom React components with manual AWS integrations",
+            "Use AWS Amplify UI components with built-in accessibility features",
+            "Implement command-line interfaces (CLIs) for all interactions",
+            "Integrate Amazon Bedrock Prompt Flows for no-code workflow building",
+            "Deploy third-party frameworks with custom API wrappers"
+        ],
+        "correct_indices": [
+            1,
+            3
+        ],
+        "tags": [
+            "amplify-ui",
+            "bedrock-prompt-flows",
+            "accessibility"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D2",
+        "explanation": "Amplify UI provides tested, accessible, AWS-integrated components. Bedrock Prompt Flows lets business users build AI workflows without complex coding. Custom React components increase overhead and might miss accessibility requirements; CLI-only interfaces severely limit accessibility; third-party frameworks lack deep AWS integration and increase maintenance.",
+        "group": "api-gateway-features",
+        "comparison_note": "Matches exam guide directly (Task 2.5: 'Amplify UI components... Bedrock Prompt Flows no-code builders'). Straightforward pairing, no major traps."
+    },
+    {
+        "id": "D2_SB_043",
+        "question": "A development team is building a complex AI application using Amazon Q Developer. They need to optimize their workflow for handling multi-agent systems and implementing sophisticated prompt engineering techniques. Which approach would be MOST effective?",
+        "type": "multiple_choice",
+        "options": [
+            "Use Amazon Q Developer solely for code generation without custom prompts",
+            "Implement Amazon Q Developer context-aware suggestions with custom prompt templates",
+            "Rely entirely on pre-built agent templates without customization",
+            "Manually code all agent interactions without Amazon Q Developer assistance"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "amazon-q-developer",
+            "context-aware-suggestions",
+            "prompt-templates"
+        ],
+        "difficulty": "medium",
+        "category": "conceptual",
+        "domain": "D2",
+        "explanation": "Combining context-aware suggestions with custom prompt templates lets developers build sophisticated, tailored multi-agent systems while benefiting from Q Developer's AI-assisted coding. Codegen-only misses advanced capabilities; pre-built templates alone don't suffice for complex needs; manual coding without AI assistance is inefficient/error-prone.",
+        "group": "amazon-q-developer",
+        "comparison_note": "Groups with D2_SB_044 and D2_SB_049 (Q Developer theme). Task 2.5: 'boost developer productivity with Q Developer.'",
+        "see_also": [
+            "D2_SB_044",
+            "D2_SB_049"
+        ]
+    },
+    {
+        "id": "D2_SB_049",
+        "question": "A development team wants to enhance productivity by using Amazon Q Developer. The solution must provide code generation suggestions, API usage assistance, performance optimization recommendations, integration with existing IDEs, and support context-aware technical guidance. Which combination of steps will meet these requirements? (Select TWO)",
+        "type": "multiple_choice",
+        "options": [
+            "Enable the Amazon Q Developer chat interface to answer coding questions and troubleshoot development issues within the IDE",
+            "Configure Amazon Q Developer to suggest code completions and provide documentation lookups for AWS services and APIs during development",
+            "Configure Amazon Q Developer to analyze code repositories and provide automated code reviews with best practice recommendations and performance insights",
+            "Use Amazon Q Developer to generate code snippets for common AWS SDK operations and provide explanations of API usage within the IDE",
+            "Integrate Amazon Q Developer in IDEs to provide contextual code suggestions and technical assistance based on project code bases"
+        ],
+        "correct_indices": [
+            2,
+            4
+        ],
+        "tags": [
+            "amazon-q-developer",
+            "code-review",
+            "ide-integration"
+        ],
+        "difficulty": "hard",
+        "category": "conceptual",
+        "domain": "D2",
+        "explanation": "Automated code review/repo analysis (option C) delivers performance optimization + technical guidance through contextual insight across the codebase. IDE integration (option E) delivers real-time, context-aware suggestions based on the project codebase directly in the workflow. Chat, code completion/doc lookup, and snippet generation are each correct-but-incomplete individually -- none alone covers the full set of stated requirements (performance optimization + context-awareness across the whole codebase).",
+        "group": "amazon-q-developer",
+        "comparison_note": "This question distinguishes Q Developer's individual features finely: chat, inline completion/doc lookup, automated code review (correct), snippet generation, and IDE contextual integration (correct). The trap is that each individual feature alone is 'correct but incomplete' -- only repo-wide code review + IDE-integrated contextual assistance together cover the full requirement set. Worth pinning Q Developer's feature list distinctly since the exam tests granular feature recognition.",
+        "see_also": [
+            "D2_SB_043",
+            "D2_SB_044"
+        ]
+    },
+    {
+        "id": "D2_SB_045",
+        "question": "A healthcare company is building an AI application using an Amazon Nova Pro model in Amazon Bedrock. The application processes notes doctors write during consultations. Some use cases require real-time interaction (e.g., immediate consultation summaries). Others can run in batches without immediate response (e.g., trend analysis across many uploaded notes). The application must provide low-latency responses for real-time queries and handle large batch queries without timing out. Which solution will meet these requirements?",
+        "type": "multiple_choice",
+        "options": [
+            "Create a single AWS Step Functions state machine with a choice state branching real-time vs batch. For real-time, invoke Lambda calling InvokeModel and return results as state machine output. For batch, invoke Lambda calling StartAsyncInvoke",
+            "Same as above, but for batch requests invoke a Lambda function that calls the CreateModelInvocationJob API method instead of StartAsyncInvoke",
+            "For real-time, create an API Gateway endpoint invoking a Lambda function that calls InvokeModel and returns results to API Gateway. For batch, configure a Lambda function to poll an SQS queue and call StartAsyncInvoke",
+            "For real-time, create an API Gateway endpoint invoking a Lambda function that calls InvokeModel and returns results to API Gateway. For batch, configure a Lambda function to poll an SQS queue and call CreateModelInvocationJob"
+        ],
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "api-gateway",
+            "sqs",
+            "create-model-invocation-job",
+            "start-async-invoke",
+            "real-time-batch-split"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "domain": "D2",
+        "explanation": "API Gateway+Lambda handles real-time requests with low latency via built-in scaling and concurrent Lambda invocations. Batch requests are queued in SQS, then processed via CreateModelInvocationJob to create a batch inference job -- the Lambda function doesn't need to wait for completion, avoiding Lambda's 15-minute max execution time. A single Step Functions state machine can't cleanly separate real-time/batch: standard workflows (needed since batch might exceed the 5-minute Express cap) execute synchronously. StartAsyncInvoke supports ONLY the Amazon Nova Reel video-generation model -- batch/async inference on other models requires CreateModelInvocationJob instead.",
+        "group": "api-key-facts",
+        "comparison_note": "Sharp, specific trap: StartAsyncInvoke is video-generation-only (Nova Reel). For batch/async inference on other models, use CreateModelInvocationJob. Also pins: Step Functions standard workflows execute synchronously (can't truly separate real-time/batch in one state machine); Express workflow cap = 5 minutes; Lambda max execution = 15 minutes -- explains why batch jobs get queued rather than awaited.",
+        "see_also": [
+            "D2_SB_046"
+        ]
+    }
+]

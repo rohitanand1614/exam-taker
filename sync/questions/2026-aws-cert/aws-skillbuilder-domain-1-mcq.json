@@ -1,0 +1,1553 @@
+[
+    {
+        "id": "D1_SB_001",
+        "question": "Company needs a customer support chatbot handling routine inquiries, escalating complex issues, integrating with CRM, and maintaining conversation context. Which integration pattern is most appropriate?",
+        "options": [
+            "A) Synchronous API integration with direct Bedrock calls",
+            "B) Asynchronous batch processing using SQS and Lambda",
+            "C) Orchestrated workflow using Step Functions with RAG",
+            "D) Streaming integration using Kinesis and real-time analytics"
+        ],
+        "correct_answer": [
+            "C"
+        ],
+        "status": "correct",
+        "topic": "Integration patterns",
+        "group": "chatbot-architecture",
+        "explanation": "Step Functions orchestrates multi-step logic (CRM lookup, context retention, escalation decision) while RAG grounds responses in CRM data. Sync API is too simplistic for multi-system decisioning; async batch doesn't fit real-time chat; Kinesis is for continuous data streams, not conversational turns.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_008",
+        "question": "Designing FM integration patterns for a large-scale system — which approach is MOST operationally efficient?",
+        "options": [
+            "A) Synchronous API calls with basic retry logic for all interactions",
+            "B) Event-driven architecture with SQS queuing and Step Functions orchestration",
+            "C) Process all requests through Lambda with direct model invocation",
+            "D) Direct FM access patterns without service integration layers"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Integration patterns",
+        "group": "chatbot-architecture",
+        "explanation": "Event-driven design with SQS + Step Functions gives scalability, retry/error handling, and state management for large-scale FM systems. Pure sync calls risk timeouts at scale; raw Lambda invocation and direct access lack orchestration and monitoring.",
+        "comparison_note": "Same underlying principle as D1_SB_001: orchestration (Step Functions) + async decoupling beats direct/synchronous FM calls whenever the system is complex or high-scale.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_002",
+        "question": "Financial services company needs to summarize lengthy financial documents and extract key metrics with high accuracy on financial terminology, while maintaining data privacy. Which Bedrock FM approach is most appropriate?",
+        "options": [
+            "A) Claude 3 Sonnet with few-shot prompting",
+            "B) Llama 3 with RAG for document processing",
+            "C) Fine-tune Titan Text on proprietary financial documents",
+            "D) Bedrock Knowledge Bases with Anthropic Claude and company-specific financial data"
+        ],
+        "correct_answer": [
+            "D"
+        ],
+        "status": "correct",
+        "topic": "FM selection",
+        "group": "fm-selection-privacy",
+        "explanation": "Knowledge Bases integrate proprietary data without exposing it for fine-tuning — data stays in the company's AWS environment while still grounding Claude's responses in financial terminology. Few-shot prompting alone lacks deep company-data integration; fine-tuning Titan requires sharing sensitive data for training, raising privacy risk.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_004",
+        "question": "A company is building an app to process sensitive internal documents to answer employee questions. The app must remain within the company network boundary and cannot send data externally. Which deployment strategy best meets this?",
+        "options": [
+            "A) Bedrock with a private VPC endpoint and data encryption",
+            "B) Deploy FMs on SageMaker with model parallelism",
+            "C) Bedrock Knowledge Bases with cross-region replication",
+            "D) AWS Inferentia instances with locally deployed open-source models"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "FM selection",
+        "group": "deployment-boundary",
+        "explanation": "Bedrock accessed via VPC endpoint keeps all traffic off the public internet while still using a managed FM service — the best balance of security and operational simplicity. SageMaker model parallelism and self-managed Inferentia deployments are unnecessarily complex; cross-region replication doesn't address network-boundary isolation.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_003",
+        "question": "A customer service department wants an FM to draft email responses, maintaining brand voice, ensuring factual accuracy, and reducing response time. Which architectural component would be LEAST important for meeting these requirements?",
+        "options": [
+            "A) A content filtering system to detect/prevent inappropriate responses",
+            "B) A human-in-the-loop review process for complex or sensitive inquiries",
+            "C) A knowledge base integration for up-to-date product information",
+            "D) A multi-modal foundation model that can process images and text"
+        ],
+        "correct_answer": [
+            "D"
+        ],
+        "status": "correct",
+        "topic": "Architecture components",
+        "group": "least-important-component",
+        "explanation": "The use case is purely text-based email drafting — none of the stated requirements (brand voice, factual accuracy, speed) need image processing, so multi-modal capability adds complexity without addressing the actual requirements. Content filtering supports brand voice; human-in-the-loop supports accuracy on complex cases; knowledge base integration directly supports factual accuracy about products.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_005",
+        "question": "A healthcare company needs standardized components for its medical documentation system deployed across multiple facilities, handling sensitive data under strict compliance. Which TWO approaches are most operationally efficient?",
+        "options": [
+            "A) Isolated components per facility with basic error handling",
+            "B) Reusable security components using IAM roles and AWS KMS encryption",
+            "C) Standardized workflow components using Step Functions with compliance monitoring",
+            "D) Store component templates in S3 without version control",
+            "E) Process all documents using basic Lambda functions"
+        ],
+        "correct_answer": [
+            "B",
+            "C"
+        ],
+        "status": "correct",
+        "topic": "PoC & standardization",
+        "group": "standardization-1.1",
+        "explanation": "Reusable IAM+KMS security components give consistent access control/encryption across facilities; standardized Step Functions workflows give consistent compliance-monitored processing. Isolated per-facility components and unversioned templates create governance/audit gaps; basic Lambda alone lacks controls needed for healthcare compliance.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_006",
+        "question": "You need to validate feasibility of using FMs for multilingual customer service automation integrated with existing support workflows. Which approach is MOST operationally efficient?",
+        "options": [
+            "A) Build a complete production system with full language support and workflow integration",
+            "B) Create a focused prototype using Bedrock with core functionality validation and basic workflow testing",
+            "C) Implement custom ML models with specialized language processing",
+            "D) Deploy pre-built chatbot templates with standard multilingual support"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "incorrect",
+        "topic": "PoC & standardization",
+        "group": "standardization-1.1",
+        "explanation": "A focused Bedrock prototype validates core feasibility fast, before committing to a full build. Building the complete production system first skips the validation step and wastes resources if the approach doesn't pan out; custom ML models add unnecessary build time; pre-built templates lack the flexibility to validate specific integration needs.",
+        "your_answer": "A) Build a complete production system with full language support and workflow integration",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_007",
+        "question": "A financial services company needs to ensure its AI implementation follows AWS best practices. Which TWO approaches provide the most efficient validation?",
+        "options": [
+            "A) Use the AWS Well-Architected Tool (WA Tool) with the Generative AI Lens",
+            "B) Implement a custom architecture review process",
+            "C) Apply the AWS Well-Architected Framework",
+            "D) Use third-party architecture validation tools",
+            "E) Follow general cloud architecture guidelines"
+        ],
+        "correct_answer": [
+            "A",
+            "C"
+        ],
+        "status": "correct",
+        "topic": "PoC & standardization",
+        "group": "standardization-1.1",
+        "explanation": "WA Tool + GenAI Lens gives AI-specific structured guidance; the base Well-Architected Framework supplies the general AWS best-practice pillars underneath it. Custom reviews, third-party tools, and generic cloud guidelines all lack AWS-specific, AI-specific evaluation criteria.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_009",
+        "question": "A healthcare organization needs token cost management for a medical documentation system processing 100,000 documents monthly across facilities. Which TWO approaches are most operationally efficient?",
+        "options": [
+            "A) Token monitoring with CloudWatch and usage-based caching patterns",
+            "B) Process all documents without optimization controls",
+            "C) Facility-specific budgets with prompt optimization strategies",
+            "D) Cache all processed documents for 30 days",
+            "E) Use separate FMs for each document type"
+        ],
+        "correct_answer": [
+            "A",
+            "C"
+        ],
+        "status": "correct",
+        "topic": "Cost/token management",
+        "group": "token-cost-mgmt",
+        "explanation": "CloudWatch token monitoring + usage-based caching tracks and reduces consumption dynamically; facility-specific budgets + prompt optimization gives granular cost control per department. No optimization wastes tokens at scale; fixed 30-day caching ignores document uniqueness/update frequency and risks compliance issues; separate FMs per doc type adds cost/complexity without real benefit.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_010",
+        "question": "Your team needs to adapt a foundation model for a specialized medical domain without extensive retraining. Which parameter-efficient adaptation technique is most appropriate?",
+        "options": [
+            "A) Full model fine-tuning with gradient descent",
+            "B) Low-Rank Adaptation (LoRA)",
+            "C) Prompt engineering with few-shot examples",
+            "D) Creating a new model from scratch via transfer learning"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Model customization",
+        "group": "lora-adaptation",
+        "explanation": "LoRA adds small trainable rank-decomposition matrices to existing weights — far less compute than full fine-tuning, preserves general knowledge, needs less data, and produces swappable adapter modules. Full fine-tuning risks catastrophic forgetting and high compute cost; few-shot prompting alone may not achieve deep domain adaptation; training from scratch is wasteful when adaptation techniques exist.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_013",
+        "question": "Your team is implementing SageMaker Model Registry for FM versioning. Which approach best supports a compliant model governance process?",
+        "options": [
+            "A) Register model without approval workflow",
+            "B) Register with ModelPackage including approval status PendingManualApproval, domain/task metadata, validation spec",
+            "C) Register model directly to production via deploy()",
+            "D) Store model info in a custom DynamoDB table"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Model customization",
+        "group": "model-registry-governance",
+        "explanation": "Model package groups + PendingManualApproval status + rich metadata (domain, task, validation spec) enforce a review gate and document model characteristics — the built-in SageMaker governance path. Skipping the approval workflow, deploying straight to production, or building a custom DB registry all forfeit the native governance/versioning controls.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_011",
+        "question": "Your company is deploying a critical AI application using Bedrock models. The application must remain operational even if a single AWS region experiences an outage. Which approach provides the most effective cross-region resilience?",
+        "options": [
+            "A) Deploy in a single region with multiple AZs",
+            "B) Bedrock Cross-Region Inference with automatic failover",
+            "C) Separate, independent deployments in multiple regions with DNS-based routing",
+            "D) AWS Global Accelerator to route to the nearest available region"
+        ],
+        "correct_answer": [
+            "C"
+        ],
+        "status": "correct",
+        "topic": "Resilience",
+        "group": "regional-resilience",
+        "explanation": "Fully independent multi-region deployments + Route 53 DNS-based health-check routing isolate failures completely and provide true disaster recovery for the whole application stack. Single-region multi-AZ doesn't survive a region-wide outage; Cross-Region Inference only helps model-call availability, not the whole app; Global Accelerator needs healthy multi-region endpoints to route to in the first place.",
+        "comparison_note": "Contrast with D1_SB_057: when the requirement is resilience for the WHOLE application, independent regional deployments + Route 53 wins. When the requirement is narrowly about Bedrock inference call routing, Bedrock's built-in inference profiles (primary/secondary region) are more cost-effective — no extra services to manage.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_012",
+        "question": "Your application needs to dynamically select the most appropriate FM based on query type, without code changes for each new model. Which architecture best supports this?",
+        "options": [
+            "A) Hardcoded if/else logic per query type in application code",
+            "B) API Gateway → Lambda (Router) → AppConfig (Model Configuration) → Model-specific Lambda functions",
+            "C) API Gateway → direct integration with each model API → client-side selection",
+            "D) Separate API endpoints per model type, client selects endpoint"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Model switching",
+        "group": "dynamic-model-switching",
+        "explanation": "Centralizing routing logic in a Lambda router driven by AppConfig lets you add/change models by updating configuration only — no redeploys, no client changes. Hardcoded logic needs code changes per model; direct API integration and separate endpoints push the selection burden onto the client.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_016",
+        "question": "Which TWO architectural patterns support dynamic model switching without code deployment when using Bedrock?",
+        "options": [
+            "A) AWS AppConfig to store model configurations + Lambda environment variables",
+            "B) Direct API calls with hardcoded model endpoints",
+            "C) API Gateway with Lambda integration + feature flags in AppConfig",
+            "D) Store model selections in DynamoDB with direct app access",
+            "E) Use CloudFormation for model configuration"
+        ],
+        "correct_answer": [
+            "A",
+            "C"
+        ],
+        "status": "correct",
+        "topic": "Model switching",
+        "group": "dynamic-model-switching",
+        "explanation": "AppConfig enables runtime config changes without redeploys; API Gateway + Lambda + AppConfig feature flags supports dynamic routing and A/B testing. Hardcoded endpoints defeat the purpose; direct DynamoDB access lacks proper configuration management; CloudFormation changes require infrastructure updates, not runtime switching.",
+        "comparison_note": "Same theme as D1_SB_012 — AppConfig-driven routing (vs. hardcoded/direct model access) is the recurring 'dynamic model switching' answer pattern.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_017",
+        "question": "Which combination of AWS services BEST supports Regional resilience for a mission-critical GenAI application?",
+        "options": [
+            "A) Bedrock with multi-Region deployment and Route 53 health checks",
+            "B) Cross-Region read replicas without active failover",
+            "C) CloudFront distribution without Regional model deployment",
+            "D) Global Accelerator without Regional model redundancy"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Resilience",
+        "group": "regional-resilience",
+        "explanation": "Multi-region Bedrock deployment + Route 53 health checks combines actual regional model availability with automated failover routing. Read replicas without active failover don't provide immediate resilience; CloudFront and Global Accelerator alone don't address model availability without redundant regional deployments behind them.",
+        "comparison_note": "Reinforces D1_SB_011: true regional resilience needs BOTH redundant regional deployments AND health-check-based routing — neither alone (as in options B/C/D here) is sufficient.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_014",
+        "question": "In a system using Step Functions for GenAI operations, which pattern BEST implements a circuit breaker for handling model failures?",
+        "options": [
+            "A) Exponential backoff within Lambda functions",
+            "B) Step Functions Choice states with error counts and timeouts",
+            "C) Adding retries to API Gateway endpoints",
+            "D) DynamoDB-based error tracking",
+            "E) EventBridge to trigger alternative workflows"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Resilience patterns",
+        "group": "circuit-breaker",
+        "explanation": "Step Functions Choice states maintain state across executions, enabling threshold monitoring and automatic circuit-breaking based on error patterns. Exponential backoff and API Gateway retries are stateless retry mechanisms, not true circuit breakers; DynamoDB tracking adds latency without immediate breaking; EventBridge is reactive, not proactive.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_015",
+        "question": "Which TWO methods effectively support graceful degradation in a GenAI system?",
+        "options": [
+            "A) Fallback to more basic models with reduced capabilities",
+            "B) Multiple model versions with capability tiering",
+            "C) Return cached responses for all requests during degradation",
+            "D) Complete system shutdown during any model unavailability",
+            "E) Switch to rule-based responses for all queries during degradation",
+            "F) Route all traffic to a single generic model regardless of use case"
+        ],
+        "correct_answer": [
+            "A",
+            "B"
+        ],
+        "status": "incorrect",
+        "topic": "Resilience patterns",
+        "group": "graceful-degradation",
+        "explanation": "Falling back to simpler models and tiering capability across model versions both preserve service continuity while degrading gracefully. Returning cached responses to ALL requests can't handle new queries and may return stale info; full shutdown, rule-based fallback for everything, and generic single-model routing all sacrifice too much capability or availability.",
+        "your_answer": "Also incorrectly checked C) Return cached responses for all requests during degradation",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_018",
+        "question": "When evaluating text summarization models in Bedrock for a production system requiring consistent performance, which evaluation result indicates the BEST model selection?",
+        "options": [
+            "A) Robustness score 8.5% — minimal variation, consistent quality under slight input variation",
+            "B) Robustness score 15.7% — intermediate variation",
+            "C) Robustness score 25.3% — moderate fluctuation",
+            "D) Robustness score 33.9% — substantial inconsistency",
+            "E) Robustness score 42.1% — high sensitivity"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "incorrect",
+        "topic": "Model evaluation",
+        "group": "robustness-scoring",
+        "explanation": "LOWER robustness score = more stable output under input perturbation, which is what production reliability requires. Higher scores (15.7%+) all indicate increasing output instability under minor input changes — undesirable for consistent production behavior.",
+        "your_answer": "C) Robustness score 25.3% — moderate fluctuation (picked a higher-variation option; lower score = more stable, not higher)",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_019",
+        "question": "Your organization uses customer support tickets as input data for training and inference. You need a data validation workflow to ensure quality. Which TWO AWS services are most effective?",
+        "options": [
+            "A) AWS Glue Data Quality to define/enforce data quality rules",
+            "B) SageMaker Data Wrangler to visualize and identify data quality issues",
+            "C) Amazon Rekognition to analyze image content in tickets",
+            "D) AWS Backup to create redundant copies of the data",
+            "E) DynamoDB to store validation results"
+        ],
+        "correct_answer": [
+            "A",
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Data validation",
+        "group": "data-validation-glue",
+        "explanation": "Glue Data Quality defines/enforces rules (missing values, format checks, anomalies) as part of ETL; Data Wrangler visualizes patterns/outliers via built-in data-quality reports. Rekognition is for images, not text tickets; Backup protects data but doesn't validate it; DynamoDB can store results but has no validation capability itself.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_023",
+        "question": "Which approach is the MOST operationally efficient for implementing a data validation workflow for FM data?",
+        "options": [
+            "A) AWS Glue Data Quality for automated validation, connected to CloudWatch for monitoring",
+            "B) Lambda functions to validate each data field individually",
+            "C) Implement all validations in SageMaker Data Wrangler",
+            "D) Write custom validation scripts on EC2 instances"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Data validation",
+        "group": "data-validation-glue",
+        "explanation": "Glue Data Quality + CloudWatch gives automated validation with built-in monitoring and minimal operational overhead. Per-field Lambda functions are resource-intensive/hard to maintain; Data Wrangler alone creates bottlenecks without automation; custom EC2 scripts require managing infrastructure.",
+        "comparison_note": "Directly reinforces D1_SB_019 — Glue Data Quality is the recurring answer for data-validation-workflow questions in this exam.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_024",
+        "question": "Designing a system that prepares customer interaction data from multiple sources for FM analysis. Which TWO approaches are most operationally efficient for formatting and validation?",
+        "options": [
+            "A) Standardized formatting layer using Lambda with caching + model-specific validation",
+            "B) Store all data in DynamoDB with JSON formatting",
+            "C) Centralized formatting with SageMaker AI endpoints and proper error handling",
+            "D) Use Aurora to format and validate all inputs",
+            "E) Process all inputs through EMR for formatting and validation"
+        ],
+        "correct_answer": [
+            "A",
+            "C"
+        ],
+        "status": "correct",
+        "topic": "Data validation",
+        "group": "data-formatting-multisource",
+        "explanation": "Lambda + caching gives flexible, cost-effective, serverless formatting with custom validation logic per model; SageMaker endpoints give consistent structured-data preparation across model endpoints with error handling built in. DynamoDB, Aurora, and EMR all add unnecessary database/cluster overhead not designed specifically for FM input formatting.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_020",
+        "question": "Your application needs to process customer service call recordings to generate summaries using an FM. Which processing pipeline is most effective for preparing this audio data?",
+        "options": [
+            "A) S3 → Amazon Transcribe → Amazon Comprehend → Bedrock",
+            "B) Kinesis Video Streams → Rekognition → Bedrock",
+            "C) S3 → Glue → Athena → Bedrock",
+            "D) S3 → Amazon Polly → Bedrock"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Multimodal processing",
+        "group": "audio-pipeline",
+        "explanation": "Transcribe converts speech to text (with speaker ID); Comprehend extracts entities/sentiment/themes from the transcript; Bedrock then summarizes the enriched text. Kinesis Video + Rekognition are for video, not audio; Glue/Athena are for structured data, not transcription; Polly is text-TO-speech — the opposite direction needed.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_026",
+        "question": "You're analyzing customer service interactions that include both audio recordings and text chat logs. Which approach is most operationally efficient for extracting insights from both?",
+        "options": [
+            "A) Process all data through Amazon Comprehend only",
+            "B) Use Amazon Transcribe for audio and Amazon Comprehend for both transcribed and text data",
+            "C) Process audio with Polly and text with Lambda functions",
+            "D) Use Amazon Translate for all text processing",
+            "E) Custom speech-to-text processing on EC2"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Multimodal processing",
+        "group": "audio-pipeline",
+        "explanation": "Transcribe handles the speech-recognition challenges (noise, speakers, timing); Comprehend then extracts meaning/entities from both the transcribed and native text logs — one consistent analysis layer for both sources. Comprehend alone can't process audio; Polly is text-to-speech, not recognition; Translate is for language conversion, not analysis; custom EC2 speech-to-text reinvents a managed capability.",
+        "comparison_note": "Same Transcribe→Comprehend pattern as D1_SB_020 for turning audio into FM-ready enriched text.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_025",
+        "question": "Your team needs to process large volumes of multimodal data (text, images, audio) for a foundation model. Which approach is MOST operationally efficient?",
+        "options": [
+            "A) Separate Lambda functions per data type coordinated with Step Functions",
+            "B) Process all data types using EMR clusters",
+            "C) SageMaker Processing jobs with custom containers per modality",
+            "D) Bedrock's multimodal capabilities + SageMaker Processing for pre/post-processing",
+            "E) Store all data in S3 and process using Athena"
+        ],
+        "correct_answer": [
+            "D"
+        ],
+        "status": "correct",
+        "topic": "Multimodal processing",
+        "group": "multimodal-general",
+        "explanation": "Bedrock's native multimodal handling combined with SageMaker Processing for pre/post steps gives an efficient, scalable pipeline with minimal operational overhead. Separate per-modality Lambdas risk orchestration/sync complexity; EMR clusters add unnecessary cluster management; custom containers per modality add container-management burden; Athena is a query engine, not an ML processing tool.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_056",
+        "question": "A company is building natural language search over 250,000 video files based on video metadata, needing scene-level results. Transcripts come from Amazon Transcribe; a Bedrock knowledge base enables the natural language search. Which solution meets this with LEAST operational overhead?",
+        "options": [
+            "A) Rekognition Video to cut scenes + Amazon Nova Micro batch inference to build scene metadata",
+            "B) SageMaker Processing job (scikit-learn) to cut scenes + Nova Micro on-demand inference",
+            "C) Rekognition Video to cut scenes + Amazon Nova Lite batch inference to build scene metadata",
+            "D) SageMaker Processing job (scikit-learn) to cut scenes + Nova Lite on-demand inference"
+        ],
+        "correct_answer": [
+            "C"
+        ],
+        "status": "correct",
+        "topic": "Multimodal processing",
+        "group": "video-metadata-search",
+        "explanation": "Rekognition Video (managed scene detection) + Transcribe + Nova Lite batch inference is a fully-managed pipeline purpose-built for this use case — least operational overhead. Nova Micro is TEXT-ONLY and doesn't support the video modality (rules out A and B); scikit-learn SageMaker Processing jobs require custom implementation of video scene detection, adding overhead scikit-learn isn't built for.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_021",
+        "question": "You're preparing to send a request to the Claude model in Amazon Bedrock. Which JSON request format is correctly structured?",
+        "options": [
+            "A) {\"prompt\":..., \"max_tokens_to_sample\":500, \"temperature\":0.7} (legacy Completions format)",
+            "B) {\"anthropic_version\":\"bedrock-2023-05-31\", \"max_tokens\":500, \"messages\":[{\"role\":\"user\",\"content\":\"...\"}]}",
+            "C) {\"inputs\":..., \"parameters\":{\"max_length\":500,...}} (HuggingFace-style)",
+            "D) {\"text\":..., \"model\":\"claude-v2\", \"max_tokens\":500}"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Bedrock API formatting",
+        "group": "claude-request-format",
+        "explanation": "The Claude Messages API on Bedrock requires anthropic_version plus a messages array with role-based content objects. Option A resembles the older Completions API and is missing anthropic_version; C is a Hugging Face-style body; D matches no standard Bedrock format.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_022",
+        "question": "You're developing a chatbot using Bedrock. Which conversation formatting approach produces the most consistent responses from Claude?",
+        "options": [
+            "A) Concatenate all previous messages with the current query as one string",
+            "B) Send only the most recent user query",
+            "C) Use the messages array with alternating user and assistant roles",
+            "D) Convert the conversation to a bullet-point summary before sending"
+        ],
+        "correct_answer": [
+            "C"
+        ],
+        "status": "correct",
+        "topic": "Bedrock API formatting",
+        "group": "claude-request-format",
+        "explanation": "The role-based messages array (alternating user/assistant) is the documented, structured format that preserves conversational turn-taking and full context. Plain concatenation loses turn structure; sending only the latest query loses context entirely; bullet-summarizing loses conversational nuance.",
+        "comparison_note": "Pairs with D1_SB_021 — both about correctly structuring Claude Messages API calls on Bedrock (schema shape, and how conversation history should be represented within it).",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_027",
+        "question": "Implementing a customer service system handling both one-time queries and multi-turn conversations with memory. Which TWO Bedrock API approaches meet these requirements?",
+        "options": [
+            "A) Use invokeModel for one-time queries with appropriate response parsing",
+            "B) Implement createModelCustomization for conversation handling",
+            "C) Use invokeModelWithResponseStream for multi-turn conversations with state management",
+            "D) Use getModelCustomizations for all interactions",
+            "E) Use deleteModelCustomization for cleaning up conversations"
+        ],
+        "correct_answer": [
+            "A",
+            "C"
+        ],
+        "status": "incorrect",
+        "topic": "Bedrock API mechanics",
+        "group": "invoke-model-apis",
+        "explanation": "invokeModel is the right stateless call for one-time queries; invokeModelWithResponseStream supports multi-turn streaming while conversation state is managed at the application layer. createModelCustomization/getModelCustomizations/deleteModelCustomization are all model-customization management APIs — they don't process conversational queries at all.",
+        "your_answer": "Missed A) invokeModel; incorrectly picked B) createModelCustomization instead",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_028",
+        "question": "A support app needs to retrieve product documentation (~50,000 pages, frequent updates: manuals, FAQs, troubleshooting guides) to augment FM responses. Which vector database architecture is most appropriate?",
+        "options": [
+            "A) OpenSearch Service with Neural plugin + Bedrock integration, topic-based segmentation",
+            "B) DynamoDB with a separate vector database for embeddings",
+            "C) Bedrock Knowledge Base with hierarchical organization of documents",
+            "D) RDS PostgreSQL with pgvector + S3 for document storage"
+        ],
+        "correct_answer": [
+            "C"
+        ],
+        "status": "incorrect",
+        "topic": "Vector store architecture",
+        "group": "vectordb-fm-augmentation",
+        "explanation": "Bedrock Knowledge Bases give built-in chunking, automatic embedding generation, semantic retrieval optimized for RAG, hierarchical organization, and native support for frequent updates — all with minimal custom build. OpenSearch+Neural needs custom dev/maintenance; DynamoDB+separate vector DB needs significant custom integration; RDS+pgvector suits mixed relational+vector needs but lacks Bedrock's out-of-box FM integration.",
+        "your_answer": "A) OpenSearch Service with Neural plugin + Bedrock integration",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_038",
+        "question": "500 queries/sec against a 10M-document knowledge base to augment FM responses. Must be highly available with minimal operational overhead. Which vector search solution is MOST appropriate?",
+        "options": [
+            "A) Self-managed vector DB on EC2 with custom scaling logic",
+            "B) Aurora with pgvector extension and appropriate indexes",
+            "C) Bedrock Knowledge Bases with managed vector store functionality",
+            "D) OpenSearch Service with dedicated master nodes and auto-scaling policies"
+        ],
+        "correct_answer": [
+            "C"
+        ],
+        "status": "incorrect",
+        "topic": "Vector store architecture",
+        "group": "vectordb-fm-augmentation",
+        "explanation": "Bedrock Knowledge Bases is fully managed, scales automatically to high query volumes, and integrates natively with Bedrock FMs — minimal ops for a high-throughput, high-availability requirement. EC2 self-managed and OpenSearch with manually configured nodes both require infrastructure management that conflicts with 'minimal operational overhead'; Aurora+pgvector needs manual scaling/index tuning.",
+        "comparison_note": "Contrast with D1_SB_043 and D1_SB_055: OpenSearch is the RIGHT answer when the requirement is fine-grained relevance tuning (custom scoring, hybrid sparse+dense search) or when Bedrock KB isn't offered as competitive against a purpose-built option. Bedrock KB is the RIGHT answer when the requirement emphasizes 'minimal operational overhead' / 'least ops' and doesn't demand deep custom relevance control. Read the requirement phrase, not just the topic.",
+        "your_answer": "D) OpenSearch Service with dedicated master nodes and auto-scaling policies",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_059",
+        "question": "A research company's GenAI assistant queries proprietary research documents stored in S3. Must provide accurate, grounded responses with low latency and minimal custom infrastructure. Which solution meets this?",
+        "options": [
+            "A) SageMaker AI custom FM + OpenSearch Serverless retrieval layer + manual embedding/prompt injection",
+            "B) Bedrock Knowledge Base connected to S3, with RAG using managed embeddings and vector store",
+            "C) Bedrock embedding models + DynamoDB with custom indexing + Lambda similarity search",
+            "D) Bedrock agent with Lambda action groups calling an external vector database"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "incorrect",
+        "topic": "Vector store architecture",
+        "group": "vectordb-fm-augmentation",
+        "explanation": "Bedrock Knowledge Bases fully manages ingestion, chunking, embedding, and synchronized vector retrieval directly from S3 — grounded RAG responses with zero custom infrastructure. Options A, C, and D all require building and maintaining custom retrieval/indexing/integration layers, which contradicts 'minimal custom infrastructure.'",
+        "comparison_note": "Same 'minimal custom infrastructure' cue as D1_SB_028 and D1_SB_038 — whenever the requirement stresses minimal build/ops, Bedrock Knowledge Bases is almost always the answer over DIY vector-store assembly.",
+        "your_answer": "C) Bedrock embedding models + DynamoDB with custom indexing + Lambda similarity search",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_032",
+        "question": "Designing a vector database architecture for a large-scale FM project requiring efficient semantic retrieval. Which TWO approaches are MOST operationally efficient?",
+        "options": [
+            "A) Store vectors directly in Neptune Analytics with graph relationships",
+            "B) OpenSearch with Neural Plugin for topic-based segmentation + Bedrock integration",
+            "C) RDS PostgreSQL with pgvector + S3 for hybrid storage",
+            "D) DynamoDB with vector capabilities for metadata + embeddings management",
+            "E) Store all vectors in Amazon Timestream for time-series analysis"
+        ],
+        "correct_answer": [
+            "B",
+            "D"
+        ],
+        "status": "incorrect",
+        "topic": "Vector store architecture",
+        "group": "vectordb-general-efficient",
+        "explanation": "OpenSearch + Neural Plugin gives managed, optimized semantic search (ANN/k-NN, vector compression); DynamoDB with vector support efficiently manages metadata + embeddings with millisecond latency and low ops overhead. Neptune Analytics is optimized for graph relationships, not pure vector ops; pgvector+S3 adds DB-management overhead; Timestream is for time-series data, not vector similarity.",
+        "your_answer": "Picked C) RDS PostgreSQL with pgvector instead of D) DynamoDB with vector capabilities",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_029",
+        "question": "An OpenSearch-based vector search product recommendation system shows significant query latency under concurrent requests. Which TWO approaches would most effectively optimize performance?",
+        "options": [
+            "A) Multi-index approach with separate indices per product category",
+            "B) Increase vector embedding dimensionality to improve accuracy",
+            "C) Configure appropriate sharding based on query volume/data distribution",
+            "D) Store all vector embeddings in a single index to simplify management",
+            "E) Use approximate nearest neighbor (ANN) algorithms instead of exact k-NN search"
+        ],
+        "correct_answer": [
+            "A",
+            "E"
+        ],
+        "status": "incorrect",
+        "topic": "Vector store performance",
+        "group": "opensearch-performance-tuning",
+        "explanation": "Multi-index by category shrinks the search space per query; ANN algorithms (e.g. HNSW) give near-optimal results at much faster query times than exact k-NN — both directly address latency. Increasing dimensionality raises compute cost and can worsen latency; sharding alone helps but isn't sufficient by itself; a single large index gets slower as data grows.",
+        "your_answer": "Picked C) sharding instead of E) ANN algorithms",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_034",
+        "question": "A research org needs semantic search across multiple scientific domains (biology, chemistry, physics), each with millions of vectors, requiring sub-second query response. Which TWO approaches are MOST efficient?",
+        "options": [
+            "A) Single large OpenSearch index with composite fields for all domains",
+            "B) OpenSearch sharding strategies based on domain-specific criteria with custom routing",
+            "C) Aurora with partitioned tables per domain",
+            "D) Multi-index approaches in OpenSearch with specialized mappings per domain",
+            "E) Redshift with materialized views for vector storage/querying"
+        ],
+        "correct_answer": [
+            "B",
+            "D"
+        ],
+        "status": "incorrect",
+        "topic": "Vector store performance",
+        "group": "opensearch-performance-tuning",
+        "explanation": "Domain-based sharding + custom routing lets each domain scale/tune independently and ensures queries hit only relevant shards; multi-index with specialized mappings allows per-domain vector dimensions, similarity algorithms, and refresh settings. A single large index creates cross-domain contention; Aurora lacks HNSW-style vector-optimized indexes (full table scans); Redshift lacks native vector similarity search.",
+        "comparison_note": "Combines both optimization levers from D1_SB_029 (ANN/index design) — sharding AND multi-index are complementary OpenSearch performance techniques, not competing alternatives.",
+        "your_answer": "Picked A) single large index instead of D) multi-index with specialized mappings",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_030",
+        "question": "Integrating a company's document management system (DMS) with a vector store for semantic search, where the DMS holds sensitive legal documents with strict access control. Which approach is most secure and effective?",
+        "options": [
+            "A) Export all documents from DMS to S3, then build a vector store with Bedrock Knowledge Bases",
+            "B) Custom AWS Lambda connector that respects DMS access controls and indexes only permitted documents",
+            "C) AWS Glue to extract document metadata only, leaving content in the DMS",
+            "D) Federated search sending queries to both the vector store and the DMS"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "External source integration",
+        "group": "secure-dms-integration",
+        "explanation": "A custom Lambda connector preserves the DMS's existing access controls, indexes only authorized documents, and can incorporate identity/permissions into indexing and querying, plus encryption/audit logging. Bulk export to S3 creates an uncontrolled secondary copy; metadata-only extraction can't support content search; federated search is complex and can return inconsistent results.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_031",
+        "question": "Integrating an internal wiki system (sensitive, frequently updated) with an FM for an employee assistant. Which integration approach is most appropriate?",
+        "options": [
+            "A) Periodically export wiki content to S3 and build a vector store with Bedrock Knowledge Bases",
+            "B) Real-time webhook system that captures wiki changes and updates the vector store immediately",
+            "C) AWS AppSync GraphQL API to retrieve wiki content on demand during FM queries",
+            "D) Custom crawler that indexes wiki content daily"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "incorrect",
+        "topic": "External source integration",
+        "group": "freshness-sync",
+        "explanation": "Real-time webhooks minimize the delay between a wiki edit and its availability to the assistant, process only changed content (efficient), and support fine-grained page/section-level updates while avoiding full exports of sensitive content. Periodic S3 export and daily crawling both introduce staleness; on-demand AppSync retrieval adds query-time latency.",
+        "comparison_note": "Ties to D1_SB_030: both are about integrating sensitive internal content sources into a vector store. D1_SB_030's answer (custom Lambda connector respecting access controls) is about SECURITY-preserving integration; D1_SB_031's answer (real-time webhook) is about FRESHNESS. Don't conflate the two — 'respects access controls' points to a controlled connector, 'frequently updated / real-time' points to a webhook/event-driven sync.",
+        "your_answer": "A) Periodically export wiki content to S3",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_035",
+        "question": "A company needs vector stores for FMs with real-time updates, automated synchronization, and scheduled refreshes, while ensuring data consistency across stores/knowledge bases. Which TWO approaches are most operationally efficient?",
+        "options": [
+            "A) Scheduled full refreshes using AWS Batch",
+            "B) Incremental update mechanisms with change detection in Bedrock Knowledge Bases",
+            "C) Manual update processes with version control",
+            "D) Automated synchronization workflows using AWS Glue with real-time triggers",
+            "E) Use Kinesis for all updates"
+        ],
+        "correct_answer": [
+            "B",
+            "D"
+        ],
+        "status": "correct",
+        "topic": "Freshness & sync",
+        "group": "freshness-sync",
+        "explanation": "Bedrock Knowledge Bases' built-in incremental updates with change detection keep vector stores current with minimal processing overhead and automatic version/consistency management; Glue with real-time triggers automates synchronization with lineage and monitoring built in. Full refreshes waste resources on unchanged data; manual processes don't scale or stay consistent; Kinesis isn't purpose-built for vector-store maintenance.",
+        "comparison_note": "Same freshness theme as D1_SB_031 — Bedrock KB incremental sync and Glue real-time triggers are the two recurring answers for 'keep vector stores current' questions.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_036",
+        "question": "A multinational corp needs to integrate document management systems, knowledge bases, and internal wikis into a unified system for FMs, supporting both batch and real-time updates with data freshness. Which TWO approaches are most operationally efficient?",
+        "options": [
+            "A) AWS Lake Formation for centralized access control and data integration",
+            "B) Individual Lambda functions for each data source",
+            "C) Unified data pipeline using AWS Glue with incremental processing",
+            "D) Store all documents in OpenSearch for unified search",
+            "E) Amazon MSK for all data integration"
+        ],
+        "correct_answer": [
+            "A",
+            "C"
+        ],
+        "status": "correct",
+        "topic": "Freshness & sync",
+        "group": "freshness-sync",
+        "explanation": "Lake Formation gives centralized governance, fine-grained access control, and blueprint-based ingestion across varied sources; Glue with incremental processing gives efficient ETL with change detection/delta updates and automatic metadata cataloging. Per-source Lambda functions don't scale consistently; OpenSearch as the primary integration point adds unnecessary indexing overhead; MSK is built for streaming, not document integration.",
+        "comparison_note": "Extends D1_SB_031/D1_SB_035's freshness/sync cluster to multi-source enterprise integration — Glue incremental processing is the consistent answer across all three.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_033",
+        "question": "A legal firm needs strict versioning, authorship tracking, and domain classification for millions of legal documents used with FMs, supporting real-time updates and efficient retrieval by document attributes. Which approach is MOST operationally efficient?",
+        "options": [
+            "A) Separate DynamoDB tables with GSIs for each attribute type",
+            "B) S3 Object Metadata with custom attributes + a tagging system for classification",
+            "C) Separate RDS instance with JSON columns for flexible metadata",
+            "D) Store metadata directly within document content using standardized headers",
+            "E) Amazon Kendra with custom metadata fields for extraction/storage"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "incorrect",
+        "topic": "Metadata frameworks",
+        "group": "metadata-frameworks",
+        "explanation": "S3 Object Metadata + tagging ties metadata directly to the documents, supports up to 10 tags plus unlimited custom metadata fields, and gets automatic object versioning (built-in audit trail) with minimal ops. DynamoDB GSIs add cross-table consistency risk and hit the 20-GSI limit; RDS JSON columns add separate DB infrastructure; embedding metadata in document content complicates retrieval/updates; Kendra's metadata extraction is better as a complement, not the primary metadata store.",
+        "your_answer": "A) Separate DynamoDB tables with GSIs for each attribute type",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_037",
+        "question": "Selecting an embedding model for a financial services app processing complex financial documents and customer investment queries. Which approach is MOST effective for selecting/configuring an optimal embedding solution?",
+        "options": [
+            "A) Choose smallest-dimensionality Titan embedding model to minimize storage/processing",
+            "B) Evaluate multiple Bedrock embedding models using domain-specific test queries, measuring performance on financial terminology",
+            "C) Always use the latest embedding model version regardless of domain fit",
+            "D) Generate embeddings with multiple models simultaneously via Lambda, store all versions per document"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Embedding model selection",
+        "group": "embedding-selection-financial",
+        "explanation": "Financial terminology is specialized; different embedding models vary in domain performance, so testing with real financial queries identifies the best semantic fit. Picking smallest dimensionality optimizes cost over accuracy; always using 'latest' ignores domain fit; storing every model's embeddings for every document multiplies storage/compute without a selection strategy.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_042",
+        "question": "A financial services firm needs embeddings for market analysis documents requiring high accuracy and domain-specific understanding. Which approach provides the MOST efficient solution?",
+        "options": [
+            "A) Amazon Titan Embeddings with domain-tuned parameters",
+            "B) Custom ML embedding models on EC2",
+            "C) Pre-trained general-purpose embeddings",
+            "D) Custom embedding generation in SageMaker AI"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Embedding model selection",
+        "group": "embedding-selection-financial",
+        "explanation": "Titan Embeddings with domain-tuned parameters gives optimized domain performance with native AWS integration, batch processing, and auto-scaling — no infrastructure to manage. Custom EC2/SageMaker embedding pipelines add infrastructure and maintenance overhead; general-purpose embeddings lack the domain-specific understanding financial analysis needs.",
+        "comparison_note": "Complements D1_SB_037: 037 establishes the general principle (evaluate multiple domain-specific options), 042 gives the concrete recommended choice (Titan with domain tuning) for financial content specifically.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_039",
+        "question": "A legal document retrieval system needs to handle complex multi-part queries about case law and regulations, but users submit broad questions that don't retrieve specific enough info. Which query handling approach is MOST effective?",
+        "options": [
+            "A) Lambda function simplifying queries by removing all but common legal terms",
+            "B) Step Functions workflow decomposing complex queries into parallel sub-queries, aggregating results",
+            "C) Bedrock to expand user queries with relevant legal terminology, then vector search on expanded queries",
+            "D) Static list of legal terms appended to all queries regardless of content"
+        ],
+        "correct_answer": [
+            "C"
+        ],
+        "status": "correct",
+        "topic": "Query handling",
+        "group": "query-expansion",
+        "explanation": "Bedrock query expansion uses the FM's understanding of legal terminology to bridge the gap between how users phrase questions and specialized document language, improving retrieval without complex decomposition logic. Simplifying queries loses specificity; static term appending ignores query context; Step Functions decomposition works but is heavier machinery than needed for this specific gap (vague terminology, not multi-part structure).",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_045",
+        "question": "A research org needs to process complex queries across scientific papers and experimental data. Which approach provides the MOST operationally efficient query handling system?",
+        "options": [
+            "A) Bedrock for query expansion with Step Functions orchestration",
+            "B) All query processing in Lambda functions",
+            "C) Process queries directly without transformation",
+            "D) Amazon Comprehend for query analysis"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Query handling",
+        "group": "query-expansion",
+        "explanation": "Bedrock query expansion handles domain-specific term expansion while Step Functions orchestrates any needed multi-step transformation workflow reliably. Pure Lambda implementation lacks sophisticated query understanding; direct/untransformed processing misses relevant results for complex queries; Comprehend lacks scientific-domain expansion capability.",
+        "comparison_note": "Same Bedrock query-expansion pattern as D1_SB_039, applied to a different domain (scientific research vs. legal) — recognize 'broad/vague queries need domain terminology' as the trigger for this answer.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_040",
+        "question": "Multiple FMs need to integrate with various vector stores for different use cases; developers struggle with inconsistent integration patterns. Which approach creates the MOST consistent access mechanism?",
+        "options": [
+            "A) Custom API endpoints for each FM + vector store combination",
+            "B) Standardized function-calling interface abstracting vector search operations across all FMs",
+            "C) Each team develops its own integration approach",
+            "D) Store all vector embeddings in a single database regardless of source/purpose"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Query handling",
+        "group": "standardized-fm-access",
+        "explanation": "A standardized function-calling interface abstracts vector search behind one common API, so different FMs interact with different vector stores through consistent patterns — simplifying dev and maintenance. Per-combination custom endpoints and per-team approaches both multiply inconsistency; forcing one database regardless of purpose ignores legitimate architectural differences between use cases.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_041",
+        "question": "A publishing company processes diverse content types (books, articles, technical docs) for its FM, needing adaptive chunking due to varying structure/length. Which TWO approaches are MOST operationally efficient?",
+        "options": [
+            "A) Fixed-size chunking with Lambda for all document types",
+            "B) Bedrock's chunking capabilities with content-aware segmentation",
+            "C) Store whole documents without segmentation",
+            "D) Custom hierarchical chunking based on document structure with Lambda",
+            "E) Character-count-based splitting for all documents"
+        ],
+        "correct_answer": [
+            "B",
+            "D"
+        ],
+        "status": "correct",
+        "topic": "Chunking strategies",
+        "group": "chunking-strategies",
+        "explanation": "Bedrock's built-in chunking respects content boundaries/semantic units automatically across content types; custom hierarchical Lambda chunking preserves document structure/relationships for cases needing finer control. Fixed-size and character-count splitting both ignore structure and can break contextual relationships; whole-document storage exceeds context windows and prevents granular retrieval.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_043",
+        "question": "A healthcare org needs semantic search across medical documents, clinical trials, and patient records. Which approach provides the MOST operationally efficient vector search solution?",
+        "options": [
+            "A) OpenSearch Service with Neural Search plugin and vector search capabilities",
+            "B) Aurora with pgvector for all vector operations",
+            "C) Custom vector search using DynamoDB",
+            "D) Vectors in RDS with search logic in Lambda",
+            "E) Elasticsearch without vector search features"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Advanced retrieval",
+        "group": "hybrid-advanced-search",
+        "explanation": "OpenSearch + Neural Search gives optimized vector ops, automatic scaling, integrated monitoring, and built-in ANN/k-NN search suited to healthcare data volumes. Aurora+pgvector needs more manual management/scaling; DynamoDB and RDS+Lambda both require building vector search from scratch; plain Elasticsearch without vector features can't do semantic search at all.",
+        "comparison_note": "Contrast with D1_SB_038 (where OpenSearch lost to Bedrock KB): here, Bedrock Knowledge Bases isn't offered as a competing option, so within the given choices OpenSearch+Neural is correctly the strongest managed vector-search option. Don't over-generalize 'Bedrock KB always beats OpenSearch' — check what's actually in the answer set.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_044",
+        "question": "A legal firm needs hybrid search handling both exact citation matches and semantic similarity for case law, at 10,000+ searches/day with sub-second response and high accuracy. Which approach is MOST operationally efficient?",
+        "options": [
+            "A) OpenSearch with hybrid retrieval + Bedrock reranker for result optimization",
+            "B) Separate Elasticsearch clusters for keyword and semantic search",
+            "C) Custom search solution using RDS and Lambda",
+            "D) Pure vector search using pgvector in Aurora"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Advanced retrieval",
+        "group": "hybrid-advanced-search",
+        "explanation": "OpenSearch hybrid retrieval (keyword + vector combined) plus a Bedrock reranker gives both exact-match accuracy and semantic relevance with sub-second latency and lower ops overhead than DIY approaches. Separate clusters add infra cost/complexity and result-merging latency; a custom RDS+Lambda solution requires heavy development; pure vector search alone can't handle exact citation matching well.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_055",
+        "question": "An information discovery app needs sub-second natural language search across 100,000 growing documents (text+images), 100+ queries/sec, with flexible relevance-tuning returning snippets and references. Which solution meets these requirements?",
+        "options": [
+            "A) OpenSearch Ingestion → OpenSearch Serverless, dense embeddings only, neural search with custom scoring",
+            "B) Bedrock Knowledge Bases with chunking strategy + vector embeddings + Rerank API custom scoring",
+            "C) OpenSearch Ingestion → OpenSearch Service, sparse AND dense embeddings via Bedrock, hybrid search with custom relevance tuning",
+            "D) Amazon Kendra with custom connector, built-in NLP segmentation, Kendra relevance tuning"
+        ],
+        "correct_answer": [
+            "C"
+        ],
+        "status": "incorrect",
+        "topic": "Advanced retrieval",
+        "group": "hybrid-advanced-search",
+        "explanation": "OpenSearch Service with BOTH sparse and dense vector embeddings and hybrid search gives the deepest, most flexible relevance-tuning surface (multiple scoring methods) at the required scale. Dense-only neural search (A) limits tuning options vs. hybrid; Bedrock KB+Rerank (B) offers limited custom relevance tuning and can't scale to the required query volume as efficiently; Kendra (D) has more limited relevance customization than OpenSearch.",
+        "comparison_note": "Anchors the OpenSearch-vs-Bedrock-KB tension seen in D1_SB_038/D1_SB_043: when the requirement explicitly calls for FLEXIBLE/FINE-GRAINED relevance tuning at scale (hybrid sparse+dense, custom scoring), OpenSearch wins over Bedrock KB. When the requirement is about MINIMAL OPS with standard retrieval needs, Bedrock KB wins. Same underlying services, different requirement emphasis drives the correct answer.",
+        "your_answer": "B) Bedrock Knowledge Bases with chunking strategy + vector embeddings + Rerank API custom scoring",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_046",
+        "question": "Implementing a customer service chatbot on Bedrock that must consistently maintain professional tone, provide accurate product info, and never discuss competitor offerings. Which combination of services BEST implements this?",
+        "options": [
+            "A) Bedrock Guardrails for tone enforcement + Bedrock Prompt Management with role definitions",
+            "B) Amazon Comprehend for sentiment analysis + DynamoDB to store approved responses",
+            "C) Lambda to filter responses + CloudWatch to monitor for violations",
+            "D) S3 to store response templates + Step Functions to select appropriate responses"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Prompt governance",
+        "group": "guardrails-prompt-mgmt",
+        "explanation": "Bedrock Guardrails is purpose-built to enforce tone/topic restrictions (e.g., blocking competitor discussion); Bedrock Prompt Management with role definitions creates a consistent behavior framework. Comprehend only analyzes sentiment, doesn't enforce behavior; Lambda+CloudWatch can monitor but has no built-in guardrail enforcement; S3+Step Functions don't directly control model behavior at all.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_047",
+        "question": "A content moderation system using FMs needs all prompts to adhere to company guidelines, be versioned, and be auditable. Which architecture BEST meets these requirements?",
+        "options": [
+            "A) Prompts in S3, Lambda validation, CloudWatch Logs usage tracking",
+            "B) Bedrock Prompt Management with approval workflows, templates in S3, CloudTrail for auditing",
+            "C) DynamoDB for approved prompts, API Gateway access control, AWS Config compliance monitoring",
+            "D) CodePipeline deployment, custom Lambda validation, X-Ray tracking"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "correct",
+        "topic": "Prompt governance",
+        "group": "guardrails-prompt-mgmt",
+        "explanation": "Bedrock Prompt Management gives built-in versioning and approval workflows; S3 is a natural fit for template storage; CloudTrail gives comprehensive API-call audit trails — the complete governance/versioning/audit package. Option A lacks versioning/approval; DynamoDB isn't optimized for template versioning; CodePipeline is for app deployment, not prompt governance.",
+        "comparison_note": "Same Bedrock Prompt Management governance theme as D1_SB_046 and D1_SB_051.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_051",
+        "question": "A large financial institution needs to deploy prompt templates and governance controls across 50 AI applications, supporting versioning, approvals, and detailed usage auditing. Which TWO approaches are MOST operationally efficient?",
+        "options": [
+            "A) Bedrock Prompt Management with CloudTrail integration for tracking/governance",
+            "B) Git repositories with custom CI/CD pipelines for prompt version control",
+            "C) S3-based template system with CloudWatch Logs for access tracking",
+            "D) Prompts in DynamoDB with custom approval workflows",
+            "E) Manage prompts through Parameter Store with versioning"
+        ],
+        "correct_answer": [
+            "A",
+            "C"
+        ],
+        "status": "correct",
+        "topic": "Prompt governance",
+        "group": "guardrails-prompt-mgmt",
+        "explanation": "Bedrock Prompt Management + CloudTrail gives enterprise-grade template management with built-in versioning and comprehensive audit trails; S3 + CloudWatch Logs is a reliable, versioned, scalable alternative for template storage and access tracking. Git+custom CI/CD requires building approval workflows and lacks native audit capability; DynamoDB needs complex custom approval logic; Parameter Store isn't designed for complex prompt template management.",
+        "comparison_note": "Third question in the Bedrock Prompt Management governance cluster (D1_SB_046, D1_SB_047, D1_SB_051) — Bedrock Prompt Management + CloudTrail/S3+CloudWatch are the recurring correct pairing across all versioning/approval/audit questions.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_049",
+        "question": "Building a complex document processing system requiring extraction, classification, summarization, and response generation in sequence. Which solution is MOST appropriate?",
+        "options": [
+            "A) Separate Lambda functions per task coordinated with Step Functions",
+            "B) Bedrock Prompt Flows implementing sequential prompt chains with conditional branching",
+            "C) Comprehend for classification + Textract for extraction, then simple prompts for summarization",
+            "D) Document templates in DynamoDB with pattern matching before prompting the FM"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "incorrect",
+        "topic": "Prompt Flows / chaining",
+        "group": "prompt-flows-chaining",
+        "explanation": "Bedrock Prompt Flows is purpose-built for multi-stage prompt chains with conditional branching and integrated pre/post-processing. Separate Lambdas + Step Functions requires more custom code without native chain support; Comprehend+Textract handles individual sub-tasks but doesn't address the sequential chaining requirement; DynamoDB pattern matching is far less flexible than a proper flow system.",
+        "your_answer": "C) Comprehend for classification + Textract for extraction, then simple prompts for summarization",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_050",
+        "question": "Designing a system handling multi-step prompt chains with conditional logic based on model responses, for financial analysis workflows with different paths by risk level. Which approach is MOST operationally efficient?",
+        "options": [
+            "A) Bedrock Prompt Flows with conditional branching and integrated pre/post processing",
+            "B) Step Functions orchestration with Lambda for each step",
+            "C) Custom chain management using Amazon MSK for message passing",
+            "D) Prompt chains using SQS for sequential processing"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Prompt Flows / chaining",
+        "group": "prompt-flows-chaining",
+        "explanation": "Bedrock Prompt Flows natively supports complex chains with conditional processing, built-in state management, and monitoring — purpose-built for this exact scenario. Step Functions+Lambda works but needs significant custom prompt-management code; MSK adds unneeded streaming infrastructure; SQS doesn't handle conditional branching well and adds state-management complexity.",
+        "comparison_note": "Directly reinforces D1_SB_049 — Bedrock Prompt Flows is the answer whenever the scenario describes multi-stage/conditional prompt chains, regardless of the specific business domain (documents vs. financial risk analysis).",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_053",
+        "question": "A research org needs chain-of-thought (CoT) reasoning patterns for an FM analyzing scientific papers, improving accuracy through structured reasoning while maintaining efficiency. Which approach is MOST operationally efficient?",
+        "options": [
+            "A) Bedrock Prompt Flows with CoT templates and feedback integration",
+            "B) Custom Lambda functions to inject reasoning steps into prompts",
+            "C) Separate models for each reasoning step with Step Functions",
+            "D) Process reasoning chains through SQS queues"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Prompt Flows / chaining",
+        "group": "prompt-flows-chaining",
+        "explanation": "Bedrock Prompt Flows natively supports CoT patterns with built-in performance monitoring and feedback loops for systematic reasoning improvement. Custom Lambda injection requires building prompt-management logic from scratch; deploying multiple models per reasoning step fragments the process and adds cost; SQS-based processing adds unneeded queuing complexity without reasoning-specific support.",
+        "comparison_note": "Third in the Prompt Flows cluster (D1_SB_049, D1_SB_050, D1_SB_053) — whenever a question describes multi-step, conditional, or CoT-style prompt processing and asks for 'MOST operationally efficient,' Bedrock Prompt Flows is the consistent answer over Step Functions/Lambda/queue-based DIY chaining.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_048",
+        "question": "Code review question: a Lambda function retrieves conversation history from DynamoDB, builds a prompt with history + query, calls Claude via invoke_model, then saves updated history back to DynamoDB. What improvement would BEST enhance this implementation?",
+        "options": [
+            "A) Add Amazon Comprehend to analyze user intent before generating the response",
+            "B) Implement a Step Functions workflow for clarification when user intent is unclear",
+            "C) Use Bedrock Prompt Management instead of hardcoded prompts",
+            "D) Add CloudWatch metrics to track response quality and latency"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "incorrect",
+        "topic": "Prompt Flows / chaining",
+        "group": "code-review-clarification",
+        "explanation": "The code already handles conversation history but has no mechanism for clarifying unclear intent — a Step Functions clarification workflow directly closes that interactivity gap. Comprehend intent analysis is valid but less impactful for interactivity; Prompt Management addresses a different skill area (governance, not interactivity); CloudWatch metrics support monitoring but don't improve the interactive experience itself.",
+        "your_answer": "C) Use Bedrock Prompt Management instead of hardcoded prompts",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_052",
+        "question": "Customer service division needs an AI system handling 100,000 daily conversations with context maintenance and clarification workflows, sub-second response, multi-language support. Which approach is MOST operationally efficient?",
+        "options": [
+            "A) Step Functions for workflows + Comprehend for intent + DynamoDB for history",
+            "B) Lambda functions + Aurora for conversation management",
+            "C) API Gateway + custom WebSocket implementation for real-time interactions",
+            "D) SQS queues for managing conversation state"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Context maintenance",
+        "group": "context-maintenance-conversation-state",
+        "explanation": "Step Functions gives scalable workflow management, Comprehend gives reliable intent/language recognition, and DynamoDB gives efficient state storage — together meeting sub-second, multi-language, clarification-capable requirements with managed services. Lambda+Aurora adds connection-pool/latency overhead; custom WebSockets lack built-in language understanding; SQS-based state doesn't handle real-time context maintenance well.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_054",
+        "question": "A customer service AI system must maintain context across 50,000 concurrent sessions with sub-second retrieval, storing conversation history, preferences, and interaction metadata. Which approach is MOST operationally efficient?",
+        "options": [
+            "A) DynamoDB with TTL, GSIs, and optimized access patterns for conversation management",
+            "B) RDS with partitioned tables and caching",
+            "C) ElastiCache (Redis) for session management with S3 backup",
+            "D) DocumentDB (MongoDB-compatible) with sharded collections"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Context maintenance",
+        "group": "context-maintenance-conversation-state",
+        "explanation": "DynamoDB's TTL auto-cleans expired sessions, GSIs enable efficient queries, and its single-digit-millisecond latency + native JSON support handle high-concurrency conversation tracking with minimal ops. RDS needs connection-pool/cache management; ElastiCache+S3 backup adds sync complexity between cache and persistent storage; DocumentDB adds unnecessary operational complexity/cost versus DynamoDB's native TTL.",
+        "comparison_note": "Pairs with D1_SB_052 — DynamoDB (with TTL/GSIs) is the consistent 'store conversation state at scale' answer across both questions.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_058",
+        "question": "A retail recommendation system on Bedrock must analyze 50,000 reviews/day, identify valued product attributes, generate personalized recommendations within 300ms, pre-process to remove PII, classify sentiment via FM, and route recommendations conditionally by sentiment. Which Bedrock Flows solution meets this?",
+        "options": [
+            "A) Comprehend node for PII detection/redaction → prompt node for sentiment analysis → condition node routing by sentiment → knowledge base node for recommendations → collector node to combine results",
+            "B) S3 retrieval node → prompt node for sentiment+attributes → Comprehend node for PII AFTER the prompt node → output node returning all reviews",
+            "C) S3 retrieval → Comprehend PII redaction → condition node by sentiment → agent node for recommendations (no sentiment-analysis prompt node)",
+            "D) Iterator node processing each review individually → prompt node → Comprehend PII redaction → condition node → knowledge base node → collector node"
+        ],
+        "correct_answer": [
+            "A"
+        ],
+        "status": "correct",
+        "topic": "Bedrock Flows design",
+        "group": "flows-node-design",
+        "explanation": "Correct node ORDER matters: PII redaction (Comprehend) must run BEFORE the FM sees the data; then sentiment analysis (prompt node); then conditional routing by sentiment score; then recommendation generation (knowledge base node); then a collector node to aggregate. Option B redacts PII too late (after the prompt node already processed sensitive data); Option C skips FM-based sentiment analysis and uses a higher-latency agent node; Option D processes reviews one-at-a-time via an iterator, which can't meet the 300ms/50k-daily-review throughput requirement — batch-capable flow design is required at that volume.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D1_SB_057",
+        "question": "Building a conversational AI app with Amazon Nova Pro on Bedrock. The company wants high availability across AWS Regions with managed failover and performance-optimized routing of inference requests between Regions. Which solution is MOST cost-effective?",
+        "options": [
+            "A) Bedrock cross-Region inference routing requests in round robin between Regions",
+            "B) Bedrock inference profile with primary and secondary Region configurations",
+            "C) Deploy Bedrock in multiple Regions + Global Accelerator with custom health checks",
+            "D) Route 53 latency-based routing with health checks across Bedrock endpoints in multiple Regions"
+        ],
+        "correct_answer": [
+            "B"
+        ],
+        "status": "incorrect",
+        "topic": "Cross-region inference routing",
+        "group": "inference-routing-vs-app-resilience",
+        "explanation": "Bedrock inference profiles automatically select the best-performing Region based on latency and availability, with primary/secondary configuration built in — no extra services to manage, so it's the most cost-effective option for THIS narrow scope (routing Bedrock inference calls specifically). Round robin doesn't optimize for performance; Global Accelerator and Route 53 both work but require managing/paying for additional AWS services on top of Bedrock's own built-in capability.",
+        "comparison_note": "Key contrast with D1_SB_011/D1_SB_017: those questions were about resilience for the WHOLE APPLICATION STACK, where independent regional deployments + Route 53 correctly won. This question is scoped narrowly to BEDROCK INFERENCE ROUTING specifically, where Bedrock's built-in inference profiles beat Route 53/Global Accelerator on cost-effectiveness because they need no additional managed services. Read the scope of 'what needs to fail over' — the whole app, or just the model calls.",
+        "your_answer": "D) Route 53 latency-based routing with health checks across Bedrock endpoints",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "domain"
+        ],
+        "difficulty": "medium"
+    }
+]

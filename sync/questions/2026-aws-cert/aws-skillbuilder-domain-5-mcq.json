@@ -1,0 +1,549 @@
+[
+    {
+        "id": "D5_SB_001",
+        "question": "A developer is implementing automated quality gates for deploying updates to a foundation model application. Which metric should they use as a critical quality gate?",
+        "type": "multiple_choice",
+        "options": [
+            "Hallucination rate on a test set of queries",
+            "Model file size",
+            "Number of model parameters",
+            "Training dataset size"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "quality-gates",
+            "hallucination-rate",
+            "deployment"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D5",
+        "explanation": "Hallucination rate directly measures output quality and safety risk, making it a critical deployment gate. Model file size, parameter count, and training dataset size are model characteristics that don't indicate output quality or deployment safety.",
+        "group": "quality-gates-metrics",
+        "comparison_note": "Contrast with D5_SB_004 (token efficiency ratio): both are quality-gate metrics but D5_SB_001 gates on safety/accuracy while D5_SB_004 gates on cost-effectiveness. See D5_SB_002 for the broader multi-dimensional output-quality framework this single metric is part of.",
+        "see_also": [
+            "D5_SB_002",
+            "D5_SB_004"
+        ]
+    },
+    {
+        "id": "D5_SB_002",
+        "question": "A company has deployed a customer service chatbot using Amazon Bedrock and needs to evaluate its performance. Which combination of metrics would provide the MOST comprehensive assessment of the foundation model's output quality?",
+        "type": "multiple_choice",
+        "options": [
+            "CPU utilization, memory usage, and response time",
+            "Relevance, factual accuracy, consistency, and fluency",
+            "Number of API calls, error rate, and token count",
+            "Model size, parameter count, and training dataset size"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "output-quality",
+            "evaluation-metrics",
+            "rag"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D5",
+        "explanation": "Relevance, factual accuracy, consistency, and fluency together capture the multi-dimensional nature of GenAI output quality — traditional ML metrics like accuracy/F1 don't apply. Infra metrics (A), operational metrics (C), and model characteristics (D) don't measure output quality.",
+        "group": "quality-gates-metrics",
+        "comparison_note": "Broader 4-dimension framework than D5_SB_001's single hallucination-rate gate. Contrast with D5_SB_007: this covers generation-quality dimensions, D5_SB_007 is specifically about retrieval-quality (upstream of generation).",
+        "see_also": [
+            "D5_SB_001",
+            "D5_SB_003"
+        ]
+    },
+    {
+        "id": "D5_SB_003",
+        "question": "A company is implementing a retrieval-augmented generation (RAG) system and needs to evaluate the quality of retrieved information. Which metric is MOST important for assessing retrieval quality?",
+        "type": "multiple_choice",
+        "options": [
+            "Relevance score of retrieved documents to the query",
+            "Total number of documents in the knowledge base",
+            "Document storage format",
+            "Knowledge base update frequency"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "rag-evaluation",
+            "retrieval-quality",
+            "relevance-score"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D5",
+        "explanation": "Relevance scoring directly measures whether retrieval surfaces information addressing the query. Total document count affects coverage but not relevance; storage format is implementation detail; update frequency affects freshness, not relevance of a given retrieval.",
+        "group": "quality-gates-metrics",
+        "comparison_note": "This is the retrieval-side counterpart to D5_SB_002's generation-quality dimensions — evaluates the RAG pipeline's retrieval step specifically, not the final generated output.",
+        "see_also": [
+            "D5_SB_002"
+        ]
+    },
+    {
+        "id": "D5_SB_004",
+        "question": "A company is implementing cost-performance analysis for their Amazon Bedrock application. Which metric would be MOST valuable for measuring the efficiency of different models?",
+        "type": "multiple_choice",
+        "options": [
+            "Token efficiency ratio (quality score per token)",
+            "Total number of model parameters",
+            "Model file size",
+            "Training dataset size"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "cost-performance",
+            "token-efficiency",
+            "model-selection"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D5",
+        "explanation": "Token efficiency ratio directly measures quality delivered per token consumed, giving a true value-for-cost comparison across models. Parameter count, file size, and dataset size are model characteristics, not efficiency measures.",
+        "group": "quality-gates-metrics",
+        "comparison_note": "Cost-effectiveness quality gate, contrasted with D5_SB_001's safety-focused hallucination-rate gate — same 'quality gate' framing, different axis (cost vs. safety).",
+        "see_also": [
+            "D5_SB_001"
+        ]
+    },
+    {
+        "id": "D5_SB_005",
+        "question": "A developer is creating a user feedback system for a generative AI application. Which approach would be MOST effective for collecting actionable user feedback?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing a binary thumbs up/down rating system for each response",
+            "Collecting detailed feedback with ratings across multiple quality dimensions and free-form comments",
+            "Tracking user session duration as an implicit feedback signal",
+            "Monitoring the number of API calls per user"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "user-feedback",
+            "evaluation",
+            "multi-dimensional-rating"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D5",
+        "explanation": "Multi-dimensional ratings (relevance, accuracy, helpfulness, etc.) plus free-form comments give the most actionable insight into specific quality gaps. Binary ratings are too coarse; session duration and API call counts are indirect signals not tied to perceived quality.",
+        "group": "feedback-collection",
+        "comparison_note": "Near-duplicate of D5_SB_006 — same underlying principle (multi-dimensional + qualitative feedback beats binary/single-scale/indirect signals) tested with different wording.",
+        "see_also": [
+            "D5_SB_006"
+        ]
+    },
+    {
+        "id": "D5_SB_006",
+        "question": "A company is implementing a user feedback collection interface for their generative AI application. Which approach would collect the MOST actionable feedback?",
+        "type": "multiple_choice",
+        "options": [
+            "A single 5-star rating system",
+            "A binary thumbs up/down system",
+            "Multi-dimensional ratings across different quality aspects with optional comments",
+            "Measuring time spent on the page"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "user-feedback",
+            "evaluation",
+            "multi-dimensional-rating"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D5",
+        "explanation": "Multi-dimensional ratings with optional comments provide granular insight into which specific quality aspects need improvement. A 5-star or thumbs up/down system lacks dimensionality; time-on-page is an indirect signal influenced by many factors unrelated to quality.",
+        "group": "feedback-collection",
+        "comparison_note": "Same reasoning as D5_SB_007, restated with different distractor set (5-star scale instead of session duration).",
+        "see_also": [
+            "D5_SB_005"
+        ]
+    },
+    {
+        "id": "D5_SB_007",
+        "question": "A company wants to create a comprehensive reporting system for their foundation model implementation. Which visualization approach would be MOST effective for communicating model performance to non-technical stakeholders?",
+        "type": "multiple_choice",
+        "options": [
+            "Raw CloudWatch metrics in JSON format",
+            "Interactive dashboards with business impact metrics and trend analysis",
+            "CPU and memory utilization graphs",
+            "API call logs"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "reporting",
+            "stakeholder-communication",
+            "dashboards"
+        ],
+        "difficulty": "easy",
+        "category": "conceptual",
+        "domain": "D5",
+        "explanation": "Interactive dashboards translating technical metrics into business-impact measures with trend analysis make performance accessible to non-technical decision-makers. Raw metrics, infra graphs, and API logs are too technical and don't communicate business impact.",
+        "group": "reporting",
+        "comparison_note": "Distinct from the quality-gates-metrics group — this is about HOW results are presented to stakeholders, not what is measured."
+    },
+    {
+        "id": "D5_SB_008",
+        "question": "A company deploys a RAG application by using Amazon Bedrock. The company must create a scalable and trustworthy evaluation framework to assess the quality of the application's responses. The framework must prevent factual errors and hallucinations, validate mathematical and logical consistency, and ensure that responses align with source documents. Which combination of steps will meet these requirements? (Select TWO)",
+        "type": "multiple_choice",
+        "options": [
+            "Calculate lexical similarity scores (ROUGE/BLEU) between generated responses and reference text",
+            "Configure Amazon Bedrock Knowledge Bases evaluation jobs to validate factual claims and detect inconsistencies",
+            "Configure Amazon Bedrock Guardrails with filters to block harmful responses",
+            "Run Amazon SageMaker Clarify to generate explainability reports and detect bias",
+            "Configure Amazon Bedrock Guardrails with contextual grounding checks"
+        ],
+        "correct_indices": [
+            1,
+            4
+        ],
+        "tags": [
+            "hallucination-prevention",
+            "guardrails",
+            "contextual-grounding",
+            "knowledge-bases-evaluation"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "domain": "D5",
+        "explanation": "Bedrock Knowledge Bases evaluation jobs assess factual accuracy and detect inconsistencies against source documents; Guardrails contextual grounding checks specifically verify that responses align with provided source material, directly preventing hallucinations. Lexical similarity (ROUGE/BLEU) can't assess semantic meaning or detect hallucinations. Plain Guardrails content filters (option C) block harmful content categories but don't evaluate factual accuracy. SageMaker Clarify is built for traditional ML explainability/bias detection, not GenAI output evaluation.",
+        "group": "hallucination-eval-frameworks",
+        "comparison_note": "KEY TRAP: distinguishes Guardrails' general content filters (blocks harmful content only) from Guardrails' CONTEXTUAL GROUNDING CHECKS specifically (validates factual alignment with source docs — the actual hallucination-prevention feature). Also flags SageMaker Clarify as a distractor: it's a traditional-ML bias/explainability tool, not applicable to GenAI RAG output evaluation."
+    },
+    {
+        "id": "D5_SB_009",
+        "question": "A company is experiencing context window overflow in their Amazon Bedrock application. Which strategy would be MOST effective for resolving this issue?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing a sliding window approach with summarization",
+            "Increasing the server's CPU allocation",
+            "Changing the database query timeout settings",
+            "Modifying the network security group rules"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "context-window-overflow",
+            "summarization",
+            "sliding-window"
+        ],
+        "difficulty": "medium",
+        "category": "troubleshooting",
+        "domain": "D5",
+        "explanation": "A sliding window with summarization processes large documents in overlapping segments, summarizing to preserve context while staying within token limits. CPU allocation, DB timeouts, and security group rules are infra concerns unrelated to context window management.",
+        "group": "context-window-overflow",
+        "comparison_note": "General-purpose fix. Contrast with D5_SB_010 (legal contracts): there, the analogous summarization-based fix is WRONG because it risks losing cross-clause dependencies. Deciding factor: does the content require preserving exact inter-section relationships? If yes, prefer overlapping semantic chunking + RAG over summarization.",
+        "see_also": [
+            "D5_SB_010"
+        ]
+    },
+    {
+        "id": "D5_SB_010",
+        "question": "A company uses Amazon Bedrock with an Anthropic Claude FM for a document analysis system processing legal contracts that frequently exceed the model's context window. Important clauses near the end of documents are being ignored. The developer must resolve this while maintaining comprehensive analysis of the entire document. Which solution will meet these requirements?",
+        "type": "multiple_choice",
+        "options": [
+            "Implement recursive summarization that processes each section independently, then combines intermediate summaries into a final prompt",
+            "Use dynamic chunking with overlapping segments based on semantic boundaries, implement RAG to retrieve relevant chunks, and track context window metrics for prompt optimization",
+            "Increase document batch size and implement model fine-tuning to expand context window capacity",
+            "Apply standard fixed-token chunking, process chunks independently, and concatenate outputs without maintaining semantic relationships"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "context-window-overflow",
+            "chunking",
+            "rag",
+            "legal-documents"
+        ],
+        "difficulty": "hard",
+        "category": "system_design",
+        "domain": "D5",
+        "explanation": "Dynamic overlapping semantic chunking + RAG preserves context between sections while managing window limits; tracking context metrics optimizes coverage. Recursive summarization (A) risks losing cross-clause dependencies critical in legal text. Fine-tuning (C) doesn't expand context window capacity and batch size is unrelated. Standard fixed-token chunking (D) can split content mid-clause, losing relationships.",
+        "group": "context-window-overflow",
+        "comparison_note": "Contrast with D5_SB_009: general context overflow accepts summarization as the fix, but here summarization (option A) is explicitly wrong because legal contracts require preserving exact cross-clause dependencies — overlapping semantic chunking + RAG is preferred instead.",
+        "see_also": [
+            "D5_SB_009"
+        ]
+    },
+    {
+        "id": "D5_SB_011",
+        "question": "A developer is troubleshooting a retrieval-augmented generation (RAG) system that's returning irrelevant information. Which diagnostic approach would be MOST effective?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing embedding quality diagnostics",
+            "Increasing the model's context window size",
+            "Adding more CPU cores to the server",
+            "Changing the API request timeout settings"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "rag-troubleshooting",
+            "embedding-quality",
+            "retrieval-relevance"
+        ],
+        "difficulty": "medium",
+        "category": "troubleshooting",
+        "domain": "D5",
+        "explanation": "Irrelevant retrieval is often rooted in poor-quality embeddings that don't accurately capture semantic meaning — diagnosable via embedding quality analysis. Increasing context window allows more retrieved content but doesn't improve relevance. CPU cores and timeout settings are infra concerns unrelated to retrieval relevance.",
+        "group": "retrieval-quality-troubleshooting",
+        "comparison_note": "Root cause = embedding/semantic quality. Contrast with D5_SB_012 (root cause = document segmentation/chunking) and D5_SB_013 (root cause = ingestion-time file size failure) — three distinct failure points in the retrieval pipeline.",
+        "see_also": [
+            "D5_SB_012",
+            "D5_SB_013"
+        ]
+    },
+    {
+        "id": "D5_SB_012",
+        "question": "A developer is troubleshooting a dynamic chunking strategy for document processing in a retrieval-augmented generation system. Which issue would dynamic chunking MOST effectively address?",
+        "type": "multiple_choice",
+        "options": [
+            "Inconsistent retrieval quality due to suboptimal document segmentation",
+            "High CPU utilization during model inference",
+            "Network latency between the application and the model endpoint",
+            "Database connection timeouts"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "rag-troubleshooting",
+            "chunking",
+            "document-segmentation"
+        ],
+        "difficulty": "medium",
+        "category": "troubleshooting",
+        "domain": "D5",
+        "explanation": "Dynamic chunking adjusts chunk size/boundaries based on document structure and semantic content, keeping logical units together and improving retrieval relevance versus fixed-size chunking. CPU utilization, network latency, and DB timeouts are infra concerns unrelated to chunking strategy.",
+        "group": "retrieval-quality-troubleshooting",
+        "comparison_note": "Root cause = segmentation/chunk boundaries, distinct from D5_SB_011's root cause (embedding semantic quality).",
+        "see_also": [
+            "D5_SB_011"
+        ]
+    },
+    {
+        "id": "D5_SB_013",
+        "question": "A content management team populates an Amazon Bedrock knowledge base with technical documentation (PDF user manuals, specs, training materials) stored in Amazon S3. During ingestion, several large user-manual PDFs fail to process due to exceeding size limits. Which approach will resolve these ingestion failures?",
+        "type": "multiple_choice",
+        "options": [
+            "Enable compression on the S3 bucket",
+            "Increase the ingestion job timeout settings",
+            "Split large documents into smaller files",
+            "Convert all PDF files to plain text format"
+        ],
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "knowledge-bases",
+            "ingestion-failure",
+            "file-size-quota"
+        ],
+        "difficulty": "medium",
+        "category": "troubleshooting",
+        "domain": "D5",
+        "explanation": "Bedrock Knowledge Bases enforces a per-document file size quota during ingestion; splitting large manuals into smaller files that stay under the quota resolves the failures. S3 compression doesn't affect ingestion processing. Ingestion job timeouts aren't user-configurable and aren't the cause. Converting to plain text doesn't address the size quota and risks losing document structure — PDF is already a supported format.",
+        "group": "retrieval-quality-troubleshooting",
+        "comparison_note": "This is an ingestion-time FAILURE (file size quota) rather than a query-time retrieval-quality issue like D5_SB_011/D5_SB_012 — the fix is splitting documents, not touching embeddings or chunking strategy.",
+        "see_also": [
+            "D5_SB_011"
+        ]
+    },
+    {
+        "id": "D5_SB_014",
+        "question": "A company's prompt templates for their Amazon Bedrock application are becoming difficult to maintain as they grow more complex. Which approach would be MOST effective for improving prompt maintenance?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing systematic prompt refinement workflows with version control",
+            "Increasing the model's max_tokens parameter",
+            "Adding more CPU cores to the server",
+            "Changing the API request timeout settings"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "prompt-maintenance",
+            "version-control",
+            "prompt-lifecycle"
+        ],
+        "difficulty": "medium",
+        "category": "troubleshooting",
+        "domain": "D5",
+        "explanation": "Treating prompts as code — version control, testing frameworks, systematic refinement — provides the structure needed for maintainability as complexity grows. max_tokens affects response length, not maintainability; CPU cores and timeout settings are infra concerns unrelated to prompt management.",
+        "group": "prompt-maintenance",
+        "comparison_note": "Pairs with D5_SB_015: both are prompt-lifecycle fixes (versioning discipline vs. category-specific testing) rather than infra tweaks.",
+        "see_also": [
+            "D5_SB_015"
+        ]
+    },
+    {
+        "id": "D5_SB_015",
+        "question": "A company is experiencing inconsistent performance in their Amazon Bedrock application across different types of queries. Which troubleshooting approach would be MOST effective?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing prompt testing across diverse query categories",
+            "Increasing the model's temperature parameter uniformly",
+            "Adding more RAM to the application server",
+            "Changing all database query optimization settings"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "prompt-maintenance",
+            "prompt-testing",
+            "query-categories"
+        ],
+        "difficulty": "medium",
+        "category": "troubleshooting",
+        "domain": "D5",
+        "explanation": "Systematic testing across diverse query categories identifies which specific query types have prompt weaknesses, enabling targeted optimization. Increasing temperature uniformly affects all queries rather than fixing category-specific issues. RAM and DB settings are infra concerns unrelated to prompt performance variability.",
+        "group": "prompt-maintenance",
+        "comparison_note": "Deciding factor: the fix must match WHERE the inconsistency originates (specific query categories) rather than a global/uniform parameter change like temperature — a recurring trap of applying a blanket fix to a localized problem.",
+        "see_also": [
+            "D5_SB_014"
+        ]
+    },
+    {
+        "id": "D5_SB_016",
+        "question": "A company's Amazon Bedrock application is experiencing inconsistent formatting in model responses. Which troubleshooting approach would be MOST effective?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing schema validation for response formats",
+            "Increasing the model's max_tokens parameter",
+            "Adding more RAM to the application server",
+            "Changing the database connection pool size"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "output-troubleshooting",
+            "schema-validation",
+            "format-consistency"
+        ],
+        "difficulty": "medium",
+        "category": "troubleshooting",
+        "domain": "D5",
+        "explanation": "Schema validation detects formatting inconsistencies in FM outputs and provides structured feedback for prompt refinement to improve format adherence. Increasing max_tokens might allow longer responses but doesn't improve formatting consistency; RAM and connection pool settings are infra concerns unrelated to output formatting.",
+        "group": "output-troubleshooting",
+        "comparison_note": "Distinct failure mode (format inconsistency) from context-window or retrieval issues — fixed via schema validation, not token limits or infra."
+    },
+    {
+        "id": "D5_SB_017",
+        "question": "A company's Amazon Bedrock application is returning error responses intermittently. Which troubleshooting approach would be MOST effective for diagnosing API integration issues?",
+        "type": "multiple_choice",
+        "options": [
+            "Implementing comprehensive error logging and response analysis",
+            "Increasing the application's memory allocation",
+            "Changing the database connection settings",
+            "Modifying the network security group rules"
+        ],
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "api-troubleshooting",
+            "error-logging",
+            "diagnostics"
+        ],
+        "difficulty": "medium",
+        "category": "troubleshooting",
+        "domain": "D5",
+        "explanation": "Detailed error logging capturing request parameters, response codes, error messages, and timing is essential to identify patterns behind intermittent API issues. Memory allocation, DB settings, and security group rules might address specific infra issues but don't provide the diagnostic visibility needed to find the root cause.",
+        "group": "api-troubleshooting",
+        "comparison_note": "Pairs with D5_SB_018: both about diagnosing runtime GenAI application issues via observability tooling rather than blind infra changes.",
+        "see_also": [
+            "D5_SB_018"
+        ]
+    },
+    {
+        "id": "D5_SB_018",
+        "question": "A GenAI developer builds a serverless application using AWS Lambda integrated with Amazon Bedrock, using the MCP server during development. After deployment, users report that model prompts sometimes produce confusing or inconsistent responses. The developer must troubleshoot the prompt execution issues in the deployed application and improve performance. Which solution will meet these requirements with the LEAST operational overhead?",
+        "type": "multiple_choice",
+        "options": [
+            "Use the deployment_help_tool to provide status information about in-progress deployments",
+            "Use Amazon CloudWatch GenAI observability for deployed Lambda functions",
+            "Use Amazon CloudWatch Application Signals to create service maps and analyze AWS X-Ray traces of Lambda-to-Bedrock interactions",
+            "Use the get_lambda_event_schemas_tool to return event schemas for Lambda integrations"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "observability",
+            "cloudwatch-genai-observability",
+            "least-operational-overhead"
+        ],
+        "difficulty": "hard",
+        "category": "troubleshooting",
+        "domain": "D5",
+        "explanation": "CloudWatch GenAI observability is purpose-built for GenAI applications: it automatically collects and analyzes prompt execution data and model responses from Lambda functions calling Bedrock, requiring minimal setup and giving immediate insight into prompt performance issues. deployment_help_tool only covers the deployment phase, not runtime performance. CloudWatch Application Signals + X-Ray gives general distributed tracing/service maps but isn't GenAI-specialized — it shows request flow/timing but not prompt-response quality patterns, and requires more setup/interpretation. get_lambda_event_schemas_tool is a development-time tool, not runtime troubleshooting.",
+        "group": "api-troubleshooting",
+        "comparison_note": "Deciding phrase is 'LEAST operational overhead': CloudWatch GenAI observability (purpose-built, auto-analyzes prompt/response data) beats CloudWatch Application Signals + X-Ray (general-purpose distributed tracing — works but needs more setup and isn't GenAI-specialized). Whenever a question emphasizes minimal setup/overhead, prefer the purpose-built GenAI tool over general observability tooling.",
+        "see_also": [
+            "D5_SB_017"
+        ]
+    },
+    {
+        "id": "D5_SB_019",
+        "question": "Match each error pattern to its correct troubleshooting approach. Choices: (1) Increase the max_tokens parameter, (2) Use CloudWatch Logs Insights to analyze Bedrock API call patterns, (3) Reduce the temperature parameter, (4) Implement exponential backoff and jitter in API calls, (5) Implement RAG with vector search. Error patterns: (a) Model response consistently truncates at a specific number of tokens. (b) API calls fail with ThrottlingException during retry attempts. (c) Responses exclude critical information from a product knowledge base.",
+        "type": "multiple_choice",
+        "options": [
+            "(a)-2, (b)-3, (c)-5 [incorrect selection]",
+            "(a)-1, (b)-4, (c)-5 [correct]",
+            "(a)-1, (b)-3, (c)-2",
+            "(a)-2, (b)-4, (c)-1"
+        ],
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "troubleshooting",
+            "matching",
+            "token-limits",
+            "throttling",
+            "rag"
+        ],
+        "difficulty": "medium",
+        "category": "troubleshooting",
+        "domain": "D5",
+        "explanation": "Truncation at a fixed token count is a token-limit issue -> increase max_tokens (a config limit, not a prompt/API problem). ThrottlingException on retries is an unhandled rate-limiting issue -> implement exponential backoff with jitter (a retry-handling pattern, not a model parameter). Missing critical info from the knowledge base means the model lacks access to necessary context -> implement RAG with vector search to dynamically retrieve relevant content. Temperature and CloudWatch Logs Insights were distractors not matched to any correct pair in this set.",
+        "group": "api-troubleshooting",
+        "comparison_note": "Three distinct symptom-to-fix pairs, easy to cross-wire: truncation->max_tokens (not CW Logs Insights), throttling->backoff+jitter (not temperature), missing KB info->RAG (context-access issue). Ties to D5_SB_017/D5_SB_018 group thematically (API/runtime troubleshooting).",
+        "see_also": [
+            "D5_SB_017",
+            "D5_SB_018"
+        ],
+        "pairs": [
+            {
+                "pattern": "Model response consistently truncates at a specific number of tokens.",
+                "correct_fix": "Increase the max_tokens parameter in the model invocation."
+            },
+            {
+                "pattern": "API calls fail with ThrottlingException during retry attempts.",
+                "correct_fix": "Implement exponential backoff and jitter in API calls."
+            },
+            {
+                "pattern": "Responses exclude critical information from a product knowledge base.",
+                "correct_fix": "Implement retrieval augmented generation (RAG) with vector search."
+            }
+        ]
+    }
+]

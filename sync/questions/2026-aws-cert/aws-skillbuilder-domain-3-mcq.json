@@ -1,0 +1,766 @@
+[
+    {
+        "id": "D3_SB_001",
+        "group": "Input/Output Safety Controls",
+        "question": "A financial services company is implementing a generative AI chatbot that will help customers with investment advice. The development team needs to ensure the system rejects harmful or inappropriate user inputs. Which combination of AWS services provides the most comprehensive protection against malicious prompts?",
+        "options": [
+            "Amazon Comprehend for sentiment analysis and Amazon Bedrock with custom prompt templates",
+            "Amazon Bedrock with guardrails, Step Functions orchestrating Lambda functions for custom moderation workflows",
+            "Amazon Lex for intent recognition and Amazon Translate for language detection",
+            "Amazon SageMaker with custom ML models and Amazon CloudWatch for monitoring"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Amazon Bedrock guardrails offer pre-built content filtering to detect and block harmful inputs. Step Functions orchestrating Lambda functions enables custom moderation workflows implementing business-specific rules, additional validation, and edge-case handling. This combination creates defense-in-depth for input safety while maintaining flexibility.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_002",
+        "group": "Input/Output Safety Controls",
+        "question": "Your team is building a customer service AI assistant that will handle sensitive financial information. You need to implement multiple layers of protection to ensure comprehensive safety. Which combination of services implements a true defense-in-depth approach?",
+        "options": [
+            "Amazon Bedrock with system prompts and Amazon CloudWatch for logging",
+            "Amazon Comprehend for pre-processing filters, Amazon Bedrock with model-based guardrails, Lambda functions for post-processing validation, and API Gateway for API response filtering",
+            "Amazon Cognito for authentication and Amazon S3 for secure storage of conversations",
+            "AWS WAF for web application protection and Amazon GuardDuty for threat detection"
+        ],
+        "user_answer_correct": true,
+        "explanation": "True defense-in-depth requires multiple layers: Comprehend pre-processing filters analyze/filter inputs before reaching the FM; Bedrock model-based guardrails enforce safety during generation; Lambda post-processing validation verifies outputs; API Gateway response filtering is a final check before content reaches users. If one mechanism fails, others prevent harmful content from reaching users.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_003",
+        "group": "Input/Output Safety Controls",
+        "question": "A company is deploying a code-generating AI assistant for their development team. Security testing has revealed that the system is vulnerable to prompt injection attacks that could trick it into generating malicious code. Which implementation would best protect against these adversarial inputs?",
+        "options": [
+            "Implement rate limiting in API Gateway to prevent brute force attacks",
+            "Use Amazon Cognito to authenticate all users before allowing access to the AI assistant",
+            "Deploy a combination of input sanitization filters, prompt injection detection mechanisms, and automated adversarial testing workflows",
+            "Create detailed logs of all interactions using Amazon CloudWatch and set up alerts for suspicious patterns"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Input sanitization filters remove potentially malicious patterns before they reach the model. Prompt injection detection mechanisms identify manipulation attempts through carefully crafted inputs. Automated adversarial testing workflows continuously test against known attack patterns to find vulnerabilities before exploitation. This multi-faceted approach specifically addresses sophisticated prompt injection/jailbreak attempts.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_004",
+        "group": "Input/Output Safety Controls",
+        "question": "A company is implementing a content safety system for their AI application. Which components would provide the MOST effective real-time protection against harmful inputs? (Select TWO.)",
+        "options": [
+            "Amazon S3 bucket policies for content storage",
+            "Amazon Bedrock guardrails with pre-configured content filtering",
+            "AWS Lambda functions with custom validation rules",
+            "Amazon CloudWatch Logs for content monitoring"
+        ],
+        "user_answer_correct": true,
+        "explanation": "S3 bucket policies are important for data security but don't provide real-time protection against harmful inputs. Amazon Bedrock guardrails provide immediate, real-time protection through configured filtering rules. Lambda functions enable real-time custom validation before inputs reach the FM. CloudWatch Logs are useful for monitoring but not real-time protection.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1,
+            2
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_005",
+        "group": "Input/Output Safety Controls",
+        "question": "Which approach would be MOST effective for implementing a defense-in-depth safety system for an AI application?",
+        "options": [
+            "Using only Amazon Bedrock guardrails with strict settings",
+            "Implementing multiple security layers with Amazon Comprehend, Amazon Bedrock, AWS Lambda, and Amazon API Gateway",
+            "Relying solely on Amazon API Gateway request validation",
+            "Using only AWS Lambda functions for validation"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Using only guardrails, only API Gateway, or only Lambda does not provide multiple layers of protection - single-layer protection does not constitute defense-in-depth. Implementing Comprehend + Bedrock + Lambda + API Gateway together provides comprehensive, multi-layered protection true to defense-in-depth principles.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_006",
+        "group": "Hallucination Prevention / Grounding",
+        "question": "When implementing accuracy verification for an AI system, what is the primary purpose of using Amazon Bedrock Knowledge Bases?",
+        "options": [
+            "To store user credentials",
+            "To provide grounding and fact-checking for AI responses",
+            "To manage API endpoints",
+            "To handle user authentication"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Knowledge Bases helps verify responses against established facts and provides grounding for AI outputs. It is not used for credential storage, API endpoint management (handled by API Gateway), or authentication (handled by other AWS services).",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_007",
+        "group": "Hallucination Prevention / Grounding",
+        "question": "Which combination of components is MOST effective for preventing hallucinations in foundation model (FM) responses?",
+        "options": [
+            "Only using strict Amazon API Gateway controls",
+            "Amazon Bedrock Knowledge Bases grounding with JSON Schema validation",
+            "Only implementing Amazon CloudWatch monitoring",
+            "Using only AWS Lambda functions"
+        ],
+        "user_answer_correct": true,
+        "explanation": "API Gateway controls alone, CloudWatch monitoring alone, and Lambda functions alone do not address hallucination prevention. Knowledge Bases grounding ensures factual accuracy while JSON Schema validation ensures proper output structure - together reducing hallucinations from both content and format angles.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_008",
+        "group": "Input/Output Safety Controls",
+        "question": "What is the MOST effective approach for implementing content moderation in a real-time AI chat application?",
+        "options": [
+            "Using only post-processing validation",
+            "Implementing AWS Step Functions with custom moderation workflows and real-time validation",
+            "Relying solely on Amazon CloudWatch Logs",
+            "Using only Amazon S3 bucket policies"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Post-processing alone might allow harmful content to reach the model. CloudWatch Logs are for monitoring, not active moderation. S3 policies don't provide real-time content moderation. Step Functions with custom moderation workflows provides structured, scalable moderation with real-time protection capabilities.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_009",
+        "group": "PHI/PII Detection and Privacy",
+        "question": "A healthcare organization is implementing a generative AI solution using Amazon Bedrock. They need to ensure that protected health information (PHI) is not exposed in either user inputs or model responses. Which combination of AWS services should they implement?",
+        "options": [
+            "Amazon Bedrock Guardrails and Amazon Macie",
+            "Amazon Comprehend Medical and Amazon Bedrock Guardrails",
+            "AWS CloudTrail and Amazon S3 Lifecycle configurations",
+            "AWS Lake Formation and Amazon VPC endpoints"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Amazon Comprehend Medical detects/masks/redacts PHI, and Amazon Bedrock Guardrails provides configurable safeguards for GenAI applications. Amazon Macie detects sensitive data in S3 buckets but isn't specifically designed for PHI in real-time AI interactions. CloudTrail/S3 Lifecycle focus on auditing; Lake Formation/VPC endpoints focus on network security - neither directly protects PHI in real-time.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_010",
+        "group": "PHI/PII Detection and Privacy",
+        "question": "A company is implementing a comprehensive security approach for their Amazon Bedrock deployment. Which combination of AWS services provides the MOST complete security solution for monitoring, access control, and data protection?",
+        "options": [
+            "Amazon CloudWatch, AWS IAM, and Amazon S3 encryption",
+            "AWS CloudTrail, Amazon Macie, and AWS KMS",
+            "AWS IAM, AWS CloudTrail, and Amazon CloudWatch",
+            "Amazon GuardDuty, AWS Shield, and AWS WAF"
+        ],
+        "user_answer_correct": false,
+        "user_selected": "Amazon CloudWatch, AWS IAM, and Amazon S3 encryption",
+        "explanation": "For comprehensive security monitoring and access control of Bedrock deployments: CloudTrail logs/monitors all CRUD actions to Bedrock and S3; CloudWatch monitors applications and operational health; IAM controls access to AWS resources. S3 encryption belongs to data-protection category, not monitoring/access-control. GuardDuty/Shield/WAF focus on threat protection, not comprehensive monitoring and access control.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_011",
+        "group": "Bedrock Guardrails Policy Types",
+        "question": "Which Amazon Bedrock Guardrails policy type would you use to prevent a generative AI application from discussing specific prohibited topics?",
+        "options": [
+            "Content filters",
+            "Denied topics",
+            "Word filters",
+            "Sensitive information filters"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Denied topics allows defining specific topics (e.g., Financial_Advice, Political_Opinions, Medical_Advice, Inappropriate_Content, Legal_Advice) the model should not discuss. Content filters focus on harmful content categories, word filters block specific terms, and sensitive information filters detect/redact PII.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_012",
+        "group": "Security Frameworks for GenAI",
+        "question": "A developer is building a secure generative AI application that needs to detect and prevent potential security vulnerabilities. Which security framework should they follow according to AWS best practices?",
+        "options": [
+            "OWASP Top 10 for LLM security",
+            "NIST Cybersecurity Framework",
+            "ISO/IEC 27001",
+            "CIS Controls"
+        ],
+        "user_answer_correct": true,
+        "explanation": "OWASP Top 10 for LLM security is specifically designed for LLM applications and addresses the unique security challenges of GenAI. NIST CSF, ISO/IEC 27001, and CIS Controls are valuable general security frameworks but not specifically designed for LLM applications.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_013",
+        "group": "PHI/PII Detection and Privacy",
+        "question": "A company is implementing a protected AI environment for processing sensitive financial data. Which configurations provide the MOST comprehensive security? (Select TWO.)",
+        "options": [
+            "Security groups and AWS Identity and Access Management (IAM) roles",
+            "Virtual private cloud (VPC) endpoints with AWS Identity and Access Management (IAM) policies and Lake Formation access controls",
+            "Public subnets with Amazon CloudWatch monitoring",
+            "AWS Lake Formation with Amazon CloudWatch monitoring and comprehensive logging"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Security groups + IAM roles alone provide only basic security, lacking network isolation and granular access control. Public subnets expose the environment to unnecessary risk. VPC endpoints + IAM policies + Lake Formation provides network isolation and granular data access control. Lake Formation + CloudWatch monitoring + logging enables granular access control and proper monitoring - both needed for sensitive data.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1,
+            3
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_014",
+        "group": "PHI/PII Detection and Privacy",
+        "question": "Which approach BEST ensures privacy preservation in AI model interactions?",
+        "options": [
+            "Amazon Bedrock Guardrails",
+            "Implementing Amazon Comprehend for personally identifiable information (PII) detection, Amazon Macie for sensitive data discovery, Amazon Bedrock privacy features, and Amazon S3 lifecycle policies",
+            "Amazon S3 bucket policies with logging",
+            "Amazon CloudWatch monitoring with basic access controls"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Guardrails alone provides only one layer, missing PII detection and lifecycle management. S3 policies with logging lack privacy controls. CloudWatch with basic access controls focuses only on monitoring. The comprehensive combination (Comprehend PII + Macie + Bedrock privacy features + S3 lifecycle) provides multi-layer privacy protection with proper data lifecycle management.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_015",
+        "group": "PHI/PII Detection and Privacy",
+        "question": "Which approach is MOST effective for maintaining model utility while ensuring privacy?",
+        "options": [
+            "Implementing only data masking techniques",
+            "Using data masking, anonymization strategies, and Amazon Bedrock Guardrails with utility monitoring",
+            "Personally identifiable information (PII) detection without utility consideration",
+            "Access controls with logging"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Data masking alone addresses only one aspect and ignores utility. PII detection without utility consideration ignores model usefulness. Access controls with logging lacks both privacy protection and utility preservation. The combination of masking + anonymization + Guardrails + utility monitoring provides comprehensive privacy protection while actively maintaining model utility.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_016",
+        "group": "PHI/PII Detection and Privacy",
+        "question": "A healthcare organization needs to implement comprehensive privacy controls for their AI system. Which configuration is MOST appropriate?",
+        "options": [
+            "Data encryption and access logs",
+            "Implementation of personally identifiable information (PII) detection, anonymization, guardrails, and monitoring",
+            "AWS Identity and Access Management (IAM) roles with Amazon CloudWatch",
+            "Virtual private cloud (VPC) configuration with security groups"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Data encryption + access logs provides only basic protection, lacking necessary privacy controls for healthcare data. IAM + CloudWatch lacks privacy-specific controls. VPC + security groups addresses only network security. The 4-part combination (PII detection + anonymization + guardrails + monitoring) provides multiple layers of privacy protection with proper compliance capabilities.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_017",
+        "group": "Input/Output Safety Controls",
+        "question": "Which components are MOST critical for securing foundation model (FM) deployments? (Select TWO.)",
+        "options": [
+            "Virtual private cloud (VPC) endpoints with comprehensive network isolation",
+            "Security groups only",
+            "AWS Lake Formation with granular access controls",
+            "CloudWatch alerts"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Security groups only provides insufficient protection for FM deployments. CloudWatch alerts alone, though important for monitoring, are insufficient for securing deployments. VPC endpoints provide necessary network-level security, and Lake Formation enables proper data access control and protection for model data.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0,
+            2
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_018",
+        "group": "Governance Features",
+        "question": "A financial services company is deploying foundation models in their AWS environment and needs to document model characteristics, intended use cases, and limitations for regulatory compliance. Which AWS capability should they use to create and manage this documentation?",
+        "options": [
+            "Amazon SageMaker Model Cards",
+            "AWS Systems Manager Documents",
+            "Amazon CloudWatch Dashboards",
+            "AWS Config Rules"
+        ],
+        "user_answer_correct": true,
+        "explanation": "SageMaker Model Cards documents and tracks ML model information - inputs/outputs, intended uses, ethical considerations, training details, evaluation results. It supports governance and compliance requirements by providing standardized model documentation. Systems Manager Documents, CloudWatch Dashboards, and Config Rules don't provide specialized model documentation capabilities.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_019",
+        "group": "Governance Features",
+        "question": "Which AWS service should be used to automatically detect and alert on potential bias drift in foundation model outputs over time?",
+        "options": [
+            "Amazon SageMaker Model Monitor",
+            "Amazon Inspector",
+            "AWS Config",
+            "Amazon GuardDuty"
+        ],
+        "user_answer_correct": true,
+        "explanation": "SageMaker Model Monitor monitors production models and sets alerts to detect deviations in model quality including data drift and bias drift over time. Inspector focuses on security vulnerabilities, Config monitors resource configurations, and GuardDuty detects security threats - none designed for model bias drift monitoring.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_020",
+        "group": "Governance Features",
+        "question": "A company needs to implement a system for tracking model provenance in their foundation model deployments. Which AWS feature should they use?",
+        "options": [
+            "Amazon SageMaker Lineage Tracking",
+            "AWS CloudFormation Templates",
+            "Amazon S3 Versioning",
+            "AWS Systems Manager Inventory"
+        ],
+        "user_answer_correct": true,
+        "explanation": "SageMaker ML Lineage Tracking creates and stores information about ML workflow steps from data preparation to deployment, allowing reproduction of workflow steps and establishing model governance/audit standards. CloudFormation defines infrastructure, S3 Versioning tracks object versions, and Systems Manager Inventory tracks software inventory - none provide specialized model lineage tracking.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_021",
+        "group": "Governance Features",
+        "question": "A financial services company needs to implement comprehensive compliance tracking for their AI models. Which components provide the MOST effective compliance framework? (Select TWO.)",
+        "options": [
+            "Amazon CloudWatch Logs with minimal tracking",
+            "Amazon SageMaker Model Cards with automated data lineage tracking",
+            "Amazon S3 storage without metadata",
+            "AWS Glue with comprehensive metadata tagging"
+        ],
+        "user_answer_correct": false,
+        "user_selected": "Amazon CloudWatch Logs with minimal tracking",
+        "explanation": "CloudWatch Logs with minimal tracking lacks comprehensive compliance capabilities and documentation features. S3 storage without metadata lacks necessary tracking/documentation. SageMaker Model Cards with automated data lineage tracking provides essential model documentation and data tracking. AWS Glue with comprehensive metadata tagging enables proper data lineage tracking and source attribution required for compliance.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1,
+            3
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_022",
+        "group": "Governance Features",
+        "question": "Which approach is MOST effective for maintaining traceability in AI applications?",
+        "options": [
+            "Implementing AWS Glue Data Catalog with AWS CloudTrail logging and systematic metadata tagging",
+            "Using Amazon S3 logging",
+            "Implementing Amazon CloudWatch Logs without source tracking",
+            "Using metadata without audit trails"
+        ],
+        "user_answer_correct": true,
+        "explanation": "S3 logging lacks necessary source tracking and audit capabilities. CloudWatch Logs without source tracking misses critical source attribution/registration. Metadata without audit trails lacks comprehensive audit logging. Glue Data Catalog + CloudTrail + systematic metadata tagging together provides comprehensive source tracking, audit logging, and attribution capabilities for full traceability.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_023",
+        "group": "Abstract Organizational Governance",
+        "question": "Which combination BEST ensures consistent governance of foundation model implementations?",
+        "options": [
+            "Policy documentation without monitoring",
+            "Comprehensive framework with policy alignment, regulatory controls, and responsible AI principles",
+            "Technical controls without policy integration",
+            "Monitoring without governance framework"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Policy documentation without monitoring lacks necessary oversight and control mechanisms. Technical controls without policy integration misses critical organizational/policy alignment. Monitoring without governance framework lacks comprehensive governance structure. A comprehensive framework combining policy alignment, regulatory controls, and responsible AI principles provides complete governance coverage with necessary controls and ethical considerations.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_024",
+        "group": "Abstract Organizational Governance",
+        "question": "Which components are MOST critical for documenting AI model compliance?",
+        "options": [
+            "Implementing technical controls",
+            "Framework, including responsible AI principles, governance controls, and monitoring",
+            "Policy documentation only",
+            "Monitoring without ethical guidelines"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Technical controls alone miss critical ethical and governance considerations. Policy documentation only lacks necessary implementation and monitoring capabilities. Monitoring without ethical guidelines misses critical ethical considerations and governance controls. A framework of responsible AI principles + governance controls + monitoring provides complete coverage of ethical, governance, and monitoring requirements.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_025",
+        "group": "Confidence Metrics and Transparency",
+        "question": "A company wants to quantify and display the uncertainty in their foundation model's responses to users. Which AWS service should they use to collect and visualize these confidence metrics?",
+        "options": [
+            "Amazon CloudWatch",
+            "Amazon QuickSight",
+            "AWS Glue DataBrew",
+            "Amazon Athena"
+        ],
+        "user_answer_correct": false,
+        "user_selected": "Amazon QuickSight",
+        "explanation": "CloudWatch collects monitoring/operational data as logs, metrics, and events, providing a unified view for publishing custom metrics like confidence scores and creating dashboards. QuickSight is a BI service that could visualize data but doesn't collect metrics directly from applications. Glue DataBrew is for data preparation, and Athena is for querying S3 data - neither designed for real-time metrics collection and visualization.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_026",
+        "group": "Input/Output Safety Controls",
+        "question": "A company wants to ensure their foundation model outputs adhere to their responsible AI policy that prohibits generating harmful content. Which AWS feature should they implement?",
+        "options": [
+            "Amazon Bedrock Guardrails",
+            "Amazon Inspector",
+            "AWS Shield",
+            "Amazon Macie"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Bedrock Guardrails filters harmful content across multiple categories and can block, identify, and filter harmful content in both user inputs and model responses, enforcing responsible AI policies. Inspector focuses on security vulnerabilities, Shield is DDoS protection, and Macie is for sensitive data discovery - none designed for controlling FM outputs.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_027",
+        "group": "Fairness and Bias Evaluation",
+        "question": "A company wants to implement automated evaluations of their foundation model outputs for bias. Which approach using AWS services is MOST effective?",
+        "options": [
+            "Amazon Bedrock with LLM-as-a-judge evaluation",
+            "Amazon Comprehend sentiment analysis",
+            "Amazon Rekognition image analysis",
+            "Amazon Transcribe content redaction"
+        ],
+        "user_answer_correct": true,
+        "explanation": "The LLM-as-a-judge pattern uses one FM to evaluate another's outputs, enabling automated assessment of quality dimensions including bias, toxicity, and guideline adherence at scale. Comprehend sentiment analysis detects sentiment but not complex bias; Rekognition is for image/video analysis; Transcribe content redaction is for redacting sensitive info from transcripts - none provide comprehensive bias evaluation.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_028",
+        "group": "Confidence Metrics and Transparency",
+        "question": "A developer is implementing a system to collect confidence metrics from foundation model outputs. Which CloudWatch metric namespace should they use to organize these metrics?",
+        "options": [
+            "A custom namespace specific to their application",
+            "AWS/Bedrock",
+            "AWS/SageMaker",
+            "AWS/Lambda"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Custom metrics published to CloudWatch should use a custom namespace that doesn't begin with 'AWS/' to avoid conflicts with AWS service namespaces. AWS/Bedrock and AWS/SageMaker are reserved namespaces for AWS services; AWS/Lambda is for Lambda service metrics - none appropriate for application-specific confidence metrics.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_029",
+        "group": "Confidence Metrics and Transparency",
+        "question": "Which components are MOST critical for developing transparent AI systems? (Select TWO.)",
+        "options": [
+            "Logging without user explanations",
+            "Reasoning displays with clear user explanations",
+            "Amazon CloudWatch metrics for confidence tracking",
+            "Data storage without tracing"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Logging without user explanations lacks necessary user-facing transparency and comprehensive tracking. Data storage without tracing misses critical traceability and transparency requirements. Reasoning displays with clear user explanations provides essential user-facing transparency for AI decisions. CloudWatch metrics for confidence tracking enables quantification and monitoring of model confidence and uncertainty.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1,
+            2
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_030",
+        "group": "Fairness and Bias Evaluation",
+        "question": "For ensuring fairness in AI systems, which approach is MOST effective?",
+        "options": [
+            "Implementing pre-defined fairness metrics and automated evaluations",
+            "Using A/B testing without specific fairness focus",
+            "Implementing logging without fairness metrics",
+            "Using only model outputs without evaluation"
+        ],
+        "user_answer_correct": true,
+        "explanation": "A/B testing without fairness focus, though valuable generally, lacks fairness-specific metrics and evaluations. Logging without fairness metrics misses critical fairness-specific measurements. Using only model outputs without evaluation lacks any fairness assessment mechanism. Pre-defined fairness metrics with automated evaluations provides comprehensive fairness assessment through metrics and automated checks.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_031",
+        "group": "Governance Features",
+        "question": "Which combination BEST ensures policy compliance in AI systems?",
+        "options": [
+            "Amazon Bedrock guardrails, model cards, and automated compliance checks",
+            "Implementing logging without compliance focus"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Logging without compliance focus lacks necessary policy compliance mechanisms and checks. Bedrock Guardrails (tied to policy requirements) + model cards (documenting limitations) + automated compliance checks together provides comprehensive policy compliance through guardrails, documentation, and automated validation.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_032",
+        "group": "Complex Scenario Synthesis",
+        "question": "A financial services company is developing a GenAI application that converts natural language queries into SQL statements for trading purposes, using Amazon Bedrock. The application must include robust content safety features to prevent SQL injection and unauthorized data access, avoid hallucinations that could generate syntactically correct but semantically harmful queries, process 40,000 queries daily, require deterministic outputs, use Bedrock Guardrails with custom content filters, cache validated queries in ElastiCache (Redis OSS) with prompt hashing, and include prompt engineering, output validation, and real-time monitoring before database execution. Which solution will meet these requirements?",
+        "options": [
+            "A. Few-shot prompting + Lambda with regex pattern matching for output validation + EventBridge custom events for confidence scores/query complexity",
+            "B. Zero-shot prompting + Lambda with SQL AST parsing for output validation + CloudWatch custom metrics for confidence scores/query complexity",
+            "C. Few-shot prompting + Lambda with SQL AST parsing for output validation + CloudWatch custom metrics for confidence scores/query complexity",
+            "D. Zero-shot prompting + Lambda with regex pattern matching for output validation + EventBridge custom events for confidence scores/query complexity"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Few-shot prompting with curated examples guides the model toward safe, predictable SQL patterns and reduces hallucination risk (zero-shot is more prone to hallucinations in specialized domains). SQL AST parsing provides thorough structural analysis detecting both syntax and semantic issues (regex cannot adequately validate complex SQL or detect sophisticated injection using valid syntax). CloudWatch custom metrics provide real-time monitoring of confidence scores and complexity patterns (EventBridge is for discrete event routing, not continuous metric collection/analysis). Guardrails + ElastiCache with prompt hashing ensures deterministic, validated cached results.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            2
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_033",
+        "group": "Complex Scenario Synthesis",
+        "question": "A company stores customer data in Amazon S3 and wants to automatically identify and classify PII (names, phone numbers, credit card numbers), with automated remediation and detailed compliance reports for auditors. Which solution will meet these requirements with the LEAST operational overhead?",
+        "options": [
+            "A. Glue Data Quality rules with regex for PII detection + Athena REGEXP_LIKE + Lambda processing + scheduled monthly reports",
+            "B. Amazon Comprehend real-time PII detection API + Macie classification jobs with custom data identifiers + EventBridge rule monitoring Macie findings triggering Lambda remediation + automated Macie sensitive data discovery",
+            "C. Comprehend batch PII detection (monthly) + Macie weekly discovery jobs + Lambda comparing results/updating tags + versioned S3 storage",
+            "D. Comprehend custom entity recognition models + Macie discovery with custom allowlists + Step Functions orchestrating remediation + Glue transforming results into RDS compliance reports + EventBridge triggering Step Functions"
+        ],
+        "user_answer_correct": false,
+        "user_selected": "D. Comprehend custom entity recognition models + Macie discovery with custom allowlists + Step Functions orchestrating remediation + Glue transforming results into RDS compliance reports + EventBridge triggering Step Functions",
+        "explanation": "Option A: Glue Data Quality and Athena are not designed for PII detection, requiring extensive custom regex/SQL development - high overhead. Option C: monthly/weekly scheduling creates detection delays and requires custom Lambda to compare/reconcile two separate tools - higher overhead. Option D: custom-trained entity recognition models + Step Functions workflow orchestration requires model training and workflow maintenance - highest overhead. Option B (correct): built-in real-time Comprehend PII API + Macie classification with custom identifiers + simple EventBridge-triggered Lambda remediation + Macie's native automated discovery = purpose-built managed services working together with minimal custom development.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_034",
+        "group": "Complex Scenario Synthesis",
+        "question": "A company deployed a document summary system using Bedrock Guardrails, Lake Formation, and Macie. After 3 months, PII occasionally appears in generated summaries. CloudTrail logs show 15% of Bedrock API calls bypass the Guardrails policy. X-Ray traces indicate 60% of latency increase comes from pre-processing validation steps. Which troubleshooting approach will identify and resolve these security and performance issues?",
+        "options": [
+            "A. Review IAM policies for Bedrock service role permissions + CloudWatch metrics to track bypass requests + ElastiCache for PII detection result caching",
+            "B. Audit Lake Formation permissions for privilege escalation + AWS Config rules for configuration monitoring + deploy additional compute for validation overhead",
+            "C. Investigate application code for SDK configuration issues + examine PII filter rules for terminology gaps + request batching for latency reduction",
+            "D. Analyze Bedrock model invocation logs to identify requests that bypass Guardrails + verify guardrail-identifier parameter is in all API calls + set up parallel processing for validation steps"
+        ],
+        "user_answer_correct": true,
+        "explanation": "The scenario indicates a configuration issue, not permissions (A) or Lake Formation privilege escalation (B, which was already properly configured) or application code (C, wrong layer - issue is Bedrock API configuration). Model invocation logs provide detailed visibility into request/response data per FM interaction, identifying why 15% of calls bypass Guardrails - specifically showing which requests lack the required guardrail-identifier parameter. Parallel processing distributes validation workloads across multiple threads/processes simultaneously, directly resolving the 60% latency increase from validation steps. Caching PII detection results (A) introduces security risk; more compute (B) masks rather than resolves; batching (C) doesn't fix per-request bypass configuration.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            3
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_035",
+        "group": "Governance Features",
+        "question": "A healthcare company is developing a GenAI application providing personalized treatment recommendations. Regulatory requirements mandate complete traceability of model usage, outputs, and version history, verification of which model versions generate specific responses, prompt history recording, access controls, and monitoring for compliance violations. Which solution will meet these requirements with the LEAST development effort?",
+        "options": [
+            "A. Deploy in Bedrock + configure Bedrock Guardrails for output policy compliance + Bedrock model invocation logging for prompt/completion history + CloudTrail for access tracking",
+            "B. Deploy to SageMaker endpoints + SageMaker Model Cards for documentation + SageMaker Model Monitor for behavior tracking + IAM roles with resource-level permissions",
+            "C. Deploy in Bedrock + CloudTrail logging all Bedrock API calls + CloudWatch metrics/dashboards for usage patterns + CloudWatch alarms for compliance violation detection",
+            "D. Deploy to SageMaker endpoints + SageMaker Clarify explainability + store prompt-response pairs in RDS + Lambda functions analyzing outputs for compliance post-inference"
+        ],
+        "user_answer_correct": true,
+        "explanation": "Option B: Model Cards document metadata and Model Monitor tracks technical metrics (latency/throughput), but neither provides prompt history tracking or output compliance monitoring - requires additional custom development. Option C: CloudTrail + CloudWatch tracks API usage/alerts but lacks specialized GenAI governance (prompt history, output filtering) - requires significant custom development. Option D: Clarify provides explainability/bias detection and RDS provides historical tracking, but custom Lambda for compliance checking requires substantial custom development - not purpose-built. Option A (correct): Guardrails filters/validates outputs against policies; Bedrock model invocation logging natively captures prompt/completion/version history to CloudWatch Logs; CloudTrail provides access audit logs - all purpose-built native GenAI governance features requiring least development effort. Key nuance: for BEDROCK-hosted models, Bedrock-native logging beats adapting SageMaker tools.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            0
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    },
+    {
+        "id": "D3_SB_036",
+        "group": "Fairness and Bias Evaluation",
+        "question": "A financial services company creates a text generation model for loan application processing and customer communications, requiring comprehensive bias evaluation across gender, race, profession, and age. The framework needs controlled testing of prompt variations, automated assessment via secondary model validation, continuous monitoring with alerting when bias metrics exceed thresholds, plus both automated evaluation jobs and human review workflows. Which solution will meet these requirements?",
+        "options": [
+            "A. SageMaker Ground Truth labelling jobs using T-REx dataset for bias annotation + human review workflows + SageMaker Experiments tracking bias metrics + custom SageMaker Pipelines",
+            "B. Bedrock model evaluation jobs using BOLD dataset + secondary model validation via approved evaluator model + CloudWatch custom metrics for bias tracking + Bedrock Prompt Management for controlled prompt variant testing with automated threshold alerting",
+            "C. SageMaker Clarify processing jobs using RealToxicityPrompts dataset + bias detection algorithms + SageMaker Model Monitor for continuous evaluation + custom Lambda functions for bias reporting/compliance",
+            "D. Bedrock Knowledge Bases evaluations using WikiText2 dataset + RAG-based bias assessment with retrieval accuracy metrics + Bedrock Flows for prompt optimization + CloudWatch Evidently for controlled testing"
+        ],
+        "user_answer_correct": false,
+        "user_selected": "D. Bedrock Knowledge Bases evaluations using WikiText2 dataset + RAG-based bias assessment with retrieval accuracy metrics + Bedrock Flows for prompt optimization + CloudWatch Evidently for controlled testing",
+        "explanation": "Option A: T-REx dataset evaluates factual knowledge, not demographic bias; lacks automated secondary model evaluation and controlled prompt testing. Option C: RealToxicityPrompts focuses on toxicity, not demographic bias; lacks secondary model validation methodology and controlled prompt testing. Option D: WikiText2 evaluates general text generation, not demographic bias; RAG-based evaluation focuses on retrieval accuracy, not fairness metrics. Option B (correct): BOLD dataset is purpose-built for demographic bias assessment in open-ended generation; secondary model validation via an approved evaluator model implements AWS-supported LLM-as-a-judge methodology; Bedrock Prompt Management provides controlled prompt variant testing with automated threshold alerting; CloudWatch metrics provide continuous monitoring/alerting - meeting all stated requirements including support for human review workflows on critical decisions.",
+        "type": "multiple_choice",
+        "correct_indices": [
+            1
+        ],
+        "tags": [
+            "Domain 3: AI Safety, Security, and Governance"
+        ],
+        "difficulty": "medium"
+    }
+]
