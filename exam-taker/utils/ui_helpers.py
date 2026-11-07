@@ -131,6 +131,10 @@ _GLOBAL_CSS = f"""
   --etp-danger:{_t['danger']}; --etp-danger-bg:{_t['danger_bg']}; --etp-danger-border:{_t['danger_border']};
   --etp-warn:{_t['warning']}; --etp-warn-bg:{_t['warning_bg']}; --etp-warn-border:{_t['warning_border']};
   --etp-info:{_t['info']}; --etp-info-bg:{_t['info_bg']};
+  --etp-selected-bg:{_t['selected_bg']};
+  --etp-s1:4px; --etp-s2:8px; --etp-s3:12px; --etp-s4:16px; --etp-s5:24px; --etp-s6:32px; --etp-s7:48px;
+  --etp-r-sm:6px; --etp-r-md:10px; --etp-r-lg:14px; --etp-r-pill:999px;
+  --etp-measure:68ch; --etp-target:44px;
 }}
 
 /* ---------- Base ---------- */
@@ -335,6 +339,75 @@ div:has(#nav-buttons-marker) ~ div[data-testid="stHorizontalBlock"] [data-testid
 }}
 </style>
 """
+
+
+# ---------------------------------------------------------------------------
+# Component CSS (Batch 2). Values from design-system/reference-components.css,
+# expressed with the --etp-* variables above. Used by utils/ui_components.py.
+# ---------------------------------------------------------------------------
+_COMPONENT_CSS = """
+/* ---------- Components (utils/ui_components.py) ---------- */
+.etp-meta { display: flex; align-items: center; gap: var(--etp-s2); flex-wrap: wrap; }
+.etp-badge { display: inline-flex; align-items: center; gap: var(--etp-s1); padding: 2px var(--etp-s2);
+  border-radius: var(--etp-r-sm); font: 700 12px/16px __UI__; letter-spacing: .04em; text-transform: uppercase;
+  border: 1px solid var(--etp-border); color: var(--etp-muted); background: var(--etp-surface); }
+.etp-badge--easy { color: var(--etp-success); border-color: var(--etp-success-border); }
+.etp-badge--medium { color: var(--etp-warn); border-color: var(--etp-warn-border); }
+.etp-badge--hard { color: var(--etp-danger); border-color: var(--etp-danger-border); }
+.etp-badge--info { color: var(--etp-info); }
+.etp-badge--reattempt { color: var(--etp-warn); border-color: var(--etp-warn-border); background: var(--etp-warn-bg); }
+.etp-badge--neutral { color: var(--etp-muted); }
+.etp-tag { font: 400 13px/18px __UI__; color: var(--etp-muted); }
+
+.etp-option { display: flex; gap: var(--etp-s4); align-items: flex-start; width: 100%; box-sizing: border-box;
+  max-width: calc(var(--etp-measure) + 80px); min-height: var(--etp-target); padding: var(--etp-s3) var(--etp-s4);
+  margin-bottom: var(--etp-s2); border: 1px solid var(--etp-border-strong); border-radius: var(--etp-r-md);
+  background: transparent; color: var(--etp-read); font: 400 17px/27px __READ__; text-align: left; }
+.etp-option__key { flex: none; width: 28px; height: 28px; margin-top: -1px; display: grid; place-items: center;
+  border-radius: var(--etp-r-sm); border: 1px solid var(--etp-border-strong); font: 700 13px/1 __UI__; color: var(--etp-muted); }
+.etp-option__text { flex: 1; }
+.etp-option__status { flex: none; display: inline-flex; align-items: center; gap: var(--etp-s1); font: 700 13px/27px __UI__; }
+.etp-option.is-neutral { opacity: .85; }
+.etp-option.is-selected { background: var(--etp-selected-bg); border-color: var(--etp-accent); color: var(--etp-ink); }
+.etp-option.is-selected .etp-option__key { background: var(--etp-accent); border-color: var(--etp-accent); color: var(--etp-bg); }
+.etp-option.is-correct { background: var(--etp-success-bg); border-color: var(--etp-success-border); color: var(--etp-ink); }
+.etp-option.is-correct .etp-option__key, .etp-option.is-correct .etp-option__status { color: var(--etp-success); border-color: var(--etp-success-border); }
+.etp-option.is-missed { background: var(--etp-warn-bg); border-color: var(--etp-warn-border); border-style: dashed; }
+.etp-option.is-missed .etp-option__key, .etp-option.is-missed .etp-option__status { color: var(--etp-warn); border-color: var(--etp-warn-border); }
+.etp-option.is-wrong { background: var(--etp-danger-bg); border-color: var(--etp-danger-border); }
+.etp-option.is-wrong .etp-option__key, .etp-option.is-wrong .etp-option__status { color: var(--etp-danger); border-color: var(--etp-danger-border); }
+
+.etp-banner { display: flex; gap: var(--etp-s3); align-items: flex-start; padding: var(--etp-s4);
+  border-radius: var(--etp-r-md); border: 1px solid; margin: var(--etp-s3) 0; }
+.etp-banner__title { font: 700 15px/22px __UI__; }
+.etp-banner__body { font: 400 13px/18px __UI__; color: var(--etp-muted); margin-top: 2px; }
+.etp-banner--success { background: var(--etp-success-bg); border-color: var(--etp-success-border); color: var(--etp-success); }
+.etp-banner--partial { background: var(--etp-warn-bg); border-color: var(--etp-warn-border); color: var(--etp-warn); }
+.etp-banner--danger { background: var(--etp-danger-bg); border-color: var(--etp-danger-border); color: var(--etp-danger); }
+
+.etp-explain { background: var(--etp-info-bg); border: 1px solid var(--etp-border); border-radius: var(--etp-r-lg);
+  padding: var(--etp-s5); margin-top: var(--etp-s3); }
+.etp-explain__head { display: flex; align-items: center; gap: var(--etp-s2); color: var(--etp-info);
+  font: 700 12px/16px __UI__; letter-spacing: .06em; text-transform: uppercase; margin-bottom: var(--etp-s3); }
+.etp-explain__body { font: 400 17px/29px __READ__; color: var(--etp-read); max-width: var(--etp-measure); }
+.etp-explain__body p { margin: 0 0 var(--etp-s3); }
+.etp-explain__body code { font: 400 14px/22px __MONO__; background: var(--etp-sunken); padding: 1px 5px;
+  border-radius: var(--etp-r-sm); color: var(--etp-ink); }
+
+.etp-pagehead { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--etp-s4); margin-bottom: var(--etp-s4); }
+.etp-pagehead h1 { margin: 0; font: 700 26px/34px __UI__ !important; letter-spacing: -0.01em; color: var(--etp-ink); }
+.etp-pagehead p { margin: var(--etp-s1) 0 0; font: 400 13px/18px __UI__; color: var(--etp-muted); }
+
+.etp-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--etp-s3); }
+.etp-stat { background: var(--etp-surface); border: 1px solid var(--etp-border); border-radius: var(--etp-r-lg); padding: var(--etp-s4); }
+.etp-stat__label { font: 700 12px/16px __UI__; letter-spacing: .06em; text-transform: uppercase; color: var(--etp-muted); }
+.etp-stat__value { font: 700 30px/36px __UI__; color: var(--etp-ink); margin-top: var(--etp-s2); font-variant-numeric: tabular-nums; }
+.etp-stat__delta { font: 400 13px/18px __UI__; color: var(--etp-muted); }
+.etp-stat__delta.up { color: var(--etp-success); }
+.etp-stat__delta.down { color: var(--etp-danger); }
+""".replace("__UI__", FONT_UI).replace("__READ__", FONT_READING).replace("__MONO__", FONT_MONO)
+
+_GLOBAL_CSS = _GLOBAL_CSS.replace("</style>", _COMPONENT_CSS + "</style>")
 
 
 def inject_global_css() -> None:
