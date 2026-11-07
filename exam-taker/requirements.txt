@@ -1,0 +1,10 @@
+streamlit
+plotly
+pandas
+requests
+dotenv
+matplotlib
+streamlit-quill
+streamlit-mermaid
+fpdf
+beautifulsoup4

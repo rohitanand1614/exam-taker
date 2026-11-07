@@ -1,0 +1,24 @@
+{
+  "summary": {
+    "total_attempts": 1,
+    "correct_count": 0,
+    "wrong_count": 1,
+    "avg_score": 0.0,
+    "last_attempted_at": "__NOW__",
+    "srs": {
+      "repetitions": 0,
+      "interval_days": 1,
+      "ef": 1.7,
+      "next_due": "__TOMORROW__"
+    }
+  },
+  "attempts": [
+    {
+      "attempt_id": "__ATTEMPT_ID__",
+      "timestamp": "__NOW__",
+      "selected_indices": [0],
+      "score": 0.0,
+      "quality": 0
+    }
+  ]
+}

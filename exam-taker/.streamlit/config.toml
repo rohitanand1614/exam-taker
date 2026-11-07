@@ -1,0 +1,18 @@
+# Exam Taker Pro — Slate Night theme (design system tokens)
+[theme]
+base = "dark"
+backgroundColor = "#15171a"
+secondaryBackgroundColor = "#1c1f23"
+textColor = "#e6e1d8"
+primaryColor = "#8cc29f"
+linkColor = "#8cc29f"
+borderColor = "#2c3136"
+baseRadius = "10px"
+greenColor = "#8cc29f"
+orangeColor = "#dcae6e"
+redColor = "#e0968a"
+blueColor = "#93aecf"
+
+[theme.sidebar]
+backgroundColor = "#111316"
+secondaryBackgroundColor = "#1c1f23"

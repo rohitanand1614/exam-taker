@@ -1,0 +1,50 @@
+[
+  {
+    "id": "sample_q1",
+    "question": "Which option is the capital of France?",
+    "type": "multiple_choice",
+    "options": [
+      "A) Berlin",
+      "B) Paris",
+      "C) Madrid",
+      "D) Rome"
+    ],
+    "correct_indices": [1],
+    "tags": ["geography", "sample"],
+    "difficulty": "easy",
+    "category": "recall",
+    "explanation": "Paris is the capital of France."
+  },
+  {
+    "id": "sample_q2",
+    "question": "Select all prime numbers.",
+    "type": "multiple_choice",
+    "options": [
+      "A) 2",
+      "B) 4",
+      "C) 7",
+      "D) 9"
+    ],
+    "correct_indices": [0, 2],
+    "tags": ["math", "sample"],
+    "difficulty": "medium",
+    "category": "recall",
+    "explanation": "2 and 7 have no divisors other than 1 and themselves."
+  },
+  {
+    "id": "sample_q3",
+    "question": "What is the derivative of $x^2$ with respect to $x$?",
+    "type": "multiple_choice",
+    "options": [
+      "A) $x$",
+      "B) $2x$",
+      "C) $x^2$",
+      "D) $2$"
+    ],
+    "correct_indices": [1],
+    "tags": ["calculus", "sample"],
+    "difficulty": "hard",
+    "category": "recall",
+    "explanation": "By the power rule, $\frac{d}{dx}x^2 = 2x$."
+  }
+]
