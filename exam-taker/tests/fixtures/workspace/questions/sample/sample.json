@@ -45,6 +45,6 @@
     "tags": ["calculus", "sample"],
     "difficulty": "hard",
     "category": "recall",
-    "explanation": "By the power rule, $\frac{d}{dx}x^2 = 2x$."
+    "explanation": "By the power rule, $\\frac{d}{dx}x^2 = 2x$."
   }
 ]

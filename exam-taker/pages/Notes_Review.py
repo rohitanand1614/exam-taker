@@ -9,13 +9,14 @@ import numpy as np
 # Ensure the root directory is in the path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from utils import file_manager, similarity, ui_helpers
+from utils import file_manager, similarity, ui_helpers, ui_components, exam_view
 from utils.llm_client import LLMClient
 
-st.set_page_config(page_title="Notes Review", page_icon="📝", layout="wide")
+st.set_page_config(page_title="Notes Review", page_icon=":material/sticky_note_2:", layout="wide")
 ui_helpers.inject_global_css()
 
-st.title("📝 Notes Review")
+# The page head shows the notes count, so reserve its place first and fill it below.
+head_slot = st.empty()
 
 # --- Helper Functions ---
 
@@ -240,53 +241,52 @@ for q in questions:
     log_data = file_manager.load_question_log(q_id)
     user_notes = log_data.get("user_notes")
     user_diagram = log_data.get("user_diagram")
-    
+
     if (user_notes and user_notes.strip()) or (user_diagram and user_diagram.strip()):
         q["user_notes"] = user_notes
         q["user_diagram"] = user_diagram
         questions_with_notes.append(q)
 
-col1, col2 = st.columns([3, 1])
-with col1:
-    st.metric("Questions with Notes", len(questions_with_notes))
+head_slot.markdown(
+    ui_components.page_head_html("Notes review", f"{len(questions_with_notes)} with notes"),
+    unsafe_allow_html=True)
 
 # --- Feature: Contextual Organization ---
 
 if "ordered_notes" not in st.session_state:
     st.session_state.ordered_notes = None
 
-with col2:
-    if st.button("🧠 Reorganize Contextually"):
-        with st.spinner("Analyzing semantic flow..."):
-            ordered = reorder_notes_conceptually(questions_with_notes)
-            st.session_state.ordered_notes = ordered
-            st.rerun()
-
 # Determine display source
 display_data = st.session_state.ordered_notes if st.session_state.ordered_notes else questions_with_notes
 is_reordered = st.session_state.ordered_notes is not None
 
+# Toolbar: count tile | reorganize | export (near the page head, not in an expander)
+st.metric("Questions with Notes", len(questions_with_notes), width=260)
+t_reorg, t_md, t_pdf = st.columns([2, 1.6, 1.4])
+with t_reorg:
+    if st.button("Reorganize contextually", icon=":material/auto_awesome:", use_container_width=True):
+        with st.spinner("Analyzing semantic flow..."):
+            ordered = reorder_notes_conceptually(questions_with_notes)
+            st.session_state.ordered_notes = ordered
+            st.rerun()
+if display_data:
+    with t_md:
+        md_data = generate_markdown(display_data)
+        st.download_button("Download Markdown", md_data, file_name="exam_notes.md", mime="text/markdown",
+                           icon=":material/download:", use_container_width=True)
+    with t_pdf:
+        try:
+            pdf_bytes = generate_pdf(display_data)
+            st.download_button("Download PDF", pdf_bytes, file_name="exam_notes.pdf", mime="application/pdf",
+                               icon=":material/picture_as_pdf:", use_container_width=True)
+        except Exception as e:
+            st.error(f"PDF Generation Error (font/encoding): {e}")
+
 if is_reordered:
-    st.success("✨ Notes are now organized by topic flow!")
-    if st.button("Reset View"):
+    st.success("Notes are now organized by topic flow.", icon=":material/auto_awesome:")
+    if st.button("Reset view"):
         st.session_state.ordered_notes = None
         st.rerun()
-
-# --- Export Options ---
-if display_data:
-    with st.expander("📤 Export Notes"):
-        ex_c1, ex_c2 = st.columns(2)
-        with ex_c1:
-            md_data = generate_markdown(display_data)
-            st.download_button("Download Markdown", md_data, file_name="exam_notes.md", mime="text/markdown")
-        with ex_c2:
-            try:
-                pdf_bytes = generate_pdf(display_data)
-                st.download_button("Download PDF", pdf_bytes, file_name="exam_notes.pdf", mime="application/pdf")
-            except Exception as e:
-                st.error(f"PDF Generation Error (font/encoding): {e}")
-
-st.divider()
 
 # --- Clean / Standard View ---
 
@@ -295,48 +295,38 @@ if is_reordered:
     view_mode = st.radio("View Mode", ["Standard (Cards)", "Clean Text (Read Mode)"], horizontal=True)
 
 if not display_data:
-    st.info("No notes found.")
+    st.info("No notes found.", icon=":material/info:")
 else:
     if view_mode == "Clean Text (Read Mode)":
-        st.markdown("## 📖 Consolidated Notes")
+        st.markdown("## Consolidated notes")
         for q in display_data:
             st.markdown(f"#### Q: {q.get('question')}")
             st.markdown(q.get("user_notes"))
             st.markdown("---")
-            
+
     else:
         # Standard Card View
         if 'notes_expanded' not in st.session_state:
             st.session_state['notes_expanded'] = False
 
         c_btn1, c_btn2 = st.columns(2)
-        if c_btn1.button("Expand All", use_container_width=True):
+        if c_btn1.button("Expand all", use_container_width=True):
             st.session_state['notes_expanded'] = True
             st.rerun()
-        if c_btn2.button("Collapse All", use_container_width=True):
+        if c_btn2.button("Collapse all", use_container_width=True):
             st.session_state['notes_expanded'] = False
             st.rerun()
-            
-        for q in display_data:
-            with st.expander(f"📝 {q.get('question', '')[:100]}...", expanded=st.session_state['notes_expanded']):
-                st.markdown("**Question:**")
-                ui_helpers.render_math_text(
-                    ui_helpers.prepare_math_text(q.get('question', '')),
-                    font_weight="600",
-                    height=max(60, len(q.get('question', '')) // 3 + 40)
-                )
-                st.divider()
-                if q.get("user_notes"):
-                    st.markdown("### 🗒️ Notes")
-                    st.markdown(q["user_notes"], unsafe_allow_html=True)
-                if q.get("user_diagram"):
-                    st.code(q["user_diagram"], language="mermaid")
-                st.divider()
+
+        for i, q in enumerate(display_data):
+            row_id = f"{i}_{q.get('id', '')}"          # unique even if two files share a question id
+            label = " ".join(q.get('question', '').split())[:100] + "..."
+            with st.expander(label, icon=":material/sticky_note_2:", expanded=st.session_state['notes_expanded']):
+                # Notes in a reading-style panel
+                with st.container(key=f"notepanel_{row_id}"):
+                    st.markdown(ui_components.md_text(q.get('question', '')))
+                    if q.get("user_notes"):
+                        st.markdown(q["user_notes"], unsafe_allow_html=True)
+                    if q.get("user_diagram"):
+                        st.code(q["user_diagram"], language="mermaid")
                 with st.expander("Details"):
-                    for opt in q.get('options', []):
-                        ui_helpers.render_math_text(ui_helpers.prepare_math_text(f"- {opt}"), height=50)
-                    if q.get('explanation'):
-                        ui_helpers.render_math_text(
-                            ui_helpers.prepare_math_text(q['explanation']),
-                            height=min(400, max(80, len(q['explanation']) // 5 + 40))
-                        )
+                    exam_view.render_review_card(row_id, q)

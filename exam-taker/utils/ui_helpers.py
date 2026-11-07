@@ -140,6 +140,8 @@ _GLOBAL_CSS = f"""
   --etp-s1:4px; --etp-s2:8px; --etp-s3:12px; --etp-s4:16px; --etp-s5:24px; --etp-s6:32px; --etp-s7:48px;
   --etp-r-sm:6px; --etp-r-md:10px; --etp-r-lg:14px; --etp-r-pill:999px;
   --etp-measure:68ch; --etp-target:44px;
+  --etp-bm-red:{_t['bm_red']}; --etp-bm-orange:{_t['bm_orange']}; --etp-bm-blue:{_t['bm_blue']};
+  --etp-bm-purple:{_t['bm_purple']}; --etp-bm-green:{_t['bm_green']};
 }}
 
 /* ---------- Base ---------- */
@@ -245,6 +247,18 @@ button[data-testid^="stBaseButton"] {{
 }}
 .stButton button:disabled {{ opacity: .45; }}
 .stButton button p {{ color: inherit !important; font-weight: 700; }}
+
+/* ---------- Pills (bookmark colour filter): selected = tinted + accent edge ---------- */
+[data-testid="stButtonGroup"] button {{
+  min-height: 32px; padding: .1rem .85rem; border-radius: 999px;
+  border: 1px solid var(--etp-border-strong); background-color: transparent; color: var(--etp-muted);
+}}
+[data-testid="stButtonGroup"] button p {{ font-weight: 400 !important; color: inherit !important; }}
+[data-testid="stButtonGroup"] button:hover {{ background-color: var(--etp-raised); color: var(--etp-ink); }}
+[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"] {{
+  background-color: {_t['selected_bg']}; border-color: var(--etp-accent); color: var(--etp-ink);
+}}
+.stDownloadButton button p {{ color: inherit !important; font-weight: 700; }}
 
 /* ---------- Radio (answer options) ---------- */
 div[data-testid="stRadio"] > label p, div[data-testid="stCheckbox"] label p {{
@@ -458,6 +472,25 @@ _COMPONENT_CSS = """
 .etp-pagehead { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--etp-s4); margin-bottom: var(--etp-s4); }
 .etp-pagehead h1 { margin: 0; font: 700 26px/34px __UI__ !important; letter-spacing: -0.01em; color: var(--etp-ink); }
 .etp-pagehead p { margin: var(--etp-s1) 0 0; font: 400 13px/18px __UI__; color: var(--etp-muted); }
+
+/* list rows (Bookmarks, Archived, Wrong answers, Search, Notes) */
+.etp-list { display: flex; flex-direction: column; border: 1px solid var(--etp-border); border-radius: var(--etp-r-lg);
+  overflow: hidden; background: var(--etp-surface); }
+.etp-li { display: flex; gap: var(--etp-s3); align-items: flex-start; padding: var(--etp-s3) var(--etp-s4); }
+.etp-li__body { min-width: 0; flex: 1; }
+.etp-li__q { font: 400 16px/25px __READ__; color: var(--etp-read); display: -webkit-box; -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; overflow: hidden; }
+.etp-li__meta { font: 400 13px/18px __UI__; color: var(--etp-muted); margin-top: var(--etp-s1); }
+.etp-li__dot { flex: none; width: 10px; height: 10px; margin-top: 8px; border-radius: var(--etp-r-pill); background: var(--etp-muted); }
+.etp-chip { display: inline-flex; align-items: center; gap: var(--etp-s2); min-height: 32px; padding: 0 var(--etp-s3);
+  border-radius: var(--etp-r-pill); border: 1px solid var(--etp-border-strong); background: transparent;
+  color: var(--etp-read); font: 400 13px/18px __UI__; }
+.etp-chip::before { content: ""; width: 10px; height: 10px; border-radius: var(--etp-r-pill); background: currentColor; }
+.etp-chip--red::before { background: var(--etp-bm-red); }
+.etp-chip--orange::before { background: var(--etp-bm-orange); }
+.etp-chip--blue::before { background: var(--etp-bm-blue); }
+.etp-chip--purple::before { background: var(--etp-bm-purple); }
+.etp-chip--green::before { background: var(--etp-bm-green); }
 
 .etp-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--etp-s3); }
 .etp-stat { background: var(--etp-surface); border: 1px solid var(--etp-border); border-radius: var(--etp-r-lg); padding: var(--etp-s4); }

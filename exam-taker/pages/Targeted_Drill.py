@@ -1,7 +1,7 @@
 import streamlit as st
 import random
 import datetime
-from utils import file_manager, scoring, srs, bookmark_manager, archive_manager
+from utils import file_manager, scoring, srs, bookmark_manager
 from utils import ui_helpers, ui_components, exam_view
 
 st.set_page_config(page_title="Targeted Drill", page_icon=":material/target:", layout="wide")
@@ -157,7 +157,7 @@ with st.container(border=True, key="qcard"):
 
     st.markdown(f'<div class="etp-qnum">Question {current} of {total}</div>', unsafe_allow_html=True)
     with st.container(key="qstem"):
-        st.markdown(ui_components.md_safe(ui_helpers.prepare_math_text(current_q["question"])))
+        st.markdown(ui_components.md_text(current_q["question"]))
 
     with st.container(key="answers"):
         if is_submitted:

@@ -128,8 +128,7 @@ def practice_bookmarks(page, out_dir):
     page.goto(BASE + "/Practice_Bookmarks")
     settle(page)
     shot(page, out_dir, "practice_bookmarks")
-    page.locator(MAIN_RADIO).nth(1).click()  # B = 2x (the LaTeX answer)
-    page.wait_for_timeout(500)
+    pick_first_option(page)  # whichever bookmarked question comes first (radio or checkbox)
     page.get_by_role("button", name="Submit answer").click()
     settle(page)
     shot(page, out_dir, "practice_bookmarks_after_submit")
@@ -172,6 +171,55 @@ def drill_flow(page, base, out_dir):
     shot(page, out_dir, "drill_finish")
 
 
+def bookmarks_flow(page, out_dir):
+    page.goto(BASE + "/Bookmarks")
+    settle(page)
+    shot(page, out_dir, "bookmarks_all")
+    # filter: switch one colour pill off, open the first review card
+    page.locator('[data-testid="stButtonGroup"] button', has_text="Important").first.click()
+    settle(page, 1200)
+    page.get_by_text("Show answer").first.click()
+    page.wait_for_timeout(800)
+    shot(page, out_dir, "bookmarks_filtered_open")
+
+
+def archived_flow(page, out_dir):
+    page.goto(BASE + "/Archived_Questions")
+    settle(page)
+    page.get_by_text("Show answer").first.click()
+    page.wait_for_timeout(800)
+    shot(page, out_dir, "archived_open")
+
+
+def wrong_flow(page, out_dir):
+    page.goto(BASE + "/Wrong_Answers")
+    settle(page)
+    page.get_by_text("Review answer").first.click()
+    page.wait_for_timeout(800)
+    shot(page, out_dir, "wrong_answers_open")
+
+
+def search_flow(page, out_dir):
+    page.goto(BASE + "/Search_Questions")
+    settle(page)
+    page.get_by_placeholder("Search in question text").fill("France")
+    page.keyboard.press("Enter")
+    page.wait_for_timeout(500)
+    page.get_by_role("button", name="Search").first.click()
+    settle(page)
+    page.get_by_text("View answer").first.click()
+    page.wait_for_timeout(800)
+    shot(page, out_dir, "search_with_query")
+
+
+def notes_flow(page, out_dir):
+    page.goto(BASE + "/Notes_Review")
+    settle(page)
+    page.get_by_role("button", name="Expand all").click()
+    settle(page, 1200)
+    shot(page, out_dir, "notes_review_expanded")
+
+
 def start_server(script, port, cwd):
     return subprocess.Popen(
         [sys.executable, "-m", "streamlit", "run", str(script),
@@ -209,11 +257,28 @@ def main():
 
     # one bookmarked question (the LaTeX one) so Practice_Bookmarks has something to show
     import json
-    q3 = json.loads((work / "questions/sample/sample.json").read_text(encoding="utf-8"))[2]
+    sample_qs = json.loads((work / "questions/sample/sample.json").read_text(encoding="utf-8"))
+    q2, q3 = sample_qs[1], sample_qs[2]
     (work / "bookmarks").mkdir(exist_ok=True)
     (work / "bookmarks" / "registry.json").write_text(json.dumps({
-        q3["id"]: {"color": "Hard (Purple)", "data": q3, "timestamp": "2030-01-01T00:00:00"}}),
+        q3["id"]: {"color": "Hard (Purple)", "data": q3, "timestamp": "2030-01-01T00:00:00"},
+        q2["id"]: {"color": "Important (Red)", "data": q2, "timestamp": "2030-01-02T00:00:00"}}),
         encoding="utf-8")
+    # one archived question that is NOT in questions/ (so the exam session is unchanged)
+    archived_demo = dict(sample_qs[0], id="archived_demo_q9", question="Which planet is known as the Red Planet?",
+                         options=["A) Venus", "B) Mars", "C) Jupiter", "D) Saturn"], correct_indices=[1],
+                         explanation="Mars looks red because of iron oxide on its surface.", tags=["astronomy"])
+    (work / "archives").mkdir(exist_ok=True)
+    (work / "archives" / "registry.json").write_text(json.dumps({
+        "archived_demo_q9": {"data": archived_demo, "timestamp": "2030-01-03T00:00:00"}}), encoding="utf-8")
+    # notes on two questions (Notes_Review); default log summary keeps the exam page unchanged
+    (work / "logs" / "attempts").mkdir(parents=True, exist_ok=True)
+    empty_summary = {"total_attempts": 0, "correct_count": 0, "wrong_count": 0, "avg_score": 0.0,
+                     "last_attempted_at": None, "srs": {"repetitions": 0, "interval_days": 0, "ef": 2.5, "next_due": None}}
+    for qid, note in (("sample_q1", "<p>Paris is the <b>capital</b> and largest city of France.</p>"),
+                      ("sample_q2", "<p>Primes: 2, 3, 5, 7. Remember that <i>1 is not prime</i>.</p>")):
+        (work / "logs" / "attempts" / f"{qid}.log.json").write_text(json.dumps({
+            "summary": empty_summary, "attempts": [], "user_notes": note, "user_diagram": ""}), encoding="utf-8")
     # Targeted_Drill needs a seeded session: tiny wrapper entry on a second server
     drill_port = PORT + 1
     (work / "drill_entry.py").write_text(
@@ -247,7 +312,12 @@ def main():
             exam_code_question(page, out_dir)
             for name, flow in (("practice_incorrect", practice_incorrect_after_wrong),
                                ("practice_bookmarks", practice_bookmarks),
-                               ("regressive", regressive_flow)):
+                               ("regressive", regressive_flow),
+                               ("bookmarks", bookmarks_flow),
+                               ("archived", archived_flow),
+                               ("wrong_answers", wrong_flow),
+                               ("search", search_flow),
+                               ("notes", notes_flow)):
                 try:
                     flow(page, out_dir)
                 except Exception as e:

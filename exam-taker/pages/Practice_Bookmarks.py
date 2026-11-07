@@ -3,8 +3,6 @@ import os
 import datetime
 import random
 from pathlib import Path
-from streamlit_quill import st_quill
-from streamlit_mermaid import st_mermaid
 
 # Import utils
 from utils import file_manager, scoring, srs, bookmark_manager

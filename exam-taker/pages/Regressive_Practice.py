@@ -196,8 +196,12 @@ with st.container(border=True, key="qcard"):
     )
     st.markdown(meta, unsafe_allow_html=True)
 
+    # "Question N": how many questions this session has shown (attempts are counted at submit)
+    n_shown = sum(s["attempts"] for s in st.session_state.regressive_stats.values()) + (0 if is_submitted else 1)
+    st.markdown(f'<div class="etp-qnum">Question {n_shown}</div>', unsafe_allow_html=True)
+
     with st.container(key="qstem"):
-        st.markdown(ui_components.md_safe(ui_helpers.prepare_math_text(q["question"])))
+        st.markdown(ui_components.md_text(q["question"]))
 
     with st.container(key="answers"):
         if is_submitted:

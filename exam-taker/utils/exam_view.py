@@ -26,8 +26,7 @@ STATUS_WORD = {"correct": "Correct", "missed": "Missed", "wrong": "Your pick"}
 # ---------------------------------------------------------------------------
 def option_md(letter, text):
     """Markdown for one answer option: bold letter + option text without its "A) " prefix."""
-    return f"**{letter}**  " + ui_components.md_safe(
-        ui_helpers.prepare_math_text(ui_components.option_label(text)))
+    return f"**{letter}**  " + ui_components.md_text(ui_components.option_label(text))
 
 
 def render_option_row(row_id, idx, letter, text, state):
@@ -54,7 +53,7 @@ def render_explanation(row_id, text):
         return
     with st.container(key=f"explain_{row_id}"):
         st.markdown('<div class="etp-explain__head">Explanation</div>', unsafe_allow_html=True)
-        st.markdown(ui_components.md_safe(ui_helpers.prepare_math_text(text)))
+        st.markdown(ui_components.md_text(text))
 
 
 def render_notes(q_id, key_prefix=""):
@@ -90,6 +89,26 @@ def render_notes(q_id, key_prefix=""):
             file_manager.update_user_notes(q_id, user_notes, user_diagram)
             st.toast("Notes and diagram saved.", icon=":material/check_circle:")
             st.rerun()
+
+
+def render_review_card(row_id, q_data, selected=None):
+    """Read-only card for the list pages: option rows + explanation.
+
+    selected=None  -> no attempt to show: right answers in the "correct" style
+    selected=[...] -> your picks: Correct / Missed / Your pick, as on the exam page
+    `row_id` must be unique on the page (it is part of the container keys).
+    """
+    options = q_data.get("options", [])
+    correct = q_data.get("correct_indices", [])
+    if not isinstance(correct, list):
+        correct = [correct]
+    for idx, opt in enumerate(options):
+        if selected is None:
+            state = "correct" if idx in correct else "neutral"
+        else:
+            state = ui_components.option_state(idx, correct, selected)
+        render_option_row(row_id, idx, chr(65 + idx), opt, state)
+    render_explanation(row_id, q_data.get("explanation"))
 
 
 # ---------------------------------------------------------------------------
@@ -217,7 +236,7 @@ def render_question(*, submit_fn, show_archive=True, completed_state_key="all_co
             unsafe_allow_html=True,
         )
         with st.container(key="qstem"):
-            st.markdown(ui_components.md_safe(ui_helpers.prepare_math_text(q_data["question"])))
+            st.markdown(ui_components.md_text(q_data["question"]))
 
         # One keyed container for the whole answer area.
         with st.container(key="answers"):

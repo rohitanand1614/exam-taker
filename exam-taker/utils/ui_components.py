@@ -78,6 +78,40 @@ def md_safe(text: Optional[str]) -> str:
     return "".join(out)
 
 
+# --- display-only LaTeX repair ------------------------------------------------
+# JSON "\frac" (single backslash) decodes to FORM FEED + "rac"; same for \beta (\b),
+# \times (\t), \right (\r), \nabla (\n). Question files are NOT modified: we map the
+# control characters back, but only INSIDE $...$ / $$...$$ spans.
+_MATH_SPAN = re.compile(r"\$\$.*?\$\$|\$(?:[^$\n]|\n(?!\n))+?\$", re.S)
+# "\nabla" decodes to NEWLINE + "abla" (the escape swallows the "n"), so match the suffix.
+_NEWLINE_COMMAND = re.compile(
+    r"\n(?=(?:abla|eq|ewline|u|e|otin|i|ot|leq|geq|mid|rightarrow|atural)(?![a-zA-Z]))")
+_CONTROL_TO_ESCAPE = {"\x0c": "\\f", "\x08": "\\b", "\t": "\\t", "\r": "\\r"}
+
+
+def _repair_span(match):
+    span = match.group(0)
+    for ch, esc in _CONTROL_TO_ESCAPE.items():
+        span = span.replace(ch, esc)
+    return _NEWLINE_COMMAND.sub(lambda m: "\\n", span)
+
+
+def repair_latex(text: Optional[str]) -> str:
+    """Repair control characters that single-backslash LaTeX left inside math spans."""
+    if not text:
+        return ""
+    return _MATH_SPAN.sub(_repair_span, text)
+
+
+def md_text(text: Optional[str]) -> str:
+    """The one pipeline for question / option / explanation text:
+    \\( \\) -> $ $, repair_latex, then md_safe."""
+    from utils import ui_helpers  # lazy: keeps this module free of Streamlit at import time
+    if not text:
+        return ""
+    return md_safe(repair_latex(ui_helpers.prepare_math_text(text)))
+
+
 def option_state(idx: int, correct_indices: Iterable[int], selected_indices: Iterable[int]) -> str:
     """'correct' | 'missed' | 'wrong' | 'neutral' for one option after submit."""
     correct = idx in set(correct_indices or [])
@@ -170,6 +204,43 @@ def explanation_html(text: str) -> str:
     body = "".join(f"<p>{_esc(p)}</p>" for p in paragraphs)
     return ('<div class="etp-explain"><div class="etp-explain__head">Explanation</div>'
             f'<div class="etp-explain__body">{body}</div></div>')
+
+
+# ---------------------------------------------------------------------------
+# List rows (Bookmarks, Archived, Wrong answers, Search, Notes)
+# ---------------------------------------------------------------------------
+from utils.ui_helpers import TOKENS as _TOKENS  # noqa: E402  (colours only; no cycle)
+
+# bookmark name -> (token colour, short label). Names match bookmark_manager.BOOKMARK_COLORS.
+BOOKMARK_STYLE = {
+    "Important (Red)": (_TOKENS["bm_red"], "Important"),
+    "Review Later (Orange)": (_TOKENS["bm_orange"], "Review later"),
+    "Interesting (Blue)": (_TOKENS["bm_blue"], "Interesting"),
+    "Hard (Purple)": (_TOKENS["bm_purple"], "Hard"),
+    "Solved (Green)": (_TOKENS["bm_green"], "Solved"),
+}
+
+
+def bookmark_style(name: str):
+    """(colour, short label) for a bookmark name; unknown names fall back to muted ink."""
+    return BOOKMARK_STYLE.get(name, (_TOKENS["ink_muted"], str(name)))
+
+
+def count_line(total: int, showing: int, noun: str) -> str:
+    """'41 saved · showing 12'"""
+    return f"{total} {noun} · showing {showing}"
+
+
+def list_row_html(question_text, meta, dot_colour: Optional[str] = None) -> str:
+    """One list row: optional colour dot, question (2-line clamp via CSS), one meta line.
+    Text is HTML-escaped; `$...$` math is kept (and repaired) as in the other helpers."""
+    if isinstance(meta, (list, tuple)):
+        meta = " · ".join(str(m) for m in meta if m)
+    dot = (f'<span class="etp-li__dot" style="background:{_esc(dot_colour)}"></span>'
+           if dot_colour else "")
+    return (f'<div class="etp-li">{dot}<div class="etp-li__body">'
+            f'<div class="etp-li__q">{_esc(repair_latex(question_text))}</div>'
+            f'<div class="etp-li__meta">{_esc(meta)}</div></div></div>')
 
 
 # ---------------------------------------------------------------------------
