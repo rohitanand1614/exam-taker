@@ -14,7 +14,7 @@ from utils import file_manager, scoring, srs, bookmark_manager, archive_manager
 # -----------------------------------------------------------------------------
 st.set_page_config(page_title="Exam Taker Pro", page_icon="📝", layout="wide")
 
-from utils import ui_helpers
+from utils import ui_helpers, ui_components
 ui_helpers.inject_global_css()
 ui_helpers.inject_quill_dark_mode()
 
@@ -130,11 +130,11 @@ if 'all_completed_today' not in st.session_state:
 # SIDEBAR: SELECTION & STATS
 # -----------------------------------------------------------------------------
 with st.sidebar:
-    st.title("📚 Exam Taker Pro")
+    st.title("Exam Taker Pro")
     
     # 1. Selection Mode
     st.subheader("Selection Mode")
-    selection_mode = st.radio("Load by:", ["Folder", "Specific File"], index=0)
+    selection_mode = st.radio("Load by:", ["Folder", "Specific File"], index=0, horizontal=True)
     
     st.divider()
     
@@ -192,7 +192,7 @@ with st.sidebar:
     
     # 2. Mode Selection (Simple for now)
     st.subheader("Study Mode")
-    mode = st.radio("Mode", ["Standard", "Shuffled"], index=0)
+    mode = st.radio("Mode", ["Standard", "Shuffled"], index=0, horizontal=True)
     if mode == "Shuffled" and st.session_state.mode != "Shuffled":
         random.shuffle(st.session_state.questions)
         st.session_state.mode = "Shuffled"
@@ -255,27 +255,28 @@ with st.sidebar:
             
             st.caption("Overall Progress")
             
-            # Custom HTML Bar
+            # Custom HTML Bar (colours from design tokens)
+            tk = ui_helpers.TOKENS
             bar_html = f"""
-            <div style="display: flex; width: 100%; height: 20px; border-radius: 10px; overflow: hidden; background-color: #252e42;">
-                <div style="width: {pg}%; background-color: #2d8f4a;" title="Mastered: {g} ({pg:.1f}%)"></div>
-                <div style="width: {py}%; background-color: #8a6e00;" title="Mixed: {y} ({py:.1f}%)"></div>
-                <div style="width: {pr}%; background-color: #b84040;" title="Struggling: {r} ({pr:.1f}%)"></div>
-                <div style="width: {pgr}%; background-color: #3a4558;" title="Unattempted: {gr} ({pgr:.1f}%)"></div>
+            <div style="display: flex; width: 100%; height: 8px; border-radius: 999px; overflow: hidden; background-color: {tk['surface_raised']};">
+                <div style="width: {pg}%; background-color: {tk['success']};" title="Mastered: {g} ({pg:.1f}%)"></div>
+                <div style="width: {py}%; background-color: {tk['warning']};" title="Mixed: {y} ({py:.1f}%)"></div>
+                <div style="width: {pr}%; background-color: {tk['danger']};" title="Struggling: {r} ({pr:.1f}%)"></div>
+                <div style="width: {pgr}%; background-color: {tk['border_strong']};" title="Unattempted: {gr} ({pgr:.1f}%)"></div>
             </div>
-            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: #6b7a90; margin-top: 4px;">
-                <span style="color: #52c46e;">{pg:.0f}%</span>
-                <span style="color: #c9a227;">{py:.0f}%</span>
-                <span style="color: #d96060;">{pr:.0f}%</span>
+            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: {tk['ink_muted']}; margin-top: 4px;">
+                <span style="color: {tk['success']};">{pg:.0f}%</span>
+                <span style="color: {tk['warning']};">{py:.0f}%</span>
+                <span style="color: {tk['danger']};">{pr:.0f}%</span>
                 <span>{pgr:.0f}%</span>
             </div>
             """
             st.markdown(bar_html, unsafe_allow_html=True)
-            
+
             # Link to Dashboard
             # Using st.page_link if available (Streamlit 1.31+), else fallback to info
             try:
-                st.page_link("pages/Progress_Dashboard.py", label="View Detailed Stats", icon="📊")
+                st.page_link("pages/Progress_Dashboard.py", label="View detailed stats", icon=":material/bar_chart:")
             except AttributeError:
                 st.info("Go to 'Progress Dashboard' page for details.")
 
@@ -285,194 +286,208 @@ with st.sidebar:
 # MAIN CONTENT
 # -----------------------------------------------------------------------------
 
+def option_md(letter, text):
+    """Markdown for one answer option: bold letter + option text without its "A) " prefix."""
+    return f"**{letter}**  " + ui_components.md_safe(ui_helpers.prepare_math_text(ui_components.option_label(text)))
+
+
+# Button callbacks run BEFORE the next script run, so no st.rerun() is needed for
+# navigation / submit / retry (no half-drawn first pass, cleaner for AppTest too).
+def _cb_step(delta):
+    st.session_state.current_q_index += delta
+
+
+def _cb_submit(q_data, letters, is_multiselect):
+    q_id = q_data.get("id", "unknown")
+    if is_multiselect:
+        selection = [i for i in range(len(letters)) if st.session_state.get(f"chk_{q_id}_{i}")]
+    else:
+        letter = st.session_state.get(f"radio_{q_id}")
+        selection = [letters.index(letter)] if letter in letters else []
+    handle_submission(q_data, selection)
+
+
+def _cb_simple_retry(q_id):
+    file_manager.delete_last_attempt(q_id)
+    if q_id in st.session_state.answers: del st.session_state.answers[q_id]
+    if q_id in st.session_state.submitted: del st.session_state.submitted[q_id]
+
+
+def _cb_hard_retry(q_id):
+    file_manager.reset_question_log(q_id)
+    if q_id in st.session_state.answers: del st.session_state.answers[q_id]
+    if q_id in st.session_state.submitted: del st.session_state.submitted[q_id]
+
+
 def render_question():
     if st.session_state.all_completed_today:
-        st.success("🎉 All questions from this section are completed for today! Great job.")
-        st.info("Select another exam from the sidebar to continue studying.")
+        st.success("All questions from this section are completed for today. Great job.",
+                   icon=":material/check_circle:")
+        st.info("Select another exam from the sidebar to continue studying.", icon=":material/info:")
         return
 
     if not st.session_state.questions:
-        st.info("👈 Select an exam from the sidebar to begin.")
+        st.info("Select an exam in the sidebar to begin.", icon=":material/info:")
         return
 
     q_data = st.session_state.questions[st.session_state.current_q_index]
     q_id = q_data.get("id", "unknown")
-    
+    total_questions = len(st.session_state.questions)
+
     # Load previous history for context (SRS status)
     log_data = file_manager.load_question_log(q_id)
     srs_info = log_data.get("summary", {}).get("srs", {})
-    
-    # Container
-    st.markdown(f'<div class="question-card">', unsafe_allow_html=True)
-    
-    # Header: Tags & Difficulty
-    cols = st.columns([3, 1])
-    with cols[0]:
-        tags = q_data.get("tags", [])
-        reattempt_badge = "🔄 **REATTEMPT** | " if q_data.get("is_reattempt") else ""
-        st.caption(f"{reattempt_badge}🏷️ {', '.join(tags)} | 📅 Next Due: {srs_info.get('next_due', 'New')}")
-    with cols[1]:
-        diff = q_data.get("difficulty", "medium").upper()
-        color = {"EASY": "green", "MEDIUM": "orange", "HARD": "red"}.get(diff, "grey")
-        st.markdown(f"<span style='color:{color}; font-weight:bold; float:right'>{diff}</span>", unsafe_allow_html=True)
 
-    # Bookmark Controls
-    current_bookmark = bookmark_manager.get_bookmark_status(q_id)
-    
-    bm_cols = st.columns([1, 3])
-    with bm_cols[0]:
-        # Bookmark Toggle
-        bm_options = list(bookmark_manager.BOOKMARK_COLORS.keys())
-        
-        # Determine index
-        default_idx = 0
-        if current_bookmark in bm_options:
-            default_idx = bm_options.index(current_bookmark)
-            
-        selected_bm_color = st.selectbox(
-            "Bookmark Color", 
-            bm_options, 
-            index=default_idx, 
-            key=f"bm_sel_{q_id}",
-            label_visibility="collapsed"
-        )
-    with bm_cols[1]:
-        col_add, col_remove = st.columns([1, 1])
-        with col_add:
-            if st.button("🔖 Bookmark", key=f"bm_btn_{q_id}"):
-                bookmark_manager.save_bookmark(q_data, selected_bm_color)
-                st.toast(f"Bookmarked as {selected_bm_color}!", icon="✅")
-                st.rerun()
-        with col_remove:
-            if current_bookmark:
-                if st.button("🗑️ Remove", key=f"bm_rm_{q_id}"):
-                    bookmark_manager.remove_bookmark(q_id)
-                    st.toast("Bookmark removed!", icon="🗑️")
-                    st.rerun()
-            
-            
-    # Archive Control
-    if st.button("🗄️ Archive", key=f"arch_btn_{q_id}", help="Move to Archive (remove from active practice)"):
-        archive_manager.archive_question(q_data)
-        st.toast("Question archived!", icon="🗄️")
-        st.rerun()
-
-    if current_bookmark:
-        st.caption(f"Currently bookmarked as: {current_bookmark}")
-
-    # Question Text
-    q_text = ui_helpers.prepare_math_text(q_data["question"])
-    ui_helpers.render_math_text(q_text, font_size="1.2rem", font_weight="600",
-                                height=max(70, len(q_data["question"]) // 3 + 40))
-
-    # Options
     options = q_data.get("options", [])
     correct_indices = q_data.get("correct_indices", [])
     if not isinstance(correct_indices, list):
         correct_indices = [correct_indices]
     is_multiselect = len(correct_indices) > 1
+    is_submitted = st.session_state.submitted.get(q_id, False)
+    letters = [chr(65 + i) for i in range(len(options))]
+    current_bookmark = bookmark_manager.get_bookmark_status(q_id)
 
-    # Input Handling
     user_selection = []
 
-    # If already submitted, disable inputs
-    is_submitted = st.session_state.submitted.get(q_id, False)
-
-    letters = [chr(65 + i) for i in range(len(options))]
-
-    if is_multiselect:
-        st.write("Assertion: **Select all that apply**")
-        prev_indices = st.session_state.answers.get(q_id, [])
-        for idx, opt in enumerate(options):
-            ui_helpers.render_math_text(ui_helpers.prepare_math_text(opt), height=55)
-            checked = st.checkbox(
-                f"Select {letters[idx]}",
-                value=(idx in prev_indices),
-                key=f"chk_{q_id}_{idx}",
-                disabled=is_submitted
+    with st.container(border=True, key="qcard"):
+        # Header: badges + tags (left), bookmark / archive tools (right)
+        head_left, head_right = st.columns([3, 2])
+        with head_left:
+            st.markdown(
+                ui_components.meta_row(
+                    q_data.get("tags", []),
+                    q_data.get("difficulty", "medium"),
+                    bool(q_data.get("is_reattempt")),
+                    srs_info.get("next_due"),
+                ),
+                unsafe_allow_html=True,
             )
-            if checked:
-                user_selection.append(idx)
-    else:
-        # Single Select -> Radio
-        prev_ans_idx_list = st.session_state.answers.get(q_id, [None])
-        prev_ans_idx = prev_ans_idx_list[0] if prev_ans_idx_list else None
+        with head_right:
+            bm_col, arch_col = st.columns(2)
+            with bm_col:
+                with st.popover(
+                    "Bookmarked" if current_bookmark else "Bookmark",
+                    icon=":material/bookmark_added:" if current_bookmark else ":material/bookmark:",
+                    use_container_width=True,
+                ):
+                    bm_options = list(bookmark_manager.BOOKMARK_COLORS.keys())
+                    default_idx = 0
+                    if current_bookmark in bm_options:
+                        default_idx = bm_options.index(current_bookmark)
+                    selected_bm_color = st.selectbox(
+                        "Colour",
+                        bm_options,
+                        index=default_idx,
+                        key=f"bm_sel_{q_id}",
+                    )
+                    if st.button("Save bookmark", key=f"bm_btn_{q_id}", icon=":material/bookmark:"):
+                        bookmark_manager.save_bookmark(q_data, selected_bm_color)
+                        st.toast(f"Bookmarked as {selected_bm_color}.", icon=":material/check_circle:")
+                        st.rerun()
+                    if current_bookmark:
+                        st.caption(f"Currently bookmarked as: {current_bookmark}")
+                        if st.button("Remove bookmark", key=f"bm_rm_{q_id}", icon=":material/delete:"):
+                            bookmark_manager.remove_bookmark(q_id)
+                            st.toast("Bookmark removed.", icon=":material/delete:")
+                            st.rerun()
+            with arch_col:
+                if st.button("Archive", key=f"arch_btn_{q_id}", type="tertiary",
+                             icon=":material/archive:",
+                             help="Move to Archive (remove from active practice)"):
+                    archive_manager.archive_question(q_data)
+                    st.toast("Question archived.", icon=":material/archive:")
+                    st.rerun()
 
-        default_index = None
-        if prev_ans_idx is not None and 0 <= prev_ans_idx < len(options):
-            default_index = prev_ans_idx
-
-        for opt in options:
-            ui_helpers.render_math_text(ui_helpers.prepare_math_text(opt), height=55)
-
-        selected_letter = st.radio(
-            "Select your answer:",
-            letters,
-            index=default_index,
-            key=f"radio_{q_id}",
-            disabled=is_submitted
+        # "Question N of M" overline, then the stem (native markdown + LaTeX)
+        st.markdown(
+            f'<div class="etp-qnum">Question {st.session_state.current_q_index + 1} of {total_questions}</div>',
+            unsafe_allow_html=True,
         )
-        if selected_letter in letters:
-            user_selection = [letters.index(selected_letter)]
+        with st.container(key="qstem"):
+            st.markdown(ui_components.md_safe(ui_helpers.prepare_math_text(q_data["question"])))
 
-    # Submit Button
-    if not is_submitted:
-        if st.button("Submit Answer", key=f"btn_{q_id}"):
-            handle_submission(q_data, user_selection)
-            st.rerun()
-    else:
-        # Show Results
-        render_results(q_data, st.session_state.answers.get(q_id, []))
+        # One keyed container for the whole answer area, so switching question / state
+        # replaces it as a unit (no leftovers from a longer previous question).
+        with st.container(key="answers"):
+            if is_submitted:
+                # Results are drawn on the option rows themselves (no radio / checkboxes).
+                render_results(q_data, st.session_state.answers.get(q_id, []))
+            elif is_multiselect:
+                st.caption("Select all that apply")
+                prev_indices = st.session_state.answers.get(q_id, [])
+                for idx, opt in enumerate(options):
+                    checked = st.checkbox(
+                        option_md(letters[idx], opt),
+                        value=(idx in prev_indices),
+                        key=f"chk_{q_id}_{idx}",
+                    )
+                    if checked:
+                        user_selection.append(idx)
+            else:
+                # Single select -> radio; values stay letters, labels show the option text
+                prev_ans_idx_list = st.session_state.answers.get(q_id, [None])
+                prev_ans_idx = prev_ans_idx_list[0] if prev_ans_idx_list else None
 
-    st.markdown('</div>', unsafe_allow_html=True) # End card
+                default_index = None
+                if prev_ans_idx is not None and 0 <= prev_ans_idx < len(options):
+                    default_index = prev_ans_idx
 
-    # Navigation & Actions
-    st.markdown('<span id="nav-buttons-marker"></span>', unsafe_allow_html=True)
-    
+                selected_letter = st.radio(
+                    "Select your answer",
+                    letters,
+                    index=default_index,
+                    key=f"radio_{q_id}",
+                    format_func=lambda L: option_md(L, options[ord(L) - 65]),
+                    label_visibility="collapsed",
+                )
+                if selected_letter in letters:
+                    user_selection = [letters.index(selected_letter)]
+
+    # Navigation & actions (keyed containers / keyed buttons are the CSS hooks)
+    last_index = len(st.session_state.questions) - 1
     if is_submitted:
-        # 4 Columns: Previous | Simple Retry | Hard Retry | Next
-        col_prev, col_retry, col_hard, col_next = st.columns([1, 1, 1, 1])
-        
+        col_prev, col_retry, col_hard, col_gap, col_next = st.columns([1.2, 1.2, 1.2, 0.6, 1])
+
         with col_prev:
             if st.session_state.current_q_index > 0:
-                if st.button("⬅️ Previous", key="nav_prev"):
-                    st.session_state.current_q_index -= 1
-                    st.rerun()
-                    
+                st.button("Previous", key="nav_prev", icon=":material/chevron_left:",
+                          on_click=_cb_step, args=(-1,))
+
         with col_retry:
-            if st.button("🔄 Simple Retry", key=f"retry_{q_id}", help="Remove last attempt and try again"):
-                file_manager.delete_last_attempt(q_id)
-                if q_id in st.session_state.answers: del st.session_state.answers[q_id]
-                if q_id in st.session_state.submitted: del st.session_state.submitted[q_id]
-                st.rerun()
-                
+            with st.container(key="nav_retry"):
+                st.button("Simple retry", key=f"retry_{q_id}", icon=":material/replay:",
+                          help="Remove last attempt and try again",
+                          on_click=_cb_simple_retry, args=(q_id,))
+
         with col_hard:
-            if st.button("🛑 Hard Retry", key=f"hard_retry_{q_id}", type="primary", help="Reset all history for this question"):
-                file_manager.reset_question_log(q_id)
-                if q_id in st.session_state.answers: del st.session_state.answers[q_id]
-                if q_id in st.session_state.submitted: del st.session_state.submitted[q_id]
-                st.rerun()
-                
+            with st.container(key="nav_hard"):
+                st.button("Hard retry", key=f"hard_retry_{q_id}", icon=":material/restart_alt:",
+                          help="Reset all history for this question",
+                          on_click=_cb_hard_retry, args=(q_id,))
+
         with col_next:
-            if st.session_state.current_q_index < len(st.session_state.questions) - 1:
-                if st.button("Next ➡️", key="nav_next"):
-                    st.session_state.current_q_index += 1
-                    st.rerun()
+            if st.session_state.current_q_index < last_index:
+                # NB: a container may not reuse a widget key, so the button's own key is the hook
+                st.button("Next", key="nav_next", type="primary", icon=":material/chevron_right:",
+                          on_click=_cb_step, args=(1,))
     else:
-        # 2 Columns: Previous | Next
-        col_prev, col_next = st.columns([1, 1])
-        
+        col_prev, col_gap, col_next, col_submit = st.columns([1, 1.6, 1, 1.4])
+
         with col_prev:
             if st.session_state.current_q_index > 0:
-                if st.button("⬅️ Previous", key="nav_prev_simple"):
-                    st.session_state.current_q_index -= 1
-                    st.rerun()
-                    
+                st.button("Previous", key="nav_prev_simple", icon=":material/chevron_left:",
+                          on_click=_cb_step, args=(-1,))
+
         with col_next:
-            if st.session_state.current_q_index < len(st.session_state.questions) - 1:
-                if st.button("Next ➡️", key="nav_next_simple"):
-                    st.session_state.current_q_index += 1
-                    st.rerun()
+            if st.session_state.current_q_index < last_index:
+                st.button("Next", key="nav_next_simple", icon=":material/chevron_right:",
+                          on_click=_cb_step, args=(1,))
+
+        with col_submit:
+            with st.container(key="nav_submit"):
+                st.button("Submit answer", key=f"btn_{q_id}", type="primary",
+                          icon=":material/check:",
+                          on_click=_cb_submit, args=(q_data, letters, is_multiselect))
 
 def handle_submission(q_data, user_selection):
     q_id = q_data["id"]
@@ -504,92 +519,72 @@ def handle_submission(q_data, user_selection):
     file_manager.save_attempt_log(q_id, attempt_entry, new_srs)
 
 def render_results(q_data, user_selection):
-    correct_indices = set(q_data.get("correct_indices", []))
-    user_set = set(user_selection)
+    q_id = q_data["id"]
+    correct_indices = q_data.get("correct_indices", [])
+    if not isinstance(correct_indices, list):
+        correct_indices = [correct_indices]
     options = q_data.get("options", [])
-    
-    # Score
+    letters = [chr(65 + i) for i in range(len(options))]
+
+    # Score + feedback banner (body mentions the next review date from SRS)
     score = scoring.calculate_f1_score(user_selection, list(correct_indices))
-    
-    if score == 1.0:
-        st.markdown('<div class="success-box">✅ <b>Perfect!</b> You got it right.</div>', unsafe_allow_html=True)
-    elif score > 0:
-        st.markdown(f'<div class="error-box">⚠️ <b>Partial Credit.</b> Score: {score:.2f}</div>', unsafe_allow_html=True)
-    else:
-        st.markdown('<div class="error-box">❌ <b>Incorrect.</b></div>', unsafe_allow_html=True)
+    correct_letters = [letters[i] for i in sorted(set(correct_indices)) if 0 <= i < len(letters)]
+    kind, title, body = ui_components.feedback(score, correct_letters)
 
-    # Detailed Breakdown
-    st.write("### Analysis")
+    log_data = file_manager.load_question_log(q_id)
+    next_due = log_data.get("summary", {}).get("srs", {}).get("next_due")
+    if next_due:
+        body = f"{body} Next review: {next_due}."
+    st.markdown(ui_components.feedback_banner_html(kind, title, body), unsafe_allow_html=True)
+
+    # Option rows carry the result: Correct / Missed / Your pick
+    status_word = {"correct": "Correct", "missed": "Missed", "wrong": "Your pick"}
     for idx, opt in enumerate(options):
-        prefix = ""
-        style = "color: #6b7a90;"
+        state = ui_components.option_state(idx, correct_indices, user_selection)
+        with st.container(key=f"opt_{state}_{q_id}_{idx}"):
+            col_text, col_status = st.columns([8, 1.3])
+            with col_text:
+                st.markdown(option_md(letters[idx], opt))
+            with col_status:
+                if state in status_word:
+                    st.markdown(status_word[state])
 
-        if idx in correct_indices and idx in user_set:
-            prefix = "✅ (Correctly Selected)"
-            style = "color: #52c46e; font-weight: bold;"
-        elif idx in correct_indices and idx not in user_set:
-            prefix = "⚠️ (Missed)"
-            style = "color: #c9a227; font-weight: bold;"
-        elif idx not in correct_indices and idx in user_set:
-            prefix = "❌ (Wrongly Selected)"
-            style = "color: #d96060; font-weight: bold;"
+    # Explanation (grows to fit)
+    explanation = q_data.get("explanation")
+    if explanation:
+        with st.container(key=f"explain_{q_id}"):
+            st.markdown('<div class="etp-explain__head">Explanation</div>', unsafe_allow_html=True)
+            st.markdown(ui_components.md_safe(ui_helpers.prepare_math_text(explanation)))
 
-        ui_helpers.render_math_text(
-            f"<span style='{style}'>• {ui_helpers.prepare_math_text(opt)} {prefix}</span>",
-            height=55
-        )
-
-    # Explanation
-    if "explanation" in q_data:
-        st.markdown("**💡 Explanation:**")
-        ui_helpers.render_math_text(
-            ui_helpers.prepare_math_text(q_data["explanation"]),
-            extra_style="border-left:4px solid #58a6ff;padding:1rem;background:#21262d;border-radius:0 8px 8px 0;",
-            height=min(500, max(100, len(q_data["explanation"]) // 5 + 40))
-        )
-
-    # User Notes / Research
-    st.write("### 📝 My Notes & Research")
-    
-    # Load existing notes
-    log_data = file_manager.load_question_log(q_data["id"])
+    # Notes + diagram in one expander (no nested expanders allowed)
     existing_notes = log_data.get("user_notes", "")
     existing_diagram = log_data.get("user_diagram", "")
-    
-    # Text Area (Rich Text with Quill)
-    user_notes = st_quill(
-        value=existing_notes,
-        placeholder="Add your findings or additional explanation here...",
-        html=True,
-        key=f"notes_{q_data['id']}"
-    )
-    
-    # Diagram Section
-    st.write("#### 🧩 Logic Flow")
-    
-    # 1. Render Diagram (if exists)
-    if existing_diagram.strip():
-        st_mermaid(existing_diagram, height="300px")
-    else:
-        st.info("No diagram added yet.")
-        
-    # 2. Edit Diagram (Collapsed)
-    with st.expander("✏️ Edit/Add Diagram"):
-        st.caption("Use Mermaid syntax (e.g., `graph TD; A-->B;`)")
+    with st.expander("My notes & diagram", icon=":material/edit_note:"):
+        user_notes = st_quill(
+            value=existing_notes,
+            placeholder="Add your findings or additional explanation here...",
+            html=True,
+            key=f"notes_{q_id}"
+        )
+
+        st.markdown("**Logic flow**")
+        if existing_diagram.strip():
+            st_mermaid(existing_diagram, height="300px")
+        else:
+            st.caption("No diagram added yet.")
+
         user_diagram = st.text_area(
-            "Mermaid Code",
+            "Mermaid code",
             value=existing_diagram,
             height=150,
-            key=f"diagram_{q_data['id']}"
+            key=f"diagram_{q_id}",
+            help="Mermaid syntax, for example: graph TD; A-->B;"
         )
-    
-    if st.button("💾 Save Notes & Diagram", key=f"save_notes_{q_data['id']}"):
-        # We need to get the value from the text area inside the expander
-        # Streamlit widgets inside expanders are accessible via session state or return value if not rerunning immediately
-        # Here we use the variable 'user_diagram' which holds the current value
-        file_manager.update_user_notes(q_data["id"], user_notes, user_diagram)
-        st.toast("Notes & Diagram saved successfully!", icon="✅")
-        st.rerun()
+
+        if st.button("Save notes & diagram", key=f"save_notes_{q_id}", icon=":material/save:"):
+            file_manager.update_user_notes(q_id, user_notes, user_diagram)
+            st.toast("Notes and diagram saved.", icon=":material/check_circle:")
+            st.rerun()
 
 # Run App
 if __name__ == "__main__":

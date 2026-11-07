@@ -17,6 +17,8 @@ from utils.llm_client import LLMClient
 from utils.topic_analyzer import TopicAnalyzer
 
 st.set_page_config(page_title="Topic Analysis", page_icon="🧠", layout="wide")
+from utils import ui_helpers
+ui_helpers.inject_global_css()
 
 st.title("🧠 Topic Analysis Dashboard")
 

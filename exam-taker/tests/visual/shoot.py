@@ -76,11 +76,30 @@ def exam_after_wrong_submit(page, out_dir):
             page.get_by_role("option", name="sample").click()
             settle(page, 1000)
     # Option A is wrong for Q1 (correct is B)
-    page.locator('div[data-testid="stRadio"] label').nth(0).click()
+    page.locator('section[data-testid="stMain"] [role="radiogroup"] label').nth(0).click()
     page.wait_for_timeout(500)
-    page.get_by_role("button", name="Submit Answer").click()
+    page.get_by_role("button", name="Submit answer").click()
     settle(page)
     shot(page, out_dir, "exam_after_submit")
+
+
+def exam_code_question(page, out_dir):
+    """Navigate to the code-like fixture question (4th), shoot it, answer wrong,
+    open the notes expander (shows the Quill editor) and shoot again."""
+    page.goto(BASE + "/")
+    settle(page)
+    for _ in range(3):
+        page.get_by_role("button", name="Next").first.click()
+        page.wait_for_timeout(900)
+    settle(page, 1000)
+    shot(page, out_dir, "exam_code_question")
+    page.locator('section[data-testid="stMain"] [role="radiogroup"] label').nth(0).click()
+    page.wait_for_timeout(400)
+    page.get_by_role("button", name="Submit answer").click()
+    settle(page)
+    page.get_by_text("My notes & diagram").first.click()
+    settle(page, 3500)
+    shot(page, out_dir, "exam_code_notes_open")
 
 
 def main():
@@ -91,6 +110,8 @@ def main():
     work = Path(tempfile.mkdtemp(prefix="etp_shoot_"))
     shutil.copytree(APP_DIR / "tests" / "fixtures" / "workspace", work, dirs_exist_ok=True)
     shutil.copytree(APP_DIR / ".streamlit", work / ".streamlit", dirs_exist_ok=True)
+    # extra fixture: code-like question (tests/fixtures/extras), only used by this script
+    shutil.copytree(APP_DIR / "tests" / "fixtures" / "extras", work, dirs_exist_ok=True)
     # fixture log holds placeholders (see tests/conftest.py)
     sys.path.insert(0, str(APP_DIR / "tests"))
     import conftest
@@ -123,6 +144,7 @@ def main():
                     print(f"FAILED {name}: {e}")
 
             exam_after_wrong_submit(page, out_dir)
+            exam_code_question(page, out_dir)
             browser.close()
     finally:
         server.terminate()

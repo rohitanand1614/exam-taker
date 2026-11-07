@@ -111,11 +111,99 @@ def test_global_css_has_classes_pages_use(cls):
     assert cls in ui_helpers._GLOBAL_CSS
 
 
-def test_global_css_nav_buttons_marker_selectors():
+def test_global_css_no_fragile_nth_of_type_nav_rules():
     css = ui_helpers._GLOBAL_CSS
-    assert '#nav-buttons-marker' in css
-    assert '[data-testid="column"]' in css
-    assert '[data-testid="stElementContainer"]:has(#nav-buttons-marker) + [data-testid="stLayoutWrapper"]' in css
+    assert "nav-buttons-marker" not in css
+    assert "nth-of-type" not in css
+
+
+@pytest.mark.parametrize("selector", [
+    ".st-key-nav_retry button",
+    ".st-key-nav_hard button",
+    ".st-key-nav_next button",
+    ".st-key-nav_submit button",
+])
+def test_global_css_keyed_nav_selectors(selector):
+    assert selector in ui_helpers._GLOBAL_CSS
+
+
+# ------------------------------------------------------- 3a: bookmark tokens
+@pytest.mark.parametrize("key,value", [
+    ("bm_red", "#d48a80"), ("bm_orange", "#d6a464"), ("bm_blue", "#8ea9cc"),
+    ("bm_purple", "#b4a0cc"), ("bm_green", "#8cc29f"),
+])
+def test_bookmark_tokens(key, value):
+    assert TOKENS[key] == value
+
+
+# ------------------------------------------------------------- 3a: alerts CSS
+@pytest.mark.parametrize("kind", ["Info", "Success", "Warning", "Error"])
+def test_alert_css_targets_each_kind(kind):
+    assert f'[data-testid="stAlertContent{kind}"]' in ui_helpers._GLOBAL_CSS
+
+
+def _rule(css, selector):
+    start = css.index(selector)
+    return css[start:css.index("}", start)]
+
+
+@pytest.mark.parametrize("kind,bg,border", [
+    ("Success", "--etp-success-bg", "--etp-success-border"),
+    ("Warning", "--etp-warn-bg", "--etp-warn-border"),
+    ("Error", "--etp-danger-bg", "--etp-danger-border"),
+])
+def test_alert_css_uses_status_tokens(kind, bg, border):
+    rule = _rule(ui_helpers._GLOBAL_CSS, f'[data-testid="stAlertContent{kind}"]')
+    assert bg in rule and border in rule
+
+
+def test_info_alert_uses_info_bg():
+    rule = _rule(ui_helpers._GLOBAL_CSS, '[data-testid="stAlertContentInfo"]')
+    assert "--etp-info-bg" in rule
+
+
+# -------------------------------------------------- 3a: exam-page CSS hooks
+@pytest.mark.parametrize("sel", [
+    ".st-key-qcard", '[class*="st-key-opt_correct"]', '[class*="st-key-opt_missed"]',
+    '[class*="st-key-opt_wrong"]', '[class*="st-key-opt_neutral"]',
+    '[class*="st-key-explain_"]', ".etp-qnum",
+])
+def test_exam_css_hooks_present(sel):
+    assert sel in ui_helpers._GLOBAL_CSS
+
+
+def _bodies(css, selector):
+    """Bodies of every rule whose selector list mentions `selector`."""
+    out = []
+    for m in re.finditer(r"([^{}]+)\{([^{}]*)\}", css):
+        if selector in m.group(1):
+            out.append(m.group(2))
+    return out
+
+
+def test_missed_rows_dashed_and_neutral_dimmed():
+    css = ui_helpers._GLOBAL_CSS
+    assert any("dashed" in b for b in _bodies(css, '[class*="st-key-opt_missed"]'))
+    assert any("opacity" in b for b in _bodies(css, '[class*="st-key-opt_neutral"]'))
+
+
+# ---------------------------------------------------------- 3a: quill selector
+def test_quill_selector_matches_real_iframe(monkeypatch):
+    """Real iframe title is 'streamlit_quill.streamlit_quill' (found with Playwright)."""
+    captured = {}
+    monkeypatch.setattr(ui_helpers.components, "html",
+                        lambda html, **kw: captured.setdefault("html", html))
+    ui_helpers.inject_quill_dark_mode()
+    js = captured["html"]
+    assert "streamlit_quill.st_quill" not in js
+    assert "quill" in js and "iframe[" in js
+    assert "'load'" in js  # re-style after the iframe navigates
+
+
+def test_topic_analysis_injects_global_css():
+    src = (ROOT / "pages" / "Topic_Analysis.py").read_text(encoding="utf-8")
+    assert src.count("inject_global_css()") == 1
+    assert src.index("set_page_config") < src.index("inject_global_css()")
 
 
 # ---------------------------------------------------------------- config.toml

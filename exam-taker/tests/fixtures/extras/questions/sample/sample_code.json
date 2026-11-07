@@ -1,0 +1,18 @@
+[
+  {
+    "id": "sample_code_q1",
+    "question": "A compliance agent uses this state schema:\n\nclass AgentState(TypedDict):\n    messages: list[AnyMessage]\n    transaction_id: str\n\nThe agent forgets earlier turns. Which fix appends messages and leaves __init__ alone?",
+    "type": "multiple_choice",
+    "options": [
+      "A) Switch the checkpointer from MemorySaver to PostgresSaver",
+      "B) Declare messages as Annotated[list[AnyMessage], add_messages] so updates append",
+      "C) Raise recursion_limit so history is not truncated",
+      "D) Add thread_id to the config and call __init__ twice"
+    ],
+    "correct_indices": [1],
+    "tags": ["langgraph", "state_reducers"],
+    "difficulty": "medium",
+    "category": "debugging",
+    "explanation": "A key without a reducer is overwritten by each node.\n\nAnnotated[list[AnyMessage], add_messages] appends instead; `__init__` is unrelated."
+  }
+]

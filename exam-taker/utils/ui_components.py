@@ -28,6 +28,56 @@ def _esc(value) -> str:
     return html.escape("" if value is None else str(value), quote=False)
 
 
+# Regions md_safe must leave alone: fenced code, inline code, $$display$$, $inline$ math.
+_PROTECTED = re.compile(r"```.*?```|`[^`\n]+`|\$\$.*?\$\$|\$[^$\n]+\$", re.S)
+_NBSP = "\u00a0"
+
+
+def _escape_line(line: str, at_line_start: bool) -> str:
+    # `\` before ASCII punctuation would swallow the escape we add next
+    line = re.sub(r"\\(?=[!-/:-@\[-`{-~])", r"\\\\", line)
+    line = re.sub(r"([*_\[\]<>|`])", r"\\\1", line)
+    if not at_line_start:
+        return line
+    indent = re.match(r"[ \t]+", line)
+    if indent:  # keep indentation visible, never let it become a code block
+        width = len(indent.group(0).replace("\t", "    "))
+        return _NBSP * width + line[indent.end():]
+    line = re.sub(r"^#", r"\\#", line)
+    line = re.sub(r"^([-+])(?=\s)", r"\\\1", line)
+    line = re.sub(r"^(\d+)([.)])(?=\s)", r"\1\\\2", line)
+    line = re.sub(r"^(-{3,}|={3,})\s*$", r"\\\1", line)
+    return line
+
+
+def md_safe(text: Optional[str]) -> str:
+    """Make arbitrary question text safe for st.markdown.
+
+    Escapes markdown control characters outside `code`, ```fences```, $math$
+    and $$math$$; turns newlines into hard breaks; keeps leading indentation
+    readable (non-breaking spaces). `__init__` renders as `__init__`.
+    """
+    if not text:
+        return ""
+    out = []
+    pos = 0
+
+    def plain(seg: str):
+        at_start = not out or out[-1].endswith("\n")
+        lines = seg.split("\n")
+        done = [_escape_line(ln, at_start if i == 0 else True) for i, ln in enumerate(lines)]
+        out.append("  \n".join(done))
+
+    for m in _PROTECTED.finditer(text):
+        if m.start() > pos:
+            plain(text[pos:m.start()])
+        out.append(m.group(0))
+        pos = m.end()
+    if pos < len(text):
+        plain(text[pos:])
+    return "".join(out)
+
+
 def option_state(idx: int, correct_indices: Iterable[int], selected_indices: Iterable[int]) -> str:
     """'correct' | 'missed' | 'wrong' | 'neutral' for one option after submit."""
     correct = idx in set(correct_indices or [])

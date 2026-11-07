@@ -38,6 +38,11 @@ TOKENS = {
     "warning_border": "#6e5730",
     "info": "#93aecf",
     "info_bg": "#1b2330",
+    "bm_red": "#d48a80",
+    "bm_orange": "#d6a464",
+    "bm_blue": "#8ea9cc",
+    "bm_purple": "#b4a0cc",
+    "bm_green": "#8cc29f",
 }
 
 FONT_READING = "Literata, Georgia, 'Times New Roman', serif"
@@ -251,6 +256,9 @@ section[data-testid="stMain"] div[data-testid="stRadio"] [role="radiogroup"] > l
   padding: .55rem .9rem; min-height: 44px; margin: 0;
   transition: background-color .15s ease, border-color .15s ease;
 }}
+section[data-testid="stMain"] div[data-testid="stRadio"] [role="radiogroup"] > label {{
+  width: 100% !important; max-width: calc(68ch + 80px); box-sizing: border-box;
+}}
 section[data-testid="stMain"] div[data-testid="stRadio"] [role="radiogroup"] > label:hover {{ background: var(--etp-raised); }}
 section[data-testid="stMain"] div[data-testid="stRadio"] [role="radiogroup"] > label:has(input:checked) {{
   background: {_t['selected_bg']}; border-color: var(--etp-accent);
@@ -308,35 +316,71 @@ section[data-testid="stMain"] div[data-testid="stRadio"] [role="radiogroup"] lab
 /* ---------- Dataframes ---------- */
 [data-testid="stDataFrame"] {{ border: 1px solid var(--etp-border); border-radius: 10px; }}
 
-/* ---------- Exam navigation row (after submit) ---------- */
-/* Simple Retry — muted amber outline */
-div:has(#nav-buttons-marker) ~ div[data-testid="stHorizontalBlock"] [data-testid="column"]:nth-of-type(2) button,
-div:has(#nav-buttons-marker) ~ div[data-testid="stHorizontalBlock"] [data-testid="stColumn"]:nth-of-type(2) button,
-[data-testid="stElementContainer"]:has(#nav-buttons-marker) + [data-testid="stLayoutWrapper"] [data-testid="stColumn"]:nth-of-type(2) button {{
-  background-color: transparent !important;
-  border-color: var(--etp-warn-border) !important;
-  color: var(--etp-warn) !important;
-  filter: none !important;
+/* ---------- Alerts (st.info / success / warning / error) ---------- */
+[data-testid="stAlertContainer"] {{ border-radius: 10px; border: 1px solid var(--etp-border); }}
+[data-testid="stAlertContainer"] p, [data-testid="stAlertContainer"] li {{ color: inherit; }}
+[data-testid="stAlertContainer"]:has([data-testid="stAlertContentInfo"]) {{
+  background: var(--etp-info-bg); border-color: var(--etp-border); color: var(--etp-info);
 }}
-div:has(#nav-buttons-marker) ~ div[data-testid="stHorizontalBlock"] [data-testid="column"]:nth-of-type(2) button:hover,
-div:has(#nav-buttons-marker) ~ div[data-testid="stHorizontalBlock"] [data-testid="stColumn"]:nth-of-type(2) button:hover,
-[data-testid="stElementContainer"]:has(#nav-buttons-marker) + [data-testid="stLayoutWrapper"] [data-testid="stColumn"]:nth-of-type(2) button:hover {{
-  background-color: var(--etp-warn-bg) !important;
+[data-testid="stAlertContainer"]:has([data-testid="stAlertContentSuccess"]) {{
+  background: var(--etp-success-bg); border-color: var(--etp-success-border); color: var(--etp-success);
 }}
-/* Hard Retry — muted terracotta outline (never filled red) */
-div:has(#nav-buttons-marker) ~ div[data-testid="stHorizontalBlock"] [data-testid="column"]:nth-of-type(3) button,
-div:has(#nav-buttons-marker) ~ div[data-testid="stHorizontalBlock"] [data-testid="stColumn"]:nth-of-type(3) button,
-[data-testid="stElementContainer"]:has(#nav-buttons-marker) + [data-testid="stLayoutWrapper"] [data-testid="stColumn"]:nth-of-type(3) button {{
-  background-color: transparent !important;
-  border-color: var(--etp-danger-border) !important;
-  color: var(--etp-danger) !important;
-  filter: none !important;
+[data-testid="stAlertContainer"]:has([data-testid="stAlertContentWarning"]) {{
+  background: var(--etp-warn-bg); border-color: var(--etp-warn-border); color: var(--etp-warn);
 }}
-div:has(#nav-buttons-marker) ~ div[data-testid="stHorizontalBlock"] [data-testid="column"]:nth-of-type(3) button:hover,
-div:has(#nav-buttons-marker) ~ div[data-testid="stHorizontalBlock"] [data-testid="stColumn"]:nth-of-type(3) button:hover,
-[data-testid="stElementContainer"]:has(#nav-buttons-marker) + [data-testid="stLayoutWrapper"] [data-testid="stColumn"]:nth-of-type(3) button:hover {{
-  background-color: var(--etp-danger-bg) !important;
+[data-testid="stAlertContainer"]:has([data-testid="stAlertContentError"]) {{
+  background: var(--etp-danger-bg); border-color: var(--etp-danger-border); color: var(--etp-danger);
 }}
+[data-testid="stAlertContentInfo"], [data-testid="stAlertContentInfo"] p {{ color: var(--etp-info) !important; }}
+[data-testid="stAlertContentSuccess"], [data-testid="stAlertContentSuccess"] p {{ color: var(--etp-success) !important; }}
+[data-testid="stAlertContentWarning"], [data-testid="stAlertContentWarning"] p {{ color: var(--etp-warn) !important; }}
+[data-testid="stAlertContentError"], [data-testid="stAlertContentError"] p {{ color: var(--etp-danger) !important; }}
+
+/* ---------- Exam page: keyed containers, stable under layout changes ---------- */
+.st-key-qcard {{
+  background: var(--etp-surface); border: 1px solid var(--etp-border) !important; border-radius: 14px;
+  padding: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,.35); margin-bottom: 1rem;
+}}
+.etp-qnum {{
+  font: 700 12px/16px {FONT_UI}; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--etp-muted); margin: 1rem 0 .5rem;
+}}
+.st-key-qstem p {{
+  font-family: {FONT_READING}; font-size: 1.25rem; font-weight: 500; line-height: 1.6;
+  color: var(--etp-ink); max-width: 68ch;
+}}
+/* option rows after submit */
+[class*="st-key-opt_correct"], [class*="st-key-opt_missed"], [class*="st-key-opt_wrong"], [class*="st-key-opt_neutral"] {{
+  border: 1px solid var(--etp-border-strong); border-radius: 10px; padding: .55rem .9rem;
+  margin-bottom: .5rem; max-width: calc(68ch + 80px);
+}}
+[class*="st-key-opt_"] p {{ font-family: {FONT_READING}; font-size: 1.05rem; line-height: 1.6; color: var(--etp-read); }}
+[class*="st-key-opt_"] [data-testid="stColumn"]:last-child p {{
+  font: 700 13px/27px {FONT_UI}; text-align: right;
+}}
+[class*="st-key-opt_correct"] {{ background: var(--etp-success-bg); border-color: var(--etp-success-border); }}
+[class*="st-key-opt_correct"] [data-testid="stColumn"]:last-child p {{ color: var(--etp-success); }}
+[class*="st-key-opt_missed"] {{ background: var(--etp-warn-bg); border: 1px dashed var(--etp-warn-border); }}
+[class*="st-key-opt_missed"] [data-testid="stColumn"]:last-child p {{ color: var(--etp-warn); }}
+[class*="st-key-opt_wrong"] {{ background: var(--etp-danger-bg); border-color: var(--etp-danger-border); }}
+[class*="st-key-opt_wrong"] [data-testid="stColumn"]:last-child p {{ color: var(--etp-danger); }}
+[class*="st-key-opt_neutral"] {{ opacity: .6; }}
+/* explanation */
+[class*="st-key-explain_"] {{
+  background: var(--etp-info-bg); border: 1px solid var(--etp-border); border-radius: 14px;
+  padding: 1.25rem; margin-top: 1rem;
+}}
+[class*="st-key-explain_"] p {{ font-family: {FONT_READING}; font-size: 1.05rem; line-height: 1.75; color: var(--etp-read); max-width: 68ch; }}
+/* nav buttons (keyed containers) */
+.st-key-nav_retry button {{ background-color: transparent !important; border-color: var(--etp-warn-border) !important; color: var(--etp-warn) !important; }}
+.st-key-nav_retry button:hover {{ background-color: var(--etp-warn-bg) !important; }}
+.st-key-nav_hard button {{ background-color: transparent !important; border-color: var(--etp-danger-border) !important; color: var(--etp-danger) !important; }}
+.st-key-nav_hard button:hover {{ background-color: var(--etp-danger-bg) !important; }}
+.st-key-nav_next button, .st-key-nav_submit button {{
+  background-color: var(--etp-fill) !important; border-color: var(--etp-fill) !important; color: var(--etp-on-fill) !important;
+}}
+.st-key-nav_next button:hover, .st-key-nav_submit button:hover {{ border-color: var(--etp-accent) !important; filter: brightness(1.12); }}
+.st-key-nav_next, .st-key-nav_next_simple {{ display: flex; justify-content: flex-end; }}
 </style>
 """
 
@@ -480,12 +524,9 @@ def inject_quill_dark_mode():
     js = r"""
     <script>
     const QUILL_CSS = __CSS__;
-    function styleQuillIframe(){
-      const iframe = window.parent.document.querySelector('iframe[title="streamlit_quill.st_quill"]')
-                  || document.querySelector('iframe[title="streamlit_quill.st_quill"]');
-      if(!iframe) return;
+    function applyTo(f){
       try {
-        const doc = iframe.contentDocument || iframe.contentWindow.document;
+        const doc = f.contentDocument || f.contentWindow.document;
         if(!doc || !doc.head) return;
         if (doc.getElementById('quill-dark-style')) return;
         const style = doc.createElement('style');
@@ -496,8 +537,21 @@ def inject_quill_dark_mode():
         console.warn('Could not inject styles into quill iframe (cross-origin?).', e);
       }
     }
-    setTimeout(styleQuillIframe, 500);
-    setTimeout(styleQuillIframe, 1500);
+    function styleQuillIframe(){
+      // real title is "streamlit_quill.streamlit_quill"; src contains /component/streamlit_quill...
+      let root;
+      try { root = window.parent.document; } catch(e) { root = document; }
+      root.querySelectorAll('iframe[title*="quill" i], iframe[src*="quill" i]').forEach(function(f){
+        if(!f.__etpQuill){
+          f.__etpQuill = true;
+          f.addEventListener('load', function(){ applyTo(f); });
+        }
+        applyTo(f);
+      });
+    }
+    setTimeout(styleQuillIframe, 300);
+    setTimeout(styleQuillIframe, 1200);
+    setTimeout(styleQuillIframe, 3000);
     try {
       new MutationObserver(styleQuillIframe).observe(window.parent.document.body, { childList: true, subtree: true });
     } catch(e) {
