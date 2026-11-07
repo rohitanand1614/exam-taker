@@ -16,11 +16,15 @@ from utils.file_manager import get_exam_folders, get_question_id_to_file_map, lo
 from utils.llm_client import LLMClient
 from utils.topic_analyzer import TopicAnalyzer
 
-st.set_page_config(page_title="Topic Analysis", page_icon="🧠", layout="wide")
-from utils import ui_helpers
+st.set_page_config(page_title="Topic Analysis", page_icon=":material/psychology:", layout="wide")
+from utils import ui_helpers, ui_components
 ui_helpers.inject_global_css()
+ui_helpers.apply_plotly_theme()
 
-st.title("🧠 Topic Analysis Dashboard")
+# Page head: filled in again below once the number of topics is known.
+head_slot = st.empty()
+head_slot.markdown(ui_components.page_head_html("Topic analysis", "Mastery by topic, from your attempt logs"),
+                   unsafe_allow_html=True)
 
 # --- Sidebar ---
 st.sidebar.header("Settings")
@@ -59,7 +63,7 @@ if llm_provider == "OpenAI":
     api_key = st.sidebar.text_input("API Key", value=api_key, type="password")
 
 # Run Button
-force_refresh = st.sidebar.button("🔄 Refresh Analysis (Trigger LLM)")
+force_refresh = st.sidebar.button("Refresh analysis (trigger LLM)", icon=":material/refresh:")
 
 # --- Logic ---
 
@@ -179,6 +183,9 @@ if not topic_metrics:
     st.stop()
 
 df = pd.DataFrame(topic_metrics)
+head_slot.markdown(
+    ui_components.page_head_html("Topic analysis", f"{len(df)} topics in {selected_suite}"),
+    unsafe_allow_html=True)
 
 # --- Visualizations ---
 
@@ -211,7 +218,7 @@ col2.metric("Overall Accuracy", f"{overall_acc:.1f}%")
 col3.metric("Topics Identified", len(df))
 
 # 2. Weak Areas (Low Accuracy, Min 5 Questions)
-st.subheader("🚨 Weak Areas")
+st.subheader("Weak areas")
 weak_df = df[df["Total"] >= 3].sort_values("Accuracy", ascending=True).head(5)
 if not weak_df.empty:
     fig_weak = px.bar(
@@ -220,35 +227,41 @@ if not weak_df.empty:
         y="Topic", 
         orientation='h', 
         title="Lowest Accuracy Topics (min 3 questions)",
-        color="Accuracy",
-        color_continuous_scale="RdYlGn",
-        range_color=[0, 100]
     )
-    st.plotly_chart(fig_weak, use_container_width=True)
+    # colour = mastery band (>=70 success, 40-69 warning, <40 danger); the plotted data is unchanged
+    fig_weak.update_traces(marker_color=[ui_components.mastery_colour(a) for a in weak_df["Accuracy"]])
+    fig_weak.update_xaxes(range=[0, 100])
+    fig_weak.update_yaxes(automargin=True)       # topic names get their own margin
+    st.plotly_chart(fig_weak, use_container_width=True, theme=None)
 else:
     st.info("Not enough data to identify weak areas yet (need topics with 3+ questions).")
 
 # 3. Topic Mastery (Treemap or Bar)
-st.subheader("📊 Topic Mastery")
+st.subheader("Topic mastery")
 # Create a stacked bar chart: Correct, Wrong, Unattempted
 fig_stack = px.bar(
     df, 
     x="Topic", 
     y=["Correct", "Wrong", "Unattempted"], 
     title="Performance by Topic",
-    color_discrete_map={"Correct": "#2ecc71", "Wrong": "#e74c3c", "Unattempted": "#95a5a6"}
+    color_discrete_map={"Correct": ui_helpers.TOKENS["success"], "Wrong": ui_helpers.TOKENS["danger"],
+                        "Unattempted": ui_helpers.TOKENS["ink_faint"]}
 )
-st.plotly_chart(fig_stack, use_container_width=True)
+fig_stack.update_layout(legend_title_text="", yaxis_title="Questions")
+st.plotly_chart(fig_stack, use_container_width=True, theme=None)
 
 # 4. Detailed Data
-st.subheader("📋 Detailed Breakdown")
+st.subheader("Detailed breakdown")
 st.dataframe(
-    df.style.format({"Accuracy": "{:.1f}%"}).background_gradient(subset=["Accuracy"], cmap="RdYlGn", vmin=0, vmax=100),
-    use_container_width=True
+    df,
+    use_container_width=True,
+    hide_index=True,
+    column_config={"Accuracy": st.column_config.ProgressColumn(
+        "Accuracy", format="%.1f%%", min_value=0, max_value=100)},
 )
 
 # 5. Mappings (Optional)
-with st.expander("🔍 View Tag to Topic Mapping"):
+with st.expander("View tag to topic mapping", icon=":material/account_tree:"):
     if "tag_map" in data:
         # Convert dict to dataframe for easy viewing
         tag_data = [{"Tag": tag, "Mapped Topic": topic} for tag, topic in data["tag_map"].items()]
@@ -260,7 +273,7 @@ with st.expander("🔍 View Tag to Topic Mapping"):
 st.divider()
 
 # 6. Actionable: Targeted Drill
-st.subheader("🎯 Targeted Drill")
+st.subheader("Targeted drill")
 st.caption("Generate a custom practice session based on your analysis.")
 
 # A. Suggest Weakest Topic
@@ -298,9 +311,9 @@ with c2:
     chk_unattempted = st.checkbox("Include Unattempted Questions", value=True, help="Test new questions you haven't seen.")
     
     # Double Loop Toggle
-    use_double_loop = st.checkbox("🔁 Double-Loop Mode (Recommended)", value=True, help="If checked, WRONG questions will be added TWICE to the queue in jumbled order for reinforcement.")
+    use_double_loop = st.checkbox("Double-Loop Mode (Recommended)", value=True, help="If checked, WRONG questions will be added TWICE to the queue in jumbled order for reinforcement.")
 
-if st.button("🚀 Start Targeted Drill", type="primary"):
+if st.button("Start Targeted Drill", type="primary", key="topic_drill_start", icon=":material/play_arrow:"):
     if not selected_stats:
         st.error("Invalid topic selected.")
     else:

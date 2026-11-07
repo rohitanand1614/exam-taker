@@ -23,14 +23,17 @@ def test_list_row_without_dot():
     assert "etp-li__dot" not in ui.list_row_html("Q", "meta")
 
 
-def test_list_row_escapes_html_but_keeps_math():
+def test_list_row_escapes_html_and_shows_math_as_plain_text():
+    # Batch 6 carry-over: the one-line preview cannot render KaTeX, so the $ delimiters are
+    # dropped and the inner text kept (the opened review card still renders the math).
     html = ui.list_row_html("<b>bold</b> $x^2$ and $$a_1$$", "<i>m</i>")
     assert "&lt;b&gt;bold&lt;/b&gt;" in html and "&lt;i&gt;m&lt;/i&gt;" in html
-    assert "$x^2$" in html and "$$a_1$$" in html
+    assert "x^2" in html and "a_1" in html and "$" not in html
 
 
-def test_list_row_repairs_broken_latex():
-    assert "$\\frac12$" in ui.list_row_html("see $\x0crac12$", "")
+def test_list_row_repairs_broken_latex_before_showing_it():
+    html = ui.list_row_html("see $\x0crac12$", "")
+    assert "\\frac12" in html and "\x0c" not in html
 
 
 def test_list_row_meta_accepts_sequence():

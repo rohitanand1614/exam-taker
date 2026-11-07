@@ -13,12 +13,17 @@ pip install streamlit plotly pandas requests
 ```
 
 ### 2. Run the Application
-Navigate to the project directory and launch the app:
+Navigate to the project directory and launch the app with the grouped sidebar navigation
+(Practice, Review, Insights, Manage):
 ```bash
 cd exam-taker
-streamlit run app.py
-#or to access from any device 
-streamlit run app.py --server.address 192.168.1.17  --server.port 8501
+streamlit run main.py
+#or to access from any device
+streamlit run main.py --server.address 192.168.1.17  --server.port 8501
+```
+`streamlit run app.py` still works (the Exam page with Streamlit's automatic page list), but `main.py` is the
+supported entry point: it registers all 13 pages through `st.navigation`, using `utils/navigation.py`.
+```bash
 
 python sync_to_github.py
 ```
@@ -291,3 +296,44 @@ To scan and clean an entire folder (recursive):
 
 bash
 python utils/remove_duplicates.py questions/nvidia-exam
+
+---
+
+## 🛠️ Development
+
+### Run the tests
+```bash
+cd exam-taker
+python -m pytest -q                  # everything (about 40 s)
+python -m pytest -q -m smoke         # every page loads
+python -m pytest -q -m flow          # user-flow contracts
+python -m pytest -q tests/test_ui_exam.py   # one file; each file also passes on its own
+```
+- Use `python -m pytest`, not the bare `pytest` script: `pytest.ini` loads the plugin
+  `tests.plugins.isolation`, which only imports when the project folder is on `sys.path`.
+- Tests run on a temporary copy of `tests/fixtures/workspace`; they never touch `questions/`, `logs/`,
+  `bookmarks/`, `archives/` or `user_data/`. No test calls an LLM or the network (they are mocked).
+- Test layout: `test_logic_*` (scoring, SRS, files, daily session), `test_exam_flow`, `test_review_flow`,
+  `test_insights_flow` (frozen behaviour contracts), `test_ui_*` (look and feel), `test_navigation*`,
+  `test_page_chrome`, `test_isolation`.
+- Install the dev tools once: `pip install -r requirements-dev.txt` (pytest, playwright), then
+  `python -m playwright install chromium`.
+
+### Take screenshots
+```bash
+python tests/visual/shoot.py release   # label = output folder name
+```
+Starts the app (`main.py`) on a temporary copy of the fixture workspace, opens every page through its
+navigation URL plus the main flows (answering, review cards, filters, topic analysis, duplicates...), and saves
+PNGs to `tests/.artifacts/screens/<label>/`. The Targeted drill page is shot through a tiny wrapper entry
+that seeds a drill session. Nothing here uses your real data or calls an LLM.
+
+### Where the design system lives
+- `design-system/DESIGN_SYSTEM.md` - principles, colour tokens, type, icons. `tokens.json` and
+  `reference-components.css` hold the same values.
+- `design-system/pages.md` - page-by-page UI plan; `design-system/IMPLEMENTATION_PLAN.md` - batches 0-8,
+  status and known follow-ups.
+- In code: `utils/ui_helpers.py` (`TOKENS`, global CSS, Plotly theme), `utils/ui_components.py` (pure HTML helpers),
+  `utils/exam_view.py` (the exam card shared by the Exam and practice pages), `utils/navigation.py` (the nav).
+- Rules for contributors: `CLAUDE.md` (keep widget keys, no logic changes in `utils/*` for UI work, colours only
+  from `ui_helpers.TOKENS`, Material icons instead of emoji).

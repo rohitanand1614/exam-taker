@@ -184,6 +184,15 @@ section[data-testid="stSidebar"] h3 {{
 }}
 [data-testid="stSidebarNav"] a[aria-current="page"] span,
 [data-testid="stSidebarNavLink"][aria-current="page"] span {{ color: var(--etp-ink); font-weight: 700; }}
+/* st.navigation (Streamlit 1.51 DOM): group label, 38px items, accent icon on the active item */
+[data-testid="stNavSectionHeader"] {{ margin-top: var(--etp-s3); }}
+[data-testid="stNavSectionHeader"] > span {{          /* the label only, not the collapse-arrow icon */
+  font: 700 12px/16px {FONT_UI}; text-transform: uppercase; letter-spacing: .06em; color: var(--etp-faint) !important;
+}}
+[data-testid="stSidebarNavLink"] {{ min-height: 38px; align-items: center; }}
+[data-testid="stSidebarNavLink"] [data-testid="stIconMaterial"] {{ color: var(--etp-muted) !important; }}
+[data-testid="stSidebarNavLink"]:hover [data-testid="stIconMaterial"] {{ color: var(--etp-ink) !important; }}
+[data-testid="stSidebarNavLink"][aria-current="page"] [data-testid="stIconMaterial"] {{ color: var(--etp-accent) !important; }}
 
 /* ---------- Cards & reading blocks ---------- */
 .question-card {{
@@ -259,6 +268,17 @@ button[data-testid^="stBaseButton"] {{
   background-color: {_t['selected_bg']}; border-color: var(--etp-accent); color: var(--etp-ink);
 }}
 .stDownloadButton button p {{ color: inherit !important; font-weight: 700; }}
+/* pill dot = filled circle in its bookmark colour (colour comes from the theme palette, see config.toml) */
+[data-testid="stButtonGroup"] .stMarkdownColoredText, [data-testid="stButtonGroup"] .stMarkdownColoredText span {{
+  font-size: 1.2rem; line-height: 1;
+}}
+
+/* ---------- Similar questions ---------- */
+[class*="st-key-simgroup_"] {{ background: var(--etp-surface); border-color: var(--etp-border) !important; border-radius: 14px; }}
+.st-key-archive_selected button {{
+  background-color: transparent !important; border-color: var(--etp-danger-border) !important; color: var(--etp-danger) !important;
+}}
+.st-key-archive_selected button:hover {{ background-color: var(--etp-danger-bg) !important; }}
 
 /* ---------- Radio (answer options) ---------- */
 div[data-testid="stRadio"] > label p, div[data-testid="stCheckbox"] label p {{
@@ -316,7 +336,7 @@ section[data-testid="stMain"] div[data-testid="stRadio"] [role="radiogroup"] lab
 [data-testid="stMetricValue"] {{ color: var(--etp-ink) !important; font-weight: 700; font-variant-numeric: tabular-nums; }}
 
 /* ---------- Tabs ---------- */
-.stTabs [data-baseweb="tab-list"] {{ gap: .25rem; border-bottom: 1px solid var(--etp-border); }}
+.stTabs [data-baseweb="tab-list"] {{ gap: 1.5rem; border-bottom: 1px solid var(--etp-border); }}
 .stTabs [data-baseweb="tab"] p {{ color: var(--etp-muted); font-weight: 600; }}
 .stTabs [aria-selected="true"] p {{ color: var(--etp-ink); }}
 .stTabs [data-baseweb="tab-highlight"] {{ background-color: var(--etp-accent) !important; }}

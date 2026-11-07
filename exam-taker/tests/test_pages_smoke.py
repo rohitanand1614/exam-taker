@@ -100,7 +100,7 @@ def test_practice_bookmarks_with_bookmark(workspace, app):
 
 def test_regressive_start_session(workspace, app):
     at = app("pages/Regressive_Practice.py").run()
-    start = [b for b in at.sidebar.button if "Start New Session" in b.label][0]
+    start = [b for b in at.sidebar.button if "Start new session" in b.label][0]
     start.click().run()
     assert not at.exception
     assert at.session_state.regressive_active is True

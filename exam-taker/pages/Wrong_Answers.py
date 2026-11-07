@@ -89,10 +89,9 @@ for q in questions:
 head_slot.markdown(
     ui_components.page_head_html(
         "Review mistakes",
-        f"{len(wrong_questions)} mistake{'s' if len(wrong_questions) != 1 else ''} · {filter_mode.lower()}"),
+        f"{len(wrong_questions)} mistake{'s' if len(wrong_questions) != 1 else ''} in '{selected_option}'"
+        f" · {filter_mode.lower()}"),
     unsafe_allow_html=True)
-
-st.subheader(f"Found {len(wrong_questions)} mistakes in '{selected_option}'")
 
 if not wrong_questions:
     st.success("No mistakes found. Great job.", icon=":material/check_circle:")

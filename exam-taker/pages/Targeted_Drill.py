@@ -98,7 +98,7 @@ with st.sidebar:
 
     # Next Button
     if st.session_state.drill_index < len(st.session_state.drill_questions) - 1:
-        st.button("Next Question", type="primary", key=f"drill_next_{step_key}",
+        st.button("Next question", type="primary", key=f"drill_next_{step_key}",
                   icon=":material/chevron_right:", on_click=_cb_next)
     else:
         st.success("Drill complete. You have mastered this session.", icon=":material/check_circle:")

@@ -8,10 +8,12 @@ primaryColor = "#8cc29f"
 linkColor = "#8cc29f"
 borderColor = "#2c3136"
 baseRadius = "10px"
+# colour-directive palette (":red[...]" etc.) = the bookmark colours, so st.pills dots match the design tokens
 greenColor = "#8cc29f"
-orangeColor = "#dcae6e"
-redColor = "#e0968a"
-blueColor = "#93aecf"
+orangeColor = "#d6a464"
+redColor = "#d48a80"
+blueColor = "#8ea9cc"
+violetColor = "#b4a0cc"
 
 [theme.sidebar]
 backgroundColor = "#111316"

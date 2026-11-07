@@ -43,7 +43,7 @@ _DIRECTIVE = {"Important (Red)": "red", "Review Later (Orange)": "orange", "Inte
 
 def _pill_label(color_name):
     label = ui_components.bookmark_style(color_name)[1]
-    return f":{_DIRECTIVE.get(color_name, 'gray')}[:material/fiber_manual_record:] {label}"
+    return f":{_DIRECTIVE.get(color_name, 'gray')}[●] {label}"   # solid dot (the Material glyph is an outline ring)
 
 
 filter_colors, filter_sources = st.columns([3, 2])

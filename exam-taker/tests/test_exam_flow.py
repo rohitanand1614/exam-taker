@@ -235,7 +235,7 @@ def test_drill_wrong_requeues_question(drill, workspace):
 
 
 def test_drill_next_question_button(drill):
-    nxt = [b for b in drill.sidebar.button if "Next Question" in b.label][0]
+    nxt = [b for b in drill.sidebar.button if "Next question" in b.label][0]
     nxt.click().run()
     assert drill.session_state.drill_index == 1
 
@@ -251,7 +251,7 @@ def test_drill_bookmark(drill, workspace):
 @pytest.fixture
 def regressive(workspace, app):
     at = app("pages/Regressive_Practice.py").run()
-    [b for b in at.sidebar.button if "Start New Session" in b.label][0].click().run()
+    [b for b in at.sidebar.button if "Start new session" in b.label][0].click().run()
     assert not at.exception
     # Make the random pick deterministic: single-select sample_q1
     at.session_state.regressive_current_q = sample_q(workspace, 0)
@@ -263,7 +263,7 @@ def _answer(at, letter):
     q = at.session_state.regressive_current_q
     attempts = at.session_state.regressive_stats[q["id"]]["attempts"]
     at.radio(key=f"opt_{q['id']}_{attempts}").set_value(letter).run()
-    [b for b in at.button if b.label == "Submit Answer"][0].click().run()
+    [b for b in at.button if b.label == "Submit answer"][0].click().run()
     assert not at.exception
 
 
@@ -285,6 +285,6 @@ def test_regressive_mastered_after_two_correct(regressive, workspace):
     regressive.session_state.regressive_stats["sample_q1"]["streak"] = 1
     _answer(regressive, "B")
     assert regressive.session_state.regressive_stats["sample_q1"]["streak"] == 2
-    [b for b in regressive.button if "Next Question" in b.label][0].click().run()
+    [b for b in regressive.button if "Next question" in b.label][0].click().run()
     assert regressive.session_state.regressive_mastered_count == 1
     assert "sample_q1" not in [x["id"] for x in regressive.session_state.regressive_queue]

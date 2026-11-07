@@ -111,7 +111,7 @@ with st.sidebar:
 
     selected_file_short = st.selectbox("Select a File to Practice", short_names, disabled=st.session_state.regressive_active)
 
-    if st.button("Start New Session", type="primary", icon=":material/play_arrow:",
+    if st.button("Start new session", type="primary", icon=":material/play_arrow:",
                  disabled=st.session_state.regressive_active, key="reg_start"):
         if selected_file_short:
             # Load questions
@@ -144,8 +144,10 @@ with st.sidebar:
 
 # --- Main Content ---
 
+ui_components.render_page_head("Regressive practice", "Questions repeat until you answer each one correctly twice")
+
 if not st.session_state.regressive_active:
-    st.info("Select a file and click 'Start New Session' to begin.", icon=":material/info:")
+    st.info("Select a file and click 'Start new session' to begin.", icon=":material/info:")
     st.markdown("""
     ### How it works
     1. **Load a file**: Focus on one specific topic or exam set.
@@ -246,10 +248,10 @@ col_gap, col_action = st.columns([3, 1.4])
 with col_action:
     if not is_submitted:
         with st.container(key="nav_submit"):
-            st.button("Submit Answer", type="primary", icon=":material/check:",
+            st.button("Submit answer", type="primary", icon=":material/check:",
                       disabled=len(user_selected_indices) == 0,
                       key=f"reg_submit_{q_id}_{stats['attempts']}",
                       on_click=_cb_submit, args=(q, stats["attempts"]))
     else:
-        st.button("Next Question", type="primary", icon=":material/chevron_right:",
+        st.button("Next question", type="primary", icon=":material/chevron_right:",
                   key="reg_next", on_click=_cb_next, args=(q_id,))

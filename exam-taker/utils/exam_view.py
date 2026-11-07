@@ -29,10 +29,11 @@ def option_md(letter, text):
     return f"**{letter}**  " + ui_components.md_text(ui_components.option_label(text))
 
 
-def render_option_row(row_id, idx, letter, text, state):
-    """One result row. Container key: opt_<state>_<row_id>_<idx> (CSS hook)."""
+def render_option_row(row_id, idx, letter, text, state, ratio=(8, 1.3)):
+    """One result row. Container key: opt_<state>_<row_id>_<idx> (CSS hook).
+    `ratio` = (text, status) column widths; narrow layouts pass a larger status share so "Correct" never wraps."""
     with st.container(key=f"opt_{state}_{row_id}_{idx}"):
-        col_text, col_status = st.columns([8, 1.3])
+        col_text, col_status = st.columns(list(ratio))
         with col_text:
             st.markdown(option_md(letter, text))
         with col_status:
@@ -192,7 +193,7 @@ def render_question(*, submit_fn, show_archive=True, completed_state_key="all_co
             )
         with head_right:
             if show_archive:
-                bm_col, arch_col = st.columns(2)
+                bm_col, arch_col = st.columns([11, 9])  # "Bookmarked" is longer than "Archive", but both must fit
             else:
                 bm_col, arch_col = st.container(), None
             with bm_col:

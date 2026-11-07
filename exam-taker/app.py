@@ -1,10 +1,6 @@
 import streamlit as st
-import os
 import datetime
 import random
-from pathlib import Path
-from streamlit_quill import st_quill
-from streamlit_mermaid import st_mermaid
 
 # Import utils
 from utils import file_manager, scoring, srs, bookmark_manager, archive_manager
@@ -14,7 +10,7 @@ from utils import file_manager, scoring, srs, bookmark_manager, archive_manager
 # -----------------------------------------------------------------------------
 st.set_page_config(page_title="Exam Taker Pro", page_icon=":material/menu_book:", layout="wide")
 
-from utils import ui_helpers, ui_components, exam_view
+from utils import ui_helpers, exam_view
 ui_helpers.inject_global_css()
 ui_helpers.inject_quill_dark_mode()
 

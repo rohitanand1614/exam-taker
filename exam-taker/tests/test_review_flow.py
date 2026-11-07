@@ -214,22 +214,26 @@ def test_archived_empty_state(workspace, app):
 
 
 # ================================================================ Wrong_Answers
-def subheaders(at):
-    return " ".join(s.value for s in at.get("subheader"))
+def mistakes(at):
+    """(count, source) read from the PAGE HEAD line ("2 mistakes in 'sample' · ..."); since Batch 8 the
+    separate "Found N mistakes in '...'" subheader is gone because the head already says it."""
+    m = re.search(r"(\d+) mistakes? in '([^']*)'", md_text(at))
+    assert m, md_text(at)
+    return int(m.group(1)), m.group(2)
 
 
 def test_wrong_answers_last_attempt_rule(seeded, app):
     at = app("pages/Wrong_Answers.py").run()
     assert not at.exception
     # q3: last attempt wrong -> listed. q1: wrong, then right -> NOT listed. q2: right.
-    assert "Found 1 mistakes" in subheaders(at)
+    assert mistakes(at)[0] == 1
 
 
 def test_wrong_answers_ever_incorrect_rule(seeded, app):
     at = app("pages/Wrong_Answers.py").run()
     by_label(at.radio, "Filter Criteria")[0].set_value("Ever Incorrect").run()
     assert not at.exception
-    assert "Found 2 mistakes" in subheaders(at)   # q1 (ever wrong) + q3
+    assert mistakes(at)[0] == 2   # q1 (ever wrong) + q3
 
 
 def test_wrong_answers_source_select(seeded, other_folder, app):
@@ -239,9 +243,9 @@ def test_wrong_answers_source_select(seeded, other_folder, app):
     src = by_label(at.selectbox, "Choose a Subject")[0]
     assert set(src.options) == {"other", "sample"}
     src.select("other").run()
-    assert "Found 1 mistakes in 'other'" in subheaders(at)
+    assert mistakes(at) == (1, "other")
     src.select("sample").run()
-    assert "Found 1 mistakes in 'sample'" in subheaders(at)
+    assert mistakes(at) == (1, "sample")
 
 
 def test_wrong_answers_no_mistakes_message(workspace, app):

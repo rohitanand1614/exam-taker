@@ -231,15 +231,32 @@ def count_line(total: int, showing: int, noun: str) -> str:
     return f"{total} {noun} · showing {showing}"
 
 
+def strip_math_delimiters(text: Optional[str]) -> str:
+    """Show math as plain inner text: '$x^2$' -> 'x^2', '$$a_1$$' -> 'a_1' (for one-line previews,
+    where KaTeX cannot render). Same span rule as repair_latex."""
+    if not text:
+        return ""
+    return _MATH_SPAN.sub(lambda m: m.group(0)[2:-2] if m.group(0).startswith("$$") else m.group(0)[1:-1], text)
+
+
+def mastery_colour(pct: float) -> str:
+    """Status colour for a mastery percentage: >=70 success, 40-69 warning, <40 danger."""
+    if pct >= 70:
+        return _TOKENS["success"]
+    if pct >= 40:
+        return _TOKENS["warning"]
+    return _TOKENS["danger"]
+
+
 def list_row_html(question_text, meta, dot_colour: Optional[str] = None) -> str:
     """One list row: optional colour dot, question (2-line clamp via CSS), one meta line.
-    Text is HTML-escaped; `$...$` math is kept (and repaired) as in the other helpers."""
+    Text is HTML-escaped; math is repaired and shown as plain inner text (no `$`)."""
     if isinstance(meta, (list, tuple)):
         meta = " · ".join(str(m) for m in meta if m)
     dot = (f'<span class="etp-li__dot" style="background:{_esc(dot_colour)}"></span>'
            if dot_colour else "")
     return (f'<div class="etp-li">{dot}<div class="etp-li__body">'
-            f'<div class="etp-li__q">{_esc(repair_latex(question_text))}</div>'
+            f'<div class="etp-li__q">{_esc(strip_math_delimiters(repair_latex(question_text)))}</div>'
             f'<div class="etp-li__meta">{_esc(meta)}</div></div></div>')
 
 

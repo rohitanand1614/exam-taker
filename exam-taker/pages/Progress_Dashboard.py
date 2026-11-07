@@ -7,12 +7,14 @@ from pathlib import Path
 # Ensure the root directory is in the path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from utils import file_manager, ui_helpers
+from utils import file_manager, ui_helpers, ui_components, exam_view
 
-st.set_page_config(page_title="Progress Dashboard", page_icon="📊", layout="wide")
+st.set_page_config(page_title="Progress Dashboard", page_icon=":material/bar_chart:", layout="wide")
 ui_helpers.inject_global_css()
+ui_helpers.apply_plotly_theme()
 
-st.title("📊 Progress Dashboard")
+# The page head shows the question count, so reserve its place first and fill it below.
+head_slot = st.empty()
 
 # Get available options
 folders = file_manager.get_exam_folders("questions")
@@ -50,17 +52,17 @@ for q in questions:
     q_id = q.get("id")
     if not q_id:
         continue
-        
+
     log_data = file_manager.load_question_log(q_id)
     attempts = log_data.get("attempts", [])
-    
+
     if not attempts:
         grey_list.append(q)
         continue
-        
+
     correct_count = sum(1 for a in attempts if a.get("score", 0) == 1.0)
     wrong_count = len(attempts) - correct_count
-    
+
     if correct_count > 0 and wrong_count == 0:
         green_list.append(q)
     elif correct_count > 0 and wrong_count > 0:
@@ -71,86 +73,69 @@ for q in questions:
         # Should not happen if attempts > 0
         grey_list.append(q)
 
-# Custom CSS to color selected tabs
-st.markdown("""
+n_total = len(green_list) + len(yellow_list) + len(red_list) + len(grey_list)
+head_slot.markdown(
+    ui_components.page_head_html("Progress dashboard", f"{n_total} questions in {selected_option}"),
+    unsafe_allow_html=True)
+
+# Stat tiles (same numbers as the tab labels)
+tile_cols = st.columns(4)
+for col, (label, items) in zip(tile_cols, (("Mastered", green_list), ("Mixed", yellow_list),
+                                           ("Struggling", red_list), ("Unattempted", grey_list))):
+    col.metric(label, len(items))
+
+# The selected tab takes its status colour from the design tokens
+_t = ui_helpers.TOKENS
+st.markdown(f"""
 <style>
-    /* Mastered - muted green */
-    div[data-baseweb="tab-list"] button:nth-child(1)[aria-selected="true"] {
-        color: #52c46e !important;
-        border-bottom-color: #52c46e !important;
-    }
-    div[data-baseweb="tab-list"] button:nth-child(1)[aria-selected="true"] p {
-        color: #52c46e !important;
-    }
-
-    /* Mixed - muted amber */
-    div[data-baseweb="tab-list"] button:nth-child(2)[aria-selected="true"] {
-        color: #c9a227 !important;
-        border-bottom-color: #c9a227 !important;
-    }
-    div[data-baseweb="tab-list"] button:nth-child(2)[aria-selected="true"] p {
-        color: #c9a227 !important;
-    }
-
-    /* Struggling - muted coral */
-    div[data-baseweb="tab-list"] button:nth-child(3)[aria-selected="true"] {
-        color: #d96060 !important;
-        border-bottom-color: #d96060 !important;
-    }
-    div[data-baseweb="tab-list"] button:nth-child(3)[aria-selected="true"] p {
-        color: #d96060 !important;
-    }
+    div[data-baseweb="tab-list"] button:nth-child(1)[aria-selected="true"],
+    div[data-baseweb="tab-list"] button:nth-child(1)[aria-selected="true"] p {{ color: {_t['success']} !important; }}
+    div[data-baseweb="tab-list"] button:nth-child(2)[aria-selected="true"],
+    div[data-baseweb="tab-list"] button:nth-child(2)[aria-selected="true"] p {{ color: {_t['warning']} !important; }}
+    div[data-baseweb="tab-list"] button:nth-child(3)[aria-selected="true"],
+    div[data-baseweb="tab-list"] button:nth-child(3)[aria-selected="true"] p {{ color: {_t['danger']} !important; }}
 </style>
 """, unsafe_allow_html=True)
 
-# Tabs for lists
+# Tabs for lists (plain-text labels with the counts)
 tab1, tab2, tab3, tab4 = st.tabs([
-    f"🟢 Mastered ({len(green_list)})", 
-    f"🟡 Mixed ({len(yellow_list)})", 
-    f"🔴 Struggling ({len(red_list)})", 
-    f"⚪ Unattempted ({len(grey_list)})"
+    f"Mastered ({len(green_list)})",
+    f"Mixed ({len(yellow_list)})",
+    f"Struggling ({len(red_list)})",
+    f"Unattempted ({len(grey_list)})"
 ])
+
 
 def render_list(q_list, status_label):
     if not q_list:
-        st.info(f"No questions in '{status_label}' category.")
+        st.info(f"No questions in '{status_label}' category.", icon=":material/info:")
         return
-        
-    for q in q_list:
-        with st.expander(f"{q.get('question', 'Unknown Question')[:100]}..."):
-            st.write(f"**ID:** {q.get('id')}")
-            st.markdown("**Question:**")
-            ui_helpers.render_math_text(
-                ui_helpers.prepare_math_text(q.get('question', '')),
-                height=max(60, len(q.get('question', '')) // 3 + 40)
-            )
-            st.write(f"**Tags:** {', '.join(q.get('tags', []))}")
 
-            options = q.get('options', [])
-            if options:
-                with st.expander("Show Options"):
-                    for opt in options:
-                        ui_helpers.render_math_text(ui_helpers.prepare_math_text(f"- {opt}"), height=50)
+    for i, q in enumerate(q_list):
+        row_id = f"{status_label}_{i}_{q.get('id')}"      # unique even if two files share an id
+        with st.container(border=True, key=f"row_{row_id}"):
+            st.markdown(
+                ui_components.list_row_html(
+                    q.get('question', 'Unknown Question'),
+                    [q.get('difficulty'), ", ".join(q.get('tags', [])), q.get('source_file', '')]),
+                unsafe_allow_html=True)
+            with st.expander("Show answer", icon=":material/visibility:"):
+                st.caption(f"ID: {q.get('id')}")
+                exam_view.render_review_card(row_id, q)
 
-            if "explanation" in q:
-                st.markdown("**Explanation:**")
-                ui_helpers.render_math_text(
-                    ui_helpers.prepare_math_text(q['explanation']),
-                    height=min(400, max(80, len(q['explanation']) // 5 + 40))
-                )
 
 with tab1:
-    st.success("Questions with ALL correct attempts.")
+    st.success("Questions with ALL correct attempts.", icon=":material/check_circle:")
     render_list(green_list, "Mastered")
 
 with tab2:
-    st.warning("Questions with both correct and incorrect attempts.")
+    st.warning("Questions with both correct and incorrect attempts.", icon=":material/rule:")
     render_list(yellow_list, "Mixed")
 
 with tab3:
-    st.error("Questions with ALL incorrect attempts.")
+    st.error("Questions with ALL incorrect attempts.", icon=":material/cancel:")
     render_list(red_list, "Struggling")
 
 with tab4:
-    st.write("Questions never attempted.")
+    st.caption("Questions never attempted.")
     render_list(grey_list, "Unattempted")

@@ -7,6 +7,7 @@ config.toml from the working directory), starts the app there, screenshots
 "/" and every page in pages/, then stops the server (even on error).
 Output: tests/.artifacts/screens/<label>/*.png
 """
+import re
 import shutil
 import subprocess
 import sys
@@ -21,6 +22,12 @@ except ImportError:
     sys.exit("Playwright missing.\n  pip install playwright && python -m playwright install chromium")
 
 APP_DIR = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(APP_DIR))
+from utils import navigation  # noqa: E402  (pure module)
+
+# page file stem -> route under main.py's st.navigation ("" = the default Exam page)
+URL = {Path(e["path"]).stem: ("" if e["default"] else e["url_path"])
+       for group in navigation.nav_spec().values() for e in group}
 PORT = 8765
 BASE = f"http://localhost:{PORT}"
 VIEWPORT = {"width": 1440, "height": 1000}
@@ -116,7 +123,7 @@ def pick_first_option(page):
 
 
 def practice_incorrect_after_wrong(page, out_dir):
-    page.goto(BASE + "/Practice_Incorrect")
+    page.goto(f"{BASE}/{URL['Practice_Incorrect']}")
     settle(page)
     pick_first_option(page)  # A is wrong for Q1
     page.get_by_role("button", name="Submit answer").click()
@@ -125,7 +132,7 @@ def practice_incorrect_after_wrong(page, out_dir):
 
 
 def practice_bookmarks(page, out_dir):
-    page.goto(BASE + "/Practice_Bookmarks")
+    page.goto(f"{BASE}/{URL['Practice_Bookmarks']}")
     settle(page)
     shot(page, out_dir, "practice_bookmarks")
     pick_first_option(page)  # whichever bookmarked question comes first (radio or checkbox)
@@ -135,13 +142,13 @@ def practice_bookmarks(page, out_dir):
 
 
 def regressive_flow(page, out_dir):
-    page.goto(BASE + "/Regressive_Practice")
+    page.goto(f"{BASE}/{URL['Regressive_Practice']}")
     settle(page)
-    page.get_by_role("button", name="Start New Session").click()
+    page.get_by_role("button", name="Start new session").click()
     settle(page)
     shot(page, out_dir, "regressive_started")
     pick_first_option(page)
-    page.get_by_role("button", name="Submit Answer").click()
+    page.get_by_role("button", name="Submit answer").click()
     settle(page)
     shot(page, out_dir, "regressive_after_submit")
 
@@ -172,7 +179,7 @@ def drill_flow(page, base, out_dir):
 
 
 def bookmarks_flow(page, out_dir):
-    page.goto(BASE + "/Bookmarks")
+    page.goto(f"{BASE}/{URL['Bookmarks']}")
     settle(page)
     shot(page, out_dir, "bookmarks_all")
     # filter: switch one colour pill off, open the first review card
@@ -184,7 +191,7 @@ def bookmarks_flow(page, out_dir):
 
 
 def archived_flow(page, out_dir):
-    page.goto(BASE + "/Archived_Questions")
+    page.goto(f"{BASE}/{URL['Archived_Questions']}")
     settle(page)
     page.get_by_text("Show answer").first.click()
     page.wait_for_timeout(800)
@@ -192,7 +199,7 @@ def archived_flow(page, out_dir):
 
 
 def wrong_flow(page, out_dir):
-    page.goto(BASE + "/Wrong_Answers")
+    page.goto(f"{BASE}/{URL['Wrong_Answers']}")
     settle(page)
     page.get_by_text("Review answer").first.click()
     page.wait_for_timeout(800)
@@ -200,7 +207,7 @@ def wrong_flow(page, out_dir):
 
 
 def search_flow(page, out_dir):
-    page.goto(BASE + "/Search_Questions")
+    page.goto(f"{BASE}/{URL['Search_Questions']}")
     settle(page)
     page.get_by_placeholder("Search in question text").fill("France")
     page.keyboard.press("Enter")
@@ -213,11 +220,97 @@ def search_flow(page, out_dir):
 
 
 def notes_flow(page, out_dir):
-    page.goto(BASE + "/Notes_Review")
+    page.goto(f"{BASE}/{URL['Notes_Review']}")
     settle(page)
     page.get_by_role("button", name="Expand all").click()
     settle(page, 1200)
     shot(page, out_dir, "notes_review_expanded")
+
+
+def write_log(work, qid, outcomes, notes=""):
+    """A question log with the given attempt outcomes (True = correct), dated long ago so the
+    exam's 48-hour rule does not hide the question. Same shape as file_manager.save_attempt_log."""
+    import json
+    attempts = [{"attempt_id": f"seed{i}", "timestamp": f"2025-01-0{i + 1}T10:00:00", "selected_indices": [0],
+                 "score": 1.0 if ok else 0.0, "quality": 5 if ok else 0} for i, ok in enumerate(outcomes)]
+    n_ok = sum(1 for ok in outcomes if ok)
+    log = {"summary": {"total_attempts": len(outcomes), "correct_count": n_ok, "wrong_count": len(outcomes) - n_ok,
+                       "avg_score": (n_ok / len(outcomes)) if outcomes else 0.0,
+                       "last_attempted_at": attempts[-1]["timestamp"] if attempts else None,
+                       "srs": {"repetitions": 0, "interval_days": 0, "ef": 2.5, "next_due": None}},
+           "attempts": attempts}
+    if notes:
+        log["user_notes"], log["user_diagram"] = notes, ""
+    (work / "logs" / "attempts").mkdir(parents=True, exist_ok=True)
+    (work / "logs" / "attempts" / f"{qid}.log.json").write_text(json.dumps(log), encoding="utf-8")
+
+
+def seed_insights(work):
+    """Data for the insight pages: a spread of mastered / mixed / weak questions, notes, a suite with
+    enough topics for the charts, a duplicate pair, and a pre-filled topic cache (never calls an LLM)."""
+    import json
+    # sample suite: q1 mastered, q2 mixed (+ notes on both); q3 keeps the fixture's wrong attempt
+    write_log(work, "sample_q1", [True, True], "<p>Paris is the <b>capital</b> and largest city of France.</p>")
+    write_log(work, "sample_q2", [True, False], "<p>Primes: 2, 3, 5, 7. Remember that <i>1 is not prime</i>.</p>")
+
+    # topics-demo suite: three topics (4 / 4 / 3 questions) with different mastery, plus a duplicate pair
+    def q(qid, tag, text, correct=1):
+        return {"id": qid, "question": text, "type": "multiple_choice",
+                "options": ["A) first", "B) second", "C) third"], "correct_indices": [correct],
+                "tags": [tag], "difficulty": "medium", "explanation": f"Explanation for {qid}."}
+    suite = work / "questions" / "topics-demo"
+    suite.mkdir(parents=True, exist_ok=True)
+    demo = ([q(f"alpha{i}", "t_alpha", f"Alpha topic question {i}?") for i in range(1, 5)]
+            + [q(f"beta{i}", "t_beta", f"Beta topic question {i}?") for i in range(1, 5)]
+            + [q(f"gamma{i}", "t_gamma", f"Gamma topic question {i}?") for i in range(1, 4)])
+    (suite / "demo.json").write_text(json.dumps(demo), encoding="utf-8")
+    dup = q("dup_a", "t_gamma", "Which layer type applies a causal mask in a decoder?")
+    (suite / "dup_a.json").write_text(json.dumps([dup]), encoding="utf-8")
+    (suite / "dup_b.json").write_text(json.dumps([dict(dup, id="dup_b")]), encoding="utf-8")
+    outcomes = {"alpha1": [True], "alpha2": [False], "alpha3": [False], "alpha4": [False],      # 25%
+                "beta1": [True], "beta2": [True], "beta3": [True], "beta4": [False],            # 75%
+                "gamma1": [True], "gamma2": [True], "gamma3": [False]}                          # 67%
+    for qid, outs in outcomes.items():
+        write_log(work, qid, outs)
+    cache = {"tag_map": {"t_alpha": "Alpha topic", "t_beta": "Beta topic", "t_gamma": "Gamma topic"},
+             "topics": {}, "suite": "topics-demo"}
+    (work / "logs" / "attempts" / "topic_analysis_cache_topics-demo.json").write_text(json.dumps(cache), encoding="utf-8")
+
+
+def progress_flow(page, out_dir):
+    page.goto(f"{BASE}/{URL['Progress_Dashboard']}")
+    settle(page)
+    shot(page, out_dir, "progress_mastered")
+    for name in ("Mixed", "Struggling", "Unattempted"):
+        page.get_by_role("tab", name=re.compile(name)).click()
+        page.wait_for_timeout(700)
+        shot(page, out_dir, f"progress_{name.lower()}")
+
+
+def topic_flow(page, out_dir):
+    page.goto(f"{BASE}/{URL['Topic_Analysis']}")
+    settle(page)
+    page.locator('section[data-testid="stSidebar"] [data-baseweb="select"]').first.click()
+    page.get_by_role("option", name="topics-demo").click()
+    settle(page, 3500)
+    shot(page, out_dir, "topic_analysis_demo_suite")
+
+
+def similar_flow(page, out_dir):
+    page.goto(f"{BASE}/{URL['Similar_Questions_Management']}")
+    settle(page)
+    shot(page, out_dir, "similar_questions")
+    page.locator('section[data-testid="stMain"] [data-testid="stCheckbox"] label').first.click()
+    settle(page, 1200)
+    shot(page, out_dir, "similar_selected")
+
+
+def nav_sidebar_closeup(page, out_dir):
+    """The grouped navigation (group labels, 38px items, active item) on a non-default page."""
+    page.goto(f"{BASE}/{URL['Progress_Dashboard']}")
+    settle(page, 1500)
+    page.locator('section[data-testid="stSidebar"]').screenshot(path=str(out_dir / "nav_sidebar.png"))
+    print("saved", out_dir / "nav_sidebar.png")
 
 
 def start_server(script, port, cwd):
@@ -271,14 +364,7 @@ def main():
     (work / "archives").mkdir(exist_ok=True)
     (work / "archives" / "registry.json").write_text(json.dumps({
         "archived_demo_q9": {"data": archived_demo, "timestamp": "2030-01-03T00:00:00"}}), encoding="utf-8")
-    # notes on two questions (Notes_Review); default log summary keeps the exam page unchanged
-    (work / "logs" / "attempts").mkdir(parents=True, exist_ok=True)
-    empty_summary = {"total_attempts": 0, "correct_count": 0, "wrong_count": 0, "avg_score": 0.0,
-                     "last_attempted_at": None, "srs": {"repetitions": 0, "interval_days": 0, "ef": 2.5, "next_due": None}}
-    for qid, note in (("sample_q1", "<p>Paris is the <b>capital</b> and largest city of France.</p>"),
-                      ("sample_q2", "<p>Primes: 2, 3, 5, 7. Remember that <i>1 is not prime</i>.</p>")):
-        (work / "logs" / "attempts" / f"{qid}.log.json").write_text(json.dumps({
-            "summary": empty_summary, "attempts": [], "user_notes": note, "user_diagram": ""}), encoding="utf-8")
+    seed_insights(work)
     # Targeted_Drill needs a seeded session: tiny wrapper entry on a second server
     drill_port = PORT + 1
     (work / "drill_entry.py").write_text(
@@ -286,7 +372,7 @@ def main():
         encoding="utf-8")
 
     pages = sorted(p.stem for p in (APP_DIR / "pages").glob("*.py"))
-    server = start_server(APP_DIR / "app.py", PORT, work)
+    server = start_server(APP_DIR / "main.py", PORT, work)   # grouped st.navigation entry
     drill_server = start_server(work / "drill_entry.py", drill_port, work)
     try:
         wait_for_server()
@@ -302,7 +388,7 @@ def main():
 
             for name in pages:
                 try:
-                    page.goto(f"{BASE}/{name}")
+                    page.goto(f"{BASE}/{URL[name]}")
                     settle(page)
                     shot(page, out_dir, name)
                 except Exception as e:  # keep going; report at the end
@@ -317,7 +403,11 @@ def main():
                                ("archived", archived_flow),
                                ("wrong_answers", wrong_flow),
                                ("search", search_flow),
-                               ("notes", notes_flow)):
+                               ("notes", notes_flow),
+                               ("progress", progress_flow),
+                               ("topic", topic_flow),
+                               ("similar", similar_flow),
+                               ("nav", nav_sidebar_closeup)):
                 try:
                     flow(page, out_dir)
                 except Exception as e:

@@ -1,8 +1,8 @@
 """Batch 4.3: Targeted_Drill and Regressive_Practice restyled in place.
 
 Buttons are found by KEY (added in 4.3 step 8, no behaviour change).
-Batch 0 labels that must survive: "Submit Answer" (Regressive), "Start New Session",
-"Next Question" (both pages) - see tests/test_exam_flow.py.
+Labels (sentence case since Batch 8): "Submit answer" (Regressive), "Start new session",
+"Next question" (both pages) - see tests/test_exam_flow.py.
 """
 import json
 import re
@@ -200,8 +200,8 @@ def test_regressive_keys_exist(reg):
 
 
 def test_regressive_labels_kept_for_batch0(reg):
-    assert reg.button(key="reg_start").label.endswith("Start New Session")
-    assert reg.button(key="reg_submit_sample_q1_0").label == "Submit Answer"
+    assert reg.button(key="reg_start").label.endswith("Start new session")
+    assert reg.button(key="reg_submit_sample_q1_0").label == "Submit answer"
 
 
 def test_regressive_no_emoji_everywhere(workspace, app):
