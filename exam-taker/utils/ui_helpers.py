@@ -381,6 +381,23 @@ section[data-testid="stMain"] div[data-testid="stRadio"] [role="radiogroup"] lab
 }}
 .st-key-nav_next button:hover, .st-key-nav_submit button:hover {{ border-color: var(--etp-accent) !important; filter: brightness(1.12); }}
 .st-key-nav_next, .st-key-nav_next_simple {{ display: flex; justify-content: flex-end; }}
+/* chevron after the label ("Next >") */
+.st-key-nav_next button, .st-key-nav_next_simple button {{ flex-direction: row-reverse; }}
+
+/* ---------- Targeted drill / Regressive practice (keyed buttons) ---------- */
+.st-key-reg_end button, .st-key-drill_exit button {{
+  background-color: transparent !important; border-color: var(--etp-danger-border) !important; color: var(--etp-danger) !important;
+}}
+.st-key-reg_end button:hover, .st-key-drill_exit button:hover {{ background-color: var(--etp-danger-bg) !important; }}
+.st-key-reg_start button, .st-key-reg_next button, .st-key-reg_restart button,
+[class*="st-key-drill_next_"] button, .st-key-drill_finish button {{
+  background-color: var(--etp-fill) !important; border-color: var(--etp-fill) !important; color: var(--etp-on-fill) !important;
+}}
+.st-key-reg_start button:hover, .st-key-reg_next button:hover, .st-key-reg_restart button:hover,
+[class*="st-key-drill_next_"] button:hover, .st-key-drill_finish button:hover {{
+  border-color: var(--etp-accent) !important; filter: brightness(1.12);
+}}
+.st-key-reg_start button:disabled {{ opacity: .45; }}
 </style>
 """
 

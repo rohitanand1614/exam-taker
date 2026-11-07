@@ -102,6 +102,96 @@ def exam_code_question(page, out_dir):
     shot(page, out_dir, "exam_code_notes_open")
 
 
+MAIN_RADIO = 'section[data-testid="stMain"] [role="radiogroup"] label'
+MAIN_CHECKBOX = 'section[data-testid="stMain"] [data-testid="stCheckbox"] label'
+
+
+def pick_first_option(page):
+    """Click the first answer (radio or checkbox) of whatever question is showing."""
+    if page.locator(MAIN_RADIO).count():
+        page.locator(MAIN_RADIO).nth(0).click()
+    else:
+        page.locator(MAIN_CHECKBOX).first.click()
+    page.wait_for_timeout(500)
+
+
+def practice_incorrect_after_wrong(page, out_dir):
+    page.goto(BASE + "/Practice_Incorrect")
+    settle(page)
+    pick_first_option(page)  # A is wrong for Q1
+    page.get_by_role("button", name="Submit answer").click()
+    settle(page)
+    shot(page, out_dir, "practice_incorrect_after_wrong")
+
+
+def practice_bookmarks(page, out_dir):
+    page.goto(BASE + "/Practice_Bookmarks")
+    settle(page)
+    shot(page, out_dir, "practice_bookmarks")
+    page.locator(MAIN_RADIO).nth(1).click()  # B = 2x (the LaTeX answer)
+    page.wait_for_timeout(500)
+    page.get_by_role("button", name="Submit answer").click()
+    settle(page)
+    shot(page, out_dir, "practice_bookmarks_after_submit")
+
+
+def regressive_flow(page, out_dir):
+    page.goto(BASE + "/Regressive_Practice")
+    settle(page)
+    page.get_by_role("button", name="Start New Session").click()
+    settle(page)
+    shot(page, out_dir, "regressive_started")
+    pick_first_option(page)
+    page.get_by_role("button", name="Submit Answer").click()
+    settle(page)
+    shot(page, out_dir, "regressive_after_submit")
+
+
+DRILL_ENTRY = """import json, sys
+from pathlib import Path
+sys.path.insert(0, r"{app}")
+import streamlit as st
+qs = json.loads(Path("questions/sample/sample.json").read_text(encoding="utf-8"))
+n = int(st.query_params.get("n", "3"))
+if "drill_questions" not in st.session_state:
+    st.session_state.drill_questions = qs[:n]
+exec(compile(open(r"{page}", encoding="utf-8").read(), r"{page}", "exec"))
+"""
+
+
+def drill_flow(page, base, out_dir):
+    page.goto(base + "/")
+    settle(page)
+    shot(page, out_dir, "drill_question")
+    pick_first_option(page)  # A is wrong for Q1 -> question gets re-queued
+    page.get_by_role("button", name="Submit answer").click()
+    settle(page)
+    shot(page, out_dir, "drill_after_submit")
+    page.goto(base + "/?n=1")  # single question = last question: finish screen
+    settle(page)
+    shot(page, out_dir, "drill_finish")
+
+
+def start_server(script, port, cwd):
+    return subprocess.Popen(
+        [sys.executable, "-m", "streamlit", "run", str(script),
+         "--server.headless", "true", "--server.port", str(port),
+         "--browser.gatherUsageStats", "false"],
+        cwd=cwd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+    )
+
+
+def wait_url(url, timeout=60):
+    end = time.time() + timeout
+    while time.time() < end:
+        try:
+            urllib.request.urlopen(url, timeout=2)
+            return
+        except Exception:
+            time.sleep(0.5)
+    raise RuntimeError(f"{url} did not start in time")
+
+
 def main():
     label = sys.argv[1] if len(sys.argv) > 1 else "batch1"
     out_dir = APP_DIR / "tests" / ".artifacts" / "screens" / label
@@ -117,15 +207,25 @@ def main():
     import conftest
     conftest._fill_placeholders(work)
 
+    # one bookmarked question (the LaTeX one) so Practice_Bookmarks has something to show
+    import json
+    q3 = json.loads((work / "questions/sample/sample.json").read_text(encoding="utf-8"))[2]
+    (work / "bookmarks").mkdir(exist_ok=True)
+    (work / "bookmarks" / "registry.json").write_text(json.dumps({
+        q3["id"]: {"color": "Hard (Purple)", "data": q3, "timestamp": "2030-01-01T00:00:00"}}),
+        encoding="utf-8")
+    # Targeted_Drill needs a seeded session: tiny wrapper entry on a second server
+    drill_port = PORT + 1
+    (work / "drill_entry.py").write_text(
+        DRILL_ENTRY.format(app=str(APP_DIR), page=str(APP_DIR / "pages" / "Targeted_Drill.py")),
+        encoding="utf-8")
+
     pages = sorted(p.stem for p in (APP_DIR / "pages").glob("*.py"))
-    server = subprocess.Popen(
-        [sys.executable, "-m", "streamlit", "run", str(APP_DIR / "app.py"),
-         "--server.headless", "true", "--server.port", str(PORT),
-         "--browser.gatherUsageStats", "false"],
-        cwd=work, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
-    )
+    server = start_server(APP_DIR / "app.py", PORT, work)
+    drill_server = start_server(work / "drill_entry.py", drill_port, work)
     try:
         wait_for_server()
+        wait_url(f"http://localhost:{drill_port}")
         with sync_playwright() as pw:
             browser = pw.chromium.launch()
             ctx = browser.new_context(viewport=VIEWPORT, device_scale_factor=1)
@@ -145,13 +245,25 @@ def main():
 
             exam_after_wrong_submit(page, out_dir)
             exam_code_question(page, out_dir)
+            for name, flow in (("practice_incorrect", practice_incorrect_after_wrong),
+                               ("practice_bookmarks", practice_bookmarks),
+                               ("regressive", regressive_flow)):
+                try:
+                    flow(page, out_dir)
+                except Exception as e:
+                    print(f"FAILED {name}: {e}")
+            try:
+                drill_flow(page, f"http://localhost:{drill_port}", out_dir)
+            except Exception as e:
+                print(f"FAILED drill: {e}")
             browser.close()
     finally:
-        server.terminate()
-        try:
-            server.wait(timeout=10)
-        except subprocess.TimeoutExpired:
-            server.kill()
+        for srv in (server, drill_server):
+            srv.terminate()
+            try:
+                srv.wait(timeout=10)
+            except subprocess.TimeoutExpired:
+                srv.kill()
         shutil.rmtree(work, ignore_errors=True)
     print(f"\nScreenshots: {out_dir}")
 

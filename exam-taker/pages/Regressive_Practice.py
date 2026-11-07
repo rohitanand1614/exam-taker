@@ -2,24 +2,13 @@ import streamlit as st
 import random
 import json
 from pathlib import Path
-from utils import file_manager, ui_helpers, bookmark_manager
+from utils import file_manager, ui_helpers, bookmark_manager, ui_components, exam_view
 
 # --- Page Config ---
-st.set_page_config(page_title="Regressive Practice", page_icon="🔁", layout="wide")
+st.set_page_config(page_title="Regressive Practice", page_icon=":material/sync:", layout="wide")
 
 # --- CSS Injection ---
 ui_helpers.inject_global_css()
-st.markdown("""
-<style>
-    .status-metric {
-        background-color: #1e2538;
-        padding: 10px;
-        border-radius: 8px;
-        border: 1px solid #252e42;
-        text-align: center;
-    }
-</style>
-""", unsafe_allow_html=True)
 ui_helpers.inject_quill_dark_mode()
 
 # --- Session State Management ---
@@ -37,6 +26,8 @@ if "regressive_submitted" not in st.session_state:
     st.session_state.regressive_submitted = False
 if "regressive_feedback" not in st.session_state:
     st.session_state.regressive_feedback = None # "correct" or "wrong"
+if "regressive_selection" not in st.session_state:
+    st.session_state.regressive_selection = [] # indices picked at submit (display only)
 
 QUESTIONS_ROOT = Path("questions").resolve()
 
@@ -48,28 +39,85 @@ def reset_session():
     st.session_state.regressive_current_q = None
     st.session_state.regressive_submitted = False
     st.session_state.regressive_feedback = None
+    st.session_state.regressive_selection = []
+
+
+# --- Button callbacks (run before the next script run; no st.rerun() needed) ---
+def _cb_submit(q, attempts):
+    """Same rules as before: streak +1 on an exact match, else streak resets to 0."""
+    q_id = q["id"]
+    options = q.get("options", [])
+    letters = [chr(65 + i) for i in range(len(options))]
+    correct_indices = q.get("correct_indices", [])
+    if not isinstance(correct_indices, list):
+        correct_indices = [correct_indices]
+
+    if len(correct_indices) > 1:
+        selected = [i for i in range(len(options))
+                    if st.session_state.get(f"chk_{q_id}_{attempts}_{i}")]
+    else:
+        letter = st.session_state.get(f"opt_{q_id}_{attempts}")
+        selected = [letters.index(letter)] if letter in letters else []
+    if not selected:
+        return
+
+    st.session_state.regressive_submitted = True
+    st.session_state.regressive_selection = selected
+
+    # Check Answer (Set Comparison)
+    is_correct = set(selected) == set(correct_indices)
+
+    # Update Stats
+    st.session_state.regressive_stats[q_id]["attempts"] += 1
+
+    if is_correct:
+        st.session_state.regressive_result = "correct"
+        st.session_state.regressive_stats[q_id]["streak"] += 1
+    else:
+        st.session_state.regressive_result = "wrong"
+        st.session_state.regressive_stats[q_id]["streak"] = 0 # Reset streak on failure! Regressive.
+
+
+def _cb_next(q_id):
+    is_mastered = st.session_state.regressive_stats[q_id]["streak"] >= 2
+    # Logic to pick next
+    if is_mastered:
+        st.session_state.regressive_mastered_count += 1
+        # Remove from queue
+        st.session_state.regressive_queue = [x for x in st.session_state.regressive_queue if x["id"] != q_id]
+
+    # Reset submission state
+    st.session_state.regressive_submitted = False
+    st.session_state.regressive_result = None
+    st.session_state.regressive_selection = []
+
+    # Pick new random question if queue not empty
+    if st.session_state.regressive_queue:
+        st.session_state.regressive_current_q = random.choice(st.session_state.regressive_queue)
+
 
 # --- sidebar ---
 with st.sidebar:
-    st.title("🔁 Regressive Practice")
-    st.markdown("Practice a specific file until you master every question (2 correct answers required).")
+    st.title("Regressive practice")
+    st.caption("Practice a specific file until you master every question (2 correct answers required).")
     st.divider()
 
     # File Selector
     # file_manager.get_exam_files returns relative paths from root
     all_files = file_manager.get_exam_files(str(QUESTIONS_ROOT))
-    
+
     # Use relative paths directly
     short_names = all_files
-    
+
     selected_file_short = st.selectbox("Select a File to Practice", short_names, disabled=st.session_state.regressive_active)
-    
-    if st.button("🚀 Start New Session", type="primary", disabled=st.session_state.regressive_active):
+
+    if st.button("Start New Session", type="primary", icon=":material/play_arrow:",
+                 disabled=st.session_state.regressive_active, key="reg_start"):
         if selected_file_short:
             # Load questions
             full_path = QUESTIONS_ROOT / selected_file_short
             questions = file_manager.load_questions(str(QUESTIONS_ROOT), str(full_path))
-            
+
             if not questions:
                 st.error("No questions found in file.")
             else:
@@ -79,47 +127,38 @@ with st.sidebar:
                 st.session_state.regressive_stats = {q["id"]: {"streak": 0, "attempts": 0} for q in questions}
                 st.session_state.regressive_mastered_count = 0
                 st.session_state.regressive_submitted = False
-                
+
                 # Pick first random question
                 st.session_state.regressive_current_q = random.choice(st.session_state.regressive_queue)
                 st.rerun()
 
     if st.session_state.regressive_active:
         st.divider()
-        st.subheader("Session Stats")
-        
         q_remaining = len(st.session_state.regressive_queue)
         q_mastered = st.session_state.regressive_mastered_count
-        
-        col1, col2 = st.columns(2)
-        with col1:
-             st.markdown(f"<div class='status-metric'><h3>{q_remaining}</h3><p>Queue</p></div>", unsafe_allow_html=True)
-        with col2:
-             st.markdown(f"<div class='status-metric'><h3>{q_mastered}</h3><p>Mastered</p></div>", unsafe_allow_html=True)
-
         st.progress(q_mastered / (q_mastered + q_remaining) if (q_mastered + q_remaining) > 0 else 0)
-        
-        st.divider()
-        if st.button("🔴 End Session"):
+
+        if st.button("End session", key="reg_end", icon=":material/stop_circle:"):
             reset_session()
             st.rerun()
 
 # --- Main Content ---
 
 if not st.session_state.regressive_active:
-    st.info("👈 Select a file and click 'Start New Session' to begin.")
+    st.info("Select a file and click 'Start New Session' to begin.", icon=":material/info:")
     st.markdown("""
-    ### How it works:
+    ### How it works
     1. **Load a file**: Focus on one specific topic or exam set.
-    2. **Regressive Loop**: Questions repeat until you answer them correctly **2 times**.
-    3. **No Long-term Traces**: Your main logs (history, attempts) are **NOT updated**. This session is purely ephemeral.
+    2. **Regressive loop**: Questions repeat until you answer them correctly **2 times**.
+    3. **No long-term traces**: Your main logs (history, attempts) are **NOT updated**. This session is purely ephemeral.
     4. **Focus**: Ideal for cramming or drilling weak areas without affecting your global stats.
     """)
     st.stop()
 
 if not st.session_state.regressive_queue:
-    st.success("🎉 Session Complete! You have mastered all questions in this set.")
-    if st.button("Start Over"):
+    st.success("Session complete. You have mastered all questions in this set.",
+               icon=":material/check_circle:")
+    if st.button("Start over", key="reg_restart", type="primary"):
         reset_session()
         st.rerun()
     st.stop()
@@ -129,126 +168,84 @@ q = st.session_state.regressive_current_q
 q_id = q["id"]
 stats = st.session_state.regressive_stats[q_id]
 
-# Layout
-st.markdown(f'<div class="question-card">', unsafe_allow_html=True)
+# Session stats as tiles above the card
+tile_queue, tile_mastered, tile_streak = st.columns(3)
+tile_queue.metric("In queue", len(st.session_state.regressive_queue))
+tile_mastered.metric("Mastered", st.session_state.regressive_mastered_count)
+tile_streak.metric("Streak", f"{stats['streak']} of 2")
 
-# Question Header (Tags + Streak Info)
-cols = st.columns([3, 1])
-with cols[0]:
-    tags = q.get("tags", [])
-    st.caption(f"🏷️ {', '.join(tags)}")
-with cols[1]:
-    streak = stats["streak"]
-    # Visual indicator of streak
-    stars = "⭐" * streak + "⚪" * (2 - streak)
-    st.caption(f"Mastery: {stars} ({streak}/2)")
-
-# Question Text
-ui_helpers.render_math_text(
-    ui_helpers.prepare_math_text(q["question"]),
-    font_size="1.2rem", font_weight="600",
-    height=max(70, len(q["question"]) // 3 + 40)
-)
-
-# Options
 options = q.get("options", [])
 correct_indices = q.get("correct_indices", [])
 if not isinstance(correct_indices, list):
     correct_indices = [correct_indices]
-
 is_multiselect = len(correct_indices) > 1
+letters = [chr(65 + i) for i in range(len(options))]
+is_submitted = st.session_state.regressive_submitted
 
 user_selected_indices = []
-letters = [chr(65 + i) for i in range(len(options))]
 
-if is_multiselect:
-    st.write("Assertion: **Select all that apply**")
-    for idx, opt in enumerate(options):
-        ui_helpers.render_math_text(ui_helpers.prepare_math_text(opt), height=55)
-        chk_key = f"chk_{q_id}_{stats['attempts']}_{idx}"
-        is_checked = st.checkbox(
-            f"Select {letters[idx]}",
-            key=chk_key,
-            disabled=st.session_state.regressive_submitted
-        )
-        if is_checked:
-            user_selected_indices.append(idx)
-else:
-    # Single Select
-    for opt in options:
-        ui_helpers.render_math_text(ui_helpers.prepare_math_text(opt), height=55)
-    selection = st.radio(
-        "Select your answer:",
-        letters,
-        key=f"opt_{q_id}_{stats['attempts']}",
-        disabled=st.session_state.regressive_submitted,
-        index=None
+with st.container(border=True, key="qcard"):
+    # Header: difficulty + mastery badges, tags
+    tags = q.get("tags", [])
+    meta = (
+        '<div class="etp-meta">'
+        + ui_components.difficulty_badge(q.get("difficulty", "medium"))
+        + ui_components.badge("info", f"Mastery {stats['streak']} of 2")
+        + (f'<span class="etp-tag">{" · ".join(ui_components._esc(t) for t in tags)}</span>' if tags else "")
+        + "</div>"
     )
-    if selection:
-        user_selected_indices.append(letters.index(selection))
+    st.markdown(meta, unsafe_allow_html=True)
 
-submit_col, next_col = st.columns([1, 4])
+    with st.container(key="qstem"):
+        st.markdown(ui_components.md_safe(ui_helpers.prepare_math_text(q["question"])))
 
-# Submit Logic
-if not st.session_state.regressive_submitted:
-    # Disable if empty selection
-    if st.button("Submit Answer", type="primary", disabled=len(user_selected_indices) == 0):
-        st.session_state.regressive_submitted = True
-        
-        # Check Answer (Set Comparison)
-        is_correct = set(user_selected_indices) == set(correct_indices)
-        
-        # Update Stats
-        st.session_state.regressive_stats[q_id]["attempts"] += 1
-        
-        if is_correct:
-            st.session_state.regressive_result = "correct"
-            st.session_state.regressive_stats[q_id]["streak"] += 1
+    with st.container(key="answers"):
+        if is_submitted:
+            selected = st.session_state.regressive_selection
+            is_correct = st.session_state.get("regressive_result") == "correct"
+            correct_letters = [letters[i] for i in sorted(set(correct_indices)) if 0 <= i < len(letters)]
+            if is_correct:
+                kind, title, body = "success", "Correct", f"Streak {stats['streak']} of 2."
+            else:
+                kind, title, fb_body = ui_components.feedback(0.0, correct_letters)
+                body = f"{fb_body} Streak reset to 0."
+            st.markdown(ui_components.feedback_banner_html(kind, title, body), unsafe_allow_html=True)
+            for idx, opt in enumerate(options):
+                state = ui_components.option_state(idx, correct_indices, selected)
+                exam_view.render_option_row(f"{q_id}_{stats['attempts']}", idx, letters[idx], opt, state)
+            exam_view.render_explanation(q_id, q.get("explanation"))
+            if stats["streak"] >= 2:
+                st.success("Question mastered. Removing from queue.", icon=":material/school:")
+        elif is_multiselect:
+            st.caption("Select all that apply")
+            for idx, opt in enumerate(options):
+                chk_key = f"chk_{q_id}_{stats['attempts']}_{idx}"
+                is_checked = st.checkbox(exam_view.option_md(letters[idx], opt), key=chk_key)
+                if is_checked:
+                    user_selected_indices.append(idx)
         else:
-            st.session_state.regressive_result = "wrong"
-            st.session_state.regressive_stats[q_id]["streak"] = 0 # Reset streak on failure! Regressive.
-        
-        st.rerun()
-
-# Post-Submit View
-else:
-    # Color the options
-    if st.session_state.regressive_result == "correct":
-        st.markdown(f"<div class='success-box'>✅ <b>Correct!</b> Streak: {stats['streak']}/2</div>", unsafe_allow_html=True)
-    else:
-        st.markdown("<div class='error-box'>❌ <b>Incorrect.</b> Streak reset to 0.<br><b>Correct Answer(s):</b></div>", unsafe_allow_html=True)
-        for i in correct_indices:
-            ui_helpers.render_math_text(ui_helpers.prepare_math_text(options[i]), height=55)
-
-    # Explanation
-    if q.get("explanation"):
-        with st.expander("📖 View Explanation", expanded=True):
-            ui_helpers.render_math_text(
-                ui_helpers.prepare_math_text(q["explanation"]),
-                height=min(500, max(100, len(q["explanation"]) // 5 + 40))
+            # Single Select
+            selection = st.radio(
+                "Select your answer",
+                letters,
+                key=f"opt_{q_id}_{stats['attempts']}",
+                index=None,
+                format_func=lambda L: exam_view.option_md(L, options[ord(L) - 65]),
+                label_visibility="collapsed",
+                width="stretch",
             )
-            
-    # Next Button
-    # Next Button
-    is_mastered = st.session_state.regressive_stats[q_id]["streak"] >= 2
-    if is_mastered:
-        st.success("🎓 Question Mastered! Removing from queue.")
-    
-    if st.button("Next Question ➡️", type="primary"):
-        # Logic to pick next
-        if is_mastered:
-            st.session_state.regressive_mastered_count += 1
-            # Remove from queue
-            st.session_state.regressive_queue = [x for x in st.session_state.regressive_queue if x["id"] != q_id]
-            
-        # Reset submission state
-        st.session_state.regressive_submitted = False
-        st.session_state.regressive_result = None
-        
-        # Pick new random question if queue not empty
-        if st.session_state.regressive_queue:
-            st.session_state.regressive_current_q = random.choice(st.session_state.regressive_queue)
-        
-        st.rerun()
+            if selection:
+                user_selected_indices.append(letters.index(selection))
 
-st.markdown('</div>', unsafe_allow_html=True)
+# Action bar
+col_gap, col_action = st.columns([3, 1.4])
+with col_action:
+    if not is_submitted:
+        with st.container(key="nav_submit"):
+            st.button("Submit Answer", type="primary", icon=":material/check:",
+                      disabled=len(user_selected_indices) == 0,
+                      key=f"reg_submit_{q_id}_{stats['attempts']}",
+                      on_click=_cb_submit, args=(q, stats["attempts"]))
+    else:
+        st.button("Next Question", type="primary", icon=":material/chevron_right:",
+                  key="reg_next", on_click=_cb_next, args=(q_id,))
