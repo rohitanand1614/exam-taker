@@ -14,26 +14,6 @@ if str(APP_DIR) not in sys.path:
     sys.path.insert(0, str(APP_DIR))
 
 
-def _patch_apptest_single_select_pills():
-    """Streamlit 1.51 AppTest bug: a single-select st.pills keeps a scalar (or None) in session state, but
-    ButtonGroup.indices iterates it as a list, so ANY rerun of a page with such a widget raises ValueError.
-    Present the value as a list, as multi-select does. Test infrastructure only; behaviour of the app is untouched."""
-    from streamlit.testing.v1.element_tree import ButtonGroup
-    original = ButtonGroup.value.fget
-    if getattr(original, "_etp_patched", False):
-        return
-
-    def value(self):
-        v = original(self)
-        return [] if v is None else (v if isinstance(v, list) else [v])
-
-    value._etp_patched = True
-    ButtonGroup.value = property(value)
-
-
-_patch_apptest_single_select_pills()
-
-
 def _fill_placeholders(root: Path):
     """Fixture logs hold placeholders so 'earlier attempt today' stays true."""
     now = datetime.datetime.now() - datetime.timedelta(seconds=5)

@@ -8,12 +8,18 @@ primaryColor = "#8cc29f"
 linkColor = "#8cc29f"
 borderColor = "#2c3136"
 baseRadius = "10px"
-# colour-directive palette (":red[...]" etc.) = the bookmark colours, so st.pills dots match the design tokens
+# colour-directive palette (":red[...]" etc.) = the bookmark colours (design system). Streamlit lightens
+# <name>Color for TEXT on a dark theme, so the exact hex must also be given as <name>TextColor.
 greenColor = "#8cc29f"
 orangeColor = "#d6a464"
 redColor = "#d48a80"
 blueColor = "#8ea9cc"
 violetColor = "#b4a0cc"
+greenTextColor = "#8cc29f"
+orangeTextColor = "#d6a464"
+redTextColor = "#d48a80"
+blueTextColor = "#8ea9cc"
+violetTextColor = "#b4a0cc"
 
 [theme.sidebar]
 backgroundColor = "#111316"

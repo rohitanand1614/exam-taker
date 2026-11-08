@@ -218,7 +218,7 @@ def render_question(*, submit_fn, show_archive=True, completed_state_key="all_co
                     ) or bm_options[default_idx]
                     if st.button("Save bookmark", key=f"bm_btn_{q_id}", icon=":material/bookmark:"):
                         bookmark_manager.save_bookmark(q_data, selected_bm_color)
-                        st.toast(f"Bookmarked as {selected_bm_color}.", icon=":material/check_circle:")
+                        st.toast(f"Bookmarked as {ui_components.bookmark_style(selected_bm_color)[1]}.", icon=":material/check_circle:")
                         st.rerun()
                     if current_bookmark:
                         st.caption(f"Bookmarked as {ui_components.bookmark_pill_label(current_bookmark)}")
