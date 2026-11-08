@@ -171,7 +171,7 @@ def test_archive_button_presence(page):
 def test_bookmark_popover_widgets_reachable(page):
     keys = [b.key for b in page.button]
     assert "bm_btn_sample_q1" in keys
-    assert page.selectbox(key="bm_sel_sample_q1") is not None
+    assert [g for g in page.get("button_group") if g.key == "bm_sel_sample_q1"]
 
 
 # -------------------------------------------------------------- after submit

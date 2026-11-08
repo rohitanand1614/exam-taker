@@ -221,6 +221,17 @@ BOOKMARK_STYLE = {
 }
 
 
+# Streamlit colour directives for the bookmark colours (purple is "violet" in markdown); the theme palette in
+# .streamlit/config.toml maps them to the bm_* tokens. Same table as the Bookmarks page pills.
+BOOKMARK_DIRECTIVE = {"Important (Red)": "red", "Review Later (Orange)": "orange", "Interesting (Blue)": "blue",
+                      "Hard (Purple)": "violet", "Solved (Green)": "green"}
+
+
+def bookmark_pill_label(name: str) -> str:
+    """':red[●] Important' - solid dot (the Material glyph is an outline ring) + short name."""
+    return f":{BOOKMARK_DIRECTIVE.get(name, 'gray')}[●] {bookmark_style(name)[1]}"
+
+
 def bookmark_style(name: str):
     """(colour, short label) for a bookmark name; unknown names fall back to muted ink."""
     return BOOKMARK_STYLE.get(name, (_TOKENS["ink_muted"], str(name)))

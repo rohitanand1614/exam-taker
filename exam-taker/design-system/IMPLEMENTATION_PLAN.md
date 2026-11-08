@@ -2,7 +2,7 @@
 
 ## Status (final)
 
-**Batches 0-9 are DONE.** Final suite: **928 passed, 4 skipped** (`python -m pytest -q`, includes 5 browser tests in
+**Batches 0-9 and 10a are DONE.** Final suite: **1017 passed, 15 skipped** (`python -m pytest -q`, includes 5 browser tests in
 `tests/e2e`); every test file also passes when run on its own. Entry point: `streamlit run main.py` (grouped
 `st.navigation`, shown as a top bar).
 
@@ -18,6 +18,7 @@
 | 7 | Similar questions management | done |
 | 8 | Test isolation, grouped navigation (`main.py`), chrome + label consistency, release checks | done |
 | 9 | Top navigation, one label rule set, keyboard shortcuts, Topic analysis "Generate analysis" fix | done |
+| 10a | Bookmark control: coloured pills with filled dots (exam card, practice pages, drill) | done |
 
 ### Known follow-ups
 - **Option values are still Title Case** (for example the radio options "Last Attempt Incorrect" / "Ever Incorrect",

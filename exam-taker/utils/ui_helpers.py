@@ -268,6 +268,18 @@ button[data-testid^="stBaseButton"] {{
   background-color: {_t['selected_bg']}; border-color: var(--etp-accent); color: var(--etp-ink);
 }}
 .stDownloadButton button p {{ color: inherit !important; font-weight: 700; }}
+/* bookmark colour picker (exam card + drill): the selected pill's edge takes its own bookmark colour;
+   the pills follow the order of bookmark_manager.BOOKMARK_COLORS */
+[class*="st-key-bm_sel_"] [data-baseweb="button-group"] > button[data-testid="stBaseButton-pillsActive"]:nth-child(1),
+[class*="st-key-drill_bm_sel_"] [data-baseweb="button-group"] > button[data-testid="stBaseButton-pillsActive"]:nth-child(1) {{ border-color: var(--etp-bm-red); }}
+[class*="st-key-bm_sel_"] [data-baseweb="button-group"] > button[data-testid="stBaseButton-pillsActive"]:nth-child(2),
+[class*="st-key-drill_bm_sel_"] [data-baseweb="button-group"] > button[data-testid="stBaseButton-pillsActive"]:nth-child(2) {{ border-color: var(--etp-bm-orange); }}
+[class*="st-key-bm_sel_"] [data-baseweb="button-group"] > button[data-testid="stBaseButton-pillsActive"]:nth-child(3),
+[class*="st-key-drill_bm_sel_"] [data-baseweb="button-group"] > button[data-testid="stBaseButton-pillsActive"]:nth-child(3) {{ border-color: var(--etp-bm-blue); }}
+[class*="st-key-bm_sel_"] [data-baseweb="button-group"] > button[data-testid="stBaseButton-pillsActive"]:nth-child(4),
+[class*="st-key-drill_bm_sel_"] [data-baseweb="button-group"] > button[data-testid="stBaseButton-pillsActive"]:nth-child(4) {{ border-color: var(--etp-bm-purple); }}
+[class*="st-key-bm_sel_"] [data-baseweb="button-group"] > button[data-testid="stBaseButton-pillsActive"]:nth-child(5),
+[class*="st-key-drill_bm_sel_"] [data-baseweb="button-group"] > button[data-testid="stBaseButton-pillsActive"]:nth-child(5) {{ border-color: var(--etp-bm-green); }}
 /* pill dot = filled circle in its bookmark colour (colour comes from the theme palette, see config.toml) */
 [data-testid="stButtonGroup"] .stMarkdownColoredText, [data-testid="stButtonGroup"] .stMarkdownColoredText span {{
   font-size: 1.2rem; line-height: 1;

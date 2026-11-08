@@ -136,22 +136,24 @@ with st.container(border=True, key="qcard"):
         )
     with head_right:
         with st.popover(
-            "Bookmarked" if current_bookmark else "Bookmark",
-            icon=":material/bookmark_added:" if current_bookmark else ":material/bookmark:",
+            ui_components.bookmark_pill_label(current_bookmark) if current_bookmark else "Bookmark",
+            icon=None if current_bookmark else ":material/bookmark:",
             use_container_width=True,
         ):
             bm_options = list(bookmark_manager.BOOKMARK_COLORS.keys())
             default_idx = 0
             if current_bookmark in bm_options:
                 default_idx = bm_options.index(current_bookmark)
-            selected_bm_color = st.selectbox("Colour", bm_options, index=default_idx,
-                                             key=f"drill_bm_sel_{step_key}")
+            selected_bm_color = st.pills("Colour", bm_options, default=bm_options[default_idx],
+                                         format_func=ui_components.bookmark_pill_label,
+                                         label_visibility="collapsed",
+                                         key=f"drill_bm_sel_{step_key}") or bm_options[default_idx]
             if st.button("Save bookmark", key=f"drill_bm_btn_{step_key}", icon=":material/bookmark:"):
                 bookmark_manager.save_bookmark(current_q, selected_bm_color)
                 st.toast(f"Bookmarked as {selected_bm_color}.", icon=":material/check_circle:")
                 st.rerun()
             if current_bookmark:
-                st.caption(f"Currently bookmarked as: {current_bookmark}")
+                st.caption(f"Bookmarked as {ui_components.bookmark_pill_label(current_bookmark)}")
                 if st.button("Remove bookmark", key=f"drill_bm_rm_{step_key}", icon=":material/delete:"):
                     bookmark_manager.remove_bookmark(q_id)
                     st.toast("Bookmark removed.", icon=":material/delete:")

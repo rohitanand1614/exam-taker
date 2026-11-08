@@ -166,10 +166,19 @@ exec(compile(open(r"{page}", encoding="utf-8").read(), r"{page}", "exec"))
 """
 
 
+BM_TRIGGER = '.st-key-qcard [data-testid="stPopover"] button'
+
+
 def drill_flow(page, base, out_dir):
     page.goto(base + "/")
     settle(page)
     shot(page, out_dir, "drill_question")
+    page.locator(BM_TRIGGER).first.click()          # bookmark colour pills (Batch 10a)
+    page.wait_for_timeout(700)
+    page.screenshot(path=str(out_dir / "drill_bookmark_popover.png"))
+    print("saved", out_dir / "drill_bookmark_popover.png")
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(300)
     page.keyboard.press("a")  # A is wrong for Q1 -> question gets re-queued (keyboard: answer A, Enter)
     page.wait_for_timeout(500)
     page.keyboard.press("Enter")
@@ -321,6 +330,30 @@ def nav_top_menus(page, out_dir):
         page.wait_for_timeout(300)
 
 
+def exam_bookmark(page, out_dir):
+    """Bookmark popover with coloured chips: unbookmarked, then after saving 'Important'."""
+    page.goto(BASE + "/")
+    settle(page)
+    page.locator(BM_TRIGGER).first.click()
+    page.wait_for_timeout(700)
+    page.screenshot(path=str(out_dir / "exam_bookmark_popover.png"))
+    print("saved", out_dir / "exam_bookmark_popover.png")
+    page.locator('[class*="st-key-bm_sel_"] button', has_text="Important").first.click()
+    page.wait_for_timeout(400)
+    page.get_by_role("button", name="Save bookmark").click()
+    settle(page, 1200)
+    # the popover stays open after Save: status line + Remove are visible
+    page.screenshot(path=str(out_dir / "exam_bookmarked_popover.png"))
+    print("saved", out_dir / "exam_bookmarked_popover.png")
+    page.keyboard.press("Escape")
+    page.wait_for_timeout(400)
+    shot(page, out_dir, "exam_bookmarked")                     # closed: the chip shows the coloured dot + name
+    page.locator(BM_TRIGGER).first.click()                     # undo, so later flows (drill) start unbookmarked
+    page.wait_for_timeout(500)
+    page.get_by_role("button", name="Remove bookmark").click()
+    settle(page, 1000)
+
+
 def exam_keyboard(page, out_dir):
     """Key hints on the buttons, a keyboard-selected answer, and the Shift+B bookmark popover."""
     page.goto(BASE + "/")
@@ -457,6 +490,7 @@ def main():
                                ("topic", topic_flow),
                                ("similar", similar_flow),
                                ("nav", nav_top_menus),
+                               ("exam_bookmark", exam_bookmark),
                                ("exam_keyboard", exam_keyboard)):
                 try:
                     flow(page, out_dir)

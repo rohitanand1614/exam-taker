@@ -118,7 +118,7 @@ def test_bookmark_writes_registry(exam, workspace):
 
 
 def test_bookmark_color_and_remove(exam, workspace):
-    exam.selectbox(key="bm_sel_sample_q1").select("Hard (Purple)")
+    [g for g in exam.get("button_group") if g.key == "bm_sel_sample_q1"][0].set_value(["Hard (Purple)"])
     exam.button(key="bm_btn_sample_q1").click().run()
     assert registry(workspace, "bookmarks")["sample_q1"]["color"] == "Hard (Purple)"
     exam.button(key="bm_rm_sample_q1").click().run()
