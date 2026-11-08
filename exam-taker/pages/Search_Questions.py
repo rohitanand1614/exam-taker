@@ -3,11 +3,11 @@ from utils import file_manager, ui_helpers, ui_components, exam_view
 import os
 from pathlib import Path
 
-st.set_page_config(page_title="Search Questions", page_icon=":material/search:", layout="wide")
+st.set_page_config(page_title="Search", page_icon=":material/search:", layout="wide")
 
 ui_helpers.inject_global_css()
 
-ui_components.render_page_head("Search questions", "Filter and search through your exam question bank.")
+ui_components.render_page_head("Search", "Filter and search through your exam question bank.")
 
 # --- Session State Initialization ---
 if "folder_search" not in st.session_state:
@@ -177,6 +177,6 @@ else:
                         [q.get("source_file", "Unknown"), q.get("difficulty"), q_id]),
                     unsafe_allow_html=True)
 
-                # "View answer": options with the right answer(s) in the success style + explanation
-                with st.expander("View answer", icon=":material/visibility:"):
+                # "Show answer": options with the right answer(s) in the success style + explanation
+                with st.expander("Show answer", icon=":material/visibility:"):
                     exam_view.render_review_card(row_id, q)

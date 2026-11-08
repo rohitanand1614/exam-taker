@@ -10,7 +10,7 @@ from utils import file_manager, scoring, srs, bookmark_manager, archive_manager
 # -----------------------------------------------------------------------------
 # CONFIG & STYLES
 # -----------------------------------------------------------------------------
-st.set_page_config(page_title="Practice Incorrect", page_icon=":material/cancel:", layout="wide")
+st.set_page_config(page_title="Practice incorrect", page_icon=":material/cancel:", layout="wide")
 
 from utils import ui_helpers, ui_components, exam_view
 ui_helpers.inject_global_css()
@@ -80,21 +80,21 @@ with st.sidebar:
     st.info("Shows questions where you struggle historically (Wrong >= Correct) OR your last attempt was incorrect.")
     
     # Selection Mode
-    st.subheader("Selection Mode")
-    selection_mode = st.radio("Load by:", ["Folder", "Specific File"], index=0, key="inc_mode", horizontal=True)
+    st.subheader("Selection mode")
+    selection_mode = st.radio("Load by", ["Folder", "Specific File"], index=0, key="inc_mode", horizontal=True)
     
     st.divider()
     
     # Exam Selection
-    st.subheader("Select Source")
+    st.subheader("Select source")
     
     available_options = []
     if selection_mode == "Folder":
         available_options = file_manager.get_exam_folders("questions")
-        label = "Choose a Subject/Topic"
+        label = "Choose a subject/topic"
     else:
         available_options = file_manager.get_exam_files("questions")
-        label = "Choose a JSON File"
+        label = "Choose a JSON file"
     
     if not available_options:
         st.warning(f"No {selection_mode.lower()}s found.")

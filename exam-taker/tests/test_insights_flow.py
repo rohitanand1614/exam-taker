@@ -199,7 +199,7 @@ def test_topic_requires_a_suite(spread, app):
 
 def test_topic_overview_metrics(topic):
     metrics = {m.label: m.value for m in topic.metric}
-    assert metrics == {"Total Questions": "10", "Overall Accuracy": "60.0%", "Topics Identified": "6"}
+    assert metrics == {"Total questions": "10", "Overall accuracy": "60.0%", "Topics identified": "6"}
 
 
 def test_topic_analysis_loaded_message(topic):
@@ -282,8 +282,8 @@ def test_topic_drill_no_matching_questions_warns(topic):
 def test_topic_generate_button_path(spread, app, monkeypatch):
     """When loading the analysis RAISES (e.g. unreadable cache) the page offers
     'Generate Analysis for <suite>', which runs the analyzer with force_refresh=True.
-    (A load that returns an empty result does not reach this button on the next run: the page
-    has already stored the falsy result under its session key. That is today's behaviour.)"""
+    (The case where the load succeeds but returns an empty result is covered by
+    test_topic_generate_button_after_empty_cache_load.)"""
     from utils.topic_analyzer import TopicAnalyzer
     real = TopicAnalyzer.get_analysis_for_suite
     calls = []
@@ -303,6 +303,52 @@ def test_topic_generate_button_path(spread, app, monkeypatch):
     assert not at.exception
     assert calls == [False, False, True]
     assert len(list(at.get("plotly_chart"))) == 2
+
+
+def test_topic_generate_button_after_empty_cache_load(spread, app, monkeypatch):
+    """Batch 9.4: the cache loads fine but holds nothing. The page offers 'Generate Analysis for <suite>';
+    clicking it must run the analysis (force_refresh=True) and show the charts. It used to do nothing:
+    the empty result was stored under the page's session key, so the next run skipped the whole block."""
+    from utils.topic_analyzer import TopicAnalyzer
+    real = TopicAnalyzer.get_analysis_for_suite
+    calls = []
+
+    def fake(self, suite, force_refresh=False):
+        calls.append(force_refresh)
+        if not force_refresh:
+            return {}                                   # loaded fine, nothing cached
+        return real(self, suite, force_refresh=True)
+
+    monkeypatch.setattr(TopicAnalyzer, "get_analysis_for_suite", fake)
+    at = app("pages/Topic_Analysis.py").run()
+    select_suite(at)
+    assert not list(at.get("plotly_chart"))
+    assert any("No analysis found" in i.value for i in at.info)
+    by_label(at.button, "Generate Analysis for sample")[0].click().run()
+    assert not at.exception
+    assert calls[-1] is True                            # the analysis really ran
+    assert len(list(at.get("plotly_chart"))) == 2
+
+
+def test_topic_refresh_button_reruns_the_analysis_even_with_a_cache(spread, app, monkeypatch):
+    """Batch 9.4 (same cause): with a good cached analysis on screen, 'Refresh analysis' must re-run it
+    (force_refresh=True). It did nothing, because the cached result made the page skip the whole block."""
+    from utils.topic_analyzer import TopicAnalyzer
+    real = TopicAnalyzer.get_analysis_for_suite
+    calls = []
+
+    def fake(self, suite, force_refresh=False):
+        calls.append(force_refresh)
+        return real(self, suite, force_refresh=force_refresh)
+
+    monkeypatch.setattr(TopicAnalyzer, "get_analysis_for_suite", fake)
+    at = app("pages/Topic_Analysis.py").run()
+    select_suite(at)
+    assert len(list(at.get("plotly_chart"))) == 2            # analysis is showing
+    before = list(calls)
+    by_label(at.button, "Refresh analysis")[0].click().run()
+    assert not at.exception
+    assert calls[len(before):].count(True) >= 1, calls
 
 
 def test_topic_unknown_suite_filter_folder(topic):

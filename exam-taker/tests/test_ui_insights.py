@@ -82,7 +82,7 @@ def progress(spread, app):
 
 
 def test_progress_head_and_subtitle(progress):
-    md = head(progress, "Progress dashboard")
+    md = head(progress, "Progress")
     assert "10 questions" in md
 
 
@@ -127,7 +127,7 @@ def test_progress_empty_state_no_emoji(workspace, app):
     at = app("pages/Progress_Dashboard.py").run()
     assert not at.exception
     assert_no_emoji(at)
-    head(at, "Progress dashboard")
+    head(at, "Progress")
 
 
 # ================================================================ Topic_Analysis
@@ -152,13 +152,13 @@ def test_topic_no_emoji_before_choosing_a_suite(spread, app):
 
 
 def test_topic_section_headings_plain(topic):
-    assert [s.value for s in topic.subheader if s.value != "LLM Configuration"] == [
+    assert [s.value for s in topic.subheader if s.value != "LLM configuration"] == [
         "Weak areas", "Topic mastery", "Detailed breakdown", "Targeted drill"]
 
 
 def test_topic_stat_tiles_keep_the_6_0_values(topic):
     assert {m.label: m.value for m in topic.metric} == {
-        "Total Questions": "10", "Overall Accuracy": "60.0%", "Topics Identified": "6"}
+        "Total questions": "10", "Overall accuracy": "60.0%", "Topics identified": "6"}
 
 
 def test_topic_drill_button_primary_with_icon_and_key(topic):

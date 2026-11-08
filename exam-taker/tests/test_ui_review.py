@@ -158,7 +158,7 @@ def archived(seeded, app):
 
 
 def test_archived_head_count_no_emoji(archived):
-    assert "1 archived · showing 1" in head(archived, "Archived questions")
+    assert "1 archived · showing 1" in head(archived, "Archived")
     assert_no_emoji(archived)
 
 
@@ -184,7 +184,7 @@ def test_archived_review_card(archived):
 def test_archived_empty_state_no_emoji(workspace, app):
     at = app("pages/Archived_Questions.py").run()
     assert_no_emoji(at)
-    head(at, "Archived questions")
+    head(at, "Archived")
 
 
 # ================================================================ Wrong_Answers
@@ -196,7 +196,7 @@ def wrong(seeded, app):
 
 
 def test_wrong_head_no_emoji(wrong):
-    head(wrong, "Review mistakes")
+    head(wrong, "Wrong answers")
     assert_no_emoji(wrong)
 
 
@@ -244,7 +244,7 @@ def search(workspace, app):
 
 
 def test_search_head_and_no_emoji(search):
-    head(search, "Search questions")
+    head(search, "Search")
     assert_no_emoji(search)
 
 
@@ -268,7 +268,7 @@ def test_search_results_are_list_rows_with_view_answer(search):
     assert row_count(search) == 1
     assert_no_emoji(search)
     labels = [e.label for e in list(search.get("expander")) + list(search.get("status"))]
-    assert "View answer" in labels
+    assert "Show answer" in labels
     keys = set(keyed_blocks(search))
     assert any(k.startswith("opt_correct_") for k in keys)
     assert any(k.startswith("explain_") for k in keys)

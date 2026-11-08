@@ -22,14 +22,14 @@ MARKER = {
     "pages/Regressive_Practice.py": "<h1>Regressive practice</h1>",
     "pages/Practice_Incorrect.py": "<h1>Practice incorrect</h1>",
     "pages/Practice_Bookmarks.py": "<h1>Practice bookmarks</h1>",
-    "pages/Wrong_Answers.py": "<h1>Review mistakes</h1>",
+    "pages/Wrong_Answers.py": "<h1>Wrong answers</h1>",
     "pages/Bookmarks.py": "<h1>Bookmarks</h1>",
     "pages/Notes_Review.py": "<h1>Notes review</h1>",
-    "pages/Search_Questions.py": "<h1>Search questions</h1>",
-    "pages/Progress_Dashboard.py": "<h1>Progress dashboard</h1>",
+    "pages/Search_Questions.py": "<h1>Search</h1>",
+    "pages/Progress_Dashboard.py": "<h1>Progress</h1>",
     "pages/Topic_Analysis.py": "<h1>Topic analysis</h1>",
     "pages/Similar_Questions_Management.py": "<h1>Similar questions</h1>",
-    "pages/Archived_Questions.py": "<h1>Archived questions</h1>",
+    "pages/Archived_Questions.py": "<h1>Archived</h1>",
 }
 ALL_PAGES = [e["path"] for g in navigation.nav_spec().values() for e in g]
 
@@ -133,5 +133,5 @@ def test_main_entry_page_config_is_the_app_config():
     assert 'layout="wide"' in src
     assert "inject_global_css()" in src
     assert "st.navigation(" in src and ".run()" in src
-    # Streamlit shows only 10 items and hides the rest behind "View 3 more"; the app has 13
-    assert "expanded=True" in src
+    # Batch 9.1: top navigation (the sidebar is then free for each page's own controls)
+    assert 'position="top"' in src

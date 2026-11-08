@@ -3,7 +3,7 @@ from utils import file_manager, similarity, archive_manager, ui_helpers, ui_comp
 import os
 from pathlib import Path
 
-st.set_page_config(page_title="Similar Questions", page_icon=":material/content_copy:", layout="wide")
+st.set_page_config(page_title="Similar questions", page_icon=":material/content_copy:", layout="wide")
 
 ui_helpers.inject_global_css()
 
@@ -26,7 +26,7 @@ with st.sidebar:
 
     sorted_suites = sorted(list(suites))
 
-    selected_suite = st.selectbox("Select Exam Suite", ["All"] + sorted_suites)
+    selected_suite = st.selectbox("Select exam suite", ["All"] + sorted_suites)
 
     st.info("Currently detection is based on **Exact Content Match** (Text + Options + Answer).",
             icon=":material/info:")
@@ -36,7 +36,7 @@ from utils.llm_client import LLMClient
 # --- Sidebar: Algorithm Selection ---
 with st.sidebar:
     st.divider()
-    st.header("Detection Mode")
+    st.header("Detection mode")
     mode = st.radio("Method", ["Exact Content Match", "Contextual Match (LLM)"])
 
     if mode == "Exact Content Match":
@@ -45,7 +45,7 @@ with st.sidebar:
     else:
         st.info("Advanced. Uses Vector Embeddings (all-minilm) to find semantic duplicates.",
                 icon=":material/psychology:")
-        threshold = st.slider("Similarity Threshold", 0.70, 0.99, 0.85, 0.01, help="Higher = stricter matching.")
+        threshold = st.slider("Similarity threshold", 0.70, 0.99, 0.85, 0.01, help="Higher = stricter matching.")
 
 # --- Main Logic ---
 

@@ -13,7 +13,7 @@ pip install streamlit plotly pandas requests
 ```
 
 ### 2. Run the Application
-Navigate to the project directory and launch the app with the grouped sidebar navigation
+Navigate to the project directory and launch the app with the grouped top navigation
 (Practice, Review, Insights, Manage):
 ```bash
 cd exam-taker
@@ -297,6 +297,21 @@ To scan and clean an entire folder (recursive):
 bash
 python utils/remove_duplicates.py questions/nvidia-exam
 
+### Keyboard shortcuts
+On the exam pages (Exam, Practice incorrect, Practice bookmarks, Targeted drill, Regressive practice):
+
+| Key | Action |
+| --- | --- |
+| `1`-`9` or `A`-`H` | select that answer (toggles it on "select all that apply" questions) |
+| `Enter` | Submit answer |
+| `N` or `Right arrow` | Next question |
+| `P` or `Left arrow` | Previous question (Exam and practice pages) |
+| `Shift+B` | open the bookmark popover (plain `B` is the answer letter B) |
+
+Keys are ignored while you type in a text box, the notes editor or a dropdown, and when Ctrl/Alt/Cmd is held.
+The small key chips on the Submit and Next buttons are the reminder. The script is `utils/shortcuts.py`; it only
+clicks the buttons that are already on the page.
+
 ---
 
 ## 🛠️ Development
@@ -304,10 +319,11 @@ python utils/remove_duplicates.py questions/nvidia-exam
 ### Run the tests
 ```bash
 cd exam-taker
-python -m pytest -q                  # everything (about 40 s)
+python -m pytest -q                  # everything (about 60 s)
 python -m pytest -q -m smoke         # every page loads
 python -m pytest -q -m flow          # user-flow contracts
 python -m pytest -q tests/test_ui_exam.py   # one file; each file also passes on its own
+python -m pytest -q tests/e2e        # real-browser keyboard test (skipped without Playwright/Chromium)
 ```
 - Use `python -m pytest`, not the bare `pytest` script: `pytest.ini` loads the plugin
   `tests.plugins.isolation`, which only imports when the project folder is on `sys.path`.

@@ -2,8 +2,9 @@
 
 ## Status (final)
 
-**Batches 0-8 are DONE.** Final suite: **756 passed, 4 skipped** (`python -m pytest -q`); every test file also
-passes when run on its own. Entry point: `streamlit run main.py` (grouped `st.navigation`).
+**Batches 0-9 are DONE.** Final suite: **928 passed, 4 skipped** (`python -m pytest -q`, includes 5 browser tests in
+`tests/e2e`); every test file also passes when run on its own. Entry point: `streamlit run main.py` (grouped
+`st.navigation`, shown as a top bar).
 
 | Batch | What | Status |
 | --- | --- | --- |
@@ -16,20 +17,19 @@ passes when run on its own. Entry point: `streamlit run main.py` (grouped `st.na
 | 6 | Insights: Progress dashboard, Topic analysis, chart theme | done |
 | 7 | Similar questions management | done |
 | 8 | Test isolation, grouped navigation (`main.py`), chrome + label consistency, release checks | done |
-| 9 | Keyboard shortcuts | optional, not started |
+| 9 | Top navigation, one label rule set, keyboard shortcuts, Topic analysis "Generate analysis" fix | done |
 
 ### Known follow-ups
-- **Topic analysis, "Generate Analysis" button:** it only appears to work when loading the cached analysis *raises*.
-  A load that returns an empty result stores a falsy value under the page's session key, so the next run skips the
-  generate block. Frozen in `tests/test_insights_flow.py`; behaviour deliberately not changed.
+- **Option values are still Title Case** (for example the radio options "Last Attempt Incorrect" / "Ever Incorrect",
+  "Exact Content Match", "Standard (Cards)"). They are values the page logic compares, not labels, so Batch 9 left them.
+- **Topic analysis "Refresh analysis (trigger LLM)"** now really re-runs the analysis (it used to do nothing when a
+  cache existed). It calls the configured LLM, as its label says.
+- **Shortcut limits:** `Shift+B` instead of `B` for bookmarks (plain B is answer B); answers are keys 1-9 / A-H, so a
+  question with more than 9 options cannot be answered by keyboard past the 9th; Regressive practice has no
+  Previous and no bookmark popover. Not covered by a browser test: Practice incorrect, Practice bookmarks, Targeted
+  drill (covered by AppTest wiring tests and, for the drill, the screenshot script).
 - **`questions/genai-llm-books/Hands-On Large Language Models/Chapter4.json` is empty (0 bytes)** and is skipped by
   every loader and by `tools/repair_latex_data.py`. Restore its content from the source.
-- **Keyboard shortcuts** (Batch 9) are not implemented.
-- **Sidebar height:** the 13-item navigation plus a page's own sidebar controls is taller than a 1000 px screen; the
-  controls (for example "Start new session") need a scroll. Options: move page controls into the main area, or use
-  `st.navigation(position="top")`.
-- **Label wording:** see the "Other inconsistent labels" list in the Batch 8 report: Title Case sidebar/filter labels,
-  three names for "show the answer", "dashboard" in two buttons that go to Topic analysis, nav title vs page-head wording.
 - **Bare `pytest`** cannot import the isolation plugin; use `python -m pytest`.
 - **Unfixed data:** `tools/repair_latex_data.py` was applied once (5 strings, 1 file; `.bak` kept). Run its dry-run
   after adding new question files.

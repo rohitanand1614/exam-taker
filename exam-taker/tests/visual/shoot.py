@@ -147,8 +147,9 @@ def regressive_flow(page, out_dir):
     page.get_by_role("button", name="Start new session").click()
     settle(page)
     shot(page, out_dir, "regressive_started")
-    pick_first_option(page)
-    page.get_by_role("button", name="Submit answer").click()
+    page.keyboard.press("a")                 # keyboard shortcuts: answer A, Enter = Submit answer
+    page.wait_for_timeout(500)
+    page.keyboard.press("Enter")
     settle(page)
     shot(page, out_dir, "regressive_after_submit")
 
@@ -169,8 +170,9 @@ def drill_flow(page, base, out_dir):
     page.goto(base + "/")
     settle(page)
     shot(page, out_dir, "drill_question")
-    pick_first_option(page)  # A is wrong for Q1 -> question gets re-queued
-    page.get_by_role("button", name="Submit answer").click()
+    page.keyboard.press("a")  # A is wrong for Q1 -> question gets re-queued (keyboard: answer A, Enter)
+    page.wait_for_timeout(500)
+    page.keyboard.press("Enter")
     settle(page)
     shot(page, out_dir, "drill_after_submit")
     page.goto(base + "/?n=1")  # single question = last question: finish screen
@@ -201,7 +203,7 @@ def archived_flow(page, out_dir):
 def wrong_flow(page, out_dir):
     page.goto(f"{BASE}/{URL['Wrong_Answers']}")
     settle(page)
-    page.get_by_text("Review answer").first.click()
+    page.get_by_text("Show answer").first.click()
     page.wait_for_timeout(800)
     shot(page, out_dir, "wrong_answers_open")
 
@@ -214,7 +216,7 @@ def search_flow(page, out_dir):
     page.wait_for_timeout(500)
     page.get_by_role("button", name="Search").first.click()
     settle(page)
-    page.get_by_text("View answer").first.click()
+    page.get_by_text("Show answer").first.click()
     page.wait_for_timeout(800)
     shot(page, out_dir, "search_with_query")
 
@@ -305,12 +307,59 @@ def similar_flow(page, out_dir):
     shot(page, out_dir, "similar_selected")
 
 
-def nav_sidebar_closeup(page, out_dir):
-    """The grouped navigation (group labels, 38px items, active item) on a non-default page."""
+def nav_top_menus(page, out_dir):
+    """The top navigation: closed bar, then the Practice and Insights menus open (on a non-default page)."""
     page.goto(f"{BASE}/{URL['Progress_Dashboard']}")
     settle(page, 1500)
-    page.locator('section[data-testid="stSidebar"]').screenshot(path=str(out_dir / "nav_sidebar.png"))
-    print("saved", out_dir / "nav_sidebar.png")
+    sections = page.locator('[data-testid="stTopNavSection"]')
+    for i, name in ((0, "practice"), (2, "insights")):
+        sections.nth(i).click()
+        page.wait_for_timeout(700)
+        page.screenshot(path=str(out_dir / f"nav_menu_{name}.png"), clip={"x": 0, "y": 0, "width": 760, "height": 330})
+        print("saved", out_dir / f"nav_menu_{name}.png")
+        page.keyboard.press("Escape")
+        page.wait_for_timeout(300)
+
+
+def exam_keyboard(page, out_dir):
+    """Key hints on the buttons, a keyboard-selected answer, and the Shift+B bookmark popover."""
+    page.goto(BASE + "/")
+    settle(page)
+    page.keyboard.press("b")
+    page.wait_for_timeout(600)
+    shot(page, out_dir, "exam_keyboard_selected")
+    page.keyboard.press("Shift+B")
+    page.wait_for_timeout(900)
+    page.screenshot(path=str(out_dir / "exam_keyboard_bookmark_popover.png"))
+    print("saved", out_dir / "exam_keyboard_bookmark_popover.png")
+    page.keyboard.press("Escape")
+
+
+def small_laptop(browser, out_dir):
+    """1280x800: the top bar must not wrap and a page's sidebar controls must be visible without scrolling."""
+    ctx = browser.new_context(viewport={"width": 1280, "height": 800}, device_scale_factor=1)
+    pg = ctx.new_page()
+    try:
+        pg.goto(BASE + "/")
+        settle(pg)
+        pg.goto(f"{BASE}/{URL['Regressive_Practice']}")
+        settle(pg)
+        btn = pg.get_by_role("button", name="Start new session")
+        box = btn.bounding_box()
+        print("1280x800 start button box:", box)
+        assert box and box["y"] + box["height"] <= 800, f"Start new session needs a scroll: {box}"
+        pg.screenshot(path=str(out_dir / "small_1280x800_regressive.png"))
+        print("saved", out_dir / "small_1280x800_regressive.png")
+        pg.goto(f"{BASE}/{URL['Progress_Dashboard']}")
+        settle(pg)
+        bar = pg.locator('[data-testid="stTopNavSection"]')
+        ys = {round(bar.nth(i).bounding_box()["y"]) for i in range(bar.count())}
+        print("1280x800 top bar rows:", ys)
+        assert len(ys) == 1 and bar.count() == 4, f"top bar wraps or hides groups: {ys}"
+        pg.screenshot(path=str(out_dir / "small_1280x800_progress.png"))
+        print("saved", out_dir / "small_1280x800_progress.png")
+    finally:
+        ctx.close()
 
 
 def start_server(script, port, cwd):
@@ -407,11 +456,16 @@ def main():
                                ("progress", progress_flow),
                                ("topic", topic_flow),
                                ("similar", similar_flow),
-                               ("nav", nav_sidebar_closeup)):
+                               ("nav", nav_top_menus),
+                               ("exam_keyboard", exam_keyboard)):
                 try:
                     flow(page, out_dir)
                 except Exception as e:
                     print(f"FAILED {name}: {e}")
+            try:
+                small_laptop(browser, out_dir)
+            except Exception as e:
+                print(f"FAILED small laptop: {e}")
             try:
                 drill_flow(page, f"http://localhost:{drill_port}", out_dir)
             except Exception as e:

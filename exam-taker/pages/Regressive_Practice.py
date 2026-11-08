@@ -2,10 +2,10 @@ import streamlit as st
 import random
 import json
 from pathlib import Path
-from utils import file_manager, ui_helpers, bookmark_manager, ui_components, exam_view
+from utils import file_manager, ui_helpers, bookmark_manager, ui_components, exam_view, shortcuts
 
 # --- Page Config ---
-st.set_page_config(page_title="Regressive Practice", page_icon=":material/sync:", layout="wide")
+st.set_page_config(page_title="Regressive practice", page_icon=":material/sync:", layout="wide")
 
 # --- CSS Injection ---
 ui_helpers.inject_global_css()
@@ -109,7 +109,7 @@ with st.sidebar:
     # Use relative paths directly
     short_names = all_files
 
-    selected_file_short = st.selectbox("Select a File to Practice", short_names, disabled=st.session_state.regressive_active)
+    selected_file_short = st.selectbox("Select a file to practice", short_names, disabled=st.session_state.regressive_active)
 
     if st.button("Start new session", type="primary", icon=":material/play_arrow:",
                  disabled=st.session_state.regressive_active, key="reg_start"):
@@ -185,6 +185,8 @@ letters = [chr(65 + i) for i in range(len(options))]
 is_submitted = st.session_state.regressive_submitted
 
 user_selected_indices = []
+
+shortcuts.render()
 
 with st.container(border=True, key="qcard"):
     # Header: difficulty + mastery badges, tags

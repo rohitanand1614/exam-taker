@@ -2,7 +2,7 @@ import streamlit as st
 import math
 from utils import archive_manager, file_manager, ui_helpers, ui_components, exam_view
 
-st.set_page_config(page_title="Archived Questions", page_icon=":material/archive:", layout="wide")
+st.set_page_config(page_title="Archived", page_icon=":material/archive:", layout="wide")
 
 ui_helpers.inject_global_css()
 
@@ -12,7 +12,7 @@ head_slot = st.empty()
 # 1. Load Data
 all_archives = archive_manager.get_all_archives()
 if not all_archives:
-    head_slot.markdown(ui_components.page_head_html("Archived questions", ui_components.count_line(0, 0, "archived")),
+    head_slot.markdown(ui_components.page_head_html("Archived", ui_components.count_line(0, 0, "archived")),
                        unsafe_allow_html=True)
     st.info("No archived questions found.", icon=":material/info:")
     st.stop()
@@ -40,7 +40,7 @@ filtered_archives = [
 ]
 
 head_slot.markdown(
-    ui_components.page_head_html("Archived questions", ui_components.count_line(
+    ui_components.page_head_html("Archived", ui_components.count_line(
         len(archive_list), len(filtered_archives), "archived")),
     unsafe_allow_html=True)
 
@@ -93,9 +93,9 @@ else:
                     unsafe_allow_html=True)
             with c_restore:
                 if st.button("Restore", key=f"unarch_{q_id}", icon=":material/unarchive:",
-                             help="Unarchive: put this question back into practice"):
+                             help="Restore: put this question back into practice"):
                     archive_manager.unarchive_question(q_id)
-                    st.toast("Question restored.", icon=":material/unarchive:")
+                    st.toast("Restored.", icon=":material/unarchive:")
                     st.rerun()
 
             with st.expander("Show answer", icon=":material/visibility:"):

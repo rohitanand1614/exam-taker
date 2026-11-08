@@ -347,7 +347,7 @@ def test_notes_lists_only_questions_with_notes(seeded, app):
     at = app("pages/Notes_Review.py").run()
     assert not at.exception
     metrics = {m.label: m.value for m in at.metric}
-    assert metrics["Questions with Notes"] == "2"
+    assert metrics["Questions with notes"] == "2"
     text = md_text(at)
     assert "note one" in text and "note two" in text
 
@@ -355,7 +355,7 @@ def test_notes_lists_only_questions_with_notes(seeded, app):
 def test_notes_empty_state(workspace, app):
     at = app("pages/Notes_Review.py").run()
     assert not at.exception
-    assert {m.label: m.value for m in at.metric}["Questions with Notes"] == "0"
+    assert {m.label: m.value for m in at.metric}["Questions with notes"] == "0"
     assert any("No notes" in i.value for i in at.info)
 
 

@@ -8,7 +8,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from utils import file_manager, ui_helpers, ui_components, exam_view
 
-st.set_page_config(page_title="Review Mistakes", page_icon=":material/cancel:", layout="wide")
+st.set_page_config(page_title="Wrong answers", page_icon=":material/cancel:", layout="wide")
 
 ui_helpers.inject_global_css()
 
@@ -28,23 +28,23 @@ def _last_on(timestamp):
 # Filters (main area)
 f_mode, f_source, f_criteria = st.columns([1.1, 1.6, 1.6])
 with f_mode:
-    selection_mode = st.radio("Load by:", ["Folder", "Specific File"], index=0, horizontal=True)
+    selection_mode = st.radio("Load by", ["Folder", "Specific File"], index=0, horizontal=True)
 
 if selection_mode == "Folder":
     available_options = file_manager.get_exam_folders("questions")
-    label = "Choose a Subject/Topic"
+    label = "Choose a subject/topic"
 else:
     available_options = file_manager.get_exam_files("questions")
-    label = "Choose a JSON File"
+    label = "Choose a JSON file"
 
 with f_source:
     selected_option = st.selectbox(label, available_options)
 with f_criteria:
-    filter_mode = st.radio("Filter Criteria:", ["Last Attempt Incorrect", "Ever Incorrect"], index=0,
+    filter_mode = st.radio("Filter criteria", ["Last Attempt Incorrect", "Ever Incorrect"], index=0,
                            horizontal=True)
 
 if not selected_option:
-    head_slot.markdown(ui_components.page_head_html("Review mistakes", "Pick a source to see your mistakes"),
+    head_slot.markdown(ui_components.page_head_html("Wrong answers", "Pick a source to see your mistakes"),
                        unsafe_allow_html=True)
     st.info("Select a folder or file to view mistakes.", icon=":material/info:")
     st.stop()
@@ -88,7 +88,7 @@ for q in questions:
 
 head_slot.markdown(
     ui_components.page_head_html(
-        "Review mistakes",
+        "Wrong answers",
         f"{len(wrong_questions)} mistake{'s' if len(wrong_questions) != 1 else ''} in '{selected_option}'"
         f" · {filter_mode.lower()}"),
     unsafe_allow_html=True)
@@ -115,7 +115,7 @@ else:
                 unsafe_allow_html=True)
 
             # Review card: your pick (Your pick / Correct) + the right answer (Missed) + explanation
-            with st.expander("Review answer", icon=":material/visibility:"):
+            with st.expander("Show answer", icon=":material/visibility:"):
                 exam_view.render_review_card(row_id, q, selected=last_selected)
                 st.caption(f"Attempted: {display_attempt.get('timestamp', 'Unknown')} | "
                            f"Score: {display_attempt.get('score', 0)}")

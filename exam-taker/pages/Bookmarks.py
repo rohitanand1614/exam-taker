@@ -2,7 +2,7 @@ import streamlit as st
 import math
 from utils import bookmark_manager, file_manager, archive_manager, ui_helpers, ui_components, exam_view
 
-st.set_page_config(page_title="Bookmarks Review", page_icon=":material/bookmark:", layout="wide")
+st.set_page_config(page_title="Bookmarks", page_icon=":material/bookmark:", layout="wide")
 
 ui_helpers.inject_global_css()
 

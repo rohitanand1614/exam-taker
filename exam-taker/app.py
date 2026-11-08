@@ -129,21 +129,21 @@ with st.sidebar:
     st.title("Exam Taker Pro")
     
     # 1. Selection Mode
-    st.subheader("Selection Mode")
-    selection_mode = st.radio("Load by:", ["Folder", "Specific File"], index=0, horizontal=True)
+    st.subheader("Selection mode")
+    selection_mode = st.radio("Load by", ["Folder", "Specific File"], index=0, horizontal=True)
     
     st.divider()
     
     # 2. Exam Selection
-    st.subheader("Select Exam")
+    st.subheader("Select exam")
     
     available_options = []
     if selection_mode == "Folder":
         available_options = file_manager.get_exam_folders("questions")
-        label = "Choose a Subject/Topic"
+        label = "Choose a subject/topic"
     else:
         available_options = file_manager.get_exam_files("questions")
-        label = "Choose a JSON File"
+        label = "Choose a JSON file"
     
     if not available_options:
         st.warning(f"No {selection_mode.lower()}s found in 'questions/' folder.")
@@ -187,7 +187,7 @@ with st.sidebar:
     st.divider()
     
     # 2. Mode Selection (Simple for now)
-    st.subheader("Study Mode")
+    st.subheader("Study mode")
     mode = st.radio("Mode", ["Standard", "Shuffled"], index=0, horizontal=True)
     if mode == "Shuffled" and st.session_state.mode != "Shuffled":
         random.shuffle(st.session_state.questions)
@@ -274,7 +274,7 @@ with st.sidebar:
             try:
                 st.page_link("pages/Progress_Dashboard.py", label="View detailed stats", icon=":material/bar_chart:")
             except AttributeError:
-                st.info("Go to 'Progress Dashboard' page for details.")
+                st.info("Open the 'Progress' page for details.")
 
 
 

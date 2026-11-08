@@ -418,6 +418,29 @@ section[data-testid="stMain"] div[data-testid="stRadio"] [role="radiogroup"] lab
 /* chevron after the label ("Next >") */
 .st-key-nav_next button, .st-key-nav_next_simple button {{ flex-direction: row-reverse; }}
 
+/* keyboard hints (shortcuts.py): the chip is CSS only, so button labels stay exactly as they are */
+.etp-kbd, .st-key-nav_submit button::after, [class*="st-key-drill_submit_"] button::after,
+[class*="st-key-nav_next"] button::after, [class*="st-key-drill_next_"] button::after,
+[class*="st-key-reg_next"] button::after, [class*="st-key-nav_prev"] button::after {{
+  font-family: {FONT_MONO}; font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: .02em;
+  padding: 3px 6px; margin-left: var(--etp-s2); border: 1px solid var(--etp-border-strong);
+  border-radius: var(--etp-r-sm); color: var(--etp-muted); background: transparent; opacity: .85;
+}}
+.st-key-nav_submit button::after, [class*="st-key-drill_submit_"] button::after {{ content: "\\21B5"; color: var(--etp-on-fill); border-color: currentColor; }}
+[class*="st-key-nav_next"] button::after, [class*="st-key-drill_next_"] button::after,
+[class*="st-key-reg_next"] button::after {{ content: "N"; }}
+[class*="st-key-nav_prev"] button::after {{ content: "P"; }}
+/* the Next buttons put their chevron AFTER the label with row-reverse, so the chip's gap goes on the other side */
+[class*="st-key-nav_next"] button::after {{ margin-left: 0; margin-right: var(--etp-s2); }}
+.etp-kbd, .st-key-nav_submit button::after, [class*="st-key-drill_submit_"] button::after {{ white-space: nowrap; }}
+/* a button with a chip keeps label and chip on ONE line (the exam page's Previous column is narrow) */
+.st-key-nav_submit button, [class*="st-key-drill_submit_"] button, [class*="st-key-nav_next"] button,
+[class*="st-key-drill_next_"] button, [class*="st-key-reg_next"] button, [class*="st-key-nav_prev"] button,
+.st-key-nav_submit button p, [class*="st-key-drill_submit_"] button p, [class*="st-key-nav_next"] button p,
+[class*="st-key-drill_next_"] button p, [class*="st-key-reg_next"] button p, [class*="st-key-nav_prev"] button p {{ white-space: nowrap; }}
+/* the zero-height iframe that carries the shortcuts script must not take any space */
+[data-testid="stElementContainer"]:has(> iframe[height="0"]), [data-testid="stElementContainer"]:has(iframe[height="0"]) {{ display: none; }}
+
 /* ---------- Targeted drill / Regressive practice (keyed buttons) ---------- */
 .st-key-reg_end button, .st-key-drill_exit button {{
   background-color: transparent !important; border-color: var(--etp-danger-border) !important; color: var(--etp-danger) !important;

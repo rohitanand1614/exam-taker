@@ -12,7 +12,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from utils import file_manager, similarity, ui_helpers, ui_components, exam_view
 from utils.llm_client import LLMClient
 
-st.set_page_config(page_title="Notes Review", page_icon=":material/sticky_note_2:", layout="wide")
+st.set_page_config(page_title="Notes review", page_icon=":material/sticky_note_2:", layout="wide")
 ui_helpers.inject_global_css()
 
 # The page head shows the notes count, so reserve its place first and fill it below.
@@ -228,7 +228,7 @@ current_selection = st.session_state.get('current_exam_folder')
 if current_selection and current_selection in all_options:
     default_idx = all_options.index(current_selection)
 
-selected_option = st.selectbox("Select Exam to Review Notes:", all_options, index=default_idx)
+selected_option = st.selectbox("Select exam to review notes", all_options, index=default_idx)
 
 # Load questions
 questions = file_manager.load_questions("questions", selected_option)
@@ -261,7 +261,7 @@ display_data = st.session_state.ordered_notes if st.session_state.ordered_notes 
 is_reordered = st.session_state.ordered_notes is not None
 
 # Toolbar: count tile | reorganize | export (near the page head, not in an expander)
-st.metric("Questions with Notes", len(questions_with_notes), width=260)
+st.metric("Questions with notes", len(questions_with_notes), width=260)
 t_reorg, t_md, t_pdf = st.columns([2, 1.6, 1.4])
 with t_reorg:
     if st.button("Reorganize contextually", icon=":material/auto_awesome:", use_container_width=True):
@@ -292,7 +292,7 @@ if is_reordered:
 
 view_mode = "Standard"
 if is_reordered:
-    view_mode = st.radio("View Mode", ["Standard (Cards)", "Clean Text (Read Mode)"], horizontal=True)
+    view_mode = st.radio("View mode", ["Standard (Cards)", "Clean Text (Read Mode)"], horizontal=True)
 
 if not display_data:
     st.info("No notes found.", icon=":material/info:")

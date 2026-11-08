@@ -16,7 +16,7 @@ from utils.file_manager import get_exam_folders, get_question_id_to_file_map, lo
 from utils.llm_client import LLMClient
 from utils.topic_analyzer import TopicAnalyzer
 
-st.set_page_config(page_title="Topic Analysis", page_icon=":material/psychology:", layout="wide")
+st.set_page_config(page_title="Topic analysis", page_icon=":material/psychology:", layout="wide")
 from utils import ui_helpers, ui_components
 ui_helpers.inject_global_css()
 ui_helpers.apply_plotly_theme()
@@ -44,7 +44,7 @@ default_ix = 0
 if "nvidia-exam" in suite_options:
     default_ix = suite_options.index("nvidia-exam")
 
-selected_suite = st.sidebar.selectbox("Filter by Exam Suite", suite_options, index=default_ix, key="topic_analysis_suite_selector")
+selected_suite = st.sidebar.selectbox("Filter by exam suite", suite_options, index=default_ix, key="topic_analysis_suite_selector")
 
 # 2. Sub Folder
 if selected_suite != "All":
@@ -52,15 +52,15 @@ if selected_suite != "All":
 else:
     filtered_subfolders = all_folders
 
-selected_folder = st.sidebar.selectbox("Filter by Folder", ["All"] + filtered_subfolders)
+selected_folder = st.sidebar.selectbox("Filter by folder", ["All"] + filtered_subfolders)
 
 # LLM Config
-st.sidebar.subheader("LLM Configuration")
+st.sidebar.subheader("LLM configuration")
 llm_provider = st.sidebar.selectbox("Provider", ["Ollama", "OpenAI"])
-model_name = st.sidebar.text_input("Model Name", value="llama3.1:8b" if llm_provider == "Ollama" else "gpt-5.1")
+model_name = st.sidebar.text_input("Model name", value="llama3.1:8b" if llm_provider == "Ollama" else "gpt-5.1")
 api_key = os.getenv("OPENAI_API_KEY", "")
 if llm_provider == "OpenAI":
-    api_key = st.sidebar.text_input("API Key", value=api_key, type="password")
+    api_key = st.sidebar.text_input("API key", value=api_key, type="password")
 
 # Run Button
 force_refresh = st.sidebar.button("Refresh analysis (trigger LLM)", icon=":material/refresh:")
@@ -79,7 +79,8 @@ if selected_suite == "All":
     
 session_key = f"topic_analysis_{selected_suite}"
 
-if session_key not in st.session_state:
+# (not `in`: an empty cached result is stored too, and must still offer the Generate button)
+if force_refresh or not st.session_state.get(session_key):
     if not force_refresh:
         # Load from cache automatically
         try:
@@ -91,7 +92,7 @@ if session_key not in st.session_state:
             
     if force_refresh or not st.session_state.get(session_key):
         # User requested refresh or no cache found
-        if force_refresh or st.button(f"Generate Analysis for {selected_suite}"):
+        if force_refresh or st.button(f"Generate analysis for {selected_suite}"):
              with st.spinner(f"Analyzing topics for {selected_suite}... This may take a moment..."):
                 try:
                     st.session_state[session_key] = analyzer.get_analysis_for_suite(selected_suite, force_refresh=True)
@@ -213,9 +214,9 @@ for q_id in all_filtered_q_ids:
 
 overall_acc = (global_correct / total_q * 100) if total_q > 0 else 0
 
-col1.metric("Total Questions", total_q)
-col2.metric("Overall Accuracy", f"{overall_acc:.1f}%")
-col3.metric("Topics Identified", len(df))
+col1.metric("Total questions", total_q)
+col2.metric("Overall accuracy", f"{overall_acc:.1f}%")
+col3.metric("Topics identified", len(df))
 
 # 2. Weak Areas (Low Accuracy, Min 5 Questions)
 st.subheader("Weak areas")
@@ -300,20 +301,20 @@ except:
 
 c1, c2 = st.columns([1, 2])
 with c1:
-    target_topic = st.selectbox("Select Topic to Drill", topic_names, index=default_topic_idx)
+    target_topic = st.selectbox("Select topic to drill", topic_names, index=default_topic_idx)
 
 # Find stats for selected
 selected_stats = next((s for t, a, s in sorted_topics if t == target_topic), None)
 
 with c2:
     st.write("Drill Configuration:")
-    chk_wrong = st.checkbox("Include Wrong Questions", value=True, help="Re-test questions you got wrong.")
-    chk_unattempted = st.checkbox("Include Unattempted Questions", value=True, help="Test new questions you haven't seen.")
+    chk_wrong = st.checkbox("Include wrong questions", value=True, help="Re-test questions you got wrong.")
+    chk_unattempted = st.checkbox("Include unattempted questions", value=True, help="Test new questions you haven't seen.")
     
     # Double Loop Toggle
-    use_double_loop = st.checkbox("Double-Loop Mode (Recommended)", value=True, help="If checked, WRONG questions will be added TWICE to the queue in jumbled order for reinforcement.")
+    use_double_loop = st.checkbox("Double-loop mode (recommended)", value=True, help="If checked, WRONG questions will be added TWICE to the queue in jumbled order for reinforcement.")
 
-if st.button("Start Targeted Drill", type="primary", key="topic_drill_start", icon=":material/play_arrow:"):
+if st.button("Start targeted drill", type="primary", key="topic_drill_start", icon=":material/play_arrow:"):
     if not selected_stats:
         st.error("Invalid topic selected.")
     else:

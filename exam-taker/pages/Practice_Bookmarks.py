@@ -10,7 +10,7 @@ from utils import file_manager, scoring, srs, bookmark_manager
 # -----------------------------------------------------------------------------
 # CONFIG & STYLES
 # -----------------------------------------------------------------------------
-st.set_page_config(page_title="Practice Bookmarks", page_icon=":material/bookmark:", layout="wide")
+st.set_page_config(page_title="Practice bookmarks", page_icon=":material/bookmark:", layout="wide")
 
 from utils import ui_helpers, ui_components, exam_view
 ui_helpers.inject_global_css()
@@ -58,28 +58,28 @@ with st.sidebar:
     st.info("Review your bookmarked questions.")
     
     # Selection Mode
-    st.subheader("Selection Mode")
-    selection_mode = st.radio("Load by:", ["Folder", "Specific File"], index=0, key="bm_mode", horizontal=True)
+    st.subheader("Selection mode")
+    selection_mode = st.radio("Load by", ["Folder", "Specific File"], index=0, key="bm_mode", horizontal=True)
     
     st.divider()
     
     # Bookmark Type Filter
-    st.subheader("Filter by Type")
+    st.subheader("Filter by type")
     all_colors = list(bookmark_manager.BOOKMARK_COLORS.keys())
-    selected_colors = st.multiselect("Select Bookmark Types", all_colors, default=all_colors)
+    selected_colors = st.multiselect("Select bookmark types", all_colors, default=all_colors)
     
     st.divider()
     
     # Exam Selection
-    st.subheader("Select Source")
+    st.subheader("Select source")
     
     available_options = []
     if selection_mode == "Folder":
         available_options = file_manager.get_exam_folders("questions")
-        label = "Choose a Subject/Topic"
+        label = "Choose a subject/topic"
     else:
         available_options = file_manager.get_exam_files("questions")
-        label = "Choose a JSON File"
+        label = "Choose a JSON file"
     
     if not available_options:
         st.warning(f"No {selection_mode.lower()}s found.")

@@ -2,9 +2,9 @@ import streamlit as st
 import random
 import datetime
 from utils import file_manager, scoring, srs, bookmark_manager
-from utils import ui_helpers, ui_components, exam_view
+from utils import ui_helpers, ui_components, exam_view, shortcuts
 
-st.set_page_config(page_title="Targeted Drill", page_icon=":material/target:", layout="wide")
+st.set_page_config(page_title="Targeted drill", page_icon=":material/target:", layout="wide")
 
 ui_helpers.inject_global_css()
 ui_helpers.inject_quill_dark_mode()
@@ -12,9 +12,9 @@ ui_helpers.inject_quill_dark_mode()
 st.title("Targeted drill")
 
 if "drill_questions" not in st.session_state or not st.session_state.drill_questions:
-    st.info("No active drill session. Start a drill from the Topic Analysis page.",
+    st.info("No active drill session. Start a drill from the Topic analysis page.",
             icon=":material/info:")
-    if st.button("Go to dashboard", key="drill_dashboard", icon=":material/arrow_forward:"):
+    if st.button("Back to topic analysis", key="drill_dashboard", icon=":material/arrow_forward:"):
         st.switch_page("pages/Topic_Analysis.py")
     st.stop()
 
@@ -102,7 +102,7 @@ with st.sidebar:
                   icon=":material/chevron_right:", on_click=_cb_next)
     else:
         st.success("Drill complete. You have mastered this session.", icon=":material/check_circle:")
-        if st.button("Finish & return to dashboard", key="drill_finish"):
+        if st.button("Back to topic analysis", key="drill_finish"):
             del st.session_state.drill_questions
             del st.session_state.drill_index
             del st.session_state.drill_answers
@@ -123,6 +123,8 @@ letters = [chr(65 + i) for i in range(len(options))]
 log_data = file_manager.load_question_log(q_id)
 srs_info = log_data.get("summary", {}).get("srs", {})
 current_bookmark = bookmark_manager.get_bookmark_status(q_id)
+
+shortcuts.render()
 
 with st.container(border=True, key="qcard"):
     head_left, head_right = st.columns([3, 2])

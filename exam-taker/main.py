@@ -22,5 +22,5 @@ pages = {
     for group, entries in navigation.nav_spec().items()
 }
 
-page = st.navigation(pages, expanded=True)   # 13 pages: do not hide any behind "View N more"
+page = st.navigation(pages, position="top")   # 4 group menus on top; the sidebar is left to each page
 page.run()

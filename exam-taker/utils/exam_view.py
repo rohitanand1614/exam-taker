@@ -16,7 +16,7 @@ import streamlit as st
 from streamlit_quill import st_quill
 from streamlit_mermaid import st_mermaid
 
-from utils import archive_manager, bookmark_manager, file_manager, scoring, ui_components, ui_helpers
+from utils import archive_manager, bookmark_manager, file_manager, scoring, shortcuts, ui_components, ui_helpers
 
 STATUS_WORD = {"correct": "Correct", "missed": "Missed", "wrong": "Your pick"}
 
@@ -158,6 +158,8 @@ def render_question(*, submit_fn, show_archive=True, completed_state_key="all_co
         else:
             st.info("Select an exam in the sidebar to begin.", icon=":material/info:")
         return
+
+    shortcuts.render()      # keyboard: 1-9/A-H answer, Enter submit, N/P or arrows next/previous, Shift+B bookmark
 
     q_data = st.session_state.questions[st.session_state.current_q_index]
     q_id = q_data.get("id", "unknown")

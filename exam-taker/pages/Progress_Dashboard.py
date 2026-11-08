@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from utils import file_manager, ui_helpers, ui_components, exam_view
 
-st.set_page_config(page_title="Progress Dashboard", page_icon=":material/bar_chart:", layout="wide")
+st.set_page_config(page_title="Progress", page_icon=":material/bar_chart:", layout="wide")
 ui_helpers.inject_global_css()
 ui_helpers.apply_plotly_theme()
 
@@ -37,7 +37,7 @@ current_selection = st.session_state.get('current_exam_folder')
 if current_selection and current_selection in all_options:
     default_idx = all_options.index(current_selection)
 
-selected_option = st.selectbox("Select Exam to Analyze:", all_options, index=default_idx)
+selected_option = st.selectbox("Select exam to analyze", all_options, index=default_idx)
 
 # Load all questions
 questions = file_manager.load_questions("questions", selected_option)
@@ -75,7 +75,7 @@ for q in questions:
 
 n_total = len(green_list) + len(yellow_list) + len(red_list) + len(grey_list)
 head_slot.markdown(
-    ui_components.page_head_html("Progress dashboard", f"{n_total} questions in {selected_option}"),
+    ui_components.page_head_html("Progress", f"{n_total} questions in {selected_option}"),
     unsafe_allow_html=True)
 
 # Stat tiles (same numbers as the tab labels)
