@@ -351,5 +351,5 @@ def test_all_done_message_no_emoji(workspace, app):
         archive_manager.archive_question(q)
     at = app("app.py").run()
     assert not at.exception
-    assert any("completed for today" in s.value for s in at.success)
+    assert any("All done for today" in m.value for m in at.markdown)      # the done card (Batch 10b.3)
     assert_no_emoji(at)

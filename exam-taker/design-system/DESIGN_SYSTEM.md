@@ -26,6 +26,13 @@ A calm, dark, book-like interface for long exam practice sessions. Text first, c
 - No emoji in titles, buttons or labels. Use icons (see Iconography).
 - Numbers as digits: "Question 12 of 40".
 - Uppercase only for `label` style overlines.
+- **One label rule set** (all 13 pages, checked by `tests/test_label_rules.py`):
+  - Sentence case everywhere ("Select exam", not "Select Exam"). No trailing colons.
+  - One verb for revealing an answer: **Show answer** (never "View answer" / "Review answer").
+  - Archive pages use **Restore**, and the toast says "Restored." (same word).
+  - The page head title equals the navigation title; descriptive text goes in the subtitle.
+  - Buttons that return to Topic analysis say **Back to topic analysis** (never "dashboard").
+  - Option values the page logic compares (for example "Ever Incorrect") are values, not labels, and keep their case.
 
 ## Colour
 
@@ -55,6 +62,23 @@ A calm, dark, book-like interface for long exam practice sessions. Text first, c
 - Always pair a status colour with an icon AND a word.
   - *Green and terracotta differ mainly in hue. The icon + word keeps it readable for colour-blind users.*
 
+### Bookmark colours (exact hex)
+
+| Bookmark | Short name | Hex |
+| --- | --- | --- |
+| Important (Red) | Important | `#d48a80` |
+| Review Later (Orange) | Review later | `#d6a464` |
+| Interesting (Blue) | Interesting | `#8ea9cc` |
+| Hard (Purple) | Hard | `#b4a0cc` |
+| Solved (Green) | Solved | `#8cc29f` |
+
+- **BookmarkChip** = filled dot in the bookmark colour + short name. No emoji, no colour-only meaning.
+- In the question card the popover holds five chips (single choice, `st.pills`); the header chip shows the dot and
+  name once saved ("Bookmark" before). The same chips filter the Bookmarks page.
+- The dot colours come from `.streamlit/config.toml`. Streamlit lightens `<name>Color` for text on a dark theme, so
+  the exact hex is set twice: `<name>Color` and `<name>TextColor` (red, orange, blue, violet, green).
+  The stored value is still the `BOOKMARK_COLORS` key ("Important (Red)").
+
 ### Contrast (checked in both themes)
 
 - `ink` on any surface: 11.5:1 or more.
@@ -77,6 +101,9 @@ A calm, dark, book-like interface for long exam practice sessions. Text first, c
 | `stat` | Dashboard numbers |
 | `code` | Code, keyboard keys |
 
+- **Fonts work offline.** Literata, Atkinson Hyperlegible and JetBrains Mono (woff2) and KaTeX 0.16.11 are bundled
+  in `static/` and served by the app at `/app/static/...`. Nothing is requested from Google Fonts or a CDN at run
+  time. Rebuild the files with `python tools/fetch_assets.py` (licences are saved next to the fonts).
 - Max line length `measure` (68ch) for all reading text.
   - *45–75 characters per line is the comfortable reading range.*
 - Never centre long text. Left-align.
@@ -121,6 +148,30 @@ A calm, dark, book-like interface for long exam practice sessions. Text first, c
 | Topic analysis | `psychology` |
 | Similar questions | `content_copy` |
 
+## Navigation
+
+- **Top navigation** (`st.navigation(..., position="top")`): four groups, each a dropdown.
+  - Practice: Exam · Targeted drill · Regressive practice · Practice incorrect · Practice bookmarks
+  - Review: Wrong answers · Bookmarks · Notes review · Search
+  - Insights: Progress · Topic analysis
+  - Manage: Similar questions · Archived
+- All 13 pages fit on one row at 1280 px wide and up. The sidebar holds only page-specific controls.
+
+## Keyboard (exam pages)
+
+| Key | Action |
+| --- | --- |
+| `1`–`9` or `A`–`H` | choose that option (toggles it on "select all that apply") |
+| `Enter` | Submit answer |
+| `N` or `→` | Next |
+| `P` or `←` | Previous |
+| `Shift+B` | open the bookmark popover (plain `B` is the answer letter B) |
+
+- Ignored while typing in a text box, the notes editor or a dropdown, and when Ctrl / Alt / Cmd is held.
+- Key chips on the buttons (`↵`, `N`, `P`) are the reminder; they are drawn by CSS, so the button labels do not change.
+- Keys wait for Streamlit to finish a rerun (a condition, not a timer), and a key with nothing to click is dropped
+  once the page is idle.
+
 ## Using this in the Streamlit app
 
 - Put colours and fonts in `.streamlit/config.toml` (theme), then keep a small CSS file for the rest.
@@ -139,9 +190,19 @@ linkColor = "#8cc29f"
 borderColor = "#2c3136"
 baseRadius = "10px"
 greenColor = "#8cc29f"
-orangeColor = "#dcae6e"
-redColor = "#e0968a"
-blueColor = "#93aecf"
+orangeColor = "#d6a464"
+redColor = "#d48a80"
+blueColor = "#8ea9cc"
+violetColor = "#b4a0cc"
+# text variants: without these Streamlit lightens the colours above for text on a dark theme
+greenTextColor = "#8cc29f"
+orangeTextColor = "#d6a464"
+redTextColor = "#d48a80"
+blueTextColor = "#8ea9cc"
+violetTextColor = "#b4a0cc"
+
+[server]
+enableStaticServing = true   # serves ./static (fonts, KaTeX) at /app/static/
 
 [theme.sidebar]
 backgroundColor = "#111316"
@@ -151,3 +212,21 @@ backgroundColor = "#111316"
 /* primary button = accent-fill, not the bright accent */
 button[kind="primary"] { background:#35553f; border-color:#35553f; color:#eef4ef; }
 ```
+
+## CHANGES
+
+- **v1.0** (`ui-v1`, batches 0–8): Slate Night theme and tokens, shared components, redesigned Exam, practice, drill
+  and regressive pages, review and insight pages, grouped `st.navigation`, no emoji, `st.container(key=...)` hooks.
+- **v1.1** (`ui-v1.1`, batch 9):
+  - Top navigation with four dropdown groups.
+  - One label rule set (sentence case, no trailing colons, "Show answer", "Restore", "Back to topic analysis"),
+    with the page head equal to the nav title.
+  - Keyboard shortcuts on the five exam pages, with key chips on Submit / Next / Previous.
+  - Topic analysis "Generate analysis" and "Refresh analysis" now run after an empty cache load.
+- **v1.2** (`ui-v1.2`, batches 10a / 10a.1): bookmark chips (coloured dot + short name) in the question card and the
+  drill, in the exact hex above; toast says "Bookmarked as Important."; AppTest patch moved to
+  `tests/plugins/pills_patch.py`.
+- **v1.2.x** (batch 10b, `ui-v1.3`):
+  - Keyboard script waits by condition: a key is no longer lost when a rerun is slow.
+  - Fonts and KaTeX bundled in `static/` (no CDN); `tools/fetch_assets.py` rebuilds them.
+  - "All done for today" card on the Exam page; drill finish screen with Answered / Correct / Accuracy tiles.

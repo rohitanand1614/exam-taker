@@ -2,7 +2,7 @@
 
 ## Status (final)
 
-**Batches 0-9 and 10a are DONE.** Final suite: **1017 passed, 15 skipped** (`python -m pytest -q`, includes 5 browser tests in
+**Batches 0-10b are DONE.** Final suite: **1126 passed, 15 skipped** (`python -m pytest -q`, includes the real-browser tests in
 `tests/e2e`); every test file also passes when run on its own. Entry point: `streamlit run main.py` (grouped
 `st.navigation`, shown as a top bar).
 
@@ -19,8 +19,12 @@
 | 8 | Test isolation, grouped navigation (`main.py`), chrome + label consistency, release checks | done |
 | 9 | Top navigation, one label rule set, keyboard shortcuts, Topic analysis "Generate analysis" fix | done |
 | 10a | Bookmark control: coloured pills with filled dots (exam card, practice pages, drill) | done |
+| 10b | Stable keyboard e2e (queue waits by condition; e2e ports skip Chromium-unsafe ports), offline fonts + KaTeX (`static/`, `tools/fetch_assets.py`), "All done for today" card, drill finish tiles, design docs | done |
 
 ### Known follow-ups
+- **Done card:** "Choose another exam" focuses the sidebar exam select (and sends it ArrowDown); it does not draw a visible ring or an open menu in screenshots, although a browser test confirms focus moves.
+- **Drill finish:** the "Drill complete" message still appears as soon as the LAST queued question is on screen (existing behaviour, kept), so the tiles show the numbers so far until that question is answered. No time tile: the page keeps no timing data.
+- **Static serving:** Streamlit serves `.css` / `.js` from `static/` as `text/plain` (nosniff), so CSS is inlined and KaTeX css/js are loaded through blob URLs; only the woff2 files are linked directly.
 - **Option values are still Title Case** (for example the radio options "Last Attempt Incorrect" / "Ever Incorrect",
   "Exact Content Match", "Standard (Cards)"). They are values the page logic compares, not labels, so Batch 9 left them.
 - **Topic analysis "Refresh analysis (trigger LLM)"** now really re-runs the analysis (it used to do nothing when a

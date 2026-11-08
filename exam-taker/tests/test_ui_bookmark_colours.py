@@ -202,11 +202,12 @@ def test_theme_tokens_equal_the_spec():
 
 # ---------------------------------------------------------------- real browser (skipped without Playwright/Chromium)
 import shutil
-import socket
 import subprocess
 import sys
 import time
 import urllib.request
+
+from tests.e2e.ports import free_port
 
 APP_DIR = Path(__file__).resolve().parent.parent
 POPOVER_PILLS = '[class*="st-key-bm_sel_"] [data-baseweb="button-group"] > button, ' \
@@ -227,14 +228,8 @@ exec(compile(open(r"{page}", encoding="utf-8").read(), r"{page}", "exec"))
 """
 
 
-def _free_port():
-    with socket.socket() as s:
-        s.bind(("127.0.0.1", 0))
-        return s.getsockname()[1]
-
-
 def _start(script, work):
-    port = _free_port()
+    port = free_port()
     proc = subprocess.Popen([sys.executable, "-m", "streamlit", "run", str(script), "--server.headless", "true",
                              "--server.port", str(port), "--browser.gatherUsageStats", "false"],
                             cwd=work, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

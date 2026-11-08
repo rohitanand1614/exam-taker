@@ -5,6 +5,7 @@ Only presentation lives here. Function names and signatures are unchanged,
 so app.py and pages/*.py keep working without edits.
 """
 import json
+from pathlib import Path
 import re
 import streamlit as st
 import streamlit.components.v1 as components
@@ -49,13 +50,27 @@ FONT_READING = "Literata, Georgia, 'Times New Roman', serif"
 FONT_UI = "'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif"
 FONT_MONO = "'JetBrains Mono', Consolas, monospace"
 
-_FONTS_URL = (
-    "https://fonts.googleapis.com/css2?"
-    "family=Atkinson+Hyperlegible:wght@400;700"
-    "&family=JetBrains+Mono:wght@400"
-    "&family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600"
-    "&display=swap"
-)
+# Fonts and KaTeX are served by the app itself (server.enableStaticServing, ./static); no CDN at run time.
+# Rebuild the files with `python tools/fetch_assets.py`.
+#
+# Streamlit serves static .css/.js as text/plain with `nosniff`, which browsers refuse as a stylesheet / script,
+# so: the @font-face rules (static/fonts/fonts.css) are INLINED into the page CSS (the woff2 files they point at
+# load fine), and KaTeX's css/js are fetched and handed to the browser as blob URLs with the right MIME type.
+STATIC_URL = "/app/static"
+_STATIC_DIR = Path(__file__).resolve().parent.parent / "static"
+
+
+def _inline_fonts_css() -> str:
+    """The @font-face rules from static/fonts/fonts.css, minified ('' if the assets were not fetched)."""
+    try:
+        css = (_STATIC_DIR / "fonts" / "fonts.css").read_text(encoding="utf-8")
+    except OSError:
+        return ""                                        # fall back to the system fonts; run tools/fetch_assets.py
+    css = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    return re.sub(r"\s+", " ", css).strip()
+
+
+_FONTS_CSS = _inline_fonts_css()
 
 # Difficulty colours (use instead of "green"/"orange"/"red" strings)
 DIFFICULTY_COLORS = {
@@ -68,15 +83,38 @@ DIFFICULTY_COLORS = {
 # Math / LaTeX rendering helpers
 # ---------------------------------------------------------------------------
 
-_KATEX_HEAD = (
-    f'<link rel="stylesheet" href="{_FONTS_URL}">'
-    '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">'
-    '<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>'
-    '<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"'
-    ' onload="renderMathInElement(document.body,{'
-    'delimiters:[{left:\'$$\',right:\'$$\',display:true},{left:\'$\',right:\'$\',display:false}],'
-    'throwOnError:false});"></script>'
-)
+_KATEX_LOADER = r"""
+<script>
+(function () {
+  var base = (function () { try { return window.parent.location.origin; } catch (e) { return location.origin; } })();
+  var S = base + "__STATIC__/katex/";
+  function blob(file, type, fix) {                    // static .css/.js come as text/plain: re-serve with a real MIME
+    return fetch(S + file).then(function (r) { return r.text(); }).then(function (t) {
+      return URL.createObjectURL(new Blob([fix ? t.split("__STATIC__/").join(base + "__STATIC__/") : t], {type: type}));
+    });
+  }
+  function script(url) {
+    return new Promise(function (ok, bad) {
+      var s = document.createElement("script"); s.onload = ok; s.onerror = bad; s.src = url; document.head.appendChild(s);
+    });
+  }
+  function ready(fn) { if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", fn); else fn(); }
+  blob("katex.min.css", "text/css", true).then(function (u) {
+    var l = document.createElement("link"); l.rel = "stylesheet"; l.href = u; document.head.appendChild(l);
+  });
+  blob("katex.min.js", "text/javascript").then(script)
+    .then(function () { return blob("auto-render.min.js", "text/javascript"); }).then(script)
+    .then(function () {
+      ready(function () {
+        renderMathInElement(document.body, {delimiters: [{left: "$$", right: "$$", display: true},
+                                                         {left: "$", right: "$", display: false}], throwOnError: false});
+      });
+    });
+})();
+</script>
+""".replace("__STATIC__", STATIC_URL)
+
+_KATEX_HEAD = f"<style>{_FONTS_CSS}</style>" + _KATEX_LOADER
 
 
 def prepare_math_text(text: str) -> str:
@@ -125,7 +163,7 @@ def render_math_text(
 _t = TOKENS
 _GLOBAL_CSS = f"""
 <style>
-@import url('{_FONTS_URL}');
+{_FONTS_CSS}
 
 :root {{
   --etp-bg:{_t['bg']}; --etp-surface:{_t['surface']}; --etp-raised:{_t['surface_raised']};
@@ -286,6 +324,12 @@ button[data-testid^="stBaseButton"] {{
 }}
 
 /* ---------- Similar questions ---------- */
+/* "All done for today" card (exam page) and the drill finish card */
+.st-key-all_done, .st-key-drill_done {{ background: var(--etp-surface); border-color: var(--etp-border) !important;
+  border-radius: 14px; max-width: 820px; }}
+.st-key-all_done, .st-key-drill_done {{ padding: .35rem .5rem .85rem; }}
+.st-key-all_done p {{ margin-bottom: .35rem; }}
+.st-key-all_done .stButton, .st-key-drill_done .stButton {{ margin-top: .6rem; }}
 [class*="st-key-simgroup_"] {{ background: var(--etp-surface); border-color: var(--etp-border) !important; border-radius: 14px; }}
 .st-key-archive_selected button {{
   background-color: transparent !important; border-color: var(--etp-danger-border) !important; color: var(--etp-danger) !important;
@@ -592,7 +636,7 @@ def inject_quill_dark_mode():
     """
     t = TOKENS
     css = f"""
-          @import url('{_FONTS_URL}');
+          {_FONTS_CSS}
           .ql-editor {{
             background: {t['surface_sunken']} !important;
             color: {t['ink_reading']} !important;

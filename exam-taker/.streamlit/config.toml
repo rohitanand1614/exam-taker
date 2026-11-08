@@ -1,4 +1,8 @@
 # Exam Taker Pro — Slate Night theme (design system tokens)
+[server]
+# serves ./static (fonts, KaTeX) at /app/static/... so the app looks right with no internet (tools/fetch_assets.py)
+enableStaticServing = true
+
 [theme]
 base = "dark"
 backgroundColor = "#15171a"

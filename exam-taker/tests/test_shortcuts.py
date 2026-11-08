@@ -82,8 +82,15 @@ def test_script_ignores_typing_modifiers_and_replaces_its_old_handler():
 def test_script_waits_for_streamlit_instead_of_clicking_stale_elements():
     """Found by the e2e test: a key pressed right after a rerun hit a stale/not-yet-drawn element and was lost."""
     js = shortcuts.script()
-    for needle in ("stStatusWidget", 'data-stale', "MAX_WAIT_MS", "queue.push", "setTimeout(drain"):
+    for needle in ("stStatusWidget", 'data-stale', "MAX_WAIT_MS", "IDLE_GRACE_MS", "queue.push", "setTimeout(drain"):
         assert needle in js, needle
+
+
+def test_script_has_no_fixed_deadline_for_a_queued_key():
+    """Batch 10b.1: a 1.5 s wall-clock deadline lost keys on a slow machine; waiting is by condition now."""
+    js = shortcuts.script()
+    assert "deadline" not in js
+    assert "MAX_WAIT_MS = 30000" in js
 
 
 def test_no_new_dependency():

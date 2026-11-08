@@ -5,8 +5,9 @@ UI plan for all 13 pages. Only layout, text, icons and styling change. Every `fi
 ## Whole app (do once)
 
 - **Theme file** — add `.streamlit/config.toml` (see brand book). Removes most custom CSS.
-- **Fonts** — Literata (reading), Atkinson Hyperlegible (UI), JetBrains Mono (code).
-- **Navigation** — replace the flat page list with `st.navigation` groups: Practice · Review · Insights · Manage (see SidebarNav).
+- **Fonts** — Literata (reading), Atkinson Hyperlegible (UI), JetBrains Mono (code). Bundled in `static/`, so they work offline.
+- **Navigation** — top navigation (`st.navigation(position="top")`), four dropdown groups: Practice · Review · Insights · Manage.
+- **Labels** — sentence case, no trailing colons, one verb "Show answer", "Restore" on archive pages; the page head equals the nav title.
 - **Emoji → icons** — remove emoji from all `st.title`, buttons, toasts. Use `icon=":material/…:"`.
 - **Page head** — every page: title (`page-title`) + one muted line (what this page is / count).
 - **Reading column** — exam-style pages: centred, max ~820px. Dashboards: full width.
@@ -38,15 +39,21 @@ UI plan for all 13 pages. Only layout, text, icons and styling change. Every `fi
 
 ### Empty / done states
 
-- "All done for today" → calm card with check icon, count, and button "Choose another exam".
-- No exam chosen → card: "Pick an exam in the sidebar to start."
+- "All done for today" → bordered card (`all_done`): check icon, title, one line "4 questions answered today in sample."
+  (or "Nothing is due in sample today." when nothing was answered today), and a secondary button "Choose another exam".
+  The button only moves focus to the sidebar exam select; it changes no state. Practice incorrect / Practice bookmarks
+  keep their own empty states.
+- No exam chosen → "Select an exam in the sidebar to begin."
 
 ## 2. Practice incorrect · 3. Practice bookmarks · 4. Targeted drill
 
 - Same layout as Exam (reuse the same card + action bar code).
 - Page head says what is in the queue: "23 questions you got wrong".
 - Targeted drill: sidebar "Drill status" → ProgressMeter + "Exit drill" (ghost button).
-- Finish screen: StatTile row (score, correct, time) + "Back to dashboard".
+- Finish screen (bordered card `drill_done`, above the question): the "Drill complete" message as head line, a
+  StatTile row (**Answered**, **Correct**, **Accuracy**, from the answers the drill already keeps; "—" before any
+  answer) and the primary button "Back to topic analysis". No time tile: the page keeps no timing data.
+- Bookmark popover in the card: five coloured chips (see DESIGN_SYSTEM → Bookmark colours), then Save / Remove.
 
 ## 5. Regressive practice
 
@@ -78,7 +85,7 @@ UI plan for all 13 pages. Only layout, text, icons and styling change. Every `fi
 
 - Big search box in page head; filters (exam, difficulty) as one row under it.
 - Results = ReviewListScreen rows; match words highlighted with `selected-bg`.
-- "View answer" → expands row to show the right option in success style.
+- "Show answer" → expands row to show the right option in success style.
 
 ## 11. Progress dashboard
 
@@ -100,19 +107,22 @@ UI plan for all 13 pages. Only layout, text, icons and styling change. Every `fi
 ## Keyboard (exam pages)
 
 ```text
-1–4 / A–D   choose option
+1–9 / A–H   choose option (toggle on multi-select)
 Enter       submit
 → / N       next
 ← / P       previous
-B           bookmark
-E           open explanation
+Shift+B     open the bookmark popover
 ```
 
-- *Needs a small add-on in Streamlit — see Technology.*
+- Built (`utils/shortcuts.py`): one script in a zero-height `components.html`, no new dependency. It clicks the
+  buttons that are already on the page. Applies to Exam, Practice incorrect, Practice bookmarks, Targeted drill and
+  Regressive practice (Regressive has no Previous or bookmark).
+- Plain `B` is the answer letter B, so the bookmark key is `Shift+B`. `E` (explanation) was not built: the explanation
+  opens by itself after Submit.
 
 ## Drawbacks and caveats
 
 - Streamlit reruns the page on each click — a short flicker stays even after the redesign.
 - Radio labels with long LaTeX may wrap less nicely than custom HTML.
-- Keyboard shortcuts are not built into Streamlit.
+- Keyboard shortcuts are not built into Streamlit; the script depends on the `st-key-*` classes and a few `data-testid`s.
 - Styling internal `data-testid` selectors can break on a Streamlit upgrade; keep them few and in one file.

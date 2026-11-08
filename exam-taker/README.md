@@ -105,6 +105,8 @@ Gain deeper insights into your study patterns with the new **Topic Analysis** pa
 exam-taker/
 ├── app.py                  # Main Application Entry Point
 ├── README.md               # This file
+├── static/                 # Offline fonts + KaTeX (rebuild: python tools/fetch_assets.py)
+├── tools/                  # fetch_assets.py, repair_latex_data.py
 ├── utils/                  # Core Logic Modules
 │   ├── file_manager.py     # JSON loading & Folder scanning
 │   ├── scoring.py          # F1 Math & Quality conversion
@@ -312,6 +314,15 @@ Keys are ignored while you type in a text box, the notes editor or a dropdown, a
 The small key chips on the Submit and Next buttons are the reminder. The script is `utils/shortcuts.py`; it only
 clicks the buttons that are already on the page.
 
+### Offline fonts and formulas
+The app works with no internet: the fonts (Literata, Atkinson Hyperlegible, JetBrains Mono) and KaTeX 0.16.11 are
+bundled in `static/` and served by the app itself (`server.enableStaticServing = true` in `.streamlit/config.toml`,
+files at `/app/static/...`). Nothing is requested from Google Fonts or a CDN while you study.
+- The fonts are under the SIL Open Font License 1.1 and KaTeX is MIT; the licence files sit next to them
+  (`static/fonts/OFL-*.txt`, `static/katex/LICENSE`).
+- To rebuild `static/` (for example after cloning without it), run `python tools/fetch_assets.py` once with internet.
+  `python tools/fetch_assets.py --check` only verifies the files and needs no network.
+
 ---
 
 ## 🛠️ Development
@@ -323,10 +334,12 @@ python -m pytest -q                  # everything (about 60 s)
 python -m pytest -q -m smoke         # every page loads
 python -m pytest -q -m flow          # user-flow contracts
 python -m pytest -q tests/test_ui_exam.py   # one file; each file also passes on its own
-python -m pytest -q tests/e2e        # real-browser keyboard test (skipped without Playwright/Chromium)
+python -m pytest -q tests/e2e        # real-browser tests: keyboard, offline assets, done card (skipped without Playwright/Chromium)
 ```
-- Use `python -m pytest`, not the bare `pytest` script: `pytest.ini` loads the plugin
-  `tests.plugins.isolation`, which only imports when the project folder is on `sys.path`.
+- Use `python -m pytest`, not the bare `pytest` script: `pytest.ini` loads the plugins
+  `tests.plugins.isolation` and `tests.plugins.pills_patch`, which only import when the project folder is on `sys.path`.
+- A failing browser test saves its evidence (traceback, screenshot, page HTML, browser console, server log) to
+  `tests/.artifacts/flaky/<time>_<test>/`.
 - Tests run on a temporary copy of `tests/fixtures/workspace`; they never touch `questions/`, `logs/`,
   `bookmarks/`, `archives/` or `user_data/`. No test calls an LLM or the network (they are mocked).
 - Test layout: `test_logic_*` (scoring, SRS, files, daily session), `test_exam_flow`, `test_review_flow`,

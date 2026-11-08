@@ -97,12 +97,33 @@ with st.sidebar:
         st.switch_page("pages/Topic_Analysis.py")
 
     # Next Button
-    if st.session_state.drill_index < len(st.session_state.drill_questions) - 1:
+    drill_finished = st.session_state.drill_index >= len(st.session_state.drill_questions) - 1
+    if not drill_finished:
         st.button("Next question", type="primary", key=f"drill_next_{step_key}",
                   icon=":material/chevron_right:", on_click=_cb_next)
-    else:
+
+
+def _drill_tiles():
+    """(label, value) tiles from what the page already keeps: drill_submitted / drill_answers / drill_questions."""
+    answered = correct = 0
+    for key, done in st.session_state.drill_submitted.items():
+        if not done:
+            continue
+        answered += 1
+        question = st.session_state.drill_questions[int(key.rsplit("_", 1)[1])]
+        right = question.get("correct_indices", [])
+        right = right if isinstance(right, list) else [right]
+        if scoring.calculate_f1_score(st.session_state.drill_answers.get(key, []), right) == 1.0:
+            correct += 1
+    accuracy = f"{round(100 * correct / answered)}%" if answered else "—"
+    return [("Answered", str(answered)), ("Correct", str(correct)), ("Accuracy", accuracy)]
+
+
+if drill_finished:
+    with st.container(border=True, key="drill_done"):
         st.success("Drill complete. You have mastered this session.", icon=":material/check_circle:")
-        if st.button("Back to topic analysis", key="drill_finish"):
+        ui_components.render_stat_tiles(_drill_tiles())
+        if st.button("Back to topic analysis", key="drill_finish", type="primary"):
             del st.session_state.drill_questions
             del st.session_state.drill_index
             del st.session_state.drill_answers

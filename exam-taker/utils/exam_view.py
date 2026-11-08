@@ -12,7 +12,10 @@ Differences between the pages are parameters of render_question():
 Helpers (render_option_row / render_banner / render_explanation / render_notes) are
 also used by Targeted_Drill and Regressive_Practice, which keep their own flow.
 """
+import datetime
+
 import streamlit as st
+import streamlit.components.v1 as components
 from streamlit_quill import st_quill
 from streamlit_mermaid import st_mermaid
 
@@ -142,14 +145,48 @@ def _cb_hard_retry(q_id):
 
 
 # ---------------------------------------------------------------------------
+# "All done for today" card (app.py only)
+# ---------------------------------------------------------------------------
+_FOCUS_EXAM_SELECT = (
+    "<script>(function(){var sel=window.parent.document.querySelector("
+    "'[data-testid=\"stSidebar\"] [data-baseweb=\"select\"]');if(!sel)return;"
+    "sel.scrollIntoView({block:'center',behavior:'smooth'});"
+    "var input=sel.querySelector('input');if(input){input.focus();"
+    "input.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowDown',bubbles:true}));}})();</script>"
+)
+
+
+def answered_today(exam):
+    """How many questions of this exam have an attempt logged today (same data and date test as app.py)."""
+    today = datetime.date.today().isoformat()
+    count = 0
+    for q in file_manager.load_questions("questions", exam):
+        attempts = file_manager.load_question_log(q.get("id")).get("attempts", [])
+        if any(str(a.get("timestamp", "")).startswith(today) for a in attempts):
+            count += 1
+    return count
+
+
+def render_all_done():
+    exam = st.session_state.get("current_exam_folder") or "this exam"
+    n = answered_today(exam)
+    line = (f"{n} question{'' if n == 1 else 's'} answered today in {exam}." if n
+            else f"Nothing is due in {exam} today.")
+    with st.container(border=True, key="all_done"):
+        st.markdown(":material/check_circle: **All done for today**")
+        st.markdown(line)
+        # only focuses the sidebar exam select: no state changes (the click just reruns the page)
+        if st.button("Choose another exam", key="all_done_choose", icon=":material/menu_book:"):
+            components.html(_FOCUS_EXAM_SELECT, height=0)
+
+
+# ---------------------------------------------------------------------------
 # the exam card
 # ---------------------------------------------------------------------------
 def render_question(*, submit_fn, show_archive=True, completed_state_key="all_completed_today",
                     empty_state=None):
     if completed_state_key and st.session_state.get(completed_state_key):
-        st.success("All questions from this section are completed for today. Great job.",
-                   icon=":material/check_circle:")
-        st.info("Select another exam from the sidebar to continue studying.", icon=":material/info:")
+        render_all_done()
         return
 
     if not st.session_state.questions:

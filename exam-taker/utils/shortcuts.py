@@ -68,8 +68,11 @@ def action_for(key: str, shift: bool = False) -> Optional[Tuple[str, Optional[in
 _HANDLER = r"""
 (function () {
   var KEY_MAP = %(key_map)s, SEL = %(selectors)s, BOOKMARK_KEY = %(bookmark_key)s;
-  var GAP_MS = 150, POLL_MS = 60, MAX_WAIT_MS = 1500;
+  var GAP_MS = 150, POLL_MS = 60, IDLE_GRACE_MS = 600, MAX_WAIT_MS = 30000;
   if (window.__etpShortcuts) { document.removeEventListener('keydown', window.__etpShortcuts, true); }
+  // diagnostics: a small ring buffer (window.__etpLog) of what the script saw and did; read by the e2e tests
+  var LOG = window.__etpLog = window.__etpLog || [], T0 = window.__etpT0 = window.__etpT0 || Date.now();
+  function log(msg) { LOG.push((Date.now() - T0) + 'ms ' + msg); if (LOG.length > 200) LOG.shift(); }
 
   function typing(el) {
     if (!el) return false;
@@ -109,18 +112,29 @@ _HANDLER = r"""
   }
   // A click starts a rerun; the next key must not hit a stale element of the old run (the stem is redrawn
   // before the answers), so actions run one at a time, only while Streamlit is idle.
+  // Waiting is by CONDITION, not by a fixed time limit (a slow machine makes a rerun take many seconds): a key
+  // waits for as long as Streamlit is running; once the page is idle and there is still no target (for example
+  // P on the first question) it is dropped after IDLE_GRACE_MS. MAX_WAIT_MS only guards against a stuck page.
   function running() {
     return !!(document.querySelector('[data-testid="stStatusWidget"]') || document.querySelector('[data-stale="true"]'));
   }
   var queue = [], lastClick = 0, timer = null;
   function drain() {
     timer = null;
-    while (queue.length && Date.now() > queue[0].deadline) queue.shift();       // never wait forever
+    var now = Date.now();
+    while (queue.length && now - queue[0].born > MAX_WAIT_MS) queue.shift();     // stuck page: give up
     if (!queue.length) return;
-    if (Date.now() - lastClick < GAP_MS || running()) { timer = setTimeout(drain, POLL_MS); return; }
-    var target = find(queue[0].a);
-    if (!target) { timer = setTimeout(drain, POLL_MS); return; }          // not drawn yet: keep waiting
+    var head = queue[0];
+    if (now - lastClick < GAP_MS) { timer = setTimeout(drain, POLL_MS); return; }
+    if (running()) { if (!head.waited) { head.waited = true; log('wait (running) ' + head.a[0]); } head.idleSince = null; timer = setTimeout(drain, POLL_MS); return; }
+    var target = find(head.a);
+    if (!target) {                                                         // idle, and nothing to click (yet)
+      if (head.idleSince === null) head.idleSince = now;
+      if (now - head.idleSince > IDLE_GRACE_MS) { log('drop (idle, no target) ' + head.a[0]); queue.shift(); if (queue.length) timer = setTimeout(drain, 0); return; }
+      timer = setTimeout(drain, POLL_MS); return;
+    }
     queue.shift();
+    log('click ' + head.a[0] + (head.a[1] === null ? '' : ' #' + head.a[1]) + ' after ' + (now - head.born) + 'ms');
     target.click(); lastClick = Date.now();
     if (queue.length) timer = setTimeout(drain, POLL_MS);
   }
@@ -129,12 +143,13 @@ _HANDLER = r"""
     if (typing(e.target)) return;
     var a = actionFor(e);
     if (!a) return;
+    log('key ' + e.key + ' on ' + (e.target && e.target.tagName) + ' -> ' + a[0]);
     var tag = e.target && e.target.tagName;
     if (a[0] === 'submit' && (tag === 'BUTTON' || tag === 'A' || tag === 'SUMMARY')) return;   // native Enter on a focused control
     // The target may not exist YET (the key can arrive between a click and the redraw it causes), so the
-    // action is queued and resolved when it runs; if it never appears it is dropped after MAX_WAIT_MS.
+    // action is queued and resolved when it runs; if it never appears it is dropped once the page is idle.
     e.preventDefault(); e.stopPropagation();   // also stops arrow keys moving a focused radio
-    queue.push({a: a, deadline: Date.now() + MAX_WAIT_MS});
+    queue.push({a: a, born: Date.now(), idleSince: null, waited: false});
     if (!timer) timer = setTimeout(drain, 0);
   }
   window.__etpShortcuts = onKey;

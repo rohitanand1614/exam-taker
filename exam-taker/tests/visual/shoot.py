@@ -187,6 +187,11 @@ def drill_flow(page, base, out_dir):
     page.goto(base + "/?n=1")  # single question = last question: finish screen
     settle(page)
     shot(page, out_dir, "drill_finish")
+    page.keyboard.press("b")                          # B is correct for Q1: the tiles show 1 / 1 / 100%
+    page.wait_for_timeout(500)
+    page.keyboard.press("Enter")
+    settle(page)
+    shot(page, out_dir, "drill_finish_answered")
 
 
 def bookmarks_flow(page, out_dir):
@@ -330,6 +335,17 @@ def nav_top_menus(page, out_dir):
         page.wait_for_timeout(300)
 
 
+def done_card(page, base, out_dir):
+    """Every question of the exam is done for today: the 'All done for today' card + its focus button."""
+    page.goto(base + "/")
+    page.wait_for_selector(".st-key-all_done", timeout=30000)
+    settle(page, 800)
+    shot(page, out_dir, "done_card")
+    page.get_by_role("button", name="Choose another exam").click()
+    page.wait_for_timeout(1500)
+    shot(page, out_dir, "done_card_choose")           # the sidebar exam select is focused / opened
+
+
 def exam_bookmark(page, out_dir):
     """Bookmark popover with coloured chips: unbookmarked, then after saving 'Important'."""
     page.goto(BASE + "/")
@@ -415,6 +431,28 @@ def wait_url(url, timeout=60):
     raise RuntimeError(f"{url} did not start in time")
 
 
+def make_done_workspace(work):
+    """A copy of the workspace where every question was answered correctly today (so the exam is 'done')."""
+    import json
+    import datetime
+    done = Path(tempfile.mkdtemp(prefix="etp_done_"))
+    shutil.copytree(work, done, dirs_exist_ok=True)
+    now = datetime.datetime.now().isoformat()
+    (done / "bookmarks").mkdir(exist_ok=True)
+    (done / "bookmarks" / "registry.json").write_text("{}", encoding="utf-8")     # bookmarked questions are never skipped
+    (done / "logs" / "attempts").mkdir(parents=True, exist_ok=True)
+    for f in (done / "questions").rglob("*.json"):
+        for q in json.loads(f.read_text(encoding="utf-8")):
+            srs = {"repetitions": 1, "interval_days": 1, "ef": 2.5, "next_due": "2030-01-01"}
+            entry = {"attempt_id": "shoot", "timestamp": now, "selected_indices": q.get("correct_indices", [0]),
+                     "score": 1.0, "quality": 5}
+            (done / "logs" / "attempts" / f"{q['id']}.log.json").write_text(json.dumps({
+                "summary": {"total_attempts": 1, "correct_count": 1, "wrong_count": 0, "avg_score": 1.0,
+                            "last_attempted_at": now, "srs": srs},
+                "attempts": [entry]}), encoding="utf-8")
+    return done
+
+
 def main():
     label = sys.argv[1] if len(sys.argv) > 1 else "batch1"
     out_dir = APP_DIR / "tests" / ".artifacts" / "screens" / label
@@ -423,6 +461,8 @@ def main():
     work = Path(tempfile.mkdtemp(prefix="etp_shoot_"))
     shutil.copytree(APP_DIR / "tests" / "fixtures" / "workspace", work, dirs_exist_ok=True)
     shutil.copytree(APP_DIR / ".streamlit", work / ".streamlit", dirs_exist_ok=True)
+    # the drill runs from work/drill_entry.py, and Streamlit serves ./static next to the MAIN script: give it the assets
+    shutil.copytree(APP_DIR / "static", work / "static", dirs_exist_ok=True)
     # extra fixture: code-like question (tests/fixtures/extras), only used by this script
     shutil.copytree(APP_DIR / "tests" / "fixtures" / "extras", work, dirs_exist_ok=True)
     # fixture log holds placeholders (see tests/conftest.py)
@@ -449,6 +489,8 @@ def main():
     seed_insights(work)
     # Targeted_Drill needs a seeded session: tiny wrapper entry on a second server
     drill_port = PORT + 1
+    done_port = PORT + 2
+    work_done = make_done_workspace(work)
     (work / "drill_entry.py").write_text(
         DRILL_ENTRY.format(app=str(APP_DIR), page=str(APP_DIR / "pages" / "Targeted_Drill.py")),
         encoding="utf-8")
@@ -456,9 +498,11 @@ def main():
     pages = sorted(p.stem for p in (APP_DIR / "pages").glob("*.py"))
     server = start_server(APP_DIR / "main.py", PORT, work)   # grouped st.navigation entry
     drill_server = start_server(work / "drill_entry.py", drill_port, work)
+    done_server = start_server(APP_DIR / "main.py", done_port, work_done)
     try:
         wait_for_server()
         wait_url(f"http://localhost:{drill_port}")
+        wait_url(f"http://localhost:{done_port}")
         with sync_playwright() as pw:
             browser = pw.chromium.launch()
             ctx = browser.new_context(viewport=VIEWPORT, device_scale_factor=1)
@@ -504,9 +548,13 @@ def main():
                 drill_flow(page, f"http://localhost:{drill_port}", out_dir)
             except Exception as e:
                 print(f"FAILED drill: {e}")
+            try:
+                done_card(page, f"http://localhost:{done_port}", out_dir)
+            except Exception as e:
+                print(f"FAILED done card: {e}")
             browser.close()
     finally:
-        for srv in (server, drill_server):
+        for srv in (server, drill_server, done_server):
             srv.terminate()
             try:
                 srv.wait(timeout=10)
